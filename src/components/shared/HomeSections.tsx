@@ -224,7 +224,7 @@ export function ProgrammeSpotlight() {
   return (
     <>
       <style>{GLOBAL_STYLES}</style>
-      <section id="programmes" className="section-block" style={{ background: "#ffffff", padding: "72px 48px 0" }}>
+      <section id="programmes" className="section-block" style={{ background: "#ffffff", padding: "72px 48px" }}>
         <img src={doodleCluster2} alt="" style={{
           position: "absolute", top: -10, right: -80, width: 300, opacity: 0.06,
           pointerEvents: "none", userSelect: "none", transform: "rotate(14deg)",
@@ -464,7 +464,7 @@ export function JourneySection() {
       backgroundSize: "cover",
       backgroundPosition: "center",
       position: "relative", overflow: "hidden",
-      padding: "72px 48px 0",
+      padding: "72px 48px",
     }}>
       {/* Dark overlay */}
       <div style={{
