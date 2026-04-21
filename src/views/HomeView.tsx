@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronRight, ChevronLeft, Play, BookOpen, Bell, X, Check } from "lucide-react";
-
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
