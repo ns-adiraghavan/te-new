@@ -39,6 +39,10 @@ const KPI_PROENGAGE  = "#1A6B3C";
 const KPI_TVW        = "#3E7EB0";
 const KPI_NUMBERS    = "#A8C94A";
 const KPI_TEAL       = "#00A896";
+const KPI_CVP        = "#F5A623";
+const B_LIME_DARK    = "#365314";
+const B_TEAL_DARK    = "#0F766E";
+const P_TEAL_DARK    = "#D1FAE5";
 
 const IS_TVW_SEASON = true;
 
@@ -589,14 +593,6 @@ export default function SPOCDashboardView() {
     obs.observe(statsRef.current);
     return () => obs.disconnect();
   }, [spocMode]);
-
-  const hasActive = !!volData.activeApplication;
-  const volActivitySlicers = IS_PE_SEASON && hasActive
-    ? [{ id: "opportunities", label: "View Opportunities" }, { id: "proengage", label: "My ProEngage Project" }]
-    : [{ id: "opportunities", label: "View Opportunities" }, { id: "early", label: "Apply Early for ProEngage" }];
-  const [activeVolActivity, setActiveVolActivity] = useState(volActivitySlicers[0].id);
-  const [activeVolHistory, setActiveVolHistory] = useState("projects");
-  const [histEditionFilter, setHistEditionFilter] = useState("ProEngage 2025 | 02");
 
   const [spocPipelineFilter, setSpocPipelineFilter] = useState("current");
   const [activeVolActivity,   setActiveVolActivity]   = useState("opportunities");
