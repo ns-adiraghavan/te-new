@@ -145,13 +145,13 @@ const SPOCHubView = () => {
 
             {/* Top — greeting */}
             <div>
-              <p className="text-white/50 text-sm font-medium tracking-wide mb-1">
-                {greeting()},
+              <p className="text-white/90 text-4xl font-sans font-light" style={{ letterSpacing: "-0.5px", lineHeight: 1.15 }}>
+                {greeting()}, <span className="font-bold text-white">{user?.firstName ?? "Rohan"}</span>.
               </p>
-              <p className="text-white/90 text-5xl font-sans font-light" style={{ letterSpacing: "-0.5px", lineHeight: 1.1 }}>
-                <span className="font-bold text-white">{user?.firstName ?? "Rohan"}!</span>
+              <p className="text-white/50 text-base font-medium tracking-wide mt-2">
+                Let's make things happen.
               </p>
-              <p className="text-white/30 text-xs mt-2 font-medium">{user?.company} · {user?.designation}</p>
+              <p className="text-white/30 text-xs mt-3 font-medium">{user?.company} · {user?.designation}</p>
             </div>
 
             {/* Centre — quote */}
