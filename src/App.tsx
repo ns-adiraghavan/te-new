@@ -14,6 +14,7 @@ import Navbar from "@/components/layout/Navbar";
 
 import OrientationModal from "@/components/shared/OrientationModal";
 import Chatbot from "@/components/shared/Chatbot";
+import SocialCluster from "@/components/shared/SocialCluster";
 import FeedbackModal from "@/components/shared/FeedbackModal";
 import SupportModal from "@/components/shared/SupportModal";
 import ProtectedRoute from "@/components/shared/ProtectedRoute";
@@ -217,6 +218,9 @@ export default function App() {
               </Routes>
         </main>
 
+        {user?.role !== "platform_admin" && (
+          <SocialCluster isLoggedIn={isLoggedIn} inHero={false} />
+        )}
         <Chatbot />
         {showOrientationModal && <OrientationModal />}
         <FeedbackModal />
