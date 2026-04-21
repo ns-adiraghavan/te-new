@@ -119,16 +119,29 @@ const Navbar = ({
 
         {/* ── CENTRE: public nav links ── */}
         <div className="hidden md:flex items-center gap-10 lg:gap-[60px]">
-            <span
-              onClick={() => onNavigate("home")}
-              className={`text-sm font-medium transition-colors duration-300 cursor-pointer ${isTransparent ? "text-white/90 hover:text-white" : "text-zinc-500 hover:text-zinc-900"}`}
-            >
-              Home
-            </span>
+            {(() => {
+              const isHomeActive = location.pathname === "/";
+              const activeBase = "border-b-2 pb-0.5";
+              const activeCls = isTransparent
+                ? `text-white ${activeBase} border-white/70`
+                : `text-zinc-900 ${activeBase} border-[#333399]`;
+              const hoverCls = isTransparent
+                ? "text-white/90 hover:text-white hover:border-b-2 hover:border-white/35 hover:pb-0.5"
+                : "text-zinc-500 hover:text-zinc-900 hover:border-b-2 hover:border-[#333399]/50 hover:pb-0.5";
+              return (
+                <span
+                  onClick={() => onNavigate("home")}
+                  className={`text-sm font-medium transition-colors duration-300 cursor-pointer ${isHomeActive ? activeCls : hoverCls}`}
+                >
+                  Home
+                </span>
+              );
+            })()}
 
             {[
               {
                 label: "About",
+                activePrefix: "/about",
                 items: [
                   {
                     label: "TE Vision",
@@ -159,6 +172,7 @@ const Navbar = ({
               },
               {
                 label: "Programmes",
+                activePrefix: "/about/proengage",
                 items: [
                   { label: "ProEngage",              action: () => onNavigate("about-proengage") },
                   { label: "TVW (Tata Volunteering Week)", action: () => onNavigate("about-tvw") },
@@ -169,6 +183,7 @@ const Navbar = ({
               },
               {
                 label: "Media & Resources",
+                activePrefix: "/media",
                 items: [
                   { label: "Photos",         action: () => onNavigate("media") },
                   { label: "Videos",         action: () => onNavigate("media") },
@@ -179,6 +194,7 @@ const Navbar = ({
               },
               {
                 label: "Partner With Us",
+                activePrefix: "/register",
                 items: [
                   { label: "Register as NGO",           action: () => onNavigate("register-role") },
                   { label: "Register as Volunteer",      action: () => onNavigate("register-role") },
@@ -186,21 +202,30 @@ const Navbar = ({
                   { label: "Refer an NGO",               action: () => onNavigate("partner") },
                 ],
               },
-            ].map((nav) => (
-              <div key={nav.label} className="relative group">
-                <span className={`text-sm font-medium transition-colors duration-300 cursor-pointer flex items-center gap-1 ${isTransparent ? "text-white/90 hover:text-white" : "text-zinc-500 hover:text-zinc-900"}`}>
-                  {nav.label} <ChevronDown size={12} />
-                </span>
-                <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-52 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
-                  {nav.items.map((item) => (
-                    <span key={item.label} onClick={item.action}
-                      className="block px-4 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 cursor-pointer transition-colors">
-                      {item.label}
-                    </span>
-                  ))}
+            ].map((nav) => {
+              const isActive = location.pathname.startsWith(nav.activePrefix);
+              const activeCls = isTransparent
+                ? "text-white border-b-2 border-white/70 pb-0.5"
+                : "text-zinc-900 border-b-2 border-[#333399] pb-0.5";
+              const hoverCls = isTransparent
+                ? "text-white/90 hover:text-white hover:border-b-2 hover:border-white/35 hover:pb-0.5"
+                : "text-zinc-500 hover:text-zinc-900 hover:border-b-2 hover:border-[#333399]/50 hover:pb-0.5";
+              return (
+                <div key={nav.label} className="relative group">
+                  <span className={`text-sm font-medium transition-colors duration-300 cursor-pointer flex items-center gap-1 ${isActive ? activeCls : hoverCls}`}>
+                    {nav.label} <ChevronDown size={12} />
+                  </span>
+                  <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-52 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
+                    {nav.items.map((item) => (
+                      <span key={item.label} onClick={item.action}
+                        className="block px-4 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 cursor-pointer transition-colors">
+                        {item.label}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
 
             <Search size={18} className={`cursor-pointer transition-colors duration-300 ${isTransparent ? "text-white/80 hover:text-white" : "text-zinc-400 hover:text-zinc-700"}`} />
           </div>
