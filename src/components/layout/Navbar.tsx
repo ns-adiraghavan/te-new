@@ -151,6 +151,13 @@ const Navbar = ({
                     }
                   },
                   {
+                    label: "From the Desk of Group CSO",
+                    action: () => {
+                      onNavigate("about");
+                      setTimeout(() => document.getElementById("about-cso")?.scrollIntoView({ behavior: "smooth" }), 120);
+                    }
+                  },
+                  {
                     label: "Our Journey",
                     action: () => onNavigate("journey"),
                   },
