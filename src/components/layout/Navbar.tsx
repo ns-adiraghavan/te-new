@@ -163,8 +163,8 @@ const Navbar = ({
                   { label: "ProEngage",              action: () => onNavigate("about-proengage") },
                   { label: "TVW (Tata Volunteering Week)", action: () => onNavigate("about-tvw") },
                   { label: "Disaster Response",      action: () => onNavigate("disaster-response") },
-                  { label: "CVP",                    action: () => triggerToast("CVP information coming soon") },
-                  { label: "DIY",                    action: () => triggerToast("DIY kit available in the Resource Library after login") },
+                  { label: "Company Volunteering Programmes", action: () => triggerToast("CVP information coming soon") },
+                  { label: "DIY Volunteering",       action: () => triggerToast("DIY kit available in the Resource Library after login") },
                 ],
               },
               {
