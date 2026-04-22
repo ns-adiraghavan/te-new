@@ -271,7 +271,7 @@ export function ProgrammeSpotlight() {
 
               {/* Merged tile — three distinct styles, one per programme */}
               {(() => {
-                const styleKey = idx === 0 ? "a" : idx === 1 ? "b" : "c";
+                const styleKey = "a";
                 const tileBase: React.CSSProperties = {
                   minHeight: 340,
                   borderRadius: 18,
@@ -315,7 +315,6 @@ export function ProgrammeSpotlight() {
                         justifyContent: "center",
                       }}>
                         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                          <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", marginBottom: 8 }}>Style A · Split gradient</span>
                           <h3 style={{
                             fontSize: 28, fontWeight: 900, color: "#ffffff",
                             letterSpacing: "-0.4px", lineHeight: 1.2, margin: "0 0 8px",
