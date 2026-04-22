@@ -105,7 +105,7 @@ const Navbar = ({
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
-      <div className={`h-16 flex items-center justify-between px-6 md:px-12 transition-all duration-300 ${isTransparent ? "bg-black/20 backdrop-blur-sm border-b border-transparent" : "bg-white border-b border-zinc-100 shadow-sm"}`}>
+      <div className={`h-16 flex items-center justify-between px-6 md:px-12 transition-all duration-300 ${isTransparent ? "bg-black/20 backdrop-blur-sm border-b border-transparent" : "bg-white/80 backdrop-blur-md border-b border-white/60 shadow-[0_1px_12px_rgba(0,0,0,0.07)]"}`}>
 
         {/* ── LEFT: TataEngage logo ── */}
         <div className="flex-shrink-0">
