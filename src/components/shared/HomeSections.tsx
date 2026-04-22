@@ -377,9 +377,9 @@ export function ProgrammeSpotlight() {
                     onClick={(e) => { e.stopPropagation(); setRightBox(1); }}
                     style={{
                       width: 26, height: 26, borderRadius: "50%",
-                      background: `${ACCENT_NAVY}18`, border: `1px solid ${ACCENT_NAVY}28`,
+                      background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.4)",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      cursor: "pointer", color: ACCENT_NAVY,
+                      cursor: "pointer", color: "#ffffff",
                     }}
                   >
                     <ChevronDown size={14} />
