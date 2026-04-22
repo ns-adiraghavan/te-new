@@ -20,9 +20,10 @@ const DIAG: React.CSSProperties = {
 
 const SECTIONS = [
   { id: "pwu-hero",    label: "Overview"     },
-  { id: "pwu-bridge",  label: "How we connect"},
+  { id: "pwu-bridge",  label: "How we bridge"},
   { id: "pwu-ngo",     label: "For NGOs"     },
   { id: "pwu-contact", label: "Contact"      },
+  { id: "pwu-social",  label: "Stay connected"},
   { id: "pwu-cta",     label: "Get started"  },
 ];
 
