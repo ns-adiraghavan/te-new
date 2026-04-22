@@ -6,17 +6,17 @@ import SubPageDotRail from "@/components/shared/SubPageDotRail";
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
 const ACCENT_NAVY  = "#0D1B3E";
-const B_MUSTARD    = "#C8940A";
+const B_YELLOW     = "#F5A623";
 const COLOUR       = "#007A8A";
 const COLOUR_MID   = "#005F6B";
 const COLOUR_LIGHT = "#E6F5F7";
 
 const SECTIONS = [
-  { id: "dr-overview",  label: "Overview"    },
-  { id: "dr-who",       label: "Cadre"       },
-  { id: "dr-how",       label: "How it works" },
-  { id: "dr-framework", label: "Framework"   },
-  { id: "dr-tsg",       label: "TSG Role"    },
+  { id: "dr-overview",  label: "Overview"     },
+  { id: "dr-why",       label: "Why it matters" },
+  { id: "dr-who",       label: "Who"           },
+  { id: "dr-how",       label: "How it works"  },
+  { id: "dr-tsg",       label: "TSG Role"      },
 ];
 
 const DIAG: React.CSSProperties = {
@@ -26,41 +26,77 @@ const DIAG: React.CSSProperties = {
   pointerEvents: "none",
 };
 
-const STATS = [
-  { num: "48h",    label: "Deployment target"              },
-  { num: "100+",   label: "Deployed in TN Floods 2016"     },
-  { num: "FY2016", label: "Framework adopted by TGSC"       },
+// ── All data strictly from vetted copy ───────────────────────────────────────
+
+// Three volunteer roles — exact durations from vetted copy
+const ROLES = [
+  {
+    label: "Project Managers",
+    duration: "15–60 days",
+    desc: "Bring the knowledge and capability to manage large-scale disaster response initiatives. As leaders of the relief mission.",
+  },
+  {
+    label: "Procurement Officers",
+    duration: "15–60 days",
+    desc: "Trained in emergency supply-chain management and logistics.",
+  },
+  {
+    label: "Core Volunteers",
+    duration: "7–30 days",
+    desc: "Contribute to critical activities such as conducting need assessments, coordinating logistics, preparing and distributing relief kits, and supporting medical camps and allied relief efforts.",
+  },
 ];
 
-const WHO = [
-  { label: "Project Managers", icon: "📋", desc: "Bring knowledge and capability to manage large-scale disaster response initiatives. Volunteer commitment: 15–60 days on the ground." },
-  { label: "Procurement Officers", icon: "🚚", desc: "Trained in emergency supply-chain management and logistics. Volunteer commitment: 15–60 days on the ground." },
-  { label: "Core Volunteers", icon: "🤝", desc: "Spend 7–30 days in disaster-affected areas contributing to need assessments, logistics coordination, relief kit distribution, and support for medical camps and allied relief efforts." },
+// Why it matters — for communities (vetted copy)
+const FOR_COMMUNITIES = [
+  "Faster access to essential relief and medical support",
+  "Better-coordinated on-ground efforts driven by clear assessments and planning",
+  "Support that goes beyond immediate relief to enable early recovery",
 ];
 
-const STEPS = [
-  { num: "01", title: "Volunteer pre-registers", desc: "Expressions of interest are invited from Tata employees registered on tataengage.com. Volunteers opt into the cadre and are shortlisted based on proximity to affected areas, local language knowledge, past field experience, and medical fitness.", time: "Ongoing" },
-  { num: "02", title: "Alert is issued",          desc: "TSG identifies a disaster event requiring volunteer deployment and activates the One Tata Response protocol.", time: "Day 0" },
-  { num: "03", title: "Cadre is notified",        desc: "Pre-registered volunteers in relevant geographies receive an immediate alert with deployment details.", time: "< 24h" },
-  { num: "04", title: "Deployment & coordination", desc: "Volunteers are briefed, coordinated with local NGO partners, and deployed to affected communities.", time: "< 48h" },
+// Why it matters — for volunteers (vetted copy)
+const FOR_VOLUNTEERS = [
+  "Make a direct, tangible difference during moments of crisis",
+  "Work closely with cross-company teams in challenging environments",
+  "Deepen a sense of purpose, empathy, and social responsibility",
 ];
 
-const TIME_LABELS = ["Always active", "Trigger", "Notification sent", "Deployed"];
-
-const PRINCIPLES = [
-  { label: "Readiness",    desc: "Pre-registered cadre, always ready to be activated",                   icon: "🟢" },
-  { label: "Speed",        desc: "Volunteer selection based on proximity, language, experience, and medical fitness.",                icon: "⚡" },
-  { label: "Coordination", desc: "TSG-led, with local NGO partner integration on the ground",            icon: "🔗" },
-  { label: "Coverage",     desc: "Multi-company mobilisation spanning geographies and borders",           icon: "🌏" },
+// Selection criteria — verbatim from vetted copy
+const SELECTION_CRITERIA = [
+  "Proximity to the disaster-affected area",
+  "Knowledge of the local language",
+  "Past volunteering and field experience",
+  "Medical fitness",
 ];
 
-const TSG_POINTS = [
-  "Monitoring disaster situations across India and globally",
-  "Activating the One Tata Response protocol",
-  "Coordinating with local NGO partners on the ground",
-  "Managing volunteer briefings and logistics",
-  "Documenting response impact and learnings for future readiness",
-];
+// SVG icons — no emoji
+const IconManager = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="7" width="20" height="14" rx="2"/>
+    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+    <line x1="12" y1="12" x2="12" y2="16"/>
+    <line x1="10" y1="14" x2="14" y2="14"/>
+  </svg>
+);
+
+const IconProcurement = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M1 3h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    <circle cx="10" cy="20.5" r="1.5"/>
+    <circle cx="18" cy="20.5" r="1.5"/>
+  </svg>
+);
+
+const IconVolunteer = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+    <circle cx="9" cy="7" r="4"/>
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+  </svg>
+);
+
+const ROLE_ICONS = [IconManager, IconProcurement, IconVolunteer];
 
 // ── DefinerBar ────────────────────────────────────────────────────────────────
 function DefinerBar({ colour }: { colour: string }) {
@@ -102,29 +138,21 @@ export default function DisasterResponseView() {
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, transparent, #fff)", pointerEvents: "none" }} />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "120px 56px 96px", width: "100%" }}>
-          <div style={{ maxWidth: 560 }}>
+          <div style={{ maxWidth: 580 }}>
             <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.2px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 16 }}>
-              Emergency Volunteering · One Tata Response Framework
+              Emergency Volunteering · One Tata Response
             </p>
             <div style={{ width: 32, height: 2, background: "rgba(255,255,255,0.45)", borderRadius: 2, marginBottom: 22 }} />
             <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.8rem, 5.5vw, 4.2rem)", fontWeight: 900, color: "#fff", lineHeight: 1.02, letterSpacing: "-2px", margin: "0 0 22px", whiteSpace: "pre-line" }}>
-              {"Disaster\nResponse"}
+              {"Volunteering\nfor Disaster\nResponse"}
             </h1>
-            <p style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.78)", margin: "0 0 44px", maxWidth: 460 }}>
-              When communities face a crisis — flood, cyclone, drought, or earthquake — the One Tata Response framework mobilises trained Tata volunteers within 48 hours. Rapid, organised, compassionate.
+            <p style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.78)", margin: "0 0 44px", maxWidth: 480 }}>
+              Responding to humanitarian crises has always been integral to the Tata ethos. In moments of natural and humanitarian disasters, the Tata Engage platform serves as a vital channel to mobilise employees across the Group, enabling quick, coordinated volunteer action.
             </p>
-            <div style={{ display: "flex", gap: 40, flexWrap: "wrap", marginBottom: 44, paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
-              {STATS.map((s) => (
-                <div key={s.label}>
-                  <div style={{ fontSize: 28, fontWeight: 900, color: "#fff", lineHeight: 1, letterSpacing: "-0.5px" }}>{s.num}</div>
-                  <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 5 }}>{s.label}</div>
-                </div>
-              ))}
-            </div>
             <div style={{ display: "flex", gap: 12 }}>
               <button onClick={() => navigate(isLoggedIn ? "dr-availability-form" : "register-role")}
-                style={{ background: B_MUSTARD, color: "#fff", border: "none", borderRadius: 10, padding: "12px 26px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
-                Join the Response Cadre →
+                style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "12px 26px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+                Register your interest →
               </button>
               <button onClick={() => document.getElementById("dr-overview")?.scrollIntoView({ behavior: "smooth" })}
                 style={{ background: "rgba(255,255,255,0.11)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.26)", borderRadius: 10, padding: "12px 22px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
@@ -135,7 +163,7 @@ export default function DisasterResponseView() {
         </div>
 
         <div style={{ position: "absolute", bottom: 100, right: 56, background: "rgba(0,0,0,0.28)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>
-          Rapid Action · One Tata Response
+          Rapid · Organised · Compassionate
         </div>
       </div>
 
@@ -143,15 +171,15 @@ export default function DisasterResponseView() {
       <section id="dr-overview" style={{ padding: "88px 56px", background: "#fff" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
           <div>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>The Disaster Response Cadre</p>
-            <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Pre-registered, always ready</h2>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>About the programme</p>
+            <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>The Tata ethos of service, in action</h2>
             <DefinerBar colour={COLOUR} />
             <div style={{ marginTop: 28 }}>
-              <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
-                Tata Engage's Disaster Response programme is not spontaneous — it is a pre-registered cadre of Tata volunteers who have indicated their willingness to be deployed rapidly when a crisis hits.
+              <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
+                Responding to humanitarian crises has always been integral to the Tata ethos. In moments of natural and humanitarian disasters, the Tata Engage platform serves as a vital channel to mobilise employees across the Group, enabling quick, coordinated volunteer action.
               </p>
-              <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82 }}>
-                Responding to humanitarian crises has always been integral to the Tata ethos. In moments of natural and humanitarian disasters, the Tata Engage platform serves as a vital channel to mobilise employees across the Group, enabling quick, coordinated volunteer action. Volunteers work closely alongside Project Managers, Procurement Officers, and Core Volunteers — each playing a defined role in the relief mission.
+              <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.82 }}>
+                Volunteers from different Tata companies work closely on the ground alongside Project Managers, Procurement Officers, and Core Volunteers — each playing a defined role in the relief mission. Their contribution plays a vital role in ensuring timely, efficient, and dignified support to affected communities.
               </p>
             </div>
           </div>
@@ -166,6 +194,59 @@ export default function DisasterResponseView() {
         </div>
       </section>
 
+      {/* ════════════════════ WHY IT MATTERS ════════════════════ */}
+      <section id="dr-why" style={{ padding: "88px 56px", background: "#F4F8F7" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Why it matters</p>
+          <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Why is volunteering for Disaster Response important?</h2>
+          <DefinerBar colour={COLOUR} />
+          <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.82, marginTop: 24, maxWidth: 700, marginBottom: 48 }}>
+            In the wake of disasters, timely and coordinated action can significantly ease suffering and accelerate recovery. Volunteering for Disaster Response enables Tata to mobilise trained, committed employees who can respond quickly and responsibly when communities are at their most vulnerable.
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+            {/* For communities */}
+            <div style={{ background: "#fff", borderRadius: 18, padding: "32px 28px", border: `1px solid ${COLOUR}18` }}>
+              <div style={{ width: 32, height: 3, background: COLOUR, borderRadius: 2, marginBottom: 20 }} />
+              <div style={{ fontSize: 16, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 20 }}>For affected communities</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                {FOR_COMMUNITIES.map((point, i) => (
+                  <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                    <div style={{ width: 20, height: 20, borderRadius: "50%", background: COLOUR_LIGHT, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 2 }}>
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M1.5 5l2.5 2.5 4.5-4" stroke={COLOUR} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <span style={{ fontSize: 14, color: "#475569", lineHeight: 1.65 }}>{point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* For volunteers */}
+            <div style={{ background: COLOUR, borderRadius: 18, padding: "32px 28px" }}>
+              <div style={{ width: 32, height: 3, background: "rgba(255,255,255,0.4)", borderRadius: 2, marginBottom: 20 }} />
+              <div style={{ fontSize: 16, fontWeight: 800, color: "#fff", marginBottom: 20 }}>For volunteers</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                {FOR_VOLUNTEERS.map((point, i) => (
+                  <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                    <div style={{ width: 20, height: 20, borderRadius: "50%", background: "rgba(255,255,255,0.2)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 2 }}>
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M1.5 5l2.5 2.5 4.5-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <span style={{ fontSize: 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.65 }}>{point}</span>
+                  </div>
+                ))}
+              </div>
+              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", lineHeight: 1.7, marginTop: 24, fontStyle: "italic" }}>
+                Rooted in the Tata tradition of service, Disaster Response volunteering reflects the belief that compassion, when combined with professional capability, can create meaningful and lasting impact.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ════════════════════ WHO ════════════════════ */}
       <section id="dr-who" style={{ position: "relative", overflow: "hidden", minHeight: 480 }}>
         <img src="https://images.unsplash.com/photo-1591901206069-ed60c4429e2a?auto=format&fit=crop&q=80&w=1800" alt=""
@@ -173,87 +254,100 @@ export default function DisasterResponseView() {
         <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${COLOUR}f8 0%, ${COLOUR}e0 38%, ${COLOUR}c0 58%, ${COLOUR}88 78%, ${COLOUR}44 100%)` }} />
         <div style={DIAG} />
         <div style={{ position: "relative", zIndex: 1, padding: "88px 56px" }}>
-          <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
+          <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
             <div>
-              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>The Cadre</p>
-              <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>Who is in the cadre?</h2>
-              <div style={{ height: 3, background: "rgba(255,255,255,0.28)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 36 }} />
-              <div style={{ marginBottom: 36 }}>
-                <div style={{ fontSize: "clamp(3.5rem, 7vw, 5.5rem)", fontWeight: 900, color: "#fff", lineHeight: 1, letterSpacing: "-3px" }}>100+</div>
-                <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: "rgba(255,255,255,0.55)", marginTop: 10, letterSpacing: "0.8px", maxWidth: 260, lineHeight: 1.5 }}>volunteers deployed in Tamil Nadu Floods alone</div>
-              </div>
-              <p style={{ fontSize: 15, color: "rgba(255,255,255,0.7)", lineHeight: 1.8, maxWidth: 380 }}>
-                The cadre is made up of Tata employees who have proactively registered their availability and readiness for disaster deployment.
+              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Who can volunteer?</p>
+              <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>Tata Employees</h2>
+              <div style={{ height: 3, background: "rgba(255,255,255,0.28)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 28 }} />
+              <p style={{ fontSize: 15, color: "rgba(255,255,255,0.8)", lineHeight: 1.8, marginBottom: 28, maxWidth: 380 }}>
+                Expressions of interest are invited from Tata employees registered on tataengage.com. Based on defined eligibility criteria and the ability to commit time and effort during emergencies, volunteers are shortlisted to join the Disaster Response teams deployed on the ground.
+              </p>
+              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.7, maxWidth: 360, fontStyle: "italic" }}>
+                Volunteers from different Tata companies work closely on the ground alongside Project Managers, Procurement Officers, and Core Volunteers.
               </p>
             </div>
-            <div>
-              {WHO.map((w, i) => (
-                <div key={w.label} style={{ padding: "28px 0", borderBottom: i < WHO.length - 1 ? "1px solid rgba(255,255,255,0.14)" : "none", display: "flex", gap: 20, alignItems: "flex-start" }}>
-                  <div style={{ width: 52, height: 52, borderRadius: 14, flexShrink: 0, background: "rgba(255,255,255,0.14)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{w.icon}</div>
-                  <div>
-                    <div style={{ fontSize: 17, fontWeight: 800, color: "#fff", marginBottom: 6 }}>{w.label}</div>
-                    <div style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", lineHeight: 1.7 }}>{w.desc}</div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+              {ROLES.map((role, i) => {
+                const Icon = ROLE_ICONS[i];
+                return (
+                  <div key={role.label} style={{ padding: "28px 0", borderBottom: i < ROLES.length - 1 ? "1px solid rgba(255,255,255,0.14)" : "none", display: "flex", gap: 20, alignItems: "flex-start" }}>
+                    <div style={{ width: 52, height: 52, borderRadius: 14, flexShrink: 0, background: "rgba(255,255,255,0.14)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
+                      <Icon />
+                    </div>
+                    <div>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+                        <div style={{ fontSize: 16, fontWeight: 800, color: "#fff" }}>{role.label}</div>
+                        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, color: COLOUR, background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 100, padding: "2px 8px", letterSpacing: "0.5px" }}>{role.duration}</div>
+                      </div>
+                      <div style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", lineHeight: 1.7 }}>{role.desc}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
       {/* ════════════════════ HOW IT WORKS ════════════════════ */}
-      <section id="dr-how" style={{ padding: "88px 56px", background: "#F4F8F7" }}>
+      <section id="dr-how" style={{ padding: "88px 56px", background: "#fff" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>From alert to action</p>
-          <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>How rapid response works</h2>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>The process</p>
+          <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>How do we go about it?</h2>
           <DefinerBar colour={COLOUR} />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginTop: 48 }}>
-            {STEPS.map((s, i) => {
-              const isFirst = i === 0;
-              return (
-                <div key={s.num}
-                  style={{ borderRadius: 16, overflow: "hidden", background: isFirst ? COLOUR : "#fff", border: `1px solid ${isFirst ? COLOUR : "#e8eef0"}`, boxShadow: isFirst ? `0 8px 28px ${COLOUR}30` : "none", transition: "transform 0.2s, box-shadow 0.2s" }}
-                  onMouseEnter={(e) => { if (!isFirst) { (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)"; } }}
-                  onMouseLeave={(e) => { if (!isFirst) { (e.currentTarget as HTMLElement).style.transform = "none"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; } }}
-                >
-                  <div style={{ background: isFirst ? "rgba(0,0,0,0.15)" : COLOUR_LIGHT, padding: "20px 20px 16px", borderBottom: `1px solid ${isFirst ? "rgba(255,255,255,0.12)" : COLOUR + "18"}` }}>
-                    <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 26, fontWeight: 700, lineHeight: 1, color: isFirst ? "#fff" : COLOUR, letterSpacing: "-1px" }}>{s.time}</div>
-                    <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 9, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: isFirst ? "rgba(255,255,255,0.45)" : COLOUR + "80", marginTop: 5 }}>{TIME_LABELS[i]}</div>
-                  </div>
-                  <div style={{ padding: "18px 20px 22px" }}>
-                    <div style={{ fontSize: 14, fontWeight: 800, color: isFirst ? "#fff" : ACCENT_NAVY, marginBottom: 8 }}>{s.title}</div>
-                    <div style={{ fontSize: 12, lineHeight: 1.72, color: isFirst ? "rgba(255,255,255,0.72)" : "#64748B" }}>{s.desc}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════ FRAMEWORK ════════════════════ */}
-      <section id="dr-framework" style={{ padding: "80px 56px", background: "#fff" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>One Tata Response</p>
-          <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>A Group-wide commitment to rapid action</h2>
-          <DefinerBar colour={COLOUR} />
-          <p style={{ fontSize: 15, color: "#64748B", lineHeight: 1.82, marginTop: 24, maxWidth: 680 }}>
-            The One Tata Response framework, adopted by the Tata Group Sustainability Council, provides a structured protocol for cross-company disaster response — ensuring multiple Tata companies can mobilise simultaneously with unified TSG coordination.
+          <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.82, marginTop: 24, maxWidth: 680, marginBottom: 52 }}>
+            Once a request is received from Project Managers, the volunteer identification process begins through two primary channels: volunteers who have registered their interest on the Tata Engage platform, and nominations facilitated through the CSR Heads of Tata companies.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginTop: 40 }}>
-            {PRINCIPLES.map((p) => (
-              <div key={p.label}
-                style={{ background: "#fff", borderRadius: 14, border: "1px solid #e8eef0", padding: "26px 24px", display: "flex", gap: 18, alignItems: "flex-start", transition: "box-shadow 0.2s" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 20px rgba(0,0,0,0.07)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
-              >
-                <div style={{ width: 44, height: 44, borderRadius: 11, flexShrink: 0, background: COLOUR_LIGHT, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{p.icon}</div>
-                <div>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 6 }}>{p.label}</div>
-                  <div style={{ fontSize: 14, color: "#64748B", lineHeight: 1.65 }}>{p.desc}</div>
-                </div>
+
+          {/* Two identification channels */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 48 }}>
+            <div style={{ background: COLOUR_LIGHT, borderRadius: 16, padding: "28px 26px", border: `1px solid ${COLOUR}22` }}>
+              <div style={{ width: 32, height: 3, background: COLOUR, borderRadius: 2, marginBottom: 18 }} />
+              <div style={{ fontSize: 15, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 10 }}>Channel 1</div>
+              <div style={{ fontSize: 14, color: "#475569", lineHeight: 1.7 }}>Volunteers who have registered their interest on the Tata Engage platform</div>
+            </div>
+            <div style={{ background: COLOUR_LIGHT, borderRadius: 16, padding: "28px 26px", border: `1px solid ${COLOUR}22` }}>
+              <div style={{ width: 32, height: 3, background: COLOUR, borderRadius: 2, marginBottom: 18 }} />
+              <div style={{ fontSize: 15, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 10 }}>Channel 2</div>
+              <div style={{ fontSize: 14, color: "#475569", lineHeight: 1.7 }}>Nominations facilitated through the CSR Heads of Tata companies</div>
+            </div>
+          </div>
+
+          {/* Selection criteria */}
+          <div style={{ background: ACCENT_NAVY, borderRadius: 18, padding: "36px 40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
+            <div>
+              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 14 }}>Selection criteria</p>
+              <div style={{ fontSize: 20, fontWeight: 900, color: "#fff", lineHeight: 1.25, marginBottom: 16 }}>Selection is based on parameters such as:</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {SELECTION_CRITERIA.map((c, i) => (
+                  <div key={i} style={{ display: "flex", gap: 12, alignItems: "center" }}>
+                    <div style={{ width: 24, height: 24, borderRadius: "50%", background: COLOUR, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M1.5 5l2.5 2.5 4.5-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <span style={{ fontSize: 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.5 }}>{c}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <div>
+              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 14 }}>Then</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                {[
+                  { step: "01", text: "Shortlisted volunteers are interviewed and oriented" },
+                  { step: "02", text: "Deployed to provide essential on-ground support" },
+                  { step: "03", text: "Immersed fully in rescue, relief, and recovery over 7–10 days" },
+                  { step: "04", text: "On completion, formally recognised and awarded certificates" },
+                ].map((s) => (
+                  <div key={s.step} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+                    <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 700, color: COLOUR, flexShrink: 0, minWidth: 24 }}>{s.step}</div>
+                    <span style={{ fontSize: 14, color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{s.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -264,27 +358,22 @@ export default function DisasterResponseView() {
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 72, alignItems: "start" }}>
           <div>
             <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Tata Sustainability Group</p>
-            <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>TSG coordinates every response</h2>
-            <div style={{ height: 3, background: "rgba(255,255,255,0.25)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 36 }} />
-            <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-              {TSG_POINTS.map((p, i) => (
-                <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                  <div style={{ width: 24, height: 24, borderRadius: "50%", background: "rgba(255,255,255,0.18)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 1 }}>
-                    <span style={{ color: "#fff", fontSize: 11, fontWeight: 800 }}>✓</span>
-                  </div>
-                  <span style={{ fontSize: 15, color: "rgba(255,255,255,0.85)", lineHeight: 1.65 }}>{p}</span>
-                </div>
-              ))}
-            </div>
+            <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>TSG's role in Disaster Response</h2>
+            <div style={{ height: 3, background: "rgba(255,255,255,0.25)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 28 }} />
+            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.8)", lineHeight: 1.82, marginBottom: 32 }}>
+              The Tata Sustainability Group anchors and steers the ONE Tata Disaster Response programme end-to-end. Working in close collaboration with Tata companies, TSG leads the planning, coordination, and execution of relief and rehabilitation measures in disaster-affected areas, ensuring that Tata's response is timely, structured, and impactful.
+            </p>
           </div>
           <div style={{ background: "rgba(0,0,0,0.22)", borderRadius: 20, padding: "40px 36px", border: "1px solid rgba(255,255,255,0.14)" }}>
-            <div style={{ fontSize: 24, fontWeight: 900, color: "#fff", marginBottom: 14, lineHeight: 1.2 }}>Ready to respond?</div>
+            <div style={{ fontSize: 22, fontWeight: 900, color: "#fff", marginBottom: 14, lineHeight: 1.25 }}>
+              Register your interest
+            </div>
             <p style={{ fontSize: 15, color: "rgba(255,255,255,0.68)", lineHeight: 1.78, marginBottom: 36 }}>
-              Join the pre-registered cadre and be ready to make a difference when it matters most.
+              Expressions of interest are invited from Tata employees registered on tataengage.com. Join the Disaster Response volunteer pool today.
             </p>
             <button onClick={() => navigate(isLoggedIn ? "dr-availability-form" : "register-role")}
-              style={{ background: B_MUSTARD, color: "#fff", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 15, cursor: "pointer", width: "100%", boxShadow: "0 4px 20px rgba(0,0,0,0.22)" }}>
-              Join the Response Cadre →
+              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 15, cursor: "pointer", width: "100%", boxShadow: "0 4px 20px rgba(0,0,0,0.22)" }}>
+              Register your interest →
             </button>
             <button onClick={() => navigate("about")}
               style={{ background: "transparent", color: "rgba(255,255,255,0.6)", border: "1px solid rgba(255,255,255,0.22)", borderRadius: 10, padding: "13px 28px", fontWeight: 600, fontSize: 14, cursor: "pointer", width: "100%", marginTop: 12 }}>
