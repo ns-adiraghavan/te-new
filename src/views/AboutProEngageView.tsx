@@ -38,8 +38,8 @@ const WHO = [
 ];
 
 const STEPS = [
-  { num: "01", title: "NGOs submit briefs",      desc: "Partner NGOs submit project briefs specifying skills needed, expected outcomes, and timeline.", highlight: true },
-  { num: "02", title: "TSG curates & approves",  desc: "TSG reviews each brief for quality, feasibility, and impact. Only the best projects go live.", highlight: false },
+  { num: "01", title: "NGOs submit briefs",      desc: "Projects are announced twice a year: 15 June and 5 December. Projects typically run for 1 to 6 months, with volunteering done during weekends, holidays, and after-work hours.", highlight: true },
+  { num: "02", title: "TSG curates & approves",  desc: "Credible NGOs submit their project requirements designed to address a real organisational need and deliver tangible outcomes. TSG reviews each brief for quality, feasibility, and impact.", highlight: false },
   { num: "03", title: "Volunteers apply",         desc: "Tata employees browse open projects, filter by skill and cause, and submit applications.", highlight: false },
   { num: "04", title: "AI-assisted matching",     desc: "A matching algorithm pairs best-fit volunteers with each project based on skills and availability.", highlight: false },
   { num: "05", title: "Orientation & kick-off",   desc: "TSG conducts an orientation workshop. Volunteers get all the context they need to start strong.", highlight: false },
@@ -47,8 +47,8 @@ const STEPS = [
 ];
 
 const SKILLS = [
-  "HR & People Management", "Finance & Accounting", "Business Planning",
-  "Information Technology", "Web Design & UX", "Social Media & Marketing",
+  "Human Resources", "Finance & Accounting", "Business Planning & Strategy",
+  "Information Technology", "Web Design & Digital Solutions", "Marketing & Social Media",
   "Mentoring & Coaching", "Legal & Compliance", "Data & Analytics", "Project Management",
 ];
 
@@ -139,7 +139,7 @@ export default function AboutProEngageView() {
               ProEngage
             </h1>
             <p style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.78)", margin: "0 0 44px", maxWidth: 460 }}>
-              A structured programme that connects Tata professionals with NGOs seeking specialised expertise. Volunteers donate not just time — but the skills they've spent careers building.
+              ProEngage is the Tata Group's flagship part-time, skill-based volunteering programme that brings together Tata talent and civil society organisations to create meaningful, long-term impact. Volunteers don't just give back — they lead, problem-solve, and create lasting change.
             </p>
             <div style={{ display: "flex", gap: 40, flexWrap: "wrap", marginBottom: 44, paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
               {STATS.map((s) => (
@@ -176,10 +176,10 @@ export default function AboutProEngageView() {
             <DefinerBar colour={COLOUR} />
             <div style={{ marginTop: 28 }}>
               <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
-                ProEngage matches professional talent with NGO projects across HR, finance, IT, marketing, legal, and more. Volunteers work on structured briefs over one to six months — contributing deep expertise that transforms how a non-profit operates.
+                At its core, ProEngage enables Tata employees, their families, and retired colleagues to contribute their professional expertise to purpose-driven projects — helping non-profits accelerate their goals while offering volunteers a deeply fulfilling personal and professional experience.
               </p>
               <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82 }}>
-                Launched on International Volunteer Day, December 2014, ProEngage has now facilitated over 4,000 unique projects and helped more than 1,200 NGOs.
+                Volunteers already working with a non-profit independently can also route their projects through ProEngage by emailing tataengage@tata.com
               </p>
             </div>
           </div>
@@ -211,7 +211,7 @@ export default function AboutProEngageView() {
                 <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: "rgba(255,255,255,0.55)", marginTop: 10, letterSpacing: "0.8px", maxWidth: 260, lineHeight: 1.5 }}>professionals who've donated their skills</div>
               </div>
               <p style={{ fontSize: 15, color: "rgba(255,255,255,0.7)", lineHeight: 1.8, maxWidth: 380 }}>
-                ProEngage is open to anyone in the extended Tata family with professional expertise to share.
+                ProEngage is open to Tata Employees, Family Members of Tata Employees, and Retired Tata Employees. Note: ProEngage projects are skill-based. Volunteers are expected to apply only to projects aligned with their expertise.
               </p>
             </div>
             <div>
