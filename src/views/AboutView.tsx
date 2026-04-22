@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
+import chackoThomasPortrait from "@/assets/chacko-thomas.jpg";
 
 // ── Colour tokens (page-local — matches HTML prototype) ──────────────────────
 const C       = "#0D6B7A";
@@ -257,51 +258,17 @@ function GCSOSection() {
                 boxShadow: "0 8px 40px rgba(0,0,0,0.12)",
               }}
             >
-              <div
+              <img
+                src={chackoThomasPortrait}
+                alt="Chacko Thomas, Group Chief Sustainability Officer, Tata Sons"
                 style={{
+                  display: "block",
+                  width: "100%",
                   height: 480,
-                  background: `linear-gradient(135deg,${C_DARK} 0%,${C} 100%)`,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 12,
+                  objectFit: "cover",
+                  objectPosition: "center top",
                 }}
-              >
-                <div
-                  style={{
-                    width: 96,
-                    height: 96,
-                    borderRadius: "50%",
-                    background: "rgba(255,255,255,0.15)",
-                    border: "2px solid rgba(255,255,255,0.25)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: 36,
-                      fontWeight: 900,
-                      color: "rgba(255,255,255,0.8)",
-                    }}
-                  >
-                    CT
-                  </span>
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'DM Mono',monospace",
-                    fontSize: 10,
-                    color: "rgba(255,255,255,0.4)",
-                    letterSpacing: "1px",
-                    marginTop: 8,
-                  }}
-                >
-                  [ portrait photo ]
-                </div>
-              </div>
+              />
             </div>
             {/* Name plate */}
             <div
