@@ -40,10 +40,10 @@ export const FLAGSHIP_PROGRAMMES = [
     desc: "Match your professional expertise to NGO projects that need it most.",
     stat1: "1,200+ Projects", stat2: "85 NGO Partners",
     photo: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=900",
-    tint: "rgba(59,30,142,0.68)",
-    pastelBg: "#F5F3FF", accentText: "#5b21b6",
+    tint: "rgba(124,156,40,0.72)",
+    pastelBg: "#F2F7E1", accentText: "#5C7A1F",
     ctaType: "video" as const,
-    bg: "#3B1E8E", accent: "#C4B5FD",
+    bg: "#A4CC4C", accent: "#3a4a14",
   },
   {
     id: "Disaster Response", label: "Rapid Action",

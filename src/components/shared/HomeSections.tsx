@@ -173,7 +173,7 @@ const PROG_CONFIG = [
     title: "ProEngage",
     label: "Skill-based · Year-round",
     stat1: "1,200+ Projects", stat2: "85 NGO Partners",
-    colour: "#3D9970",    // Lighter green — design kit
+    colour: "#A4CC4C",    // Lime green — matches Engagement Snapshot KPIs
     photo: tataCommunications, photoPos: "center center",
   },
   {
@@ -186,7 +186,7 @@ const PROG_CONFIG = [
   },
 ];
 
-const PROG_PASTEL = ["#3E7EB0", "#3D9970", "#00A896"];
+const PROG_PASTEL = ["#3E7EB0", "#A4CC4C", "#00A896"];
 const PROG_ACCENT_TEXT = ["#ffffff", "#ffffff", "#ffffff"];
 const PROG_SUBS = [
   "Volunteering together, amplifying community impact",
