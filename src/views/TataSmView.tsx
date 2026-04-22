@@ -158,6 +158,29 @@ export default function TataSmView() {
         </div>
       </section>
 
+      {/* ════════════════════ TSM AIMS ════════════════════ */}
+      <section id="tsm-aims" style={{ padding: "88px 56px", background: "#fff" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Our Purpose</p>
+          <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>TSM aims to</h2>
+          <DefinerBar colour={COLOUR} />
+          <div style={{ marginTop: 56, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+            <div style={{ background: "#fff", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", border: "1px solid #e2e8f0" }}>
+              <div style={{ fontSize: 17, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 12 }}>Unpack 'sustainability'</div>
+              <div style={{ fontSize: 14, color: "#64748B", lineHeight: 1.7 }}>To have a common understanding of the term and what it means for the Tata group.</div>
+            </div>
+            <div style={{ background: "#fff", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", border: "1px solid #e2e8f0" }}>
+              <div style={{ fontSize: 17, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 12 }}>Mainstream sustainability</div>
+              <div style={{ fontSize: 14, color: "#64748B", lineHeight: 1.7 }}>And position it at the heart of business, by disseminating attributes of Tata sustainability policy, philosophy, principles and commitments.</div>
+            </div>
+            <div style={{ background: "#fff", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", border: "1px solid #e2e8f0" }}>
+              <div style={{ fontSize: 17, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 12 }}>Inspire colleagues</div>
+              <div style={{ fontSize: 14, color: "#64748B", lineHeight: 1.7 }}>To take this understanding to the next level and to bring about a change in their lives through sustainable actions, making sustainability a habit.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ════════════════════ 2024 EDITION ════════════════════ */}
       <section id="tsm-2024" style={{ position: "relative", overflow: "hidden", minHeight: 480 }}>
         <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=1800" alt=""
