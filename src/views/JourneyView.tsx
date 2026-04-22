@@ -18,6 +18,7 @@ import imgInfiniti     from "@/assets/infiniti-1.jpg";
 
 // ── Brand tokens ──────────────────────────────────────────────────────────────
 const ACCENT_NAVY = "#0D1B3E";
+const B_TICKER    = "#3E7EB0"; // Chatbot blue — replaces navy banners site-wide
 const B_YELLOW    = "#F5A623";
 
 // ── Cycling colour palette per milestone ──────────────────────────────────────
@@ -173,7 +174,7 @@ function MilestoneRow({
   colour: string;
 }) {
   const textOnLeft = index % 2 === 0;
-  const surface = tint(colour, 0.92); // very light tinted background
+  const surface = colour; // full-bleed colour (no tinting)
 
   const TextPanel = (
     <div
@@ -184,7 +185,7 @@ function MilestoneRow({
         flexDirection: "column",
         justifyContent: "center",
         position: "relative",
-        borderTop: `4px solid ${colour}`,
+        borderTop: `4px solid rgba(255,255,255,0.35)`,
       }}
     >
       {/* Year + tag */}
@@ -199,21 +200,22 @@ function MilestoneRow({
       >
         <span
           style={{
-            background: colour,
+            background: "rgba(255,255,255,0.18)",
             color: "#fff",
             fontWeight: 800,
             fontSize: 13,
             letterSpacing: "-0.2px",
             padding: "5px 12px",
             borderRadius: 6,
+            border: "1px solid rgba(255,255,255,0.25)",
           }}
         >
           {m.year}
         </span>
         <span
           style={{
-            background: "rgba(0,0,0,0.06)",
-            color: ACCENT_NAVY,
+            background: "rgba(255,255,255,0.14)",
+            color: "rgba(255,255,255,0.92)",
             fontFamily: "'DM Mono', monospace",
             fontSize: 10,
             fontWeight: 700,
@@ -231,7 +233,7 @@ function MilestoneRow({
         style={{
           fontSize: 24,
           fontWeight: 900,
-          color: ACCENT_NAVY,
+          color: "#fff",
           letterSpacing: "-0.4px",
           lineHeight: 1.2,
           margin: "0 0 14px",
@@ -243,7 +245,7 @@ function MilestoneRow({
       <p
         style={{
           fontSize: 14.5,
-          color: "#3a4356",
+          color: "rgba(255,255,255,0.88)",
           lineHeight: 1.72,
           margin: 0,
           maxWidth: 460,
@@ -260,14 +262,14 @@ function MilestoneRow({
           alignItems: "baseline",
           gap: 10,
           paddingTop: 16,
-          borderTop: `1px dashed ${colour}66`,
+          borderTop: `1px dashed rgba(255,255,255,0.4)`,
         }}
       >
         <span
           style={{
             fontSize: 26,
             fontWeight: 900,
-            color: colour,
+            color: "#fff",
             letterSpacing: "-0.6px",
           }}
         >
@@ -277,7 +279,7 @@ function MilestoneRow({
           style={{
             fontFamily: "'DM Mono', monospace",
             fontSize: 11,
-            color: "#64748B",
+            color: "rgba(255,255,255,0.72)",
             letterSpacing: "0.4px",
           }}
         >
@@ -672,7 +674,7 @@ export default function JourneyView() {
       ══════════════════════════════════════════ */}
       <div
         style={{
-          background: ACCENT_NAVY,
+          background: B_TICKER,
           padding: "72px 48px",
           marginTop: 64,
           position: "relative",
