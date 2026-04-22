@@ -1217,6 +1217,7 @@ export default function PartnerWithUsView() {
       <BridgeSection />
       <NGOSection />
       <ContactSection />
+      <StayConnectedSection />
       <CTASection />
     </div>
   );
