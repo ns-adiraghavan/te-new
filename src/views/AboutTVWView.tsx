@@ -27,14 +27,14 @@ const DIAG: React.CSSProperties = {
 };
 
 const STATS = [
-  { num: "25+",     label: "Editions"            },
+  { num: "25+",     label: "Editions since 2014"            },
   { num: "50,000+", label: "Volunteers per edition" },
   { num: "100+",    label: "Tata companies"       },
 ];
 
 const WHO = [
   { label: "Tata Employees",          icon: "👤", desc: "All group company employees during TVW dates" },
-  { label: "Family Members",          icon: "👨‍👩‍👧", desc: "Spouses, children and extended family" },
+  { label: "Family Members",          icon: "👨‍👩‍👧", desc: "Family members of Tata employees" },
   { label: "Retired Tata Employees",  icon: "🎓", desc: "Former employees still connected to the group" },
 ];
 
@@ -53,11 +53,11 @@ const ALL_EDITIONS = [
 ];
 
 const TSG_POINTS = [
-  "Centralised campaign planning and materials",
-  "Cross-company collaboration and matchmaking support",
-  "Regional SPOC meets for knowledge sharing",
-  "Live trackers, announcements, and dashboards",
-  "Rewards and recognition framework",
+  "Centralised campaigns and communications",
+  "Cross-company collaboration",
+  "Regional coordination",
+  "Participation tracking and reporting",
+  "Recognition of volunteering contributions"
 ];
 
 // ── DefinerBar ────────────────────────────────────────────────────────────────
