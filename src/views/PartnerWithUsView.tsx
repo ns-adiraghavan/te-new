@@ -557,7 +557,7 @@ function NGOSection() {
     {
       num: "01",
       title: "Register on Tata Engage",
-      desc: "Not-for-profit organisations seeking to collaborate must first register on the Tata Engage platform, providing their organisation profile and necessary documentation for due diligence.",
+      desc: "Interested Not-for-Profit organisations must REGISTER on the Tata Engage platform, provide necessary profile details, and upload requested documents for due diligence. Once enrolled, authorised representatives can log in and post volunteering projects requiring professional volunteers through ProEngage.",
     },
     {
       num: "02",
@@ -567,7 +567,7 @@ function NGOSection() {
     {
       num: "03",
       title: "Stay informed",
-      desc: "Subscribe to receive alerts on ProEngage upload windows, Tata Volunteering Week dates, and other engagement opportunities — so you're ready when volunteers are mobilised.",
+      desc: "SUBSCRIBE to receive regular alerts and updates on Tata Engage initiatives including ProEngage (skill-based volunteering projects) and Tata Volunteering Week (large-scale, event-based volunteering). This ensures your organisation is prepared and visible when Tata volunteers are mobilised.",
     },
     {
       num: "04",
