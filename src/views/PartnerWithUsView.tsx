@@ -779,9 +779,11 @@ function ContactSection() {
               }}
             >
               Whether you're a civil society organisation looking for volunteers,
-              or a partner exploring collaboration opportunities, the Tata Engage
-              team is here to help. Write to us with your organisation profile
-              and volunteering requirements.
+              or a partner exploring collaboration opportunities, the Tata
+              Engage team is here to help. Write to us with your organisation
+              profile, details of your association with Tata companies, and
+              your volunteering requirements — our team will guide you through
+              the next steps of the enrolment process.
             </p>
           </div>
 
@@ -836,63 +838,169 @@ function ContactSection() {
               </button>
             </div>
 
-            {/* Social card */}
-            <div
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── 4b. Stay Connected — social section ───────────────────────────────────────
+function StayConnectedSection() {
+  const channels = [
+    {
+      platform: "LinkedIn",
+      handle: "Tata Engage",
+      note: "Official page",
+      url: "#",
+    },
+    {
+      platform: "X (Twitter)",
+      handle: "@TataEngage",
+      note: "Official handle",
+      url: "#",
+    },
+    {
+      platform: "Website",
+      handle: "tata.com / Tata Sustainability",
+      note: "Tata Engage on the Tata Group platforms",
+      url: "#",
+    },
+  ];
+
+  return (
+    <section
+      id="pwu-social"
+      style={{ padding: "96px 56px", background: "#fff" }}
+    >
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <Eyebrow text="Stay connected" />
+          <h2
+            style={{
+              fontSize: 30,
+              fontWeight: 900,
+              color: NAVY,
+              letterSpacing: "-0.5px",
+            }}
+          >
+            Follow Tata Engage
+          </h2>
+          <div
+            style={{ display: "flex", justifyContent: "center", marginTop: 10 }}
+          >
+            <DefinerBar />
+          </div>
+          <p
+            style={{
+              fontSize: 15,
+              color: "#64748B",
+              lineHeight: 1.8,
+              maxWidth: 600,
+              margin: "20px auto 0",
+            }}
+          >
+            Stay updated on volunteering programmes, partner opportunities, and
+            impact stories from across the Tata ecosystem.
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: 20,
+          }}
+        >
+          {channels.map((c) => (
+            <a
+              key={c.platform}
+              href={c.url}
               style={{
-                background: "rgba(255,255,255,0.08)",
-                border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: 14,
-                padding: "20px 24px",
+                display: "block",
+                background: "#fff",
+                border: "1px solid #e8eef0",
+                borderRadius: 16,
+                padding: "24px 24px 22px",
+                textDecoration: "none",
+                color: "inherit",
+                position: "relative",
+                overflow: "hidden",
+                transition:
+                  "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform =
+                  "translateY(-3px)";
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow =
+                  "0 12px 28px rgba(13,107,122,0.12)";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = C;
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "none";
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                  "#e8eef0";
               }}
             >
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: 3,
+                  background: C,
+                }}
+              />
               <div
                 style={{
                   fontFamily: "'DM Mono',monospace",
                   fontSize: 10,
                   fontWeight: 700,
-                  letterSpacing: "1.5px",
+                  letterSpacing: "1.8px",
                   textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.45)",
-                  marginBottom: 12,
+                  color: C,
+                  marginBottom: 10,
                 }}
               >
-                Stay connected
+                {c.platform}
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                {[
-                  { platform: "LinkedIn",    handle: "Tata Engage"  },
-                  { platform: "X (Twitter)", handle: "@TataEngage"  },
-                ].map((s) => (
-                  <div
-                    key={s.platform}
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: 14,
-                        color: "rgba(255,255,255,0.75)",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {s.platform}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "'DM Mono',monospace",
-                        fontSize: 12,
-                        color: "rgba(255,255,255,0.45)",
-                      }}
-                    >
-                      {s.handle}
-                    </span>
-                  </div>
-                ))}
+              <div
+                style={{
+                  fontSize: 17,
+                  fontWeight: 800,
+                  color: NAVY,
+                  marginBottom: 6,
+                  letterSpacing: "-0.2px",
+                }}
+              >
+                {c.handle}
               </div>
-            </div>
+              <div
+                style={{
+                  fontSize: 13,
+                  color: "#64748B",
+                  lineHeight: 1.6,
+                }}
+              >
+                {c.note}
+              </div>
+              <div
+                style={{
+                  marginTop: 18,
+                  fontFamily: "'DM Mono',monospace",
+                  fontSize: 11,
+                  fontWeight: 700,
+                  letterSpacing: "1.2px",
+                  textTransform: "uppercase",
+                  color: MUSTARD,
+                }}
+              >
+                Follow ↗
+              </div>
+            </a>
+          ))}
           </div>
         </div>
       </div>
