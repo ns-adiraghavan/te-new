@@ -106,9 +106,10 @@ const Navbar = ({
     setNotifOpen(false);
   };
 
+  const isOnDarkRoute = DARK_SCENE_ROUTES.includes(location.pathname);
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50">
-      <div className={`h-16 flex items-center justify-between px-6 md:px-12 transition-all duration-300 ${isTransparent ? "bg-transparent border-b border-transparent" : isDarkScene ? "bg-zinc-900/70 backdrop-blur-md border-b border-white/10 shadow-[0_1px_12px_rgba(0,0,0,0.18)]" : "bg-white/80 backdrop-blur-md border-b border-white/60 shadow-[0_1px_12px_rgba(0,0,0,0.07)]"}`}>
+    <nav className="fixed top-0 left-0 right-0 z-50 group/nav">
+      <div className={`h-16 flex items-center justify-between px-6 md:px-12 transition-all duration-300 ${scrolled ? (isDarkScene ? "bg-zinc-900/55 backdrop-blur-md border-b border-white/10 shadow-[0_1px_12px_rgba(0,0,0,0.18)]" : "bg-white/70 backdrop-blur-md border-b border-white/60 shadow-[0_1px_12px_rgba(0,0,0,0.07)]") : (isOnDarkRoute ? "bg-transparent border-b border-transparent group-hover/nav:bg-zinc-900/55 group-hover/nav:backdrop-blur-md group-hover/nav:border-white/10" : "bg-transparent border-b border-transparent group-hover/nav:bg-white/80 group-hover/nav:backdrop-blur-md group-hover/nav:border-white/60")}`}>
 
         {/* ── LEFT: TataEngage logo ── */}
         <div className="flex-shrink-0">
@@ -154,11 +155,10 @@ const Navbar = ({
 
               // ── Clean hover-list (Tata.com style) ─────────────────────────
               // Dark slate panel · airy padding · plain text rows · subtle colour-only hover
-              const panelCls = "absolute top-full left-0 mt-3 bg-zinc-900/95 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.35)] py-5 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150";
-              const sectionTitleCls = "px-6 pb-2 mb-2 text-[15px] font-semibold text-white/95 border-b border-white/10 mx-2";
-              const itemCls = "block w-full text-left px-6 py-1.5 text-[13px] text-white/70 hover:text-white cursor-pointer transition-colors";
-              const nestPanelCls = "absolute left-full top-0 ml-2 bg-zinc-900/95 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.35)] py-5 z-[60] opacity-0 invisible group-hover/nest:opacity-100 group-hover/nest:visible transition-all duration-150";
-              const nestTriggerCls = "flex items-center justify-between w-full px-6 py-1.5 text-[13px] text-white/70 hover:text-white cursor-pointer transition-colors";
+              const panelCls = "absolute top-full left-0 mt-3 bg-zinc-900/95 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.35)] py-4 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150";
+              const itemCls = "block w-full text-left px-6 py-1.5 text-[13px] text-white/75 hover:text-white cursor-pointer transition-colors";
+              const nestPanelCls = "absolute left-full top-0 ml-2 bg-zinc-900/95 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.35)] py-4 z-[60] opacity-0 invisible group-hover/nest:opacity-100 group-hover/nest:visible transition-all duration-150";
+              const nestTriggerCls = "flex items-center justify-between w-full px-6 py-1.5 text-[13px] text-white/75 hover:text-white cursor-pointer transition-colors";
               const dividerCls = "border-t border-white/10 my-3 mx-2";
               const subSectionLabelCls = "text-[10px] font-semibold uppercase tracking-[0.12em] text-white/40 px-6 pt-3 pb-1";
 
@@ -222,11 +222,13 @@ const Navbar = ({
                 <>
                   {/* ABOUT */}
                   <div className="relative group">
-                    <span className={triggerCls(location.pathname.startsWith("/about") || location.pathname === "/journey")}>
+                    <span
+                      onClick={() => onNavigate("about")}
+                      className={triggerCls(location.pathname.startsWith("/about") || location.pathname === "/journey")}
+                    >
                       About <ChevronDown size={12} />
                     </span>
                     <div className={`${panelCls} w-64`}>
-                      <div className={sectionTitleCls}>About Tata Engage</div>
                       <span onClick={() => onNavigate("about")} className={itemCls}>Overview</span>
                       <span onClick={() => { onNavigate("about"); scrollAfter("about-vision"); }} className={itemCls}>TE Vision &amp; Mission</span>
                       <span onClick={() => onNavigate("journey")} className={itemCls}>Our Journey</span>
@@ -236,7 +238,6 @@ const Navbar = ({
                       {isLoggedIn && (
                         <>
                           <div className={dividerCls} />
-                          <div className={sectionTitleCls}>For Members</div>
                           <span onClick={() => { onNavigate("dashboard"); scrollAfter("resources"); }} className={itemCls}>E-Module</span>
                           <span onClick={() => { onNavigate("spoc-dashboard"); scrollAfter("spoc-mgt"); }} className={itemCls}>SPOC Directory</span>
                           <div className="relative group/nest">
@@ -244,7 +245,6 @@ const Navbar = ({
                               Campaign Kits <ChevronRight size={12} className="opacity-60" />
                             </span>
                             <div className={`${nestPanelCls} w-56`}>
-                              <div className={sectionTitleCls}>Campaign Kits</div>
                               <span onClick={() => triggerToast("ProEngage Campaign Kit available in Resource Library")} className={itemCls}>PE Kit</span>
                               <span onClick={() => triggerToast("TVW Campaign Kit available in Resource Library")} className={itemCls}>TVW Kit</span>
                               <span onClick={() => triggerToast("TSM Campaign Kit available in Resource Library")} className={itemCls}>TSM Kit</span>
@@ -257,21 +257,23 @@ const Navbar = ({
 
                   {/* PROGRAMMES */}
                   <div className="relative group">
-                    <span className={triggerCls(
-                      location.pathname.startsWith("/proengage") ||
-                      location.pathname.startsWith("/tvw") ||
-                      location.pathname.startsWith("/disaster-response") ||
-                      location.pathname.startsWith("/tata-sustainability-month") ||
-                      location.pathname.startsWith("/cvp") ||
-                      location.pathname.startsWith("/eoi") ||
-                      location.pathname.startsWith("/ewaste") ||
-                      location.pathname.startsWith("/about/proengage") ||
-                      location.pathname.startsWith("/about/tvw")
-                    )}>
+                    <span
+                      onClick={() => onNavigate("about")}
+                      className={triggerCls(
+                        location.pathname.startsWith("/proengage") ||
+                        location.pathname.startsWith("/tvw") ||
+                        location.pathname.startsWith("/disaster-response") ||
+                        location.pathname.startsWith("/tata-sustainability-month") ||
+                        location.pathname.startsWith("/cvp") ||
+                        location.pathname.startsWith("/eoi") ||
+                        location.pathname.startsWith("/ewaste") ||
+                        location.pathname.startsWith("/about/proengage") ||
+                        location.pathname.startsWith("/about/tvw")
+                      )}
+                    >
                       Programmes <ChevronDown size={12} />
                     </span>
                     <div className={`${panelCls} w-72`}>
-                      <div className={sectionTitleCls}>Programmes</div>
                       {programmesGroups.map((grp, gi) => (
                         <div key={grp.label}>
                           {gi === 3 && <div className={dividerCls} />}
@@ -280,7 +282,6 @@ const Navbar = ({
                               {grp.label} <ChevronRight size={12} className="opacity-60" />
                             </span>
                             <div className={`${nestPanelCls} w-64`}>
-                              <div className={sectionTitleCls}>{grp.label}</div>
                               {grp.items.map((it) => {
                                 if (it.label.startsWith("__SECTION__")) {
                                   return <div key={it.label} className={subSectionLabelCls}>{it.label.replace("__SECTION__", "")}</div>;
@@ -298,11 +299,13 @@ const Navbar = ({
 
                   {/* MEDIA & RESOURCES */}
                   <div className="relative group">
-                    <span className={triggerCls(location.pathname.startsWith("/media"))}>
+                    <span
+                      onClick={() => onNavigate("media")}
+                      className={triggerCls(location.pathname.startsWith("/media"))}
+                    >
                       Media &amp; Resources <ChevronDown size={12} />
                     </span>
                     <div className={`${panelCls} w-64`}>
-                      <div className={sectionTitleCls}>Media &amp; Resources</div>
                       <span onClick={() => onNavigate("media")} className={itemCls}>Impact Stories</span>
                       <span onClick={() => onNavigate("media")} className={itemCls}>Photo Gallery</span>
                       <span onClick={() => onNavigate("media")} className={itemCls}>Video Gallery</span>
