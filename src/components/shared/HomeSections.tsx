@@ -92,9 +92,27 @@ const GLOBAL_STYLES = `
   @keyframes te-pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
   .te-pulse { animation: te-pulse 2s ease-in-out infinite; }
 
-  /* Programme image card hover */
-  .prog-img-card { transition: transform 0.3s ease; }
-  .prog-img-card:hover { transform: scale(1.012); }
+  /* Programme tile — STYLE A (split / lighter gradient): subtle lift + image zoom */
+  .prog-style-a { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+  .prog-style-a:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,0.18); }
+  .prog-style-a .prog-img-card { transition: transform 0.4s ease; }
+  .prog-style-a:hover .prog-img-card { transform: scale(1.04); }
+
+  /* Programme tile — STYLE B (full-bleed + tint): zoom + tint deepens */
+  .prog-style-b { transition: box-shadow 0.4s ease; }
+  .prog-style-b .prog-bleed-img { transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+  .prog-style-b .prog-bleed-tint { transition: opacity 0.4s ease; }
+  .prog-style-b:hover { box-shadow: 0 18px 44px rgba(0,0,0,0.22); }
+  .prog-style-b:hover .prog-bleed-img { transform: scale(1.06); }
+  .prog-style-b:hover .prog-bleed-tint { opacity: 0.55; }
+
+  /* Programme tile — STYLE C (geometric pattern): tilt + pattern parallax */
+  .prog-style-c { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease; }
+  .prog-style-c .prog-pattern { transition: transform 0.9s ease, opacity 0.4s ease; }
+  .prog-style-c .prog-bleed-img { transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+  .prog-style-c:hover { transform: perspective(900px) rotateX(1.5deg) translateY(-2px); box-shadow: 0 22px 48px rgba(0,0,0,0.24); }
+  .prog-style-c:hover .prog-pattern { transform: translate(28px, -28px); opacity: 0.55; }
+  .prog-style-c:hover .prog-bleed-img { transform: scale(1.03); }
 
   /* CVP/EOI card mini-scroll indicator */
   .prog-extra-dot {
@@ -251,75 +269,206 @@ export function ProgrammeSpotlight() {
             {/* LEFT col: merged image+text tile + dots */}
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
 
-              {/* Merged image + text tile */}
-              <div
-                onClick={() => navigate(p.route)}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 0.9fr",
-                  gap: 0,
+              {/* Merged tile — three distinct styles, one per programme */}
+              {(() => {
+                const styleKey = idx === 0 ? "a" : idx === 1 ? "b" : "c";
+                const tileBase: React.CSSProperties = {
                   minHeight: 340,
                   borderRadius: 18,
                   overflow: "hidden",
                   boxShadow: "0 4px 24px rgba(0,0,0,0.13)",
                   cursor: "pointer",
-                }}
-              >
-                {/* Image portion — angled right edge (juts left into text) */}
-                <div
-                  className="prog-img-card"
-                  style={{
-                    position: "relative",
-                    clipPath: "polygon(0 0, 100% 0, 88% 100%, 0 100%)",
-                    zIndex: 1,
-                  }}
-                >
-                  {PROG_CONFIG.map((pc, i) => (
+                  position: "relative",
+                };
+
+                // ── STYLE A — split image + lighter colour panel (current look) ──
+                if (styleKey === "a") {
+                  return (
                     <div
-                      key={pc.id}
+                      key="style-a"
+                      className="prog-style-a"
+                      onClick={() => navigate(p.route)}
+                      style={{
+                        ...tileBase,
+                        display: "grid",
+                        gridTemplateColumns: "1fr 0.9fr",
+                        gap: 0,
+                      }}
+                    >
+                      {/* Image portion — angled right edge */}
+                      <div
+                        className="prog-img-card"
+                        style={{
+                          position: "relative",
+                          clipPath: "polygon(0 0, 100% 0, 88% 100%, 0 100%)",
+                          zIndex: 1,
+                          backgroundImage: `url(${p.photo})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: p.photoPos,
+                        }}
+                      />
+                      {/* Text portion with lighter gradient */}
+                      <div style={{
+                        background: `linear-gradient(135deg, ${p.colour} 0%, ${p.colour}cc 100%)`,
+                        padding: "36px 28px 36px 16px",
+                        display: "flex", flexDirection: "column",
+                        justifyContent: "center",
+                      }}>
+                        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                          <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", marginBottom: 8 }}>Style A · Split gradient</span>
+                          <h3 style={{
+                            fontSize: 28, fontWeight: 900, color: "#ffffff",
+                            letterSpacing: "-0.4px", lineHeight: 1.2, margin: "0 0 8px",
+                          }}>
+                            {p.title}
+                          </h3>
+                          <div style={{ width: 40, height: 2, background: "rgba(255,255,255,0.6)", borderRadius: 1, margin: "6px 0 10px" }} />
+                          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.85)", lineHeight: 1.5, margin: 0 }}>
+                            {PROG_SUBS[idx]}
+                          </p>
+                        </div>
+                        <div style={{ marginTop: 16 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700, color: "#ffffff" }}>
+                            Learn more <ArrowRight size={13} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                // ── STYLE B — full-bleed photo with subtle colour tint overlay ──
+                if (styleKey === "b") {
+                  return (
+                    <div
+                      key="style-b"
+                      className="prog-style-b"
+                      onClick={() => navigate(p.route)}
+                      style={tileBase}
+                    >
+                      <div
+                        className="prog-bleed-img"
+                        style={{
+                          position: "absolute", inset: 0,
+                          backgroundImage: `url(${p.photo})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: p.photoPos,
+                        }}
+                      />
+                      {/* Subtle colour tint */}
+                      <div
+                        className="prog-bleed-tint"
+                        style={{
+                          position: "absolute", inset: 0,
+                          background: `linear-gradient(180deg, ${p.colour}33 0%, ${p.colour}aa 100%)`,
+                          opacity: 0.85,
+                        }}
+                      />
+                      {/* Bottom dark fade for text legibility */}
+                      <div style={{
+                        position: "absolute", inset: 0,
+                        background: "linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%)",
+                      }} />
+                      {/* Content */}
+                      <div style={{
+                        position: "relative", zIndex: 2,
+                        height: "100%", minHeight: 340,
+                        display: "flex", flexDirection: "column", justifyContent: "flex-end",
+                        padding: "32px 32px 28px",
+                      }}>
+                        <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.78)", marginBottom: 10 }}>Style B · Full-bleed tint</span>
+                        <h3 style={{
+                          fontSize: 30, fontWeight: 900, color: "#ffffff",
+                          letterSpacing: "-0.5px", lineHeight: 1.15, margin: "0 0 8px",
+                          textShadow: "0 2px 12px rgba(0,0,0,0.35)",
+                        }}>
+                          {p.title}
+                        </h3>
+                        <div style={{ width: 40, height: 2, background: "rgba(255,255,255,0.7)", borderRadius: 1, margin: "6px 0 10px" }} />
+                        <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.92)", lineHeight: 1.55, margin: "0 0 14px", maxWidth: 460 }}>
+                          {PROG_SUBS[idx]}
+                        </p>
+                        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700, color: "#ffffff" }}>
+                          Learn more <ArrowRight size={13} />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                // ── STYLE C — full-bleed photo + geometric pattern overlay ──
+                return (
+                  <div
+                    key="style-c"
+                    className="prog-style-c"
+                    onClick={() => navigate(p.route)}
+                    style={tileBase}
+                  >
+                    <div
+                      className="prog-bleed-img"
                       style={{
                         position: "absolute", inset: 0,
-                        backgroundImage: `url(${pc.photo})`,
+                        backgroundImage: `url(${p.photo})`,
                         backgroundSize: "cover",
-                        backgroundPosition: pc.photoPos,
-                        opacity: i === idx ? 1 : 0,
-                        transition: "opacity 0.7s ease",
+                        backgroundPosition: p.photoPos,
                       }}
                     />
-                  ))}
-  
-                </div>
+                    {/* Solid colour wash */}
+                    <div style={{
+                      position: "absolute", inset: 0,
+                      background: `linear-gradient(115deg, ${p.colour}f2 0%, ${p.colour}cc 55%, ${p.colour}99 100%)`,
+                    }} />
+                    {/* Geometric pattern — diagonal stripes + dot grid */}
+                    <div
+                      className="prog-pattern"
+                      style={{
+                        position: "absolute", inset: "-40px",
+                        opacity: 0.4,
+                        backgroundImage: `
+                          repeating-linear-gradient(45deg, rgba(255,255,255,0.18) 0 2px, transparent 2px 22px),
+                          radial-gradient(rgba(255,255,255,0.35) 1.4px, transparent 1.6px)
+                        `,
+                        backgroundSize: "auto, 18px 18px",
+                        pointerEvents: "none",
+                      }}
+                    />
+                    {/* Decorative shape — large outlined hex */}
+                    <svg
+                      viewBox="0 0 100 100"
+                      style={{
+                        position: "absolute", top: -40, right: -40,
+                        width: 220, height: 220,
+                        opacity: 0.25, pointerEvents: "none",
+                      }}
+                    >
+                      <polygon points="50,4 90,27 90,73 50,96 10,73 10,27" fill="none" stroke="#fff" strokeWidth="1.4" />
+                      <polygon points="50,18 78,34 78,66 50,82 22,66 22,34" fill="none" stroke="#fff" strokeWidth="1" />
+                    </svg>
 
-                {/* Text portion */}
-                <div style={{
-                  background: PROG_PASTEL[idx],
-                  padding: "36px 28px 36px 16px",
-                  display: "flex", flexDirection: "column",
-                  justifyContent: "center",
-                  transition: "background 0.5s ease",
-                }}>
-                  <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                    <h3 style={{
-                      fontSize: 28, fontWeight: 900, color: "#ffffff",
-                      letterSpacing: "-0.4px", lineHeight: 1.2, margin: "0 0 8px",
+                    <div style={{
+                      position: "relative", zIndex: 2,
+                      height: "100%", minHeight: 340,
+                      display: "flex", flexDirection: "column", justifyContent: "center",
+                      padding: "36px 32px",
                     }}>
-                      {p.title}
-                    </h3>
-                    <div style={{ width: 40, height: 2, background: "rgba(255,255,255,0.6)", borderRadius: 1, margin: "6px 0 10px" }} />
-                    <p style={{
-                      fontSize: 13, color: "rgba(255,255,255,0.8)",
-                      lineHeight: 1.5, margin: "0 0 0",
-                    }}>
-                      {PROG_SUBS[idx]}
-                    </p>
-                  </div>
-                  <div style={{ marginTop: 16 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700, color: "#ffffff" }}>
-                      Learn more <ArrowRight size={13} />
+                      <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.78)", marginBottom: 10 }}>Style C · Geometric overlay</span>
+                      <h3 style={{
+                        fontSize: 30, fontWeight: 900, color: "#ffffff",
+                        letterSpacing: "-0.5px", lineHeight: 1.15, margin: "0 0 8px",
+                      }}>
+                        {p.title}
+                      </h3>
+                      <div style={{ width: 40, height: 2, background: "rgba(255,255,255,0.7)", borderRadius: 1, margin: "6px 0 12px" }} />
+                      <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.92)", lineHeight: 1.55, margin: "0 0 16px", maxWidth: 420 }}>
+                        {PROG_SUBS[idx]}
+                      </p>
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700, color: "#ffffff" }}>
+                        Learn more <ArrowRight size={13} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                );
+              })()}
 
               {/* Dot indicators below merged tile */}
               <div style={{ display: "flex", gap: 8, paddingLeft: 4 }}>
