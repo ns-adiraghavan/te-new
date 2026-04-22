@@ -1104,12 +1104,12 @@ function TeamSection() {
               {/* Avatar */}
               <div
                 style={{
-                  width: 96,
-                  height: 96,
+                  width: 160,
+                  height: 160,
                   borderRadius: "50%",
                   background: `linear-gradient(135deg,${C} 0%,${C_DARK} 100%)`,
                   color: "#fff",
-                  margin: "0 auto 18px",
+                  margin: "0 auto 22px",
                   position: "relative",
                   overflow: "hidden",
                 }}
