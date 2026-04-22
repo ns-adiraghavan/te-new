@@ -16,6 +16,7 @@ const SECTIONS = [
   { id: "pe-unique",   label: "What's unique" },
   { id: "pe-who",      label: "Who"         },
   { id: "pe-how",      label: "How it works" },
+  { id: "pe-timeline", label: "Timeline"    },
   { id: "pe-skills",   label: "Skill areas" },
   { id: "pe-tsg",      label: "TSG Role"    },
 ];
@@ -450,6 +451,41 @@ export default function AboutProEngageView() {
                 ) : <div />}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════ TIMELINE ════════════════════ */}
+      <section id="pe-timeline" style={{ padding: "88px 56px", background: "#fff" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Annual cycle</p>
+          <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Two announcement windows each year</h2>
+          <DefinerBar colour={COLOUR} />
+          <p style={{ fontSize: 15, color: "#64748B", lineHeight: 1.75, marginTop: 20, maxWidth: 560, marginBottom: 48 }}>
+            ProEngage projects are announced twice a year. Mark these dates — they're when new opportunities open up across the platform.
+          </p>
+
+          <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+            {/* Connecting line */}
+            <div style={{ position: "absolute", top: 38, left: "12%", right: "12%", height: 2, background: `${COLOUR}25`, zIndex: 0 }} />
+
+            {[
+              { date: "15 June",      cycle: "Cycle 1",  desc: "Mid-year announcement opens the first wave of projects. Volunteers can browse and apply through monsoon and into the second half of the year." },
+              { date: "5 December",   cycle: "Cycle 2",  desc: "Year-end announcement launches the second wave. Projects typically run through the new year, leveraging holidays and weekends." },
+            ].map((t, i) => (
+              <div key={t.date} style={{ position: "relative", zIndex: 1, background: "#fff", border: `1.5px solid ${COLOUR}22`, borderRadius: 18, padding: "28px 28px 30px", boxShadow: "0 4px 20px rgba(13,124,82,0.06)" }}>
+                {/* Marker dot */}
+                <div style={{ position: "absolute", top: -10, left: 28, width: 20, height: 20, borderRadius: "50%", background: COLOUR, border: "4px solid #fff", boxShadow: `0 0 0 2px ${COLOUR}40` }} />
+                <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", color: COLOUR, textTransform: "uppercase", marginTop: 10, marginBottom: 8 }}>{t.cycle}</div>
+                <div style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-1px", lineHeight: 1, marginBottom: 14 }}>{t.date}</div>
+                <div style={{ width: 32, height: 2, background: COLOUR, borderRadius: 2, marginBottom: 16 }} />
+                <p style={{ fontSize: 14, color: "#475569", lineHeight: 1.7, margin: 0 }}>{t.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ marginTop: 40, padding: "18px 22px", background: COLOUR_LIGHT, border: `1px dashed ${COLOUR}55`, borderRadius: 12, fontSize: 13, color: COLOUR_DARK, fontWeight: 500, lineHeight: 1.6 }}>
+            <strong style={{ fontWeight: 800 }}>Engagement length:</strong> Projects typically run 1–6 months, undertaken during weekends, holidays, and after-work hours.
           </div>
         </div>
       </section>
