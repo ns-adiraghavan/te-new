@@ -12,6 +12,7 @@ const COLOUR_LIGHT = "#E8F5EE";
 
 const SECTIONS = [
   { id: "tsm-overview",      label: "Overview" },
+  { id: "tsm-aims",          label: "Aims" },
   { id: "tsm-2024",          label: "2024 Edition" },
   { id: "tsm-participate",   label: "How to participate" },
 ];
