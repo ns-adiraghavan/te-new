@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Bell, ChevronDown, User, LogOut, Share2, LayoutDashboard, Search } from "lucide-react";
+import { Bell, ChevronDown, ChevronRight, User, LogOut, Share2, LayoutDashboard, Search } from "lucide-react";
 import tataLogo from "@/assets/Tata-removebg-preview.png";
 import tataEngageLogo from "@/assets/tata-engage-logo.png";
 import type { View } from "@/types";
@@ -138,101 +138,183 @@ const Navbar = ({
               );
             })()}
 
-            {[
-              {
-                label: "About",
-                activePrefix: "/about",
-                items: [
-                  {
-                    label: "TE Vision",
-                    action: () => {
-                      onNavigate("about");
-                      setTimeout(() => document.getElementById("about-vision")?.scrollIntoView({ behavior: "smooth" }), 120);
-                    }
-                  },
-                  {
-                    label: "From the Desk of Group CSO",
-                    action: () => {
-                      onNavigate("about");
-                      setTimeout(() => document.getElementById("about-cso")?.scrollIntoView({ behavior: "smooth" }), 120);
-                    }
-                  },
-                  {
-                    label: "Our Journey",
-                    action: () => onNavigate("journey"),
-                  },
-                  {
-                    label: "Impact & Reach",
-                    action: () => {
-                      onNavigate("about");
-                      setTimeout(() => document.getElementById("about-impact")?.scrollIntoView({ behavior: "smooth" }), 120);
-                    }
-                  },
-                  {
-                    label: "Team",
-                    action: () => {
-                      onNavigate("about");
-                      setTimeout(() => document.getElementById("about-team")?.scrollIntoView({ behavior: "smooth" }), 120);
-                    }
-                  },
-                ],
-              },
-              {
-                label: "Programmes",
-                activePrefix: "/about/proengage",
-                items: [
-                  { label: "ProEngage",              action: () => onNavigate("about-proengage") },
-                  { label: "TVW (Tata Volunteering Week)", action: () => onNavigate("about-tvw") },
-                  { label: "Disaster Response",      action: () => onNavigate("disaster-response") },
-                  { label: "Company Volunteering Programmes", action: () => triggerToast("CVP information coming soon") },
-                  { label: "DIY Volunteering",       action: () => triggerToast("DIY kit available in the Resource Library after login") },
-                ],
-              },
-              {
-                label: "Media & Resources",
-                activePrefix: "/media",
-                items: [
-                  { label: "Photos",         action: () => onNavigate("media") },
-                  { label: "Videos",         action: () => onNavigate("media") },
-                  { label: "Impact Stories", action: () => onNavigate("media") },
-                  { label: "Social Media",   action: () => onNavigate("media") },
-                  { label: "Events",         action: () => onNavigate("media") },
-                ],
-              },
-              {
-                label: "Partner With Us",
-                activePrefix: "/register",
-                items: [
-                  { label: "Register as NGO",           action: () => onNavigate("register-role") },
-                  { label: "Register as Volunteer",      action: () => onNavigate("register-role") },
-                  { label: "How & Where to Volunteer",   action: () => onNavigate("partner") },
-                  { label: "Refer an NGO",               action: () => onNavigate("partner") },
-                ],
-              },
-            ].map((nav) => {
-              const isActive = location.pathname.startsWith(nav.activePrefix);
-              const activeCls = isTransparent
-                ? "text-white border-b-2 border-white/70 pb-0.5"
-                : "text-zinc-900 border-b-2 border-[#333399] pb-0.5";
-              const hoverCls = isTransparent
-                ? "text-white/90 hover:text-white hover:border-b-2 hover:border-white/35 hover:pb-0.5"
-                : "text-zinc-500 hover:text-zinc-900 hover:border-b-2 hover:border-[#333399]/50 hover:pb-0.5";
+            {(() => {
+              const triggerCls = (isActive: boolean) => {
+                const activeCls = isTransparent
+                  ? "text-white border-b-2 border-white/70 pb-0.5"
+                  : "text-zinc-900 border-b-2 border-[#333399] pb-0.5";
+                const hoverCls = isTransparent
+                  ? "text-white/90 hover:text-white hover:border-b-2 hover:border-white/35 hover:pb-0.5"
+                  : "text-zinc-500 hover:text-zinc-900 hover:border-b-2 hover:border-[#333399]/50 hover:pb-0.5";
+                return `text-sm font-medium transition-colors duration-300 cursor-pointer flex items-center gap-1 ${isActive ? activeCls : hoverCls}`;
+              };
+
+              const itemCls = "block w-full text-left px-4 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 cursor-pointer transition-colors";
+              const sectionLabelCls = "text-[10px] font-bold uppercase tracking-widest text-zinc-400 px-4 pt-3 pb-1";
+
+              const scrollAfter = (id: string) => setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }), 120);
+
+              const programmesGroups: { label: string; items: { label: string; action: () => void }[] }[] = [
+                {
+                  label: "ProEngage",
+                  items: [
+                    { label: "About ProEngage", action: () => onNavigate("about-proengage") },
+                    { label: "ProEngage is Live", action: () => onNavigate("proengage") },
+                    { label: "Apply for a Project", action: () => onNavigate("proengage") },
+                    { label: "E-Module", action: () => isLoggedIn ? onNavigate("dashboard") : triggerToast("Please log in to access the E-Module") },
+                    { label: "Resources", action: () => onNavigate("partner") },
+                  ],
+                },
+                {
+                  label: "Tata Volunteering Week",
+                  items: [
+                    { label: "About TVW", action: () => onNavigate("about-tvw") },
+                    { label: "TVW is Live", action: () => onNavigate("tvw") },
+                    { label: "Volunteering Opportunities", action: () => onNavigate("tvw") },
+                    { label: "DIY Kit", action: () => triggerToast("DIY Kit available — check Resources") },
+                    { label: "TVW Archives", action: () => onNavigate("about-tvw") },
+                    { label: "Resources", action: () => onNavigate("partner") },
+                  ],
+                },
+                {
+                  label: "Volunteering for Disaster Response",
+                  items: [
+                    { label: "About", action: () => onNavigate("disaster-response") },
+                  ],
+                },
+                {
+                  label: "Tata Sustainability Month",
+                  items: [
+                    { label: "About", action: () => onNavigate("tata-sm") },
+                    { label: "TSM Volunteering", action: () => onNavigate("tata-sm") },
+                    { label: "DIY Activities", action: () => triggerToast("DIY Activities available during TSM season") },
+                  ],
+                },
+                {
+                  label: "Company Volunteering Programme",
+                  items: [
+                    { label: "About CVP", action: () => onNavigate("cvp") },
+                    { label: "__SECTION__Explore", action: () => {} },
+                    { label: "TCS Each One Empowers One", action: () => onNavigate("eoi") },
+                    { label: "Infiniti Retail E-Waste Warrior", action: () => onNavigate("ewaste") },
+                    { label: "Yes To Access", action: () => triggerToast("Yes To Access — coming soon") },
+                  ],
+                },
+                {
+                  label: "Employees' Own Initiatives",
+                  items: [
+                    { label: "About EOI", action: () => onNavigate("eoi") },
+                  ],
+                },
+              ];
+
               return (
-                <div key={nav.label} className="relative group">
-                  <span className={`text-sm font-medium transition-colors duration-300 cursor-pointer flex items-center gap-1 ${isActive ? activeCls : hoverCls}`}>
-                    {nav.label} <ChevronDown size={12} />
-                  </span>
-                  <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-52 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
-                    {nav.items.map((item) => (
-                      <span key={item.label} onClick={item.action}
-                        className="block px-4 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 cursor-pointer transition-colors">
-                        {item.label}
-                      </span>
-                    ))}
+                <>
+                  {/* ABOUT */}
+                  <div className="relative group">
+                    <span className={triggerCls(location.pathname.startsWith("/about") || location.pathname === "/journey")}>
+                      About <ChevronDown size={12} />
+                    </span>
+                    <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-56 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
+                      <span onClick={() => onNavigate("about")} className={itemCls}>About Tata Engage</span>
+                      <span onClick={() => { onNavigate("about"); scrollAfter("about-vision"); }} className={itemCls}>TE Vision &amp; Mission</span>
+                      <span onClick={() => onNavigate("journey")} className={itemCls}>Our Journey</span>
+                      <span onClick={() => onNavigate("media")} className={itemCls}>Events</span>
+                      <span onClick={() => { onNavigate("about"); scrollAfter("about-contact"); }} className={itemCls}>Contact Us</span>
+                      <span onClick={() => { onNavigate("about"); scrollAfter("about-team"); }} className={itemCls}>Team</span>
+                      {isLoggedIn && (
+                        <>
+                          <div className="border-t border-zinc-100 my-1" />
+                          <span onClick={() => { onNavigate("dashboard"); scrollAfter("resources"); }} className={itemCls}>E-Module</span>
+                          <span onClick={() => { onNavigate("spoc-dashboard"); scrollAfter("spoc-mgt"); }} className={itemCls}>SPOC Directory</span>
+                          <div className="relative group/nest">
+                            <span className="flex items-center justify-between w-full px-4 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 cursor-pointer">
+                              Campaign Kits <ChevronRight size={12} />
+                            </span>
+                            <div className="absolute left-full top-0 ml-1 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-52 z-[60] opacity-0 invisible group-hover/nest:opacity-100 group-hover/nest:visible transition-all duration-150">
+                              <span onClick={() => triggerToast("ProEngage Campaign Kit available in Resource Library")} className={itemCls}>PE Kit</span>
+                              <span onClick={() => triggerToast("TVW Campaign Kit available in Resource Library")} className={itemCls}>TVW Kit</span>
+                              <span onClick={() => triggerToast("TSM Campaign Kit available in Resource Library")} className={itemCls}>TSM Kit</span>
+                            </div>
+                          </div>
+                        </>
+                      )}
+                    </div>
                   </div>
-                </div>
+
+                  {/* PROGRAMMES */}
+                  <div className="relative group">
+                    <span className={triggerCls(
+                      location.pathname.startsWith("/proengage") ||
+                      location.pathname.startsWith("/tvw") ||
+                      location.pathname.startsWith("/disaster-response") ||
+                      location.pathname.startsWith("/tata-sustainability-month") ||
+                      location.pathname.startsWith("/cvp") ||
+                      location.pathname.startsWith("/eoi") ||
+                      location.pathname.startsWith("/ewaste") ||
+                      location.pathname.startsWith("/about/proengage") ||
+                      location.pathname.startsWith("/about/tvw")
+                    )}>
+                      Programmes <ChevronDown size={12} />
+                    </span>
+                    <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-56 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
+                      {programmesGroups.map((grp, gi) => (
+                        <div key={grp.label}>
+                          {gi === 3 && <div className="border-t border-zinc-100 my-1" />}
+                          <div className="relative group/nest">
+                            <span className="flex items-center justify-between w-full px-4 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 cursor-pointer">
+                              {grp.label} <ChevronRight size={12} />
+                            </span>
+                            <div className="absolute left-full top-0 ml-1 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-56 z-[60] opacity-0 invisible group-hover/nest:opacity-100 group-hover/nest:visible transition-all duration-150">
+                              {grp.items.map((it) => {
+                                if (it.label.startsWith("__SECTION__")) {
+                                  return <div key={it.label} className={sectionLabelCls}>{it.label.replace("__SECTION__", "")}</div>;
+                                }
+                                return (
+                                  <span key={it.label} onClick={it.action} className={itemCls}>{it.label}</span>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* MEDIA & RESOURCES */}
+                  <div className="relative group">
+                    <span className={triggerCls(location.pathname.startsWith("/media"))}>
+                      Media &amp; Resources <ChevronDown size={12} />
+                    </span>
+                    <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-56 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
+                      <span onClick={() => onNavigate("media")} className={itemCls}>Impact Stories</span>
+                      <span onClick={() => onNavigate("media")} className={itemCls}>Photo Gallery</span>
+                      <span onClick={() => onNavigate("media")} className={itemCls}>Video Gallery</span>
+                      <span onClick={() => onNavigate("media")} className={itemCls}>Social Media Snippets</span>
+                    </div>
+                  </div>
+
+                  {/* PARTNER WITH US */}
+                  {(() => {
+                    const isActive = location.pathname.startsWith("/partner");
+                    const activeCls = isTransparent
+                      ? "text-white border-b-2 border-white/70 pb-0.5"
+                      : "text-zinc-900 border-b-2 border-[#333399] pb-0.5";
+                    const hoverCls = isTransparent
+                      ? "text-white/90 hover:text-white hover:border-b-2 hover:border-white/35 hover:pb-0.5"
+                      : "text-zinc-500 hover:text-zinc-900 hover:border-b-2 hover:border-[#333399]/50 hover:pb-0.5";
+                    return (
+                      <span
+                        onClick={() => onNavigate("partner")}
+                        className={`text-sm font-medium transition-colors duration-300 cursor-pointer ${isActive ? activeCls : hoverCls}`}
+                      >
+                        Partner With Us
+                      </span>
+                    );
+                  })()}
+                </>
               );
-            })}
+            })()}
 
             <Search size={18} className={`cursor-pointer transition-colors duration-300 ${isTransparent ? "text-white/80 hover:text-white" : "text-zinc-400 hover:text-zinc-700"}`} />
           </div>
