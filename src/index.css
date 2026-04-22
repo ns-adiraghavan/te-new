@@ -8,6 +8,36 @@
   }
 }
 
+/* ─── Global branded scrollbar (used across all pages and scroll containers) ── */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #333399 transparent;
+}
+
+/* WebKit / Chromium / Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #333399;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #252573;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 .glass {
   @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
 }
