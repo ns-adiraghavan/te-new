@@ -38,7 +38,7 @@ const WHO = [
 ];
 
 const STEPS = [
-  { num: "01", title: "Volunteer pre-registers", desc: "Employees opt into the Disaster Response cadre on Tata Engage and complete a readiness profile.", time: "Ongoing" },
+  { num: "01", title: "Volunteer pre-registers", desc: "Expressions of interest are invited from Tata employees registered on tataengage.com. Volunteers opt into the cadre and are shortlisted based on proximity to affected areas, local language knowledge, past field experience, and medical fitness.", time: "Ongoing" },
   { num: "02", title: "Alert is issued",          desc: "TSG identifies a disaster event requiring volunteer deployment and activates the One Tata Response protocol.", time: "Day 0" },
   { num: "03", title: "Cadre is notified",        desc: "Pre-registered volunteers in relevant geographies receive an immediate alert with deployment details.", time: "< 24h" },
   { num: "04", title: "Deployment & coordination", desc: "Volunteers are briefed, coordinated with local NGO partners, and deployed to affected communities.", time: "< 48h" },
