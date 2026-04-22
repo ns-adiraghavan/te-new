@@ -6,16 +6,17 @@ import SubPageDotRail from "@/components/shared/SubPageDotRail";
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
 const ACCENT_NAVY  = "#0D1B3E";
-const B_MUSTARD    = "#C8940A";
-const COLOUR       = "#4D7A2A";
-const COLOUR_MID   = "#3A5C1F";
-const COLOUR_LIGHT = "#EDF5E8";
+const B_YELLOW     = "#F5A623";
+const COLOUR       = "#0D7C52";   // ProEngage green
+const COLOUR_DARK  = "#0A5C3E";
+const COLOUR_LIGHT = "#E6F5EE";
 
 const SECTIONS = [
   { id: "pe-overview", label: "Overview"    },
+  { id: "pe-unique",   label: "What's unique" },
   { id: "pe-who",      label: "Who"         },
   { id: "pe-how",      label: "How it works" },
-  { id: "pe-skills",   label: "Skills"      },
+  { id: "pe-skills",   label: "Skill areas" },
   { id: "pe-tsg",      label: "TSG Role"    },
 ];
 
@@ -27,38 +28,172 @@ const DIAG: React.CSSProperties = {
 };
 
 const STATS = [
-  { num: "4,392",  label: "Projects in FY24"   },
-  { num: "85+",    label: "NGO partners"        },
-  { num: "1–6 mo", label: "Project duration"    },
+  { num: "4,392",  label: "Projects in FY24"     },
+  { num: "85+",    label: "NGO partners"           },
+  { num: "1–6 mo", label: "Typical project length" },
 ];
+
+// ── SVG Icons ─────────────────────────────────────────────────────────────────
+const IconEmployee = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+  </svg>
+);
+const IconFamily = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+  </svg>
+);
+const IconRetired = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+    <path d="M8 14l4 4 4-4"/>
+  </svg>
+);
+
+// How-it-works step icons
+const IconNGO = () => (
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="10" width="20" height="13" rx="2"/>
+    <path d="M13 3l10 7H3l10-7z"/>
+    <rect x="9" y="15" width="8" height="8"/>
+  </svg>
+);
+const IconApply = () => (
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 6h18M4 12h12M4 18h8"/>
+    <circle cx="20" cy="18" r="4"/>
+    <path d="M18 18l1.5 1.5L22 16"/>
+  </svg>
+);
+const IconMatch = () => (
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="9" cy="9" r="5"/><circle cx="17" cy="17" r="5"/>
+    <path d="M13 9h4v4"/>
+  </svg>
+);
+const IconOrient = () => (
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 6l9-3 9 3v10c0 4-9 7-9 7S4 20 4 16V6z"/>
+    <path d="M13 10v4M13 16v.5"/>
+  </svg>
+);
+const IconDeliver = () => (
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="4" y="8" width="18" height="14" rx="2"/>
+    <path d="M16 8V6a4 4 0 0 0-6.93-2.75"/>
+    <path d="M9 15l3 3 6-6"/>
+  </svg>
+);
+const IconCert = () => (
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="4" width="20" height="15" rx="2"/>
+    <circle cx="13" cy="20" r="3"/><path d="M10 23l3-3 3 3"/>
+    <path d="M8 9h10M8 13h6"/>
+  </svg>
+);
+
+// Volunteer value icons
+const IconLeadership = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M11 2l2.4 7.4H21l-6.2 4.5 2.4 7.4L11 17l-6.2 4.3 2.4-7.4L1 9.4h7.6z"/>
+  </svg>
+);
+const IconFlexible = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="9"/><path d="M11 6v5l3 3"/>
+  </svg>
+);
+const IconGrowth = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="3,17 8,12 12,15 19,7"/>
+    <polyline points="15,7 19,7 19,11"/>
+  </svg>
+);
+const IconImpact = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M11 3C7 3 4 6 4 10c0 5 7 9 7 9s7-4 7-9c0-4-3-7-7-7z"/>
+    <circle cx="11" cy="10" r="2.5"/>
+  </svg>
+);
+
+// NGO value icons
+const IconAccess = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="9"/>
+    <path d="M11 6v5l4 2"/>
+  </svg>
+);
+const IconCapacity = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="11" width="5" height="8"/><rect x="9" y="6" width="5" height="13"/><rect x="15" y="3" width="5" height="16"/>
+  </svg>
+);
+const IconStructured = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 5h16M3 9h10M3 13h7M3 17h4"/>
+    <circle cx="17" cy="14" r="4"/>
+    <path d="M15.5 14l1 1.5L18.5 13"/>
+  </svg>
+);
+const IconPartner = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7 11l2.5 2.5L15 8"/>
+    <path d="M14.5 3.5A8 8 0 1 1 3.5 14.5"/>
+    <path d="M14.5 3.5l2 5-5-2"/>
+  </svg>
+);
 
 const WHO = [
-  { label: "Tata Employees",         icon: "💼", desc: "Contribute skills from your current professional role" },
-  { label: "Family Members",         icon: "👨‍👩‍👧", desc: "Spouses and family with relevant expertise" },
-  { label: "Retired Tata Employees", icon: "🎓", desc: "Decades of experience — still valued and welcomed" },
+  { label: "Tata Employees",         Icon: IconEmployee, desc: "Contribute skills from your current professional role. Apply only to projects aligned with your expertise." },
+  { label: "Family Members",         Icon: IconFamily,   desc: "Spouses and family members of Tata employees with relevant professional skills." },
+  { label: "Retired Tata Employees", Icon: IconRetired,  desc: "Decades of experience — still valued and welcomed. Your expertise continues to create impact." },
 ];
 
-const STEPS = [
-  { num: "01", title: "NGOs submit briefs",      desc: "Projects are announced twice a year: 15 June and 5 December. Projects typically run for 1 to 6 months, with volunteering done during weekends, holidays, and after-work hours.", highlight: true },
-  { num: "02", title: "TSG curates & approves",  desc: "Credible NGOs submit their project requirements designed to address a real organisational need and deliver tangible outcomes. TSG reviews each brief for quality, feasibility, and impact.", highlight: false },
-  { num: "03", title: "Volunteers apply",         desc: "Tata employees browse open projects, filter by skill and cause, and submit applications.", highlight: false },
-  { num: "04", title: "AI-assisted matching",     desc: "A matching algorithm pairs best-fit volunteers with each project based on skills and availability.", highlight: false },
-  { num: "05", title: "Orientation & kick-off",   desc: "TSG conducts an orientation workshop. Volunteers get all the context they need to start strong.", highlight: false },
-  { num: "06", title: "Deliver & get certified",  desc: "Volunteers complete the project with periodic TSG check-ins. Certificates issued on completion.", highlight: false },
+const HOW_STEPS = [
+  { num: "01", title: "NGO Project Upload",      Icon: IconNGO,      colour: "#1E6BB8", desc: "Credible NGOs submit project requirements addressing a real organisational need with tangible outcomes. Projects open twice yearly: 15 June and 5 December." },
+  { num: "02", title: "Volunteer Applications",   Icon: IconApply,    colour: "#0D7C52", desc: "Eligible volunteers apply to projects aligned with their skills via the ProEngage platform. Projects typically run 1–6 months, done during weekends and after-work hours." },
+  { num: "03", title: "Selection & Team",         Icon: IconMatch,    colour: "#5B21B6", desc: "Non-profits review applications and select the best-fit volunteers for each project. Bulk selection available for larger projects." },
+  { num: "04", title: "Orientation & Planning",   Icon: IconOrient,   colour: "#C14D00", desc: "A mandatory orientation workshop sets clear expectations. Action plans, objectives, and timelines are defined before work begins." },
+  { num: "05", title: "Execution & Tracking",     Icon: IconDeliver,  colour: "#0E7490", desc: "Projects are tracked periodically to ensure progress and quality outcomes. TSG provides check-ins throughout the engagement." },
+  { num: "06", title: "Closure & Recognition",    Icon: IconCert,     colour: "#B91C1C", desc: "Successful volunteers receive certificates. Learnings are documented for knowledge sharing and future impact." },
+];
+
+const VOLUNTEER_VALUES = [
+  { label: "Apply professional skills to real challenges",     Icon: IconImpact },
+  { label: "Lead high-impact projects beyond your day job",    Icon: IconLeadership },
+  { label: "Build leadership and problem-solving capabilities", Icon: IconGrowth },
+  { label: "Volunteer flexibly alongside work commitments",    Icon: IconFlexible },
+];
+
+const NGO_VALUES = [
+  { label: "Access high-quality expertise, affordably",        Icon: IconAccess },
+  { label: "Strengthen long-term organisational capacity",     Icon: IconCapacity },
+  { label: "Receive structured, outcome-driven support",       Icon: IconStructured },
+  { label: "Partner with motivated, committed professionals",  Icon: IconPartner },
 ];
 
 const SKILLS = [
-  "Human Resources", "Finance & Accounting", "Business Planning & Strategy",
-  "Information Technology", "Web Design & Digital Solutions", "Marketing & Social Media",
-  "Mentoring & Coaching", "Legal & Compliance", "Data & Analytics", "Project Management",
+  { label: "Human Resources",              icon: "HR" },
+  { label: "Finance & Accounting",          icon: "FIN" },
+  { label: "Business Planning & Strategy", icon: "STR" },
+  { label: "Information Technology",       icon: "IT" },
+  { label: "Web Design & Digital",          icon: "WEB" },
+  { label: "Marketing & Social Media",     icon: "MKT" },
+  { label: "Mentoring & Coaching",          icon: "MNT" },
+  { label: "Legal & Compliance",            icon: "LGL" },
+  { label: "Data & Analytics",             icon: "DAT" },
+  { label: "Project Management",           icon: "PMO" },
 ];
 
 const TSG_POINTS = [
-  "Sourcing meaningful projects from verified NGO partners",
+  "Sourcing meaningful, high-impact projects from verified NGOs",
   "Reviewing and approving volunteer applications",
   "Conducting orientation workshops for selected volunteers",
-  "Periodic milestone tracking throughout the project",
-  "Awarding certificates on project completion",
+  "Periodic milestone tracking throughout the project lifecycle",
+  "Recognising successful volunteers with certificates",
+  "Documenting learnings for institutional knowledge-sharing",
 ];
 
 // ── DefinerBar ────────────────────────────────────────────────────────────────
@@ -101,16 +236,16 @@ export default function AboutProEngageView() {
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, transparent, #fff)", pointerEvents: "none" }} />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "120px 56px 96px", width: "100%" }}>
-          <div style={{ maxWidth: 560 }}>
+          <div style={{ maxWidth: 580 }}>
             <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.2px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 16 }}>
-              Skill-Based Volunteering · Since Dec 2014
+              Skill-Based Volunteering · Since 2014
             </p>
             <div style={{ width: 32, height: 2, background: "rgba(255,255,255,0.45)", borderRadius: 2, marginBottom: 22 }} />
             <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.8rem, 5.5vw, 4.2rem)", fontWeight: 900, color: "#fff", lineHeight: 1.02, letterSpacing: "-2px", margin: "0 0 22px" }}>
               ProEngage
             </h1>
-            <p style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.78)", margin: "0 0 44px", maxWidth: 460 }}>
-              ProEngage is the Tata Group's flagship part-time, skill-based volunteering programme that brings together Tata talent and civil society organisations to create meaningful, long-term impact. Volunteers don't just give back — they lead, problem-solve, and create lasting change.
+            <p style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.78)", margin: "0 0 44px", maxWidth: 480 }}>
+              ProEngage is the Tata Group's flagship part-time, skill-based volunteering programme — bringing together Tata talent and civil society organisations to create meaningful, long-term impact. Volunteers don't just give back. They lead, problem-solve, and create lasting change.
             </p>
             <div style={{ display: "flex", gap: 40, flexWrap: "wrap", marginBottom: 44, paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
               {STATS.map((s) => (
@@ -122,7 +257,7 @@ export default function AboutProEngageView() {
             </div>
             <div style={{ display: "flex", gap: 12 }}>
               <button onClick={() => navigate(isLoggedIn ? "proengage" : "register-role")}
-                style={{ background: B_MUSTARD, color: "#fff", border: "none", borderRadius: 10, padding: "12px 26px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+                style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "12px 26px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
                 Browse open projects →
               </button>
               <button onClick={() => document.getElementById("pe-overview")?.scrollIntoView({ behavior: "smooth" })}
@@ -134,7 +269,7 @@ export default function AboutProEngageView() {
         </div>
 
         <div style={{ position: "absolute", bottom: 100, right: 56, background: "rgba(0,0,0,0.28)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>
-          Skill-based · Year-round
+          Skill-based · Bi-annual · Year-round
         </div>
       </div>
 
@@ -146,11 +281,11 @@ export default function AboutProEngageView() {
             <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Skill as a force for social good</h2>
             <DefinerBar colour={COLOUR} />
             <div style={{ marginTop: 28 }}>
-              <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
-                At its core, ProEngage enables Tata employees, their families, and retired colleagues to contribute their professional expertise to purpose-driven projects — helping non-profits accelerate their goals while offering volunteers a deeply fulfilling personal and professional experience.
+              <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
+                Many non-profits have deep passion and on-ground reach but often lack access to specialised professional skills. At the same time, the Tata Group is home to a diverse pool of experienced professionals across disciplines. ProEngage bridges this gap.
               </p>
-              <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82 }}>
-                Volunteers already working with a non-profit independently can also route their projects through ProEngage by emailing tataengage@tata.com
+              <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.82 }}>
+                Volunteers already working independently with a non-profit can also route their projects through ProEngage by emailing <span style={{ color: COLOUR, fontWeight: 600 }}>tataengage@tata.com</span>
               </p>
             </div>
           </div>
@@ -161,6 +296,57 @@ export default function AboutProEngageView() {
                 style={{ width: "100%", height: 380, objectFit: "cover", display: "block" }} referrerPolicy="no-referrer" />
             </div>
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 4, background: COLOUR, borderRadius: "0 0 18px 18px", zIndex: 2 }} />
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════ WHAT MAKES IT UNIQUE ════════════════════ */}
+      <section id="pe-unique" style={{ padding: "80px 56px", background: "#F0F8F4" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>The ProEngage difference</p>
+          <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>What makes ProEngage unique?</h2>
+          <DefinerBar colour={COLOUR} />
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginTop: 48 }}>
+
+            {/* For Volunteers */}
+            <div style={{ background: "#fff", borderRadius: 18, padding: "32px 28px", border: `1px solid ${COLOUR}18` }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
+                <div style={{ width: 40, height: 40, borderRadius: 10, background: COLOUR_LIGHT, display: "flex", alignItems: "center", justifyContent: "center", color: COLOUR }}>
+                  <IconEmployee />
+                </div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: ACCENT_NAVY }}>For Volunteers</div>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                {VOLUNTEER_VALUES.map((v, i) => (
+                  <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                    <div style={{ width: 32, height: 32, borderRadius: 8, background: COLOUR_LIGHT, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", color: COLOUR }}>
+                      <v.Icon />
+                    </div>
+                    <span style={{ fontSize: 14, color: "#475569", lineHeight: 1.55, paddingTop: 5 }}>{v.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* For Non-Profits */}
+            <div style={{ background: COLOUR, borderRadius: 18, padding: "32px 28px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
+                <div style={{ width: 40, height: 40, borderRadius: 10, background: "rgba(255,255,255,0.18)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
+                  <IconNGO />
+                </div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: "#fff" }}>For Non-Profits</div>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                {NGO_VALUES.map((v, i) => (
+                  <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                    <div style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(255,255,255,0.18)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
+                      <v.Icon />
+                    </div>
+                    <span style={{ fontSize: 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.55, paddingTop: 5 }}>{v.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -179,16 +365,18 @@ export default function AboutProEngageView() {
               <div style={{ height: 3, background: "rgba(255,255,255,0.28)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 36 }} />
               <div style={{ marginBottom: 36 }}>
                 <div style={{ fontSize: "clamp(3.5rem, 7vw, 5.5rem)", fontWeight: 900, color: "#fff", lineHeight: 1, letterSpacing: "-3px" }}>8,735+</div>
-                <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: "rgba(255,255,255,0.55)", marginTop: 10, letterSpacing: "0.8px", maxWidth: 260, lineHeight: 1.5 }}>professionals who've donated their skills</div>
+                <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: "rgba(255,255,255,0.55)", marginTop: 10, letterSpacing: "0.8px", maxWidth: 260, lineHeight: 1.5 }}>professionals who have donated their skills</div>
               </div>
               <p style={{ fontSize: 15, color: "rgba(255,255,255,0.7)", lineHeight: 1.8, maxWidth: 380 }}>
-                ProEngage is open to Tata Employees, Family Members of Tata Employees, and Retired Tata Employees. Note: ProEngage projects are skill-based. Volunteers are expected to apply only to projects aligned with their expertise.
+                ProEngage projects are skill-based. Volunteers are expected to apply only to projects aligned with their professional expertise.
               </p>
             </div>
             <div>
               {WHO.map((w, i) => (
                 <div key={w.label} style={{ padding: "28px 0", borderBottom: i < WHO.length - 1 ? "1px solid rgba(255,255,255,0.14)" : "none", display: "flex", gap: 20, alignItems: "flex-start" }}>
-                  <div style={{ width: 52, height: 52, borderRadius: 14, flexShrink: 0, background: "rgba(255,255,255,0.14)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{w.icon}</div>
+                  <div style={{ width: 52, height: 52, borderRadius: 14, flexShrink: 0, background: "rgba(255,255,255,0.14)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
+                    <w.Icon />
+                  </div>
                   <div>
                     <div style={{ fontSize: 17, fontWeight: 800, color: "#fff", marginBottom: 6 }}>{w.label}</div>
                     <div style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", lineHeight: 1.7 }}>{w.desc}</div>
@@ -201,21 +389,59 @@ export default function AboutProEngageView() {
       </section>
 
       {/* ════════════════════ HOW IT WORKS ════════════════════ */}
-      <section id="pe-how" style={{ padding: "88px 56px", background: "#fff" }}>
+      <section id="pe-how" style={{ padding: "96px 56px", background: "#fff" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>The ProEngage journey</p>
           <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Six steps from brief to certificate</h2>
           <DefinerBar colour={COLOUR} />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginTop: 48 }}>
-            {STEPS.map((s) => (
-              <div key={s.num}
-                style={{ background: s.highlight ? COLOUR : "#fff", border: `1px solid ${s.highlight ? COLOUR : "#e8e8f0"}`, borderRadius: 16, padding: "26px 22px", transition: "box-shadow 0.2s" }}
-                onMouseEnter={(e) => { if (!s.highlight) (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)"; }}
-                onMouseLeave={(e) => { if (!s.highlight) (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
-              >
-                <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.5px", color: s.highlight ? "rgba(255,255,255,0.5)" : COLOUR + "90", marginBottom: 14 }}>{s.num}</div>
-                <div style={{ fontSize: 15, fontWeight: 800, color: s.highlight ? "#fff" : ACCENT_NAVY, marginBottom: 8 }}>{s.title}</div>
-                <div style={{ fontSize: 13, color: s.highlight ? "rgba(255,255,255,0.75)" : "#64748B", lineHeight: 1.7 }}>{s.desc}</div>
+          <p style={{ fontSize: 15, color: "#64748B", marginTop: 18, maxWidth: 540, marginBottom: 56, lineHeight: 1.72 }}>
+            Here's how the journey unfolds — from NGO submission through to volunteer recognition.
+          </p>
+
+          {/* Zigzag step layout */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            {HOW_STEPS.map((step, idx) => (
+              <div key={step.num} style={{
+                display: "grid",
+                gridTemplateColumns: idx % 2 === 0 ? "1fr auto 1fr" : "1fr auto 1fr",
+                gap: 0,
+                alignItems: "center",
+                marginBottom: idx < HOW_STEPS.length - 1 ? 0 : 0,
+              }}>
+                {/* Left content */}
+                {idx % 2 === 0 ? (
+                  <div style={{ padding: "28px 36px 28px 0", textAlign: "right" }}>
+                    <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", color: step.colour, textTransform: "uppercase", marginBottom: 8, opacity: 0.7 }}>{step.num}</div>
+                    <div style={{ fontSize: 16, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 8 }}>{step.title}</div>
+                    <div style={{ fontSize: 13, color: "#64748B", lineHeight: 1.7, maxWidth: 320, marginLeft: "auto" }}>{step.desc}</div>
+                  </div>
+                ) : <div />}
+
+                {/* Center icon */}
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
+                  {idx > 0 && <div style={{ width: 2, height: 28, background: `${step.colour}30` }} />}
+                  <div style={{
+                    width: 64, height: 64, borderRadius: "50%",
+                    background: step.colour,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: "#fff",
+                    boxShadow: `0 6px 24px ${step.colour}40`,
+                    flexShrink: 0,
+                    zIndex: 1,
+                  }}>
+                    <step.Icon />
+                  </div>
+                  {idx < HOW_STEPS.length - 1 && <div style={{ width: 2, height: 28, background: `${HOW_STEPS[idx + 1].colour}30` }} />}
+                </div>
+
+                {/* Right content */}
+                {idx % 2 !== 0 ? (
+                  <div style={{ padding: "28px 0 28px 36px" }}>
+                    <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", color: step.colour, textTransform: "uppercase", marginBottom: 8, opacity: 0.7 }}>{step.num}</div>
+                    <div style={{ fontSize: 16, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 8 }}>{step.title}</div>
+                    <div style={{ fontSize: 13, color: "#64748B", lineHeight: 1.7, maxWidth: 320 }}>{step.desc}</div>
+                  </div>
+                ) : <div />}
               </div>
             ))}
           </div>
@@ -223,22 +449,23 @@ export default function AboutProEngageView() {
       </section>
 
       {/* ════════════════════ SKILLS ════════════════════ */}
-      <section id="pe-skills" style={{ padding: "80px 56px", background: "#F4F8F5" }}>
+      <section id="pe-skills" style={{ padding: "80px 56px", background: "#F0F8F4" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Skill areas</p>
           <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>What skills are needed?</h2>
           <DefinerBar colour={COLOUR} />
-          <p style={{ fontSize: 15, color: "#64748B", lineHeight: 1.75, marginTop: 20, maxWidth: 540 }}>
-            NGOs seek expertise across these domains. Apply for a project in the area you know best.
+          <p style={{ fontSize: 15, color: "#64748B", lineHeight: 1.75, marginTop: 20, maxWidth: 540, marginBottom: 40 }}>
+            NGOs seek expertise across these disciplines. Apply only for projects aligned with your professional background.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12, marginTop: 36 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12 }}>
             {SKILLS.map((skill) => (
-              <div key={skill}
-                style={{ background: "#fff", border: `1.5px solid ${COLOUR}18`, borderRadius: 14, padding: "20px 16px", display: "flex", flexDirection: "column", alignItems: "center", gap: 10, textAlign: "center", cursor: "pointer", transition: "all 0.18s" }}
-                onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = COLOUR_LIGHT; el.style.borderColor = COLOUR; el.style.transform = "translateY(-2px)"; }}
-                onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = "#fff"; el.style.borderColor = COLOUR + "18"; el.style.transform = "none"; }}
-              >
-                <div style={{ fontSize: 12, fontWeight: 700, color: ACCENT_NAVY, lineHeight: 1.3 }}>{skill}</div>
+              <div key={skill.label}
+                style={{ background: "#fff", border: `1.5px solid ${COLOUR}18`, borderRadius: 14, padding: "20px 16px", display: "flex", flexDirection: "column", alignItems: "center", gap: 12, textAlign: "center", cursor: "default" }}>
+                {/* Monogram badge instead of emoji */}
+                <div style={{ width: 36, height: 36, borderRadius: 8, background: COLOUR_LIGHT, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 800, color: COLOUR, letterSpacing: "0.5px" }}>{skill.icon}</span>
+                </div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: ACCENT_NAVY, lineHeight: 1.3 }}>{skill.label}</div>
               </div>
             ))}
           </div>
@@ -246,18 +473,20 @@ export default function AboutProEngageView() {
       </section>
 
       {/* ════════════════════ TSG ROLE ════════════════════ */}
-      <section id="pe-tsg" style={{ background: COLOUR_MID, padding: "88px 56px", position: "relative", overflow: "hidden" }}>
+      <section id="pe-tsg" style={{ background: COLOUR_DARK, padding: "88px 56px", position: "relative", overflow: "hidden" }}>
         <div style={DIAG} />
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 72, alignItems: "start" }}>
           <div>
             <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Tata Sustainability Group</p>
             <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>TSG's role in ProEngage</h2>
             <div style={{ height: 3, background: "rgba(255,255,255,0.25)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 36 }} />
-            <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {TSG_POINTS.map((p, i) => (
-                <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                  <div style={{ width: 24, height: 24, borderRadius: "50%", background: "rgba(255,255,255,0.18)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 1 }}>
-                    <span style={{ color: "#fff", fontSize: 11, fontWeight: 800 }}>✓</span>
+                <div key={i} style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
+                  <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(255,255,255,0.14)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 1 }}>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </div>
                   <span style={{ fontSize: 15, color: "rgba(255,255,255,0.85)", lineHeight: 1.65 }}>{p}</span>
                 </div>
@@ -270,7 +499,7 @@ export default function AboutProEngageView() {
               Join thousands of Tata colleagues who contribute their professional skills through ProEngage.
             </p>
             <button onClick={() => navigate(isLoggedIn ? "proengage" : "register-role")}
-              style={{ background: B_MUSTARD, color: "#fff", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 15, cursor: "pointer", width: "100%", boxShadow: "0 4px 20px rgba(0,0,0,0.22)" }}>
+              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 15, cursor: "pointer", width: "100%", boxShadow: "0 4px 20px rgba(0,0,0,0.22)" }}>
               Browse open projects →
             </button>
             <button onClick={() => navigate("about")}
