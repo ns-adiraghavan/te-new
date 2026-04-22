@@ -49,6 +49,10 @@ import AboutProEngageView from "@/views/AboutProEngageView";
 import PartnerWithUsView from "@/views/PartnerWithUsView";
 import MediaView from "@/views/MediaView";
 import JourneyView from "@/views/JourneyView";
+import EOIView from "@/views/EOIView";
+import EWasteView from "@/views/EWasteView";
+import TataSmView from "@/views/TataSmView";
+import CVPView from "@/views/CVPView";
 import NotFound from "@/pages/NotFound";
 
 export default function App() {
@@ -214,6 +218,10 @@ export default function App() {
                 <Route path="/about/proengage" element={<AboutProEngageView />} />
                 <Route path="/partner" element={<PartnerWithUsView />} />
                 <Route path="/media" element={<MediaView />} />
+                <Route path="/eoi" element={<EOIView />} />
+                <Route path="/ewaste" element={<EWasteView />} />
+                <Route path="/tata-sustainability-month" element={<TataSmView />} />
+                <Route path="/cvp" element={<CVPView />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
         </main>
