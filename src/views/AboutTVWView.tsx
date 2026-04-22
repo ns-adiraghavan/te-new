@@ -27,14 +27,14 @@ const DIAG: React.CSSProperties = {
 };
 
 const STATS = [
-  { num: "25+",     label: "Editions"            },
+  { num: "25+",     label: "Editions since 2014"            },
   { num: "50,000+", label: "Volunteers per edition" },
   { num: "100+",    label: "Tata companies"       },
 ];
 
 const WHO = [
   { label: "Tata Employees",          icon: "👤", desc: "All group company employees during TVW dates" },
-  { label: "Family Members",          icon: "👨‍👩‍👧", desc: "Spouses, children and extended family" },
+  { label: "Family Members",          icon: "👨‍👩‍👧", desc: "Family members of Tata employees" },
   { label: "Retired Tata Employees",  icon: "🎓", desc: "Former employees still connected to the group" },
 ];
 
@@ -53,11 +53,11 @@ const ALL_EDITIONS = [
 ];
 
 const TSG_POINTS = [
-  "Centralised campaign planning and materials",
-  "Cross-company collaboration and matchmaking support",
-  "Regional SPOC meets for knowledge sharing",
-  "Live trackers, announcements, and dashboards",
-  "Rewards and recognition framework",
+  "Centralised campaigns and communications",
+  "Cross-company collaboration",
+  "Regional coordination",
+  "Participation tracking and reporting",
+  "Recognition of volunteering contributions"
 ];
 
 // ── DefinerBar ────────────────────────────────────────────────────────────────
@@ -140,7 +140,7 @@ export default function AboutTVWView() {
               {"Tata\nVolunteering\nWeek"}
             </h1>
             <p style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.78)", margin: "0 0 44px", maxWidth: 460 }}>
-              A month-long celebration of volunteering held twice a year — uniting the entire Tata family worldwide through hundreds of community events, skill-based activities, and moments of collective impact.
+              Tata Volunteering Week (TVW) is the Tata Group's flagship volunteering initiative — bringing together thousands of Tata employees, their families, and retired colleagues from across the world to create meaningful community impact. Held twice every year, TVW is a time when the Tata volunteering tribe comes together to turn intent into action.
             </p>
             <div style={{ display: "flex", gap: 40, flexWrap: "wrap", marginBottom: 44, paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
               {STATS.map((s) => (
@@ -177,10 +177,10 @@ export default function AboutTVWView() {
             <DefinerBar colour={COLOUR} />
             <div style={{ marginTop: 28 }}>
               <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
-                TVW is Tata Engage's flagship programme — a structured, company-led volunteering week held every March and September. It enables every Tata employee, their family members, and retired Tata employees to step away from their desks and step into their communities.
+                Tata Engage builds a unique, engaging umbrella campaign for each edition. Tata companies across global locations curate volunteering opportunities — half-day, group-based activities spanning social and environmental community-development themes. Specially curated DIY (Do It Yourself) activity guides also empower individuals to take action independently.
               </p>
               <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82 }}>
-                From blood donation camps to tree plantations, from education drives to health camps — TVW brings purpose to participation at scale.
+                No specialised skills are required for most activities. Volunteers are encouraged to participate with sensitivity, responsibility, and respect for communities, guided by Tata Engage's volunteering principles.
               </p>
             </div>
           </div>
@@ -268,7 +268,7 @@ export default function AboutTVWView() {
             <h2 style={{ fontSize: 22, fontWeight: 800, color: "rgba(255,255,255,0.85)", letterSpacing: "-0.3px", marginBottom: 20, lineHeight: 1.3 }}>editions of Tata Volunteering Week since 2014</h2>
             <div style={{ height: 3, background: "rgba(255,255,255,0.25)", borderRadius: 2, width: 48, marginBottom: 24 }} />
             <p style={{ fontSize: 15, color: "rgba(255,255,255,0.65)", lineHeight: 1.8, maxWidth: 380 }}>
-              Held every March and September — TVW has run without interruption since launch, even pivoting fully virtual during the pandemic.
+              Tata Volunteering Week is celebrated twice each year across the Tata Group, commencing annually on 3 March and 5 September. Each edition runs over a four-week period.
             </p>
           </div>
           <div>
@@ -280,7 +280,7 @@ export default function AboutTVWView() {
                 </div>
               ))}
             </div>
-            <div style={{ marginTop: 20, fontFamily: "'DM Mono',monospace", fontSize: 10, color: "rgba(255,255,255,0.3)", letterSpacing: "0.5px" }}>Next: TVW26 · Sep 2025</div>
+            <div style={{ marginTop: 20, fontFamily: "'DM Mono',monospace", fontSize: 10, color: "rgba(255,255,255,0.3)", letterSpacing: "0.5px" }}>Next: TVW26 · Sep 2026</div>
           </div>
         </div>
       </section>
