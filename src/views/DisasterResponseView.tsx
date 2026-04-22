@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { useAuth } from "@/context/AuthContext";
 import Footer from "@/components/layout/Footer";
+import SubPageDotRail from "@/components/shared/SubPageDotRail";
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
 const ACCENT_NAVY  = "#0D1B3E";
@@ -83,22 +84,6 @@ function DefinerBar({ colour }: { colour: string }) {
 export default function DisasterResponseView() {
   const navigate = useAppNavigate();
   const { isLoggedIn } = useAuth();
-  const [activeSection, setActiveSection] = useState(0);
-
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    SECTIONS.forEach(({ id }, idx) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveSection(idx); },
-        { threshold: 0.25 }
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
 
   return (
     <div style={{ background: "#fff", minHeight: "100vh", position: "relative" }}>

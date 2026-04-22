@@ -3,6 +3,7 @@ import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { useAuth } from "@/context/AuthContext";
 import { useAppContext } from "@/context/AppContext";
 import Footer from "@/components/layout/Footer";
+import SubPageDotRail from "@/components/shared/SubPageDotRail";
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
 const ACCENT_NAVY  = "#0D1B3E";
@@ -83,22 +84,6 @@ export default function AboutTVWView() {
   const navigate = useAppNavigate();
   const { isLoggedIn } = useAuth();
   const { triggerToast } = useAppContext();
-  const [activeSection, setActiveSection] = useState(0);
-
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    SECTIONS.forEach(({ id }, idx) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveSection(idx); },
-        { threshold: 0.25 }
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
 
   return (
     <div style={{ background: "#fff", minHeight: "100vh", position: "relative" }}>
