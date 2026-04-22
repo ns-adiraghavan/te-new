@@ -155,11 +155,10 @@ const Navbar = ({
 
               // ── Clean hover-list (Tata.com style) ─────────────────────────
               // Dark slate panel · airy padding · plain text rows · subtle colour-only hover
-              const panelCls = "absolute top-full left-0 mt-3 bg-zinc-900/95 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.35)] py-5 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150";
-              const sectionTitleCls = "px-6 pb-2 mb-2 text-[15px] font-semibold text-white/95 border-b border-white/10 mx-2";
-              const itemCls = "block w-full text-left px-6 py-1.5 text-[13px] text-white/70 hover:text-white cursor-pointer transition-colors";
-              const nestPanelCls = "absolute left-full top-0 ml-2 bg-zinc-900/95 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.35)] py-5 z-[60] opacity-0 invisible group-hover/nest:opacity-100 group-hover/nest:visible transition-all duration-150";
-              const nestTriggerCls = "flex items-center justify-between w-full px-6 py-1.5 text-[13px] text-white/70 hover:text-white cursor-pointer transition-colors";
+              const panelCls = "absolute top-full left-0 mt-3 bg-zinc-900/95 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.35)] py-4 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150";
+              const itemCls = "block w-full text-left px-6 py-1.5 text-[13px] text-white/75 hover:text-white cursor-pointer transition-colors";
+              const nestPanelCls = "absolute left-full top-0 ml-2 bg-zinc-900/95 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.35)] py-4 z-[60] opacity-0 invisible group-hover/nest:opacity-100 group-hover/nest:visible transition-all duration-150";
+              const nestTriggerCls = "flex items-center justify-between w-full px-6 py-1.5 text-[13px] text-white/75 hover:text-white cursor-pointer transition-colors";
               const dividerCls = "border-t border-white/10 my-3 mx-2";
               const subSectionLabelCls = "text-[10px] font-semibold uppercase tracking-[0.12em] text-white/40 px-6 pt-3 pb-1";
 
