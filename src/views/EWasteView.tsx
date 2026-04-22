@@ -37,10 +37,9 @@ const WHY_CARDS = [
 ];
 
 const STEPS = [
-  { num: "01", title: "Learn more", desc: "Learn more about the Yes to Access movement at yestoaccess.in" },
-  { num: "02", title: "Collect e-waste", desc: "Collect your e-waste — old phones, chargers, cables, laptops, tablets" },
-  { num: "03", title: "Drop off", desc: "Drop off at any Croma retail store near you" },
-  { num: "04", title: "Recycled responsibly", desc: "Your e-waste is responsibly recycled through authorised partners" },
+  { num: "01", title: "Collect e-waste", desc: "Collect your e-waste — old phones, chargers, cables, laptops, tablets" },
+  { num: "02", title: "Drop off", desc: "Drop off at any Croma retail store near you" },
+  { num: "03", title: "Recycled responsibly", desc: "Your e-waste is responsibly recycled through authorised partners" },
 ];
 
 // ── DefinerBar ────────────────────────────────────────────────────────────────
