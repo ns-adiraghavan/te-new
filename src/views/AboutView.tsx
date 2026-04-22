@@ -531,16 +531,10 @@ function VisionSection() {
               marginBottom: 16,
             }}
           >
-            Jamsetji Tata's foresight went far beyond pure business. His
-            spirit of selfless giving and philosophy of constructive
-            philanthropy became a tradition for the group he founded.
+            Jamsetji Tata believed that business exists to serve society. That belief — rooted in selfless giving and constructive philanthropy — continues to guide the Tata Group today. Across diverse companies and geographies, Tata employees are united by shared values and a deep commitment to giving back.
           </p>
           <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.85 }}>
-            While every Tata employee and every Tata company is distinctive,
-            what binds them is the Tata values — and the ethos of giving back
-            to society. The Tata Sustainability Group conceptualised Tata
-            Engage as the unified digital vehicle to make that giving
-            structured, measurable, and far-reaching.
+            Tata Engage is the Tata Group's volunteering platform — designed to inspire, enable, and amplify employee engagement with communities and the environment. It brings together Tata employees, their families, and retired colleagues, and enables them — through its flagship programmes — to contribute their time, skills, and experience to address pressing social and environmental challenges.
           </p>
         </div>
 
@@ -579,10 +573,7 @@ function VisionSection() {
                 margin: "0 0 32px",
               }}
             >
-              "To encourage Tata volunteers around the globe to engage with
-              the community by contributing their time and skills — making
-              volunteerism accessible, measurable, and rewarding for every
-              Tata stakeholder."
+              "To inspire Tata volunteers around the world to engage with communities by contributing their time and skills."
             </p>
             <div style={{ display: "flex", gap: 28 }}>
               {[
@@ -954,7 +945,7 @@ function ProgrammesSection() {
     {
       name:   "Tata Volunteering Week",
       tag:    "Bi-annual · Global",
-      desc:   "A month-long celebration of collective volunteering held every March and September — uniting the Tata family across hundreds of events.",
+      desc:   "Held twice every year — commencing 3 March and 5 September — TVW unites the Tata family through half-day group volunteering activities. Each edition runs over a four-week period.",
       colour: TVW_C,
       light:  "#EEF0FF",
       route:  "about-tvw",
@@ -962,7 +953,7 @@ function ProgrammesSection() {
     {
       name:   "ProEngage",
       tag:    "Skill-based · Year-round",
-      desc:   "Matches professional expertise with NGO projects spanning HR, finance, IT, and more. Duration: one to six months.",
+      desc:   "The Tata Group's flagship part-time, skill-based volunteering programme. Projects announced twice a year (15 June and 5 December) and run for 1 to 6 months.",
       colour: PE_C,
       light:  "#EDF5E8",
       route:  "about-proengage",
@@ -970,7 +961,7 @@ function ProgrammesSection() {
     {
       name:   "Disaster Response",
       tag:    "Rapid Action",
-      desc:   "Volunteers deployed within 48 hours when communities need urgent support — operating under the One Tata Response framework.",
+      desc:   "Volunteers mobilised rapidly when communities face crisis — working as Project Managers, Procurement Officers, or Core Volunteers under the One Tata Response framework.",
       colour: DR_C,
       light:  "#E6F5F7",
       route:  "disaster-response",
