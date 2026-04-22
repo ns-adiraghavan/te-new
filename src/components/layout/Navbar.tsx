@@ -197,38 +197,30 @@ const Navbar = ({
 
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
-        <div className="h-16 flex items-center justify-between px-6 md:px-12 bg-zinc-800 border-b border-white/8 shadow-[0_1px_16px_rgba(0,0,0,0.3)]">
+        <div className="h-16 flex items-center justify-between px-6 md:px-12 bg-zinc-800 border-b border-white/8 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200 }}>
 
-          {/* ── LEFT: TataEngage logo with shimmer ── */}
+          {/* ── LEFT: TataEngage logo as full-height white accent block ── */}
           <div
-            className="flex-shrink-0"
             style={{
-              position: "relative",
-              overflow: "hidden",
-              borderRadius: 8,
+              background: "rgba(255, 255, 255, 0.95)",
+              height: "64px",
+              padding: "0 20px",
+              display: "flex",
+              alignItems: "center",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              borderRadius: "0 0 12px 0",
+              zIndex: 10,
               cursor: "pointer",
+              overflow: "hidden",
             }}
             onClick={() => isLoggedIn ? onNavigate(hubView()) : onNavigate("home")}
           >
-            {/* white pill badge behind logo */}
-            <span
-              aria-hidden
-              style={{
-                position: "absolute",
-                top: -4,
-                bottom: -4,
-                left: -10,
-                right: -10,
-                background: "rgba(255, 255, 255, 0.92)",
-                borderRadius: 8,
-                zIndex: 0,
-              }}
-            />
             <img
               src={tataEngageLogo}
               alt="TataEngage"
-              className="h-9 object-contain"
-              style={{ position: "relative", zIndex: 10 }}
+              style={{ height: 36, objectFit: "contain", position: "relative", zIndex: 10 }}
             />
             {/* shimmer sweep — repeats every 3.5 s */}
             <span
