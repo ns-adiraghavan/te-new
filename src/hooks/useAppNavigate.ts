@@ -35,6 +35,10 @@ const VIEW_TO_PATH: Record<string, string> = {
   "contact": "/contact",
   "faq": "/faq",
   "policy": "/policy",
+  "eoi": "/eoi",
+  "ewaste": "/ewaste",
+  "tata-sm": "/tata-sustainability-month",
+  "cvp": "/cvp",
 };
 
 export const useAppNavigate = () => {

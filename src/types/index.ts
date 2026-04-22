@@ -7,6 +7,7 @@ export type View = "home" | "login" | "register-role" | "register-form" | "otp" 
   | "profile" | "tvw" | "proengage"
   | "disaster-response" | "dr-availability-form" | "dr-confirmation"
   | "about" | "about-tvw" | "about-proengage" | "partner" | "media" | "journey"
-  | "contact" | "faq" | "policy";
+  | "contact" | "faq" | "policy"
+  | "eoi" | "ewaste" | "tata-sm" | "cvp";
 
 export type Role = "volunteer" | "ngo" | "tata_employee" | "family_member" | "corporate_spoc" | "platform_admin" | "retired_employee";
