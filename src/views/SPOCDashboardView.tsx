@@ -1331,7 +1331,7 @@ export default function SPOCDashboardView() {
       <div style={{ background: "#f8f9ff", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif", paddingBottom: 80 }}>
 
         {/* Greeting bar */}
-        <div style={{ background: "linear-gradient(135deg, #065666 0%, #0B7285 60%, #0891b2 100%)", padding: "92px 40px 28px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24, flexWrap: "wrap" }}>
+        <div style={{ background: spocMode ? "linear-gradient(135deg, #F25F6E 0%, #FF6B7A 60%, #FF8A95 100%)" : "linear-gradient(135deg, #065666 0%, #0B7285 60%, #0891b2 100%)", padding: "92px 40px 28px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24, flexWrap: "wrap" }}>
           <div>
             <div style={{ fontSize: 24, fontWeight: 900, color: "#fff", letterSpacing: -0.5 }}>
               {spocData.firstName}, {spocMode ? "take charge." : "this is your volunteering space."}
@@ -1366,7 +1366,7 @@ export default function SPOCDashboardView() {
         </div>
 
         {/* Toggle bar */}
-        <div style={{ background: "linear-gradient(135deg, #065666 0%, #0B7285 60%, #0891b2 100%)", padding: "0 40px", display: "flex", alignItems: "center", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+        <div style={{ background: spocMode ? "linear-gradient(135deg, #F25F6E 0%, #FF6B7A 60%, #FF8A95 100%)" : "linear-gradient(135deg, #065666 0%, #0B7285 60%, #0891b2 100%)", padding: "0 40px", display: "flex", alignItems: "center", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
           {[{ id: false, label: "My Volunteer Space" }, { id: true, label: "SPOC Corner" }].map(t => (
             <button key={String(t.id)} onClick={() => { setSpocMode(t.id); setStatsStarted(false); setTimeout(() => setStatsStarted(true), 300); }}
               style={{ padding: "14px 22px", background: "none", border: "none", borderBottom: spocMode === t.id ? `3px solid ${B_PINK}` : "3px solid transparent", color: spocMode === t.id ? "#fff" : "rgba(255,255,255,0.45)", fontSize: 13.5, fontWeight: spocMode === t.id ? 700 : 400, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", transition: "all 0.2s", marginBottom: -1 }}>
