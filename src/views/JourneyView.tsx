@@ -466,7 +466,7 @@ export default function JourneyView() {
         fontFamily: "'DM Sans', sans-serif",
       }}
     >
-      {/* Rainbow accent line */}
+      {/* Rainbow accent line — sits below the navbar */}
       <div
         style={{
           position: "fixed",
@@ -474,70 +474,70 @@ export default function JourneyView() {
           left: 0,
           right: 0,
           height: 3,
-          zIndex: 90,
+          zIndex: 30,
           background: `linear-gradient(to right, ${C_FOREST}, ${C_AMBER}, ${C_TEAL}, ${C_BLUE}, ${C_LIME})`,
         }}
       />
 
-      {/* Right dot rail */}
+      {/* Right dot rail — unified site style (square navy nodes, navy label pill, dotted connector) */}
       <div
-        style={{
-          position: "fixed",
-          right: 18,
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 40,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-end",
-          gap: 10,
-        }}
+        className="fixed right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col items-end"
+        style={{ gap: 0 }}
       >
         {ERAS.map((era, i) => {
           const isActive = i === activeEraIdx;
+          const isLast = i === ERAS.length - 1;
           return (
-            <button
-              key={era.id}
-              onClick={() => jumpTo(i)}
-              title={era.label}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: 0,
-              }}
-            >
-              {isActive && (
+            <div key={era.id} className="flex flex-col items-end">
+              <button
+                onClick={() => jumpTo(i)}
+                title={era.label}
+                className="flex items-center justify-end"
+                style={{ background: "none", border: "none", cursor: "pointer", padding: 0, marginBottom: 0 }}
+              >
+                {isActive && (
+                  <span
+                    className="whitespace-nowrap shadow-sm transition-all duration-300 mr-2"
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      letterSpacing: "0.3px",
+                      padding: "3px 9px",
+                      borderRadius: 4,
+                      backgroundColor: "rgba(13,27,62,0.92)",
+                      border: `1px solid ${ACCENT_NAVY}`,
+                      color: "#ffffff",
+                    }}
+                  >
+                    {era.label}
+                  </span>
+                )}
                 <span
+                  className="transition-all duration-300"
                   style={{
-                    fontSize: 11,
-                    fontWeight: 600,
-                    color: "#334155",
-                    background: "#fff",
-                    border: "1px solid #e2e8f0",
-                    padding: "3px 9px",
-                    borderRadius: 100,
-                    whiteSpace: "nowrap",
-                    boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
+                    width: isActive ? 9 : 6,
+                    height: isActive ? 9 : 6,
+                    borderRadius: 2,
+                    backgroundColor: ACCENT_NAVY,
+                    border: `1px solid rgba(13,27,62,0.25)`,
+                    display: "block",
+                    flexShrink: 0,
                   }}
-                >
-                  {era.label}
-                </span>
+                />
+              </button>
+              {!isLast && (
+                <div
+                  style={{
+                    width: 1,
+                    height: 28,
+                    marginLeft: "auto",
+                    marginRight: isActive ? "4px" : "2.5px",
+                    backgroundImage: `repeating-linear-gradient(to bottom, ${ACCENT_NAVY}50 0px, ${ACCENT_NAVY}50 3px, transparent 3px, transparent 7px)`,
+                    transition: "all 0.3s",
+                  }}
+                />
               )}
-              <div
-                style={{
-                  width: isActive ? 10 : 7,
-                  height: isActive ? 10 : 7,
-                  borderRadius: "50%",
-                  background: isActive ? era.colour : "#CBD5E1",
-                  transition: "all 0.25s",
-                  flexShrink: 0,
-                }}
-              />
-            </button>
+            </div>
           );
         })}
       </div>
