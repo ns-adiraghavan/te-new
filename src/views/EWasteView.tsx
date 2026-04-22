@@ -24,11 +24,7 @@ const DIAG: React.CSSProperties = {
   pointerEvents: "none",
 };
 
-const STATS = [
-  { num: "3rd largest", label: "India's e-waste rank globally" },
-  { num: "82 billion kg", label: "estimated global e-waste by 2030" },
-  { num: "Zero waste to landfill", label: "Tata Group goal by 2030" },
-];
+
 
 const WHY_CARDS = [
   { desc: "Reduce the hazardous impact of unsafe electronic waste disposal on the environment" },

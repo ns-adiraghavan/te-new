@@ -27,11 +27,7 @@ const DIAG: React.CSSProperties = {
   pointerEvents: "none",
 };
 
-const STATS = [
-  { num: "25+",     label: "Editions since 2014"      },
-  { num: "50,000+", label: "Volunteers per edition"   },
-  { num: "100+",    label: "Tata companies worldwide" },
-];
+
 
 // ── SVG Icons (no emoji) ──────────────────────────────────────────────────────
 const IconEmployee = () => (

@@ -28,11 +28,7 @@ const DIAG: React.CSSProperties = {
   pointerEvents: "none",
 };
 
-const STATS = [
-  { num: "4,392",  label: "Projects in FY24"     },
-  { num: "85+",    label: "NGO partners"           },
-  { num: "1–6 mo", label: "Typical project length" },
-];
+
 
 // ── SVG Icons ─────────────────────────────────────────────────────────────────
 const IconEmployee = () => (
