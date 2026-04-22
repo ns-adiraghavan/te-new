@@ -32,13 +32,13 @@ const STATS = [
 ];
 
 const WHO = [
-  { label: "Pre-registered Tata Employees", icon: "🧭", desc: "Volunteers who have opted into the DR cadre on Tata Engage" },
-  { label: "Geographically Ready",          icon: "📍", desc: "Matched to disaster zones nearest to their location" },
-  { label: "TSG-Briefed Responders",        icon: "🛡️", desc: "Receive a full context briefing before deployment" },
+  { label: "Project Managers", icon: "📋", desc: "Bring knowledge and capability to manage large-scale disaster response initiatives. Volunteer commitment: 15–60 days on the ground." },
+  { label: "Procurement Officers", icon: "🚚", desc: "Trained in emergency supply-chain management and logistics. Volunteer commitment: 15–60 days on the ground." },
+  { label: "Core Volunteers", icon: "🤝", desc: "Spend 7–30 days in disaster-affected areas contributing to need assessments, logistics coordination, relief kit distribution, and support for medical camps and allied relief efforts." },
 ];
 
 const STEPS = [
-  { num: "01", title: "Volunteer pre-registers", desc: "Employees opt into the Disaster Response cadre on Tata Engage and complete a readiness profile.", time: "Ongoing" },
+  { num: "01", title: "Volunteer pre-registers", desc: "Expressions of interest are invited from Tata employees registered on tataengage.com. Volunteers opt into the cadre and are shortlisted based on proximity to affected areas, local language knowledge, past field experience, and medical fitness.", time: "Ongoing" },
   { num: "02", title: "Alert is issued",          desc: "TSG identifies a disaster event requiring volunteer deployment and activates the One Tata Response protocol.", time: "Day 0" },
   { num: "03", title: "Cadre is notified",        desc: "Pre-registered volunteers in relevant geographies receive an immediate alert with deployment details.", time: "< 24h" },
   { num: "04", title: "Deployment & coordination", desc: "Volunteers are briefed, coordinated with local NGO partners, and deployed to affected communities.", time: "< 48h" },
@@ -48,7 +48,7 @@ const TIME_LABELS = ["Always active", "Trigger", "Notification sent", "Deployed"
 
 const PRINCIPLES = [
   { label: "Readiness",    desc: "Pre-registered cadre, always ready to be activated",                   icon: "🟢" },
-  { label: "Speed",        desc: "Deployment target within 48 hours of a disaster event",                icon: "⚡" },
+  { label: "Speed",        desc: "Volunteer selection based on proximity, language, experience, and medical fitness.",                icon: "⚡" },
   { label: "Coordination", desc: "TSG-led, with local NGO partner integration on the ground",            icon: "🔗" },
   { label: "Coverage",     desc: "Multi-company mobilisation spanning geographies and borders",           icon: "🌏" },
 ];
@@ -180,7 +180,7 @@ export default function DisasterResponseView() {
                 Tata Engage's Disaster Response programme is not spontaneous — it is a pre-registered cadre of Tata volunteers who have indicated their willingness to be deployed rapidly when a crisis hits.
               </p>
               <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82 }}>
-                Operating under the One Tata Response framework adopted by the Tata Group Sustainability Council, the programme ensures that when disaster strikes, Tata's volunteer response is immediate, coordinated, and effective.
+                Responding to humanitarian crises has always been integral to the Tata ethos. In moments of natural and humanitarian disasters, the Tata Engage platform serves as a vital channel to mobilise employees across the Group, enabling quick, coordinated volunteer action. Volunteers work closely alongside Project Managers, Procurement Officers, and Core Volunteers — each playing a defined role in the relief mission.
               </p>
             </div>
           </div>
