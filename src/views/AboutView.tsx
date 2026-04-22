@@ -1037,10 +1037,10 @@ function ProgrammesSection() {
 // ── Team ─────────────────────────────────────────────────────────────────────
 function TeamSection() {
   const team = [
-    { name: "Shrirang Dhavale",      title: "Cluster Head & General Manager", linkedin: true  },
-    { name: "Gauri Rajadhyaksha",   title: "Deputy General Manager",          linkedin: true  },
-    { name: "Supriya Ramachandran", title: "Manager",                         linkedin: false },
-    { name: "Trupti Prabhu",        title: "Assistant Manager",               linkedin: true  },
+    { name: "Shrirang Dhavale",      title: "Cluster Head & General Manager", linkedin: true,  photo: shrirangPortrait, focus: "center 25%" },
+    { name: "Gauri Rajadhyaksha",    title: "Deputy General Manager",         linkedin: true,  photo: gauriPortrait,    focus: "center 25%" },
+    { name: "Supriya Ramachandran",  title: "Manager",                        linkedin: false, photo: supriyaPortrait,  focus: "center 25%" },
+    { name: "Trupti Prabhu",         title: "Assistant Manager",              linkedin: true,  photo: truptiPortrait,   focus: "center 30%" },
   ];
 
   const initials = (n: string) =>
@@ -1087,30 +1087,87 @@ function TeamSection() {
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)";
                 (e.currentTarget as HTMLDivElement).style.boxShadow = "0 10px 28px rgba(0,0,0,0.08)";
+                const img = e.currentTarget.querySelector<HTMLImageElement>("[data-portrait-img]");
+                const overlay = e.currentTarget.querySelector<HTMLDivElement>("[data-portrait-name]");
+                if (img) img.style.transform = "scale(1.12)";
+                if (overlay) overlay.style.opacity = "1";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLDivElement).style.transform = "none";
                 (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                const img = e.currentTarget.querySelector<HTMLImageElement>("[data-portrait-img]");
+                const overlay = e.currentTarget.querySelector<HTMLDivElement>("[data-portrait-name]");
+                if (img) img.style.transform = "scale(1)";
+                if (overlay) overlay.style.opacity = "0";
               }}
             >
               {/* Avatar */}
               <div
                 style={{
-                  width: 64,
-                  height: 64,
+                  width: 96,
+                  height: 96,
                   borderRadius: "50%",
                   background: `linear-gradient(135deg,${C} 0%,${C_DARK} 100%)`,
                   color: "#fff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 20,
-                  fontWeight: 800,
                   margin: "0 auto 18px",
-                  letterSpacing: "0.5px",
+                  position: "relative",
+                  overflow: "hidden",
                 }}
               >
-                {initials(t.name)}
+                {t.photo ? (
+                  <img
+                    data-portrait-img
+                    src={t.photo}
+                    alt={t.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: t.focus,
+                      display: "block",
+                      transition: "transform 0.35s ease",
+                    }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: 24,
+                      fontWeight: 800,
+                      letterSpacing: "0.5px",
+                    }}
+                  >
+                    {initials(t.name)}
+                  </div>
+                )}
+                {/* Name overlay on hover */}
+                <div
+                  data-portrait-name
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(180deg, rgba(10,61,71,0) 35%, rgba(10,61,71,0.85) 100%)",
+                    color: "#fff",
+                    display: "flex",
+                    alignItems: "flex-end",
+                    justifyContent: "center",
+                    padding: "0 6px 10px",
+                    fontSize: 11,
+                    fontWeight: 700,
+                    lineHeight: 1.15,
+                    textAlign: "center",
+                    opacity: 0,
+                    transition: "opacity 0.25s ease",
+                    pointerEvents: "none",
+                  }}
+                >
+                  {t.name}
+                </div>
               </div>
 
               <div style={{ marginBottom: 16 }}>
