@@ -197,18 +197,38 @@ const Navbar = ({
 
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
-        <div className="h-16 flex items-center justify-between px-6 md:px-12 bg-zinc-900 border-b border-white/8 shadow-[0_1px_16px_rgba(0,0,0,0.3)]">
+        <div className="h-16 flex items-center justify-between px-6 md:px-12 bg-zinc-800 border-b border-white/8 shadow-[0_1px_16px_rgba(0,0,0,0.3)]">
 
           {/* ── LEFT: TataEngage logo with shimmer ── */}
           <div
-            className="flex-shrink-0 relative overflow-hidden rounded-sm cursor-pointer"
-            style={{ isolation: "isolate" }}
+            className="flex-shrink-0"
+            style={{
+              position: "relative",
+              overflow: "hidden",
+              borderRadius: 8,
+              cursor: "pointer",
+            }}
             onClick={() => isLoggedIn ? onNavigate(hubView()) : onNavigate("home")}
           >
+            {/* white pill badge behind logo */}
+            <span
+              aria-hidden
+              style={{
+                position: "absolute",
+                top: -4,
+                bottom: -4,
+                left: -10,
+                right: -10,
+                background: "rgba(255, 255, 255, 0.92)",
+                borderRadius: 8,
+                zIndex: 0,
+              }}
+            />
             <img
               src={tataEngageLogo}
               alt="TataEngage"
-              className="h-9 object-contain relative z-10"
+              className="h-9 object-contain"
+              style={{ position: "relative", zIndex: 10 }}
             />
             {/* shimmer sweep — repeats every 3.5 s */}
             <span
