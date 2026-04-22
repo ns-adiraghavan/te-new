@@ -24,11 +24,7 @@ const DIAG: React.CSSProperties = {
   pointerEvents: "none",
 };
 
-const STATS = [
-  { num: "3rd largest", label: "India's e-waste rank globally" },
-  { num: "82 billion kg", label: "estimated global e-waste by 2030" },
-  { num: "Zero waste to landfill", label: "Tata Group goal by 2030" },
-];
+
 
 const WHY_CARDS = [
   { desc: "Reduce the hazardous impact of unsafe electronic waste disposal on the environment" },
@@ -82,32 +78,24 @@ export default function EWasteView() {
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, transparent, #fff)", pointerEvents: "none" }} />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "120px 56px 96px", width: "100%" }}>
-          <div style={{ maxWidth: 560 }}>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.2px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 16 }}>
+          <div style={{ maxWidth: 620 }}>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 600, letterSpacing: "2.4px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: 20 }}>
               Employee Initiative · Year-round
             </p>
-            <div style={{ width: 32, height: 2, background: "rgba(255,255,255,0.45)", borderRadius: 2, marginBottom: 22 }} />
-            <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.8rem, 5.5vw, 4.2rem)", fontWeight: 900, color: "#fff", lineHeight: 1.02, letterSpacing: "-2px", margin: "0 0 22px", whiteSpace: "pre-line" }}>
+            <div style={{ width: 44, height: 3, background: "rgba(255,255,255,0.55)", borderRadius: 2, marginBottom: 28 }} />
+            <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(3.4rem, 6.8vw, 5.4rem)", fontWeight: 900, color: "#fff", lineHeight: 1.02, letterSpacing: "-2.5px", margin: "0 0 28px", whiteSpace: "pre-line" }}>
               {"E-Waste\nWarrior\nProgramme"}
             </h1>
-            <p style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.78)", margin: "0 0 44px", maxWidth: 460 }}>
+            <p style={{ fontSize: 18, fontWeight: 300, lineHeight: 1.75, color: "rgba(255,255,255,0.88)", margin: "0 0 48px", maxWidth: 540 }}>
               Step up to Recycle and Reboot. Electronic waste is a growing concern — India is the 3rd largest e-waste generator in the world. Be part of the movement.
             </p>
-            <div style={{ display: "flex", gap: 40, flexWrap: "wrap", marginBottom: 44, paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
-              {STATS.map((s) => (
-                <div key={s.label}>
-                  <div style={{ fontSize: 28, fontWeight: 900, color: "#fff", lineHeight: 1, letterSpacing: "-0.5px" }}>{s.num}</div>
-                  <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 5 }}>{s.label}</div>
-                </div>
-              ))}
-            </div>
-            <div style={{ display: "flex", gap: 12 }}>
+            <div style={{ display: "flex", gap: 14 }}>
               <button onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
-                style={{ background: "#0D7A8A", color: "#fff", border: "none", borderRadius: 10, padding: "12px 26px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+                style={{ background: "#0D7A8A", color: "#fff", border: "none", borderRadius: 12, padding: "16px 32px", fontWeight: 800, fontSize: 16, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
                 Become a Warrior →
               </button>
               <button onClick={() => document.getElementById("ewaste-overview")?.scrollIntoView({ behavior: "smooth" })}
-                style={{ background: "rgba(255,255,255,0.11)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.26)", borderRadius: 10, padding: "12px 22px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
+                style={{ background: "rgba(255,255,255,0.11)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.26)", borderRadius: 12, padding: "16px 28px", fontWeight: 600, fontSize: 16, cursor: "pointer" }}>
                 Learn more
               </button>
             </div>
