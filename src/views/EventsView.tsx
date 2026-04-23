@@ -361,7 +361,7 @@ function EventSection({
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function EventsView() {
   return (
-    <div className="dot-grid-bg" style={{ background: "#eef0f5", minHeight: "100vh", fontFamily: "'DM Sans',sans-serif", paddingTop: 64 }}>
+    <div style={{ background: "#eef0f5", minHeight: "100vh", fontFamily: "'DM Sans',sans-serif", paddingTop: 64 }}>
       <SubPageDotRail sections={SECTIONS} accentColour={ACCENT} />
       <Hero />
 
