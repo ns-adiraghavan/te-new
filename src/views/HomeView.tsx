@@ -169,7 +169,7 @@ const HomeView = () => {
   const d            = slide.doodles;
 
   return (
-    <div className="relative font-sans pb-10">
+    <div className="relative font-sans">
 
       {/* ── Section dot rail — dotted vertical line + square label pill ──────── */}
       <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col items-end" style={{ gap: 0 }}>
