@@ -197,7 +197,7 @@ const Navbar = ({
 
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
-        <div className="h-16 flex items-center justify-between px-6 md:px-12 bg-zinc-700 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200 }}>
+        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200, background: "rgba(63, 63, 70, 0.95)" }}>
 
           {/* ── LEFT: TataEngage logo as full-height white accent block ── */}
           <div
@@ -449,8 +449,8 @@ const Navbar = ({
                   )}
                 </div>
 
-                {/* Tata logo — right side when logged in, always white */}
-                <img src={tataLogo} alt="Tata" className="h-8 w-8 object-contain hidden md:block brightness-0 invert" />
+                {/* Tata logo — right side, native blue */}
+                <img src={tataLogo} alt="Tata" className="h-8 w-8 object-contain hidden md:block" />
               </>
             ) : (
               /* ── Public right: Log In + Register + Tata logo ── */
