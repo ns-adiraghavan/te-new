@@ -628,7 +628,7 @@ export function QuoteBanner() {
           fontFamily: FONT_SANS,
           fontSize: 72,
           lineHeight: 1,
-          color: B_ACCENT,
+          color: "#ffffff",
           opacity: 0.5,
           marginBottom: -12,
           fontWeight: 900,
@@ -661,18 +661,18 @@ export function QuoteBanner() {
           justifyContent: "center",
           gap: 12,
         }}>
-          <div style={{ height: 1, width: 32, background: B_ACCENT, opacity: 0.7, borderRadius: 1 }} />
+          <div style={{ height: 1, width: 32, background: "#ffffff", opacity: 0.7, borderRadius: 1 }} />
           <span style={{
             fontFamily: FONT_SANS,
             fontSize: 12,
             fontWeight: 700,
             letterSpacing: "2px",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.45)",
+            color: "#ffffff",
           }}>
             Tata Engage · Spirit of Service
           </span>
-          <div style={{ height: 1, width: 32, background: B_ACCENT, opacity: 0.7, borderRadius: 1 }} />
+          <div style={{ height: 1, width: 32, background: "#ffffff", opacity: 0.7, borderRadius: 1 }} />
         </div>
       </div>
     </section>
