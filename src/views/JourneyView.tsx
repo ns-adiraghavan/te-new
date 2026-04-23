@@ -432,34 +432,12 @@ function DottedConnector({ colourFrom, colourTo }: { colourFrom: string; colourT
   );
 }
 
+// ── Sections for the dot rail ────────────────────────────────────────────────
+const RAIL_SECTIONS = MILESTONES.map(m => ({ id: m.key, label: m.year }));
+
 // ── Main component ────────────────────────────────────────────────────────────
 export default function JourneyView() {
   const navigate = useAppNavigate();
-  const [activeIdx, setActiveIdx] = useState(0);
-
-  // Track which milestone is currently in view
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    MILESTONES.forEach((m, idx) => {
-      const el = document.getElementById(m.key);
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveIdx(idx);
-        },
-        { threshold: 0.4, rootMargin: "-80px 0px -40% 0px" }
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
-
-  const jumpTo = (idx: number) => {
-    const clamped = Math.max(0, Math.min(MILESTONES.length - 1, idx));
-    const el = document.getElementById(MILESTONES[clamped].key);
-    el?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
 
   return (
     <div
