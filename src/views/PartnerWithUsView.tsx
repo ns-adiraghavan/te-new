@@ -1321,8 +1321,6 @@ export default function PartnerWithUsView() {
       <ContactSection />
       <StayConnectedSection />
       <CTASection />
-
-      <Footer />
     </div>
   );
 }
