@@ -268,7 +268,7 @@ const PROG_CONFIG = [
     title: "ProEngage",
     label: "Skill-based · Year-round",
     stat1: "1,200+ Projects", stat2: "85 NGO Partners",
-    colour: "#A4CC4C",
+    colour: "#803998",
     photo: tataCommunications, photoPos: "center center",
     accentWord: "ProEngage",
   },
@@ -332,18 +332,9 @@ export function ProgrammeSpotlight() {
   const p = PROG_CONFIG[idx];
 
   // Render title with italic accent on the accent word
-  const renderTitle = (title: string, accentWord: string, colour: string) => {
-    const parts = title.split(accentWord);
-    if (parts.length < 2) {
-      return <span style={{ fontStyle: "italic", color: colour }}>{title}</span>;
-    }
-    return (
-      <>
-        {parts[0]}
-        <em style={{ fontStyle: "italic", color: colour }}>{accentWord}</em>
-        {parts[1]}
-      </>
-    );
+  const renderTitle = (title: string, _accentWord: string, _colour: string) => {
+    // No italic inside programme cards — plain bold only
+    return <span>{title}</span>;
   };
 
   return (
@@ -366,7 +357,7 @@ export function ProgrammeSpotlight() {
           <div className="section-header">
             <SectionEyebrow label="Our Programmes" />
             <SectionH2>
-              Volunteering <em style={{ fontStyle: "italic", color: B_YELLOW }}>Opportunities</em>
+              Volunteering <em style={{ fontStyle: "italic", color: B_INDIGO }}>Opportunities</em>
             </SectionH2>
             <div style={{ width: 120, height: 1.4, borderRadius: 2, background: "#e8e8f0", marginTop: 10, overflow: "hidden" }}>
               <div className="te-draw" style={{ height: "100%", background: B_INDIGO, borderRadius: 2 }} />
@@ -483,7 +474,7 @@ export function ProgrammeSpotlight() {
                     fontSize: 22, fontWeight: 900, color: "#ffffff",
                     lineHeight: 1.2, margin: "0 0 8px", letterSpacing: "-0.4px",
                   }}>
-                    Company <em style={{ fontStyle: "italic", color: "rgba(255,255,255,0.75)" }}>Volunteering</em> Programme
+                    Company Volunteering Programme
                   </h3>
                   <div style={{ width: 40, height: 2, background: "rgba(255,255,255,0.6)", borderRadius: 1, margin: "6px 0 10px" }} />
                   <p style={{
@@ -531,7 +522,7 @@ export function ProgrammeSpotlight() {
                     fontSize: 22, fontWeight: 900, color: "#ffffff",
                     lineHeight: 1.2, margin: "0 0 8px", letterSpacing: "-0.4px",
                   }}>
-                    Employees' <em style={{ fontStyle: "italic", color: "rgba(255,255,255,0.75)" }}>Own</em> Initiatives
+                    Employees' Own Initiatives
                   </h3>
                   <div style={{ width: 40, height: 2, background: "rgba(255,255,255,0.6)", borderRadius: 1, margin: "6px 0 10px" }} />
                   <p style={{
@@ -725,7 +716,7 @@ export function NumbersSection() {
         <div className="section-header">
           <SectionEyebrow label="By the numbers" />
           <SectionH2>
-            In the <em style={{ fontStyle: "italic", color: B_YELLOW }}>Spotlight</em>
+            In the <em style={{ fontStyle: "italic", color: B_INDIGO }}>Spotlight</em>
           </SectionH2>
           <div style={{ width: 48, height: 1.4, borderRadius: 2, background: B_TEAL, marginTop: 10 }} />
         </div>
@@ -1277,9 +1268,9 @@ export function HeroBanner({
           }}
           aria-label="Scroll down"
         >
-          <ChevronDown size={22} color="rgba(255,255,255,0.9)"  className="te-bob-1" />
-          <ChevronDown size={22} color="rgba(255,255,255,0.55)" className="te-bob-2" />
-          <ChevronDown size={22} color="rgba(255,255,255,0.28)" className="te-bob-3" />
+          <ChevronDown size={22} color="#ffffff" className="te-bob-1" />
+          <ChevronDown size={22} color="#ffffff" className="te-bob-2" />
+          <ChevronDown size={22} color="#ffffff" className="te-bob-3" />
         </button>
       </div>
     </>
