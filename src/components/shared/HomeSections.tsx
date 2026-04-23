@@ -747,7 +747,7 @@ export function NumbersSection() {
           <div style={{
             borderRadius: 14,
             position: "relative", overflow: "hidden", minHeight: 280,
-            background: B_ACCENT,
+            background: "#F2778A",
             boxShadow: "6px 0 24px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.08)",
             alignSelf: "center",
           }}>
@@ -760,7 +760,7 @@ export function NumbersSection() {
                 fontFamily: FONT_SANS,
                 fontSize: 11, fontWeight: 800, letterSpacing: "1.6px",
                 textTransform: "uppercase",
-                color: "#F2778A",
+                color: "#ffffff",
                 display: "block",
                 marginBottom: 10,
               }}>
