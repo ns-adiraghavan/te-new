@@ -44,9 +44,9 @@ const VIEW_TO_PATH: Record<string, string> = {
 export const useAppNavigate = () => {
   const nav = useNavigate();
   return useCallback(
-    (view: string) => {
+    (view: string, hash?: string) => {
       const path = VIEW_TO_PATH[view] || "/";
-      nav(path);
+      nav(hash ? `${path}#${hash.replace(/^#/, "")}` : path);
       window.scrollTo(0, 0);
     },
     [nav]
