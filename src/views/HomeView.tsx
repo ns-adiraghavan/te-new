@@ -279,7 +279,7 @@ const HomeView = () => {
             {/* Eyebrow tag + definer underline */}
             <span style={{
               display: "inline-block",
-              fontSize: 11.5, fontWeight: 800, letterSpacing: "2px",
+              fontSize: 14, fontWeight: 800, letterSpacing: "2.3px",
               textTransform: "uppercase",
               color: "#ffffff",
               marginBottom: 0,
