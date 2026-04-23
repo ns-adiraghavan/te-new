@@ -1290,3 +1290,79 @@ export function HeroBanner({
     </>
   );
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// QUOTE BANNER — dark section break used between Programmes and Numbers
+// ─────────────────────────────────────────────────────────────────────────────
+export function QuoteBanner() {
+  return (
+    <section
+      className="section-block"
+      style={{
+        background: ACCENT_NAVY,
+        padding: "72px 48px",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Subtle diagonal texture */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 14px)",
+          pointerEvents: "none",
+        }}
+      />
+      <div
+        style={{
+          maxWidth: 960,
+          margin: "0 auto",
+          position: "relative",
+          textAlign: "center",
+          color: "#ffffff",
+        }}
+      >
+        <div
+          style={{
+            fontFamily: FONT_SANS,
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: B_YELLOW,
+            marginBottom: 18,
+          }}
+        >
+          In their words
+        </div>
+        <blockquote
+          style={{
+            fontFamily: FONT_SANS,
+            fontSize: "clamp(22px, 3vw, 32px)",
+            lineHeight: 1.35,
+            fontWeight: 500,
+            color: "#ffffff",
+            margin: 0,
+          }}
+        >
+          “If you want to walk fast, walk alone. But if you want to walk far,
+          walk <em style={{ fontStyle: "italic", color: B_YELLOW }}>together</em>.”
+        </blockquote>
+        <div
+          style={{
+            marginTop: 22,
+            fontSize: 13,
+            color: "rgba(255,255,255,0.72)",
+            fontFamily: FONT_SANS,
+          }}
+        >
+          — Tata Group volunteering ethos
+        </div>
+      </div>
+    </section>
+  );
+}
+

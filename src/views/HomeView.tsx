@@ -13,7 +13,7 @@ import drHeroPhoto from "@/assets/dr_photo_2.jpg";
 import {
   B_INDIGO, B_YELLOW, B_TEAL, B_BLUE, B_TICKER, ACCENT_NAVY,
 } from "@/data/homeSharedData";
-import { ProgrammeSpotlight, JourneySection, NumbersSection, TickerBar, SectionDivider } from "@/components/shared/HomeSections";
+import { ProgrammeSpotlight, JourneySection, NumbersSection, QuoteBanner, TickerBar, SectionDivider } from "@/components/shared/HomeSections";
 
 // ── Ink doodle SVGs ───────────────────────────────────────────────────────────
 const InkSpiral = ({ className = "", style = {} }: { className?: string; style?: React.CSSProperties }) => (
@@ -114,8 +114,8 @@ const HERO_PARTICLES = [
   { top: "88%", left: "65%", size: 5, opacity: 0.08, dur: "9s",  delay: "0.3s" },
 ];
 
-const SECTION_IDS    = ["hero", "programmes", "journey", "numbers"];
-const SECTION_LABELS = ["Home", "Programmes", "Journey", "Numbers"];
+const SECTION_IDS    = ["hero", "programmes", "numbers", "journey"];
+const SECTION_LABELS = ["Home", "Programmes", "Numbers", "Journey"];
 
 // ── Component ─────────────────────────────────────────────────────────────────
 const HomeView = () => {
@@ -432,18 +432,17 @@ const HomeView = () => {
         <ProgrammeSpotlight />
       </div>
 
-      <SectionDivider />
+      {/* QUOTE BANNER — dark section break, no SectionDivider needed */}
+      <QuoteBanner />
 
-      {/* 3. JOURNEY */}
-      <div id="journey">
-        <JourneySection />
-      </div>
-
-      <SectionDivider />
-
-      {/* 4. NUMBERS + SOCIAL */}
+      {/* 3. IN THE NUMBERS */}
       <div id="numbers">
         <NumbersSection />
+      </div>
+
+      {/* 4. JOURNEY — compact */}
+      <div id="journey">
+        <JourneySection />
       </div>
 
       {/* ════════════════════════════════════════════════════════════════════

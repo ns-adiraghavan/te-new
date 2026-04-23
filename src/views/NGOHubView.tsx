@@ -7,7 +7,7 @@ import tataLogo from "@/assets/tata-logo.png";
 import tataEngageLogo from "@/assets/tata-engage-logo-nobg.png";
 import heroImg from "@/assets/infiniti-1.jpg";
 import { B_TICKER, B_YELLOW, B_TEAL, ACCENT_NAVY } from "@/data/homeSharedData";
-import { ProgrammeSpotlight, JourneySection, NumbersSection, TickerBar, SectionDivider } from "@/components/shared/HomeSections";
+import { ProgrammeSpotlight, JourneySection, NumbersSection, QuoteBanner, TickerBar, SectionDivider } from "@/components/shared/HomeSections";
 
 const B_ORANGE = "#C14D00";
 
@@ -177,12 +177,14 @@ const NGOHubView = () => {
         </div>
       </section>
 
-      <SectionDivider />
       <div id="programmes"><ProgrammeSpotlight /></div>
-      <SectionDivider />
-      <div id="journey"><JourneySection /></div>
-      <SectionDivider />
+
+      {/* Quote banner between Programmes and Numbers */}
+      <QuoteBanner />
+
       <div id="numbers"><NumbersSection /></div>
+
+      <div id="journey"><JourneySection /></div>
 
       <TickerBar fixed />
 

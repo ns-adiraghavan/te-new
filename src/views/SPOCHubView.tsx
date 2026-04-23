@@ -8,7 +8,7 @@ import tataLogo from "@/assets/tata-logo.png";
 import tataEngageLogo from "@/assets/tata-engage-logo-nobg.png";
 import heroImg from "@/assets/Voltas.JPG";
 import { B_TICKER, B_YELLOW, B_INDIGO, ACCENT_NAVY } from "@/data/homeSharedData";
-import { ProgrammeSpotlight, JourneySection, NumbersSection, TickerBar, SectionDivider } from "@/components/shared/HomeSections";
+import { ProgrammeSpotlight, JourneySection, NumbersSection, QuoteBanner, TickerBar, SectionDivider } from "@/components/shared/HomeSections";
 
 const DOT_SECTIONS = [
   { id: "hub-hero", label: "Home" },
@@ -177,12 +177,14 @@ const SPOCHubView = () => {
         </div>
       </section>
 
-      <SectionDivider />
       <div id="programmes"><ProgrammeSpotlight /></div>
-      <SectionDivider />
-      <div id="journey"><JourneySection /></div>
-      <SectionDivider />
+
+      {/* Quote banner between Programmes and Numbers */}
+      <QuoteBanner />
+
       <div id="numbers"><NumbersSection /></div>
+
+      <div id="journey"><JourneySection /></div>
 
       <TickerBar fixed />
 
