@@ -594,7 +594,7 @@ export function QuoteBanner() {
       {/* Dark overlay — heavier than journey for quote legibility */}
       <div style={{
         position: "absolute", inset: 0,
-        background: "linear-gradient(135deg, rgba(5,5,20,0.55) 0%, rgba(5,5,20,0.45) 100%)",
+        background: "linear-gradient(135deg, rgba(5,5,20,0.92) 0%, rgba(5,5,20,0.92) 100%)",
         pointerEvents: "none",
       }} />
 
@@ -967,7 +967,7 @@ export function JourneySection() {
       {/* Dark overlay */}
       <div style={{
         position: "absolute", inset: 0,
-        background: "linear-gradient(135deg, rgba(5,5,20,0.55) 0%, rgba(5,5,20,0.45) 100%)",
+        background: "linear-gradient(135deg, rgba(5,5,20,0.92) 0%, rgba(5,5,20,0.92) 100%)",
         pointerEvents: "none",
       }} />
 
