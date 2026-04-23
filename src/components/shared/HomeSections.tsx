@@ -19,6 +19,7 @@ import tataElxsiImg   from "@/assets/tata-elxsi.jpg";
 import airIndia from "@/assets/air-india.jpg";
 import tataCommunications from "@/assets/tata-communications-1.jpg";
 import infiniti from "@/assets/Infiniti_2.jpg";
+import tataPower from "@/assets/tata_power.JPG";
 import drPhoto from "@/assets/dr_photo.jpg";
 import tajSatsImg from "@/assets/tata-motors-2.jpg";
 import titanImg from "@/assets/titain.jpeg";
@@ -956,7 +957,7 @@ export function JourneySection() {
 
   return (
     <section ref={ref} className="section-block" style={{
-      backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.016) 24px, rgba(255,255,255,0.016) 25px), url(${infiniti})`,
+      backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.016) 24px, rgba(255,255,255,0.016) 25px), url(${tataPower})`,
       backgroundSize: "auto, cover",
       backgroundPosition: "center, center",
       position: "relative", overflow: "hidden",
