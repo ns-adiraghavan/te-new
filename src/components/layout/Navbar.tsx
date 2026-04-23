@@ -29,39 +29,37 @@ const SHIMMER_STYLE = `
 /* ── Page-accent colour map — navbar bg responds to current route ── */
 function getNavBg(pathname: string): string {
   // Home
-  if (pathname === "/") return "#3a3a44";                          // slate grey — 10% darker
-  // Events
-  if (pathname.startsWith("/about/events")) return "#2d0e6e";      // deep PE purple
-  // Contact
-  if (pathname.startsWith("/about/contact")) return "#7a8f2a";     // darker than C3DB6F
-  // Team
-  if (pathname.startsWith("/about/team")) return "#8a4a50";        // muted rose — darker than light pink, not too dark
-  // Disaster response
-  if (pathname.startsWith("/disaster-response") || pathname.startsWith("/dr-")) return "#0a5a54"; // darker than teal
-  // TSM
-  if (pathname.startsWith("/tata-sustainability-month")) return "#3a5a1a"; // forest green
-  // EOEO
-  if (pathname.startsWith("/eoeo")) return "#8a4a50";              // muted rose — matches team pink
-  // E-Waste
-  if (pathname.startsWith("/ewaste")) return "#1a1866";            // Tata blue dark
-  // EOI (about eoi)
-  if (pathname.startsWith("/eoi")) return "#1a2a5a";               // darker than blue
-  // Yes To Access
-  if (pathname.startsWith("/yes-to-access")) return "#1a3a6a";     // darker blue
-  // Media & Resources
-  if (pathname.startsWith("/media")) return "#2a3560";             // slightly lighter navy
-  // Volunteer hub + dashboard
+  if (pathname === "/") return "#2a3a50";
+  // Events — indigo-purple #5B21B6
+  if (pathname.startsWith("/about/events")) return "#2d0e6e";
+  // Contact — olive-lime #C3DB6F
+  if (pathname.startsWith("/about/contact")) return "#7a8f2a";
+  // Team — rose #F4838A
+  if (pathname.startsWith("/about/team")) return "#8a4a50";
+  // GCSO — blue #4376BB (own case before /about catch)
+  if (pathname.startsWith("/about/gcso")) return "#1e3a5f";
+  // Disaster response + Partner With Us — same teal family (#007A8A / #0D6B7A)
+  if (pathname.startsWith("/disaster-response") || pathname.startsWith("/dr-") || pathname.startsWith("/partner")) return "#0a5a54";
+  // TSM — olive-lime #C3DB6F
+  if (pathname.startsWith("/tata-sustainability-month")) return "#3a5a1a";
+  // EOEO — rose #F4838A (same family as team)
+  if (pathname.startsWith("/eoeo")) return "#8a4a50";
+  // E-Waste, EOI, Media, SPOC — indigo #333399 family
+  if (pathname.startsWith("/ewaste") || pathname.startsWith("/eoi") || pathname.startsWith("/media") || pathname.startsWith("/spoc/")) return "#1a1866";
+  // Yes To Access — bright blue #307FE2
+  if (pathname.startsWith("/yes-to-access")) return "#1a3a6a";
+  // Volunteer hub + dashboard — amber #F79425 (generic dark, hero is dark)
   if (pathname.startsWith("/hub") || pathname.startsWith("/dashboard") || pathname.startsWith("/volunteer")) return "#2a3560";
-  // TVW
-  if (pathname.startsWith("/tvw") || pathname.startsWith("/about/tvw")) return "#1a4a7a";
-  // ProEngage + CVP — #803998 darkened
-  if (pathname.startsWith("/proengage") || pathname.startsWith("/about/proengage") || pathname.startsWith("/cvp")) return "#4a1f5c";
-  // NGO / SPOC / Partner
+  // TVW — blue #135EA9 / #0047AB family
+  if (pathname.startsWith("/tvw") || pathname.startsWith("/about/tvw")) return "#0d3a6e";
+  // ProEngage — purple #803998
+  if (pathname.startsWith("/proengage") || pathname.startsWith("/about/proengage")) return "#4a1f5c";
+  // CVP — indigo-purple #5B21B6 (different from PE's reddish purple)
+  if (pathname.startsWith("/cvp")) return "#2d1260";
+  // NGO — red #F0494E
   if (pathname.startsWith("/ngo/")) return "#8a1e22";
-  if (pathname.startsWith("/partner")) return "#1a2a4a";           // darker blue
-  if (pathname.startsWith("/spoc/")) return "#1a1866";
-  // About / Journey — deep navy
-  if (pathname.startsWith("/about") || pathname.startsWith("/journey")) return "#0a1228";
+  // About / Journey — #4376BB darkened
+  if (pathname.startsWith("/about") || pathname.startsWith("/journey")) return "#1e3a5f";
   return "#2a2a35"; // default
 }
 
