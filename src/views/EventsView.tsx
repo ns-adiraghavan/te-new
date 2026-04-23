@@ -55,7 +55,7 @@ function DefinerBar({ colour = ACCENT, light = false }: { colour?: string; light
 
 // ── Slideshow ─────────────────────────────────────────────────────────────────
 interface Slide { src: string; caption: string; }
-function Slideshow({ slides, accent, accentDark }: { slides: Slide[]; accent: string; accentDark: string }) {
+function Slideshow({ slides, accent, aspect = "16/10" }: { slides: Slide[]; accent: string; accentDark?: string; aspect?: string }) {
   const [i, setI] = useState(0);
   useEffect(() => {
     if (slides.length <= 1) return;
@@ -65,7 +65,7 @@ function Slideshow({ slides, accent, accentDark }: { slides: Slide[]; accent: st
   if (!slides.length) return null;
   return (
     <div style={{ borderRadius: 16, overflow: "hidden", background: "#000", border: `1px solid ${accent}30`, position: "relative" }}>
-      <div style={{ position: "relative", aspectRatio: "16/10", background: "#000" }}>
+      <div style={{ position: "relative", aspectRatio: aspect, background: "#000" }}>
         {slides.map((s, idx) => (
           <img key={idx} src={s.src} alt={s.caption}
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: idx === i ? 1 : 0, transition: "opacity 0.6s ease" }} />
@@ -203,8 +203,12 @@ interface EventSectionProps {
   highlights?: { label: string; value: string }[];
   photoSide?: "left" | "right";
   bg?: string;
-  /** When true, the section renders with the accent as background and white text. */
+  /** When true, the section uses a subtle accent wash background. */
   accentBg?: boolean;
+  /** When true, render the heroMedia full-width across the top, with paragraphs+quote in 2-cols below. Used for panoramic images. */
+  heroFullWidth?: boolean;
+  /** Extra top padding before this section (used to space the last event). */
+  topGap?: number;
   awardsTable?: { category: string; winners: string }[];
   awardsMedia?: React.ReactNode;
   heroMedia?: React.ReactNode;
@@ -214,7 +218,8 @@ interface EventSectionProps {
 function EventSection({
   id, accent, accentDark, accentLight, date, tag, title, subtitle,
   quote, quoteAttrib, paragraphs, highlights, photoSide = "right",
-  bg = "#fff", accentBg = false, awardsTable, awardsMedia, heroMedia, children,
+  bg = "#fff", accentBg = false, heroFullWidth = false, topGap = 0,
+  awardsTable, awardsMedia, heroMedia, children,
 }: EventSectionProps) {
   // Subtle wash when accentBg=true: a soft tint of the accent on a near-white surface,
   // with all body text staying dark. Only headers, eyebrows, dividers and small accents
@@ -225,30 +230,31 @@ function EventSection({
     : bg;
 
   return (
-    <section id={id} style={{ background: sectionBg, padding: "96px 56px", position: "relative", overflow: "hidden" }}>
+    <section id={id} style={{ background: sectionBg, position: "relative", overflow: "hidden", paddingTop: topGap, scrollMarginTop: 80 }}>
       {accentBg && (
-        <>
-          {/* Top accent rule + soft corner glow for definition without full bleed */}
-          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: accent, opacity: 0.85 }} />
-          <div style={{ position: "absolute", top: -120, right: -80, width: 360, height: 360, background: `radial-gradient(circle, ${accent}22 0%, transparent 70%)`, pointerEvents: "none" }} />
-        </>
+        <div style={{ position: "absolute", top: topGap, right: -80, width: 360, height: 360, background: `radial-gradient(circle, ${accent}22 0%, transparent 70%)`, pointerEvents: "none" }} />
       )}
-      <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
 
-        {/* Section header */}
-        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 52 }}>
-          <div style={{ width: 4, height: 56, background: accent, borderRadius: 2, flexShrink: 0 }} />
+      {/* Full-width coloured header bar — edge-to-edge — distinguishes events */}
+      <div style={{ background: `linear-gradient(135deg, ${accentDark} 0%, ${accent} 100%)`, padding: "32px 56px", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(45deg,rgba(255,255,255,0.05) 1px,transparent 1px)", backgroundSize: "28px 28px", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: -60, right: -40, width: 240, height: 240, background: "radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 68%)", pointerEvents: "none" }} />
+        <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", gap: 16 }}>
+          <div style={{ width: 4, height: 56, background: "rgba(255,255,255,0.85)", borderRadius: 2, flexShrink: 0 }} />
           <div>
-            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: accent, marginBottom: 6 }}>{date} · {tag}</p>
-            <h2 style={{ fontSize: 26, fontWeight: 900, color: NAVY, letterSpacing: "-0.4px", lineHeight: 1.2 }}>{title}</h2>
-            <p style={{ fontSize: 14, color: "#64748B", marginTop: 4 }}>{subtitle}</p>
+            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: 6 }}>{date} · {tag}</p>
+            <h2 style={{ fontSize: 26, fontWeight: 900, color: "#fff", letterSpacing: "-0.4px", lineHeight: 1.2, margin: 0 }}>{title}</h2>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.85)", marginTop: 4 }}>{subtitle}</p>
           </div>
         </div>
+      </div>
 
-        {/* Body layout — IAVE-style "full hero" puts the image full-width across the top
+      <div style={{ padding: "72px 56px 96px", position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
+
+        {/* Body layout — heroFullWidth puts the image full-width across the top
             and renders paragraphs (left) + quote (right) below. Default keeps the
             existing 2-column text + media layout. */}
-        {accentBg && heroMedia ? (
+        {heroFullWidth && heroMedia ? (
           <>
             <div style={{ marginBottom: 48 }}>{heroMedia}</div>
             <div style={{ display: "grid", gridTemplateColumns: quote ? "1.15fr 0.85fr" : "1fr", gap: 48, alignItems: "start", marginBottom: highlights || awardsTable || children ? 48 : 0 }}>
@@ -350,7 +356,7 @@ function EventSection({
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function EventsView() {
   return (
-    <div style={{ background: "#fff", minHeight: "100vh", fontFamily: "'DM Sans',sans-serif", paddingTop: 64 }}>
+    <div style={{ background: "#eef0f5", minHeight: "100vh", fontFamily: "'DM Sans',sans-serif", paddingTop: 64 }}>
       <div style={{ height: 4, background: ACCENT, position: "sticky", top: 64, zIndex: 100 }} />
       <SubPageDotRail sections={SECTIONS} accentColour={ACCENT} />
       <Hero />
@@ -381,7 +387,6 @@ export default function EventsView() {
           "Comparing the sustainability journey to an ultra-marathon, the Chairman encouraged companies to sharpen their sustainability agendas, lay out decarbonisation plans as the world transitions to a low-carbon economy, and invest in innovative solutions.",
           "The volunteering session aimed to celebrate the Tata Group legacy of giving back, seek leadership perspectives on enterprise-level efforts to institutionalise volunteering while ensuring scale and quality, and cross-share challenges and opportunities on the journey towards 4 per capita volunteering hours (PCVH) by 2025.",
         ]}
-        accentBg
         heroMedia={
           <Slideshow
             accent={ACCENT}
@@ -565,7 +570,7 @@ export default function EventsView() {
       {/* IAVE 2022 — accent (green) bg */}
       <EventSection
         id="events-iave"
-        accent={B_ORANGE_DARK}
+        accent={B_ORANGE}
         accentDark={B_ORANGE_DARK}
         accentLight={B_ORANGE_LIGHT}
         date="October 2022"
@@ -584,6 +589,7 @@ export default function EventsView() {
           <Slideshow
             accent={B_ORANGE_DARK}
             accentDark={B_ORANGE_DARK}
+            aspect="3.5/1"
             slides={[
               { src: iavePanel, caption: "Plenary panel 'Corporate Volunteering for a Post-Pandemic World' at the 26th IAVE World Volunteer Conference, Abu Dhabi — including Gauri Rajadhyaksha (Tata Sons, India)." },
             ]}
@@ -594,7 +600,8 @@ export default function EventsView() {
           { label: "Best Global Volunteer Programme", value: "2019" },
           { label: "Cumulative volunteering hours", value: "8M+" },
         ]}
-        accentBg
+        heroFullWidth
+        topGap={32}
       />
     </div>
   );
