@@ -110,19 +110,19 @@ export default function MediaView() {
       <SubPageDotRail sections={SECTIONS} accentColor={B_BLUE} />
 
       {/* 1 — Hero */}
-      <div id="media-hero" style={{ position: "relative", minHeight: "92vh", display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 64 }}>
+      <div id="media-hero" style={{ position: "relative", minHeight: "75vh", display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 64 }}>
         <img src={heroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(105deg, rgba(8,12,22,0.88) 0%, rgba(8,12,22,0.70) 40%, rgba(8,12,22,0.28) 75%, rgba(8,12,22,0.08) 100%)" }} />
         <div style={DIAG_TEXTURE} />
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.50)", marginBottom: 12 }}>
+          <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 12 }}>
             Tata Engage · Media &amp; Resources
           </p>
           <div style={{ width: 48, height: 2, borderRadius: 2, background: B_BLUE, marginBottom: 22 }} />
-          <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.2rem, 4vw, 3.4rem)", fontWeight: 400, letterSpacing: "-0.5px", lineHeight: 1.12, color: "#fff", margin: "0 0 18px" }}>
+          <h1 style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: "clamp(2.2rem, 4vw, 3.4rem)", fontWeight: 400, letterSpacing: "-0.5px", lineHeight: 1.12, color: "#fff", margin: "0 0 18px" }}>
             Stories, photos and moments<br />from the Tata Engage community
           </h1>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 480, margin: 0 }}>
+          <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 480, margin: 0 }}>
             Capturing the spirit of volunteering across every edition, company and cause.
           </p>
         </div>

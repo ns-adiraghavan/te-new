@@ -208,7 +208,7 @@ function MilestoneRow({
           style={{
             background: "rgba(255,255,255,0.14)",
             color: "rgba(255,255,255,0.92)",
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
             fontSize: 10,
             fontWeight: 700,
             letterSpacing: "1.2px",
@@ -269,7 +269,7 @@ function MilestoneRow({
         </span>
         <span
           style={{
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
             fontSize: 11,
             color: "rgba(255,255,255,0.72)",
             letterSpacing: "0.4px",
@@ -330,7 +330,7 @@ function MilestoneRow({
             background: "rgba(13,27,62,0.78)",
             backdropFilter: "blur(6px)",
             color: "#fff",
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
             fontSize: 10,
             fontWeight: 700,
             letterSpacing: "1.6px",
@@ -437,7 +437,7 @@ export default function JourneyView() {
         paddingBottom: 72,
         background: "#f4f5f8",
         minHeight: "100vh",
-        fontFamily: "'DM Sans', sans-serif",
+        fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
       }}
     >
 
@@ -447,7 +447,7 @@ export default function JourneyView() {
       <div
         style={{
           position: "relative",
-          minHeight: "92vh",
+          minHeight: "75vh",
           overflow: "hidden",
           background: ACCENT_NAVY,
         }}
@@ -486,12 +486,12 @@ export default function JourneyView() {
           <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
           <p
             style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 11,
-              fontWeight: 800,
-              letterSpacing: "2.5px",
+              fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
+              fontSize: 14,
+              fontWeight: 700,
+              letterSpacing: "1.8px",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.50)",
+              color: "#ffffff",
               marginBottom: 12,
             }}
           >
@@ -508,7 +508,7 @@ export default function JourneyView() {
           />
           <h1
             style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
               fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
               fontWeight: 400,
               letterSpacing: "-0.5px",
@@ -532,7 +532,7 @@ export default function JourneyView() {
           </h1>
           <p
             style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
               fontSize: 16,
               fontWeight: 300,
               lineHeight: 1.7,
@@ -658,12 +658,12 @@ export default function JourneyView() {
         >
           <p
             style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 10,
+              fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
+              fontSize: 14,
               fontWeight: 700,
-              letterSpacing: "2.5px",
+              letterSpacing: "1.8px",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.35)",
+              color: "#ffffff",
               marginBottom: 14,
             }}
           >

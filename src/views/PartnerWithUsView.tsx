@@ -92,7 +92,7 @@ function Hero() {
     <div
       style={{
         position: "relative",
-        minHeight: "92vh",
+        minHeight: "75vh",
         overflow: "hidden",
         display: "flex",
         alignItems: "center",
@@ -118,17 +118,6 @@ function Hero() {
           background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)",
         }}
       />
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: 80,
-          background: "linear-gradient(to bottom, transparent, #fff)",
-          pointerEvents: "none",
-        }}
-      />
 
       <div
         style={{
@@ -144,12 +133,12 @@ function Hero() {
         <div style={{ maxWidth: 640 }}>
           <p
             style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 11,
-              fontWeight: 800,
-              letterSpacing: "2.5px",
+              fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
+              fontSize: 14,
+              fontWeight: 700,
+              letterSpacing: "1.8px",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.5)",
+              color: "#ffffff",
               margin: "0 0 12px",
             }}
           >
@@ -221,9 +210,9 @@ function IntroSection() {
         <div>
           <p
             style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 11,
-              fontWeight: 600,
+              fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
+              fontSize: 14,
+              fontWeight: 700,
               letterSpacing: "1.8px",
               textTransform: "uppercase",
               color: COLOUR + "cc",
@@ -336,9 +325,9 @@ function NGOSection() {
         <div style={{ marginBottom: 56 }}>
           <p
             style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 11,
-              fontWeight: 600,
+              fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
+              fontSize: 14,
+              fontWeight: 700,
               letterSpacing: "1.8px",
               textTransform: "uppercase",
               color: COLOUR + "cc",
@@ -392,7 +381,7 @@ function NGOSection() {
               <div style={{ flex: 1 }}>
                 <div
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
                     fontSize: 10,
                     fontWeight: 700,
                     color: COLOUR + "80",
@@ -501,12 +490,12 @@ function ContactSection() {
         <div>
           <p
             style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 11,
-              fontWeight: 600,
+              fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
+              fontSize: 14,
+              fontWeight: 700,
               letterSpacing: "1.8px",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.5)",
+              color: "#ffffff",
               marginBottom: 10,
             }}
           >
@@ -540,12 +529,12 @@ function ContactSection() {
         >
           <div
             style={{
-              fontFamily: "'DM Mono', monospace",
+              fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
               fontSize: 10,
               fontWeight: 700,
               letterSpacing: "1.5px",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.45)",
+              color: "#ffffff",
               marginBottom: 10,
             }}
           >
@@ -607,9 +596,9 @@ function StayConnectedSection() {
         <div style={{ marginBottom: 48 }}>
           <p
             style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 11,
-              fontWeight: 600,
+              fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
+              fontSize: 14,
+              fontWeight: 700,
               letterSpacing: "1.8px",
               textTransform: "uppercase",
               color: COLOUR + "cc",
@@ -658,7 +647,7 @@ function StayConnectedSection() {
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: COLOUR }} />
               <div
                 style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
                   fontSize: 10,
                   fontWeight: 700,
                   letterSpacing: "1.8px",
@@ -676,10 +665,10 @@ function StayConnectedSection() {
               <div
                 style={{
                   marginTop: 18,
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: 11,
+                  fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
+                  fontSize: 14,
                   fontWeight: 700,
-                  letterSpacing: "1.2px",
+                  letterSpacing: "1.8px",
                   textTransform: "uppercase",
                   color: COLOUR,
                 }}

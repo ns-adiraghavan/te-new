@@ -164,14 +164,14 @@ export default function AboutTVWView() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(8,12,22,0.82) 0%, rgba(8,12,22,0.65) 40%, rgba(8,12,22,0.18) 75%, rgba(8,12,22,0.10) 100%)" }} />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "0 0 12px" }}>
+          <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", margin: "0 0 12px" }}>
             Flagship Programme · Since 2014
           </p>
           <div style={{ height: 2, width: 48, borderRadius: 2, background: "rgba(255,255,255,0.6)", margin: "12px 0 22px" }} />
-          <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px" }}>
+          <h1 style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px" }}>
             Tata Volunteering Week
           </h1>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 300, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", margin: "0 0 32px", maxWidth: 520 }}>
+          <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 16, fontWeight: 300, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", margin: "0 0 32px", maxWidth: 520 }}>
             A Celebration of Collective Action. Held twice every year, TVW is a time when the Tata volunteering tribe comes together — turning intent into action by volunteering time, skills, and compassion for causes close to their heart.
           </p>
           <div style={{ display: "flex", gap: 14 }}>
@@ -186,7 +186,7 @@ export default function AboutTVWView() {
           </div>
         </div>
 
-        <div style={{ position: "absolute", bottom: 32, right: 56, background: "rgba(0,0,0,0.22)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>
+        <div style={{ position: "absolute", bottom: 32, right: 56, background: "rgba(0,0,0,0.22)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 100, padding: "7px 18px", fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>
           Flagship · Bi-annual · Global
         </div>
       </div>
@@ -195,7 +195,7 @@ export default function AboutTVWView() {
       <section id="tvw-overview" style={{ padding: "88px 56px", background: "transparent" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
           <div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>What is TVW?</p>
+            <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>What is TVW?</p>
             <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>The Group's largest moment of giving</h2>
             <DefinerBar colour={COLOUR} />
             <div style={{ marginTop: 28 }}>
@@ -227,12 +227,12 @@ export default function AboutTVWView() {
         <div style={{ position: "relative", zIndex: 1, padding: "88px 56px" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
             <div>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Eligibility</p>
+              <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 10 }}>Eligibility</p>
               <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>Open to the entire Tata family</h2>
               <div style={{ height: 3, background: "rgba(255,255,255,0.28)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 36 }} />
               <div style={{ marginBottom: 36 }}>
                 <div style={{ fontSize: "clamp(3.5rem, 7vw, 5.5rem)", fontWeight: 900, color: "#fff", lineHeight: 1, letterSpacing: "-3px" }}>50,000+</div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.55)", marginTop: 10, letterSpacing: "0.8px", maxWidth: 260, lineHeight: 1.5 }}>active volunteers across the Tata group</div>
+                <div style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 12, color: "rgba(255,255,255,0.55)", marginTop: 10, letterSpacing: "0.8px", maxWidth: 260, lineHeight: 1.5 }}>active volunteers across the Tata group</div>
               </div>
               <p style={{ fontSize: 15, color: "rgba(255,255,255,0.7)", lineHeight: 1.8, maxWidth: 380 }}>
                 No specialised skills are required for most TVW activities. Volunteers are encouraged to participate with sensitivity, responsibility, and respect for communities.
@@ -258,7 +258,7 @@ export default function AboutTVWView() {
       {/* ════════════════════ HOW IT WORKS — Creative visual ════════════════════ */}
       <section id="tvw-how" style={{ padding: "96px 56px", background: "transparent" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>
+          <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>
             The Volunteer Journey
           </p>
           <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>How Tata Volunteering Week works</h2>
@@ -295,7 +295,7 @@ export default function AboutTVWView() {
                       position: "absolute", top: -6, right: -6,
                       width: 22, height: 22, borderRadius: "50%",
                       background: step.colour, color: "#fff",
-                      fontSize: 10, fontWeight: 800, fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 10, fontWeight: 800, fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       border: "2px solid #fff",
                     }}>{idx + 1}</div>
@@ -328,7 +328,7 @@ export default function AboutTVWView() {
       {/* ════════════════════ TIMELINES ════════════════════ */}
       <section id="tvw-timelines" style={{ background: "#F0F4FA", padding: "80px 56px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>When does TVW run?</p>
+          <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>When does TVW run?</p>
           <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Twice every year, every year</h2>
           <DefinerBar colour={COLOUR} />
           <p style={{ fontSize: 15, color: "#64748B", marginTop: 18, marginBottom: 44, maxWidth: 480, lineHeight: 1.72 }}>
@@ -340,7 +340,7 @@ export default function AboutTVWView() {
               { date: "5 September", label: "Autumn Edition", desc: "Carried forward from the momentum of the spring edition." },
             ].map((ed) => (
               <div key={ed.date} style={{ background: COLOUR, borderRadius: 16, padding: "28px 26px", border: `1px solid ${COLOUR}`, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.2px", color: "rgba(255,255,255,0.75)", textTransform: "uppercase", marginBottom: 10 }}>{ed.label}</div>
+                <div style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.2px", color: "rgba(255,255,255,0.75)", textTransform: "uppercase", marginBottom: 10 }}>{ed.label}</div>
                 <div style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px", marginBottom: 8 }}>{ed.date}</div>
                 <div style={{ width: 24, height: 3, background: "rgba(255,255,255,0.6)", borderRadius: 2, marginBottom: 14 }} />
                 <div style={{ fontSize: 13, color: "rgba(255,255,255,0.85)", lineHeight: 1.65 }}>{ed.desc}</div>
@@ -355,7 +355,7 @@ export default function AboutTVWView() {
         <div style={DIAG} />
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 72, alignItems: "start" }}>
           <div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Tata Sustainability Group</p>
+            <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 10 }}>Tata Sustainability Group</p>
             <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>TSG's role in Tata Volunteering Week</h2>
             <div style={{ height: 3, background: "rgba(255,255,255,0.25)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 36 }} />
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>

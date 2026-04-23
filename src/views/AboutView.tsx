@@ -34,10 +34,10 @@ const SECTIONS = [
 function Eyebrow({ text, dark = false }: { text: string; dark?: boolean }) {
   return (
     <p style={{
-      fontFamily: "'DM Mono',monospace",
-      fontSize: 11, fontWeight: 600, letterSpacing: "1.8px",
+      fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif",
+      fontSize: 14, fontWeight: 700, letterSpacing: "1.8px",
       textTransform: "uppercase",
-      color: dark ? "rgba(255,255,255,0.5)" : ACCENT + "cc",
+      color: dark ? "#ffffff" : ACCENT + "cc",
       marginBottom: 10,
     }}>
       {text}
@@ -63,11 +63,11 @@ function DefinerBar({ colour = ACCENT, light = false }: { colour?: string; light
 // ── Hero ──────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <div id="about-hero" style={{ position: "relative", minHeight: "92vh", display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 64 }}>
+    <div id="about-hero" style={{ position: "relative", minHeight: "75vh", display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 64 }}>
       <img src={aboutHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)" }} />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
-        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 12, margin: "0 0 12px" }}>
+        <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 12, margin: "0 0 12px" }}>
           Tata Sustainability Group · Est. 2014
         </p>
         <div style={{ height: 2, width: 48, borderRadius: 2, background: "rgba(255,255,255,0.6)", margin: "12px 0 22px" }} />
@@ -161,7 +161,7 @@ function LegacySection() {
         <div style={{ background: ACCENT_DARK, borderRadius: 20, padding: "40px", position: "relative", overflow: "hidden", minHeight: 320 }}>
           <div style={DIAG} />
           <div style={{ position: "relative", zIndex: 1 }}>
-            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", margin: "0 0 20px" }}>
+            <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", margin: "0 0 20px" }}>
               Founder
             </p>
             <div style={{ fontSize: 56, lineHeight: 0.7, color: "rgba(255,255,255,0.15)", fontFamily: "Georgia,serif", marginBottom: 18 }}>"</div>
@@ -170,7 +170,7 @@ function LegacySection() {
             </p>
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.18)", paddingTop: 18 }}>
               <div style={{ fontSize: 15, fontWeight: 800, color: "#fff" }}>Jamsetji Tata</div>
-              <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 4 }}>Founder · Tata Group</div>
+              <div style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 4 }}>Founder · Tata Group</div>
             </div>
           </div>
         </div>
@@ -200,7 +200,7 @@ function WhatSection() {
           <div style={{ background: ACCENT_DARK, borderRadius: 18, padding: "32px", position: "relative", overflow: "hidden" }}>
             <div style={DIAG} />
             <div style={{ position: "relative", zIndex: 1 }}>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 14 }}>
+              <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 14 }}>
                 Our Vision
               </p>
               <p style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 19, fontStyle: "italic", color: "#fff", lineHeight: 1.72 }}>
@@ -211,7 +211,7 @@ function WhatSection() {
 
           {/* Purpose */}
           <div style={{ background: "#fff", border: "1px solid #e8eef0", borderRadius: 18, padding: "32px" }}>
-            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: ACCENT_DARK, marginBottom: 14 }}>
+            <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: ACCENT_DARK, marginBottom: 14 }}>
               Our Purpose
             </p>
             <p style={{ fontSize: 14.5, color: "#475569", lineHeight: 1.78, marginBottom: 18 }}>
@@ -242,7 +242,7 @@ function WhatSection() {
         <div style={{ marginTop: 20, background: NAVY, borderRadius: 16, padding: "28px 32px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, position: "relative", overflow: "hidden" }}>
           <div style={DIAG} />
           <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 8 }}>
+            <div style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 8 }}>
               Register to Volunteer
             </div>
             <div style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 19, fontStyle: "italic", color: "#fff" }}>
@@ -332,7 +332,7 @@ function ProgrammesSection() {
               <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 14px)", pointerEvents: "none" }} />
               <div style={{ padding: "28px 28px 18px", position: "relative" }}>
                 <div style={{ height: 3, background: "rgba(255,255,255,0.85)", borderRadius: 2, width: 32, marginBottom: 16 }} />
-                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", marginBottom: 8 }}>{p.tag}</div>
+                <div style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", marginBottom: 8 }}>{p.tag}</div>
                 <div style={{ fontSize: 20, fontWeight: 900, color: "#fff", letterSpacing: "-0.3px" }}>{p.name}</div>
               </div>
               <div style={{ padding: "8px 28px 28px", position: "relative", flex: 1, display: "flex", flexDirection: "column" }}>
