@@ -18,6 +18,8 @@ const SHIMMER_STYLE = `
     30%      { transform: translateY(-4px); }
     60%      { transform: translateY(-1px); }
   }
+  .te-logo-breathe { opacity: 0.5; transition: opacity 0.4s ease; }
+  .te-logo-breathe:hover { opacity: 0.75; }
 `;
 
 const Navbar = ({
@@ -201,6 +203,7 @@ const Navbar = ({
 
           {/* ── LEFT: TataEngage logo as full-height white accent block ── */}
           <div
+            className="te-logo-breathe"
             style={{
               background: "transparent",
               height: "64px",
@@ -212,27 +215,13 @@ const Navbar = ({
               left: 0,
               zIndex: 10,
               cursor: "pointer",
-              overflow: "hidden",
             }}
             onClick={() => isLoggedIn ? onNavigate(hubView()) : onNavigate("home")}
           >
             <img
               src={tataEngageLogo}
               alt="TataEngage"
-              style={{ height: 36, objectFit: "contain", position: "relative", zIndex: 10 }}
-            />
-            {/* shimmer sweep — repeats every 3.5 s */}
-            <span
-              aria-hidden
-              style={{
-                position: "absolute",
-                inset: 0,
-                zIndex: 20,
-                pointerEvents: "none",
-                background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%)",
-                animation: "teLogoShimmer 3.5s ease-in-out infinite",
-                animationDelay: "1.2s",
-              }}
+              style={{ height: 36, objectFit: "contain" }}
             />
           </div>
 
