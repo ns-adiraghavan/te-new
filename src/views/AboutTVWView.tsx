@@ -157,7 +157,7 @@ export default function AboutTVWView() {
     <div style={{ background: "#fff", minHeight: "100vh", position: "relative" }}>
 
       {/* Sticky top accent stripe */}
-      <div style={{ height: 4, background: COLOUR, position: "sticky", top: 0, zIndex: 100 }} />
+      <div style={{ height: 4, background: COLOUR, position: "sticky", top: 0, zIndex: 40 }} />
 
       <SubPageDotRail sections={SECTIONS} />
 

@@ -203,7 +203,7 @@ const Navbar = ({
 
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
-        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200, background: "rgb(63, 63, 70)" }}>
+        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200, background: "#3a3a3a" }}>
 
           {/* ── LEFT: TataEngage logo as full-height white accent block ── */}
           <div
@@ -244,7 +244,7 @@ const Navbar = ({
               <span
                 onClick={() => triggerBounce("about", () => onNavigate("about"))}
                 className={navLinkCls(
-                  location.pathname.startsWith("/about") || location.pathname === "/journey",
+                  (location.pathname.startsWith("/about") && !location.pathname.startsWith("/about/proengage") && !location.pathname.startsWith("/about/tvw")) || location.pathname === "/journey",
                   "about"
                 )}
               >
