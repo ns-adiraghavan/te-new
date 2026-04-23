@@ -142,29 +142,8 @@ const GLOBAL_STYLES = `
     border: 1px solid #e8e8f0;
   }
 
-  /* Dot grid background texture */
-  .bg-dot-grid {
-    background-image: radial-gradient(circle, rgba(51,51,153,0.07) 1px, transparent 1px);
-    background-size: 22px 22px;
-  }
 
-  /* Wave pattern background texture */
-  .bg-wave-pattern {
-    background-image: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 28px,
-      rgba(51,51,153,0.035) 28px,
-      rgba(51,51,153,0.035) 29px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 28px,
-      rgba(51,51,153,0.025) 28px,
-      rgba(51,51,153,0.025) 29px
-    );
-  }
+
 
   /* Programme tile hover */
   .prog-style-a { transition: transform 0.35s ease, box-shadow 0.35s ease; }
@@ -373,8 +352,13 @@ export function ProgrammeSpotlight() {
       <section
         ref={sectionRef}
         id="programmes"
-        className="section-block bg-dot-grid"
-        style={{ background: "#ffffff", padding: "72px 48px" }}
+        className="section-block"
+        style={{
+          background: "#ffffff",
+          padding: "72px 48px",
+          backgroundImage: "radial-gradient(circle, rgba(51,51,153,0.065) 1px, transparent 1px)",
+          backgroundSize: "22px 22px",
+        }}
       >
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
 
@@ -730,7 +714,12 @@ export function NumbersSection() {
 
   return (
     // Radial dot grid texture on the Numbers white section
-    <section className="section-block bg-dot-grid" style={{ background: "#ffffff", padding: "72px 48px" }}>
+    <section className="section-block" style={{
+      background: "#ffffff",
+      padding: "72px 48px",
+      backgroundImage: "radial-gradient(circle, rgba(51,51,153,0.055) 1px, transparent 1px)",
+      backgroundSize: "22px 22px",
+    }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
 
         <div className="section-header">
@@ -976,9 +965,9 @@ export function JourneySection() {
 
   return (
     <section ref={ref} className="section-block" style={{
-      backgroundImage: `url(${titanImg})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
+      backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.016) 24px, rgba(255,255,255,0.016) 25px), url(${titanImg})`,
+      backgroundSize: "auto, cover",
+      backgroundPosition: "center, center",
       position: "relative", overflow: "hidden",
       // Reduced from 72px to ~36px for 50% height reduction
       padding: "40px 48px",
