@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
@@ -43,11 +43,9 @@ const Footer = () => {
       <div>
         <h4 className="font-bold mb-6">Connect With Us</h4>
         <div className="flex gap-4 mb-6">
-          <Facebook size={20} className="text-slate-400 hover:text-white cursor-pointer" />
-          <Twitter size={20} className="text-slate-400 hover:text-white cursor-pointer" />
-          <Instagram size={20} className="text-slate-400 hover:text-white cursor-pointer" />
           <Linkedin size={20} className="text-slate-400 hover:text-white cursor-pointer" />
-          <Youtube size={20} className="text-slate-400 hover:text-white cursor-pointer" />
+          <Instagram size={20} className="text-slate-400 hover:text-white cursor-pointer" />
+          <Facebook size={20} className="text-slate-400 hover:text-white cursor-pointer" />
         </div>
         <div className="mt-6">
           <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Newsletter</p>
