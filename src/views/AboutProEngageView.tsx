@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { useAuth } from "@/context/AuthContext";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
+import peHeroImg from "@/assets/tce-2.jpg";
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
 const ACCENT_NAVY  = "#0D1B3E";
@@ -226,8 +227,10 @@ export default function AboutProEngageView() {
 
       <SubPageDotRail sections={SECTIONS} />
 
-      {/* ════════════════════ HERO — full-bleed accent ════════════════════ */}
-      <div style={{ position: "relative", overflow: "hidden", display: "flex", alignItems: "center", background: `linear-gradient(135deg, ${COLOUR_DARK} 0%, ${COLOUR} 100%)`, paddingTop: 64 }}>
+      {/* ════════════════════ HERO — photo + accent overlay ════════════════════ */}
+      <div style={{ position: "relative", overflow: "hidden", display: "flex", alignItems: "center", background: COLOUR_DARK, paddingTop: 64 }}>
+        <img src={peHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${COLOUR_DARK}f5 0%, ${COLOUR_DARK}ee 38%, ${COLOUR}d0 62%, ${COLOUR}80 85%, ${COLOUR}40 100%)` }} />
         <div style={DIAG} />
         <div style={{ position: "absolute", top: -120, right: -100, width: 520, height: 520, background: "radial-gradient(circle, rgba(255,255,255,0.14) 0%, transparent 68%)", pointerEvents: "none" }} />
 
