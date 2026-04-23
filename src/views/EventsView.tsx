@@ -12,6 +12,7 @@ import volconMusic1 from "@/assets/events/volcon-2024-music1.png";
 import volconMusic2 from "@/assets/events/volcon-2024-music2.png";
 import volconTribalChefs from "@/assets/events/volcon-2024-tribal-chefs.png";
 import iavePanel from "@/assets/events/iave-2022-panel.png";
+import eventsHeroImg from "@/assets/tce-2.jpg";
 
 const ACCENT       = "#F0494E";   // red — Events page (TSC 2022)
 const ACCENT_DARK  = "#C53035";
@@ -145,18 +146,20 @@ function SubEvent({ title, body, media, accent, accentDark, accentLight, mediaSi
 // ── Hero ──────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <div style={{ position: "relative", background: `linear-gradient(135deg, ${ACCENT_DARK} 0%, ${ACCENT} 100%)`, padding: "100px 56px 72px", overflow: "hidden" }}>
+    <div style={{ position: "relative", background: ACCENT_DARK, padding: "100px 56px 72px", overflow: "hidden" }}>
+      <img src={eventsHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${ACCENT_DARK}f5 0%, ${ACCENT_DARK}ee 38%, ${ACCENT}d0 62%, ${ACCENT}80 85%, ${ACCENT}40 100%)` }} />
       <div style={DIAG} />
       <div style={{ position: "absolute", top: -80, right: -60, width: 440, height: 440, background: `radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 68%)`, pointerEvents: "none" }} />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
-        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: 18 }}>
+        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", marginBottom: 18 }}>
           Tata Engage · Events & Conclaves
         </p>
-        <div style={{ width: 40, height: 3, background: ACCENT, borderRadius: 2, marginBottom: 24 }} />
+        <div style={{ width: 40, height: 3, background: "#fff", borderRadius: 2, marginBottom: 24 }} />
         <h1 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(2.2rem,4.5vw,3.2rem)", fontWeight: 900, color: "#fff", lineHeight: 1.08, letterSpacing: "-1.5px", margin: "0 0 18px", maxWidth: 600 }}>
           Events & Global Engagement
         </h1>
-        <p style={{ fontSize: 15, fontWeight: 300, color: "rgba(255,255,255,0.6)", maxWidth: 480 }}>
+        <p style={{ fontSize: 15, fontWeight: 300, color: "rgba(255,255,255,0.88)", maxWidth: 480 }}>
           Tata Engage convenes leaders, volunteers, and global partners to celebrate the spirit of giving and chart the future of corporate volunteering.
         </p>
       </div>

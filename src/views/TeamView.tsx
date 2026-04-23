@@ -4,6 +4,7 @@ import shrirangPortrait from "@/assets/team/shrirang-dhavale.png";
 import gauriPortrait from "@/assets/team/gauri-rajadhyaksha.png";
 import supriyaPortrait from "@/assets/team/supriya-ramachandran.png";
 import truptiPortrait from "@/assets/team/trupti-prabhu.png";
+import teamHeroImg from "@/assets/tata-projects.jpg";
 
 const ACCENT       = "#F4838A";   // pink — Team page
 const ACCENT_DARK  = "#C85E64";
@@ -40,18 +41,20 @@ function DefinerBar({ colour = ACCENT }: { colour?: string }) {
 // ── Hero ──────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <div style={{ position: "relative", background: `linear-gradient(135deg, ${ACCENT_DARK} 0%, ${ACCENT} 100%)`, padding: "100px 56px 72px", overflow: "hidden" }}>
+    <div style={{ position: "relative", background: ACCENT_DARK, padding: "100px 56px 72px", overflow: "hidden" }}>
+      <img src={teamHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${ACCENT_DARK}f5 0%, ${ACCENT_DARK}ee 38%, ${ACCENT}d0 62%, ${ACCENT}80 85%, ${ACCENT}40 100%)` }} />
       <div style={DIAG} />
       <div style={{ position: "absolute", top: -80, right: -60, width: 440, height: 440, background: `radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 68%)`, pointerEvents: "none" }} />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
-        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: 18 }}>
+        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: 18 }}>
           Social Services Cluster · Tata Sustainability Group
         </p>
-        <div style={{ width: 40, height: 3, background: ACCENT, borderRadius: 2, marginBottom: 24 }} />
+        <div style={{ width: 40, height: 3, background: "#fff", borderRadius: 2, marginBottom: 24 }} />
         <h1 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(2.2rem,4.5vw,3.2rem)", fontWeight: 900, color: "#fff", lineHeight: 1.08, letterSpacing: "-1.5px", margin: "0 0 18px", maxWidth: 560 }}>
           Meet Tata Engage
         </h1>
-        <p style={{ fontSize: 15, fontWeight: 300, color: "rgba(255,255,255,0.6)", maxWidth: 460 }}>
+        <p style={{ fontSize: 15, fontWeight: 300, color: "rgba(255,255,255,0.88)", maxWidth: 460 }}>
           The people behind the Tata Group's volunteering platform — driving scale, quality, and impact across 100+ companies.
         </p>
       </div>

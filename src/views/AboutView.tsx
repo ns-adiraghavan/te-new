@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import chackoThomasPortrait from "@/assets/chacko-thomas.jpg";
+import aboutHeroImg from "@/assets/happy-eyes.jpg";
 
 // ── Colour tokens ─────────────────────────────────────────────────────────────
 const ACCENT      = "#4376BB";   // About blue
@@ -63,17 +64,19 @@ function DefinerBar({ colour = ACCENT, light = false }: { colour?: string; light
 function Hero() {
   return (
     <div id="about-hero" style={{ position: "relative", background: NAVY, padding: "120px 56px 96px", overflow: "hidden" }}>
+      <img src={aboutHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${NAVY}f5 0%, ${NAVY}ee 38%, ${ACCENT_DARK}d0 62%, ${ACCENT}80 85%, ${ACCENT}40 100%)` }} />
       <div style={DIAG} />
       <div style={{ position: "absolute", top: -100, right: -80, width: 500, height: 500, background: `radial-gradient(circle,${ACCENT}55 0%,transparent 68%)`, pointerEvents: "none" }} />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
-        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: 18 }}>
+        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", marginBottom: 18 }}>
           Tata Sustainability Group · Est. 2014
         </p>
         <div style={{ width: 40, height: 3, background: ACCENT, borderRadius: 2, marginBottom: 24 }} />
         <h1 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(2.6rem,5vw,3.8rem)", fontWeight: 900, color: "#fff", lineHeight: 1.06, letterSpacing: "-2px", margin: "0 0 22px", maxWidth: 640 }}>
           About Tata Engage
         </h1>
-        <p style={{ fontSize: 16, fontWeight: 300, lineHeight: 1.82, color: "rgba(255,255,255,0.68)", maxWidth: 540 }}>
+        <p style={{ fontSize: 16, fontWeight: 300, lineHeight: 1.82, color: "rgba(255,255,255,0.88)", maxWidth: 540 }}>
           The Tata Group's volunteering platform — designed to inspire, enable, and amplify employee engagement with communities and the environment.
         </p>
       </div>

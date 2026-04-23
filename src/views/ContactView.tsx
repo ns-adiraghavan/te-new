@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
+import contactHeroImg from "@/assets/tata-infinit.jpg";
 
 const ACCENT       = "#D84926";   // orange-red — Contact page
 const ACCENT_DARK  = "#A8341A";
@@ -37,18 +38,20 @@ function DefinerBar({ light = false }: { light?: boolean }) {
 // ── Hero ──────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <div id="contact-hero" style={{ position: "relative", background: `linear-gradient(135deg, ${ACCENT_DARK} 0%, ${ACCENT} 100%)`, padding: "100px 56px 96px", overflow: "hidden" }}>
+    <div id="contact-hero" style={{ position: "relative", background: ACCENT_DARK, padding: "100px 56px 96px", overflow: "hidden" }}>
+      <img src={contactHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${ACCENT_DARK}f5 0%, ${ACCENT_DARK}ee 38%, ${ACCENT}d0 62%, ${ACCENT}80 85%, ${ACCENT}40 100%)` }} />
       <div style={DIAG} />
       <div style={{ position: "absolute", top: -80, right: -60, width: 440, height: 440, background: `radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 68%)`, pointerEvents: "none" }} />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
-        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: 18 }}>
+        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", marginBottom: 18 }}>
           Tata Engage · Get in Touch
         </p>
         <div style={{ width: 40, height: 3, background: "rgba(255,255,255,0.85)", borderRadius: 2, marginBottom: 24 }} />
         <h1 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(2.2rem,4.5vw,3.2rem)", fontWeight: 900, color: "#fff", lineHeight: 1.08, letterSpacing: "-1.5px", margin: "0 0 18px", maxWidth: 620 }}>
           Contact &amp; Connect with Tata Engage
         </h1>
-        <p style={{ fontSize: 15, fontWeight: 300, color: "rgba(255,255,255,0.85)", maxWidth: 520, lineHeight: 1.6 }}>
+        <p style={{ fontSize: 15, fontWeight: 300, color: "rgba(255,255,255,0.9)", maxWidth: 520, lineHeight: 1.6 }}>
           Whether you're a civil society organisation, a Tata colleague, or a partner exploring collaboration — the Tata Engage team is here to help.
         </p>
       </div>
