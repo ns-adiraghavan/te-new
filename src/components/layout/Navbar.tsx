@@ -185,13 +185,14 @@ const Navbar = ({
         { label: "__SECTION__Explore", action: () => {} },
         { label: "TCS Each One Empowers One", action: () => onNavigate("eoi") },
         { label: "Infiniti Retail E-Waste Warrior", action: () => onNavigate("ewaste") },
-        { label: "Yes To Access", action: () => onNavigate("yes-to-access") },
+        { label: "Yes To Access", action: () => triggerToast("Yes To Access — coming soon") },
       ],
     },
     {
       label: "Employees' Own Initiatives",
       items: [
         { label: "About EOI", action: () => onNavigate("eoi") },
+        { label: "Each One Empowers One", action: () => onNavigate("eoeo") },
       ],
     },
   ];
@@ -288,6 +289,7 @@ const Navbar = ({
                   location.pathname.startsWith("/cvp") ||
                   location.pathname.startsWith("/eoi") ||
                   location.pathname.startsWith("/ewaste") ||
+                  location.pathname.startsWith("/eoeo") ||
                   location.pathname.startsWith("/about/proengage") ||
                   location.pathname.startsWith("/about/tvw"),
                   "programmes"
