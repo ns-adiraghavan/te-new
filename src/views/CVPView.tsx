@@ -58,7 +58,7 @@ export default function CVPView() {
   }, []);
 
   return (
-    <div style={{ fontFamily: "'Noto Sans', sans-serif", background: "#fff", minHeight: "100vh" }}>
+    <div className="dot-grid-bg" style={{ fontFamily: "'Noto Sans', sans-serif", background: "transparent", minHeight: "100vh" }}>
       {/* Sticky top accent stripe */}
       <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: 4, background: COLOUR, zIndex: 60 }} />
 

@@ -154,7 +154,7 @@ export default function AboutTVWView() {
   const { triggerToast } = useAppContext();
 
   return (
-    <div style={{ background: "#fff", minHeight: "100vh", position: "relative" }}>
+    <div className="dot-grid-bg" style={{ background: "transparent", minHeight: "100vh", position: "relative" }}>
 
       <SubPageDotRail sections={SECTIONS} />
 

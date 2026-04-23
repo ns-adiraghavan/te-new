@@ -61,7 +61,7 @@ export default function EWasteView() {
   const { isLoggedIn } = useAuth();
 
   return (
-    <div style={{ background: "#fff", minHeight: "100vh", position: "relative" }}>
+    <div className="dot-grid-bg" style={{ background: "transparent", minHeight: "100vh", position: "relative" }}>
 
       {/* Sticky top accent stripe */}
       <div style={{ height: 4, background: COLOUR, position: "sticky", top: 0, zIndex: 100 }} />

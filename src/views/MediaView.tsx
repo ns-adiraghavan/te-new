@@ -100,7 +100,7 @@ export default function MediaView() {
   }, [location.hash]);
 
   return (
-    <div style={{ paddingTop: 0, paddingBottom: 0, background: "#fff", minHeight: "100vh" }}>
+    <div className="dot-grid-bg" style={{ paddingTop: 0, paddingBottom: 0, background: "transparent", minHeight: "100vh" }}>
 
       {/* 2px accent line */}
       <div style={{ height: 2, background: B_BLUE, width: "100%" }} />

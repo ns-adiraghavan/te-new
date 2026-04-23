@@ -223,7 +223,7 @@ export default function AboutProEngageView() {
   const { isLoggedIn } = useAuth();
 
   return (
-    <div style={{ background: "#fff", minHeight: "100vh", position: "relative" }}>
+    <div className="dot-grid-bg" style={{ background: "transparent", minHeight: "100vh", position: "relative" }}>
 
       <SubPageDotRail sections={SECTIONS} />
 
