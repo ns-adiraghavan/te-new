@@ -44,14 +44,14 @@ function Hero() {
       <img src={teamHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)" }} />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
-        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "0 0 12px" }}>
+        <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", margin: "0 0 12px" }}>
           Social Services Cluster · Tata Sustainability Group
         </p>
         <div style={{ height: 2, width: 48, borderRadius: 2, background: "rgba(255,255,255,0.6)", margin: "12px 0 22px" }} />
-        <h1 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(2.4rem,5vw,3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px", maxWidth: 560 }}>
+        <h1 style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: "clamp(2.4rem,5vw,3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px", maxWidth: 560 }}>
           Meet Tata Engage
         </h1>
-        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 460, margin: 0 }}>
+        <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 460, margin: 0 }}>
           The people behind the Tata Group's volunteering platform — driving scale, quality, and impact across 100+ companies.
         </p>
       </div>
@@ -74,7 +74,7 @@ function TeamSection() {
   return (
     <section id="team-members" style={{ background: "#F4F8F7", padding: "96px 56px" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: ACCENT + "cc", marginBottom: 10 }}>
+        <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: ACCENT + "cc", marginBottom: 10 }}>
           The team
         </p>
         <h2 style={{ fontSize: 30, fontWeight: 900, color: NAVY, letterSpacing: "-0.5px" }}>The people behind the platform</h2>
@@ -143,7 +143,7 @@ function TeamSection() {
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function TeamView() {
   return (
-    <div className="dot-grid-bg" style={{ background: "transparent", minHeight: "100vh", fontFamily: "'DM Sans',sans-serif", paddingTop: 64 }}>
+    <div className="dot-grid-bg" style={{ background: "transparent", minHeight: "100vh", fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", paddingTop: 64 }}>
       <SubPageDotRail sections={SECTIONS} accentColour={ACCENT} />
       <Hero />
       <TeamSection />

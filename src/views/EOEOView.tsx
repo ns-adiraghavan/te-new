@@ -79,14 +79,14 @@ export default function EOEOView() {
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
           <div style={{ maxWidth: 640 }}>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "0 0 12px" }}>
+            <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", margin: "0 0 12px" }}>
               TCS · Employee Initiative · Year-round
             </p>
             <div style={{ width: 48, height: 2, background: "rgba(255,255,255,0.6)", borderRadius: 2, margin: "12px 0 22px" }} />
-            <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 22px" }}>
+            <h1 style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 22px" }}>
               Each One<br />Empowers One
             </h1>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 300, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", margin: "0 0 32px", maxWidth: 520 }}>
+            <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 16, fontWeight: 300, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", margin: "0 0 32px", maxWidth: 520 }}>
               TCS's intuitive digital literacy platform — for the people, by the people. Enable financial, digital, and functional literacy in 9 Indian languages.
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
@@ -107,7 +107,7 @@ export default function EOEOView() {
           </div>
         </div>
 
-        <div style={{ position: "absolute", bottom: 100, right: 56, background: "rgba(0,0,0,0.28)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>
+        <div style={{ position: "absolute", bottom: 100, right: 56, background: "rgba(0,0,0,0.28)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 100, padding: "7px 18px", fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff" }}>
           Digital · Financial · Functional Literacy
         </div>
       </div>
@@ -116,7 +116,7 @@ export default function EOEOView() {
       <section id="eoeo-about" style={{ padding: "88px 56px", background: "#fff" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "start" }}>
           <div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 10 }}>About the platform</p>
+            <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 10 }}>About the platform</p>
             <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Become a TCS Literacy Champion</h2>
             <DefinerBar colour={COLOUR} />
             <div style={{ marginTop: 28 }}>
@@ -130,7 +130,7 @@ export default function EOEOView() {
           </div>
           <div>
             <div style={{ background: COLOUR_LIGHT, borderRadius: 18, padding: "32px 28px", border: "1px solid #13BBB430", marginBottom: 16 }}>
-              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 12 }}>Sign up to volunteer</div>
+              <div style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 12 }}>Sign up to volunteer</div>
               <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.7, marginBottom: 20 }}>
                 Use your official Tata email ID to register as a volunteer on the TCS Empowers portal and enrol one or more beneficiaries.
               </p>
@@ -154,7 +154,7 @@ export default function EOEOView() {
       <section id="eoeo-who" style={{ background: "#f5f5fa", padding: "88px 56px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64 }}>
           <div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 10 }}>Volunteers</p>
+            <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 10 }}>Volunteers</p>
             <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Who can participate?</h2>
             <DefinerBar colour={COLOUR} />
             <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82, marginTop: 24 }}>
@@ -162,7 +162,7 @@ export default function EOEOView() {
             </p>
           </div>
           <div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 10 }}>Beneficiaries</p>
+            <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 10 }}>Beneficiaries</p>
             <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Whom can you empower?</h2>
             <DefinerBar colour={COLOUR} />
             <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82, marginTop: 24 }}>
@@ -175,7 +175,7 @@ export default function EOEOView() {
       {/* OFFERINGS */}
       <section id="eoeo-offerings" style={{ background: "#fff", padding: "88px 56px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 10 }}>What's on offer</p>
+          <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 10 }}>What's on offer</p>
           <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>The offerings</h2>
           <DefinerBar colour={COLOUR} />
           <div style={{ marginTop: 48, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
@@ -193,7 +193,7 @@ export default function EOEOView() {
       {/* 4-STEP JOURNEY */}
       <section id="eoeo-journey" style={{ background: "#f5f5fa", padding: "88px 56px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 10 }}>How it works</p>
+          <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 10 }}>How it works</p>
           <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>The 4-step journey of empowerment</h2>
           <DefinerBar colour={COLOUR} />
 
@@ -201,7 +201,7 @@ export default function EOEOView() {
             {STEPS.map((s, i) => (
               <React.Fragment key={s.num}>
                 <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "0 12px" }}>
-                  <div style={{ width: 60, height: 60, borderRadius: "50%", background: i === 0 ? COLOUR : "#fff", border: "2px solid #F4838A", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 700, color: i === 0 ? "#fff" : COLOUR, marginBottom: 20, flexShrink: 0, boxShadow: i === 0 ? "0 4px 16px #F4838A50" : "0 2px 8px rgba(0,0,0,0.06)" }}>{s.num}</div>
+                  <div style={{ width: 60, height: 60, borderRadius: "50%", background: i === 0 ? COLOUR : "#fff", border: "2px solid #F4838A", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, color: i === 0 ? "#fff" : COLOUR, marginBottom: 20, flexShrink: 0, boxShadow: i === 0 ? "0 4px 16px #F4838A50" : "0 2px 8px rgba(0,0,0,0.06)" }}>{s.num}</div>
                   <div style={{ fontSize: 14, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 8, lineHeight: 1.25 }}>{s.title}</div>
                   <div style={{ fontSize: 13, color: "#64748B", lineHeight: 1.7 }}>{s.desc}</div>
                 </div>
