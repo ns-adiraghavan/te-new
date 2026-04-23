@@ -323,18 +323,20 @@ function ProgrammesSection() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, marginTop: 44 }}>
           {progs.map(p => (
             <div key={p.name}
-              style={{ borderRadius: 18, overflow: "hidden", border: "1px solid #e8eef0", background: "#fff", transition: "transform 0.2s,box-shadow 0.2s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 10px 28px rgba(0,0,0,0.08)"; }}
+              style={{ borderRadius: 18, overflow: "hidden", background: p.colour, color: "#fff", transition: "transform 0.2s,box-shadow 0.2s", display: "flex", flexDirection: "column", position: "relative" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLDivElement).style.boxShadow = `0 14px 32px ${p.colour}55`; }}
               onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = "none"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
             >
-              <div style={{ background: p.light, padding: "28px 28px 22px", borderBottom: `1px solid ${p.colour}20` }}>
-                <div style={{ height: 3, background: p.colour, borderRadius: 2, width: 32, marginBottom: 16 }} />
-                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: p.colour + "cc", marginBottom: 8 }}>{p.tag}</div>
-                <div style={{ fontSize: 18, fontWeight: 900, color: NAVY }}>{p.name}</div>
+              {/* subtle diagonal texture overlay */}
+              <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 14px)", pointerEvents: "none" }} />
+              <div style={{ padding: "28px 28px 18px", position: "relative" }}>
+                <div style={{ height: 3, background: "rgba(255,255,255,0.85)", borderRadius: 2, width: 32, marginBottom: 16 }} />
+                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", marginBottom: 8 }}>{p.tag}</div>
+                <div style={{ fontSize: 20, fontWeight: 900, color: "#fff", letterSpacing: "-0.3px" }}>{p.name}</div>
               </div>
-              <div style={{ padding: "20px 28px 28px" }}>
-                <p style={{ fontSize: 14, color: "#64748B", lineHeight: 1.75, marginBottom: 20 }}>{p.desc}</p>
-                <button onClick={() => navigate(p.route)} style={{ background: "none", border: `1.5px solid ${p.colour}`, borderRadius: 8, padding: "8px 18px", fontSize: 13, fontWeight: 700, color: p.colour, cursor: "pointer" }}>
+              <div style={{ padding: "8px 28px 28px", position: "relative", flex: 1, display: "flex", flexDirection: "column" }}>
+                <p style={{ fontSize: 14, color: "rgba(255,255,255,0.92)", lineHeight: 1.7, marginBottom: 20, flex: 1 }}>{p.desc}</p>
+                <button onClick={() => navigate(p.route)} style={{ background: "#fff", border: "none", borderRadius: 8, padding: "10px 20px", fontSize: 13, fontWeight: 800, color: p.colour, cursor: "pointer", alignSelf: "flex-start" }}>
                   Learn more →
                 </button>
               </div>
