@@ -11,9 +11,9 @@ const COLOUR_MID   = "#252573";
 const COLOUR_LIGHT = "#EEF0FF";
 
 const SECTIONS = [
-  { id: "eoi-overview", label: "Overview"             },
-  { id: "eoi-who",      label: "Who can participate"  },
-  { id: "eoi-eoeo",     label: "Each One Empowers One" },
+  { id: "eoi-overview", label: "Overview"            },
+  { id: "eoi-who",      label: "Who can participate" },
+  { id: "eoi-featured", label: "Featured EOI"        },
 ];
 
 const DIAG: React.CSSProperties = {
@@ -23,12 +23,7 @@ const DIAG: React.CSSProperties = {
   pointerEvents: "none",
 };
 
-const STEPS = [
-  { num: "01", text: "Identify and understand your beneficiary — we recommend a pre-assessment test" },
-  { num: "02", text: "Enroll your beneficiary by filling in the required details" },
-  { num: "03", text: "Teach at your own pace — content is downloadable" },
-  { num: "04", text: "Earn rewards and certificates for your contribution" },
-];
+
 
 // ── DefinerBar ────────────────────────────────────────────────────────────────
 function DefinerBar({ colour }: { colour: string }) {
@@ -86,7 +81,7 @@ export default function EOIView() {
                 style={{ background: B_MUSTARD, color: "#fff", border: "none", borderRadius: 10, padding: "12px 26px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
                 Learn more →
               </button>
-              <button onClick={() => document.getElementById("eoi-eoeo")?.scrollIntoView({ behavior: "smooth" })}
+              <button onClick={() => document.getElementById("eoi-featured")?.scrollIntoView({ behavior: "smooth" })}
                 style={{ background: "rgba(255,255,255,0.11)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.26)", borderRadius: 10, padding: "12px 22px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
                 Featured EOI
               </button>
@@ -140,50 +135,33 @@ export default function EOIView() {
         </div>
       </section>
 
-      {/* ════════════════════ EACH ONE EMPOWERS ONE ════════════════════ */}
-      <section id="eoi-eoeo" style={{ padding: "88px 56px", background: "#fff" }}>
+      {/* ════════════════════ FEATURED EOI ════════════════════ */}
+      <section id="eoi-featured" style={{ padding: "88px 56px", background: "#fff" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Featured EOI</p>
           <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Each One Empowers One</h2>
           <DefinerBar colour={COLOUR} />
 
-          <div style={{ marginTop: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "start" }}>
+          <div style={{ marginTop: 40, background: COLOUR_LIGHT, borderRadius: 20, padding: "40px 44px", border: `1px solid ${COLOUR}22`, display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 48, alignItems: "center" }}>
             <div>
-              <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
-                One very impactful, flexible, and easy to use EOI opportunity that every Tata Group employee can explore is 'Each One Empower One' — TCS's intuitive digital literacy platform for the people, by the people.
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 14 }}>TCS · Digital Literacy Platform</div>
+              <p style={{ fontSize: 16, color: "#334155", lineHeight: 1.82, marginBottom: 16 }}>
+                One very impactful, flexible, and easy-to-use EOI opportunity that every Tata Group employee can explore is <strong>"Each One Empowers One"</strong> — TCS's intuitive digital literacy platform for the people, by the people.
               </p>
               <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82 }}>
-                The platform enables any individual to empower another by providing financial and digital literacy, while unlocking citizen entitlements. It is accessible in 9 Indian languages and offers trainings, videos, assessments, and digital certificates for both the volunteer and their beneficiary.
+                The platform enables any individual to empower another by providing financial and digital literacy while unlocking citizen entitlements — accessible in 9 Indian languages.
               </p>
             </div>
-            <div style={{ background: COLOUR_LIGHT, borderRadius: 18, padding: "32px 28px", border: `1px solid ${COLOUR}22` }}>
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 14 }}>How it works</div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                {STEPS.map((s) => (
-                  <div key={s.num} style={{ background: "#fff", borderRadius: 12, padding: "16px 18px", display: "flex", gap: 16, alignItems: "flex-start", border: "1px solid #e8e8f0" }}>
-                    <div style={{ width: 36, height: 36, borderRadius: 10, flexShrink: 0, background: COLOUR, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'DM Mono',monospace", fontSize: 13, fontWeight: 700 }}>{s.num}</div>
-                    <div style={{ fontSize: 14, color: "#334155", lineHeight: 1.6, paddingTop: 6 }}>{s.text}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div style={{ marginTop: 48, background: COLOUR, borderRadius: 20, padding: "40px 44px", position: "relative", overflow: "hidden", display: "grid", gridTemplateColumns: "1.4fr 0.6fr", gap: 32, alignItems: "center" }}>
-            <div style={DIAG} />
-            <div style={{ position: "relative", zIndex: 1 }}>
-              <div style={{ fontSize: 22, fontWeight: 900, color: "#fff", lineHeight: 1.25, marginBottom: 10, letterSpacing: "-0.4px" }}>Ready to make a difference, one person at a time?</div>
-              <p style={{ fontSize: 14, color: "rgba(255,255,255,0.78)", lineHeight: 1.7, margin: 0 }}>
-                Join thousands of Tata employees empowering beneficiaries with financial and digital literacy.
-              </p>
-            </div>
-            <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-end" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               <button
-                onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
-                style={{ background: B_MUSTARD, color: "#fff", border: "none", borderRadius: 10, padding: "14px 26px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.22)", whiteSpace: "nowrap" }}
+                onClick={() => navigate("eoeo")}
+                style={{ background: COLOUR, color: "#fff", border: "none", borderRadius: 10, padding: "14px 24px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: `0 4px 20px ${COLOUR}40` }}
               >
-                Become a Literacy Champion →
+                Explore Each One Empowers One →
               </button>
+              <div style={{ fontSize: 12, color: "#64748B", textAlign: "center" }}>
+                Financial · Digital · Functional Literacy · 9 Indian Languages
+              </div>
             </div>
           </div>
         </div>
