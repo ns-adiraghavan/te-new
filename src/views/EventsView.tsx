@@ -353,8 +353,9 @@ export default function EventsView() {
         quote="While sustainability is one of the biggest challenges facing corporates today, it is also a big opportunity."
         quoteAttrib="N. Chandrasekaran, Chairman, Tata Sons"
         paragraphs={[
-          "After a two-year break due to the pandemic, more than 200 leaders and sustainability professionals from the Tata Group came together at the Tata Sustainability Conclave 2022 (TSC 2022), inaugurated by the Group Chairman at Taj Lands End, Mumbai on 29th November, 2022.",
-          "The volunteering session celebrated the Tata Group legacy of giving back and sought leadership perspectives on institutionalising volunteering while ensuring scale and quality. Moderated by Harish Bhat, Brand Custodian, Tata Sons, panelists from IHCL, Rallis, Tata Communications, and TCS shared their approaches to embedding volunteering within their respective business contexts.",
+          "After a two-year break due to the pandemic, more than 200 leaders and sustainability professionals from the Tata Group came together at the Tata Sustainability Conclave 2022 (TSC 2022) — the Tata Sustainability Group's flagship event — inaugurated by the Group Chairman at Taj Lands End, Mumbai on 29th November, 2022. Mr. Siddharth Sharma, Group Chief Sustainability Officer, delivered the welcome address, detailing the Group's Sustainability Approach and the role of the Tata Sustainability Group in realising the Group's Sustainability Vision.",
+          "Comparing the sustainability journey to an ultra-marathon, the Chairman encouraged companies to sharpen their sustainability agendas, lay out decarbonisation plans as the world transitions to a low-carbon economy, and invest in innovative solutions.",
+          "The volunteering session aimed to celebrate the Tata Group legacy of giving back, seek leadership perspectives on enterprise-level efforts to institutionalise volunteering while ensuring scale and quality, and cross-share challenges and opportunities on the journey towards 4 per capita volunteering hours (PCVH) by 2025.",
         ]}
         accentBg
         heroMedia={
@@ -368,15 +369,15 @@ export default function EventsView() {
         }
         highlights={[
           { label: "Leaders in attendance", value: "200+" },
-          { label: "Companies represented", value: "25+" },
-          { label: "Awards presented", value: "9" },
+          { label: "Tata companies", value: "Multi" },
+          { label: "Group PCVH aspiration", value: "4 by 2025" },
         ]}
         awardsTable={[
           { category: "Volunteering Stalwart", winners: "Tata Consultancy Services" },
-          { category: "Highest Volunteering Hours", winners: "Tata Power · Tata Coffee · Tata Realty" },
-          { category: "Excellence in Volunteering", winners: "Tata Communications · TCS · Titan · Rallis" },
-          { category: "SPOC Hero", winners: "Multiple SPOC awardees across group companies" },
-          { category: "Exemplary Volunteering", winners: "Individual volunteer recognitions" },
+          { category: "Highest Volunteering Hours (TVW-19)", winners: "TCS · Tata Coffee · Tata Consulting Engineers · Tata Realty & Infrastructure" },
+          { category: "Excellence in Volunteering", winners: "Tata Communications · TCS · Titan · Rallis India · Tata Insights & Quants" },
+          { category: "SPOC Hero", winners: "SPOCs across companies recognised for steering TVW activities" },
+          { category: "Exemplary Volunteering", winners: "Individual volunteer champions clocking maximum TVW hours" },
         ]}
         awardsMedia={
           <Slideshow
@@ -387,7 +388,22 @@ export default function EventsView() {
             ]}
           />
         }
-      />
+      >
+        {/* Sub-event: TSC 2022 Panel Discussion */}
+        <SubEvent
+          accent={ACCENT}
+          accentDark={ACCENT_DARK}
+          accentLight={ACCENT_LIGHT}
+          title="Panel Discussion — Embedding Quality & Scale"
+          body={[
+            "Moderated by Mr. Harish Bhat, Brand Custodian, Tata Sons, the panel reiterated the Group aspiration of 4 per capita volunteering hours by 2025 — inked by the Tata Group Sustainability Council — and discussed the many benefits of volunteering for communities and for employees alike.",
+            "Mr. Puneet Chhatwal, MD & CEO, Indian Hotels Company Ltd., shared how IHCL moved from PCVH of 0.59 in FY21 to 2.25 in FY22, embedding volunteering as part of the core value of \"Tajness\".",
+            "Mr. Sanjiv Lal, MD & CEO, Rallis India Ltd., spoke on Rallis' rural-community focus, motivating employees to engage with farming communities while consistently growing PCVH year-on-year.",
+            "Mr. A.S. Lakshminarayanan, MD & CEO, Tata Communications, highlighted DRIVE Week as the company's flagship volunteering programme, and the approach to executing it across international locations.",
+            "Mr. Milind Lakkad, CHRO, Tata Consultancy Services, spoke passionately on the digital Adult Literacy Programme and TCS' plan to democratise it through the Each One Empowers One platform — enabling employees across the Tata Group to scale impact.",
+          ]}
+        />
+      </EventSection>
 
       {/* VOLCON 2024 — white bg with sub-events keeping VOLCON blue accent */}
       <EventSection
@@ -401,7 +417,7 @@ export default function EventsView() {
         subtitle="Celebrating a Million Hours — Taj Mahal Palace, Mumbai"
         paragraphs={[
           "On 6th March 2024, Tata Sustainability Group hosted TATA VOLCON 2024 at Taj Mahal Palace, Mumbai — bringing together 170 Tata leaders, volunteering leads, champions, and employees. Over the past seven years, collective efforts have contributed to the Tata Group clocking over a million volunteering hours annually, surpassing the aspiration of 4 volunteering hours per capita.",
-          "The day-long programme featured keynote addresses, leadership panels, the Tata Engage Awards, and cultural performances — celebrating the volunteers, SPOCs, and companies that anchor a million hours of impact every year.",
+          "The day-long programme reiterated the Group's volunteering goal, celebrated champions across companies, and surfaced leaders' perspectives on the pathways to the 2025 aspiration — alongside best practices to deepen and widen volunteering at an enterprise level.",
         ]}
         photoSide="left"
         bg="#fff"
@@ -416,7 +432,7 @@ export default function EventsView() {
         }
         highlights={[
           { label: "Leaders in attendance", value: "170" },
-          { label: "Awards presented", value: "9" },
+          { label: "Award categories", value: "9" },
           { label: "Companies honoured", value: "11" },
           { label: "Annual hours clocked", value: "1M+" },
         ]}
@@ -428,8 +444,8 @@ export default function EventsView() {
           accentLight={B_BLUE_LIGHT}
           title="Inaugural Address — Mr. Chacko Thomas"
           body={[
-            "Mr. Chacko Thomas, Group Chief Sustainability Officer, delivered the inaugural address at the TATA VOLCON 2024.",
-            "Reflecting on the Group's volunteering journey, he noted: \"The Tata Group ranked prominently among corporate volunteering programmes worldwide in FY23. Moving ahead, we will continue to embed further scale and quality in volunteering towards increased social and environmental impact.\"",
+            "The opening address was delivered by Mr. Chacko Thomas, Group Chief Sustainability Officer at Tata Sons, who highlighted the remarkable volunteering journey of the Tata Group — rooted in Jamsetji Tata's vision of keeping the community central, and the Tata core value of responsibility.",
+            "With over a million employees globally, the Tata Group ranked prominently among corporate volunteering programmes worldwide in FY23. He emphasised that embedding scale in volunteering had been possible due to the Group's 'Big Tent' approach, and committed: \"Moving ahead, we will continue to embed further scale and quality in volunteering, towards increased social and environmental impact.\"",
           ]}
         />
 
@@ -441,14 +457,14 @@ export default function EventsView() {
           title="Special Address — Nichole Cirillo, IAVE"
           mediaSide="left"
           body={[
-            "Nichole Cirillo, Executive Director of the International Association for Volunteer Efforts (IAVE), delivered the special address at TATA VOLCON 2024.",
-            "She congratulated the Tata Group for fostering a positive, inclusive, and sustainable culture of volunteering, presented future trends from IAVE's global research, and expressed hope that the Tata Group continues to be a global leader — achieving the landmark 10 PCVH performance in the near future.",
+            "The keynote address at TATA VOLCON 2024 was delivered by Nichole Cirillo, Executive Director of the International Association for Volunteer Efforts (IAVE).",
+            "Nichole congratulated the Tata Group for fostering a positive, inclusive, and sustainable culture of volunteering across companies and their diverse business contexts. She presented future trends for volunteering identified through IAVE's global research, which resonated with the volunteering SPOCs and champions, and expressed hope that the Tata Group continues to be a global leader — achieving the landmark 10 PCVH performance in the near future.",
           ]}
           media={
             <YouTubeEmbed
               id="ld0-X5_fEGA"
               accent={B_BLUE}
-              caption="Nichole Cirillo, Executive Director of IAVE, delivering the special address at TATA VOLCON 2024."
+              caption="Executive Director of the International Association for Volunteer Efforts (IAVE), Nichole Cirillo, delivering the special address at TATA VOLCON 2024."
             />
           }
         />
@@ -460,7 +476,7 @@ export default function EventsView() {
           accentLight={B_BLUE_LIGHT}
           title="Leaders Speak — Panel Discussion"
           body={[
-            "The power-packed session highlighted how a culture of volunteering has been built within different business realities, and how it has brought alive the core Tata value of responsibility.",
+            "The power-packed session highlighted how a culture of volunteering had been built within different business realities, and how it had brought alive the core Tata value of responsibility.",
             "Moderated by Mr. Adrian Terron, Head of Corporate Brand and Marketing Strategy at Tata Group, the panelists included Dr. Praveer Sinha, MD & CEO, Tata Power Group; Mr. Neelesh Garg, MD & CEO, Tata AIG General Insurance Company; Mr. Sanjay Dutt, MD & CEO, Tata Realty And Infrastructure; and Mr. Milind Lakkad, CHRO, Tata Consultancy Services — who shared their invaluable perspectives on volunteering.",
           ]}
           media={
@@ -469,6 +485,53 @@ export default function EventsView() {
               accentDark={B_BLUE_DARK}
               slides={[
                 { src: volconPanel, caption: "Discussing culture of volunteering within different business realities at TATA VOLCON 2024 — L–R: Mr. Adrian Terron (Tata Group); Mr. Neelesh Garg (Tata AIG); Dr. Praveer Sinha (Tata Power); Mr. Sanjay Dutt (Tata Realty & Infrastructure); Mr. Milind Lakkad (TCS)." },
+              ]}
+            />
+          }
+        />
+
+        {/* Sub-event: Tata Engage Awards */}
+        <SubEvent
+          accent={B_BLUE}
+          accentDark={B_BLUE_DARK}
+          accentLight={B_BLUE_LIGHT}
+          title="Tata Engage Awards"
+          mediaSide="left"
+          body={[
+            "The evening celebrated the remarkable dedication of both companies and individuals to year-round volunteering across various platforms through the prestigious Tata Engage Awards. Presented to 11 deserving companies across 9 distinguished categories, honourees included Tata Consultancy Services, Tata Power Group, Tata Communications, Tata Coffee, Titan Company, Rallis India, Tata Consulting Engineers, Tata Realty and Infrastructure, and Tata Insights and Quants.",
+            "Two employees — Nitin Yadav (Tata Motors) and Arjinder Singh (Tata Power) — were honoured for Exemplary Volunteering, recognising their exceptional efforts and unmatched commitment to social causes over the years.",
+            "The winners were felicitated by Tata Sons leaders, including Mr. K.R.S. Jamwal, Executive Director, Tata Industries; Mr. Harish Bhat, Tata Sons; and Mr. Chacko Thomas, Group Chief Sustainability Officer, Tata Sons.",
+          ]}
+          media={
+            <Slideshow
+              accent={B_BLUE}
+              accentDark={B_BLUE_DARK}
+              slides={[
+                { src: volconAwardsTCS, caption: "Tata Consultancy Services, one of the winners of the Tata Engage Awards, at TATA VOLCON 2024." },
+                { src: volconNitin, caption: "Nitin Yadav from Tata Motors — recipient of the prestigious Exemplary Volunteering Award at TATA VOLCON 2024." },
+                { src: volconArjinder, caption: "Arjinder Singh from Tata Power — recipient of the prestigious Exemplary Volunteering Award at TATA VOLCON 2024." },
+              ]}
+            />
+          }
+        />
+
+        {/* Sub-event: Cultural celebration */}
+        <SubEvent
+          accent={B_BLUE}
+          accentDark={B_BLUE_DARK}
+          accentLight={B_BLUE_LIGHT}
+          title="Cultural Celebration — Kalasagar & Tribal Home Chefs"
+          body={[
+            "The evening was made even more special with a power-packed musical performance by Kalasagar, the cultural society of Tata Motors, and Tribal Home Chefs supported by Tata Steel Foundation — from 5 states (Meghalaya, Arunachal Pradesh, Himachal Pradesh, Telangana, and Jharkhand) — who served exquisite culinary delights.",
+          ]}
+          media={
+            <Slideshow
+              accent={B_BLUE}
+              accentDark={B_BLUE_DARK}
+              slides={[
+                { src: volconMusic1, caption: "Kalasagar, the cultural society of Tata Motors, delivered an enthralling musical performance at TATA VOLCON 2024." },
+                { src: volconMusic2, caption: "Performers and guests on stage at TATA VOLCON 2024." },
+                { src: volconTribalChefs, caption: "Tribal Home Chefs supported by Tata Steel Foundation — enriching the gathering with the richness of tribal delicacies." },
               ]}
             />
           }
@@ -483,19 +546,29 @@ export default function EventsView() {
         accentLight={B_GREEN_LIGHT}
         date="October 2022"
         tag="IAVE 2022"
-        title="26th IAVE World Volunteer Conference"
-        subtitle="Volunteering for the Common Good — ADNOC Business Center, Abu Dhabi"
-        quote="For over 150 years, Tata Group has served as a contributor to public good. With a strong leadership commitment to broaden volunteering, we follow the big tent approach with a focus on impact volunteering."
+        title="Tata Sustainability Group at the 26th IAVE World Volunteer Conference"
+        subtitle="Volunteering for the Common Good — ADNOC Business Center, Abu Dhabi (24–27 October 2022)"
+        quote="For over 150 years, Tata Group has served as a contributor to public good. With over 1 million employees globally, the Tata Group corporate volunteering programme has contributed over 8 million hours. With strong leadership commitment to deepen and broaden volunteering across the Tata Group, we follow the big tent approach with a focus on impact volunteering. As a member of the Board of Directors of IAVE, we are committed to lending strength to IAVE's stewardship in driving excellence in corporate volunteering."
         quoteAttrib="Chacko Thomas, Group Chief Sustainability Officer, Tata Sons"
         paragraphs={[
-          "Tata Sustainability Group was invited as a panel member at the 26th IAVE World Volunteer Conference (24–27 October 2022, Abu Dhabi), for the plenary session: Corporate Volunteering for a Post-Pandemic World. The conference theme was 'Volunteering for the Common Good: Making Life Better for People and Communities.'",
-          "Gauri Rajadhyaksha from Tata Sustainability Group shared the Tata Group's approach to volunteering and the role of Tata Engage in unifying all group companies onto a common platform. She highlighted the importance of company-specific volunteering programmes and the IAVE recommendation to 'widen the big tent of volunteering' with a focus on skill-based, impact-focused engagement.",
-          "The Tata Group has been a member and contributor to IAVE since 2018. Tata Engage won the 'Best Global Volunteer Programme' award from IAVE in 2019 and joined IAVE's Global Corporate Volunteer Council — a consortium of global companies with volunteering presence in three or more countries.",
+          "Tata Sustainability Group was invited as a panel member for the plenary 'Corporate Volunteering for a Post-Pandemic World'. The session was moderated by Dr. Kenn Allen (IAVE, USA); panelists included Dr. Tania Haddad (American University of Beirut, Lebanon); Andronica Mabuya (Discovery, South Africa); Stephanie Franco (TELUS, Canada); and Gauri Rajadhyaksha (Tata Sons, India).",
+          "The conference theme — 'Volunteering for the Common Good: Making Life Better for People and Communities' — saw IAVE and the Emirates Foundation celebrate volunteering and call for stronger volunteer leadership to address the world's most pressing challenges and build a more equal, inclusive future.",
+          "Gauri Rajadhyaksha shared the Tata Group's approach to volunteering and the role of Tata Engage in unifying all group companies onto a common platform. She underscored the importance of company-specific programmes that align business context and employee aspirations, and the IAVE recommendations to 'widen the big tent of volunteering' and to focus on impact-focused, skill-based volunteering — while applauding Tata SPOCs across companies for steering the Group to clock over a million volunteering hours annually for seven consecutive years.",
+          "The Tata Group has been a member and contributor to IAVE since 2018. Tata Engage won the 'Best Global Volunteer Programme' award from IAVE in 2019 and joined IAVE's Global Corporate Volunteer Council — a consortium of global companies with volunteering presence in three or more countries — in 2019–20.",
         ]}
+        heroMedia={
+          <Slideshow
+            accent={B_GREEN_DARK}
+            accentDark="#5A7520"
+            slides={[
+              { src: iavePanel, caption: "Plenary panel 'Corporate Volunteering for a Post-Pandemic World' at the 26th IAVE World Volunteer Conference, Abu Dhabi — including Gauri Rajadhyaksha (Tata Sons, India)." },
+            ]}
+          />
+        }
         highlights={[
           { label: "IAVE member since", value: "2018" },
           { label: "Best Global Volunteer Programme", value: "2019" },
-          { label: "Countries in IAVE network", value: "100+" },
+          { label: "Cumulative volunteering hours", value: "8M+" },
         ]}
         accentBg
       />
