@@ -466,7 +466,7 @@ export function ProgrammeSpotlight() {
               {/* CVP tile — B_ACCENT (#E8401C) */}
               <div style={{
                 position: "absolute", inset: 0,
-                background: "#4347B0",
+                background: "#1434A4",
                 padding: "28px 20px 16px",
                 display: "flex", flexDirection: "column",
                 justifyContent: "center",
