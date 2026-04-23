@@ -14,16 +14,16 @@ import volconTribalChefs from "@/assets/events/volcon-2024-tribal-chefs.png";
 import iavePanel from "@/assets/events/iave-2022-panel.png";
 import eventsHeroImg from "@/assets/tce-2.jpg";
 
-const ACCENT       = "#F0494E";   // red — Events page (TSC 2022)
-const ACCENT_DARK  = "#C53035";
-const ACCENT_LIGHT = "#FEF2F2";
+const ACCENT       = "#5B21B6";   // PE purple deep — TSC 2022
+const ACCENT_DARK  = "#3b1278";
+const ACCENT_LIGHT = "#F3EEFF";
 const NAVY         = "#0D1B3E";
-const B_PINK       = "#F4838A";   // VOLCON 2024
-const B_PINK_DARK  = "#C95F66";
-const B_PINK_LIGHT = "#FEF1F2";
-const B_ORANGE     = "#D84926";   // IAVE 2022
-const B_ORANGE_DARK = "#A8341A";
-const B_ORANGE_LIGHT = "#FDF1ED";
+const B_PINK       = "#7C3ABD";   // PE purple mid — VOLCON 2024
+const B_PINK_DARK  = "#5B21B6";
+const B_PINK_LIGHT = "#EDE4FF";
+const B_ORANGE     = "#333399";   // PE purple/indigo — IAVE 2022
+const B_ORANGE_DARK = "#252573";
+const B_ORANGE_LIGHT = "#EEEEFF";
 
 const DIAG: React.CSSProperties = {
   position: "absolute", inset: 0,
@@ -80,7 +80,7 @@ function Slideshow({ slides, accent, aspect = "16/10" }: { slides: Slide[]; acce
           </div>
         )}
       </div>
-      <div style={{ background: "#fff", borderTop: `3px solid ${accent}`, padding: "14px 20px" }}>
+      <div style={{ background: "#fff", padding: "14px 20px" }}>
         <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.5, margin: 0 }}>{slides[i].caption}</p>
       </div>
     </div>
@@ -101,7 +101,7 @@ function YouTubeEmbed({ id, accent, caption }: { id: string; accent: string; cap
         />
       </div>
       {caption && (
-        <div style={{ background: "#fff", borderTop: `3px solid ${accent}`, padding: "14px 20px" }}>
+        <div style={{ background: "#fff", padding: "14px 20px" }}>
           <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.5, margin: 0 }}>{caption}</p>
         </div>
       )}
@@ -123,7 +123,7 @@ function SubEvent({ title, body, media, accent, accentDark, accentLight, mediaSi
   const paras = Array.isArray(body) ? body : [body];
   return (
     <div style={{ marginTop: 56, paddingTop: 40, borderTop: `1px dashed ${accent}40` }}>
-      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: accentDark, marginBottom: 10 }}>Programme highlight</p>
+      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: accentDark, marginBottom: 10 }}>Programme highlight</p>
       <h3 style={{ fontSize: 20, fontWeight: 800, color: NAVY, letterSpacing: "-0.3px", marginBottom: 22 }}>{title}</h3>
       {media ? (
         <div style={{ display: "grid", gridTemplateColumns: mediaSide === "left" ? "0.95fr 1.05fr" : "1.05fr 0.95fr", gap: 40, alignItems: "start" }}>
@@ -148,7 +148,7 @@ function Hero() {
   return (
     <div style={{ position: "relative", minHeight: "92vh", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden", paddingTop: 64 }}>
       <img src={eventsHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)" }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(8,12,22,0.82) 0%, rgba(8,12,22,0.65) 40%, rgba(8,12,22,0.18) 75%, rgba(8,12,22,0.10) 100%)" }} />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
         <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "0 0 12px" }}>
           Tata Engage · Events & Conclaves
@@ -173,7 +173,7 @@ function Hero() {
               onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.filter = "brightness(0.9)"}
               onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.filter = "none"}
             >
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: b.text === "#fff" ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.4)", marginBottom: 10 }}>{b.date}</p>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: b.text === "#fff" ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.4)", marginBottom: 10 }}>{b.date}</p>
               <p style={{ fontSize: 14, fontWeight: 800, color: b.text, lineHeight: 1.35, marginBottom: 10 }}>{b.label}</p>
               <span style={{ fontSize: 11, fontWeight: 700, background: b.text === "#fff" ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.10)", color: b.text, borderRadius: 100, padding: "3px 10px" }}>{b.tag}</span>
             </div>
@@ -239,7 +239,7 @@ function EventSection({
         <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", gap: 16 }}>
           <div style={{ width: 4, height: 56, background: "rgba(255,255,255,0.85)", borderRadius: 2, flexShrink: 0 }} />
           <div>
-            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: 6 }}>{date} · {tag}</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: 6 }}>{date} · {tag}</p>
             <h2 style={{ fontSize: 26, fontWeight: 900, color: "#fff", letterSpacing: "-0.4px", lineHeight: 1.2, margin: 0 }}>{title}</h2>
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.85)", marginTop: 4 }}>{subtitle}</p>
           </div>
@@ -264,7 +264,7 @@ function EventSection({
                 <div style={{ background: accentLight, borderLeft: `4px solid ${accent}`, borderRadius: "0 12px 12px 0", padding: "24px 26px", position: "sticky", top: 96 }}>
                   <div style={{ fontSize: 36, lineHeight: 0.7, color: accent + "55", fontFamily: "Georgia,serif", marginBottom: 10 }}>"</div>
                   <p style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 15, fontStyle: "italic", color: NAVY, lineHeight: 1.7, marginBottom: 12 }}>{quote}</p>
-                  {quoteAttrib && <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: accentDark }}>{quoteAttrib}</p>}
+                  {quoteAttrib && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: accentDark }}>{quoteAttrib}</p>}
                 </div>
               )}
             </div>
@@ -278,7 +278,7 @@ function EventSection({
                 <div style={{ background: accentLight, borderLeft: `4px solid ${accent}`, borderRadius: "0 12px 12px 0", padding: "20px 24px", marginBottom: 28 }}>
                   <div style={{ fontSize: 36, lineHeight: 0.7, color: accent + "50", fontFamily: "Georgia,serif", marginBottom: 10 }}>"</div>
                   <p style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 16, fontStyle: "italic", color: NAVY, lineHeight: 1.7, marginBottom: 10 }}>{quote}</p>
-                  {quoteAttrib && <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: accentDark + "aa" }}>{quoteAttrib}</p>}
+                  {quoteAttrib && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: accentDark + "aa" }}>{quoteAttrib}</p>}
                 </div>
               )}
               {paragraphs.map((p, i) => (
@@ -294,9 +294,9 @@ function EventSection({
                     <div style={{ width: 56, height: 56, borderRadius: "50%", background: accent + "22", display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={accent} strokeWidth="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
                     </div>
-                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: accent + "99", letterSpacing: "1px", textTransform: "uppercase" }}>Photo — {tag}</p>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: accent + "99", letterSpacing: "1px", textTransform: "uppercase" }}>Photo — {tag}</p>
                   </div>
-                  <div style={{ background: "#fff", borderTop: `3px solid ${accent}`, padding: "14px 20px" }}>
+                  <div style={{ background: "#fff", padding: "14px 20px" }}>
                     <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.5 }}><strong style={{ color: NAVY }}>{tag}</strong> · {date}</p>
                   </div>
                 </div>
@@ -309,9 +309,9 @@ function EventSection({
         {highlights && (
           <div style={{ display: "grid", gridTemplateColumns: `repeat(${highlights.length},1fr)`, gap: 12 }}>
             {highlights.map(h => (
-              <div key={h.label} style={{ background: accentLight, borderRadius: 12, padding: "20px 20px", borderTop: `3px solid ${accent}` }}>
+              <div key={h.label} style={{ background: accentLight, borderRadius: 12, padding: "20px 20px",  }}>
                 <div style={{ fontSize: 22, fontWeight: 900, color: accentDark, letterSpacing: "-0.5px" }}>{h.value}</div>
-                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: accentDark + "99", marginTop: 5, letterSpacing: "0.5px" }}>{h.label}</div>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: accentDark + "99", marginTop: 5, letterSpacing: "0.5px" }}>{h.label}</div>
               </div>
             ))}
           </div>
@@ -320,7 +320,7 @@ function EventSection({
         {/* Awards section: table + optional photo box side-by-side */}
         {awardsTable && (
           <div style={{ marginTop: 44 }}>
-            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: accent, marginBottom: 8 }}>Tata Volunteering Week Awards</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: accent, marginBottom: 8 }}>Tata Volunteering Week Awards</p>
             <h3 style={{ fontSize: 18, fontWeight: 800, color: NAVY, letterSpacing: "-0.3px", marginBottom: 16 }}>Award Categories & Winners</h3>
             <p style={{ fontSize: 14, color: "#475569", lineHeight: 1.75, marginBottom: 24, maxWidth: 760 }}>
               The Conclave concluded on a celebratory note with the Volunteering Award winners being felicitated by Tata Sons leaders Ms. Roopa Purushothaman, Chief Economist and Head of Policy Advocacy, Tata Sons; Ms. Nupur Mallick, Group Chief Human Resources Officer and Mr. Siddharth Sharma, Group Chief Sustainability Officer, Tata Sons.
@@ -328,8 +328,8 @@ function EventSection({
             <div style={{ display: "grid", gridTemplateColumns: awardsMedia ? "1.3fr 1fr" : "1fr", gap: 24, alignItems: "start" }}>
               <div style={{ border: `1px solid ${accent}22`, borderRadius: 14, overflow: "hidden" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", background: accentDark, padding: "12px 20px" }}>
-                  <span style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>Category</span>
-                  <span style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>Winners</span>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>Category</span>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>Winners</span>
                 </div>
                 {awardsTable.map((row, i) => (
                   <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", padding: "14px 20px", background: i % 2 === 0 ? "#fff" : accentLight, borderTop: `1px solid ${accent}18` }}>

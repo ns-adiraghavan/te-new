@@ -129,7 +129,7 @@ export default function DisasterResponseView() {
       {/* ════════════════════ HERO — photo + accent overlay ════════════════════ */}
       <div style={{ position: "relative", minHeight: "92vh", overflow: "hidden", display: "flex", alignItems: "center", paddingTop: 64 }}>
         <img src={drHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(8,12,22,0.82) 0%, rgba(8,12,22,0.65) 40%, rgba(8,12,22,0.18) 75%, rgba(8,12,22,0.10) 100%)" }} />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "0 0 12px" }}>
@@ -163,7 +163,7 @@ export default function DisasterResponseView() {
       <section id="dr-overview" style={{ padding: "88px 56px", background: "transparent" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
           <div>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>About the programme</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>About the programme</p>
             <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>The Tata ethos of service, in action</h2>
             <DefinerBar colour={COLOUR} />
             <div style={{ marginTop: 28 }}>
@@ -189,7 +189,7 @@ export default function DisasterResponseView() {
       {/* ════════════════════ WHY IT MATTERS ════════════════════ */}
       <section id="dr-why" style={{ padding: "88px 56px", background: "#F4F8F7" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Why it matters</p>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Why it matters</p>
           <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Why is volunteering for Disaster Response important?</h2>
           <DefinerBar colour={COLOUR} />
           <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.82, marginTop: 24, maxWidth: 700, marginBottom: 48 }}>
@@ -248,7 +248,7 @@ export default function DisasterResponseView() {
         <div style={{ position: "relative", zIndex: 1, padding: "88px 56px" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
             <div>
-              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Who can volunteer?</p>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Who can volunteer?</p>
               <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>Tata Employees</h2>
               <div style={{ height: 3, background: "rgba(255,255,255,0.28)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 28 }} />
               <p style={{ fontSize: 15, color: "rgba(255,255,255,0.8)", lineHeight: 1.8, marginBottom: 28, maxWidth: 380 }}>
@@ -270,7 +270,7 @@ export default function DisasterResponseView() {
                     <div>
                       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
                         <div style={{ fontSize: 16, fontWeight: 800, color: "#fff" }}>{role.label}</div>
-                        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, color: COLOUR, background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 100, padding: "2px 8px", letterSpacing: "0.5px" }}>{role.duration}</div>
+                        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, color: COLOUR, background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 100, padding: "2px 8px", letterSpacing: "0.5px" }}>{role.duration}</div>
                       </div>
                       <div style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", lineHeight: 1.7 }}>{role.desc}</div>
                     </div>
@@ -285,7 +285,7 @@ export default function DisasterResponseView() {
       {/* ════════════════════ HOW IT WORKS ════════════════════ */}
       <section id="dr-how" style={{ padding: "88px 56px", background: "transparent" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>The process</p>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>The process</p>
           <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>How do we go about it?</h2>
           <DefinerBar colour={COLOUR} />
           <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.82, marginTop: 24, maxWidth: 680, marginBottom: 52 }}>
@@ -309,7 +309,7 @@ export default function DisasterResponseView() {
           {/* Selection criteria */}
           <div style={{ background: ACCENT_NAVY, borderRadius: 18, padding: "36px 40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
             <div>
-              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 14 }}>Selection criteria</p>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 14 }}>Selection criteria</p>
               <div style={{ fontSize: 20, fontWeight: 900, color: "#fff", lineHeight: 1.25, marginBottom: 16 }}>Selection is based on parameters such as:</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {SELECTION_CRITERIA.map((c, i) => (
@@ -325,7 +325,7 @@ export default function DisasterResponseView() {
               </div>
             </div>
             <div>
-              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 14 }}>Then</p>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 14 }}>Then</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                 {[
                   { step: "01", text: "Shortlisted volunteers are interviewed and oriented" },
@@ -334,7 +334,7 @@ export default function DisasterResponseView() {
                   { step: "04", text: "On completion, formally recognised and awarded certificates" },
                 ].map((s) => (
                   <div key={s.step} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                    <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 700, color: COLOUR, flexShrink: 0, minWidth: 24 }}>{s.step}</div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 700, color: COLOUR, flexShrink: 0, minWidth: 24 }}>{s.step}</div>
                     <span style={{ fontSize: 14, color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{s.text}</span>
                   </div>
                 ))}
@@ -349,7 +349,7 @@ export default function DisasterResponseView() {
         <div style={DIAG} />
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 72, alignItems: "start" }}>
           <div>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Tata Sustainability Group</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Tata Sustainability Group</p>
             <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>TSG's role in Disaster Response</h2>
             <div style={{ height: 3, background: "rgba(255,255,255,0.25)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 28 }} />
             <p style={{ fontSize: 15, color: "rgba(255,255,255,0.8)", lineHeight: 1.82, marginBottom: 32 }}>

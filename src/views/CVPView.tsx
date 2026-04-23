@@ -1,18 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { useAuth } from "@/context/AuthContext";
+import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import cvpHeroImg from "@/assets/tata-elxsi.jpg";
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
-const ACCENT_NAVY = "#0D1B3E";
-const COLOUR = "#1F5F3A"; // Forest green
-const COLOUR_MID = "#16472B";
-const COLOUR_LIGHT = "#E8F2EC";
+const ACCENT_NAVY  = "#0D1B3E";
+const B_YELLOW     = "#F79425";
+const COLOUR       = "#5B21B6";  // PE purple
+const COLOUR_DARK  = "#3b1278";
+const COLOUR_LIGHT = "#F3EEFF";
 
 const SECTIONS = [
-  { id: "cvp-overview", label: "Overview" },
+  { id: "cvp-overview", label: "Overview"           },
   { id: "cvp-examples", label: "Company programmes" },
-  { id: "cvp-explore", label: "Explore" },
+  { id: "cvp-explore",  label: "Get involved"       },
 ];
 
 const DIAG: React.CSSProperties = {
@@ -33,8 +35,8 @@ function DefinerBar({ colour }: { colour: string }) {
     return () => obs.disconnect();
   }, []);
   return (
-    <div ref={ref} style={{ width: 64, height: 4, background: "#e5e5ec", borderRadius: 2, overflow: "hidden", marginBottom: 24 }}>
-      <div style={{ width: on ? "100%" : 0, height: "100%", background: colour, transition: "width 700ms ease" }} />
+    <div ref={ref} style={{ height: 3, background: "#e8e8f0", borderRadius: 2, overflow: "hidden", width: 48, marginTop: 10 }}>
+      <div style={{ height: "100%", background: colour, borderRadius: 2, transition: "width 0.65s cubic-bezier(0.22,1,0.36,1)", width: on ? "100%" : "0%" }} />
     </div>
   );
 }
@@ -42,140 +44,134 @@ function DefinerBar({ colour }: { colour: string }) {
 export default function CVPView() {
   const navigate = useAppNavigate();
   const { isLoggedIn } = useAuth();
-  const [activeId, setActiveId] = useState(SECTIONS[0].id);
-
-  useEffect(() => {
-    const handler = () => {
-      let current = SECTIONS[0].id;
-      for (const s of SECTIONS) {
-        const el = document.getElementById(s.id);
-        if (el && el.getBoundingClientRect().top <= 200) current = s.id;
-      }
-      setActiveId(current);
-    };
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: "#f5f5fa", minHeight: "100vh" }}>
-      {/* Sticky top accent stripe */}
-      <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: 3, background: COLOUR, zIndex: 60 }} />
+    <div className="dot-grid-bg" style={{ background: "transparent", minHeight: "100vh", position: "relative" }}>
 
-      {/* Right-side dot rail */}
-      <div style={{ position: "fixed", right: 24, top: "50%", transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: 16, zIndex: 50 }}>
-        {SECTIONS.map((s) => (
-          <button
-            key={s.id}
-            title={s.label}
-            onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" })}
-            style={{
-              width: 10, height: 10, borderRadius: "50%", border: "none", padding: 0, cursor: "pointer",
-              background: activeId === s.id ? COLOUR : "#cfcfd8",
-              outline: activeId === s.id ? `2px solid ${COLOUR_MID}` : "2px solid transparent",
-              transition: "all 200ms ease",
-            }}
-          />
-        ))}
-      </div>
+      <SubPageDotRail sections={SECTIONS} />
 
-      {/* ── HERO (full-bleed, matching AboutTVWView) ── */}
-      <section style={{ position: "relative", minHeight: "92vh", display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 64 }}>
-        <img
-          src={cvpHeroImg}
-          alt=""
-          style={{
-            position: "absolute", inset: 0,
-            width: "100%", height: "100%",
-            objectFit: "cover", objectPosition: "center",
-          }}
-        />
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)",
-        }} />
-
+      {/* ════ HERO ════ */}
+      <div style={{ position: "relative", minHeight: "92vh", overflow: "hidden", display: "flex", alignItems: "center", paddingTop: 64 }}>
+        <img src={cvpHeroImg} alt=""
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(8,12,22,0.82) 0%, rgba(8,12,22,0.65) 40%, rgba(8,12,22,0.18) 75%, rgba(8,12,22,0.10) 100%)" }} />
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "0 0 12px" }}>
             Group-wide · Year-round
           </p>
           <div style={{ height: 2, width: 48, borderRadius: 2, background: "rgba(255,255,255,0.6)", margin: "12px 0 22px" }} />
-          <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px", color: "#fff", maxWidth: 700 }}>
+          <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px", maxWidth: 620 }}>
             Company Volunteering Programmes
           </h1>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", fontWeight: 300, maxWidth: 520, margin: 0 }}>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 300, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", margin: "0 0 32px", maxWidth: 520 }}>
             Each Tata company runs its own volunteering initiatives — rooted in their unique business context, employee strengths, and the communities they serve.
           </p>
+          <div style={{ display: "flex", gap: 14 }}>
+            <button onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
+              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 12, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+              {isLoggedIn ? "Go to Dashboard" : "Join Tata Engage"} →
+            </button>
+            <button onClick={() => document.getElementById("cvp-overview")?.scrollIntoView({ behavior: "smooth" })}
+              style={{ background: "rgba(255,255,255,0.12)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.28)", borderRadius: 12, padding: "14px 24px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
+              Learn more
+            </button>
+          </div>
         </div>
-      </section>
-
-      {/* OVERVIEW */}
-      <section id="cvp-overview" style={{ background: "#fff", padding: "96px 56px" }}>
-        <div style={{ maxWidth: 980, margin: "0 auto" }}>
-          <DefinerBar colour={COLOUR} />
-          <h2 style={{ fontSize: 36, fontWeight: 700, color: ACCENT_NAVY, margin: "0 0 24px", letterSpacing: -0.5 }}>
-            Volunteering, the way each Tata company does it
-          </h2>
-          <p style={{ fontSize: 17, lineHeight: 1.7, color: "#3a3a4a", margin: "0 0 16px" }}>
-            Beyond the Group-wide platforms — TVW, ProEngage, Disaster Response, and Tata Sustainability Month — individual Tata companies design and run their own Company Volunteering Programmes (CVP).
-          </p>
-          <p style={{ fontSize: 17, lineHeight: 1.7, color: "#3a3a4a", margin: 0 }}>
-            These programmes harness the unique skills of employees and respond to causes most relevant to each business. Together, they form a vibrant ecosystem of giving across the Tata Group.
-          </p>
+        <div style={{ position: "absolute", bottom: 32, right: 56, background: "rgba(0,0,0,0.22)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>
+          Company-led · Context-driven · Year-round
         </div>
-      </section>
+      </div>
 
-      {/* EXAMPLES */}
-      <section id="cvp-examples" style={{ background: "#f5f5fa", padding: "96px 56px" }}>
-        <div style={{ maxWidth: 980, margin: "0 auto" }}>
-          <DefinerBar colour={COLOUR} />
-          <h2 style={{ fontSize: 36, fontWeight: 700, color: ACCENT_NAVY, margin: "0 0 32px", letterSpacing: -0.5 }}>
-            Programmes from across the Group
-          </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16 }}>
-            {[
-              { title: "TCS — Each One Empowers One", desc: "A digital literacy platform that empowers any employee to teach a beneficiary financial and digital skills, available in 9 Indian languages." },
-              { title: "Infiniti Retail — E-Waste Warrior Programme", desc: "Croma's campaign to educate, empower, and engage Tata employees on responsible e-waste recycling." },
-              { title: "Other company initiatives", desc: "Many Tata companies run their own employee-led initiatives — focusing on education, health, environment, and community welfare in the regions they operate." },
-            ].map((c) => (
-              <div key={c.title} style={{ background: "#fff", borderRadius: 12, padding: 24, border: "1px solid #e8e8ef" }}>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: ACCENT_NAVY, margin: "0 0 8px" }}>{c.title}</h3>
-                <p style={{ fontSize: 15, lineHeight: 1.6, color: "#54546a", margin: 0 }}>{c.desc}</p>
-              </div>
-            ))}
+      {/* ════ OVERVIEW ════ */}
+      <section id="cvp-overview" style={{ padding: "88px 56px", background: "transparent" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
+          <div>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>About CVP</p>
+            <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Volunteering, the way each Tata company does it</h2>
+            <DefinerBar colour={COLOUR} />
+            <div style={{ marginTop: 28 }}>
+              <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
+                A Company Volunteering Programme (CVP) is a company-led volunteering programme or bouquet of volunteering opportunities mindfully curated by the company considering the operating context and employee aspirations, and may cater to the needs of the local communities.
+              </p>
+              <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
+                These may be aligned to the company's CSR programmes, are usually branded, and entail employees volunteering their time and expertise either during official work hours or in their personal time.
+              </p>
+              <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.82 }}>
+                CVPs have contributed significantly to institutionalising and building a culture of volunteering at the company level.
+              </p>
+            </div>
+          </div>
+          <div style={{ position: "relative" }}>
+            <div style={{ position: "absolute", top: -16, right: -16, zIndex: 0, width: 64, height: 64, borderRadius: 16, background: COLOUR, opacity: 0.12 }} />
+            <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(0,0,0,0.10)", position: "relative", zIndex: 1 }}>
+              <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=900" alt=""
+                style={{ width: "100%", height: 380, objectFit: "cover", display: "block" }} referrerPolicy="no-referrer" />
+            </div>
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 4, background: COLOUR, borderRadius: "0 0 18px 18px", zIndex: 2 }} />
           </div>
         </div>
       </section>
 
-      {/* EXPLORE */}
-      <section id="cvp-explore" style={{ background: "#fff", padding: "96px 56px" }}>
-        <div style={{ maxWidth: 980, margin: "0 auto" }}>
-          <DefinerBar colour={COLOUR} />
-          <h2 style={{ fontSize: 36, fontWeight: 700, color: ACCENT_NAVY, margin: "0 0 24px", letterSpacing: -0.5 }}>
-            Find a CVP near you
-          </h2>
-          <p style={{ fontSize: 17, lineHeight: 1.7, color: "#3a3a4a", margin: "0 0 32px" }}>
-            To learn more about your company's volunteering programme, reach out to your CSR or Volunteering SPOC. Tata Engage facilitates collaboration and visibility across the Group.
-          </p>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" as const }}>
-            <button
-              onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
-              style={{ background: COLOUR, color: "#fff", border: "none", padding: "14px 28px", borderRadius: 8, fontSize: 15, fontWeight: 600, cursor: "pointer" }}
-            >
-              {isLoggedIn ? "Go to Dashboard" : "Join Tata Engage"}
-            </button>
-            <button
-              onClick={() => navigate("eoi")}
-              style={{ background: COLOUR_LIGHT, color: COLOUR_MID, border: `1px solid ${COLOUR}`, padding: "14px 28px", borderRadius: 8, fontSize: 15, fontWeight: 600, cursor: "pointer" }}
-            >
-              Explore EOI
-            </button>
+      {/* ════ EXAMPLES — dark accent panel ════ */}
+      <section id="cvp-examples" style={{ position: "relative", overflow: "hidden", minHeight: 480 }}>
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1800" alt=""
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} referrerPolicy="no-referrer" />
+        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${COLOUR}f8 0%, ${COLOUR}e0 38%, ${COLOUR}c0 58%, ${COLOUR}88 78%, ${COLOUR}44 100%)` }} />
+        <div style={DIAG} />
+        <div style={{ position: "relative", zIndex: 1, padding: "88px 56px" }}>
+          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Programmes from across the Group</p>
+            <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>Company programmes in action</h2>
+            <div style={{ height: 3, background: "rgba(255,255,255,0.28)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 40 }} />
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+              {[
+                { title: "TCS — Each One Empowers One", desc: "A digital literacy platform enabling any employee to teach financial and digital skills to a beneficiary — accessible in 9 Indian languages." },
+                { title: "Infiniti Retail — E-Waste Warrior Programme", desc: "Croma's campaign to educate, empower, and encourage Tata Group employees to responsibly recycle e-waste through authorised partners." },
+                { title: "Company-led initiatives", desc: "Across the Tata Group, companies run their own employee-led initiatives focused on education, health, environment, and community welfare in their operating regions." },
+              ].map((c, i) => (
+                <div key={i} style={{ background: "rgba(255,255,255,0.10)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 16, padding: 28 }}>
+                  <div style={{ width: 32, height: 3, background: "rgba(255,255,255,0.55)", borderRadius: 2, marginBottom: 18 }} />
+                  <div style={{ fontSize: 15, fontWeight: 800, color: "#fff", marginBottom: 12, lineHeight: 1.3 }}>{c.title}</div>
+                  <div style={{ fontSize: 13, color: "rgba(255,255,255,0.78)", lineHeight: 1.72 }}>{c.desc}</div>
+                </div>
+              ))}
+            </div>
           </div>
-          <p style={{ fontSize: 14, color: "#7a7a8a", marginTop: 24 }}>
-            For queries, reach out to tataengage@tata.com
-          </p>
         </div>
       </section>
+
+      {/* ════ TSG / GET INVOLVED ════ */}
+      <section id="cvp-explore" style={{ background: COLOUR_DARK, padding: "88px 56px", position: "relative", overflow: "hidden" }}>
+        <div style={DIAG} />
+        <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 72, alignItems: "start" }}>
+          <div>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Get involved</p>
+            <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>Find a CVP near you</h2>
+            <div style={{ height: 3, background: "rgba(255,255,255,0.25)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 36 }} />
+            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.85)", lineHeight: 1.78, marginBottom: 24 }}>
+              To learn more about your company's volunteering programme, reach out to your CSR or Volunteering SPOC. Tata Engage facilitates collaboration and visibility across the Group.
+            </p>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.7 }}>
+              For queries, reach out to <a href="mailto:tataengage@tata.com" style={{ color: "rgba(255,255,255,0.75)", textDecoration: "none", fontWeight: 600 }}>tataengage@tata.com</a>
+            </p>
+          </div>
+          <div style={{ background: "rgba(0,0,0,0.22)", borderRadius: 20, padding: "40px 36px", border: "1px solid rgba(255,255,255,0.14)" }}>
+            <div style={{ fontSize: 24, fontWeight: 900, color: "#fff", marginBottom: 14, lineHeight: 1.2 }}>Be Part of the Movement</div>
+            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.68)", lineHeight: 1.78, marginBottom: 36 }}>
+              Join millions of Tata employees volunteering through company-led programmes across the Group.
+            </p>
+            <button onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
+              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 15, cursor: "pointer", width: "100%", boxShadow: "0 4px 20px rgba(0,0,0,0.22)" }}>
+              {isLoggedIn ? "Go to Dashboard" : "Join Tata Engage"} →
+            </button>
+            <button onClick={() => navigate("eoi")}
+              style={{ background: "transparent", color: "rgba(255,255,255,0.6)", border: "1px solid rgba(255,255,255,0.22)", borderRadius: 10, padding: "13px 28px", fontWeight: 600, fontSize: 14, cursor: "pointer", width: "100%", marginTop: 12 }}>
+              Explore Employees' Own Initiatives
+            </button>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

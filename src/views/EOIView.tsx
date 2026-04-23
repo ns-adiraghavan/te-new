@@ -13,7 +13,6 @@ const COLOUR_LIGHT = "#EEF0FF";
 const SECTIONS = [
   { id: "eoi-overview", label: "Overview"            },
   { id: "eoi-who",      label: "Who can participate" },
-  { id: "eoi-featured", label: "Featured EOI"        },
 ];
 
 const DIAG: React.CSSProperties = {
@@ -51,17 +50,13 @@ export default function EOIView() {
   return (
     <div style={{ background: "#fff", minHeight: "100vh", position: "relative" }}>
 
-      {/* Sticky top accent stripe */}
-      <div style={{ height: 4, background: COLOUR, position: "fixed", top: 64, left: 0, right: 0, zIndex: 100 }} />
-
       <SubPageDotRail sections={SECTIONS} />
 
       {/* ════════════════════ HERO ════════════════════ */}
       <div style={{ position: "relative", minHeight: "92vh", overflow: "hidden", display: "flex", alignItems: "center", paddingTop: 64 }}>
         <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1800"
           alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} referrerPolicy="no-referrer" />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)" }} />
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, transparent, #fff)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(8,12,22,0.82) 0%, rgba(8,12,22,0.65) 40%, rgba(8,12,22,0.18) 75%, rgba(8,12,22,0.10) 100%)" }} />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
           <div style={{ maxWidth: 600 }}>
@@ -80,10 +75,7 @@ export default function EOIView() {
                 style={{ background: B_MUSTARD, color: "#fff", border: "none", borderRadius: 10, padding: "12px 26px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
                 Learn more →
               </button>
-              <button onClick={() => document.getElementById("eoi-featured")?.scrollIntoView({ behavior: "smooth" })}
-                style={{ background: "rgba(255,255,255,0.11)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.26)", borderRadius: 10, padding: "12px 22px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
-                Featured EOI
-              </button>
+
             </div>
           </div>
         </div>
@@ -97,15 +89,18 @@ export default function EOIView() {
       <section id="eoi-overview" style={{ padding: "88px 56px", background: "#fff" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
           <div>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>What is EOI?</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>What is EOI?</p>
             <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Volunteer in your own way, for causes you care about</h2>
             <DefinerBar colour={COLOUR} />
             <div style={{ marginTop: 28 }}>
               <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
                 Employees' Own Initiatives (EOI) enable Tata employees to pursue personal volunteering efforts beyond formal company-led volunteering programmes, with the organisation playing a supportive and enabling role.
               </p>
+              <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
+                EOI empowers employees to volunteer in their own time, in their own way, for causes and communities they deeply care about — whether at the local, national, or global level. By recognising and supporting these individual efforts, EOI helps ensure that volunteering is not limited by calendars, formats, or predefined programmes.
+              </p>
               <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82 }}>
-                EOI empowers employees to volunteer in their own time, in their own way, for causes and communities they deeply care about — whether at the local, national, or global level. Introduced during the pandemic, EOI emerged as a vital way for employees to respond to community needs with agility, empathy, and initiative.
+                Introduced during the pandemic, EOI emerged as a vital way for employees to respond to community needs with agility, empathy, and initiative. Its relevance continues today, strengthening a culture of volunteering that is inclusive, trust-based, and employee-driven, while reinforcing Tata's enduring values of service and social responsibility.
               </p>
             </div>
           </div>
@@ -123,48 +118,17 @@ export default function EOIView() {
       {/* ════════════════════ WHO ════════════════════ */}
       <section id="eoi-who" style={{ padding: "88px 56px", background: "#f5f5fa" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Eligibility</p>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Eligibility</p>
           <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px", margin: "0 0 14px" }}>Who can participate?</h2>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <DefinerBar colour={COLOUR} />
           </div>
           <p style={{ fontSize: 17, color: "#475569", lineHeight: 1.82, marginTop: 32, maxWidth: 760, margin: "32px auto 0" }}>
-            Any Tata Group employee can pursue an EOI. The organisation plays a supportive and enabling role — recognising and endorsing individual efforts that reflect Tata's values of service and social responsibility.
+            Any Tata Group employee can register using their official Tata email ID. The organisation plays a supportive and enabling role — recognising and supporting individual efforts that reflect Tata's enduring values of service and social responsibility.
           </p>
         </div>
       </section>
 
-      {/* ════════════════════ FEATURED EOI ════════════════════ */}
-      <section id="eoi-featured" style={{ padding: "88px 56px", background: "#fff" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Featured EOI</p>
-          <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Each One Empowers One</h2>
-          <DefinerBar colour={COLOUR} />
-
-          <div style={{ marginTop: 40, background: COLOUR_LIGHT, borderRadius: 20, padding: "40px 44px", border: `1px solid ${COLOUR}22`, display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 48, alignItems: "center" }}>
-            <div>
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 14 }}>TCS · Digital Literacy Platform</div>
-              <p style={{ fontSize: 16, color: "#334155", lineHeight: 1.82, marginBottom: 16 }}>
-                One very impactful, flexible, and easy-to-use EOI opportunity that every Tata Group employee can explore is <strong>"Each One Empowers One"</strong> — TCS's intuitive digital literacy platform for the people, by the people.
-              </p>
-              <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82 }}>
-                The platform enables any individual to empower another by providing financial and digital literacy while unlocking citizen entitlements — accessible in 9 Indian languages.
-              </p>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              <button
-                onClick={() => navigate("eoeo")}
-                style={{ background: COLOUR, color: "#fff", border: "none", borderRadius: 10, padding: "14px 24px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: `0 4px 20px ${COLOUR}40` }}
-              >
-                Explore Each One Empowers One →
-              </button>
-              <div style={{ fontSize: 12, color: "#64748B", textAlign: "center" }}>
-                Financial · Digital · Functional Literacy · 9 Indian Languages
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       
     </div>

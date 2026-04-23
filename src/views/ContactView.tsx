@@ -2,9 +2,9 @@ import { useRef, useState, useEffect } from "react";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import contactHeroImg from "@/assets/tata-infinit.jpg";
 
-const ACCENT       = "#D84926";   // orange-red — Contact page
-const ACCENT_DARK  = "#A8341A";
-const ACCENT_LIGHT = "#FDF1ED";
+const ACCENT       = "#C3DB6F";   // lime-green — Contact page
+const ACCENT_DARK  = "#7a8f2a";
+const ACCENT_LIGHT = "#F5FAE0";
 const NAVY         = "#0D1B3E";
 
 const DIAG: React.CSSProperties = {
@@ -62,7 +62,7 @@ function EmailSection() {
   return (
     <section id="contact-email" style={{ background: "transparent", padding: "96px 56px" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: ACCENT_DARK, marginBottom: 10 }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: ACCENT_DARK, marginBottom: 10 }}>
           Get in touch directly
         </p>
         <h2 style={{ fontSize: 30, fontWeight: 900, color: NAVY, letterSpacing: "-0.5px" }}>Email the Tata Engage team</h2>
@@ -72,7 +72,7 @@ function EmailSection() {
           <div style={DIAG} />
           <div style={{ position: "absolute", bottom: -60, right: -60, width: 300, height: 300, background: `radial-gradient(circle,rgba(255,255,255,0.18) 0%,transparent 68%)`, pointerEvents: "none" }} />
           <div style={{ position: "relative", zIndex: 1, maxWidth: 560 }}>
-            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", marginBottom: 14 }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", marginBottom: 14 }}>
               Drop us a line
             </p>
             <p style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 20, fontStyle: "italic", color: "#fff", lineHeight: 1.65, marginBottom: 0 }}>
@@ -135,7 +135,7 @@ function SocialSection() {
   return (
     <section id="contact-social" style={{ position: "relative", background: "transparent", padding: "32px 56px 96px", overflow: "hidden" }}>
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
-        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: ACCENT_DARK, marginBottom: 10 }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: ACCENT_DARK, marginBottom: 10 }}>
           Stay connected
         </p>
         <h2 style={{ fontSize: 30, fontWeight: 900, color: NAVY, letterSpacing: "-0.5px" }}>Follow Tata Engage</h2>
@@ -155,7 +155,7 @@ function SocialSection() {
                 <div style={{ width: 52, height: 52, borderRadius: 14, background: "rgba(255,255,255,0.18)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
                   {c.icon}
                 </div>
-                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.2px", textTransform: "uppercase", color: "rgba(255,255,255,0.8)", marginBottom: 10 }}>{c.label}</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.2px", textTransform: "uppercase", color: "rgba(255,255,255,0.8)", marginBottom: 10 }}>{c.label}</p>
                 <h3 style={{ fontSize: 17, fontWeight: 800, color: "#fff", marginBottom: 10, lineHeight: 1.3 }}>{c.heading}</h3>
                 <p style={{ fontSize: 14, color: "rgba(255,255,255,0.9)", lineHeight: 1.7, marginBottom: 20 }}>{c.body}</p>
                 <span style={{ fontSize: 13, fontWeight: 700, color: "#fff", display: "inline-flex", alignItems: "center", gap: 4 }}>

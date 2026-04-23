@@ -208,7 +208,7 @@ function MilestoneRow({
           style={{
             background: "rgba(255,255,255,0.14)",
             color: "rgba(255,255,255,0.92)",
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: 10,
             fontWeight: 700,
             letterSpacing: "1.2px",
@@ -269,7 +269,7 @@ function MilestoneRow({
         </span>
         <span
           style={{
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: 11,
             color: "rgba(255,255,255,0.72)",
             letterSpacing: "0.4px",
@@ -330,7 +330,7 @@ function MilestoneRow({
             background: "rgba(13,27,62,0.78)",
             backdropFilter: "blur(6px)",
             color: "#fff",
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: 10,
             fontWeight: 700,
             letterSpacing: "1.6px",
@@ -440,18 +440,6 @@ export default function JourneyView() {
         fontFamily: "'DM Sans', sans-serif",
       }}
     >
-      {/* Rainbow accent line — sits below the navbar */}
-      <div
-        style={{
-          position: "fixed",
-          top: 64,
-          left: 0,
-          right: 0,
-          height: 3,
-          zIndex: 30,
-          background: `linear-gradient(to right, ${PALETTE[0]}, ${PALETTE[2]}, ${PALETTE[4]}, ${PALETTE[6]}, ${PALETTE[8]})`,
-        }}
-      />
 
       {/* ══════════════════════════════════════════
           HERO — full-bleed dark photo banner
@@ -670,7 +658,7 @@ export default function JourneyView() {
         >
           <p
             style={{
-              fontFamily: "'DM Mono', monospace",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: 10,
               fontWeight: 700,
               letterSpacing: "2.5px",

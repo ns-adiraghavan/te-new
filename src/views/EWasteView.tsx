@@ -5,9 +5,9 @@ import SubPageDotRail from "@/components/shared/SubPageDotRail";
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
 const ACCENT_NAVY  = "#0D1B3E";
-const COLOUR       = "#0D7A8A"; // Teal accent for E-Waste
-const COLOUR_MID   = "#0A5F6C";
-const COLOUR_LIGHT = "#E6F4F6";
+const COLOUR       = "#333399"; // Tata Blue
+const COLOUR_MID   = "#252573";
+const COLOUR_LIGHT = "#EEF0FF";
 
 const SECTIONS = [
   { id: "ewaste-overview", label: "Overview" },
@@ -63,17 +63,13 @@ export default function EWasteView() {
   return (
     <div className="dot-grid-bg" style={{ background: "transparent", minHeight: "100vh", position: "relative" }}>
 
-      {/* Sticky top accent stripe */}
-      <div style={{ height: 4, background: COLOUR, position: "fixed", top: 64, left: 0, right: 0, zIndex: 100 }} />
-
       <SubPageDotRail sections={SECTIONS} />
 
       {/* ════════════════════ HERO ════════════════════ */}
       <div style={{ position: "relative", minHeight: "92vh", overflow: "hidden", display: "flex", alignItems: "center", paddingTop: 64 }}>
         <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1800"
           alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} referrerPolicy="no-referrer" />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)" }} />
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, transparent, #fff)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(8,12,22,0.82) 0%, rgba(8,12,22,0.65) 40%, rgba(8,12,22,0.18) 75%, rgba(8,12,22,0.10) 100%)" }} />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
           <div style={{ maxWidth: 620 }}>
@@ -89,7 +85,7 @@ export default function EWasteView() {
             </p>
             <div style={{ display: "flex", gap: 14 }}>
               <button onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
-                style={{ background: "#0D7A8A", color: "#fff", border: "none", borderRadius: 12, padding: "16px 32px", fontWeight: 800, fontSize: 16, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+                style={{ background: "#333399", color: "#fff", border: "none", borderRadius: 12, padding: "16px 32px", fontWeight: 800, fontSize: 16, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
                 Become a Warrior →
               </button>
               <button onClick={() => document.getElementById("ewaste-overview")?.scrollIntoView({ behavior: "smooth" })}
@@ -109,15 +105,15 @@ export default function EWasteView() {
       <section id="ewaste-overview" style={{ padding: "88px 56px", background: "transparent" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
           <div>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>What is EOI?</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>About the programme</p>
             <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Recycle. Reboot. Make a difference.</h2>
             <DefinerBar colour={COLOUR} />
             <div style={{ marginTop: 28 }}>
               <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
-                Infiniti Retail has launched a campaign to educate, empower, and encourage Tata Group employees to be a part of the E-Waste Awareness and Recycling Movement.
+                Electronic waste is a growing concern across the world. India is the 3rd largest e-waste generator in the world with poor recycling rates. By 2030, global e-waste generation is estimated to touch 82 billion kg. There is an urgent need to address this issue, keeping in view the Group goal of ensuring zero waste goes to landfill by 2030.
               </p>
               <p style={{ fontSize: 16, color: "#475569", lineHeight: 1.82 }}>
-                E-waste dropped off at any Croma retail store will be responsibly recycled through authorised recycling partners.
+                Infiniti Retail has launched a campaign to educate, empower, and encourage Tata Group employees to be a part of the E-Waste Awareness and Recycling Movement. E-waste dropped off at any Croma retail store will be responsibly recycled through authorised recycling partners.
               </p>
             </div>
           </div>
@@ -136,10 +132,10 @@ export default function EWasteView() {
       <section id="ewaste-why" style={{ position: "relative", overflow: "hidden", minHeight: 480 }}>
         <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80&w=1800" alt=""
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} referrerPolicy="no-referrer" />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,20,0.82) 0%, rgba(5,5,20,0.75) 50%, rgba(5,5,20,0.70) 100%)" }} />
         <div style={{ position: "relative", zIndex: 1, padding: "88px 56px" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Impact</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Impact</p>
             <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>Why become an E-Waste Warrior?</h2>
             <div style={{ height: 3, background: "rgba(255,255,255,0.28)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 36 }} />
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
@@ -157,7 +153,7 @@ export default function EWasteView() {
       <section id="ewaste-who" style={{ padding: "88px 56px", background: "transparent" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
           <div>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Eligibility</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Eligibility</p>
             <h2 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>Who can participate?</h2>
             <DefinerBar colour={COLOUR} />
             <div style={{ marginTop: 28 }}>
@@ -180,14 +176,14 @@ export default function EWasteView() {
       {/* ════════════════════ HOW TO START ════════════════════ */}
       <section id="ewaste-howto" style={{ padding: "88px 56px", background: "#f5f5fa" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Get started</p>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Get started</p>
           <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>How to get started</h2>
           <DefinerBar colour={COLOUR} />
           <div style={{ marginTop: 56, display: "flex", alignItems: "flex-start" }}>
             {STEPS.map((s, i) => (
               <>
                 <div key={s.num} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "0 12px" }}>
-                  <div style={{ width: 56, height: 56, borderRadius: "50%", background: i === 0 ? COLOUR : COLOUR_LIGHT, border: `2px solid ${COLOUR}`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'DM Mono',monospace", fontSize: 14, fontWeight: 700, color: i === 0 ? "#fff" : COLOUR, marginBottom: 20, flexShrink: 0, boxShadow: i === 0 ? `0 4px 16px ${COLOUR}40` : "none" }}>{s.num}</div>
+                  <div style={{ width: 56, height: 56, borderRadius: "50%", background: i === 0 ? COLOUR : COLOUR_LIGHT, border: `2px solid ${COLOUR}`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 700, color: i === 0 ? "#fff" : COLOUR, marginBottom: 20, flexShrink: 0, boxShadow: i === 0 ? `0 4px 16px ${COLOUR}40` : "none" }}>{s.num}</div>
                   <div style={{ fontSize: 15, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 8, lineHeight: 1.2 }}>{s.title}</div>
                   <div style={{ fontSize: 13, color: "#64748B", lineHeight: 1.72 }}>{s.desc}</div>
                 </div>
