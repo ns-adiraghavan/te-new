@@ -56,6 +56,25 @@ body::-webkit-scrollbar-corner,
   @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
 }
 
+/* ─── Subpage white-surface dot-grid texture ──────────────────────────────── */
+/* Subtle dot pattern applied to white backgrounds across subpages.
+   Bumped ~5% above the original reference for noticeability. */
+.dot-grid-bg {
+  background-color: #ffffff;
+  background-image: radial-gradient(rgba(13, 27, 62, 0.11) 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-position: 0 0;
+}
+
+/* When a section sits inside a .dot-grid-bg wrapper and wants to show the
+   grid through, it should use background: transparent (no inline #fff). */
+.dot-grid-bg .dot-grid-surface,
+.dot-grid-surface {
+  background-color: transparent !important;
+  background-image: radial-gradient(rgba(13, 27, 62, 0.11) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
 .tata-gradient {
   @apply bg-gradient-to-r from-[#003580] to-[#00b4d8];
 }
