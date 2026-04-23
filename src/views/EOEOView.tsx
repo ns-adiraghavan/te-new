@@ -77,20 +77,19 @@ export default function EOEOView() {
           alt="" referrerPolicy="no-referrer"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
         />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(108deg, #13BBB4f0 0%, #13BBB4d8 30%, #13BBB490 55%, #13BBB440 75%, #13BBB418 100%)" }} />
-        <div style={DIAG} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)" }} />
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, transparent, #f5f5fa)", pointerEvents: "none" }} />
 
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "120px 56px 96px", width: "100%" }}>
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
           <div style={{ maxWidth: 640 }}>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.2px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: 16 }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "0 0 12px" }}>
               TCS · Employee Initiative · Year-round
             </p>
-            <div style={{ width: 36, height: 2, background: "rgba(255,255,255,0.5)", borderRadius: 2, marginBottom: 22 }} />
-            <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.6rem, 5.2vw, 4rem)", fontWeight: 900, color: "#fff", lineHeight: 1.05, letterSpacing: "-1.5px", margin: "0 0 22px" }}>
+            <div style={{ width: 48, height: 2, background: "rgba(255,255,255,0.6)", borderRadius: 2, margin: "12px 0 22px" }} />
+            <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 22px" }}>
               Each One<br />Empowers One
             </h1>
-            <p style={{ fontSize: 16, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.85)", margin: "0 0 44px", maxWidth: 520 }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 300, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", margin: "0 0 32px", maxWidth: 520 }}>
               TCS's intuitive digital literacy platform — for the people, by the people. Enable financial, digital, and functional literacy in 9 Indian languages.
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
@@ -111,7 +110,7 @@ export default function EOEOView() {
           </div>
         </div>
 
-        <div style={{ position: "absolute", bottom: 100, right: 56, background: "rgba(0,0,0,0.28)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>
+        <div style={{ position: "absolute", bottom: 100, right: 56, background: "rgba(0,0,0,0.28)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>
           Digital · Financial · Functional Literacy
         </div>
       </div>
@@ -223,7 +222,6 @@ export default function EOEOView() {
 
           {/* CTA banner */}
           <div style={{ marginTop: 72, background: COLOUR, borderRadius: 20, padding: "44px 48px", position: "relative", overflow: "hidden", display: "grid", gridTemplateColumns: "1.4fr 0.6fr", gap: 32, alignItems: "center" }}>
-            <div style={DIAG} />
             <div style={{ position: "relative", zIndex: 1 }}>
               <div style={{ fontSize: 24, fontWeight: 900, color: "#fff", lineHeight: 1.2, marginBottom: 10, letterSpacing: "-0.4px" }}>
                 Be a Literacy Champion — sign up now

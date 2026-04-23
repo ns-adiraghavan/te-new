@@ -80,8 +80,7 @@ export default function CVPView() {
       </div>
 
       {/* ── HERO (full-bleed, matching AboutTVWView) ── */}
-      <section style={{ position: "relative", minHeight: "60vh", display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 80 }}>
-        {/* Background image */}
+      <section style={{ position: "relative", minHeight: "92vh", display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 64 }}>
         <img
           src={cvpHeroImg}
           alt=""
@@ -91,31 +90,20 @@ export default function CVPView() {
             objectFit: "cover", objectPosition: "center",
           }}
         />
-        {/* Dark gradient overlay */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(to right, rgba(14,58,34,0.92) 0%, rgba(14,58,34,0.78) 50%, rgba(14,58,34,0.55) 100%)",
+          background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)",
         }} />
-        {/* Diagonal texture */}
-        <div style={DIAG} />
 
-        {/* Content */}
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 980, margin: "0 auto", padding: "80px 56px" }}>
-          <div style={{
-            display: "inline-block", padding: "6px 14px", borderRadius: 999,
-            background: "rgba(255,255,255,0.12)", fontSize: 11, letterSpacing: 2,
-            textTransform: "uppercase" as const, marginBottom: 24, color: "rgba(255,255,255,0.75)",
-            fontWeight: 700,
-          }}>
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "0 0 12px" }}>
             Group-wide · Year-round
-          </div>
-          <h1 style={{
-            fontSize: 52, lineHeight: 1.08, fontWeight: 900,
-            margin: "0 0 20px", letterSpacing: -1, color: "#fff", maxWidth: 700,
-          }}>
+          </p>
+          <div style={{ height: 2, width: 48, borderRadius: 2, background: "rgba(255,255,255,0.6)", margin: "12px 0 22px" }} />
+          <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px", color: "#fff", maxWidth: 700 }}>
             Company Volunteering Programmes
           </h1>
-          <p style={{ fontSize: 17, lineHeight: 1.7, color: "rgba(255,255,255,0.78)", maxWidth: 580, margin: 0 }}>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", fontWeight: 300, maxWidth: 520, margin: 0 }}>
             Each Tata company runs its own volunteering initiatives — rooted in their unique business context, employee strengths, and the communities they serve.
           </p>
         </div>

@@ -228,40 +228,34 @@ export default function AboutProEngageView() {
       <SubPageDotRail sections={SECTIONS} />
 
       {/* ════════════════════ HERO — photo + accent overlay ════════════════════ */}
-      <div style={{ position: "relative", overflow: "hidden", display: "flex", alignItems: "center", background: COLOUR_DARK, paddingTop: 64 }}>
+      <div style={{ position: "relative", minHeight: "92vh", overflow: "hidden", display: "flex", alignItems: "center", paddingTop: 64 }}>
         <img src={peHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${COLOUR_DARK}f5 0%, ${COLOUR_DARK}ee 38%, ${COLOUR}d0 62%, ${COLOUR}80 85%, ${COLOUR}40 100%)` }} />
-        <div style={DIAG} />
-        <div style={{ position: "absolute", top: -120, right: -100, width: 520, height: 520, background: "radial-gradient(circle, rgba(255,255,255,0.14) 0%, transparent 68%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)" }} />
 
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "120px 56px 110px", width: "100%" }}>
-          <div style={{ maxWidth: 720 }}>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, fontWeight: 800, letterSpacing: "2.3px", textTransform: "uppercase", color: "#fff", marginBottom: 4 }}>
-              Skill-Based Volunteering · Since 2014
-            </p>
-            <div style={{ height: 1.4, width: 80, borderRadius: 2, background: "rgba(255,255,255,0.25)", marginBottom: 24, overflow: "hidden" }}>
-              <div style={{ height: "100%", width: "100%", borderRadius: 2, background: "#fff" }} />
-            </div>
-            <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px" }}>
-              ProEngage
-            </h1>
-            <p style={{ fontSize: 17, fontWeight: 300, lineHeight: 1.7, color: "#fff", margin: "0 0 32px", maxWidth: 560 }}>
-              ProEngage is the Tata Group's flagship part-time, skill-based volunteering programme — bringing together Tata talent and civil society organisations to create meaningful, long-term impact. Volunteers don't just give back. They lead, problem-solve, and create lasting change.
-            </p>
-            <div style={{ display: "flex", gap: 14 }}>
-              <button onClick={() => navigate(isLoggedIn ? "proengage" : "register-role")}
-                style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 12, padding: "16px 32px", fontWeight: 800, fontSize: 16, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
-                Browse open projects →
-              </button>
-              <button onClick={() => document.getElementById("pe-overview")?.scrollIntoView({ behavior: "smooth" })}
-                style={{ background: "rgba(255,255,255,0.14)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.3)", borderRadius: 12, padding: "16px 28px", fontWeight: 600, fontSize: 16, cursor: "pointer" }}>
-                Learn more
-              </button>
-            </div>
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", margin: "0 0 12px" }}>
+            Skill-Based Volunteering · Since 2014
+          </p>
+          <div style={{ height: 2, width: 48, borderRadius: 2, background: "rgba(255,255,255,0.6)", margin: "12px 0 22px" }} />
+          <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px" }}>
+            ProEngage
+          </h1>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 300, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", margin: "0 0 32px", maxWidth: 520 }}>
+            ProEngage is the Tata Group's flagship part-time, skill-based volunteering programme — bringing together Tata talent and civil society organisations to create meaningful, long-term impact. Volunteers don't just give back. They lead, problem-solve, and create lasting change.
+          </p>
+          <div style={{ display: "flex", gap: 14 }}>
+            <button onClick={() => navigate(isLoggedIn ? "proengage" : "register-role")}
+              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 12, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+              Browse open projects →
+            </button>
+            <button onClick={() => document.getElementById("pe-overview")?.scrollIntoView({ behavior: "smooth" })}
+              style={{ background: "rgba(255,255,255,0.12)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.28)", borderRadius: 12, padding: "14px 24px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
+              Learn more
+            </button>
           </div>
         </div>
 
-        <div style={{ position: "absolute", bottom: 32, right: 56, background: "rgba(0,0,0,0.22)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.85)" }}>
+        <div style={{ position: "absolute", bottom: 32, right: 56, background: "rgba(0,0,0,0.22)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>
           Skill-based · Bi-annual · Year-round
         </div>
       </div>

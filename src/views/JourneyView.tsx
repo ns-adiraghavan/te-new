@@ -459,8 +459,7 @@ export default function JourneyView() {
       <div
         style={{
           position: "relative",
-          height: "82vh",
-          minHeight: 520,
+          minHeight: "92vh",
           overflow: "hidden",
           background: ACCENT_NAVY,
         }}
@@ -482,22 +481,7 @@ export default function JourneyView() {
           style={{
             position: "absolute",
             inset: 0,
-            background: `linear-gradient(
-              to right,
-              rgba(8,14,30,0.91) 0%,
-              rgba(8,14,30,0.74) 42%,
-              rgba(8,14,30,0.28) 76%,
-              rgba(8,14,30,0.10) 100%
-            )`,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "repeating-linear-gradient(135deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 28px)",
-            pointerEvents: "none",
+            background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)",
           }}
         />
 
@@ -507,20 +491,21 @@ export default function JourneyView() {
             inset: 0,
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-end",
-            padding: "0 72px 64px",
+            justifyContent: "center",
+            padding: "0 72px",
+            paddingTop: 64,
             maxWidth: 880,
           }}
         >
           <p
             style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 10,
-              fontWeight: 700,
-              letterSpacing: "3px",
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 11,
+              fontWeight: 800,
+              letterSpacing: "2.5px",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.40)",
-              marginBottom: 16,
+              color: "rgba(255,255,255,0.50)",
+              marginBottom: 12,
             }}
           >
             Tata Engage · 2014 – 2025
@@ -528,18 +513,19 @@ export default function JourneyView() {
           <div
             style={{
               width: 48,
-              height: 3,
+              height: 2,
               borderRadius: 2,
-              background: B_YELLOW,
+              background: "rgba(255,255,255,0.6)",
               marginBottom: 22,
             }}
           />
           <h1
             style={{
-              fontSize: "clamp(36px, 5.5vw, 66px)",
-              fontWeight: 900,
-              letterSpacing: "-2px",
-              lineHeight: 1.02,
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
+              fontWeight: 400,
+              letterSpacing: "-0.5px",
+              lineHeight: 1.12,
               color: "#fff",
               margin: "0 0 18px",
             }}
@@ -559,10 +545,11 @@ export default function JourneyView() {
           </h1>
           <p
             style={{
-              fontSize: 15,
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 16,
               fontWeight: 300,
               lineHeight: 1.7,
-              color: "rgba(255,255,255,0.60)",
+              color: "rgba(255,255,255,0.65)",
               maxWidth: 480,
               marginBottom: 0,
             }}

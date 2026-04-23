@@ -115,10 +115,9 @@ function Hero() {
         style={{
           position: "absolute",
           inset: 0,
-          background: `linear-gradient(108deg, ${COLOUR}f5 0%, ${COLOUR}e8 28%, ${COLOUR}b0 52%, ${COLOUR}50 70%, ${COLOUR}18 100%)`,
+          background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)",
         }}
       />
-      <div style={DIAG} />
       <div
         style={{
           position: "absolute",
@@ -137,47 +136,48 @@ function Hero() {
           zIndex: 1,
           maxWidth: 1100,
           margin: "0 auto",
-          padding: "120px 56px 96px",
+          padding: "0 64px",
+          paddingTop: 64,
           width: "100%",
         }}
       >
         <div style={{ maxWidth: 640 }}>
           <p
             style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: "2.4px",
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 11,
+              fontWeight: 800,
+              letterSpacing: "2.5px",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.6)",
-              marginBottom: 20,
+              color: "rgba(255,255,255,0.5)",
+              margin: "0 0 12px",
             }}
           >
             Tata Engage · Civil Society Partnerships
           </p>
-          <div style={{ width: 44, height: 3, background: "rgba(255,255,255,0.55)", borderRadius: 2, marginBottom: 28 }} />
+          <div style={{ width: 48, height: 2, background: "rgba(255,255,255,0.6)", borderRadius: 2, margin: "12px 0 22px" }} />
           <h1
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(3.2rem, 6.4vw, 5.2rem)",
-              fontWeight: 900,
+              fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
+              fontWeight: 400,
               color: "#fff",
-              lineHeight: 1.02,
-              letterSpacing: "-2.5px",
-              margin: "0 0 28px",
-              whiteSpace: "pre-line",
+              lineHeight: 1.12,
+              letterSpacing: "-0.5px",
+              margin: "0 0 18px",
             }}
           >
-            {"Partner\nWith Us"}
+            Partner With Us
           </h1>
           <p
             style={{
-              fontSize: 18,
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 16,
               fontWeight: 300,
-              lineHeight: 1.75,
-              color: "rgba(255,255,255,0.88)",
-              margin: "0 0 40px",
-              maxWidth: 560,
+              lineHeight: 1.7,
+              color: "rgba(255,255,255,0.65)",
+              margin: "0 0 32px",
+              maxWidth: 520,
             }}
           >
             Across the world, there are countless Tata professionals eager to volunteer their time and skills — and equally many civil society organisations doing impactful work that need the right support. Yet, meaningful volunteering opportunities often go unrealised simply because the right connections don't exist.
@@ -194,7 +194,7 @@ function Hero() {
             }}
           >
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: B_YELLOW, flexShrink: 0 }} />
-            <span style={{ fontSize: 15, fontWeight: 600, color: "#fff" }}>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, fontWeight: 600, color: "#fff" }}>
               Tata Engage bridges this gap.
             </span>
           </div>
