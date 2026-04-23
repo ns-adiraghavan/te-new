@@ -203,8 +203,12 @@ interface EventSectionProps {
   highlights?: { label: string; value: string }[];
   photoSide?: "left" | "right";
   bg?: string;
-  /** When true, the section renders with the accent as background and white text. */
+  /** When true, the section uses a subtle accent wash background. */
   accentBg?: boolean;
+  /** When true, render the heroMedia full-width across the top, with paragraphs+quote in 2-cols below. Used for panoramic images. */
+  heroFullWidth?: boolean;
+  /** Extra top padding before this section (used to space the last event). */
+  topGap?: number;
   awardsTable?: { category: string; winners: string }[];
   awardsMedia?: React.ReactNode;
   heroMedia?: React.ReactNode;
@@ -214,7 +218,8 @@ interface EventSectionProps {
 function EventSection({
   id, accent, accentDark, accentLight, date, tag, title, subtitle,
   quote, quoteAttrib, paragraphs, highlights, photoSide = "right",
-  bg = "#fff", accentBg = false, awardsTable, awardsMedia, heroMedia, children,
+  bg = "#fff", accentBg = false, heroFullWidth = false, topGap = 0,
+  awardsTable, awardsMedia, heroMedia, children,
 }: EventSectionProps) {
   // Subtle wash when accentBg=true: a soft tint of the accent on a near-white surface,
   // with all body text staying dark. Only headers, eyebrows, dividers and small accents
