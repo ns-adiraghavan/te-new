@@ -197,7 +197,7 @@ const Navbar = ({
 
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
-        <div className="h-16 flex items-center justify-between px-6 md:px-12 bg-zinc-800 border-b border-white/8 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200 }}>
+        <div className="h-16 flex items-center justify-between px-6 md:px-12 bg-zinc-700 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200 }}>
 
           {/* ── LEFT: TataEngage logo as full-height white accent block ── */}
           <div
