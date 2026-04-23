@@ -10,6 +10,7 @@ import type { Role } from "@/types";
 import { PRIYA_SHARMA, ANJALI_MEHTA } from "@/data/mockData";
 
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 
 import OrientationModal from "@/components/shared/OrientationModal";
@@ -229,6 +230,25 @@ export default function App() {
         {user?.role !== "platform_admin" && (
           <SocialCluster isLoggedIn={isLoggedIn} inHero={false} />
         )}
+        {(() => {
+          const path = location.pathname;
+          const hideFooter =
+            user?.role === "platform_admin" ||
+            path.startsWith("/dashboard") ||
+            path.startsWith("/ngo/dashboard") ||
+            path.startsWith("/spoc/dashboard") ||
+            path.startsWith("/admin/dashboard") ||
+            path.startsWith("/admin-login") ||
+            path.startsWith("/login") ||
+            path.startsWith("/register") ||
+            path.startsWith("/otp") ||
+            path.startsWith("/forgot-password") ||
+            path.startsWith("/projects/create") ||
+            path.startsWith("/projects/active") ||
+            path.startsWith("/projects/feedback") ||
+            path.startsWith("/profile");
+          return hideFooter ? null : <Footer />;
+        })()}
         <Chatbot />
         {showOrientationModal && <OrientationModal />}
         <FeedbackModal />
