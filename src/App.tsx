@@ -55,10 +55,10 @@ import PartnerWithUsView from "@/views/PartnerWithUsView";
 import MediaView from "@/views/MediaView";
 import JourneyView from "@/views/JourneyView";
 import EOIView from "@/views/EOIView";
+import EOEOView from "@/views/EOEOView";
 import EWasteView from "@/views/EWasteView";
 import TataSmView from "@/views/TataSmView";
 import CVPView from "@/views/CVPView";
-import YesToAccessView from "@/views/YesToAccessView";
 import NotFound from "@/pages/NotFound";
 
 export default function App() {
@@ -229,10 +229,10 @@ export default function App() {
                 <Route path="/partner" element={<PartnerWithUsView />} />
                 <Route path="/media" element={<MediaView />} />
                 <Route path="/eoi" element={<EOIView />} />
+                <Route path="/eoeo" element={<EOEOView />} />
                 <Route path="/ewaste" element={<EWasteView />} />
                 <Route path="/tata-sustainability-month" element={<TataSmView />} />
                 <Route path="/cvp" element={<CVPView />} />
-                <Route path="/yes-to-access" element={<YesToAccessView />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
         </main>
