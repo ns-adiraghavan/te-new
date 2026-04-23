@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Bell, ChevronDown, ChevronRight, User, LogOut, Share2, LayoutDashboard, Search } from "lucide-react";
 import tataLogo from "@/assets/Tata-removebg-preview.png";
-import tataEngageLogo from "@/assets/tata-engage-logo.png";
+import tataEngageLogo from "@/assets/tata-engage-logo-nobg.png";
 import type { View } from "@/types";
 import { NOTIFICATIONS_VOLUNTEER, NOTIFICATIONS_NGO, NOTIFICATIONS_SPOC, NOTIFICATIONS_ADMIN } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
@@ -197,12 +197,12 @@ const Navbar = ({
 
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
-        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200, background: "rgba(63, 63, 70, 0.95)" }}>
+        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200, background: "rgb(63, 63, 70)" }}>
 
           {/* ── LEFT: TataEngage logo as full-height white accent block ── */}
           <div
             style={{
-              background: "rgba(255, 255, 255, 0.95)",
+              background: "#ffffff",
               height: "64px",
               padding: "0 20px",
               display: "flex",
