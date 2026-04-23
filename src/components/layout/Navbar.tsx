@@ -26,6 +26,18 @@ const SHIMMER_STYLE = `
   .te-logo-breathe:hover { animation-play-state: paused; opacity: 0.75; }
 `;
 
+/* ── Page-accent colour map — navbar bg responds to current route ── */
+function getNavBg(pathname: string): string {
+  if (pathname.startsWith("/proengage") || pathname.startsWith("/about/proengage") || pathname.startsWith("/cvp")) return "#4a1f5c"; // #803998 darkened
+  if (pathname.startsWith("/disaster-response") || pathname.startsWith("/dr-")) return "#6b1414"; // B_RED darkened
+  if (pathname.startsWith("/ngo/") || pathname.startsWith("/partner")) return "#7a3200"; // B_ORANGE darkened
+  if (pathname.startsWith("/spoc/") || pathname.startsWith("/spoc-")) return "#1a1866"; // SPOC purple darkened
+  if (pathname.startsWith("/tvw") || pathname.startsWith("/about/tvw")) return "#1a4a7a"; // TVW blue darkened
+  if (pathname.startsWith("/about") || pathname.startsWith("/journey") || pathname.startsWith("/media")) return "#0a1228"; // deep navy
+  if (pathname.startsWith("/dashboard") || pathname.startsWith("/hub") || pathname.startsWith("/volunteer")) return "#0a1228";
+  return "#222222"; // default dark
+}
+
 const Navbar = ({
   onNavigate,
   isLoggedIn,
@@ -132,10 +144,10 @@ const Navbar = ({
   /* ── nav link styles — always white ── */
   const navLinkCls = (isActive: boolean, bounceKey: string) =>
     [
-      "text-sm font-medium cursor-pointer flex items-center gap-1 transition-colors duration-150",
+      "text-sm font-medium cursor-pointer flex items-center gap-1 transition-all duration-150",
       isActive
-        ? "text-white border-b-2 border-white/70 pb-0.5"
-        : "text-white/80 hover:text-white",
+        ? "text-white font-semibold border-b-2 border-white/70 pb-0.5"
+        : "text-white hover:font-semibold",
       bouncingItem === bounceKey ? "[animation:teNavBounce_0.4s_ease]" : "",
     ].join(" ");
 
@@ -204,30 +216,43 @@ const Navbar = ({
 
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
-        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200, background: "#3a3a3a" }}>
+        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200, background: getNavBg(location.pathname), transition: "background 0.35s ease" }}>
 
           {/* ── LEFT: TataEngage logo as full-height white accent block ── */}
           <div
-            className="te-logo-breathe"
             style={{
-              background: "transparent",
               height: "64px",
-              padding: "0 20px",
+              padding: "0 16px",
               display: "flex",
               alignItems: "center",
               position: "absolute",
               top: 0,
               left: 0,
               zIndex: 10,
-              cursor: "pointer",
             }}
-            onClick={() => isLoggedIn ? onNavigate(hubView()) : onNavigate("home")}
           >
-            <img
-              src={tataEngageLogo}
-              alt="TataEngage"
-              style={{ height: 36, objectFit: "contain" }}
-            />
+            <button
+              onClick={() => isLoggedIn ? onNavigate(hubView()) : onNavigate("home")}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                background: "rgba(255,255,255,0.10)",
+                border: "1px solid rgba(255,255,255,0.22)",
+                borderRadius: 100,
+                padding: "6px 14px 6px 8px",
+                cursor: "pointer",
+                transition: "background 0.2s ease, border-color 0.2s ease",
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.16)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.35)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.10)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.22)"; }}
+            >
+              <img
+                src={tataEngageLogo}
+                alt="TataEngage"
+                style={{ height: 28, objectFit: "contain" }}
+              />
+            </button>
           </div>
 
           {/* ── CENTRE: nav links ── */}
@@ -348,7 +373,7 @@ const Navbar = ({
 
             <Search
               size={18}
-              className="cursor-pointer text-white/70 hover:text-white transition-colors duration-150"
+              className="cursor-pointer text-white hover:opacity-80 transition-opacity duration-150"
             />
           </div>
 
@@ -444,7 +469,7 @@ const Navbar = ({
                 </div>
 
                 {/* Tata logo — right side, native blue */}
-                <img src={tataLogo} alt="Tata" className="h-8 w-8 object-contain hidden md:block" />
+                <img src={tataLogo} alt="Tata" className="h-8 w-8 object-contain hidden md:block" style={{ filter: "brightness(0) invert(1)" }} />
               </>
             ) : (
               /* ── Public right: Log In + Register + Tata logo ── */
@@ -463,7 +488,7 @@ const Navbar = ({
                   Register
                 </button>
                 {/* Tata logo — always white on dark nav */}
-                <img src={tataLogo} alt="Tata" className="h-8 w-8 object-contain hidden md:block" />
+                <img src={tataLogo} alt="Tata" className="h-8 w-8 object-contain hidden md:block" style={{ filter: "brightness(0) invert(1)" }} />
               </div>
             )}
           </div>
