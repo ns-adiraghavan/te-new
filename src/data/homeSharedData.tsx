@@ -84,9 +84,9 @@ export const FUN_FACTS = [
 ];
 
 export const HERO_STATS = [
-  { num: "50,000+", label: "Active Volunteers", sub: "Across 100+ Tata companies", colour: "#1434A4", pastel: "#1434A4" },
-  { num: "85",      label: "NGO Partners",       sub: "Across 15 states in India",  colour: "#1434A4", pastel: "#1434A4" },
-  { num: "2.5M+",   label: "Volunteer Hours",    sub: "Logged since 2007",           colour: "#1434A4", pastel: "#1434A4" },
+  { num: "50,000+", label: "Active Volunteers", sub: "Across 100+ Tata companies", colour: "#1A4731", pastel: "#1A4731" },
+  { num: "85",      label: "NGO Partners",       sub: "Across 15 states in India",  colour: "#003580", pastel: "#003580" },
+  { num: "2.5M+",   label: "Volunteer Hours",    sub: "Logged since 2007",           colour: "#C8850A", pastel: "#C8850A" },
 ];
 
 export interface SocialPost {

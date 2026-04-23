@@ -796,7 +796,7 @@ export function NumbersSection() {
                   display: "flex",
                   flexDirection: "column", justifyContent: "flex-start", alignItems: "center", textAlign: "center",
                   borderRadius: 14, padding: "20px 28px",
-                  background: "#4347B0",
+                  background: "#1434A4",
                   boxShadow: "6px 0 24px rgba(0,0,0,0.10), 0 4px 20px rgba(0,0,0,0.12)",
                   opacity: i === 0 ? 1 : 0,
                   transition: "opacity 0.5s ease",
