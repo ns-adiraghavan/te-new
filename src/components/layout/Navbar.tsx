@@ -18,8 +18,12 @@ const SHIMMER_STYLE = `
     30%      { transform: translateY(-4px); }
     60%      { transform: translateY(-1px); }
   }
-  .te-logo-breathe { opacity: 0.5; transition: opacity 0.4s ease; }
-  .te-logo-breathe:hover { opacity: 0.75; }
+  @keyframes teLogoBreathe {
+    0%, 100% { opacity: 0.5; }
+    50%      { opacity: 0.75; }
+  }
+  .te-logo-breathe { opacity: 0.5; animation: teLogoBreathe 3.6s ease-in-out infinite; transition: opacity 0.4s ease; }
+  .te-logo-breathe:hover { animation-play-state: paused; opacity: 0.75; }
 `;
 
 const Navbar = ({
