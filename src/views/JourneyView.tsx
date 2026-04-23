@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
+import SubPageDotRail from "@/components/shared/SubPageDotRail";
 
 // ── Asset imports ─────────────────────────────────────────────────────────────
 import imgTrent        from "@/assets/trent.jpg";
@@ -153,15 +153,7 @@ const MILESTONES = [
 type Milestone = typeof MILESTONES[number];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-function tint(hex: string, amount: number) {
-  // Returns hex blended toward white by `amount` (0-1).
-  const h = hex.replace("#", "");
-  const r = parseInt(h.slice(0, 2), 16);
-  const g = parseInt(h.slice(2, 4), 16);
-  const b = parseInt(h.slice(4, 6), 16);
-  const m = (c: number) => Math.round(c + (255 - c) * amount);
-  return `rgb(${m(r)}, ${m(g)}, ${m(b)})`;
-}
+// (tint helper removed — currently unused)
 
 // ── Milestone row — text panel one side, photo panel the other ───────────────
 function MilestoneRow({
@@ -431,34 +423,12 @@ function DottedConnector({ colourFrom, colourTo }: { colourFrom: string; colourT
   );
 }
 
+// ── Sections for the dot rail ────────────────────────────────────────────────
+const RAIL_SECTIONS = MILESTONES.map(m => ({ id: m.key, label: m.year }));
+
 // ── Main component ────────────────────────────────────────────────────────────
 export default function JourneyView() {
   const navigate = useAppNavigate();
-  const [activeIdx, setActiveIdx] = useState(0);
-
-  // Track which milestone is currently in view
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    MILESTONES.forEach((m, idx) => {
-      const el = document.getElementById(m.key);
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveIdx(idx);
-        },
-        { threshold: 0.4, rootMargin: "-80px 0px -40% 0px" }
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
-
-  const jumpTo = (idx: number) => {
-    const clamped = Math.max(0, Math.min(MILESTONES.length - 1, idx));
-    const el = document.getElementById(MILESTONES[clamped].key);
-    el?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
 
   return (
     <div
@@ -807,104 +777,8 @@ export default function JourneyView() {
         <img src={imgDR2} alt="" />
       </span>
 
-      {/* ══════════════════════════════════════════
-          BOTTOM CHEVRON NAV — milestone-by-milestone
-      ══════════════════════════════════════════ */}
-      <nav
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: 100,
-          height: 56,
-          background: "rgba(255,255,255,0.96)",
-          backdropFilter: "blur(12px)",
-          borderTop: "1px solid #e4e7ef",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 14,
-          padding: "0 16px",
-        }}
-      >
-        <button
-          onClick={() => jumpTo(activeIdx - 1)}
-          disabled={activeIdx === 0}
-          aria-label="Previous milestone"
-          style={{
-            width: 36,
-            height: 36,
-            borderRadius: "50%",
-            border: "1.5px solid #e2e8f0",
-            background: "#fff",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: activeIdx === 0 ? "default" : "pointer",
-            opacity: activeIdx === 0 ? 0.3 : 1,
-            color: ACCENT_NAVY,
-            transition: "opacity 0.2s",
-          }}
-        >
-          <ChevronLeft size={16} />
-        </button>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            minWidth: 110,
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 10,
-              fontWeight: 700,
-              letterSpacing: "1.4px",
-              textTransform: "uppercase",
-              color: "#94a3b8",
-            }}
-          >
-            Milestone {activeIdx + 1} / {MILESTONES.length}
-          </span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 800,
-              color: PALETTE[activeIdx % PALETTE.length],
-              letterSpacing: "-0.2px",
-              marginTop: 2,
-            }}
-          >
-            {MILESTONES[activeIdx].year}
-          </span>
-        </div>
-
-        <button
-          onClick={() => jumpTo(activeIdx + 1)}
-          disabled={activeIdx === MILESTONES.length - 1}
-          aria-label="Next milestone"
-          style={{
-            width: 36,
-            height: 36,
-            borderRadius: "50%",
-            border: "1.5px solid #e2e8f0",
-            background: "#fff",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: activeIdx === MILESTONES.length - 1 ? "default" : "pointer",
-            opacity: activeIdx === MILESTONES.length - 1 ? 0.3 : 1,
-            color: ACCENT_NAVY,
-            transition: "opacity 0.2s",
-          }}
-        >
-          <ChevronRight size={16} />
-        </button>
-      </nav>
+      {/* Right-edge milestone dot rail */}
+      <SubPageDotRail sections={RAIL_SECTIONS} />
     </div>
   );
 }

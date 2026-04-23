@@ -224,29 +224,23 @@ export default function AboutProEngageView() {
   return (
     <div style={{ background: "#fff", minHeight: "100vh", position: "relative" }}>
 
-      {/* Sticky top accent stripe */}
-      <div style={{ height: 4, background: COLOUR, position: "sticky", top: 0, zIndex: 40 }} />
-
       <SubPageDotRail sections={SECTIONS} />
 
-      {/* ════════════════════ HERO ════════════════════ */}
-      <div style={{ position: "relative", minHeight: "92vh", overflow: "hidden", display: "flex", alignItems: "center" }}>
-        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=1800"
-          alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} referrerPolicy="no-referrer" />
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(108deg, ${COLOUR}f5 0%, ${COLOUR}e8 28%, ${COLOUR}b0 52%, ${COLOUR}50 70%, ${COLOUR}18 100%)` }} />
+      {/* ════════════════════ HERO — full-bleed accent ════════════════════ */}
+      <div style={{ position: "relative", overflow: "hidden", display: "flex", alignItems: "center", background: `linear-gradient(135deg, ${COLOUR_DARK} 0%, ${COLOUR} 100%)`, paddingTop: 64 }}>
         <div style={DIAG} />
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, transparent, #fff)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: -120, right: -100, width: 520, height: 520, background: "radial-gradient(circle, rgba(255,255,255,0.14) 0%, transparent 68%)", pointerEvents: "none" }} />
 
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "120px 56px 96px", width: "100%" }}>
-          <div style={{ maxWidth: 640 }}>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 600, letterSpacing: "2.4px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: 20 }}>
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "120px 56px 110px", width: "100%" }}>
+          <div style={{ maxWidth: 720 }}>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 600, letterSpacing: "2.4px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", marginBottom: 20 }}>
               Skill-Based Volunteering · Since 2014
             </p>
-            <div style={{ width: 44, height: 3, background: "rgba(255,255,255,0.55)", borderRadius: 2, marginBottom: 28 }} />
+            <div style={{ width: 44, height: 3, background: "rgba(255,255,255,0.65)", borderRadius: 2, marginBottom: 28 }} />
             <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(3.4rem, 6.8vw, 5.4rem)", fontWeight: 900, color: "#fff", lineHeight: 1.02, letterSpacing: "-2.5px", margin: "0 0 28px" }}>
               ProEngage
             </h1>
-            <p style={{ fontSize: 18, fontWeight: 300, lineHeight: 1.75, color: "rgba(255,255,255,0.88)", margin: "0 0 48px", maxWidth: 560 }}>
+            <p style={{ fontSize: 18, fontWeight: 300, lineHeight: 1.75, color: "rgba(255,255,255,0.92)", margin: "0 0 48px", maxWidth: 600 }}>
               ProEngage is the Tata Group's flagship part-time, skill-based volunteering programme — bringing together Tata talent and civil society organisations to create meaningful, long-term impact. Volunteers don't just give back. They lead, problem-solve, and create lasting change.
             </p>
             <div style={{ display: "flex", gap: 14 }}>
@@ -255,14 +249,14 @@ export default function AboutProEngageView() {
                 Browse open projects →
               </button>
               <button onClick={() => document.getElementById("pe-overview")?.scrollIntoView({ behavior: "smooth" })}
-                style={{ background: "rgba(255,255,255,0.11)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.26)", borderRadius: 12, padding: "16px 28px", fontWeight: 600, fontSize: 16, cursor: "pointer" }}>
+                style={{ background: "rgba(255,255,255,0.14)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.3)", borderRadius: 12, padding: "16px 28px", fontWeight: 600, fontSize: 16, cursor: "pointer" }}>
                 Learn more
               </button>
             </div>
           </div>
         </div>
 
-        <div style={{ position: "absolute", bottom: 100, right: 56, background: "rgba(0,0,0,0.28)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>
+        <div style={{ position: "absolute", bottom: 32, right: 56, background: "rgba(0,0,0,0.22)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.85)" }}>
           Skill-based · Bi-annual · Year-round
         </div>
       </div>
