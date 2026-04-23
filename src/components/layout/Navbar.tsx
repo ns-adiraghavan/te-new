@@ -29,7 +29,7 @@ const SHIMMER_STYLE = `
 /* ── Page-accent colour map — navbar bg responds to current route ── */
 function getNavBg(pathname: string): string {
   // Home
-  if (pathname === "/") return "#4a4a55";                          // slate grey
+  if (pathname === "/") return "#3a3a44";                          // slate grey — 10% darker
   // Events
   if (pathname.startsWith("/about/events")) return "#9e2428";      // darker than F0494E
   // Contact
