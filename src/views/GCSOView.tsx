@@ -120,7 +120,6 @@ function LetterSection() {
 export default function GCSOView() {
   return (
     <div style={{ background: "#fff", minHeight: "100vh", fontFamily: "'DM Sans',sans-serif", paddingTop: 64 }}>
-      <div style={{ height: 4, background: ACCENT, position: "sticky", top: 64, zIndex: 100 }} />
       <SubPageDotRail sections={SECTIONS} accentColour={ACCENT} />
       <Hero />
       <LetterSection />
