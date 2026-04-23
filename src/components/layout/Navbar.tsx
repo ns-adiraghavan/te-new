@@ -28,14 +28,40 @@ const SHIMMER_STYLE = `
 
 /* ── Page-accent colour map — navbar bg responds to current route ── */
 function getNavBg(pathname: string): string {
-  if (pathname.startsWith("/proengage") || pathname.startsWith("/about/proengage") || pathname.startsWith("/cvp")) return "#4a1f5c"; // #803998 darkened
-  if (pathname.startsWith("/disaster-response") || pathname.startsWith("/dr-")) return "#6b1414"; // B_RED darkened
-  if (pathname.startsWith("/ngo/") || pathname.startsWith("/partner")) return "#7a3200"; // B_ORANGE darkened
-  if (pathname.startsWith("/spoc/") || pathname.startsWith("/spoc-")) return "#1a1866"; // SPOC purple darkened
-  if (pathname.startsWith("/tvw") || pathname.startsWith("/about/tvw")) return "#1a4a7a"; // TVW blue darkened
-  if (pathname.startsWith("/about") || pathname.startsWith("/journey") || pathname.startsWith("/media")) return "#0a1228"; // deep navy
-  if (pathname.startsWith("/dashboard") || pathname.startsWith("/hub") || pathname.startsWith("/volunteer")) return "#0a1228";
-  return "#222222"; // default dark
+  // Home
+  if (pathname === "/") return "#4a4a55";                          // slate grey
+  // Events
+  if (pathname.startsWith("/about/events")) return "#9e2428";      // darker than F0494E
+  // Contact
+  if (pathname.startsWith("/about/contact")) return "#8a2810";     // darker than D84926
+  // Team
+  if (pathname.startsWith("/about/team")) return "#8a4a50";        // muted rose — darker than light pink, not too dark
+  // Disaster response
+  if (pathname.startsWith("/disaster-response") || pathname.startsWith("/dr-")) return "#0a5a54"; // darker than teal
+  // TSM
+  if (pathname.startsWith("/tata-sustainability-month")) return "#3a5a1a"; // forest green
+  // EOEO
+  if (pathname.startsWith("/eoeo")) return "#1a3a6a";              // darker blue
+  // E-Waste
+  if (pathname.startsWith("/ewaste")) return "#1a3a6a";            // darker blue
+  // EOI (about eoi)
+  if (pathname.startsWith("/eoi")) return "#1a2a5a";               // darker than blue
+  // Yes To Access
+  if (pathname.startsWith("/yes-to-access")) return "#1a3a6a";     // darker blue
+  // Media & Resources
+  if (pathname.startsWith("/media")) return "#2a3560";             // slightly lighter navy
+  // Volunteer hub + dashboard
+  if (pathname.startsWith("/hub") || pathname.startsWith("/dashboard") || pathname.startsWith("/volunteer")) return "#2a3560";
+  // TVW
+  if (pathname.startsWith("/tvw") || pathname.startsWith("/about/tvw")) return "#1a4a7a";
+  // ProEngage + CVP — #803998 darkened
+  if (pathname.startsWith("/proengage") || pathname.startsWith("/about/proengage") || pathname.startsWith("/cvp")) return "#4a1f5c";
+  // NGO / SPOC / Partner
+  if (pathname.startsWith("/ngo/") || pathname.startsWith("/partner")) return "#7a3200";
+  if (pathname.startsWith("/spoc/")) return "#1a1866";
+  // About / Journey — deep navy
+  if (pathname.startsWith("/about") || pathname.startsWith("/journey")) return "#0a1228";
+  return "#2a2a35"; // default
 }
 
 const Navbar = ({
@@ -195,9 +221,9 @@ const Navbar = ({
       items: [
         { label: "About CVP", action: () => onNavigate("cvp") },
         { label: "__SECTION__Explore", action: () => {} },
-        { label: "TCS Each One Empowers One", action: () => onNavigate("eoi") },
+        { label: "TCS Each One Empowers One", action: () => onNavigate("eoeo") },
         { label: "Infiniti Retail E-Waste Warrior", action: () => onNavigate("ewaste") },
-        { label: "Yes To Access", action: () => triggerToast("Yes To Access — coming soon") },
+        { label: "Yes To Access", action: () => onNavigate("yes-to-access") },
       ],
     },
     {
@@ -222,37 +248,22 @@ const Navbar = ({
           <div
             style={{
               height: "64px",
-              padding: "0 16px",
+              padding: "0 20px",
               display: "flex",
               alignItems: "center",
               position: "absolute",
               top: 0,
               left: 0,
               zIndex: 10,
+              cursor: "pointer",
             }}
+            onClick={() => isLoggedIn ? onNavigate(hubView()) : onNavigate("home")}
           >
-            <button
-              onClick={() => isLoggedIn ? onNavigate(hubView()) : onNavigate("home")}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                background: "rgba(255,255,255,0.10)",
-                border: "1px solid rgba(255,255,255,0.22)",
-                borderRadius: 100,
-                padding: "6px 14px 6px 8px",
-                cursor: "pointer",
-                transition: "background 0.2s ease, border-color 0.2s ease",
-              }}
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.16)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.35)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.10)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.22)"; }}
-            >
-              <img
-                src={tataEngageLogo}
-                alt="TataEngage"
-                style={{ height: 28, objectFit: "contain" }}
-              />
-            </button>
+            <img
+              src={tataEngageLogo}
+              alt="TataEngage"
+              style={{ height: 32, objectFit: "contain" }}
+            />
           </div>
 
           {/* ── CENTRE: nav links ── */}
