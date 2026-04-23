@@ -31,9 +31,9 @@ function getNavBg(pathname: string): string {
   // Home
   if (pathname === "/") return "#3a3a44";                          // slate grey — 10% darker
   // Events
-  if (pathname.startsWith("/about/events")) return "#9e2428";      // darker than F0494E
+  if (pathname.startsWith("/about/events")) return "#2d0e6e";      // deep PE purple
   // Contact
-  if (pathname.startsWith("/about/contact")) return "#8a2810";     // darker than D84926
+  if (pathname.startsWith("/about/contact")) return "#7a8f2a";     // darker than C3DB6F
   // Team
   if (pathname.startsWith("/about/team")) return "#8a4a50";        // muted rose — darker than light pink, not too dark
   // Disaster response
@@ -41,9 +41,9 @@ function getNavBg(pathname: string): string {
   // TSM
   if (pathname.startsWith("/tata-sustainability-month")) return "#3a5a1a"; // forest green
   // EOEO
-  if (pathname.startsWith("/eoeo")) return "#1a3a6a";              // darker blue
+  if (pathname.startsWith("/eoeo")) return "#8a4a50";              // muted rose — matches team pink
   // E-Waste
-  if (pathname.startsWith("/ewaste")) return "#1a3a6a";            // darker blue
+  if (pathname.startsWith("/ewaste")) return "#1a1866";            // Tata blue dark
   // EOI (about eoi)
   if (pathname.startsWith("/eoi")) return "#1a2a5a";               // darker than blue
   // Yes To Access
