@@ -24,14 +24,17 @@ const B_YELLOW    = "#F79425";
 const B_TEAL      = "#13BBB4";
 const B_RED       = "#D84926";
 const B_BLUE      = "#135EA9";
-const B_PINK      = "#E91E80";
+const B_PRIMARY   = "#15B8E8";   // primary interactive
+const B_VOL       = "#4376BB";   // volunteer mode accent
+const B_SPOC_TOG  = "#135EA9";   // SPOC corner toggle accent
 const ACCENT_NAVY = "#0D1B3E";
 
 const P_YELLOW    = "#FEF6E4";
 const P_TEAL      = "#E6F8F5";
 const P_BLUE      = "#EBF4FF";
 const P_RED       = "#FFF0EE";
-const P_PINK      = "#FCE4F3";
+const P_VOL       = "#EBF1FA";   // volunteer accent pastel
+const P_SPOC      = "#E8EEF7";   // SPOC accent pastel
 
 const KPI_PINK       = "#F4838A";
 const KPI_YELLOW     = "#F79425";
@@ -196,7 +199,7 @@ function StatusBadge({ status }: { status: string }) {
     "Pending":           [P_YELLOW,  "#9a6500", "Pending"],
     "Approved":          ["#F0FDF4", "#16A34A", "Approved"],
     "Inactive":          ["#f0f0f4", "#888",    "Inactive"],
-    "Live":              [P_PINK,    B_PINK,    "Live"],
+    "Live":              [P_VOL,     B_VOL,     "Live"],
     "Upcoming":          [P_BLUE,    B_BLUE,    "Upcoming"],
     "Generated":         ["#F0FDF4", "#16A34A", "Generated"],
     "Pending Feedback":  [P_YELLOW,  "#9a6500", "Pending Feedback"],
@@ -205,7 +208,7 @@ function StatusBadge({ status }: { status: string }) {
   return <span style={{ background: bg, color, fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 100, letterSpacing: "0.3px", whiteSpace: "nowrap" }}>{label}</span>;
 }
 
-function CollapsiblePanel({ title, eyebrow, defaultOpen = false, accentColor = B_PINK, badge, children }: {
+function CollapsiblePanel({ title, eyebrow, defaultOpen = false, accentColor = B_VOL, badge, children }: {
   title: string; eyebrow?: string; defaultOpen?: boolean; accentColor?: string; badge?: string | number; children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(defaultOpen);
@@ -655,7 +658,7 @@ export default function SPOCDashboardView() {
   }));
 
   const SPOC_BADGES = [
-    { id: "b1", name: "Edition Champion", image: badgeChampion,   desc: "Top performer in ProEngage 2025 edition",        earned: "2025", color: B_PINK },
+    { id: "b1", name: "Edition Champion", image: badgeChampion,   desc: "Top performer in ProEngage 2025 edition",        earned: "2025", color: B_VOL },
     { id: "b2", name: "SPOC Veteran",     image: badgeVeteran,    desc: "Managed 3+ ProEngage editions",                  earned: "2024", color: KPI_TVW },
     { id: "b3", name: "Community Lead",   image: badgeLead,       desc: "Onboarded 100+ volunteers to the platform",      earned: "2024", color: KPI_PROENGAGE },
     { id: "b4", name: "Ambassador",       image: badgeAmbassador, desc: "Represented TCS at Tata Group SPOC Convention",  earned: "2025", color: KPI_YELLOW },
@@ -735,17 +738,17 @@ export default function SPOCDashboardView() {
             return (
               <div style={{ background: "#fff", border: "1.5px solid #c8c6f0", borderRadius: 12, marginBottom: 16, overflow: "hidden" }}>
                 <div onClick={() => setOOpen(x => !x)} style={{ display: "flex", alignItems: "center", gap: 12, padding: "13px 16px", cursor: "pointer", userSelect: "none" }}>
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: B_PINK, flexShrink: 0 }} />
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: B_VOL, flexShrink: 0 }} />
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#aaaabc", marginBottom: 2 }}>SPOC Orientation</div>
                     <div style={{ fontSize: 13.5, fontWeight: 700, color: ACCENT_NAVY, display: "flex", alignItems: "center", gap: 10 }}>
                       E-Module Progress
-                      <span style={{ background: P_PINK, color: B_PINK, fontSize: 11, fontWeight: 700, padding: "2px 9px", borderRadius: 100 }}>{spocData.orientationProgress}/{spocData.totalOrientationModules} modules</span>
+                      <span style={{ background: P_VOL, color: B_VOL, fontSize: 11, fontWeight: 700, padding: "2px 9px", borderRadius: 100 }}>{spocData.orientationProgress}/{spocData.totalOrientationModules} modules</span>
                     </div>
                   </div>
                   <div style={{ width: 80 }}>
                     <div style={{ height: 6, background: "#e8e8f0", borderRadius: 3, overflow: "hidden" }}>
-                      <div style={{ height: "100%", width: `${(spocData.orientationProgress / spocData.totalOrientationModules) * 100}%`, background: B_PINK, borderRadius: 3 }} />
+                      <div style={{ height: "100%", width: `${(spocData.orientationProgress / spocData.totalOrientationModules) * 100}%`, background: B_VOL, borderRadius: 3 }} />
                     </div>
                   </div>
                   <span style={{ fontSize: 18, color: "#dddde8", transform: oOpen ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>›</span>
@@ -753,7 +756,7 @@ export default function SPOCDashboardView() {
                 {oOpen && (
                   <div style={{ padding: "0 16px 16px", borderTop: "1px solid #e8e8f0" }}>
                     <p style={{ fontSize: 13, color: "#6b6b7a", lineHeight: 1.6, margin: "12px 0 14px" }}>Complete all orientation modules to unlock full SPOC capabilities and stay current with ProEngage guidelines.</p>
-                    <button onClick={() => setShowOrientationModal(true)} style={{ background: B_PINK, color: "#fff", border: "none", borderRadius: 10, padding: "9px 20px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>
+                    <button onClick={() => setShowOrientationModal(true)} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "9px 20px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>
                       {spocData.orientationProgress < spocData.totalOrientationModules ? "Continue Orientation" : "Review Orientation"}
                     </button>
                   </div>
@@ -887,7 +890,7 @@ export default function SPOCDashboardView() {
             <div style={{ ...card, textAlign: "center", padding: "36px 32px" }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 8 }}>ProEngage applications open in January 2026</div>
               <div style={{ fontSize: 13.5, color: "#8888a0", lineHeight: 1.65, maxWidth: 380, margin: "0 auto 20px" }}>Register your interest early and be first to know when projects are listed.</div>
-              <button style={{ background: B_PINK, color: "#fff", border: "none", borderRadius: 10, padding: "10px 24px", fontSize: 13.5, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Register Early Interest</button>
+              <button style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "10px 24px", fontSize: 13.5, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Register Early Interest</button>
             </div>
           )}
 
@@ -1092,7 +1095,7 @@ export default function SPOCDashboardView() {
         <div style={{ background: "#f0f1f8", borderRadius: 16, padding: "24px 22px", marginBottom: 52 }}>
           <section id="spoc-tvw" style={{ scrollMarginTop: 108 }}>
             <SectionHeading eyebrow="Tata Volunteering Week · Edition 22" title="TVW Actions" />
-            <div style={{ background: B_PINK, borderRadius: 14, padding: "20px 22px", marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+            <div style={{ background: B_VOL, borderRadius: 14, padding: "20px 22px", marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
               <div>
                 <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 6 }}>Your Events</div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: "#fff" }}>Post a new TVW event</div>
@@ -1104,8 +1107,8 @@ export default function SPOCDashboardView() {
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {TCS_TVW_EVENTS.map((ev: any) => {
                 const isLive = ev.status === "Live";
-                const ac = isLive ? B_PINK : B_BLUE;
-                const pas = isLive ? P_PINK : P_BLUE;
+                const ac = isLive ? B_VOL : B_BLUE;
+                const pas = isLive ? P_VOL : P_BLUE;
                 return (
                   <div key={ev.id} style={{ ...spocCard, display: "flex", gap: 14, alignItems: "center", padding: "16px 18px" }}>
                     <div style={{ width: 42, height: 42, borderRadius: 10, background: pas, border: `1px solid ${ac}22`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -1178,7 +1181,7 @@ export default function SPOCDashboardView() {
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {filteredPending.map((p: any) => (
                   <div key={p.id} style={{ ...card, display: "flex", gap: 12, alignItems: "center", padding: "14px 16px" }}>
-                    <div style={{ width: 36, height: 36, borderRadius: "50%", background: P_PINK, border: `1px solid ${B_PINK}22`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: B_PINK }}>
+                    <div style={{ width: 36, height: 36, borderRadius: "50%", background: P_VOL, border: `1px solid ${B_VOL}22`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: B_VOL }}>
                       {p.name.split(" ").map((n: string) => n[0]).join("").slice(0, 2)}
                     </div>
                     <div style={{ flex: 1 }}>
@@ -1227,33 +1230,33 @@ export default function SPOCDashboardView() {
           <section id="spoc-mgt" style={{ scrollMarginTop: 108 }}>
             <SectionHeading eyebrow="Corporate SPOC · TCS" title="SPOC Management" />
 
-            <CollapsiblePanel title="Company Leaderboard" eyebrow="Top 10" accentColor={B_PINK} badge={COMPANY_LEADERBOARD.length}>
+            <CollapsiblePanel title="Company Leaderboard" eyebrow="Top 10" accentColor={B_VOL} badge={COMPANY_LEADERBOARD.length}>
               <div style={{ paddingTop: 16, display: "flex", flexDirection: "column", gap: 8 }}>
                 {COMPANY_LEADERBOARD.map((c: any) => {
                   const isTCS = c.name === "TCS";
-                  const barColor = c.rank === 1 ? KPI_YELLOW : isTCS ? B_PINK : KPI_TVW;
+                  const barColor = c.rank === 1 ? KPI_YELLOW : isTCS ? B_VOL : KPI_TVW;
                   const maxMatched = COMPANY_LEADERBOARD[0].matched;
                   return (
-                    <div key={c.rank} style={{ display: "flex", alignItems: "center", gap: 12, padding: "8px 12px", borderRadius: 10, background: isTCS ? P_PINK : "#f8f8fc", border: isTCS ? `1.5px solid ${B_PINK}33` : "1.5px solid transparent" }}>
-                      <div style={{ fontSize: 13, fontWeight: 700, color: isTCS ? B_PINK : "#aaaabc", width: 20, textAlign: "center" }}>#{c.rank}</div>
+                    <div key={c.rank} style={{ display: "flex", alignItems: "center", gap: 12, padding: "8px 12px", borderRadius: 10, background: isTCS ? P_VOL : "#f8f8fc", border: isTCS ? `1.5px solid ${B_VOL}33` : "1.5px solid transparent" }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: isTCS ? B_VOL : "#aaaabc", width: 20, textAlign: "center" }}>#{c.rank}</div>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontSize: 13, fontWeight: isTCS ? 700 : 500, color: ACCENT_NAVY, marginBottom: 5 }}>{c.name}</div>
                         <div style={{ height: 5, background: "#e8e8f0", borderRadius: 3, overflow: "hidden" }}>
                           <div style={{ height: "100%", width: `${(c.matched / maxMatched) * 100}%`, background: barColor, borderRadius: 3 }} />
                         </div>
                       </div>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: isTCS ? B_PINK : "#6b6b7a", minWidth: 40, textAlign: "right" }}>{c.matched.toLocaleString()}</div>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: isTCS ? B_VOL : "#6b6b7a", minWidth: 40, textAlign: "right" }}>{c.matched.toLocaleString()}</div>
                     </div>
                   );
                 })}
               </div>
             </CollapsiblePanel>
 
-            <CollapsiblePanel title="SPOC Directory" eyebrow="TCS SPOCs" accentColor={B_PINK} badge={SPOC_DIRECTORY.filter((s: any) => s.company === "TCS").length}>
+            <CollapsiblePanel title="SPOC Directory" eyebrow="TCS SPOCs" accentColor={B_VOL} badge={SPOC_DIRECTORY.filter((s: any) => s.company === "TCS").length}>
               <div style={{ paddingTop: 16, display: "flex", flexDirection: "column", gap: 8 }}>
                 {SPOC_DIRECTORY.filter((s: any) => s.company === "TCS").map((s: any) => (
                   <div key={s.id} style={{ ...card, display: "flex", gap: 12, alignItems: "center", padding: "12px 16px" }}>
-                    <div style={{ width: 34, height: 34, borderRadius: "50%", background: P_PINK, border: `1px solid ${B_PINK}22`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: B_PINK }}>
+                    <div style={{ width: 34, height: 34, borderRadius: "50%", background: P_VOL, border: `1px solid ${B_VOL}22`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: B_VOL }}>
                       {s.name.split(" ").map((n: string) => n[0]).join("").slice(0, 2)}
                     </div>
                     <div style={{ flex: 1 }}>
@@ -1312,12 +1315,12 @@ export default function SPOCDashboardView() {
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 12 }}>
               <div style={{ flex: 1 }}>
                 <div style={{ height: 8, background: "#e8e8f0", borderRadius: 4, overflow: "hidden" }}>
-                  <div style={{ height: "100%", width: `${(spocData.orientationProgress / spocData.totalOrientationModules) * 100}%`, background: B_PINK, borderRadius: 4 }} />
+                  <div style={{ height: "100%", width: `${(spocData.orientationProgress / spocData.totalOrientationModules) * 100}%`, background: B_VOL, borderRadius: 4 }} />
                 </div>
               </div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: B_PINK, whiteSpace: "nowrap" }}>{spocData.orientationProgress}/{spocData.totalOrientationModules} modules</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: B_VOL, whiteSpace: "nowrap" }}>{spocData.orientationProgress}/{spocData.totalOrientationModules} modules</div>
             </div>
-            <button onClick={() => setShowOrientationModal(true)} style={{ background: B_PINK, color: "#fff", border: "none", borderRadius: 10, padding: "10px 20px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>
+            <button onClick={() => setShowOrientationModal(true)} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "10px 20px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>
               {spocData.orientationProgress < spocData.totalOrientationModules ? "Continue Orientation" : "Review Orientation"}
             </button>
           </div>
@@ -1331,7 +1334,7 @@ export default function SPOCDashboardView() {
       <div style={{ background: "#f8f9ff", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif", paddingBottom: 80 }}>
 
         {/* Greeting bar */}
-        <div style={{ background: spocMode ? "linear-gradient(135deg, #F25F6E 0%, #FF6B7A 60%, #FF8A95 100%)" : "linear-gradient(135deg, #065666 0%, #0B7285 60%, #0891b2 100%)", padding: "92px 40px 28px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24, flexWrap: "wrap" }}>
+        <div style={{ background: spocMode ? "linear-gradient(135deg, #1a2a5e 0%, #333399 60%, #4376BB 100%)" : "linear-gradient(135deg, #065666 0%, #0B7285 60%, #0891b2 100%)", padding: "92px 40px 28px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24, flexWrap: "wrap" }}>
           <div>
             <div style={{ fontSize: 24, fontWeight: 900, color: "#fff", letterSpacing: -0.5 }}>
               {spocData.firstName}, {spocMode ? "take charge." : "this is your volunteering space."}
@@ -1365,15 +1368,7 @@ export default function SPOCDashboardView() {
           )}
         </div>
 
-        {/* Toggle bar */}
-        <div style={{ background: spocMode ? "linear-gradient(135deg, #F25F6E 0%, #FF6B7A 60%, #FF8A95 100%)" : "linear-gradient(135deg, #065666 0%, #0B7285 60%, #0891b2 100%)", padding: "0 40px", display: "flex", alignItems: "center", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-          {[{ id: false, label: "My Volunteer Space" }, { id: true, label: "SPOC Corner" }].map(t => (
-            <button key={String(t.id)} onClick={() => { setSpocMode(t.id); setStatsStarted(false); setTimeout(() => setStatsStarted(true), 300); }}
-              style={{ padding: "14px 22px", background: "none", border: "none", borderBottom: spocMode === t.id ? `3px solid ${B_PINK}` : "3px solid transparent", color: spocMode === t.id ? "#fff" : "rgba(255,255,255,0.45)", fontSize: 13.5, fontWeight: spocMode === t.id ? 700 : 400, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", transition: "all 0.2s", marginBottom: -1 }}>
-              {t.label}
-            </button>
-          ))}
-        </div>
+        {/* No tab bar here — toggle lives above the right-rail nav */}
 
         {/* Body */}
         <div style={{ display: "flex", maxWidth: 1200, margin: "0 auto", padding: "40px 40px 100px", gap: 44 }}>
@@ -1384,15 +1379,51 @@ export default function SPOCDashboardView() {
 
           {/* Right rail */}
           <div style={{ width: 148, flexShrink: 0, position: "sticky", top: 108, alignSelf: "flex-start" }}>
+
+            {/* Mode toggle */}
+            <div style={{ marginBottom: 24, background: "#fff", border: "1px solid #e8e8f0", borderRadius: 12, padding: "10px 10px 10px" }}>
+              <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: "1.6px", textTransform: "uppercase", color: "#c0c0cc", marginBottom: 8, paddingLeft: 2 }}>View</div>
+              {/* Slider track */}
+              <div style={{ position: "relative", background: "#f0f1f7", borderRadius: 8, padding: 3, display: "flex", gap: 0 }}>
+                {/* Sliding pill */}
+                <div style={{
+                  position: "absolute", top: 3, left: spocMode ? "calc(50% + 1.5px)" : 3,
+                  width: "calc(50% - 4.5px)", bottom: 3,
+                  background: spocMode ? B_SPOC_TOG : B_VOL,
+                  borderRadius: 6,
+                  transition: "left 0.22s cubic-bezier(0.4,0,0.2,1), background 0.22s",
+                  boxShadow: "0 1px 4px rgba(0,0,0,0.14)",
+                }} />
+                {[{ id: false, label: "My Space" }, { id: true, label: "SPOC" }].map(t => (
+                  <button key={String(t.id)}
+                    onClick={() => { setSpocMode(t.id); setStatsStarted(false); setTimeout(() => setStatsStarted(true), 300); }}
+                    style={{
+                      flex: 1, position: "relative", zIndex: 1,
+                      background: "none", border: "none", borderRadius: 6,
+                      padding: "7px 4px",
+                      fontSize: 11.5, fontWeight: spocMode === t.id ? 700 : 500,
+                      color: spocMode === t.id ? "#fff" : "#9090a8",
+                      cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
+                      transition: "color 0.22s",
+                      whiteSpace: "nowrap",
+                    }}>
+                    {t.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#c0c0cc", marginBottom: 12 }}>On this page</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
               {currentSections.map(s => {
                 const on = activeSection === s.id;
+                const railAccent = spocMode ? B_SPOC_TOG : B_VOL;
+                const railPastel = spocMode ? P_SPOC : P_VOL;
                 return (
                   <button key={s.id} onClick={() => scrollTo(s.id)}
-                    style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 10px", borderRadius: 8, border: "none", background: on ? "#FCE4F3" : "transparent", cursor: "pointer", textAlign: "left", transition: "background 0.18s", fontFamily: "'DM Sans', sans-serif" }}>
-                    <div style={{ width: 2, height: 12, borderRadius: 2, background: on ? B_PINK : "#dddde8", flexShrink: 0, transition: "background 0.18s" }} />
-                    <span style={{ fontSize: 12.5, fontWeight: on ? 700 : 400, color: on ? B_PINK : "#aaaabc", transition: "color 0.18s" }}>{s.label}</span>
+                    style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 10px", borderRadius: 8, border: "none", background: on ? railPastel : "transparent", cursor: "pointer", textAlign: "left", transition: "background 0.18s", fontFamily: "'DM Sans', sans-serif" }}>
+                    <div style={{ width: 2, height: 12, borderRadius: 2, background: on ? railAccent : "#dddde8", flexShrink: 0, transition: "background 0.18s" }} />
+                    <span style={{ fontSize: 12.5, fontWeight: on ? 700 : 400, color: on ? railAccent : "#aaaabc", transition: "color 0.18s" }}>{s.label}</span>
                   </button>
                 );
               })}
