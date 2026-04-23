@@ -30,7 +30,7 @@ export { SectionDivider };
 // DESIGN TOKENS
 // ─────────────────────────────────────────────────────────────────────────────
 // Accent for changed tiles: #E8401C (TSG red-orange), replacing forest green
-const B_ACCENT = "#E8401C";
+const B_ACCENT = "#F93822";
 // All eyebrow / mono text → Noto Sans (no DM Mono)
 const FONT_SANS = "'Noto Sans', 'DM Sans', ui-sans-serif, system-ui, sans-serif";
 
