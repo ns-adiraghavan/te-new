@@ -86,8 +86,19 @@ const PAST_EVENTS = [
 ];
 
 export default function MediaView() {
-  const [activeTab, setActiveTab] = useState<typeof TABS[number]>("Photos");
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState<typeof TABS[number]>("Impact Stories");
   const { triggerToast } = useAppContext();
+
+  useEffect(() => {
+    const raw = location.hash.replace(/^#/, "");
+    const params = new URLSearchParams(raw);
+    const key = params.get("tab");
+    if (key && HASH_TO_TAB[key]) {
+      setActiveTab(HASH_TO_TAB[key]);
+      setTimeout(() => document.getElementById("media-content")?.scrollIntoView({ behavior: "smooth" }), 120);
+    }
+  }, [location.hash]);
 
   return (
     <div style={{ paddingTop: 0, paddingBottom: 0, background: "#fff", minHeight: "100vh" }}>
