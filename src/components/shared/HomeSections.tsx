@@ -354,10 +354,10 @@ export function ProgrammeSpotlight() {
         id="programmes"
         className="section-block"
         style={{
-          background: "#ffffff",
+          background: "#fafafa",
           padding: "72px 48px",
-          backgroundImage: "radial-gradient(circle, rgba(51,51,153,0.065) 1px, transparent 1px)",
-          backgroundSize: "22px 22px",
+          backgroundImage: "radial-gradient(circle, rgba(51,51,153,0.09) 1.2px, transparent 1.2px)",
+          backgroundSize: "20px 20px",
         }}
       >
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
@@ -715,10 +715,10 @@ export function NumbersSection() {
   return (
     // Radial dot grid texture on the Numbers white section
     <section className="section-block" style={{
-      background: "#ffffff",
+      background: "#fafafa",
       padding: "72px 48px",
-      backgroundImage: "radial-gradient(circle, rgba(51,51,153,0.055) 1px, transparent 1px)",
-      backgroundSize: "22px 22px",
+      backgroundImage: "radial-gradient(circle, rgba(51,51,153,0.09) 1.2px, transparent 1.2px)",
+      backgroundSize: "20px 20px",
     }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
 
