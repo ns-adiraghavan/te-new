@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useAppContext } from "@/context/AppContext";
 import { SOCIAL_POSTS } from "@/data/homeSharedData";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
@@ -11,7 +12,15 @@ const B_BLUE = "#1434A4";
 const ACCENT_NAVY = "#0D1B3E";
 const HERO_BG = "#2389BD";
 
-const TABS = ["Photos", "Videos", "Impact Stories", "Social Media", "Events"] as const;
+const TABS = ["Impact Stories", "Photos", "Videos", "Social Media", "Events"] as const;
+
+const HASH_TO_TAB: Record<string, typeof TABS[number]> = {
+  stories: "Impact Stories",
+  photos: "Photos",
+  videos: "Videos",
+  social: "Social Media",
+  events: "Events",
+};
 
 const SECTIONS = [
   { id: "media-hero", label: "Overview" },
@@ -77,8 +86,19 @@ const PAST_EVENTS = [
 ];
 
 export default function MediaView() {
-  const [activeTab, setActiveTab] = useState<typeof TABS[number]>("Photos");
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState<typeof TABS[number]>("Impact Stories");
   const { triggerToast } = useAppContext();
+
+  useEffect(() => {
+    const raw = location.hash.replace(/^#/, "");
+    const params = new URLSearchParams(raw);
+    const key = params.get("tab");
+    if (key && HASH_TO_TAB[key]) {
+      setActiveTab(HASH_TO_TAB[key]);
+      setTimeout(() => document.getElementById("media-content")?.scrollIntoView({ behavior: "smooth" }), 120);
+    }
+  }, [location.hash]);
 
   return (
     <div style={{ paddingTop: 0, paddingBottom: 0, background: "#fff", minHeight: "100vh" }}>

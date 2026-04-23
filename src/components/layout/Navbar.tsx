@@ -32,7 +32,7 @@ const Navbar = ({
   onLogout,
   user,
 }: {
-  onNavigate: (view: View) => void;
+  onNavigate: (view: View, hash?: string) => void;
   isLoggedIn: boolean;
   onLogout: () => void;
   user: any;
@@ -329,10 +329,11 @@ const Navbar = ({
                 Media &amp; Resources <ChevronDown size={12} />
               </span>
               <div className={`${panelCls} w-64`}>
-                <span onClick={() => onNavigate("media")} className={itemCls}>Impact Stories</span>
-                <span onClick={() => onNavigate("media")} className={itemCls}>Photo Gallery</span>
-                <span onClick={() => onNavigate("media")} className={itemCls}>Video Gallery</span>
-                <span onClick={() => onNavigate("media")} className={itemCls}>Social Media Snippets</span>
+                <span onClick={() => onNavigate("media", "tab=stories")} className={itemCls}>Impact Stories</span>
+                <span onClick={() => onNavigate("media", "tab=photos")} className={itemCls}>Photo Gallery</span>
+                <span onClick={() => onNavigate("media", "tab=videos")} className={itemCls}>Video Gallery</span>
+                <span onClick={() => onNavigate("media", "tab=social")} className={itemCls}>Social Media Snippets</span>
+                <span onClick={() => onNavigate("media", "tab=events")} className={itemCls}>Events</span>
               </div>
             </div>
 
