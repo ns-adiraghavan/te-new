@@ -290,6 +290,7 @@ const Navbar = ({
               </span>
               <div className={`${panelCls} w-64`}>
                 <span onClick={() => onNavigate("about")} className={itemCls}>TE Vision &amp; Mission</span>
+                <span onClick={() => onNavigate("about-gcso")} className={itemCls}>Letter from GCSO</span>
                 <span onClick={() => onNavigate("journey")} className={itemCls}>Our Journey</span>
                 <span onClick={() => onNavigate("about-events")} className={itemCls}>Events</span>
                 <span onClick={() => onNavigate("about-contact")} className={itemCls}>Contact Us</span>
