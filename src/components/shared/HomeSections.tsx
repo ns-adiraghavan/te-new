@@ -366,7 +366,7 @@ export function ProgrammeSpotlight() {
           <div className="section-header">
             <SectionEyebrow label="Our Programmes" />
             <SectionH2>
-              Volunteering <em style={{ fontStyle: "italic", color: "#4B4DB8" }}>Opportunities</em>
+              Volunteering <em style={{ fontStyle: "italic", color: B_YELLOW }}>Opportunities</em>
             </SectionH2>
             <div style={{ width: 120, height: 1.4, borderRadius: 2, background: "#e8e8f0", marginTop: 10, overflow: "hidden" }}>
               <div className="te-draw" style={{ height: "100%", background: B_INDIGO, borderRadius: 2 }} />
@@ -725,7 +725,7 @@ export function NumbersSection() {
         <div className="section-header">
           <SectionEyebrow label="By the numbers" />
           <SectionH2>
-            In the <em style={{ fontStyle: "italic", color: "#4B4DB8" }}>Spotlight</em>
+            In the <em style={{ fontStyle: "italic", color: B_YELLOW }}>Spotlight</em>
           </SectionH2>
           <div style={{ width: 48, height: 1.4, borderRadius: 2, background: B_TEAL, marginTop: 10 }} />
         </div>
