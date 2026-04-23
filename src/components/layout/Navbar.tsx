@@ -468,7 +468,7 @@ const Navbar = ({
                   Register
                 </button>
                 {/* Tata logo — always white on dark nav */}
-                <img src={tataLogo} alt="Tata" className="h-8 w-8 object-contain hidden md:block brightness-0 invert" />
+                <img src={tataLogo} alt="Tata" className="h-8 w-8 object-contain hidden md:block" />
               </div>
             )}
           </div>
