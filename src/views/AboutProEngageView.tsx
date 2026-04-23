@@ -465,7 +465,7 @@ export default function AboutProEngageView() {
                 {/* Marker dot */}
                 <div style={{ position: "absolute", top: -10, left: 28, width: 20, height: 20, borderRadius: "50%", background: COLOUR, border: "4px solid #fff", boxShadow: `0 0 0 2px ${COLOUR}40` }} />
                 <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", color: COLOUR, textTransform: "uppercase", marginTop: 10, marginBottom: 8 }}>{t.cycle}</div>
-                <div style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-1px", lineHeight: 1, marginBottom: 14 }}>{t.date}</div>
+                <div style={{ fontSize: 32, fontWeight: 900, color: COLOUR, letterSpacing: "-1px", lineHeight: 1, marginBottom: 14 }}>{t.date}</div>
                 <div style={{ width: 32, height: 2, background: COLOUR, borderRadius: 2, marginBottom: 16 }} />
                 <p style={{ fontSize: 14, color: "#475569", lineHeight: 1.7, margin: 0 }}>{t.desc}</p>
               </div>

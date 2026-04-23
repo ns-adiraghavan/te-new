@@ -304,12 +304,12 @@ export default function DisasterResponseView() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 48 }}>
             <div style={{ background: COLOUR_LIGHT, borderRadius: 16, padding: "28px 26px", border: `1px solid ${COLOUR}22` }}>
               <div style={{ width: 32, height: 3, background: COLOUR, borderRadius: 2, marginBottom: 18 }} />
-              <div style={{ fontSize: 15, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 10 }}>Channel 1</div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: COLOUR, marginBottom: 10 }}>Channel 1</div>
               <div style={{ fontSize: 14, color: "#475569", lineHeight: 1.7 }}>Volunteers who have registered their interest on the Tata Engage platform</div>
             </div>
             <div style={{ background: COLOUR_LIGHT, borderRadius: 16, padding: "28px 26px", border: `1px solid ${COLOUR}22` }}>
               <div style={{ width: 32, height: 3, background: COLOUR, borderRadius: 2, marginBottom: 18 }} />
-              <div style={{ fontSize: 15, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 10 }}>Channel 2</div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: COLOUR, marginBottom: 10 }}>Channel 2</div>
               <div style={{ fontSize: 14, color: "#475569", lineHeight: 1.7 }}>Nominations facilitated through the CSR Heads of Tata companies</div>
             </div>
           </div>
