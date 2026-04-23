@@ -157,28 +157,9 @@ function Hero() {
         <h1 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(2.4rem,5vw,3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px", maxWidth: 600 }}>
           Events & Global Engagement
         </h1>
-        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 480, margin: "0 0 48px" }}>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 480, margin: 0 }}>
           Tata Engage convenes leaders, volunteers, and global partners to celebrate the spirit of giving and chart the future of corporate volunteering.
         </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 0, borderRadius: 14, overflow: "hidden", boxShadow: "0 8px 32px rgba(0,0,0,0.25)", maxWidth: 780 }}>
-          {[
-            { date: "Nov 2022", label: "Tata Sustainability Conclave", tag: "TSC 2022", bg: ACCENT, text: "#fff" },
-            { date: "Mar 2024", label: "Tata Volunteerism Conference", tag: "VOLCON 2024", bg: B_PINK, text: "#fff" },
-            { date: "Oct 2022", label: "IAVE World Volunteer Conference", tag: "Abu Dhabi", bg: B_ORANGE, text: "#fff" },
-          ].map((b, i) => (
-            <div
-              key={b.tag}
-              style={{ background: b.bg, padding: "28px 24px", cursor: "pointer", borderRight: i < 2 ? "1px solid rgba(255,255,255,0.15)" : "none", transition: "filter 0.2s" }}
-              onClick={() => document.getElementById(["events-tsc22", "events-volcon", "events-iave"][i])?.scrollIntoView({ behavior: "smooth" })}
-              onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.filter = "brightness(0.9)"}
-              onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.filter = "none"}
-            >
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: b.text === "#fff" ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.4)", marginBottom: 10 }}>{b.date}</p>
-              <p style={{ fontSize: 14, fontWeight: 800, color: b.text, lineHeight: 1.35, marginBottom: 10 }}>{b.label}</p>
-              <span style={{ fontSize: 11, fontWeight: 700, background: b.text === "#fff" ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.10)", color: b.text, borderRadius: 100, padding: "3px 10px" }}>{b.tag}</span>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
@@ -305,17 +286,7 @@ function EventSection({
           </div>
         )}
 
-        {/* Highlights row */}
-        {highlights && (
-          <div style={{ display: "grid", gridTemplateColumns: `repeat(${highlights.length},1fr)`, gap: 12 }}>
-            {highlights.map(h => (
-              <div key={h.label} style={{ background: accentLight, borderRadius: 12, padding: "20px 20px",  }}>
-                <div style={{ fontSize: 22, fontWeight: 900, color: accentDark, letterSpacing: "-0.5px" }}>{h.value}</div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: accentDark + "99", marginTop: 5, letterSpacing: "0.5px" }}>{h.label}</div>
-              </div>
-            ))}
-          </div>
-        )}
+
 
         {/* Awards section: table + optional photo box side-by-side */}
         {awardsTable && (

@@ -469,7 +469,7 @@ export default function JourneyView() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(155deg, rgba(8,12,22,0.62) 0%, rgba(8,12,22,0.38) 100%)",
+            background: "linear-gradient(to right, rgba(8,12,22,0.82) 0%, rgba(8,12,22,0.65) 40%, rgba(8,12,22,0.18) 75%, rgba(8,12,22,0.10) 100%)",
           }}
         />
 
@@ -480,11 +480,10 @@ export default function JourneyView() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            padding: "0 72px",
             paddingTop: 64,
-            maxWidth: 880,
           }}
         >
+          <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
@@ -545,6 +544,7 @@ export default function JourneyView() {
             From one million hours to ten. Eleven years of the Tata Group's
             commitment to purposeful volunteering — and counting.
           </p>
+          </div>
         </div>
 
         {/* Bouncing chevrons — bottom right */}
