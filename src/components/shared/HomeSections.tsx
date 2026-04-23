@@ -971,8 +971,8 @@ export function JourneySection() {
       backgroundSize: "cover",
       backgroundPosition: "center",
       position: "relative", overflow: "hidden",
-      // Compact padding to match QuoteBanner height
-      padding: "28px 48px",
+      // Reduced from 72px to ~36px for 50% height reduction
+      padding: "40px 48px",
     }}>
       {/* Dark overlay */}
       <div style={{
@@ -990,16 +990,13 @@ export function JourneySection() {
 
       <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
 
-        {/* Header — compact */}
-        <div style={{ marginBottom: 14, textAlign: "center" }}>
-          <div style={{
-            fontFamily: FONT_SANS, fontSize: 10, fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase",
-            color: B_YELLOW, marginBottom: 4,
-          }}>Our Journey</div>
-          <div style={{ fontFamily: FONT_SANS, fontSize: 18, fontWeight: 800, color: "white", lineHeight: 1.2 }}>
+        {/* Header */}
+        <div style={{ marginBottom: 28 }}>
+          <SectionEyebrow label="Our Journey" dark />
+          <SectionH2 dark>
             A <em style={{ fontStyle: "italic", color: B_ACCENT }}>Decade</em> of Giving Back
-          </div>
+          </SectionH2>
+          <div style={{ width: 48, height: 1.4, borderRadius: 2, background: B_YELLOW, marginTop: 10 }} />
         </div>
 
         {/* Desktop timeline — compact */}
@@ -1017,7 +1014,7 @@ export function JourneySection() {
                     display: "flex", flexDirection: "column",
                     alignItems: "center", textAlign: "center",
                     visibility: isAbove ? "visible" : "hidden",
-                    minHeight: 48,
+                    minHeight: 72,                     // reduced from 100
                     opacity: vis ? 1 : 0,
                     transform: vis ? "translateY(0)" : "translateY(-10px)",
                     transition: `opacity 0.45s ease ${i * 0.09}s, transform 0.45s ease ${i * 0.09}s`,
@@ -1025,19 +1022,19 @@ export function JourneySection() {
                 >
                   <span style={{
                     fontFamily: FONT_SANS,
-                    fontSize: 13, fontWeight: 900, color: m.colour,
+                    fontSize: 16, fontWeight: 900, color: m.colour,
                     background: `${m.colour}14`,
-                    borderRadius: 4, padding: "1px 6px",
-                    letterSpacing: "-0.3px", marginBottom: 2,
+                    borderRadius: 5, padding: "2px 7px",
+                    letterSpacing: "-0.3px", marginBottom: 4,
                     display: "inline-block",
                   }}>
                     {m.year}
                   </span>
-                  <div style={{ fontFamily: FONT_SANS, fontSize: 10, fontWeight: 800, color: "white", lineHeight: 1.25, marginBottom: 4 }}>
+                  <div style={{ fontFamily: FONT_SANS, fontSize: 11, fontWeight: 800, color: "white", lineHeight: 1.3, marginBottom: 6 }}>
                     {m.title}
                   </div>
                   <div style={{
-                    width: 1.5, flex: 1, minHeight: 6,
+                    width: 1.5, flex: 1, minHeight: 10,
                     background: `linear-gradient(to bottom, ${m.colour}, ${m.colour}44)`,
                     opacity: vis ? 1 : 0,
                     transition: `opacity 0.55s ease ${i * 0.09 + 0.25}s`,
@@ -1048,14 +1045,14 @@ export function JourneySection() {
           </div>
 
           {/* TRACK */}
-          <div style={{ position: "relative", height: 10 }}>
-            <svg width="100%" height="10" viewBox="0 0 1000 10" preserveAspectRatio="none"
+          <div style={{ position: "relative", height: 14 }}>
+            <svg width="100%" height="14" viewBox="0 0 1000 14" preserveAspectRatio="none"
               style={{ position: "absolute", top: 0, left: 0 }}>
-              <line x1="0" y1="5" x2="1000" y2="5" stroke="rgba(255,255,255,0.30)" strokeWidth="1.2" />
+              <line x1="0" y1="7" x2="1000" y2="7" stroke="rgba(255,255,255,0.30)" strokeWidth="1.2" />
               {milestones.map((m, i) => {
                 const cx = (i / (milestones.length - 1)) * 1000;
                 return (
-                  <circle key={i} cx={cx} cy="5" r="3.5"
+                  <circle key={i} cx={cx} cy="7" r="4"
                     fill={m.colour} stroke="rgba(255,255,255,0.5)" strokeWidth="1.5"
                     opacity={vis ? 1 : 0}
                     style={{ transition: `opacity 0.35s ease ${i * 0.1 + 0.35}s` }}
@@ -1077,29 +1074,29 @@ export function JourneySection() {
                     display: "flex", flexDirection: "column",
                     alignItems: "center", textAlign: "center",
                     visibility: isBelow ? "visible" : "hidden",
-                    minHeight: 48,
+                    minHeight: 72,
                     opacity: vis ? 1 : 0,
                     transform: vis ? "translateY(0)" : "translateY(10px)",
                     transition: `opacity 0.45s ease ${i * 0.09}s, transform 0.45s ease ${i * 0.09}s`,
                   }}
                 >
                   <div style={{
-                    width: 1.5, flex: 1, minHeight: 6,
+                    width: 1.5, flex: 1, minHeight: 10,
                     background: `linear-gradient(to bottom, ${m.colour}44, ${m.colour})`,
                     opacity: vis ? 1 : 0,
                     transition: `opacity 0.55s ease ${i * 0.09 + 0.25}s`,
                   }} />
                   <span style={{
                     fontFamily: FONT_SANS,
-                    fontSize: 13, fontWeight: 900, color: m.colour,
+                    fontSize: 16, fontWeight: 900, color: m.colour,
                     background: `${m.colour}14`,
-                    borderRadius: 4, padding: "1px 6px",
-                    letterSpacing: "-0.3px", marginTop: 4, marginBottom: 2,
+                    borderRadius: 5, padding: "2px 7px",
+                    letterSpacing: "-0.3px", marginTop: 6, marginBottom: 3,
                     display: "inline-block",
                   }}>
                     {m.year}
                   </span>
-                  <div style={{ fontFamily: FONT_SANS, fontSize: 10, fontWeight: 800, color: "white", lineHeight: 1.25 }}>
+                  <div style={{ fontFamily: FONT_SANS, fontSize: 11, fontWeight: 800, color: "white", lineHeight: 1.3 }}>
                     {m.title}
                   </div>
                 </div>
@@ -1126,20 +1123,20 @@ export function JourneySection() {
           ))}
         </div>
 
-        <div style={{ marginTop: 14, display: "flex", justifyContent: "center" }}>
+        <div style={{ marginTop: 28, display: "flex", justifyContent: "center" }}>
           <button
             onClick={() => navigate("journey")}
             className="hover-lift"
             style={{
-              display: "inline-flex", alignItems: "center", gap: 6,
-              fontFamily: FONT_SANS, fontSize: 11, fontWeight: 800,
-              padding: "6px 16px", borderRadius: 8,
+              display: "inline-flex", alignItems: "center", gap: 8,
+              fontFamily: FONT_SANS, fontSize: 13, fontWeight: 800,
+              padding: "10px 24px", borderRadius: 10,
               background: B_TICKER, color: "white",
               border: "none", cursor: "pointer",
               boxShadow: `0 4px 16px ${B_TICKER}40`,
             }}
           >
-            Read our full story <ArrowRight size={11} />
+            Read our full story <ArrowRight size={13} />
           </button>
         </div>
       </div>
