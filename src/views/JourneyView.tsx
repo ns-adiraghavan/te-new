@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
+import SubPageDotRail from "@/components/shared/SubPageDotRail";
 
 // ── Asset imports ─────────────────────────────────────────────────────────────
 import imgTrent        from "@/assets/trent.jpg";
