@@ -123,29 +123,23 @@ export default function DisasterResponseView() {
   return (
     <div style={{ background: "#fff", minHeight: "100vh", position: "relative" }}>
 
-      {/* Sticky top accent stripe */}
-      <div style={{ height: 4, background: COLOUR, position: "sticky", top: 0, zIndex: 40 }} />
-
       <SubPageDotRail sections={SECTIONS} />
 
-      {/* ════════════════════ HERO ════════════════════ */}
-      <div style={{ position: "relative", minHeight: "92vh", overflow: "hidden", display: "flex", alignItems: "center" }}>
-        <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=1800"
-          alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} referrerPolicy="no-referrer" />
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(108deg, ${COLOUR}f5 0%, ${COLOUR}e8 28%, ${COLOUR}b0 52%, ${COLOUR}50 70%, ${COLOUR}18 100%)` }} />
+      {/* ════════════════════ HERO — full-bleed accent ════════════════════ */}
+      <div style={{ position: "relative", overflow: "hidden", display: "flex", alignItems: "center", background: `linear-gradient(135deg, ${COLOUR_MID} 0%, ${COLOUR} 100%)`, paddingTop: 64 }}>
         <div style={DIAG} />
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, transparent, #fff)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: -120, right: -100, width: 520, height: 520, background: "radial-gradient(circle, rgba(255,255,255,0.14) 0%, transparent 68%)", pointerEvents: "none" }} />
 
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "120px 56px 96px", width: "100%" }}>
-          <div style={{ maxWidth: 580 }}>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.2px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 16 }}>
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "120px 56px 110px", width: "100%" }}>
+          <div style={{ maxWidth: 640 }}>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "2.2px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", marginBottom: 16 }}>
               Emergency Volunteering · One Tata Response
             </p>
-            <div style={{ width: 32, height: 2, background: "rgba(255,255,255,0.45)", borderRadius: 2, marginBottom: 22 }} />
+            <div style={{ width: 32, height: 2, background: "rgba(255,255,255,0.55)", borderRadius: 2, marginBottom: 22 }} />
             <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(2.8rem, 5.5vw, 4.2rem)", fontWeight: 900, color: "#fff", lineHeight: 1.02, letterSpacing: "-2px", margin: "0 0 22px", whiteSpace: "pre-line" }}>
               {"Volunteering\nfor Disaster\nResponse"}
             </h1>
-            <p style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.78)", margin: "0 0 44px", maxWidth: 480 }}>
+            <p style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.92)", margin: "0 0 44px", maxWidth: 540 }}>
               Responding to humanitarian crises has always been integral to the Tata ethos. In moments of natural and humanitarian disasters, the Tata Engage platform serves as a vital channel to mobilise employees across the Group, enabling quick, coordinated volunteer action.
             </p>
             <div style={{ display: "flex", gap: 12 }}>
@@ -154,14 +148,14 @@ export default function DisasterResponseView() {
                 Register your interest →
               </button>
               <button onClick={() => document.getElementById("dr-overview")?.scrollIntoView({ behavior: "smooth" })}
-                style={{ background: "rgba(255,255,255,0.11)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.26)", borderRadius: 10, padding: "12px 22px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
+                style={{ background: "rgba(255,255,255,0.14)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.3)", borderRadius: 10, padding: "12px 22px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
                 Learn more
               </button>
             </div>
           </div>
         </div>
 
-        <div style={{ position: "absolute", bottom: 100, right: 56, background: "rgba(0,0,0,0.28)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>
+        <div style={{ position: "absolute", bottom: 32, right: 56, background: "rgba(0,0,0,0.22)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 100, padding: "7px 18px", fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.85)" }}>
           Rapid · Organised · Compassionate
         </div>
       </div>
