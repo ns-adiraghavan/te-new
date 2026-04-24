@@ -1307,6 +1307,7 @@ export function JourneySection() {
     return () => obs.disconnect();
   }, []);
 
+  // 5 milestones — left-to-right, slight zigzag (FY15 topmost, FY25 bottommost)
   const milestones = [
     { fy: "FY 2015", colour: "#333399", text: "Launched Tata Engage\nTVW & ProEngage" },
     { fy: "FY 2017", colour: "#1E6BB8", text: "Group volunteering\nguidelines launched" },
@@ -1315,26 +1316,47 @@ export function JourneySection() {
     { fy: "FY 2025", colour: "#E8401C", text: "10.87M hours\nhighest ever" },
   ];
 
+  // All available images — will be distributed to fill every gap
   const imgs = [
-    tataElxsiImg,
-    airIndia,
-    tataCommunications,
-    tataProjects,
-    tataBball,
-    drPhoto,
-    tataMotors3,
-    happyEyes,
-    tataAig,
-    tataInfinit,
-    drPhoto2,
-    tataComm2,
-    tataMotors1,
-    trent1,
-    titanImg,
-    tajSatsImg,
-    trentImg,
-    infiniti,
-    tataPower,
+    tataElxsiImg, airIndia, tataCommunications, tataProjects, tataBball,
+    drPhoto, tataMotors3, happyEyes, tataAig, tataInfinit,
+    drPhoto2, tataComm2, tataMotors1, trent1, titanImg,
+    tajSatsImg, trentImg, infiniti, tataPower,
+  ];
+
+  // Grid: 10 cols × 6 rows of 52px. Milestones placed left→right on a gentle zigzag.
+  // Row 0 = top. FY15 at col 0-1 row 0-2, FY17 at col 2-3 row 1-3,
+  // FY19 at col 4-5 row 2-4, FY22 at col 6-7 row 3-5, FY25 at col 8-9 row 4-6.
+  const mPositions = [
+    { col: "1 / 3", row: "1 / 3" },
+    { col: "3 / 5", row: "2 / 4" },
+    { col: "5 / 7", row: "3 / 5" },
+    { col: "7 / 9", row: "4 / 6" },
+    { col: "9 / 11", row: "5 / 7" },
+  ];
+
+  // Remaining cells for photos — fill column-by-column to avoid any empty cells
+  // We pre-define photo placements that don't overlap with milestones
+  const photoSlots: { col: string; row: string; aspect?: number }[] = [
+    { col: "1 / 3", row: "3 / 5" },
+    { col: "1 / 2", row: "5 / 7" },
+    { col: "2 / 3", row: "5 / 7" },
+    { col: "3 / 5", row: "4 / 6" },
+    { col: "3 / 5", row: "6 / 7" },
+    { col: "3 / 4", row: "1 / 2" },
+    { col: "4 / 5", row: "1 / 2" },
+    { col: "5 / 7", row: "1 / 3" },
+    { col: "5 / 6", row: "5 / 7" },
+    { col: "6 / 7", row: "5 / 7" },
+    { col: "7 / 9", row: "1 / 3" },
+    { col: "7 / 8", row: "3 / 4" },
+    { col: "8 / 9", row: "3 / 4" },
+    { col: "7 / 9", row: "6 / 7" },
+    { col: "9 / 11", row: "1 / 3" },
+    { col: "9 / 10", row: "3 / 5" },
+    { col: "10 / 11", row: "3 / 5" },
+    { col: "9 / 11", row: "7 / 8" },
+    { col: "1 / 3", row: "7 / 8" },
   ];
 
   return (
@@ -1342,13 +1364,15 @@ export function JourneySection() {
       ref={ref}
       className="section-block"
       style={{
-        background: "#f3f4f8",
+        background: "#e8e9ee",
+        backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.18) 1px, transparent 1px)",
+        backgroundSize: "18px 18px",
         padding: "32px 48px",
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* Header */}
-        <div style={{ marginBottom: 12 }}>
+        <div style={{ marginBottom: 14 }}>
           <SectionEyebrow label="Our Journey" />
           <SectionH2>
             A <em style={{ fontStyle: "italic", color: B_INDIGO }}>Decade</em> of Giving Back
@@ -1356,117 +1380,70 @@ export function JourneySection() {
           <div style={{ width: 36, height: 1.2, background: B_INDIGO, marginTop: 6 }} />
         </div>
 
-        {/* Grid — HARD LIMITED TO 5 ROWS */}
+        {/* Grid — 10 cols × 6 rows, each 52px tall, 4px gap */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(6, 1fr)",
-            gridAutoRows: "60px",
+            gridTemplateColumns: "repeat(10, 1fr)",
+            gridTemplateRows: "repeat(6, 52px)",
             gap: 4,
-            maxHeight: "300px", // 👈 forces 5 rows (5 × 60)
-            overflow: "hidden",
           }}
         >
-          {/* Images */}
-          {imgs.slice(0, 16).map((img, i) => {
-            const spans = [
-              { col: "span 2", row: "span 2" },
-              { col: "span 1", row: "span 1" },
-              { col: "span 1", row: "span 1" },
-              { col: "span 2", row: "span 1" },
-            ];
-            const s = spans[i % spans.length];
+          {/* Photos */}
+          {photoSlots.map((slot, i) => (
+            <div
+              key={"ph" + i}
+              style={{
+                gridColumn: slot.col,
+                gridRow: slot.row,
+                borderRadius: 5,
+                overflow: "hidden",
+                opacity: vis ? 1 : 0,
+                transition: `opacity 0.25s ease ${i * 0.015}s`,
+              }}
+            >
+              <img
+                src={imgs[i % imgs.length]}
+                alt=""
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+          ))}
 
-            return (
-              <div
-                key={"img" + i}
-                style={{
-                  gridColumn: s.col,
-                  gridRow: s.row,
-                  borderRadius: 4,
-                  overflow: "hidden",
-                  opacity: vis ? 1 : 0,
-                  transition: `opacity 0.25s ease ${i * 0.02}s`,
-                }}
-              >
-                <img src={img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          {/* Milestone tiles — left→right zigzag */}
+          {milestones.map((m, i) => (
+            <div
+              key={"ms" + i}
+              style={{
+                gridColumn: mPositions[i].col,
+                gridRow: mPositions[i].row,
+                background: m.colour,
+                borderRadius: 5,
+                padding: "8px 10px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                opacity: vis ? 1 : 0,
+                transition: `opacity 0.3s ease ${i * 0.07}s`,
+              }}
+            >
+              <div style={{ fontFamily: FONT_SANS, fontSize: 8, fontWeight: 800, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.8)", marginBottom: 3 }}>
+                {m.fy}
               </div>
-            );
-          })}
-
-          {/* Milestones — pulled UP into 5 rows */}
-          {milestones.map((m, i) => {
-            const positions = [
-              { col: "2 / span 1", row: "1 / span 2" },
-              { col: "4 / span 1", row: "2 / span 2" },
-              { col: "3 / span 1", row: "3 / span 2" },
-              { col: "1 / span 1", row: "4 / span 2" },
-              { col: "6 / span 1", row: "4 / span 2" }, // FY25 now inside row 5
-            ];
-
-            const p = positions[i];
-
-            return (
-              <div
-                key={"text" + i}
-                style={{
-                  gridColumn: p.col,
-                  gridRow: p.row,
-                  background: m.colour,
-                  borderRadius: 5,
-                  padding: "6px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  textAlign: "center",
-                  opacity: vis ? 1 : 0,
-                  transition: `opacity 0.3s ease ${i * 0.06}s`,
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: FONT_SANS,
-                    fontSize: 8,
-                    fontWeight: 800,
-                    letterSpacing: "1px",
-                    textTransform: "uppercase",
-                    color: "#ffffff",
-                    marginBottom: 2,
-                  }}
-                >
-                  {m.fy}
-                </div>
-
-                <div
-                  style={{
-                    fontFamily: FONT_SANS,
-                    fontSize: 10.5,
-                    lineHeight: 1.3,
-                    color: "#ffffff",
-                    whiteSpace: "pre-line",
-                    fontWeight: 600,
-                  }}
-                >
-                  {m.text}
-                </div>
+              <div style={{ fontFamily: FONT_SANS, fontSize: 10.5, lineHeight: 1.35, color: "#fff", whiteSpace: "pre-line", fontWeight: 600 }}>
+                {m.text}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
         {/* CTA */}
-        <div style={{ marginTop: 6, display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ marginTop: 8, display: "flex", justifyContent: "flex-end" }}>
           <button
             onClick={() => navigate("journey")}
-            style={{
-              fontSize: 12,
-              fontWeight: 700,
-              background: "none",
-              border: "none",
-              color: "#475569",
-              cursor: "pointer",
-            }}
+            style={{ fontSize: 12, fontWeight: 700, background: "none", border: "none", color: "#475569", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}
           >
             View full journey <ArrowRight size={12} />
           </button>
