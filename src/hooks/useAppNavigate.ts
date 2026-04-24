@@ -45,14 +45,19 @@ const VIEW_TO_PATH: Record<string, string> = {
   "tata-sm": "/tata-sustainability-month",
   "cvp": "/cvp",
   "yes-to-access": "/yes-to-access",
+  "stories": "/stories",
 };
 
 export const useAppNavigate = () => {
   const nav = useNavigate();
   return useCallback(
-    (view: string, hash?: string) => {
+    (view: string, slugOrHash?: string) => {
       const path = VIEW_TO_PATH[view] || "/";
-      nav(hash ? `${path}#${hash.replace(/^#/, "")}` : path);
+      if (view === "stories" && slugOrHash) {
+        nav(`${path}/${slugOrHash}`);
+      } else {
+        nav(slugOrHash ? `${path}#${slugOrHash.replace(/^#/, "")}` : path);
+      }
       window.scrollTo(0, 0);
     },
     [nav]
