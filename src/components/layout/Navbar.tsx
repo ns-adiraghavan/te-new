@@ -27,42 +27,43 @@ const SHIMMER_STYLE = `
 `;
 
 /* ── Page-accent colour map — navbar bg responds to current route ── */
+/* All values are intentionally darkened + will be rendered at partial opacity via the nav style */
 function getNavBg(pathname: string): string {
   // Home
-  if (pathname === "/") return "#3a3a44";
-  // Events — indigo-purple #5B21B6
-  if (pathname.startsWith("/about/events")) return "#2d0e6e";
-  // Contact — olive-lime #C3DB6F
-  if (pathname.startsWith("/about/contact")) return "#7a8f2a";
-  // Team — rose #F4838A
-  if (pathname.startsWith("/about/team")) return "#8a4a50";
-  // GCSO — blue #4376BB (own case before /about catch)
-  if (pathname.startsWith("/about/gcso")) return "#1e3a5f";
-  // Disaster response + Partner With Us — same teal family (#007A8A / #0D6B7A)
-  if (pathname.startsWith("/disaster-response") || pathname.startsWith("/dr-") || pathname.startsWith("/partner")) return "#0a5a54";
-  // TSM — olive-lime #C3DB6F
-  if (pathname.startsWith("/tata-sustainability-month")) return "#3a5a1a";
-  // EOEO — rose #F4838A (same family as team)
-  if (pathname.startsWith("/eoeo")) return "#8a4a50";
-  // E-Waste, EOI — indigo #333399 family
-  if (pathname.startsWith("/ewaste") || pathname.startsWith("/eoi") || pathname.startsWith("/spoc/")) return "#1a1866";
+  if (pathname === "/") return "rgba(58,58,68,0.82)";
+  // Events — indigo-purple
+  if (pathname.startsWith("/about/events")) return "rgba(45,14,110,0.82)";
+  // Contact — olive
+  if (pathname.startsWith("/about/contact")) return "rgba(122,143,42,0.82)";
+  // Team — rose
+  if (pathname.startsWith("/about/team")) return "rgba(138,74,80,0.82)";
+  // GCSO — blue
+  if (pathname.startsWith("/about/gcso")) return "rgba(30,58,95,0.82)";
+  // Disaster response + Partner With Us — teal
+  if (pathname.startsWith("/disaster-response") || pathname.startsWith("/dr-") || pathname.startsWith("/partner")) return "rgba(10,90,84,0.82)";
+  // TSM — olive
+  if (pathname.startsWith("/tata-sustainability-month")) return "rgba(58,90,26,0.82)";
+  // EOEO — rose
+  if (pathname.startsWith("/eoeo")) return "rgba(138,74,80,0.82)";
+  // E-Waste, EOI, SPOC — indigo
+  if (pathname.startsWith("/ewaste") || pathname.startsWith("/eoi") || pathname.startsWith("/spoc/")) return "rgba(26,24,102,0.82)";
   // Media & Resources — lighter indigo
-  if (pathname.startsWith("/media")) return "#2d3a7a";
-  // Yes To Access — bright blue #307FE2
-  if (pathname.startsWith("/yes-to-access")) return "#1a3a6a";
-  // Volunteer hub + dashboard — amber #F79425 (generic dark, hero is dark)
-  if (pathname.startsWith("/hub") || pathname.startsWith("/dashboard") || pathname.startsWith("/volunteer")) return "#2a3560";
-  // TVW — blue #135EA9 / #0047AB family
-  if (pathname.startsWith("/tvw") || pathname.startsWith("/about/tvw")) return "#0d3a6e";
-  // ProEngage — purple #803998
-  if (pathname.startsWith("/proengage") || pathname.startsWith("/about/proengage")) return "#4a1f5c";
-  // CVP — indigo-purple #5B21B6 (different from PE's reddish purple)
-  if (pathname.startsWith("/cvp")) return "#2d1260";
-  // NGO — red #F0494E
-  if (pathname.startsWith("/ngo/")) return "#8a1e22";
+  if (pathname.startsWith("/media")) return "rgba(45,58,122,0.82)";
+  // Yes To Access — bright blue
+  if (pathname.startsWith("/yes-to-access")) return "rgba(26,58,106,0.82)";
+  // Volunteer hub + dashboard
+  if (pathname.startsWith("/hub") || pathname.startsWith("/dashboard") || pathname.startsWith("/volunteer")) return "rgba(42,53,96,0.82)";
+  // TVW — blue
+  if (pathname.startsWith("/tvw") || pathname.startsWith("/about/tvw")) return "rgba(13,58,110,0.82)";
+  // ProEngage — purple
+  if (pathname.startsWith("/proengage") || pathname.startsWith("/about/proengage")) return "rgba(74,31,92,0.82)";
+  // CVP — indigo-purple
+  if (pathname.startsWith("/cvp")) return "rgba(45,18,96,0.82)";
+  // NGO — red
+  if (pathname.startsWith("/ngo/")) return "rgba(138,30,34,0.82)";
   // About / Journey — deep navy
-  if (pathname.startsWith("/about") || pathname.startsWith("/journey")) return "#0a1228";
-  return "#2a2a35"; // default
+  if (pathname.startsWith("/about") || pathname.startsWith("/journey")) return "rgba(10,18,40,0.82)";
+  return "rgba(42,42,53,0.82)"; // default
 }
 
 const Navbar = ({
@@ -243,9 +244,9 @@ const Navbar = ({
 
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
-        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200, background: getNavBg(location.pathname), transition: "background 0.35s ease" }}>
+        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200, background: getNavBg(location.pathname), backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", transition: "background 0.35s ease" }}>
 
-          {/* ── LEFT: TataEngage logo as full-height white accent block ── */}
+          {/* ── LEFT: TataEngage logo badge ── */}
           <div
             style={{
               height: "64px",
@@ -260,11 +261,21 @@ const Navbar = ({
             }}
             onClick={() => isLoggedIn ? onNavigate(hubView()) : onNavigate("home")}
           >
-            <img
-              src={tataEngageLogo}
-              alt="TataEngage"
-              style={{ height: 32, objectFit: "contain" }}
-            />
+            <div style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "6px 14px",
+              borderRadius: "8px",
+              background: "rgba(255,255,255,0.07)",
+              boxShadow: "0 1px 0 rgba(255,255,255,0.08) inset, 0 2px 8px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.12)",
+            }}>
+              <img
+                src={tataEngageLogo}
+                alt="TataEngage"
+                style={{ height: 28, objectFit: "contain" }}
+              />
+            </div>
           </div>
 
           {/* ── CENTRE: nav links ── */}
