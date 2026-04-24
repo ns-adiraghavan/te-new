@@ -244,49 +244,28 @@ const Navbar = ({
 
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
-        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 110, background: getNavBg(location.pathname), backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", transition: "background 0.35s ease" }}>
+        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200, background: getNavBg(location.pathname), backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", transition: "background 0.35s ease" }}>
 
-          {/* ── LEFT: TataEngage sunburst badge — bleeds below navbar ── */}
+          {/* ── LEFT: TataEngage circle badge — bleeds below navbar ── */}
           <div
             style={{
               position: "absolute",
-              top: 4,
-              left: 18,
-              width: 76,
-              height: 86,
+              top: 6,
+              left: 20,
+              width: 72,
+              height: 80,
               zIndex: 60,
               cursor: "pointer",
-              filter: "drop-shadow(0 6px 18px rgba(0,0,0,0.38)) drop-shadow(0 2px 4px rgba(0,0,0,0.22))",
+              filter: "drop-shadow(0 6px 20px rgba(0,0,0,0.40)) drop-shadow(0 2px 5px rgba(0,0,0,0.25))",
             }}
             onClick={() => isLoggedIn ? onNavigate(hubView()) : onNavigate("home")}
           >
-            <svg width="76" height="86" viewBox="-38 -38 76 86" xmlns="http://www.w3.org/2000/svg">
-              {/* outer ring — subtle halo */}
-              <circle cx="0" cy="0" r="36.5" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1.2" />
-              {/* sunburst teeth */}
-              <polygon fill="white" stroke="rgba(0,0,0,0.04)" strokeWidth="0.5" points="
-                0,-35 3.6,-33.2 7,-34.4 9.8,-31.8
-                13.4,-31.4 15.2,-28.2 18.8,-26.6 19.5,-23.1
-                23,-21 22.7,-17.4 25.6,-14.8 24.4,-11.3
-                27,-8.2 24.9,-4.8 26.7,-1.4 24.1,1.7
-                25.2,5.4 22.4,8.1 23,12 20,14.4
-                20,18.2 16.8,20 16,23.8 12.6,24.8
-                11.2,28.6 7.6,28.7 5.8,32.4 2.2,31.7
-                0,35.2 -2.2,31.7 -5.8,32.4 -7.6,28.7
-                -11.2,28.6 -12.6,24.8 -16,23.8 -16.8,20
-                -20,18.2 -20,14.4 -23,12 -22.4,8.1
-                -25.2,5.4 -24.1,1.7 -26.7,-1.4 -24.9,-4.8
-                -27,-8.2 -24.4,-11.3 -25.6,-14.8 -22.7,-17.4
-                -23,-21 -19.5,-23.1 -18.8,-26.6 -15.2,-28.2
-                -13.4,-31.4 -9.8,-31.8 -7,-34.4 -3.6,-33.2
-              "/>
-              {/* inner ring */}
-              <circle cx="0" cy="0" r="23.5" fill="white" stroke="rgba(51,51,153,0.12)" strokeWidth="1"/>
-              {/* logo image — centred */}
+            <svg width="72" height="80" viewBox="-36 -36 72 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="0" cy="2" r="34" fill="white" />
               <image
                 href={tataEngageLogo}
-                x="-17" y="-11"
-                width="34" height="22"
+                x="-22" y="-12"
+                width="44" height="28"
                 preserveAspectRatio="xMidYMid meet"
               />
             </svg>
