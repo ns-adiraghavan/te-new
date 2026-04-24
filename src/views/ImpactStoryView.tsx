@@ -173,10 +173,12 @@ export default function ImpactStoryView() {
             {story.openingPara}
           </p>
 
-          {/* Body sections — render with optional headings, bullets, sub-blocks. Image slots inserted after sections 1, 3, and the last section. */}
+          {/* Body sections — render with optional headings, bullets, sub-blocks, tables, and image slots. */}
           {(() => {
+            // If any section explicitly defines an imageAfter, the story controls placement;
+            // otherwise we auto-distribute three placeholders across the section count.
+            const hasExplicitImages = story.sections.some((s) => s.imageAfter);
             const total = story.sections.length;
-            // Pick image insertion points: after first, middle, and last section.
             const slot1 = 0;
             const slot2 = Math.min(Math.max(Math.floor(total / 2), 1), total - 1);
             const slot3 = total - 1;
@@ -238,15 +240,62 @@ export default function ImpactStoryView() {
                     </ul>
                   </div>
                 ))}
+                {sec.table && (
+                  <div style={{ overflowX: "auto", margin: "8px 0 28px", border: "1px solid #e8e8f0", borderRadius: 10 }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: 14 }}>
+                      <thead>
+                        <tr style={{ background: "#f7f8fc" }}>
+                          {sec.table.headers.map((h, hi) => (
+                            <th key={hi} style={{
+                              textAlign: "left",
+                              padding: "10px 14px",
+                              fontSize: 11,
+                              fontWeight: 800,
+                              letterSpacing: "0.8px",
+                              textTransform: "uppercase",
+                              color: ACCENT_NAVY,
+                              borderBottom: "1px solid #e8e8f0",
+                            }}>{h}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sec.table.rows.map((row, ri) => (
+                          <tr key={ri} style={{ borderTop: ri === 0 ? "none" : "1px solid #f1f1f5" }}>
+                            {row.map((cell, ci) => (
+                              <td key={ci} style={{
+                                padding: "10px 14px",
+                                color: "#374151",
+                                fontWeight: ci === 1 ? 600 : 400,
+                              }}>{cell}</td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </div>
             );
 
             const out: React.ReactNode[] = [];
             story.sections.forEach((sec, i) => {
               out.push(renderSection(sec, i));
-              if (i === slot1) out.push(<ImagePlaceholder key={`img-1-${i}`} height={320} />);
-              else if (i === slot2 && slot2 !== slot1 && slot2 !== slot3) out.push(<ImagePlaceholder key={`img-2-${i}`} height={260} />);
-              else if (i === slot3 && slot3 !== slot1) out.push(<ImagePlaceholder key={`img-3-${i}`} height={300} />);
+              if (hasExplicitImages) {
+                if (sec.imageAfter) {
+                  out.push(
+                    <ImagePlaceholder
+                      key={`img-explicit-${i}`}
+                      height={sec.imageAfter.height ?? 300}
+                      caption={sec.imageAfter.caption}
+                    />,
+                  );
+                }
+              } else {
+                if (i === slot1) out.push(<ImagePlaceholder key={`img-1-${i}`} height={320} />);
+                else if (i === slot2 && slot2 !== slot1 && slot2 !== slot3) out.push(<ImagePlaceholder key={`img-2-${i}`} height={260} />);
+                else if (i === slot3 && slot3 !== slot1) out.push(<ImagePlaceholder key={`img-3-${i}`} height={300} />);
+              }
             });
             return out;
           })()}
