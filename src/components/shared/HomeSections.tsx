@@ -1343,17 +1343,19 @@ export function JourneySection() {
       className="section-block"
       style={{
         background: "#f3f4f8",
-        padding: "56px 48px",
+        padding: "44px 48px", // ↓ reduced from 56
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* Header */}
-        <div style={{ marginBottom: 24 }}>
+        <div style={{ marginBottom: 18 }}>
+          {" "}
+          {/* ↓ tighter */}
           <SectionEyebrow label="Our Journey" />
           <SectionH2>
             A <em style={{ fontStyle: "italic", color: B_INDIGO }}>Decade</em> of Giving Back
           </SectionH2>
-          <div style={{ width: 48, height: 1.4, background: B_INDIGO, marginTop: 10 }} />
+          <div style={{ width: 40, height: 1.2, background: B_INDIGO, marginTop: 8 }} />
         </div>
 
         {/* Grid */}
@@ -1361,7 +1363,7 @@ export function JourneySection() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(6, 1fr)",
-            gridAutoRows: "78px",
+            gridAutoRows: "70px", // ↓ from 78
             gap: 5,
           }}
         >
@@ -1384,7 +1386,7 @@ export function JourneySection() {
                   borderRadius: 5,
                   overflow: "hidden",
                   opacity: vis ? 1 : 0,
-                  transition: `opacity 0.35s ease ${i * 0.02}s`,
+                  transition: `opacity 0.3s ease ${i * 0.02}s`,
                 }}
               >
                 <img src={img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -1412,25 +1414,25 @@ export function JourneySection() {
                   gridRow: p.row,
                   background: m.colour,
                   borderRadius: 6,
-                  padding: "10px",
+                  padding: "8px", // ↓ tighter
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
                   textAlign: "center",
                   opacity: vis ? 1 : 0,
-                  transition: `opacity 0.4s ease ${i * 0.08}s`,
+                  transition: `opacity 0.35s ease ${i * 0.08}s`,
                 }}
               >
                 <div
                   style={{
                     fontFamily: FONT_SANS,
-                    fontSize: 10,
+                    fontSize: 9, // ↓ slightly smaller
                     fontWeight: 800,
-                    letterSpacing: "1.4px",
+                    letterSpacing: "1.2px",
                     textTransform: "uppercase",
                     color: "#ffffff",
-                    marginBottom: 4,
+                    marginBottom: 3,
                   }}
                 >
                   {m.fy}
@@ -1439,8 +1441,8 @@ export function JourneySection() {
                 <div
                   style={{
                     fontFamily: FONT_SANS,
-                    fontSize: 12.5,
-                    lineHeight: 1.4,
+                    fontSize: 11.5, // ↓ slightly smaller
+                    lineHeight: 1.35,
                     color: "#ffffff",
                     whiteSpace: "pre-line",
                     fontWeight: 600,
@@ -1454,11 +1456,11 @@ export function JourneySection() {
         </div>
 
         {/* CTA */}
-        <div style={{ marginTop: 14, display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ marginTop: 10, display: "flex", justifyContent: "flex-end" }}>
           <button
             onClick={() => navigate("journey")}
             style={{
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: 700,
               background: "none",
               border: "none",
@@ -1466,7 +1468,7 @@ export function JourneySection() {
               cursor: "pointer",
             }}
           >
-            View full journey <ArrowRight size={13} />
+            View full journey <ArrowRight size={12} />
           </button>
         </div>
       </div>
