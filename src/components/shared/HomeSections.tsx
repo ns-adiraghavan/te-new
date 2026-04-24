@@ -1343,12 +1343,12 @@ export function JourneySection() {
       className="section-block"
       style={{
         background: "#f3f4f8",
-        padding: "36px 48px", // ↓ tighter
+        padding: "32px 48px",
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* Header */}
-        <div style={{ marginBottom: 14 }}>
+        <div style={{ marginBottom: 12 }}>
           <SectionEyebrow label="Our Journey" />
           <SectionH2>
             A <em style={{ fontStyle: "italic", color: B_INDIGO }}>Decade</em> of Giving Back
@@ -1356,17 +1356,19 @@ export function JourneySection() {
           <div style={{ width: 36, height: 1.2, background: B_INDIGO, marginTop: 6 }} />
         </div>
 
-        {/* Grid */}
+        {/* Grid — HARD LIMITED TO 5 ROWS */}
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(6, 1fr)",
-            gridAutoRows: "60px", // ↓ key reduction
+            gridAutoRows: "60px",
             gap: 4,
+            maxHeight: "300px", // 👈 forces 5 rows (5 × 60)
+            overflow: "hidden",
           }}
         >
           {/* Images */}
-          {imgs.map((img, i) => {
+          {imgs.slice(0, 16).map((img, i) => {
             const spans = [
               { col: "span 2", row: "span 2" },
               { col: "span 1", row: "span 1" },
@@ -1392,14 +1394,14 @@ export function JourneySection() {
             );
           })}
 
-          {/* Milestones — narrower now */}
+          {/* Milestones — pulled UP into 5 rows */}
           {milestones.map((m, i) => {
             const positions = [
               { col: "2 / span 1", row: "1 / span 2" },
               { col: "4 / span 1", row: "2 / span 2" },
-              { col: "3 / span 1", row: "4 / span 2" },
-              { col: "1 / span 1", row: "5 / span 2" },
-              { col: "6 / span 1", row: "6 / span 2" }, // FY25 tight right
+              { col: "3 / span 1", row: "3 / span 2" },
+              { col: "1 / span 1", row: "4 / span 2" },
+              { col: "6 / span 1", row: "4 / span 2" }, // FY25 now inside row 5
             ];
 
             const p = positions[i];
@@ -1454,7 +1456,7 @@ export function JourneySection() {
         </div>
 
         {/* CTA */}
-        <div style={{ marginTop: 8, display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ marginTop: 6, display: "flex", justifyContent: "flex-end" }}>
           <button
             onClick={() => navigate("journey")}
             style={{
