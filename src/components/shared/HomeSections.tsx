@@ -551,7 +551,7 @@ export function ProgrammeSpotlight() {
                 style={{
                   position: "absolute",
                   inset: 0,
-                  background: "#333399",
+                  background: "#135EA9",
                   padding: "28px 20px 16px",
                   display: "flex",
                   flexDirection: "column",
@@ -1037,7 +1037,7 @@ export function NumbersSection() {
                     textAlign: "center",
                     borderRadius: 14,
                     padding: "20px 28px",
-                    background: "#333399",
+                    background: "#135EA9",
                     boxShadow: "6px 0 24px rgba(0,0,0,0.10), 0 4px 20px rgba(0,0,0,0.12)",
                     opacity: i === 0 ? 1 : 0,
                     transition: "opacity 0.5s ease",
@@ -1309,8 +1309,8 @@ export function JourneySection() {
 
   // 5 milestones — left-to-right, slight zigzag (FY15 topmost, FY25 bottommost)
   const milestones = [
-    { fy: "FY 2015", colour: "#333399", text: "Launched Tata Engage\nTVW & ProEngage" },
-    { fy: "FY 2017", colour: "#1E6BB8", text: "Group volunteering\nguidelines launched" },
+    { fy: "FY 2015", colour: "#135EA9", text: "Launched Tata Engage\nTVW & ProEngage" },
+    { fy: "FY 2017", colour: "#307FE2", text: "Group volunteering\nguidelines launched" },
     { fy: "FY 2019", colour: "#00A896", text: "Best Global Volunteer\nProgram — IAVE" },
     { fy: "FY 2022", colour: "#C14D00", text: "1.34M hours clocked\nPhygital pivot" },
     { fy: "FY 2025", colour: "#E8401C", text: "10.87M hours\nhighest ever" },
@@ -1318,8 +1318,8 @@ export function JourneySection() {
 
   // All available images — will be distributed to fill every gap
   const imgs = [
-    tataElxsiImg, airIndia, tataCommunications, tataProjects, tataBball,
-    drPhoto, tataMotors3, happyEyes, tataAig, tataInfinit,
+    tataElxsiImg, airIndia, tataCommunications, tataBball, tataProjects,
+    drPhoto, tataMotors3, tataProjects, tataAig, tataInfinit,
     drPhoto2, tataComm2, tataMotors1, trent1, titanImg,
     tajSatsImg, trentImg, infiniti, tataPower,
   ];
@@ -1355,8 +1355,6 @@ export function JourneySection() {
     { col: "9 / 11", row: "1 / 3" },
     { col: "9 / 10", row: "3 / 5" },
     { col: "10 / 11", row: "3 / 5" },
-    { col: "9 / 11", row: "7 / 8" },
-    { col: "1 / 3", row: "7 / 8" },
   ];
 
   return (
@@ -1429,10 +1427,10 @@ export function JourneySection() {
                 transition: `opacity 0.3s ease ${i * 0.07}s`,
               }}
             >
-              <div style={{ fontFamily: FONT_SANS, fontSize: 8, fontWeight: 800, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.8)", marginBottom: 3 }}>
+              <div style={{ fontFamily: FONT_SANS, fontSize: 14, fontWeight: 800, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.8)", marginBottom: 3 }}>
                 {m.fy}
               </div>
-              <div style={{ fontFamily: FONT_SANS, fontSize: 10.5, lineHeight: 1.35, color: "#fff", whiteSpace: "pre-line", fontWeight: 600 }}>
+              <div style={{ fontFamily: FONT_SANS, fontSize: 14, lineHeight: 1.35, color: "#fff", whiteSpace: "pre-line", fontWeight: 700, letterSpacing: "0.5px" }}>
                 {m.text}
               </div>
             </div>
