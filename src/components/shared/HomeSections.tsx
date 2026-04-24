@@ -1285,7 +1285,7 @@ export function NumbersSection() {
     </section>
   );
 }
-// JourneySection — collage style, image-heavy with embedded milestone tiles
+content = """// JourneySection — equal text tiles, centered typography, consistent sizing
 
 export function JourneySection() {
   const navigate = useAppNavigate();
@@ -1296,49 +1296,26 @@ export function JourneySection() {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setVis(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.08 },
+      ([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } },
+      { threshold: 0.08 }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
   const milestones = [
-    { fy: "FY 2015", colour: "#333399", text: "Launched Tata Engage — TVW & ProEngage" },
-    { fy: "FY 2017", colour: "#1E6BB8", text: "Group volunteering guidelines launched" },
-    { fy: "FY 2019", colour: "#00A896", text: "Best Global Volunteer Program — IAVE" },
-    { fy: "FY 2022", colour: "#C14D00", text: "1.34M hours clocked\nPhygital volunteering pivot" },
-    { fy: "FY 2025", colour: "#E8401C", text: "10.87M hours — highest ever" },
+    { fy: "FY 2015", colour: "#333399", text: "Launched Tata Engage\\nTVW & ProEngage" },
+    { fy: "FY 2017", colour: "#1E6BB8", text: "Group volunteering\\nguidelines launched" },
+    { fy: "FY 2019", colour: "#00A896", text: "Best Global Volunteer\\nProgram — IAVE" },
+    { fy: "FY 2022", colour: "#C14D00", text: "1.34M hours clocked\\nPhygital pivot" },
+    { fy: "FY 2025", colour: "#E8401C", text: "10.87M hours\\nhighest ever" },
   ];
 
-  const tiles = [
-    { type: "img", src: tataElxsiImg, col: 2, row: 2 },
-    { type: "text", idx: 0, col: 1, row: 1 },
-    { type: "img", src: airIndia, col: 2, row: 1 },
-    { type: "img", src: tataCommunications, col: 1, row: 1 },
-    { type: "img", src: tataProjects, col: 1, row: 1 },
-    { type: "text", idx: 1, col: 2, row: 1 },
-    { type: "img", src: tataBball, col: 1, row: 1 },
-
-    { type: "img", src: drPhoto, col: 1, row: 2 },
-    { type: "img", src: tataMotors3, col: 2, row: 1 },
-    { type: "text", idx: 2, col: 1, row: 1 },
-
-    { type: "img", src: happyEyes, col: 2, row: 2 },
-    { type: "img", src: tataAig, col: 1, row: 1 },
-    { type: "img", src: tataInfinit, col: 1, row: 1 },
-    { type: "text", idx: 3, col: 2, row: 1 },
-
-    { type: "img", src: drPhoto2, col: 1, row: 1 },
-    { type: "img", src: tataComm2, col: 1, row: 1 },
-    { type: "img", src: tataMotors1, col: 1, row: 1 },
-    { type: "img", src: trent1, col: 1, row: 1 },
-    { type: "text", idx: 4, col: 2, row: 1 },
+  const imgs = [
+    tataElxsiImg, airIndia, tataCommunications, tataProjects, tataBball,
+    drPhoto, tataMotors3, happyEyes, tataAig, tataInfinit,
+    drPhoto2, tataComm2, tataMotors1, trent1, titanImg,
+    tajSatsImg, trentImg, infiniti, tataPower
   ];
 
   return (
@@ -1346,99 +1323,88 @@ export function JourneySection() {
       ref={ref}
       className="section-block"
       style={{
-        background: "#f3f4f8",
+        background: "#0b0f1a",
         padding: "64px 48px",
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        {/* Header */}
+
         <div style={{ marginBottom: 28 }}>
-          <SectionEyebrow label="Our Journey" />
-          <SectionH2>
-            A <em style={{ fontStyle: "italic", color: B_INDIGO }}>Decade</em> of Giving Back
+          <SectionEyebrow label="Our Journey" dark />
+          <SectionH2 dark>
+            A <em style={{ fontStyle: "italic", color: "#F2C94C" }}>Decade</em> of Giving Back
           </SectionH2>
-          <div style={{ width: 48, height: 1.4, background: B_INDIGO, marginTop: 10 }} />
+          <div style={{ width: 48, height: 1.4, background: "#F2C94C", marginTop: 10 }} />
         </div>
 
-        {/* Collage Grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(6, 1fr)",
-            gridAutoRows: "90px",
-            gap: 6,
-          }}
-        >
-          {tiles.map((t, i) => {
-            const delay = i * 0.03;
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(6, 1fr)",
+          gridAutoRows: "90px",
+          gap: 6,
+        }}>
 
-            if (t.type === "img") {
-              return (
-                <div
-                  key={i}
-                  style={{
-                    gridColumn: `span ${t.col}`,
-                    gridRow: `span ${t.row}`,
-                    overflow: "hidden",
-                    borderRadius: 6,
-                    opacity: vis ? 1 : 0,
-                    transform: vis ? "scale(1)" : "scale(0.97)",
-                    transition: `all 0.4s ease ${delay}s`,
-                  }}
-                >
-                  <img
-                    src={t.src}
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                </div>
-              );
-            }
+          {imgs.map((img, i) => (
+            <div key={"img"+i}
+              style={{
+                borderRadius: 6,
+                overflow: "hidden",
+                opacity: vis ? 1 : 0,
+                transition: `opacity 0.4s ease ${i * 0.02}s`,
+              }}
+            >
+              <img src={img} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
+            </div>
+          ))}
 
-            const m = milestones[t.idx];
+          {milestones.map((m, i) => {
+            const positions = [
+              { col: "2 / span 2", row: "1 / span 2" },
+              { col: "4 / span 2", row: "2 / span 2" },
+              { col: "3 / span 2", row: "4 / span 2" },
+              { col: "1 / span 2", row: "5 / span 2" },
+              { col: "5 / span 2", row: "6 / span 2" },
+            ];
+
+            const p = positions[i];
+
             return (
-              <div
-                key={i}
+              <div key={"text"+i}
                 style={{
-                  gridColumn: `span ${t.col}`,
-                  gridRow: `span ${t.row}`,
-                  background: "#ffffff",
-                  borderRadius: 6,
-                  padding: "10px 12px",
-                  border: `1px solid ${m.colour}22`,
+                  gridColumn: p.col,
+                  gridRow: p.row,
+                  background: m.colour,
+                  borderRadius: 8,
+                  padding: "12px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
                   opacity: vis ? 1 : 0,
-                  transition: `opacity 0.45s ease ${delay + 0.1}s`,
+                  transition: `opacity 0.45s ease ${i * 0.08}s`,
                 }}
               >
-                <div
-                  style={{
-                    fontSize: 10,
-                    fontWeight: 800,
-                    letterSpacing: "1.4px",
-                    textTransform: "uppercase",
-                    color: m.colour,
-                    marginBottom: 4,
-                  }}
-                >
+                <div style={{
+                  fontFamily: FONT_SANS,
+                  fontSize: 12,
+                  fontWeight: 800,
+                  letterSpacing: "1.5px",
+                  textTransform: "uppercase",
+                  color: "#ffffff",
+                  marginBottom: 6,
+                }}>
                   {m.fy}
                 </div>
 
-                <div
-                  style={{
-                    fontSize: 12,
-                    lineHeight: 1.4,
-                    color: "#1f2937",
-                    whiteSpace: "pre-line",
-                    fontWeight: 600,
-                  }}
-                >
+                <div style={{
+                  fontFamily: FONT_SANS,
+                  fontSize: 14,
+                  lineHeight: 1.5,
+                  color: "#ffffff",
+                  whiteSpace: "pre-line",
+                  fontWeight: 600,
+                }}>
                   {m.text}
                 </div>
               </div>
@@ -1446,7 +1412,6 @@ export function JourneySection() {
           })}
         </div>
 
-        {/* CTA */}
         <div style={{ marginTop: 16, display: "flex", justifyContent: "flex-end" }}>
           <button
             onClick={() => navigate("journey")}
@@ -1455,7 +1420,7 @@ export function JourneySection() {
               fontWeight: 700,
               background: "none",
               border: "none",
-              color: "#475569",
+              color: "rgba(255,255,255,0.7)",
               cursor: "pointer",
             }}
           >
@@ -1466,6 +1431,13 @@ export function JourneySection() {
     </section>
   );
 }
+"""
+
+path = "/mnt/data/JourneySection_Final_v2.tsx"
+with open(path, "w") as f:
+    f.write(content)
+
+path
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TICKER BAR
