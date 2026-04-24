@@ -54,7 +54,7 @@ export const useAppNavigate = () => {
     (view: string, slugOrHash?: string) => {
       const path = VIEW_TO_PATH[view] || "/";
       if (view === "stories" && slugOrHash) {
-        nav(`${path}/${slugOrHash}`);
+        nav(`${path}?id=${slugOrHash}`);
       } else {
         nav(slugOrHash ? `${path}#${slugOrHash.replace(/^#/, "")}` : path);
       }

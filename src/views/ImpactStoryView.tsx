@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import { IMPACT_STORIES } from "@/data/impactStoriesData";
@@ -15,7 +15,8 @@ const DIAG: React.CSSProperties = {
 };
 
 export default function ImpactStoryView() {
-  const { id }   = useParams<{ id: string }>();
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id") ?? undefined;
   const navigate = useAppNavigate();
 
   const story = IMPACT_STORIES.find((s) => s.slug === id);
