@@ -1,4 +1,4 @@
-import drHeroPhoto from "@/assets/dr_photo_2.jpg";
+import tataAIG from "@/assets/Tata_AIG_2.jpg";
 import tataMotors1 from "@/assets/Tata_Motors_1.jpg";
 
 const ACCENT_NAVY = "#0D1B3E";
@@ -31,6 +31,8 @@ export interface ImpactStory {
   stats?: { num: string; label: string }[];
   featured?: boolean;
   archived?: boolean;
+  slideHeadline: string;
+  slideSub: string;
 }
 
 export const IMPACT_STORIES: ImpactStory[] = [
@@ -40,7 +42,7 @@ export const IMPACT_STORIES: ImpactStory[] = [
     eyebrow: "Disaster Response",
     tag: "Disaster Response",
     accentColor: B_RED,
-    heroImage: drHeroPhoto,
+    heroImage: tataAIG,
     heroImageAlt: "Tata volunteers on the ground in Wayanad",
     date: "July–August 2024",
     excerpt: "34 volunteers from 12 Tata companies stepped forward within 48 hours of the Wayanad landslides — supporting 1,000 tribal families across 45 days of relief operations.",
@@ -95,6 +97,8 @@ export const IMPACT_STORIES: ImpactStory[] = [
       { num: "45", label: "Days of operations" },
     ],
     featured: true,
+    slideHeadline: "United in Action: ONE Tata Wayanad Landslide Response 2024",
+    slideSub: "34 volunteers from 12 Tata companies. 45 days. 1,000 tribal families.",
   },
   {
     slug: "melghat-mitra",
@@ -139,5 +143,7 @@ export const IMPACT_STORIES: ImpactStory[] = [
       },
     ],
     featured: true,
+    slideHeadline: "Melghat Mitra: When Service Becomes Stewardship",
+    slideSub: "Over two decades, a group of Tata Motors employees has transformed 50 villages — 40,000 volunteer hours, zero hunger deaths.",
   },
 ];
