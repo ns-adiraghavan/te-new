@@ -29,41 +29,30 @@ const SHIMMER_STYLE = `
 /* ── Page-accent colour map — navbar bg responds to current route ── */
 /* All values are intentionally darkened + will be rendered at partial opacity via the nav style */
 function getNavBg(pathname: string): string {
-  // Home
-  if (pathname === "/") return "rgba(58,58,68,0.90)";
-  // Events — indigo-purple
-  if (pathname.startsWith("/about/events")) return "rgba(45,14,110,0.90)";
-  // Contact — olive
-  if (pathname.startsWith("/about/contact")) return "rgba(122,143,42,0.90)";
-  // Team — rose
-  if (pathname.startsWith("/about/team")) return "rgba(138,74,80,0.90)";
-  // GCSO — blue
-  if (pathname.startsWith("/about/gcso")) return "rgba(30,58,95,0.90)";
+  // Home — semi-transparent dark, lighter than before
+  if (pathname === "/") return "rgba(13,27,62,0.72)";
   // Disaster response + Partner With Us — teal
-  if (pathname.startsWith("/disaster-response") || pathname.startsWith("/dr-") || pathname.startsWith("/partner")) return "rgba(10,90,84,0.90)";
+  if (pathname.startsWith("/disaster-response") || pathname.startsWith("/dr-") || pathname.startsWith("/partner")) return "rgba(10,90,84,0.75)";
   // TSM — olive
-  if (pathname.startsWith("/tata-sustainability-month")) return "rgba(58,90,26,0.90)";
+  if (pathname.startsWith("/tata-sustainability-month")) return "rgba(58,90,26,0.75)";
   // EOEO — rose
-  if (pathname.startsWith("/eoeo")) return "rgba(138,74,80,0.90)";
+  if (pathname.startsWith("/eoeo")) return "rgba(138,74,80,0.75)";
   // E-Waste, EOI, SPOC — indigo
-  if (pathname.startsWith("/ewaste") || pathname.startsWith("/eoi") || pathname.startsWith("/spoc/")) return "rgba(26,24,102,0.90)";
-  // Media & Resources — lighter indigo
-  if (pathname.startsWith("/media")) return "rgba(45,58,122,0.90)";
-  // Yes To Access — bright blue
-  if (pathname.startsWith("/yes-to-access")) return "rgba(26,58,106,0.90)";
+  if (pathname.startsWith("/ewaste") || pathname.startsWith("/eoi") || pathname.startsWith("/spoc/")) return "rgba(26,24,102,0.75)";
+  // Media & Resources
+  if (pathname.startsWith("/media")) return "rgba(13,27,62,0.78)";
   // Volunteer hub + dashboard
-  if (pathname.startsWith("/hub") || pathname.startsWith("/dashboard") || pathname.startsWith("/volunteer")) return "rgba(42,53,96,0.90)";
+  if (pathname.startsWith("/hub") || pathname.startsWith("/dashboard") || pathname.startsWith("/volunteer")) return "rgba(13,27,62,0.80)";
   // TVW — blue
-  if (pathname.startsWith("/tvw") || pathname.startsWith("/about/tvw")) return "rgba(13,58,110,0.90)";
+  if (pathname.startsWith("/tvw") || pathname.startsWith("/about/tvw")) return "rgba(13,58,110,0.75)";
   // ProEngage — purple
-  if (pathname.startsWith("/proengage") || pathname.startsWith("/about/proengage")) return "rgba(74,31,92,0.90)";
-  // CVP — indigo-purple
-  if (pathname.startsWith("/cvp")) return "rgba(45,18,96,0.90)";
+  if (pathname.startsWith("/proengage") || pathname.startsWith("/about/proengage")) return "rgba(74,31,92,0.75)";
   // NGO — red
-  if (pathname.startsWith("/ngo/")) return "rgba(138,30,34,0.90)";
-  // About / Journey — deep navy
-  if (pathname.startsWith("/about") || pathname.startsWith("/journey")) return "rgba(10,18,40,0.90)";
-  return "rgba(42,42,53,0.90)"; // default
+  if (pathname.startsWith("/ngo/")) return "rgba(100,20,24,0.75)";
+  // About / Journey — deep navy (matches archive)
+  if (pathname.startsWith("/about") || pathname.startsWith("/journey")) return "rgba(13,27,62,0.80)";
+  // Default — navy, not grey
+  return "rgba(13,27,62,0.78)";
 }
 
 const Navbar = ({
@@ -244,7 +233,7 @@ const Navbar = ({
 
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
-        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_16px_rgba(0,0,0,0.3)] relative" style={{ paddingLeft: 200, background: getNavBg(location.pathname), backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", transition: "background 0.35s ease" }}>
+        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_24px_rgba(0,0,0,0.22)] relative" style={{ paddingLeft: 200, background: getNavBg(location.pathname), backdropFilter: "blur(18px)", WebkitBackdropFilter: "blur(18px)", transition: "background 0.35s ease" }}>
 
           {/* ── LEFT: TataEngage circle badge — bleeds below navbar ── */}
           <div
