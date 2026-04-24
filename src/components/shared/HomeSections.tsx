@@ -34,7 +34,7 @@ import airIndia from "@/assets/air-india.jpg";
 import tataCommunications from "@/assets/tata-communications-1.jpg";
 import infiniti from "@/assets/Infiniti_2.jpg";
 import tataPower from "@/assets/tata_power.JPG";
-import drPhoto from "@/assets/dr_photo.jpg";
+import drPhoto from "@/assets/Home_Page_DR_Option2.JPG";
 import tajSatsImg from "@/assets/tata-motors-2.jpg";
 import titanImg from "@/assets/titain.jpeg";
 import trentImg from "@/assets/trent_2.jpg";
@@ -1336,23 +1336,23 @@ export function JourneySection() {
 
   // All available images — will be distributed to fill every gap
   const imgs = [
-    hb_jcapcpl22,           // idx 0  — large 2×2 (col 1/3, row 3/5)
-    hb_antarang,            // idx 1  — tall 1×2 (col 1/2, row 5/7)
-    hb_ihcl,                // idx 2  — tall 1×2 (col 2/3, row 5/7)
-    hb_tvw6,                // idx 3  — large 2×2 (col 3/5, row 4/6)
-    hb_roadSafety,          // idx 4  — wide 2×1 (col 3/5, row 6/7)
-    hb_eyeScanning,         // idx 5  — small 1×1 (col 3/4, row 1/2)
-    hb_images3,             // idx 6  — small 1×1 (col 4/5, row 1/2)
-    hb_titan,               // idx 7  — large 2×2 (col 5/7, row 1/3)
-    hb_voltas,              // idx 8  — tall 1×2 (col 5/6, row 5/7)
+    hb_jcapcpl22, // idx 0  — large 2×2 (col 1/3, row 3/5)
+    hb_antarang, // idx 1  — tall 1×2 (col 1/2, row 5/7)
+    hb_ihcl, // idx 2  — tall 1×2 (col 2/3, row 5/7)
+    hb_tvw6, // idx 3  — large 2×2 (col 3/5, row 4/6)
+    hb_roadSafety, // idx 4  — wide 2×1 (col 3/5, row 6/7)
+    hb_eyeScanning, // idx 5  — small 1×1 (col 3/4, row 1/2)
+    hb_images3, // idx 6  — small 1×1 (col 4/5, row 1/2)
+    hb_titan, // idx 7  — large 2×2 (col 5/7, row 1/3)
+    hb_voltas, // idx 8  — tall 1×2 (col 5/6, row 5/7)
     hb_volunteeringInAction, // idx 9  — tall 1×2 (col 6/7, row 5/7)
-    hb_jcapcpl3,            // idx 10 — large 2×2 (col 7/9, row 1/3)
-    hb_2021,                // idx 11 — small 1×1 (col 7/8, row 3/4)
-    hb_img20230211,         // idx 12 — small 1×1 (col 8/9, row 3/4)
-    hb_bluescope,           // idx 13 — wide 2×1 (col 7/9, row 6/7)
-    hb_westside,            // idx 14 — large 2×2 (col 9/11, row 1/3)
-    hb_mithapur,            // idx 15 — tall 1×2 (col 9/10, row 3/5)
-    tataCommunications,     // idx 16 — tall 1×2 (col 10/11, row 3/5)
+    hb_jcapcpl3, // idx 10 — large 2×2 (col 7/9, row 1/3)
+    hb_2021, // idx 11 — small 1×1 (col 7/8, row 3/4)
+    hb_img20230211, // idx 12 — small 1×1 (col 8/9, row 3/4)
+    hb_bluescope, // idx 13 — wide 2×1 (col 7/9, row 6/7)
+    hb_westside, // idx 14 — large 2×2 (col 9/11, row 1/3)
+    hb_mithapur, // idx 15 — tall 1×2 (col 9/10, row 3/5)
+    tataCommunications, // idx 16 — tall 1×2 (col 10/11, row 3/5)
   ];
 
   // Grid: 10 cols × 6 rows of 52px. Milestones placed left→right on a gentle zigzag.
@@ -1431,11 +1431,7 @@ export function JourneySection() {
                 transition: `opacity 0.25s ease ${i * 0.015}s`,
               }}
             >
-              <img
-                src={imgs[i % imgs.length]}
-                alt=""
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
+              <img src={imgs[i % imgs.length]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
           ))}
 
@@ -1458,10 +1454,30 @@ export function JourneySection() {
                 transition: `opacity 0.3s ease ${i * 0.07}s`,
               }}
             >
-              <div style={{ fontFamily: FONT_SANS, fontSize: 14, fontWeight: 800, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.8)", marginBottom: 3 }}>
+              <div
+                style={{
+                  fontFamily: FONT_SANS,
+                  fontSize: 14,
+                  fontWeight: 800,
+                  letterSpacing: "1.8px",
+                  textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.8)",
+                  marginBottom: 3,
+                }}
+              >
                 {m.fy}
               </div>
-              <div style={{ fontFamily: FONT_SANS, fontSize: 14, lineHeight: 1.35, color: "#fff", whiteSpace: "pre-line", fontWeight: 700, letterSpacing: "0.5px" }}>
+              <div
+                style={{
+                  fontFamily: FONT_SANS,
+                  fontSize: 14,
+                  lineHeight: 1.35,
+                  color: "#fff",
+                  whiteSpace: "pre-line",
+                  fontWeight: 700,
+                  letterSpacing: "0.5px",
+                }}
+              >
                 {m.text}
               </div>
             </div>
@@ -1472,7 +1488,17 @@ export function JourneySection() {
         <div style={{ marginTop: 8, display: "flex", justifyContent: "flex-end" }}>
           <button
             onClick={() => navigate("journey")}
-            style={{ fontSize: 12, fontWeight: 700, background: "none", border: "none", color: "#475569", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}
+            style={{
+              fontSize: 12,
+              fontWeight: 700,
+              background: "none",
+              border: "none",
+              color: "#475569",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
+            }}
           >
             Learn More <ArrowRight size={12} />
           </button>
