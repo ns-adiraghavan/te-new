@@ -24,6 +24,17 @@ import drPhoto from "@/assets/dr_photo.jpg";
 import tajSatsImg from "@/assets/tata-motors-2.jpg";
 import titanImg from "@/assets/titain.jpeg";
 import trentImg from "@/assets/trent_2.jpg";
+import tataMotors3 from "@/assets/tata-motors-3.jpg";
+import tataProjects from "@/assets/tata-projects.jpg";
+import tataBball from "@/assets/tatabball.jpg";
+import drPhoto2 from "@/assets/dr_photo_2.jpg";
+import happyEyes from "@/assets/happy-eyes.jpg";
+import tataAig from "@/assets/tata-aig-1.jpg";
+import tataInfinit from "@/assets/tata-infinit.jpg";
+import tataComm2 from "@/assets/tata-comm-2.jpeg";
+import tataMotors1 from "@/assets/Tata_Motors_1.jpg";
+import tajSats1 from "@/assets/Taj_Sats.jpeg";
+import trent1 from "@/assets/trent.jpg";
 
 export { SectionDivider };
 
@@ -934,55 +945,44 @@ export function NumbersSection() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// JOURNEY SECTION — moodboard / collage layout
-// Photos, year labels, and text snippets are separate floating pieces,
-// overlapping and lightly rotated like cut-outs pinned to a board.
-// Dark background with a subtle texture underneath everything.
+// JOURNEY SECTION — packed photo collage + 5 grey milestone text tiles
+// Fills the full width like a newspaper photo grid. No floating text outside tiles.
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Each photo piece: [left%, top%, width%, rotate(deg), zIndex]
-type PieceLayout = { left: number; top: number; w: number; rot: number; z: number };
-
-const PHOTO_PIECES: PieceLayout[] = [
-  { left:  1, top:  6, w: 22, rot: -4, z: 1 },  // FY2015 photo — top-left
-  { left: 20, top: 38, w: 19, rot:  3, z: 2 },  // FY2017 photo — mid-left
-  { left: 36, top:  4, w: 24, rot: -2, z: 1 },  // FY2019 photo — top-centre
-  { left: 54, top: 30, w: 20, rot:  5, z: 2 },  // FY2022 photo — mid-right
-  { left: 72, top:  8, w: 23, rot: -3, z: 1 },  // FY2025 photo — top-right
-];
-
-// Each text label: position, the FY, the lines, accent colour
-const TEXT_PIECES = [
+const JOURNEY_MILESTONES_NEW = [
   {
-    left: 3, top: 54, rot: 2, z: 3,
-    fy: "FY 2015", colour: "#333399",
-    lines: ["Launched TVW", "& ProEngage"],
+    fy: "FY 2015",
+    colour: "#333399",
+    lines: ["Launched Tata Engage — TVW & ProEngage"],
   },
   {
-    left: 21, top: 10, rot: -3, z: 3,
-    fy: "FY 2017", colour: "#1E6BB8",
-    lines: ["Group volunteering", "guidelines launched"],
+    fy: "FY 2017",
+    colour: "#1E6BB8",
+    lines: ["Group volunteering guidelines launched"],
   },
   {
-    left: 37, top: 62, rot: 1, z: 3,
-    fy: "FY 2019", colour: "#00A896",
-    lines: ["Best Global Volunteer", "Program — IAVE"],
+    fy: "FY 2019",
+    colour: "#00A896",
+    lines: ["Best Global Volunteer Program — IAVE"],
   },
   {
-    left: 57, top: 6, rot: -2, z: 3,
-    fy: "FY 2022", colour: "#C14D00",
-    lines: ["1.34M hours clocked", "Phygital pivot"],
+    fy: "FY 2022",
+    colour: "#C14D00",
+    lines: ["1.34M hours clocked", "Phygital volunteering pivot"],
   },
   {
-    left: 72, top: 56, rot: 3, z: 3,
-    fy: "FY 2025", colour: "#E8401C",
-    lines: ["10.87M hours —", "highest ever"],
+    fy: "FY 2025",
+    colour: "#E8401C",
+    lines: ["10.87M hours — highest ever", "PCVH of 10.67 achieved"],
   },
 ];
 
-const COLLAGE_PHOTOS = [
-  tataElxsiImg, airIndia, tataCommunications, drPhoto, trentImg,
-];
+// Grid tile definitions. type: "photo" | "text"
+// colSpan / rowSpan for CSS grid. Photos use images, text tiles use milestone data index.
+// Grid is 6 columns. Each row-unit = 1fr.
+type GridTile =
+  | { type: "photo"; img: string; colSpan?: number; rowSpan?: number }
+  | { type: "text";  idx: number; colSpan?: number; rowSpan?: number };
 
 export function JourneySection() {
   const navigate = useAppNavigate();
@@ -994,11 +994,38 @@ export function JourneySection() {
     if (!el) return;
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } },
-      { threshold: 0.08 }
+      { threshold: 0.06 }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
+
+  // 20 tiles total arranged across 6 columns, 4 rows
+  // Mix of photos and text boxes to feel like the reference collage
+  const tiles: GridTile[] = [
+    { type: "photo", img: tataElxsiImg,   colSpan: 2, rowSpan: 2 },
+    { type: "text",  idx: 0,              colSpan: 1, rowSpan: 1 },
+    { type: "photo", img: airIndia,       colSpan: 2, rowSpan: 1 },
+    { type: "photo", img: tataCommunications, colSpan: 1, rowSpan: 1 },
+    { type: "photo", img: tataProjects,   colSpan: 1, rowSpan: 1 },
+    { type: "text",  idx: 1,              colSpan: 2, rowSpan: 1 },
+    { type: "photo", img: tataBball,      colSpan: 1, rowSpan: 1 },
+    // row 2 continuation
+    { type: "photo", img: drPhoto,        colSpan: 1, rowSpan: 2 },
+    { type: "photo", img: tataMotors3,    colSpan: 2, rowSpan: 1 },
+    { type: "text",  idx: 2,              colSpan: 1, rowSpan: 1 },
+    // row 3
+    { type: "photo", img: happyEyes,      colSpan: 2, rowSpan: 2 },
+    { type: "photo", img: tataAig,        colSpan: 1, rowSpan: 1 },
+    { type: "photo", img: tataInfinit,    colSpan: 1, rowSpan: 1 },
+    { type: "text",  idx: 3,              colSpan: 2, rowSpan: 1 },
+    // row 4
+    { type: "photo", img: drPhoto2,       colSpan: 1, rowSpan: 1 },
+    { type: "photo", img: tataComm2,      colSpan: 1, rowSpan: 1 },
+    { type: "photo", img: tataMotors1,    colSpan: 1, rowSpan: 1 },
+    { type: "photo", img: trent1,         colSpan: 1, rowSpan: 1 },
+    { type: "text",  idx: 4,              colSpan: 2, rowSpan: 1 },
+  ];
 
   return (
     <section ref={ref} className="section-block" style={{
@@ -1007,10 +1034,10 @@ export function JourneySection() {
       background: "#0a0e1a",
     }}>
 
-      {/* Subtle dot-grid texture */}
+      {/* Dot-grid texture */}
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)",
+        backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)",
         backgroundSize: "26px 26px",
       }} />
 
@@ -1025,118 +1052,99 @@ export function JourneySection() {
           <div style={{ width: 48, height: 1.4, borderRadius: 2, background: B_YELLOW, marginTop: 10 }} />
         </div>
 
-        {/* ── COLLAGE CANVAS ── fixed-height relative container */}
+        {/* ── COLLAGE GRID ── */}
         <div style={{
-          position: "relative",
-          height: 340,
-          marginBottom: 24,
+          display: "grid",
+          gridTemplateColumns: "repeat(6, 1fr)",
+          gridAutoRows: "110px",
+          gap: 4,
+          width: "100%",
         }}>
+          {tiles.map((tile, i) => {
+            const colSpan = tile.colSpan ?? 1;
+            const rowSpan = tile.rowSpan ?? 1;
+            const delay = i * 0.04;
 
-          {/* Photo pieces — scattered, rotated */}
-          {PHOTO_PIECES.map((p, i) => (
-            <div
-              key={`photo-${i}`}
-              style={{
-                position: "absolute",
-                left: `${p.left}%`,
-                top: `${p.top}%`,
-                width: `${p.w}%`,
-                aspectRatio: "4 / 3",
-                transform: `rotate(${p.rot}deg)`,
-                zIndex: p.z,
-                borderRadius: 6,
-                overflow: "hidden",
-                boxShadow: "0 6px 28px rgba(0,0,0,0.55)",
-                border: "2.5px solid rgba(255,255,255,0.12)",
-                opacity: vis ? 1 : 0,
-                transition: `opacity 0.5s ease ${i * 0.08}s`,
-              }}
-            >
-              <img
-                src={COLLAGE_PHOTOS[i]}
-                alt=""
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
-            </div>
-          ))}
+            if (tile.type === "photo") {
+              return (
+                <div
+                  key={i}
+                  style={{
+                    gridColumn: `span ${colSpan}`,
+                    gridRow: `span ${rowSpan}`,
+                    overflow: "hidden",
+                    borderRadius: 4,
+                    opacity: vis ? 1 : 0,
+                    transform: vis ? "scale(1)" : "scale(0.96)",
+                    transition: `opacity 0.45s ease ${delay}s, transform 0.45s ease ${delay}s`,
+                  }}
+                >
+                  <img
+                    src={tile.img}
+                    alt=""
+                    style={{
+                      width: "100%", height: "100%",
+                      objectFit: "cover", display: "block",
+                    }}
+                  />
+                </div>
+              );
+            }
 
-          {/* Text label pieces — each is a separate floating cut-out */}
-          {TEXT_PIECES.map((t, i) => (
-            <div
-              key={`text-${i}`}
-              style={{
-                position: "absolute",
-                left: `${t.left}%`,
-                top: `${t.top}%`,
-                transform: `rotate(${t.rot}deg)`,
-                zIndex: t.z,
-                opacity: vis ? 1 : 0,
-                transition: `opacity 0.5s ease ${i * 0.08 + 0.25}s`,
-              }}
-            >
-              {/* FY year badge */}
-              <div style={{
-                display: "inline-block",
-                background: t.colour,
-                color: "#fff",
-                fontFamily: FONT_SANS,
-                fontSize: 10, fontWeight: 800,
-                letterSpacing: "1.4px",
-                textTransform: "uppercase",
-                padding: "3px 9px",
-                borderRadius: 100,
-                marginBottom: 5,
-                boxShadow: `0 2px 10px ${t.colour}80`,
-              }}>
-                {t.fy}
-              </div>
-
-              {/* Text snippet — like a torn paper label */}
-              <div style={{
-                background: "rgba(255,255,255,0.08)",
-                backdropFilter: "blur(6px)",
-                border: "1px solid rgba(255,255,255,0.14)",
-                borderRadius: 8,
-                padding: "8px 12px",
-                maxWidth: 140,
-              }}>
-                {t.lines.map((line, li) => (
+            // Text tile
+            const m = JOURNEY_MILESTONES_NEW[tile.idx];
+            return (
+              <div
+                key={i}
+                style={{
+                  gridColumn: `span ${colSpan}`,
+                  gridRow: `span ${rowSpan}`,
+                  borderRadius: 4,
+                  background: "rgba(28,32,48,0.92)",
+                  border: `1.5px solid ${m.colour}55`,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  padding: "14px 16px",
+                  opacity: vis ? 1 : 0,
+                  transition: `opacity 0.5s ease ${delay + 0.15}s`,
+                }}
+              >
+                {/* FY pill */}
+                <div style={{
+                  display: "inline-block",
+                  alignSelf: "flex-start",
+                  background: m.colour,
+                  color: "#fff",
+                  fontFamily: FONT_SANS,
+                  fontSize: 9, fontWeight: 800,
+                  letterSpacing: "1.5px",
+                  textTransform: "uppercase",
+                  padding: "2px 8px",
+                  borderRadius: 100,
+                  marginBottom: 8,
+                }}>
+                  {m.fy}
+                </div>
+                {/* Text lines */}
+                {m.lines.map((line, li) => (
                   <div key={li} style={{
                     fontFamily: FONT_SANS,
-                    fontSize: 11.5, fontWeight: li === 0 ? 700 : 500,
-                    color: li === 0 ? "#ffffff" : "rgba(255,255,255,0.72)",
+                    fontSize: 11.5,
+                    fontWeight: li === 0 ? 700 : 500,
+                    color: li === 0 ? "#ffffff" : "rgba(255,255,255,0.65)",
                     lineHeight: 1.45,
+                    marginTop: li > 0 ? 3 : 0,
                   }}>
                     {line}
                   </div>
                 ))}
               </div>
-            </div>
-          ))}
-
-          {/* Connecting dashed timeline thread — purely decorative SVG */}
-          <svg
-            style={{
-              position: "absolute", inset: 0,
-              width: "100%", height: "100%",
-              zIndex: 0, pointerEvents: "none",
-              opacity: vis ? 0.25 : 0,
-              transition: "opacity 0.8s ease 0.4s",
-            }}
-            preserveAspectRatio="none"
-          >
-            <polyline
-              points="10,50 22,55 38,20 56,45 76,30"
-              fill="none"
-              stroke="rgba(255,255,255,0.6)"
-              strokeWidth="1"
-              strokeDasharray="5 5"
-              vectorEffect="non-scaling-stroke"
-            />
-          </svg>
+            );
+          })}
         </div>
 
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ marginTop: 20, display: "flex", justifyContent: "flex-end" }}>
           <button
             onClick={() => navigate("journey")}
             style={{
