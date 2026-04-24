@@ -4,6 +4,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useAppContext } from "@/context/AppContext";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import tvwHeroImg from "@/assets/tata-motors-3.jpg";
+import tvwHeroFallback from "@/assets/tata-motors-2.jpg";
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
 const ACCENT_NAVY  = "#0D1B3E";
@@ -160,7 +161,15 @@ export default function AboutTVWView() {
 
       {/* ════════════════════ HERO — photo + accent overlay ════════════════════ */}
       <div style={{ position: "relative", minHeight: "92vh", overflow: "hidden", display: "flex", alignItems: "center", paddingTop: 64 }}>
-        <img src={tvwHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+        {/* Background image via CSS — more reliable than img tag for assets */}
+        <div
+          style={{
+            position: "absolute", inset: 0,
+            backgroundImage: `url(${tvwHeroImg}), url(${tvwHeroFallback})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(8,12,22,0.82) 0%, rgba(8,12,22,0.65) 40%, rgba(8,12,22,0.18) 75%, rgba(8,12,22,0.10) 100%)" }} />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
