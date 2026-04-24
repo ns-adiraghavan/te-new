@@ -14,20 +14,47 @@ const DIAG: React.CSSProperties = {
   pointerEvents: "none",
 };
 
-const ImagePlaceholder = ({ height }: { height: number }) => (
-  <div style={{
-    width: "100%", height, borderRadius: 12,
-    background: "linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)",
-    display: "flex", alignItems: "center", justifyContent: "center",
-    margin: "8px 0 32px", overflow: "hidden",
-  }}>
-    <div style={{ textAlign: "center" }}>
-      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "rgba(0,0,0,0.08)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 10px" }}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.32)" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+const ImagePlaceholder = ({ height, caption }: { height: number; caption?: string }) => (
+  <figure style={{ margin: "8px 0 32px" }}>
+    <div style={{
+      width: "100%", height, borderRadius: 12,
+      background: "linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      overflow: "hidden", position: "relative",
+    }}>
+      <div style={{ textAlign: "center", padding: 16 }}>
+        <div style={{ width: 44, height: 44, borderRadius: "50%", background: "rgba(0,0,0,0.08)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 10px" }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.32)" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <span style={{ fontSize: 12, color: "rgba(0,0,0,0.32)", fontWeight: 600 }}>Image placeholder</span>
+        {caption && (
+          <div style={{
+            marginTop: 10,
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontStyle: "italic",
+            fontSize: 14,
+            color: "rgba(13,27,62,0.65)",
+            maxWidth: 460,
+            lineHeight: 1.5,
+          }}>
+            “{caption}”
+          </div>
+        )}
       </div>
-      <span style={{ fontSize: 12, color: "rgba(0,0,0,0.32)", fontWeight: 600 }}>Image placeholder</span>
     </div>
-  </div>
+    {caption && (
+      <figcaption style={{
+        marginTop: 10,
+        fontSize: 12,
+        fontWeight: 700,
+        letterSpacing: "0.6px",
+        textTransform: "uppercase",
+        color: "#64748b",
+      }}>
+        Caption · {caption}
+      </figcaption>
+    )}
+  </figure>
 );
 
 export default function ImpactStoryView() {
@@ -98,9 +125,23 @@ export default function ImpactStoryView() {
           </p>
           <div style={{ height: 2, width: 52, borderRadius: 2, background: accent, marginBottom: 20 }} />
 
-          <h1 style={{ fontFamily: FONT, fontSize: "clamp(1.9rem, 3.8vw, 3rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.4px", margin: "0 0 24px", maxWidth: 680 }}>
+          <h1 style={{ fontFamily: FONT, fontSize: "clamp(1.9rem, 3.8vw, 3rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.4px", margin: "0 0 12px", maxWidth: 720 }}>
             {story.title}
           </h1>
+
+          {story.subtitle && (
+            <p style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontStyle: "italic",
+              fontSize: "clamp(1.05rem, 1.7vw, 1.35rem)",
+              color: "rgba(255,255,255,0.85)",
+              lineHeight: 1.4,
+              margin: "0 0 24px",
+              maxWidth: 720,
+            }}>
+              {story.subtitle}
+            </p>
+          )}
 
           {/* Stats — only shown if story has them */}
           {story.stats && (
@@ -132,10 +173,12 @@ export default function ImpactStoryView() {
             {story.openingPara}
           </p>
 
-          {/* Body sections — render with optional headings, bullets, sub-blocks. Image slots inserted after sections 1, 3, and the last section. */}
+          {/* Body sections — render with optional headings, bullets, sub-blocks, tables, and image slots. */}
           {(() => {
+            // If any section explicitly defines an imageAfter, the story controls placement;
+            // otherwise we auto-distribute three placeholders across the section count.
+            const hasExplicitImages = story.sections.some((s) => s.imageAfter);
             const total = story.sections.length;
-            // Pick image insertion points: after first, middle, and last section.
             const slot1 = 0;
             const slot2 = Math.min(Math.max(Math.floor(total / 2), 1), total - 1);
             const slot3 = total - 1;
@@ -197,15 +240,62 @@ export default function ImpactStoryView() {
                     </ul>
                   </div>
                 ))}
+                {sec.table && (
+                  <div style={{ overflowX: "auto", margin: "8px 0 28px", border: "1px solid #e8e8f0", borderRadius: 10 }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: 14 }}>
+                      <thead>
+                        <tr style={{ background: "#f7f8fc" }}>
+                          {sec.table.headers.map((h, hi) => (
+                            <th key={hi} style={{
+                              textAlign: "left",
+                              padding: "10px 14px",
+                              fontSize: 11,
+                              fontWeight: 800,
+                              letterSpacing: "0.8px",
+                              textTransform: "uppercase",
+                              color: ACCENT_NAVY,
+                              borderBottom: "1px solid #e8e8f0",
+                            }}>{h}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sec.table.rows.map((row, ri) => (
+                          <tr key={ri} style={{ borderTop: ri === 0 ? "none" : "1px solid #f1f1f5" }}>
+                            {row.map((cell, ci) => (
+                              <td key={ci} style={{
+                                padding: "10px 14px",
+                                color: "#374151",
+                                fontWeight: ci === 1 ? 600 : 400,
+                              }}>{cell}</td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </div>
             );
 
             const out: React.ReactNode[] = [];
             story.sections.forEach((sec, i) => {
               out.push(renderSection(sec, i));
-              if (i === slot1) out.push(<ImagePlaceholder key={`img-1-${i}`} height={320} />);
-              else if (i === slot2 && slot2 !== slot1 && slot2 !== slot3) out.push(<ImagePlaceholder key={`img-2-${i}`} height={260} />);
-              else if (i === slot3 && slot3 !== slot1) out.push(<ImagePlaceholder key={`img-3-${i}`} height={300} />);
+              if (hasExplicitImages) {
+                if (sec.imageAfter) {
+                  out.push(
+                    <ImagePlaceholder
+                      key={`img-explicit-${i}`}
+                      height={sec.imageAfter.height ?? 300}
+                      caption={sec.imageAfter.caption}
+                    />,
+                  );
+                }
+              } else {
+                if (i === slot1) out.push(<ImagePlaceholder key={`img-1-${i}`} height={320} />);
+                else if (i === slot2 && slot2 !== slot1 && slot2 !== slot3) out.push(<ImagePlaceholder key={`img-2-${i}`} height={260} />);
+                else if (i === slot3 && slot3 !== slot1) out.push(<ImagePlaceholder key={`img-3-${i}`} height={300} />);
+              }
             });
             return out;
           })()}

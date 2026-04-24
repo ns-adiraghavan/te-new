@@ -1,5 +1,6 @@
 import tataAIG from "@/assets/Tata_AIG_2.jpg";
 import tataMotors1 from "@/assets/Tata_Motors_1.jpg";
+import tataComms from "@/assets/tata-communications-1.jpg";
 
 const ACCENT_NAVY = "#0D1B3E";
 const B_INDIGO    = "#333399";
@@ -17,11 +18,16 @@ export interface StorySection {
   bullets?: string[];
   /** Optional sub-blocks rendered inside the section (used for grouped lists like Health/Education/Governance). */
   subBlocks?: { heading: string; bullets: string[] }[];
+  /** Optional table rendered inside the section (e.g. team rosters). */
+  table?: { headers: string[]; rows: string[][] };
+  /** If set, an image placeholder with this caption is rendered AFTER this section. */
+  imageAfter?: { caption: string; height?: number };
 }
 
 export interface ImpactStory {
   slug: string;
   title: string;
+  subtitle?: string;
   eyebrow: string;
   tag: string;
   accentColor: string;
@@ -43,6 +49,7 @@ export const IMPACT_STORIES: ImpactStory[] = [
   {
     slug: "wayanad-2024",
     title: "United in Action",
+    subtitle: "Volunteer voices from the ONE Tata Wayanad Landslide Response 2024",
     eyebrow: "Disaster Response",
     tag: "Disaster Response",
     accentColor: B_RED,
@@ -112,6 +119,7 @@ export const IMPACT_STORIES: ImpactStory[] = [
   {
     slug: "melghat-mitra",
     title: "Melghat Mitra",
+    subtitle: "When Service Becomes Stewardship",
     eyebrow: "Long-form Volunteering",
     tag: "Community",
     accentColor: B_INDIGO,
@@ -189,6 +197,22 @@ export const IMPACT_STORIES: ImpactStory[] = [
         heading: "A culture of volunteering, backed by belief",
         body: "Melghat Mitra is a reminder that sustainable change does not arrive all at once. It is built patiently — through trust, consistency, and the courage to show up, year after year.",
       },
+      {
+        heading: "Melghat Mitra Group members",
+        table: {
+          headers: ["No", "Name", "Plant", ""],
+          rows: [
+            ["1", "Mangesh Ramesh Joshi", "PVBU", ""],
+            ["2", "Pravin Mahadeo Pawar", "PVBU", ""],
+            ["3", "Ganpat Anant Baravakar", "PVBU", ""],
+            ["4", "Prashant Tukaram Pimpalnerkar", "ERC", ""],
+            ["5", "Santosh Parshuram Kale", "CVBU", ""],
+            ["6", "Sudhir Babanrao Gaikwad", "PVBU", ""],
+            ["7", "Manohar Ramchandra Lolage", "ERC", ""],
+            ["8", "Shriram Dattatraya Ramdasi", "CVBU", "Retired (01-May-15)"],
+          ],
+        },
+      },
     ],
     quotes: [
       {
@@ -206,5 +230,48 @@ export const IMPACT_STORIES: ImpactStory[] = [
     featured: true,
     slideHeadline: "Melghat Mitra: When Service Becomes Stewardship",
     slideSub: "Over two decades, a group of Tata Motors employees has transformed 50 villages — 40,000 volunteer hours, zero hunger deaths.",
+  },
+  {
+    slug: "beyond-the-boardroom",
+    title: "Beyond the Boardroom",
+    subtitle: "Tata Communications ExCom lead through their volunteering action",
+    eyebrow: "Leadership Volunteering",
+    tag: "Climate Resilience",
+    accentColor: B_INDIGO,
+    heroImage: tataComms,
+    heroImageAlt: "Tata Communications leaders in the Garo Hills, Meghalaya",
+    date: "2024",
+    excerpt: "11 Tata Communications leaders stepped into Meghalaya's Garo Hills — installing solar power and clean cookstoves under the Climate Resilient Village Programme.",
+    openingPara:
+      "True leadership is defined not in boardrooms, but in the choices leaders make on the ground. Living this belief, senior leaders from Tata Communications led from the front by stepping into the remote villages of Meghalaya's Garo Hills through Beyond the Boardroom — a first-of-its-kind immersive experience under the company's flagship Climate Resilient Village Programme. Over two days, these leaders moved beyond strategy and oversight to engage directly with communities, translating vision into action and purpose into tangible change.",
+    sections: [
+      {
+        imageAfter: { caption: "Leadership That Listens, Learns, and Acts", height: 320 },
+        body: "Set in the villages of Buripara Akilang and Mandal Nokat in the West Garo Hills district, Beyond the Boardroom offered Tata Communications' leaders an unfiltered window into rural realities. Immersed in everyday village life, leaders witnessed first-hand the challenges of limited infrastructure, energy access, and health risks — while also experiencing the community's resilience, warmth, and cultural richness. These moments of connection deepened empathy and reinforced the role of leadership in driving inclusive and sustainable development.",
+      },
+      {
+        heading: "Lighting homes. Powering possibilities.",
+        imageAfter: { caption: "Lighting Homes. Powering Possibilities.", height: 280 },
+        body: "In Buripara Akilang, Tata Communications leaders and volunteers conducted on-ground energy assessments and personally installed solar panels, batteries, and electrical connections. Each of the 13 households received six solar lights and a table fan, while four solar streetlights were installed along key village pathways — improving safety and mobility after dusk.\n\nFor families accustomed to darkness once the sun set, access to solar power brought dignity, security, and new possibilities — extending productive hours and transforming everyday life through clean, reliable energy.",
+      },
+      {
+        heading: "Cleaner kitchens, healthier futures",
+        imageAfter: { caption: "Cleaner Kitchens, Healthier Futures", height: 280 },
+        body: "The journey continued in Mandal Nokat, where the focus shifted to clean cooking solutions. Traditional chulhas were replaced with energy-efficient cookstoves designed to reduce smoke emissions and lower reliance on firewood. With improved combustion efficiency and sturdy construction, the new cookstoves are creating healthier kitchens, reducing respiratory risks, and minimizing environmental impact.",
+      },
+      {
+        heading: "Leading with purpose",
+        body: "This initiative stands as a powerful reminder that when corporate leaders step into the heart of the communities they serve, change becomes real and enduring. By leading with empathy, presence, and purpose, Tata Communications is helping build climate-resilient, self-reliant villages — one light, one stove, and one shared story at a time.",
+      },
+    ],
+    stats: [
+      { num: "11", label: "ExCom leaders" },
+      { num: "250", label: "Lives impacted" },
+      { num: "12", label: "Homes electrified" },
+      { num: "26", label: "Clean cookstoves" },
+    ],
+    featured: true,
+    slideHeadline: "Beyond the Boardroom: Leadership in the Garo Hills",
+    slideSub: "11 Tata Communications leaders. 38 households. Solar power, clean cookstoves, and #BeyondTheBoardroom impact.",
   },
 ];
