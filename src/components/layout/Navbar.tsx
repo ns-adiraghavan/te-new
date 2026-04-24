@@ -270,7 +270,8 @@ const Navbar = ({
               height: 90,
               zIndex: 60,
               cursor: "pointer",
-              filter: "drop-shadow(0 6px 18px rgba(0,0,0,0.55)) drop-shadow(2px 4px 6px rgba(0,0,0,0.35))",
+              filter:
+                "drop-shadow(4px 6px 16px rgba(0,0,0,0.60)) drop-shadow(8px 10px 24px rgba(0,0,0,0.30)) drop-shadow(-1px -1px 4px rgba(255,255,255,0.15))",
             }}
             onClick={() => (isLoggedIn ? onNavigate(hubView()) : onNavigate("home"))}
           >
