@@ -235,6 +235,7 @@ export default function App() {
                 <Route path="/yes-to-access" element={<YesToAccessView />} />
                 <Route path="/tata-sustainability-month" element={<TataSmView />} />
                 <Route path="/cvp" element={<CVPView />} />
+                <Route path="/stories" element={<ImpactStoryView />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
         </main>
