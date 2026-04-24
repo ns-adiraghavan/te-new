@@ -60,6 +60,7 @@ import EWasteView from "@/views/EWasteView";
 import YesToAccessView from "@/views/YesToAccessView";
 import TataSmView from "@/views/TataSmView";
 import CVPView from "@/views/CVPView";
+import ImpactStoryView from "@/views/ImpactStoryView";
 import NotFound from "@/pages/NotFound";
 
 export default function App() {
