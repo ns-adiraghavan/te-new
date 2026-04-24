@@ -934,70 +934,55 @@ export function NumbersSection() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// JOURNEY SECTION — photo collage bg + 5 coloured milestone boxes
+// JOURNEY SECTION — 5 photo cards, each with integrated text + colour tint
+// Each milestone = a card where the photo IS the background, tinted by accent colour
+// Layout: overlapping stagger like a mood board / collage
 // ─────────────────────────────────────────────────────────────────────────────
 
-const NEW_MILESTONES = [
+const JOURNEY_CARDS = [
   {
     fy: "FY 2015",
-    colour: B_INDIGO,
-    pastel: P_INDIGO,
+    colour: "#333399",   // B_INDIGO
+    photo: tataElxsiImg,
     bullets: [
-      "Launched Tata Engage with two volunteering formats — Tata Volunteering Week and ProEngage",
+      "Launched Tata Engage with two volunteering formats",
+      "Tata Volunteering Week and ProEngage",
     ],
   },
   {
     fy: "FY 2017",
-    colour: B_BLUE,
-    pastel: "#EBF4FF",
+    colour: "#1E6BB8",   // B_BLUE
+    photo: airIndia,
     bullets: [
       "Launched Tata Group volunteering guidelines",
     ],
   },
   {
     fy: "FY 2019",
-    colour: B_TEAL,
-    pastel: P_TEAL,
+    colour: "#00A896",   // B_TEAL
+    photo: tataCommunications,
     bullets: [
-      "Tata Engage won \"Best Global Volunteer Program\" by International Association for Volunteer Effort (IAVE)",
+      "Won Best Global Volunteer Program — IAVE",
     ],
   },
   {
     fy: "FY 2022",
-    colour: "#C14D00",
-    pastel: "#FFF0E6",
+    colour: "#C14D00",   // orange
+    photo: drPhoto,
     bullets: [
-      "Clocked 1.34 million hours and pivoted to a phygital mode of volunteering",
+      "1.34 million hours clocked",
+      "Pivoted to phygital volunteering",
     ],
   },
   {
     fy: "FY 2025",
-    colour: B_RED,
-    pastel: P_RED,
+    colour: "#E8401C",   // B_RED
+    photo: trentImg,
     bullets: [
-      "Clocked 10.87 million volunteering hours (highest ever)",
-      "Reported a PCVH of 10.67",
+      "10.87 million hours — highest ever",
+      "PCVH of 10.67 achieved",
     ],
   },
-];
-
-// Collage images — pulled from available assets
-const COLLAGE_IMGS = [
-  tataElxsiImg, airIndia, tataCommunications, infiniti, tataPower,
-  drPhoto, tajSatsImg, titanImg, trentImg,
-];
-
-// Collage item layout: [top%, left%, width%, rotate, zIndex]
-const COLLAGE_LAYOUT: [number, number, number, number, number][] = [
-  [2,   0,   28,  -4,  1],
-  [0,   22,  26,   3,  2],
-  [5,   44,  24,  -2,  1],
-  [1,   64,  22,   5,  2],
-  [3,   82,  20,  -3,  1],
-  [48,  5,   26,   4,  2],
-  [50,  30,  24,  -5,  1],
-  [45,  55,  28,   2,  2],
-  [47,  78,  22,  -4,  1],
 ];
 
 export function JourneySection() {
@@ -1010,7 +995,7 @@ export function JourneySection() {
     if (!el) return;
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } },
-      { threshold: 0.12 }
+      { threshold: 0.08 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -1019,54 +1004,17 @@ export function JourneySection() {
   return (
     <section ref={ref} className="section-block" style={{
       position: "relative", overflow: "hidden",
-      padding: "56px 48px",
-      background: ACCENT_NAVY,
+      padding: "60px 48px",
+      background: "#0a0e1a",
     }}>
+      {/* faint dot-grid texture */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
+        backgroundSize: "28px 28px",
+      }} />
 
-      {/* ── PHOTO COLLAGE BACKGROUND ── */}
-      <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-        {COLLAGE_IMGS.slice(0, COLLAGE_LAYOUT.length).map((img, i) => {
-          const [top, left, width, rotate, zIdx] = COLLAGE_LAYOUT[i];
-          return (
-            <div
-              key={i}
-              style={{
-                position: "absolute",
-                top: `${top}%`,
-                left: `${left}%`,
-                width: `${width}%`,
-                aspectRatio: "4/3",
-                transform: `rotate(${rotate}deg)`,
-                zIndex: zIdx,
-                borderRadius: 6,
-                overflow: "hidden",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.45)",
-                border: "2px solid rgba(255,255,255,0.08)",
-              }}
-            >
-              <img
-                src={img}
-                alt=""
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
-            </div>
-          );
-        })}
-        {/* Dark overlay over collage */}
-        <div style={{
-          position: "absolute", inset: 0, zIndex: 3,
-          background: "linear-gradient(135deg, rgba(5,5,20,0.80) 0%, rgba(5,5,20,0.72) 100%)",
-        }} />
-        {/* Subtle diagonal texture */}
-        <div style={{
-          position: "absolute", inset: 0, zIndex: 4,
-          backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 22px)",
-          pointerEvents: "none",
-        }} />
-      </div>
-
-      {/* ── CONTENT ── */}
-      <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 5 }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 2 }}>
 
         {/* Header */}
         <div style={{ marginBottom: 36 }}>
@@ -1077,95 +1025,136 @@ export function JourneySection() {
           <div style={{ width: 48, height: 1.4, borderRadius: 2, background: B_YELLOW, marginTop: 10 }} />
         </div>
 
-        {/* 5 milestone boxes — desktop: single row; mobile: 2-col grid */}
+        {/* ── 5 integrated photo-text cards ── */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(5, 1fr)",
-          gap: 12,
+          gap: 10,
+          alignItems: "stretch",
         }}
-          className="journey-boxes-grid"
+          className="te-journey-grid"
         >
-          {NEW_MILESTONES.map((m, i) => (
+          {JOURNEY_CARDS.map((card, i) => (
             <div
-              key={m.fy}
+              key={card.fy}
               style={{
-                background: `${m.colour}e8`,
+                position: "relative",
                 borderRadius: 14,
-                padding: "22px 18px",
-                border: `1.5px solid ${m.colour}`,
-                boxShadow: `0 8px 32px ${m.colour}30`,
-                backdropFilter: "blur(8px)",
+                overflow: "hidden",
+                minHeight: 260,
                 opacity: vis ? 1 : 0,
-                transform: vis ? "translateY(0)" : "translateY(20px)",
-                transition: `opacity 0.5s ease ${i * 0.1}s, transform 0.5s ease ${i * 0.1}s`,
-                display: "flex",
-                flexDirection: "column",
-                gap: 10,
+                transform: vis
+                  ? `translateY(${i % 2 === 0 ? 0 : 8}px)`
+                  : `translateY(${i % 2 === 0 ? -18 : 24}px)`,
+                transition: `opacity 0.55s ease ${i * 0.1}s, transform 0.55s ease ${i * 0.1}s`,
+                boxShadow: "0 8px 32px rgba(0,0,0,0.40)",
+                border: "1.5px solid rgba(255,255,255,0.08)",
+                // slight stagger in height for collage feel
+                marginTop: i % 2 !== 0 ? 18 : 0,
               }}
             >
-              {/* FY pill */}
+              {/* Photo fill */}
+              <img
+                src={card.photo}
+                alt=""
+                style={{
+                  position: "absolute", inset: 0,
+                  width: "100%", height: "100%",
+                  objectFit: "cover", objectPosition: "center",
+                  display: "block",
+                }}
+              />
+
+              {/* Colour tint overlay — lighter at top, heavier at bottom for text */}
               <div style={{
-                display: "inline-flex", alignSelf: "flex-start",
-                background: "rgba(255,255,255,0.18)",
-                borderRadius: 100,
-                padding: "3px 10px",
-                fontFamily: FONT_SANS,
-                fontSize: 11, fontWeight: 800,
-                letterSpacing: "1.2px",
-                textTransform: "uppercase",
-                color: "#ffffff",
+                position: "absolute", inset: 0,
+                background: `linear-gradient(
+                  to bottom,
+                  ${card.colour}55 0%,
+                  ${card.colour}99 40%,
+                  ${card.colour}ee 100%
+                )`,
+              }} />
+
+              {/* Torn-edge top strip accent */}
+              <div style={{
+                position: "absolute", top: 0, left: 0, right: 0,
+                height: 3,
+                background: card.colour,
+              }} />
+
+              {/* Text content — sticks to bottom */}
+              <div style={{
+                position: "absolute", inset: 0,
+                display: "flex", flexDirection: "column",
+                justifyContent: "flex-end",
+                padding: "16px 16px 20px",
               }}>
-                {m.fy}
+                {/* FY badge */}
+                <div style={{
+                  alignSelf: "flex-start",
+                  background: "rgba(255,255,255,0.15)",
+                  backdropFilter: "blur(4px)",
+                  border: "1px solid rgba(255,255,255,0.25)",
+                  borderRadius: 100,
+                  padding: "3px 10px",
+                  fontFamily: FONT_SANS,
+                  fontSize: 10, fontWeight: 800,
+                  letterSpacing: "1.5px",
+                  textTransform: "uppercase",
+                  color: "#ffffff",
+                  marginBottom: 10,
+                }}>
+                  {card.fy}
+                </div>
+
+                {/* Divider */}
+                <div style={{ height: 1, background: "rgba(255,255,255,0.30)", borderRadius: 1, marginBottom: 10 }} />
+
+                {/* Bullet items */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  {card.bullets.map((b, bi) => (
+                    <div key={bi} style={{ display: "flex", gap: 7, alignItems: "flex-start" }}>
+                      <span style={{
+                        width: 4, height: 4, borderRadius: "50%",
+                        background: "#ffffff",
+                        flexShrink: 0, marginTop: 5,
+                        opacity: 0.8,
+                      }} />
+                      <span style={{
+                        fontFamily: FONT_SANS,
+                        fontSize: 12, fontWeight: 600,
+                        color: "rgba(255,255,255,0.95)",
+                        lineHeight: 1.5,
+                      }}>
+                        {b}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-
-              {/* Divider */}
-              <div style={{ height: 1.5, background: "rgba(255,255,255,0.28)", borderRadius: 1 }} />
-
-              {/* Bullets */}
-              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 7 }}>
-                {m.bullets.map((b, bi) => (
-                  <li key={bi} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
-                    <span style={{
-                      width: 5, height: 5, borderRadius: "50%",
-                      background: "rgba(255,255,255,0.7)",
-                      flexShrink: 0, marginTop: 5,
-                    }} />
-                    <span style={{
-                      fontFamily: FONT_SANS,
-                      fontSize: 12.5, fontWeight: 500,
-                      color: "rgba(255,255,255,0.92)",
-                      lineHeight: 1.55,
-                    }}>
-                      {b}
-                    </span>
-                  </li>
-                ))}
-              </ul>
             </div>
           ))}
         </div>
 
-        {/* Mobile fallback styles */}
+        {/* Responsive styles */}
         <style>{`
           @media (max-width: 900px) {
-            .journey-boxes-grid {
-              grid-template-columns: repeat(2, 1fr) !important;
-            }
+            .te-journey-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .te-journey-grid > div { margin-top: 0 !important; }
           }
-          @media (max-width: 540px) {
-            .journey-boxes-grid {
-              grid-template-columns: 1fr !important;
-            }
+          @media (max-width: 520px) {
+            .te-journey-grid { grid-template-columns: 1fr !important; }
           }
         `}</style>
 
-        <div style={{ marginTop: 28, display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ marginTop: 32, display: "flex", justifyContent: "flex-end" }}>
           <button
             onClick={() => navigate("journey")}
             style={{
               display: "inline-flex", alignItems: "center", gap: 6,
               fontFamily: FONT_SANS, fontSize: 13, fontWeight: 700,
-              background: "none", color: "#ffffff",
+              background: "none", color: "rgba(255,255,255,0.75)",
               border: "none", cursor: "pointer", padding: 0,
             }}
           >
