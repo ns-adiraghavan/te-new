@@ -29,30 +29,40 @@ const SHIMMER_STYLE = `
 /* ── Page-accent colour map — navbar bg responds to current route ── */
 /* All values are intentionally darkened + will be rendered at partial opacity via the nav style */
 function getNavBg(pathname: string): string {
-  // Home — semi-transparent dark, lighter than before
-  if (pathname === "/") return "rgba(13,27,62,0.72)";
-  // Disaster response + Partner With Us — teal
-  if (pathname.startsWith("/disaster-response") || pathname.startsWith("/dr-") || pathname.startsWith("/partner")) return "rgba(10,90,84,0.75)";
+  // Home — greyish (matches original archive feel)
+  if (pathname === "/") return "rgba(52,52,62,0.88)";
+  // TVW — blue accent
+  if (pathname.startsWith("/tvw") || pathname.startsWith("/about/tvw")) return "rgba(10,46,90,0.80)";
+  // ProEngage — purple accent
+  if (pathname.startsWith("/proengage") || pathname.startsWith("/about/proengage")) return "rgba(58,22,72,0.80)";
+  // Disaster response — teal accent
+  if (pathname.startsWith("/disaster-response") || pathname.startsWith("/dr-")) return "rgba(0,68,60,0.80)";
+  // Partner With Us — teal
+  if (pathname.startsWith("/partner")) return "rgba(0,68,60,0.80)";
+  // Team page — pink-dark
+  if (pathname.startsWith("/about/team") || pathname.startsWith("/team")) return "rgba(90,30,36,0.82)";
+  // Contact — lime-green dark
+  if (pathname.startsWith("/about/contact") || pathname.startsWith("/contact")) return "rgba(48,62,14,0.82)";
+  // GCSO — blue
+  if (pathname.startsWith("/about/gcso")) return "rgba(18,40,72,0.82)";
+  // Journey — blue
+  if (pathname.startsWith("/journey")) return "rgba(28,52,90,0.82)";
+  // About (main + sub) — about blue
+  if (pathname.startsWith("/about")) return "rgba(28,52,90,0.82)";
   // TSM — olive
-  if (pathname.startsWith("/tata-sustainability-month")) return "rgba(58,90,26,0.75)";
+  if (pathname.startsWith("/tata-sustainability-month")) return "rgba(40,62,18,0.80)";
   // EOEO — rose
-  if (pathname.startsWith("/eoeo")) return "rgba(138,74,80,0.75)";
+  if (pathname.startsWith("/eoeo")) return "rgba(100,40,48,0.80)";
   // E-Waste, EOI, SPOC — indigo
-  if (pathname.startsWith("/ewaste") || pathname.startsWith("/eoi") || pathname.startsWith("/spoc/")) return "rgba(26,24,102,0.75)";
-  // Media & Resources
-  if (pathname.startsWith("/media")) return "rgba(13,27,62,0.78)";
+  if (pathname.startsWith("/ewaste") || pathname.startsWith("/eoi") || pathname.startsWith("/spoc/")) return "rgba(22,18,80,0.80)";
+  // Media
+  if (pathname.startsWith("/media")) return "rgba(28,40,80,0.80)";
   // Volunteer hub + dashboard
-  if (pathname.startsWith("/hub") || pathname.startsWith("/dashboard") || pathname.startsWith("/volunteer")) return "rgba(13,27,62,0.80)";
-  // TVW — blue
-  if (pathname.startsWith("/tvw") || pathname.startsWith("/about/tvw")) return "rgba(13,58,110,0.75)";
-  // ProEngage — purple
-  if (pathname.startsWith("/proengage") || pathname.startsWith("/about/proengage")) return "rgba(74,31,92,0.75)";
-  // NGO — red
-  if (pathname.startsWith("/ngo/")) return "rgba(100,20,24,0.75)";
-  // About / Journey — deep navy (matches archive)
-  if (pathname.startsWith("/about") || pathname.startsWith("/journey")) return "rgba(13,27,62,0.80)";
-  // Default — navy, not grey
-  return "rgba(13,27,62,0.78)";
+  if (pathname.startsWith("/hub") || pathname.startsWith("/dashboard") || pathname.startsWith("/volunteer")) return "rgba(28,40,80,0.82)";
+  // NGO — red-dark
+  if (pathname.startsWith("/ngo/")) return "rgba(80,14,18,0.80)";
+  // Default
+  return "rgba(28,40,80,0.80)";
 }
 
 const Navbar = ({
