@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { SOCIAL_POSTS } from "@/data/homeSharedData";
-import { IMPACT_STORIES } from "@/views/ImpactStoryView";
+import { IMPACT_STORIES } from "@/data/impactStoriesData";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import heroImg from "@/assets/tata-projects.jpg";
 
