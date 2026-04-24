@@ -1343,19 +1343,17 @@ export function JourneySection() {
       className="section-block"
       style={{
         background: "#f3f4f8",
-        padding: "44px 48px", // ↓ reduced from 56
+        padding: "36px 48px", // ↓ tighter
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* Header */}
-        <div style={{ marginBottom: 18 }}>
-          {" "}
-          {/* ↓ tighter */}
+        <div style={{ marginBottom: 14 }}>
           <SectionEyebrow label="Our Journey" />
           <SectionH2>
             A <em style={{ fontStyle: "italic", color: B_INDIGO }}>Decade</em> of Giving Back
           </SectionH2>
-          <div style={{ width: 40, height: 1.2, background: B_INDIGO, marginTop: 8 }} />
+          <div style={{ width: 36, height: 1.2, background: B_INDIGO, marginTop: 6 }} />
         </div>
 
         {/* Grid */}
@@ -1363,8 +1361,8 @@ export function JourneySection() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(6, 1fr)",
-            gridAutoRows: "70px", // ↓ from 78
-            gap: 5,
+            gridAutoRows: "60px", // ↓ key reduction
+            gap: 4,
           }}
         >
           {/* Images */}
@@ -1383,10 +1381,10 @@ export function JourneySection() {
                 style={{
                   gridColumn: s.col,
                   gridRow: s.row,
-                  borderRadius: 5,
+                  borderRadius: 4,
                   overflow: "hidden",
                   opacity: vis ? 1 : 0,
-                  transition: `opacity 0.3s ease ${i * 0.02}s`,
+                  transition: `opacity 0.25s ease ${i * 0.02}s`,
                 }}
               >
                 <img src={img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -1394,14 +1392,14 @@ export function JourneySection() {
             );
           })}
 
-          {/* Milestones */}
+          {/* Milestones — narrower now */}
           {milestones.map((m, i) => {
             const positions = [
-              { col: "2 / span 2", row: "1 / span 2" },
-              { col: "4 / span 2", row: "2 / span 2" },
-              { col: "3 / span 2", row: "4 / span 2" },
-              { col: "1 / span 2", row: "5 / span 2" },
-              { col: "5 / span 2", row: "6 / span 2" },
+              { col: "2 / span 1", row: "1 / span 2" },
+              { col: "4 / span 1", row: "2 / span 2" },
+              { col: "3 / span 1", row: "4 / span 2" },
+              { col: "1 / span 1", row: "5 / span 2" },
+              { col: "6 / span 1", row: "6 / span 2" }, // FY25 tight right
             ];
 
             const p = positions[i];
@@ -1413,26 +1411,26 @@ export function JourneySection() {
                   gridColumn: p.col,
                   gridRow: p.row,
                   background: m.colour,
-                  borderRadius: 6,
-                  padding: "8px", // ↓ tighter
+                  borderRadius: 5,
+                  padding: "6px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
                   textAlign: "center",
                   opacity: vis ? 1 : 0,
-                  transition: `opacity 0.35s ease ${i * 0.08}s`,
+                  transition: `opacity 0.3s ease ${i * 0.06}s`,
                 }}
               >
                 <div
                   style={{
                     fontFamily: FONT_SANS,
-                    fontSize: 9, // ↓ slightly smaller
+                    fontSize: 8,
                     fontWeight: 800,
-                    letterSpacing: "1.2px",
+                    letterSpacing: "1px",
                     textTransform: "uppercase",
                     color: "#ffffff",
-                    marginBottom: 3,
+                    marginBottom: 2,
                   }}
                 >
                   {m.fy}
@@ -1441,8 +1439,8 @@ export function JourneySection() {
                 <div
                   style={{
                     fontFamily: FONT_SANS,
-                    fontSize: 11.5, // ↓ slightly smaller
-                    lineHeight: 1.35,
+                    fontSize: 10.5,
+                    lineHeight: 1.3,
                     color: "#ffffff",
                     whiteSpace: "pre-line",
                     fontWeight: 600,
@@ -1456,7 +1454,7 @@ export function JourneySection() {
         </div>
 
         {/* CTA */}
-        <div style={{ marginTop: 10, display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ marginTop: 8, display: "flex", justifyContent: "flex-end" }}>
           <button
             onClick={() => navigate("journey")}
             style={{
