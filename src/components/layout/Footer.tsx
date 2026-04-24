@@ -20,14 +20,6 @@ const Footer = () => {
         <p className="text-slate-400 text-sm leading-relaxed">
           Tata Engage is the Tata Group's volunteering platform, bringing together employees, their families, and retirees to contribute time, skills, and expertise in service of society.
         </p>
-        <div className="mt-5">
-          <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Did you know?</p>
-          <ul className="space-y-2 text-slate-400 text-sm">
-            <li className="flex gap-2"><span className="text-slate-600 mt-0.5">—</span>The Tata Group is a global leader in corporate volunteering.</li>
-            <li className="flex gap-2"><span className="text-slate-600 mt-0.5">—</span>Tata Engage has been uniting Tata volunteers across the globe since 2014.</li>
-            <li className="flex gap-2"><span className="text-slate-600 mt-0.5">—</span>Tata Engage was recognised as the "Best Global Volunteer Program" by IAVE in 2018.</li>
-          </ul>
-        </div>
       </div>
       <div>
         <h4 className="font-bold mb-6">Quick Links</h4>
