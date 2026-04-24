@@ -119,6 +119,7 @@ export const IMPACT_STORIES: ImpactStory[] = [
   {
     slug: "melghat-mitra",
     title: "Melghat Mitra",
+    subtitle: "When Service Becomes Stewardship",
     eyebrow: "Long-form Volunteering",
     tag: "Community",
     accentColor: B_INDIGO,
