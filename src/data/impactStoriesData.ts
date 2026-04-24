@@ -1,7 +1,12 @@
 // Story hero banners
 import wayanadHero  from "@/assets/story_photos/Impact Story 1 - Wayanad/IMG-20240929-WA0025.jpg";
 import melghatHero  from "@/assets/story_photos/Impact Story 2 - Melghat Mitra/Photo12.jpg";
-import tataComms    from "@/assets/tata-communications-1.jpg"; // Story 3 — awaiting photos
+import tataComms    from "@/assets/story_photos/beyond-the-boardroom/110A2356 - FY 25.JPG"; // Story 3 banner
+import btbPhoto2   from "@/assets/story_photos/beyond-the-boardroom/110A2360 - FY 25.JPG";
+import btbPhoto3   from "@/assets/story_photos/beyond-the-boardroom/Blog-3-scaled.jpg";
+import btbPhoto4   from "@/assets/story_photos/beyond-the-boardroom/Blog-4-scaled.jpg";
+import btbPhoto5   from "@/assets/story_photos/beyond-the-boardroom/Blog-5.jpg";
+import btbPhoto6   from "@/assets/story_photos/beyond-the-boardroom/Volunteering (2).JPG";
 
 // Wayanad body photos (4 slots)
 import wayanadP1 from "@/assets/story_photos/Impact Story 1 - Wayanad/IMG-20241001-WA0085.jpg";
@@ -273,10 +278,10 @@ export const IMPACT_STORIES: ImpactStory[] = [
     heroImage: tataComms,
     heroImageAlt: "Tata Communications leaders in the Garo Hills, Meghalaya",
     photos: [
-      { src: "", caption: "Leadership That Listens, Learns, and Acts" },
-      { src: "", caption: "Lighting Homes. Powering Possibilities." },
-      { src: "", caption: "Cleaner Kitchens, Healthier Futures" },
-      { src: "", caption: "Leading with purpose in Mandal Nokat" },
+      { src: btbPhoto2, caption: "Leadership That Listens, Learns, and Acts" },
+      { src: btbPhoto3, caption: "Lighting Homes. Powering Possibilities." },
+      { src: btbPhoto4, caption: "Cleaner Kitchens, Healthier Futures" },
+      { src: btbPhoto5, caption: "Leading with purpose in Mandal Nokat" },
     ],
     date: "2024",
     excerpt: "11 Tata Communications leaders stepped into Meghalaya's Garo Hills — installing solar power and clean cookstoves under the Climate Resilient Village Programme.",
