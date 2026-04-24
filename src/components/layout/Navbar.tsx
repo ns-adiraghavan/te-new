@@ -58,11 +58,13 @@ function getNavBg(pathname: string): string {
   // EOEO — rose
   if (pathname.startsWith("/eoeo")) return "rgba(100,40,48,0.80)";
   // E-Waste, EOI, SPOC — indigo
-  if (pathname.startsWith("/ewaste") || pathname.startsWith("/eoi") || pathname.startsWith("/spoc/")) return "rgba(22,18,80,0.80)";
+  if (pathname.startsWith("/ewaste") || pathname.startsWith("/eoi") || pathname.startsWith("/spoc/"))
+    return "rgba(22,18,80,0.80)";
   // Media
   if (pathname.startsWith("/media")) return "rgba(28,40,80,0.80)";
   // Volunteer hub + dashboard
-  if (pathname.startsWith("/hub") || pathname.startsWith("/dashboard") || pathname.startsWith("/volunteer")) return "rgba(28,40,80,0.82)";
+  if (pathname.startsWith("/hub") || pathname.startsWith("/dashboard") || pathname.startsWith("/volunteer"))
+    return "rgba(28,40,80,0.82)";
   // NGO — red-dark
   if (pathname.startsWith("/ngo/")) return "rgba(80,14,18,0.80)";
   // Default
@@ -96,15 +98,17 @@ const Navbar = ({
   const [notifications, setNotifications] = useState(getRoleNotifications());
   const [bouncingItem, setBouncingItem] = useState<string | null>(null);
 
-  useEffect(() => { setNotifications(getRoleNotifications()); }, [user]);
+  useEffect(() => {
+    setNotifications(getRoleNotifications());
+  }, [user]);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const notifRef    = useRef<HTMLDivElement>(null);
+  const notifRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) setDropdownOpen(false);
-      if (notifRef.current    && !notifRef.current.contains(e.target as Node))    setNotifOpen(false);
+      if (notifRef.current && !notifRef.current.contains(e.target as Node)) setNotifOpen(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
@@ -125,11 +129,7 @@ const Navbar = ({
   };
 
   const hubView = (): View =>
-    user?.role === "ngo"
-      ? "ngo-hub"
-      : user?.role === "corporate_spoc"
-      ? "spoc-hub"
-      : "volunteer-hub";
+    user?.role === "ngo" ? "ngo-hub" : user?.role === "corporate_spoc" ? "spoc-hub" : "volunteer-hub";
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
@@ -165,10 +165,14 @@ const Navbar = ({
   };
 
   /* ── shared dropdown panel styles (always dark — no isDarkScene branching) ── */
-  const panelCls = "absolute top-full left-0 mt-3 bg-zinc-900 border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] py-4 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150";
-  const itemCls  = "block w-full text-left px-6 py-1.5 text-[13px] text-white/75 hover:text-white cursor-pointer transition-colors";
-  const nestPanelCls = "absolute left-full top-0 ml-2 bg-zinc-900 border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] py-4 z-[60] opacity-0 invisible group-hover/nest:opacity-100 group-hover/nest:visible transition-all duration-150";
-  const nestTriggerCls = "flex items-center justify-between w-full px-6 py-1.5 text-[13px] text-white/75 hover:text-white cursor-pointer transition-colors";
+  const panelCls =
+    "absolute top-full left-0 mt-3 bg-zinc-900 border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] py-4 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150";
+  const itemCls =
+    "block w-full text-left px-6 py-1.5 text-[13px] text-white/75 hover:text-white cursor-pointer transition-colors";
+  const nestPanelCls =
+    "absolute left-full top-0 ml-2 bg-zinc-900 border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] py-4 z-[60] opacity-0 invisible group-hover/nest:opacity-100 group-hover/nest:visible transition-all duration-150";
+  const nestTriggerCls =
+    "flex items-center justify-between w-full px-6 py-1.5 text-[13px] text-white/75 hover:text-white cursor-pointer transition-colors";
   const dividerCls = "border-t border-white/10 my-3 mx-2";
   const subSectionLabelCls = "text-[10px] font-semibold uppercase tracking-[0.12em] text-white/40 px-6 pt-3 pb-1";
 
@@ -176,9 +180,7 @@ const Navbar = ({
   const navLinkCls = (isActive: boolean, bounceKey: string) =>
     [
       "text-sm font-medium cursor-pointer flex items-center gap-1 transition-all duration-150",
-      isActive
-        ? "text-white font-semibold border-b-2 border-white/70 pb-0.5"
-        : "text-white hover:font-semibold",
+      isActive ? "text-white font-semibold border-b-2 border-white/70 pb-0.5" : "text-white hover:font-semibold",
       bouncingItem === bounceKey ? "[animation:teNavBounce_0.4s_ease]" : "",
     ].join(" ");
 
@@ -192,7 +194,10 @@ const Navbar = ({
         { label: "About ProEngage", action: () => onNavigate("about-proengage") },
         { label: "ProEngage is Live", action: () => onNavigate("proengage") },
         { label: "Apply for a Project", action: () => onNavigate("proengage") },
-        { label: "E-Module", action: () => isLoggedIn ? onNavigate("dashboard") : triggerToast("Please log in to access the E-Module") },
+        {
+          label: "E-Module",
+          action: () => (isLoggedIn ? onNavigate("dashboard") : triggerToast("Please log in to access the E-Module")),
+        },
         { label: "Resources", action: () => onNavigate("partner") },
       ],
     },
@@ -209,9 +214,7 @@ const Navbar = ({
     },
     {
       label: "Volunteering for Disaster Response",
-      items: [
-        { label: "About", action: () => onNavigate("disaster-response") },
-      ],
+      items: [{ label: "About", action: () => onNavigate("disaster-response") }],
     },
     {
       label: "Tata Sustainability Month",
@@ -247,30 +250,41 @@ const Navbar = ({
 
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
-        <div className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_24px_rgba(0,0,0,0.22)] relative" style={{ paddingLeft: 200, background: getNavBg(location.pathname), backdropFilter: "blur(18px)", WebkitBackdropFilter: "blur(18px)", transition: "background 0.35s ease" }}>
-
+        <div
+          className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_24px_rgba(0,0,0,0.22)] relative"
+          style={{
+            paddingLeft: 200,
+            background: getNavBg(location.pathname),
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            transition: "background 0.35s ease",
+          }}
+        >
           {/* ── LEFT: TataEngage circle badge — bleeds below navbar ── */}
           <div
             style={{
               position: "absolute",
-              top: 6,
-              left: 20,
-              width: 72,
-              height: 80,
+              top: 4,
+              left: 36,
+              width: 82,
+              height: 90,
               zIndex: 60,
               cursor: "pointer",
-              filter: "drop-shadow(0 8px 28px rgba(0,0,0,0.65)) drop-shadow(0 3px 8px rgba(0,0,0,0.40))",
+              filter: "drop-shadow(0 6px 18px rgba(0,0,0,0.55)) drop-shadow(2px 4px 6px rgba(0,0,0,0.35))",
             }}
-            onClick={() => isLoggedIn ? onNavigate(hubView()) : onNavigate("home")}
+            onClick={() => (isLoggedIn ? onNavigate(hubView()) : onNavigate("home"))}
           >
-            <svg width="72" height="80" viewBox="-36 -36 72 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="0" cy="2" r="34" fill="white" />
-              <image
-                href={tataEngageLogo}
-                x="-22" y="-12"
-                width="44" height="28"
-                preserveAspectRatio="xMidYMid meet"
-              />
+            <svg width="82" height="90" viewBox="-41 -38 82 90" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="0" cy="4" r="39" fill="rgba(0,0,0,0.18)" />
+              <circle cx="0" cy="2" r="38" fill="none" stroke="rgba(200,200,210,0.6)" strokeWidth="1.5" />
+              <defs>
+                <radialGradient id="badgeGrad" cx="42%" cy="38%" r="58%">
+                  <stop offset="0%" stopColor="#ffffff" />
+                  <stop offset="100%" stopColor="#dde2ee" />
+                </radialGradient>
+              </defs>
+              <circle cx="0" cy="2" r="37" fill="url(#badgeGrad)" />
+              <image href={tataEngageLogo} x="-26" y="-13" width="52" height="32" preserveAspectRatio="xMidYMid meet" />
             </svg>
           </div>
 
@@ -289,32 +303,78 @@ const Navbar = ({
               <span
                 onClick={() => triggerBounce("about", () => onNavigate("about"))}
                 className={navLinkCls(
-                  (location.pathname.startsWith("/about") && !location.pathname.startsWith("/about/proengage") && !location.pathname.startsWith("/about/tvw")) || location.pathname === "/journey",
-                  "about"
+                  (location.pathname.startsWith("/about") &&
+                    !location.pathname.startsWith("/about/proengage") &&
+                    !location.pathname.startsWith("/about/tvw")) ||
+                    location.pathname === "/journey",
+                  "about",
                 )}
               >
                 About <ChevronDown size={12} />
               </span>
               <div className={`${panelCls} w-64`}>
-                <span onClick={() => onNavigate("about")} className={itemCls}>TE Vision &amp; Mission</span>
-                <span onClick={() => onNavigate("about-gcso")} className={itemCls}>Letter from GCSO</span>
-                <span onClick={() => onNavigate("journey")} className={itemCls}>Our Journey</span>
-                <span onClick={() => onNavigate("about-events")} className={itemCls}>Events</span>
-                <span onClick={() => onNavigate("about-contact")} className={itemCls}>Contact Us</span>
-                <span onClick={() => onNavigate("about-team")} className={itemCls}>Team</span>
+                <span onClick={() => onNavigate("about")} className={itemCls}>
+                  TE Vision &amp; Mission
+                </span>
+                <span onClick={() => onNavigate("about-gcso")} className={itemCls}>
+                  Letter from GCSO
+                </span>
+                <span onClick={() => onNavigate("journey")} className={itemCls}>
+                  Our Journey
+                </span>
+                <span onClick={() => onNavigate("about-events")} className={itemCls}>
+                  Events
+                </span>
+                <span onClick={() => onNavigate("about-contact")} className={itemCls}>
+                  Contact Us
+                </span>
+                <span onClick={() => onNavigate("about-team")} className={itemCls}>
+                  Team
+                </span>
                 {isLoggedIn && (
                   <>
                     <div className={dividerCls} />
-                    <span onClick={() => { onNavigate("dashboard"); scrollAfter("resources"); }} className={itemCls}>E-Module</span>
-                    <span onClick={() => { onNavigate("spoc-dashboard"); scrollAfter("spoc-mgt"); }} className={itemCls}>SPOC Directory</span>
+                    <span
+                      onClick={() => {
+                        onNavigate("dashboard");
+                        scrollAfter("resources");
+                      }}
+                      className={itemCls}
+                    >
+                      E-Module
+                    </span>
+                    <span
+                      onClick={() => {
+                        onNavigate("spoc-dashboard");
+                        scrollAfter("spoc-mgt");
+                      }}
+                      className={itemCls}
+                    >
+                      SPOC Directory
+                    </span>
                     <div className="relative group/nest">
                       <span className={nestTriggerCls}>
                         Campaign Kits <ChevronRight size={12} className="opacity-60" />
                       </span>
                       <div className={`${nestPanelCls} w-56`}>
-                        <span onClick={() => triggerToast("ProEngage Campaign Kit available in Resource Library")} className={itemCls}>PE Kit</span>
-                        <span onClick={() => triggerToast("TVW Campaign Kit available in Resource Library")} className={itemCls}>TVW Kit</span>
-                        <span onClick={() => triggerToast("TSM Campaign Kit available in Resource Library")} className={itemCls}>TSM Kit</span>
+                        <span
+                          onClick={() => triggerToast("ProEngage Campaign Kit available in Resource Library")}
+                          className={itemCls}
+                        >
+                          PE Kit
+                        </span>
+                        <span
+                          onClick={() => triggerToast("TVW Campaign Kit available in Resource Library")}
+                          className={itemCls}
+                        >
+                          TVW Kit
+                        </span>
+                        <span
+                          onClick={() => triggerToast("TSM Campaign Kit available in Resource Library")}
+                          className={itemCls}
+                        >
+                          TSM Kit
+                        </span>
                       </div>
                     </div>
                   </>
@@ -328,16 +388,16 @@ const Navbar = ({
                 onClick={() => triggerBounce("programmes", () => onNavigate("about"))}
                 className={navLinkCls(
                   location.pathname.startsWith("/proengage") ||
-                  location.pathname.startsWith("/tvw") ||
-                  location.pathname.startsWith("/disaster-response") ||
-                  location.pathname.startsWith("/tata-sustainability-month") ||
-                  location.pathname.startsWith("/cvp") ||
-                  location.pathname.startsWith("/eoi") ||
-                  location.pathname.startsWith("/ewaste") ||
-                  location.pathname.startsWith("/eoeo") ||
-                  location.pathname.startsWith("/about/proengage") ||
-                  location.pathname.startsWith("/about/tvw"),
-                  "programmes"
+                    location.pathname.startsWith("/tvw") ||
+                    location.pathname.startsWith("/disaster-response") ||
+                    location.pathname.startsWith("/tata-sustainability-month") ||
+                    location.pathname.startsWith("/cvp") ||
+                    location.pathname.startsWith("/eoi") ||
+                    location.pathname.startsWith("/ewaste") ||
+                    location.pathname.startsWith("/eoeo") ||
+                    location.pathname.startsWith("/about/proengage") ||
+                    location.pathname.startsWith("/about/tvw"),
+                  "programmes",
                 )}
               >
                 Programmes <ChevronDown size={12} />
@@ -353,10 +413,16 @@ const Navbar = ({
                       <div className={`${nestPanelCls} w-64`}>
                         {grp.items.map((it) => {
                           if (it.label.startsWith("__SECTION__")) {
-                            return <div key={it.label} className={subSectionLabelCls}>{it.label.replace("__SECTION__", "")}</div>;
+                            return (
+                              <div key={it.label} className={subSectionLabelCls}>
+                                {it.label.replace("__SECTION__", "")}
+                              </div>
+                            );
                           }
                           return (
-                            <span key={it.label} onClick={it.action} className={itemCls}>{it.label}</span>
+                            <span key={it.label} onClick={it.action} className={itemCls}>
+                              {it.label}
+                            </span>
                           );
                         })}
                       </div>
@@ -375,11 +441,21 @@ const Navbar = ({
                 Media &amp; Resources <ChevronDown size={12} />
               </span>
               <div className={`${panelCls} w-64`}>
-                <span onClick={() => onNavigate("media", "tab=stories")} className={itemCls}>Impact Stories</span>
-                <span onClick={() => onNavigate("media", "tab=photos")} className={itemCls}>Photo Gallery</span>
-                <span onClick={() => onNavigate("media", "tab=videos")} className={itemCls}>Video Gallery</span>
-                <span onClick={() => onNavigate("media", "tab=social")} className={itemCls}>Social Media Snippets</span>
-                <span onClick={() => onNavigate("media", "tab=events")} className={itemCls}>Events</span>
+                <span onClick={() => onNavigate("media", "tab=stories")} className={itemCls}>
+                  Impact Stories
+                </span>
+                <span onClick={() => onNavigate("media", "tab=photos")} className={itemCls}>
+                  Photo Gallery
+                </span>
+                <span onClick={() => onNavigate("media", "tab=videos")} className={itemCls}>
+                  Video Gallery
+                </span>
+                <span onClick={() => onNavigate("media", "tab=social")} className={itemCls}>
+                  Social Media Snippets
+                </span>
+                <span onClick={() => onNavigate("media", "tab=events")} className={itemCls}>
+                  Events
+                </span>
               </div>
             </div>
 
@@ -391,10 +467,7 @@ const Navbar = ({
               Partner With Us
             </span>
 
-            <Search
-              size={18}
-              className="cursor-pointer text-white hover:opacity-80 transition-opacity duration-150"
-            />
+            <Search size={18} className="cursor-pointer text-white hover:opacity-80 transition-opacity duration-150" />
           </div>
 
           {/* ── RIGHT ── */}
@@ -420,7 +493,10 @@ const Navbar = ({
                           <span className="font-semibold text-sm text-zinc-900">Notifications</span>
                           <p className="text-xs text-slate-400">{notifRoleLabel()}</p>
                         </div>
-                        <button onClick={handleMarkAllRead} className="text-xs text-blue-600 font-medium hover:underline cursor-pointer">
+                        <button
+                          onClick={handleMarkAllRead}
+                          className="text-xs text-blue-600 font-medium hover:underline cursor-pointer"
+                        >
                           Mark all as read
                         </button>
                       </div>
@@ -435,7 +511,9 @@ const Navbar = ({
                               key={n.id}
                               className={`flex items-start gap-3 px-5 py-4 border-b border-zinc-50 last:border-b-0 ${n.read ? "bg-white" : "bg-slate-50"}`}
                             >
-                              <span className={`mt-0.5 w-6 h-6 rounded-full shrink-0 flex items-center justify-center text-white text-xs font-bold ${dotColor(n.type)}`}>
+                              <span
+                                className={`mt-0.5 w-6 h-6 rounded-full shrink-0 flex items-center justify-center text-white text-xs font-bold ${dotColor(n.type)}`}
+                              >
                                 {iconChip(n.type)}
                               </span>
                               <div className="min-w-0">
@@ -453,34 +531,71 @@ const Navbar = ({
 
                 {/* Avatar dropdown */}
                 <div className="relative" ref={dropdownRef}>
-                  <button onClick={() => setDropdownOpen((o) => !o)} className="flex items-center gap-2 cursor-pointer group">
+                  <button
+                    onClick={() => setDropdownOpen((o) => !o)}
+                    className="flex items-center gap-2 cursor-pointer group"
+                  >
                     <div className="w-9 h-9 rounded-full bg-[#3E7EB0] text-white flex items-center justify-center text-sm font-bold">
-                      {user?.firstName?.[0]}{user?.lastName?.[0]}
+                      {user?.firstName?.[0]}
+                      {user?.lastName?.[0]}
                     </div>
-                    <ChevronDown size={14} className="text-white/60 group-hover:text-white transition-colors duration-150" />
+                    <ChevronDown
+                      size={14}
+                      className="text-white/60 group-hover:text-white transition-colors duration-150"
+                    />
                   </button>
 
                   {dropdownOpen && (
                     <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-xl shadow-xl border border-zinc-100 overflow-hidden z-[80]">
                       <div className="px-4 py-3 border-b border-zinc-100">
-                        <div className="font-semibold text-sm text-zinc-900">{user?.firstName} {user?.lastName}</div>
+                        <div className="font-semibold text-sm text-zinc-900">
+                          {user?.firstName} {user?.lastName}
+                        </div>
                         <p className="text-xs text-zinc-500 mt-0.5">{roleLabel()}</p>
                       </div>
                       <div className="py-1">
                         {[
-                          { icon: User,            label: "Profile",           action: () => { onNavigate("profile");  setDropdownOpen(false); } },
-                          { icon: LayoutDashboard, label: "My Hub",            action: () => { onNavigate(hubView()); setDropdownOpen(false); } },
-                          { icon: Share2,          label: "Refer a Colleague", action: () => { setDropdownOpen(false); } },
+                          {
+                            icon: User,
+                            label: "Profile",
+                            action: () => {
+                              onNavigate("profile");
+                              setDropdownOpen(false);
+                            },
+                          },
+                          {
+                            icon: LayoutDashboard,
+                            label: "My Hub",
+                            action: () => {
+                              onNavigate(hubView());
+                              setDropdownOpen(false);
+                            },
+                          },
+                          {
+                            icon: Share2,
+                            label: "Refer a Colleague",
+                            action: () => {
+                              setDropdownOpen(false);
+                            },
+                          },
                         ].map(({ icon: Icon, label, action }) => (
-                          <button key={label} onClick={action}
-                            className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors cursor-pointer">
+                          <button
+                            key={label}
+                            onClick={action}
+                            className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors cursor-pointer"
+                          >
                             <Icon size={16} /> {label}
                           </button>
                         ))}
                       </div>
                       <div className="border-t border-zinc-100 py-1">
-                        <button onClick={() => { onLogout(); setDropdownOpen(false); }}
-                          className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors cursor-pointer">
+                        <button
+                          onClick={() => {
+                            onLogout();
+                            setDropdownOpen(false);
+                          }}
+                          className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors cursor-pointer"
+                        >
                           <LogOut size={16} /> Log Out
                         </button>
                       </div>
@@ -489,7 +604,12 @@ const Navbar = ({
                 </div>
 
                 {/* Tata logo — right side, native blue */}
-                <img src={tataLogo} alt="Tata" className="h-8 w-8 object-contain hidden md:block" style={{ filter: "brightness(0) invert(1)" }} />
+                <img
+                  src={tataLogo}
+                  alt="Tata"
+                  className="h-8 w-8 object-contain hidden md:block"
+                  style={{ filter: "brightness(0) invert(1)" }}
+                />
               </>
             ) : (
               /* ── Public right: Log In + Register + Tata logo ── */
@@ -508,11 +628,15 @@ const Navbar = ({
                   Register
                 </button>
                 {/* Tata logo — always white on dark nav */}
-                <img src={tataLogo} alt="Tata" className="h-8 w-8 object-contain hidden md:block" style={{ filter: "brightness(0) invert(1)" }} />
+                <img
+                  src={tataLogo}
+                  alt="Tata"
+                  className="h-8 w-8 object-contain hidden md:block"
+                  style={{ filter: "brightness(0) invert(1)" }}
+                />
               </div>
             )}
           </div>
-
         </div>
       </nav>
     </>
