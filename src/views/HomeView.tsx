@@ -257,7 +257,7 @@ const HomeView = () => {
                 position: "absolute", inset: 0,
                 backgroundImage: `url(${s.photo})`,
                 backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundPosition: s.storySlug === "beyond-the-boardroom" ? "center 20%" : "center",
                 opacity: heroSlide === i ? 1 : 0,
                 transition: "opacity 1s ease",
               }}
