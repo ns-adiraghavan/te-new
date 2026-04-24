@@ -591,10 +591,10 @@ export function QuoteBanner() {
         padding: "52px 48px",          // shorter than Journey's 72px
       }}
     >
-      {/* Dark overlay — heavier than journey for quote legibility */}
+      {/* Dark overlay — lightened for image visibility */}
       <div style={{
         position: "absolute", inset: 0,
-        background: "linear-gradient(135deg, rgba(5,5,20,0.92) 0%, rgba(5,5,20,0.92) 100%)",
+        background: "linear-gradient(135deg, rgba(5,5,20,0.72) 0%, rgba(5,5,20,0.68) 100%)",
         pointerEvents: "none",
       }} />
 
@@ -934,9 +934,72 @@ export function NumbersSection() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// JOURNEY SECTION — shrunk to ~50% of original height
-// Wave pattern texture on dark bg (subtle)
+// JOURNEY SECTION — photo collage bg + 5 coloured milestone boxes
 // ─────────────────────────────────────────────────────────────────────────────
+
+const NEW_MILESTONES = [
+  {
+    fy: "FY 2015",
+    colour: B_INDIGO,
+    pastel: P_INDIGO,
+    bullets: [
+      "Launched Tata Engage with two volunteering formats — Tata Volunteering Week and ProEngage",
+    ],
+  },
+  {
+    fy: "FY 2017",
+    colour: B_BLUE,
+    pastel: "#EBF4FF",
+    bullets: [
+      "Launched Tata Group volunteering guidelines",
+    ],
+  },
+  {
+    fy: "FY 2019",
+    colour: B_TEAL,
+    pastel: P_TEAL,
+    bullets: [
+      "Tata Engage won \"Best Global Volunteer Program\" by International Association for Volunteer Effort (IAVE)",
+    ],
+  },
+  {
+    fy: "FY 2022",
+    colour: "#C14D00",
+    pastel: "#FFF0E6",
+    bullets: [
+      "Clocked 1.34 million hours and pivoted to a phygital mode of volunteering",
+    ],
+  },
+  {
+    fy: "FY 2025",
+    colour: B_RED,
+    pastel: P_RED,
+    bullets: [
+      "Clocked 10.87 million volunteering hours (highest ever)",
+      "Reported a PCVH of 10.67",
+    ],
+  },
+];
+
+// Collage images — pulled from available assets
+const COLLAGE_IMGS = [
+  tataElxsiImg, airIndia, tataCommunications, infiniti, tataPower,
+  drPhoto, tajSatsImg, titanImg, trentImg,
+];
+
+// Collage item layout: [top%, left%, width%, rotate, zIndex]
+const COLLAGE_LAYOUT: [number, number, number, number, number][] = [
+  [2,   0,   28,  -4,  1],
+  [0,   22,  26,   3,  2],
+  [5,   44,  24,  -2,  1],
+  [1,   64,  22,   5,  2],
+  [3,   82,  20,  -3,  1],
+  [48,  5,   26,   4,  2],
+  [50,  30,  24,  -5,  1],
+  [45,  55,  28,   2,  2],
+  [47,  78,  22,  -4,  1],
+];
+
 export function JourneySection() {
   const navigate    = useAppNavigate();
   const ref         = useRef<HTMLElement>(null);
@@ -953,35 +1016,60 @@ export function JourneySection() {
     return () => obs.disconnect();
   }, []);
 
-  const milestones = JOURNEY_MILESTONES;
-
   return (
     <section ref={ref} className="section-block" style={{
-      backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.016) 24px, rgba(255,255,255,0.016) 25px), url(${tataPower})`,
-      backgroundSize: "auto, cover",
-      backgroundPosition: "center, center",
       position: "relative", overflow: "hidden",
-      // Reduced from 72px to ~36px for 50% height reduction
-      padding: "40px 48px",
+      padding: "56px 48px",
+      background: ACCENT_NAVY,
     }}>
-      {/* Dark overlay */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: "linear-gradient(135deg, rgba(5,5,20,0.92) 0%, rgba(5,5,20,0.92) 100%)",
-        pointerEvents: "none",
-      }} />
 
-      {/* Faint wave pattern on dark bg */}
-      <div style={{
-        position: "absolute", inset: 0,
-        backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.018) 24px, rgba(255,255,255,0.018) 25px)",
-        pointerEvents: "none",
-      }} />
+      {/* ── PHOTO COLLAGE BACKGROUND ── */}
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+        {COLLAGE_IMGS.slice(0, COLLAGE_LAYOUT.length).map((img, i) => {
+          const [top, left, width, rotate, zIdx] = COLLAGE_LAYOUT[i];
+          return (
+            <div
+              key={i}
+              style={{
+                position: "absolute",
+                top: `${top}%`,
+                left: `${left}%`,
+                width: `${width}%`,
+                aspectRatio: "4/3",
+                transform: `rotate(${rotate}deg)`,
+                zIndex: zIdx,
+                borderRadius: 6,
+                overflow: "hidden",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.45)",
+                border: "2px solid rgba(255,255,255,0.08)",
+              }}
+            >
+              <img
+                src={img}
+                alt=""
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+          );
+        })}
+        {/* Dark overlay over collage */}
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 3,
+          background: "linear-gradient(135deg, rgba(5,5,20,0.80) 0%, rgba(5,5,20,0.72) 100%)",
+        }} />
+        {/* Subtle diagonal texture */}
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 4,
+          backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 22px)",
+          pointerEvents: "none",
+        }} />
+      </div>
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
+      {/* ── CONTENT ── */}
+      <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 5 }}>
 
         {/* Header */}
-        <div style={{ marginBottom: 28 }}>
+        <div style={{ marginBottom: 36 }}>
           <SectionEyebrow label="Our Journey" dark />
           <SectionH2 dark>
             A <em style={{ fontStyle: "italic", color: B_YELLOW }}>Decade</em> of Giving Back
@@ -989,129 +1077,87 @@ export function JourneySection() {
           <div style={{ width: 48, height: 1.4, borderRadius: 2, background: B_YELLOW, marginTop: 10 }} />
         </div>
 
-        {/* Desktop timeline — compact */}
-        <div className="hidden lg:block">
-
-          {/* ROW 1 — even milestones above track */}
-          <div style={{ display: "flex", alignItems: "flex-end" }}>
-            {milestones.map((m, i) => {
-              const isAbove = i % 2 === 0;
-              return (
-                <div
-                  key={`top-${i}`}
-                  style={{
-                    flex: 1,
-                    display: "flex", flexDirection: "column",
-                    alignItems: "center", textAlign: "center",
-                    visibility: isAbove ? "visible" : "hidden",
-                    minHeight: 72,                     // reduced from 100
-                    opacity: vis ? 1 : 0,
-                    transform: vis ? "translateY(0)" : "translateY(-10px)",
-                    transition: `opacity 0.45s ease ${i * 0.09}s, transform 0.45s ease ${i * 0.09}s`,
-                  }}
-                >
-                  <span style={{
-                    fontFamily: FONT_SANS,
-                    fontSize: 22, fontWeight: 900, color: m.colour,
-                    background: `${m.colour}14`,
-                    borderRadius: 5, padding: "3px 9px",
-                    letterSpacing: "-0.3px", marginBottom: 4,
-                    display: "inline-block",
-                  }}>
-                    {m.year}
-                  </span>
-                  <div style={{ fontFamily: FONT_SANS, fontSize: 13, fontWeight: 800, color: "white", lineHeight: 1.3, marginBottom: 6 }}>
-                    {m.title}
-                  </div>
-                  <div style={{
-                    width: 1.5, flex: 1, minHeight: 10,
-                    background: `linear-gradient(to bottom, ${m.colour}, ${m.colour}44)`,
-                    opacity: vis ? 1 : 0,
-                    transition: `opacity 0.55s ease ${i * 0.09 + 0.25}s`,
-                  }} />
-                </div>
-              );
-            })}
-          </div>
-
-          {/* TRACK */}
-          <div style={{ position: "relative", height: 14 }}>
-            <svg width="100%" height="14" viewBox="0 0 1000 14" preserveAspectRatio="none"
-              style={{ position: "absolute", top: 0, left: 0 }}>
-              <line x1="0" y1="7" x2="1000" y2="7" stroke="rgba(255,255,255,0.30)" strokeWidth="1.2" />
-              {milestones.map((m, i) => {
-                const cx = (i / (milestones.length - 1)) * 1000;
-                return (
-                  <circle key={i} cx={cx} cy="7" r="4"
-                    fill={m.colour} stroke="rgba(255,255,255,0.5)" strokeWidth="1.5"
-                    opacity={vis ? 1 : 0}
-                    style={{ transition: `opacity 0.35s ease ${i * 0.1 + 0.35}s` }}
-                  />
-                );
-              })}
-            </svg>
-          </div>
-
-          {/* ROW 3 — odd milestones below track */}
-          <div style={{ display: "flex", alignItems: "flex-start" }}>
-            {milestones.map((m, i) => {
-              const isBelow = i % 2 !== 0;
-              return (
-                <div
-                  key={`bot-${i}`}
-                  style={{
-                    flex: 1,
-                    display: "flex", flexDirection: "column",
-                    alignItems: "center", textAlign: "center",
-                    visibility: isBelow ? "visible" : "hidden",
-                    minHeight: 72,
-                    opacity: vis ? 1 : 0,
-                    transform: vis ? "translateY(0)" : "translateY(10px)",
-                    transition: `opacity 0.45s ease ${i * 0.09}s, transform 0.45s ease ${i * 0.09}s`,
-                  }}
-                >
-                  <div style={{
-                    width: 1.5, flex: 1, minHeight: 10,
-                    background: `linear-gradient(to bottom, ${m.colour}44, ${m.colour})`,
-                    opacity: vis ? 1 : 0,
-                    transition: `opacity 0.55s ease ${i * 0.09 + 0.25}s`,
-                  }} />
-                  <span style={{
-                    fontFamily: FONT_SANS,
-                    fontSize: 22, fontWeight: 900, color: m.colour,
-                    background: `${m.colour}14`,
-                    borderRadius: 5, padding: "3px 9px",
-                    letterSpacing: "-0.3px", marginTop: 6, marginBottom: 3,
-                    display: "inline-block",
-                  }}>
-                    {m.year}
-                  </span>
-                  <div style={{ fontFamily: FONT_SANS, fontSize: 13, fontWeight: 800, color: "white", lineHeight: 1.3 }}>
-                    {m.title}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Mobile fallback */}
-        <div className="lg:hidden" style={{ paddingLeft: 24, position: "relative" }}>
-          <div style={{
-            position: "absolute", left: 8, top: 0, bottom: 0, width: 1.5,
-            background: `linear-gradient(180deg, ${B_TICKER}60, ${B_TEAL}60)`,
-          }} />
-          {milestones.map((m, i) => (
-            <div key={i} style={{ position: "relative", marginBottom: 14 }}>
+        {/* 5 milestone boxes — desktop: single row; mobile: 2-col grid */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(5, 1fr)",
+          gap: 12,
+        }}
+          className="journey-boxes-grid"
+        >
+          {NEW_MILESTONES.map((m, i) => (
+            <div
+              key={m.fy}
+              style={{
+                background: `${m.colour}e8`,
+                borderRadius: 14,
+                padding: "22px 18px",
+                border: `1.5px solid ${m.colour}`,
+                boxShadow: `0 8px 32px ${m.colour}30`,
+                backdropFilter: "blur(8px)",
+                opacity: vis ? 1 : 0,
+                transform: vis ? "translateY(0)" : "translateY(20px)",
+                transition: `opacity 0.5s ease ${i * 0.1}s, transform 0.5s ease ${i * 0.1}s`,
+                display: "flex",
+                flexDirection: "column",
+                gap: 10,
+              }}
+            >
+              {/* FY pill */}
               <div style={{
-                position: "absolute", left: -20, top: 6, width: 8, height: 8,
-                borderRadius: "50%", background: m.colour,
-              }} />
-              <span style={{ fontFamily: FONT_SANS, fontSize: 15, fontWeight: 900, color: m.colour }}>{m.year}</span>
-              <div style={{ fontFamily: FONT_SANS, fontSize: 12, fontWeight: 800, color: "white", marginTop: 2 }}>{m.title}</div>
+                display: "inline-flex", alignSelf: "flex-start",
+                background: "rgba(255,255,255,0.18)",
+                borderRadius: 100,
+                padding: "3px 10px",
+                fontFamily: FONT_SANS,
+                fontSize: 11, fontWeight: 800,
+                letterSpacing: "1.2px",
+                textTransform: "uppercase",
+                color: "#ffffff",
+              }}>
+                {m.fy}
+              </div>
+
+              {/* Divider */}
+              <div style={{ height: 1.5, background: "rgba(255,255,255,0.28)", borderRadius: 1 }} />
+
+              {/* Bullets */}
+              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 7 }}>
+                {m.bullets.map((b, bi) => (
+                  <li key={bi} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+                    <span style={{
+                      width: 5, height: 5, borderRadius: "50%",
+                      background: "rgba(255,255,255,0.7)",
+                      flexShrink: 0, marginTop: 5,
+                    }} />
+                    <span style={{
+                      fontFamily: FONT_SANS,
+                      fontSize: 12.5, fontWeight: 500,
+                      color: "rgba(255,255,255,0.92)",
+                      lineHeight: 1.55,
+                    }}>
+                      {b}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
+
+        {/* Mobile fallback styles */}
+        <style>{`
+          @media (max-width: 900px) {
+            .journey-boxes-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+            }
+          }
+          @media (max-width: 540px) {
+            .journey-boxes-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
 
         <div style={{ marginTop: 28, display: "flex", justifyContent: "flex-end" }}>
           <button
@@ -1123,7 +1169,7 @@ export function JourneySection() {
               border: "none", cursor: "pointer", padding: 0,
             }}
           >
-            Learn more <ArrowRight size={13} />
+            View full journey <ArrowRight size={13} />
           </button>
         </div>
       </div>
