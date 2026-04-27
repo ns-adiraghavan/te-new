@@ -6,7 +6,7 @@ import {
   SPOC_DIRECTORY, PENDING_APPROVALS_DATA, TCS_TVW_EVENTS,
   PROENGAGE_PIPELINE, AT_RISK_VOLUNTEERS,
   COMPANY_LEADERBOARD, VOLUNTEER_CERTIFICATES, FEEDBACK_MONITOR_DATA,
-  OPEN_PROENGAGE_PROJECTS,
+  OPEN_PROENGAGE_PROJECTS, PROENGAGE_PROJECTS,
 } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
@@ -865,36 +865,35 @@ export default function SPOCDashboardView() {
             <div>
               <div style={{ background: P_BLUE, border: `1px solid ${B_BLUE}22`, borderRadius: 12, padding: "16px 18px", marginBottom: 20 }}>
                 <div style={{ fontSize: 13.5, fontWeight: 700, color: B_BLUE, marginBottom: 4 }}>Applications close 15 July 2025</div>
-                <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>ProEngage Edition 11 is open. These projects match your skills.</div>
+                <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>ProEngage Edition 11 is open. We think these projects would be a great fit for your profile.</div>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                {PE_OPPORTUNITIES_SPOC.map(p => (
-                  <div key={p.id} style={{ ...card, padding: "20px", border: `1px solid ${p.accentColor}22` }}>
+                {PROENGAGE_PROJECTS.filter(p => p.matched).slice(0, 3).map(p => (
+                  <div key={p.id} style={{ ...card, padding: "20px", border: `1px solid ${B_VOL}18` }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
                       <div style={{ flex: 1 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                          <span style={{ background: p.pastel, color: p.accentColor, fontSize: 12, fontWeight: 700, padding: "3px 10px", borderRadius: 100 }}>{p.match}% match</span>
-                          <span style={{ fontSize: 11.5, color: "#aaaabc" }}>{p.skillArea}</span>
+                        <div style={{ fontWeight: 700, fontSize: 14.5, color: ACCENT_NAVY, marginBottom: 8, lineHeight: 1.3 }}>{p.title}</div>
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                          <span style={{ background: P_VOL, color: B_VOL, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{p.area}</span>
+                          <span style={{ background: P_BLUE, color: B_BLUE, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{p.mode}</span>
+                          <span style={{ background: "#f5f5fa", color: "#6b6b7a", fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{p.commitment || "Flexible"}</span>
+                          <span style={{ background: "#f5f5fa", color: "#8888a0", fontSize: 11, fontWeight: 500, padding: "2px 9px", borderRadius: 100 }}>{p.ngo}</span>
                         </div>
-                        <div style={{ fontWeight: 700, fontSize: 14.5, color: ACCENT_NAVY, marginBottom: 3 }}>{p.title}</div>
-                        <div style={{ fontSize: 12.5, color: "#8888a0" }}>{p.ngo} · {p.mode} · {p.duration}</div>
                       </div>
-                      <div style={{ textAlign: "right", flexShrink: 0 }}>
-                        <div style={{ fontSize: 11.5, color: "#aaaabc", marginBottom: 8 }}>Closes {p.closes}</div>
-                        <button onClick={() => setApplyProject(p)} style={{ background: p.accentColor, color: "#fff", border: "none", borderRadius: 8, padding: "8px 18px", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>Apply</button>
-                      </div>
+                      <button onClick={() => navigate("proengage")} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 8, padding: "8px 18px", fontSize: 13, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Apply</button>
                     </div>
                   </div>
                 ))}
               </div>
+              <button onClick={() => navigate("proengage")} style={{ marginTop: 14, background: "none", border: "none", fontSize: 13.5, color: B_VOL, fontWeight: 600, cursor: "pointer", padding: 0 }}>View all opportunities →</button>
             </div>
           )}
 
           {activeVolActivity === "early" && !IS_PE_SEASON && (
             <div style={{ ...card, textAlign: "center", padding: "36px 32px" }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 8 }}>ProEngage applications open in January 2026</div>
-              <div style={{ fontSize: 13.5, color: "#8888a0", lineHeight: 1.65, maxWidth: 380, margin: "0 auto 20px" }}>Register your interest early and be first to know when projects are listed.</div>
-              <button style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "10px 24px", fontSize: 13.5, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Register Early Interest</button>
+              <div style={{ fontSize: 13.5, color: "#8888a0", lineHeight: 1.65, maxWidth: 380, margin: "0 auto 20px" }}>The next edition isn't open yet, but you can browse projects we think would be a great fit for your profile.</div>
+              <button onClick={() => navigate("proengage")} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "10px 24px", fontSize: 13.5, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Browse upcoming opportunities →</button>
             </div>
           )}
 
