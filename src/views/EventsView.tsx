@@ -1,4 +1,6 @@
 import { useRef, useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
 
 import tsc22Chairman from "@/assets/events/tsc-2022-chairman.png";
@@ -14,32 +16,25 @@ import volconTribalChefs from "@/assets/events/volcon-2024-tribal-chefs.png";
 import iavePanel from "@/assets/events/iave-2022-panel.png";
 import eventsHeroImg from "@/assets/tce-2.jpg";
 
-const ACCENT       = "#5B21B6";   // PE purple deep — TSC 2022
-const ACCENT_DARK  = "#3b1278";
-const ACCENT_LIGHT = "#F3EEFF";
-const NAVY         = "#0D1B3E";
-const B_PINK       = "#7C3ABD";   // PE purple mid — VOLCON 2024
-const B_PINK_DARK  = "#5B21B6";
-const B_PINK_LIGHT = "#EDE4FF";
-const B_ORANGE     = "#333399";   // PE purple/indigo — IAVE 2022
-const B_ORANGE_DARK = "#252573";
-const B_ORANGE_LIGHT = "#EEEEFF";
+const ACCENT_NAVY  = "#0D1B3E";
+const B_INDIGO     = "#333399";
 
-const DIAG: React.CSSProperties = {
-  position: "absolute", inset: 0,
-  backgroundImage: "repeating-linear-gradient(45deg,rgba(255,255,255,0.03) 1px,transparent 1px)",
-  backgroundSize: "28px 28px",
-  pointerEvents: "none",
-};
+// TSC 2022
+const TSC_ACCENT       = "#5B21B6";
+const TSC_ACCENT_DARK  = "#3b1278";
+const TSC_ACCENT_LIGHT = "#F3EEFF";
+// VOLCON 2024
+const VOL_ACCENT       = "#7C3ABD";
+const VOL_ACCENT_DARK  = "#5B21B6";
+const VOL_ACCENT_LIGHT = "#EDE4FF";
+// IAVE 2022
+const IAVE_ACCENT       = "#333399";
+const IAVE_ACCENT_DARK  = "#252573";
+const IAVE_ACCENT_LIGHT = "#EEEEFF";
 
-const SECTIONS = [
-  { id: "events-intro",  label: "Overview" },
-  { id: "events-tsc22", label: "TSC 2022"  },
-  { id: "events-volcon", label: "VOLCON 2024" },
-  { id: "events-iave",  label: "IAVE 2022" },
-];
+const NAVY = ACCENT_NAVY;
 
-function DefinerBar({ colour = ACCENT, light = false }: { colour?: string; light?: boolean }) {
+function DefinerBar({ colour, light = false }: { colour: string; light?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const [on, setOn] = useState(false);
   useEffect(() => {
@@ -109,7 +104,7 @@ function YouTubeEmbed({ id, accent, caption }: { id: string; accent: string; cap
   );
 }
 
-// ── Sub-event block (used inside parent event sections) ───────────────────────
+// ── Sub-event block ───────────────────────────────────────────────────────────
 interface SubEventProps {
   title: string;
   body: string | string[];
@@ -119,7 +114,7 @@ interface SubEventProps {
   accentLight: string;
   mediaSide?: "left" | "right";
 }
-function SubEvent({ title, body, media, accent, accentDark, accentLight, mediaSide = "right" }: SubEventProps) {
+function SubEvent({ title, body, media, accent, accentDark, mediaSide = "right" }: SubEventProps) {
   const paras = Array.isArray(body) ? body : [body];
   return (
     <div style={{ marginTop: 56, paddingTop: 40, borderTop: `1px dashed ${accent}40` }}>
@@ -143,29 +138,29 @@ function SubEvent({ title, body, media, accent, accentDark, accentLight, mediaSi
   );
 }
 
-// ── Hero ──────────────────────────────────────────────────────────────────────
-function Hero() {
+// ── Per-event hero ────────────────────────────────────────────────────────────
+function EventHero({ accent, eyebrow, title, subtitle }: { accent: string; eyebrow: string; title: string; subtitle: string }) {
   return (
-    <div style={{ position: "relative", minHeight: "92vh", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden", paddingTop: 64 }}>
+    <div style={{ position: "relative", minHeight: "75vh", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden", paddingTop: 64 }}>
       <img src={eventsHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${ACCENT}e8 0%, ${ACCENT}cc 38%, ${ACCENT}aa 58%, ${ACCENT}77 78%, ${ACCENT}44 100%)` }} />
+      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${accent}e8 0%, ${accent}cc 38%, ${accent}aa 58%, ${accent}77 78%, ${accent}44 100%)` }} />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
         <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", margin: "0 0 12px" }}>
-          Tata Engage · Events & Conclaves
+          {eyebrow}
         </p>
         <div style={{ height: 2, width: 48, borderRadius: 2, background: "rgba(255,255,255,0.6)", margin: "12px 0 22px" }} />
-        <h1 style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: "clamp(2.4rem,5vw,3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px", maxWidth: 600 }}>
-          Events & Global Engagement
+        <h1 style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: "clamp(2.4rem,5vw,3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px", maxWidth: 760 }}>
+          {title}
         </h1>
-        <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 480, margin: 0 }}>
-          Tata Engage convenes leaders, volunteers, and global partners to celebrate the spirit of giving and chart the future of corporate volunteering.
+        <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.75)", lineHeight: 1.7, maxWidth: 600, margin: 0 }}>
+          {subtitle}
         </p>
       </div>
     </div>
   );
 }
 
-// ── Shared event card layout ──────────────────────────────────────────────────
+// ── Shared event section layout ───────────────────────────────────────────────
 interface EventSectionProps {
   id: string;
   accent: string;
@@ -181,11 +176,8 @@ interface EventSectionProps {
   highlights?: { label: string; value: string }[];
   photoSide?: "left" | "right";
   bg?: string;
-  /** When true, the section uses a subtle accent wash background. */
   accentBg?: boolean;
-  /** When true, render the heroMedia full-width across the top, with paragraphs+quote in 2-cols below. Used for panoramic images. */
   heroFullWidth?: boolean;
-  /** Extra top padding before this section (used to space the last event). */
   topGap?: number;
   awardsTable?: { category: string; winners: string }[];
   awardsMedia?: React.ReactNode;
@@ -199,10 +191,6 @@ function EventSection({
   bg = "#fff", accentBg = false, heroFullWidth = false, topGap = 0,
   awardsTable, awardsMedia, heroMedia, children,
 }: EventSectionProps) {
-  // Subtle wash when accentBg=true: a soft tint of the accent on a near-white surface,
-  // with all body text staying dark. Only headers, eyebrows, dividers and small accents
-  // pick up the accent colour. The hero banner (outside this component) is the only
-  // full-bleed accent area on the page.
   const sectionBg = accentBg
     ? `linear-gradient(180deg, ${accentLight} 0%, #ffffff 100%)`
     : bg;
@@ -213,7 +201,7 @@ function EventSection({
         <div style={{ position: "absolute", top: topGap, right: -80, width: 360, height: 360, background: `radial-gradient(circle, ${accent}22 0%, transparent 70%)`, pointerEvents: "none" }} />
       )}
 
-      {/* Full-width coloured header bar — edge-to-edge — distinguishes events */}
+      {/* Coloured header bar */}
       <div style={{ background: `linear-gradient(135deg, ${accentDark} 0%, ${accent} 100%)`, padding: "32px 56px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(45deg,rgba(255,255,255,0.05) 1px,transparent 1px)", backgroundSize: "28px 28px", pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: -60, right: -40, width: 240, height: 240, background: "radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 68%)", pointerEvents: "none" }} />
@@ -229,9 +217,6 @@ function EventSection({
 
       <div style={{ padding: "72px 56px 96px", position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
 
-        {/* Body layout — heroFullWidth puts the image full-width across the top
-            and renders paragraphs (left) + quote (right) below. Default keeps the
-            existing 2-column text + media layout. */}
         {heroFullWidth && heroMedia ? (
           <>
             <div style={{ marginBottom: 48 }}>{heroMedia}</div>
@@ -252,8 +237,6 @@ function EventSection({
           </>
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: photoSide === "left" ? "0.95fr 1.05fr" : "1.05fr 0.95fr", gap: 56, alignItems: "start", marginBottom: highlights || awardsTable || children ? 48 : 0 }}>
-
-            {/* Text column */}
             <div style={{ order: photoSide === "left" ? 2 : 1 }}>
               {quote && (
                 <div style={{ background: accentLight, borderLeft: `4px solid ${accent}`, borderRadius: "0 12px 12px 0", padding: "20px 24px", marginBottom: 28 }}>
@@ -266,8 +249,6 @@ function EventSection({
                 <p key={i} style={{ fontSize: 14.5, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>{p}</p>
               ))}
             </div>
-
-            {/* Photo / media column */}
             <div style={{ order: photoSide === "left" ? 1 : 2 }}>
               {heroMedia || (
                 <div style={{ borderRadius: 16, overflow: "hidden", position: "relative", background: `linear-gradient(135deg,${accentLight} 0%,${accentLight}80 100%)`, border: `1px solid ${accent}20` }}>
@@ -286,9 +267,7 @@ function EventSection({
           </div>
         )}
 
-
-
-        {/* Awards section: table + optional photo box side-by-side */}
+        {/* Awards section */}
         {awardsTable && (
           <div style={{ marginTop: 44 }}>
             <p style={{ fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: accent, marginBottom: 8 }}>Tata Volunteering Week Awards</p>
@@ -314,35 +293,27 @@ function EventSection({
           </div>
         )}
 
-        {/* Sub-events */}
         {children}
       </div>
     </section>
   );
 }
 
-// ── Main ──────────────────────────────────────────────────────────────────────
-export default function EventsView() {
+// ── Per-event renderers ───────────────────────────────────────────────────────
+function Tsc2022() {
   return (
-    <div style={{ background: "#eef0f5", minHeight: "100vh", fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", paddingTop: 64 }}>
-      <SubPageDotRail sections={SECTIONS} accentColour={ACCENT} />
-      <Hero />
-
-      {/* Intro strip */}
-      <section id="events-intro" style={{ background: "#f5f5fa", padding: "56px 56px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.85, maxWidth: 760 }}>
-            From global conclaves to international volunteering forums, Tata Engage brings together leaders, volunteers, and partners to advance the cause of corporate volunteering. These landmark events celebrate milestones, share best practices, and set the agenda for what comes next.
-          </p>
-        </div>
-      </section>
-
-      {/* TSC 2022 — accent (red) bg */}
+    <>
+      <EventHero
+        accent={TSC_ACCENT}
+        eyebrow="Tata Engage · Conclave"
+        title="Tata Sustainability Conclave 2022"
+        subtitle="Volunteering @Tata: Embedding Quality & Scale — Taj Lands End, Mumbai"
+      />
       <EventSection
-        id="events-tsc22"
-        accent={ACCENT}
-        accentDark={ACCENT_DARK}
-        accentLight={ACCENT_LIGHT}
+        id="event-body"
+        accent={TSC_ACCENT}
+        accentDark={TSC_ACCENT_DARK}
+        accentLight={TSC_ACCENT_LIGHT}
         date="November 2022"
         tag="TSC 2022"
         title="Tata Sustainability Conclave 2022"
@@ -356,8 +327,8 @@ export default function EventsView() {
         ]}
         heroMedia={
           <Slideshow
-            accent={ACCENT}
-            accentDark={ACCENT_DARK}
+            accent={TSC_ACCENT}
+            accentDark={TSC_ACCENT_DARK}
             slides={[
               { src: tsc22Chairman, caption: "Mr. N. Chandrasekaran, Chairman, Tata Sons delivering the inaugural address at the Tata Sustainability Conclave 2022." },
             ]}
@@ -377,19 +348,18 @@ export default function EventsView() {
         ]}
         awardsMedia={
           <Slideshow
-            accent={ACCENT}
-            accentDark={ACCENT_DARK}
+            accent={TSC_ACCENT}
+            accentDark={TSC_ACCENT_DARK}
             slides={[
               { src: tsc22Awards, caption: "Volunteering Award winners felicitated by Tata Sons leaders Ms. Roopa Purushothaman, Ms. Nupur Mallick, and Mr. Siddharth Sharma at TSC 2022." },
             ]}
           />
         }
       >
-        {/* Sub-event: TSC 2022 Panel Discussion */}
         <SubEvent
-          accent={ACCENT}
-          accentDark={ACCENT_DARK}
-          accentLight={ACCENT_LIGHT}
+          accent={TSC_ACCENT}
+          accentDark={TSC_ACCENT_DARK}
+          accentLight={TSC_ACCENT_LIGHT}
           title="Panel Discussion — Embedding Quality & Scale"
           body={[
             "Moderated by Mr. Harish Bhat, Brand Custodian, Tata Sons, the panel reiterated the Group aspiration of 4 per capita volunteering hours by 2025 — inked by the Tata Group Sustainability Council — and discussed the many benefits of volunteering for communities and for employees alike.",
@@ -400,13 +370,24 @@ export default function EventsView() {
           ]}
         />
       </EventSection>
+    </>
+  );
+}
 
-      {/* VOLCON 2024 — white bg with sub-events keeping VOLCON blue accent */}
+function Volcon2024() {
+  return (
+    <>
+      <EventHero
+        accent={VOL_ACCENT}
+        eyebrow="Tata Engage · VOLCON"
+        title="TATA VOLCON 2024"
+        subtitle="Celebrating a Million Hours — Taj Mahal Palace, Mumbai"
+      />
       <EventSection
-        id="events-volcon"
-        accent={B_PINK}
-        accentDark={B_PINK_DARK}
-        accentLight={B_PINK_LIGHT}
+        id="event-body"
+        accent={VOL_ACCENT}
+        accentDark={VOL_ACCENT_DARK}
+        accentLight={VOL_ACCENT_LIGHT}
         date="March 2024"
         tag="VOLCON 2024"
         title="TATA VOLCON 2024"
@@ -419,8 +400,8 @@ export default function EventsView() {
         bg="#fff"
         heroMedia={
           <Slideshow
-            accent={B_PINK}
-            accentDark={B_PINK_DARK}
+            accent={VOL_ACCENT}
+            accentDark={VOL_ACCENT_DARK}
             slides={[
               { src: volconChacko, caption: "Mr. Chacko Thomas, Group Chief Sustainability Officer, delivered the inaugural address at the TATA VOLCON 2024." },
             ]}
@@ -433,11 +414,10 @@ export default function EventsView() {
           { label: "Annual hours clocked", value: "1M+" },
         ]}
       >
-        {/* Sub-event: Chacko Thomas inaugural quote */}
         <SubEvent
-          accent={B_PINK}
-          accentDark={B_PINK_DARK}
-          accentLight={B_PINK_LIGHT}
+          accent={VOL_ACCENT}
+          accentDark={VOL_ACCENT_DARK}
+          accentLight={VOL_ACCENT_LIGHT}
           title="Inaugural Address — Mr. Chacko Thomas"
           body={[
             "The opening address was delivered by Mr. Chacko Thomas, Group Chief Sustainability Officer at Tata Sons, who highlighted the remarkable volunteering journey of the Tata Group — rooted in Jamsetji Tata's vision of keeping the community central, and the Tata core value of responsibility.",
@@ -445,11 +425,10 @@ export default function EventsView() {
           ]}
         />
 
-        {/* Sub-event: Nichole Cirillo — YouTube embed */}
         <SubEvent
-          accent={B_PINK}
-          accentDark={B_PINK_DARK}
-          accentLight={B_PINK_LIGHT}
+          accent={VOL_ACCENT}
+          accentDark={VOL_ACCENT_DARK}
+          accentLight={VOL_ACCENT_LIGHT}
           title="Special Address — Nichole Cirillo, IAVE"
           mediaSide="left"
           body={[
@@ -459,17 +438,16 @@ export default function EventsView() {
           media={
             <YouTubeEmbed
               id="ld0-X5_fEGA"
-              accent={B_PINK}
+              accent={VOL_ACCENT}
               caption="Executive Director of the International Association for Volunteer Efforts (IAVE), Nichole Cirillo, delivering the special address at TATA VOLCON 2024."
             />
           }
         />
 
-        {/* Sub-event: Leaders Speak Panel */}
         <SubEvent
-          accent={B_PINK}
-          accentDark={B_PINK_DARK}
-          accentLight={B_PINK_LIGHT}
+          accent={VOL_ACCENT}
+          accentDark={VOL_ACCENT_DARK}
+          accentLight={VOL_ACCENT_LIGHT}
           title="Leaders Speak — Panel Discussion"
           body={[
             "The power-packed session highlighted how a culture of volunteering had been built within different business realities, and how it had brought alive the core Tata value of responsibility.",
@@ -477,8 +455,8 @@ export default function EventsView() {
           ]}
           media={
             <Slideshow
-              accent={B_PINK}
-              accentDark={B_PINK_DARK}
+              accent={VOL_ACCENT}
+              accentDark={VOL_ACCENT_DARK}
               slides={[
                 { src: volconPanel, caption: "Discussing culture of volunteering within different business realities at TATA VOLCON 2024 — L–R: Mr. Adrian Terron (Tata Group); Mr. Neelesh Garg (Tata AIG); Dr. Praveer Sinha (Tata Power); Mr. Sanjay Dutt (Tata Realty & Infrastructure); Mr. Milind Lakkad (TCS)." },
               ]}
@@ -486,11 +464,10 @@ export default function EventsView() {
           }
         />
 
-        {/* Sub-event: Tata Engage Awards */}
         <SubEvent
-          accent={B_PINK}
-          accentDark={B_PINK_DARK}
-          accentLight={B_PINK_LIGHT}
+          accent={VOL_ACCENT}
+          accentDark={VOL_ACCENT_DARK}
+          accentLight={VOL_ACCENT_LIGHT}
           title="Tata Engage Awards"
           mediaSide="left"
           body={[
@@ -500,8 +477,8 @@ export default function EventsView() {
           ]}
           media={
             <Slideshow
-              accent={B_PINK}
-              accentDark={B_PINK_DARK}
+              accent={VOL_ACCENT}
+              accentDark={VOL_ACCENT_DARK}
               slides={[
                 { src: volconAwardsTCS, caption: "Tata Consultancy Services, one of the winners of the Tata Engage Awards, at TATA VOLCON 2024." },
                 { src: volconNitin, caption: "Nitin Yadav from Tata Motors — recipient of the prestigious Exemplary Volunteering Award at TATA VOLCON 2024." },
@@ -511,19 +488,18 @@ export default function EventsView() {
           }
         />
 
-        {/* Sub-event: Cultural celebration */}
         <SubEvent
-          accent={B_PINK}
-          accentDark={B_PINK_DARK}
-          accentLight={B_PINK_LIGHT}
+          accent={VOL_ACCENT}
+          accentDark={VOL_ACCENT_DARK}
+          accentLight={VOL_ACCENT_LIGHT}
           title="Cultural Celebration — Kalasagar & Tribal Home Chefs"
           body={[
             "The evening was made even more special with a power-packed musical performance by Kalasagar, the cultural society of Tata Motors, and Tribal Home Chefs supported by Tata Steel Foundation — from 5 states (Meghalaya, Arunachal Pradesh, Himachal Pradesh, Telangana, and Jharkhand) — who served exquisite culinary delights.",
           ]}
           media={
             <Slideshow
-              accent={B_PINK}
-              accentDark={B_PINK_DARK}
+              accent={VOL_ACCENT}
+              accentDark={VOL_ACCENT_DARK}
               slides={[
                 { src: volconMusic1, caption: "Kalasagar, the cultural society of Tata Motors, delivered an enthralling musical performance at TATA VOLCON 2024." },
                 { src: volconMusic2, caption: "Performers and guests on stage at TATA VOLCON 2024." },
@@ -533,13 +509,24 @@ export default function EventsView() {
           }
         />
       </EventSection>
+    </>
+  );
+}
 
-      {/* IAVE 2022 — accent (green) bg */}
+function Iave2022() {
+  return (
+    <>
+      <EventHero
+        accent={IAVE_ACCENT}
+        eyebrow="Tata Engage · Global Forum"
+        title="26th IAVE World Volunteer Conference"
+        subtitle="Volunteering for the Common Good — ADNOC Business Center, Abu Dhabi"
+      />
       <EventSection
-        id="events-iave"
-        accent={B_ORANGE}
-        accentDark={B_ORANGE_DARK}
-        accentLight={B_ORANGE_LIGHT}
+        id="event-body"
+        accent={IAVE_ACCENT}
+        accentDark={IAVE_ACCENT_DARK}
+        accentLight={IAVE_ACCENT_LIGHT}
         date="October 2022"
         tag="IAVE 2022"
         title="Tata Sustainability Group at the 26th IAVE World Volunteer Conference"
@@ -554,8 +541,8 @@ export default function EventsView() {
         ]}
         heroMedia={
           <Slideshow
-            accent={B_ORANGE_DARK}
-            accentDark={B_ORANGE_DARK}
+            accent={IAVE_ACCENT_DARK}
+            accentDark={IAVE_ACCENT_DARK}
             aspect="3.5/1"
             slides={[
               { src: iavePanel, caption: "Plenary panel 'Corporate Volunteering for a Post-Pandemic World' at the 26th IAVE World Volunteer Conference, Abu Dhabi — including Gauri Rajadhyaksha (Tata Sons, India)." },
@@ -570,6 +557,52 @@ export default function EventsView() {
         heroFullWidth
         topGap={32}
       />
+    </>
+  );
+}
+
+const SECTIONS = [
+  { id: "event-hero", label: "Overview" },
+  { id: "event-body", label: "Story" },
+];
+
+// ── Main ──────────────────────────────────────────────────────────────────────
+export default function EventsView() {
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id") ?? undefined;
+  const navigate = useAppNavigate();
+
+  const renderer = (() => {
+    switch (id) {
+      case "tsc-2022":   return { node: <Tsc2022 />,    accent: TSC_ACCENT };
+      case "volcon-2024": return { node: <Volcon2024 />, accent: VOL_ACCENT };
+      case "iave-2022":  return { node: <Iave2022 />,   accent: IAVE_ACCENT };
+      default: return null;
+    }
+  })();
+
+  if (!renderer) {
+    return (
+      <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif", paddingTop: 64 }}>
+        <div style={{ textAlign: "center" }}>
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#94a3b8", marginBottom: 16 }}>Event not found</p>
+          <h1 style={{ fontSize: 32, fontWeight: 900, color: ACCENT_NAVY, marginBottom: 24 }}>This event doesn't exist yet.</h1>
+          <button onClick={() => navigate("media")} style={{ background: B_INDIGO, color: "#fff", border: "none", borderRadius: 10, padding: "10px 24px", fontWeight: 700, fontSize: 14, cursor: "pointer" }}>
+            ← Back to Media
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ background: "#eef0f5", minHeight: "100vh", fontFamily: "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif" }}>
+      {/* Top accent line */}
+      <div style={{ height: 3, background: renderer.accent, width: "100%" }} />
+      <SubPageDotRail sections={SECTIONS} accentColor={renderer.accent} />
+      <div id="event-hero">
+        {renderer.node}
+      </div>
     </div>
   );
 }
