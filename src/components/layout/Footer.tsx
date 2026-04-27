@@ -7,7 +7,7 @@ const Footer = () => {
   const { triggerToast } = useAppContext();
   const navigate = useAppNavigate();
   return (
-  <footer className="bg-zinc-950 text-white pt-16 pb-16 px-6 md:px-12">
+  <footer className="bg-zinc-950 text-white pt-16 pb-24 px-6 md:px-12">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
       <div>
         <div className="mb-6">
@@ -55,12 +55,14 @@ const Footer = () => {
       </div>
     </div>
     <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-      <p>© 2026 Tata Sons Private Limited. All rights reserved.</p>
+      <div className="flex items-center gap-4">
+        <p>© 2026 Tata Sons Private Limited. All rights reserved.</p>
+        <span onClick={() => navigate("admin-login")} className="text-zinc-600 text-xs hover:text-zinc-400 transition-colors cursor-pointer">Admin</span>
+      </div>
       <div className="flex gap-6">
         <a href="#" className="hover:text-white">Privacy Policy</a>
         <a href="#" className="hover:text-white">Terms of Use</a>
         <a href="#" className="hover:text-white">Cookie Policy</a>
-        <span onClick={() => navigate("admin-login")} className="text-zinc-600 text-xs hover:text-zinc-400 transition-colors cursor-pointer">Admin</span>
       </div>
     </div>
   </footer>
