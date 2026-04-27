@@ -881,12 +881,12 @@ export default function SPOCDashboardView() {
                           <span style={{ background: "#f5f5fa", color: "#8888a0", fontSize: 11, fontWeight: 500, padding: "2px 9px", borderRadius: 100 }}>{p.ngo}</span>
                         </div>
                       </div>
-                      <button onClick={() => navigate("proengage")} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 8, padding: "8px 18px", fontSize: 13, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Apply</button>
+                      <button onClick={() => onNavigate("proengage")} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 8, padding: "8px 18px", fontSize: 13, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Apply</button>
                     </div>
                   </div>
                 ))}
               </div>
-              <button onClick={() => navigate("proengage")} style={{ marginTop: 14, background: "none", border: "none", fontSize: 13.5, color: B_VOL, fontWeight: 600, cursor: "pointer", padding: 0 }}>View all opportunities →</button>
+              <button onClick={() => onNavigate("proengage")} style={{ marginTop: 14, background: "none", border: "none", fontSize: 13.5, color: B_VOL, fontWeight: 600, cursor: "pointer", padding: 0 }}>View all opportunities →</button>
             </div>
           )}
 
@@ -894,7 +894,7 @@ export default function SPOCDashboardView() {
             <div style={{ ...card, textAlign: "center", padding: "36px 32px" }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 8 }}>ProEngage applications open in January 2026</div>
               <div style={{ fontSize: 13.5, color: "#8888a0", lineHeight: 1.65, maxWidth: 380, margin: "0 auto 20px" }}>The next edition isn't open yet, but you can browse projects we think would be a great fit for your profile.</div>
-              <button onClick={() => navigate("proengage")} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "10px 24px", fontSize: 13.5, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Browse upcoming opportunities →</button>
+              <button onClick={() => onNavigate("proengage")} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "10px 24px", fontSize: 13.5, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Browse upcoming opportunities →</button>
             </div>
           )}
 

@@ -1284,7 +1284,7 @@ export default function DashboardView() {
                       </div>
                     ))}
                   </div>
-                  <button onClick={() => navigate("/tvw")} style={{ marginTop: 14, background: "none", border: "none", fontSize: 13.5, color: B_INDIGO, fontWeight: 600, cursor: "pointer", padding: 0 }}>View all opportunities →</button>
+                  <button onClick={() => navigate("/tvw")} style={{ marginTop: 14, background: "none", border: "none", fontSize: 13.5, color: B_BLUE, fontWeight: 600, cursor: "pointer", padding: 0 }}>View all opportunities →</button>
                 </div>
               )}
 
@@ -1386,23 +1386,23 @@ export default function DashboardView() {
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                     {PROENGAGE_PROJECTS.filter(p => p.matched).slice(0, 3).map(p => (
-                      <div key={p.id} style={{ ...card, padding: "20px", border: `1px solid ${B_INDIGO}18` }}>
+                      <div key={p.id} style={{ ...card, padding: "20px", border: `1px solid ${B_BLUE}18` }}>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
                           <div style={{ flex: 1 }}>
                             <div style={{ fontWeight: 700, fontSize: 14.5, color: ACCENT_NAVY, marginBottom: 8, lineHeight: 1.3 }}>{p.title}</div>
                             <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                              <span style={{ background: P_INDIGO, color: B_INDIGO, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{p.area}</span>
+                              <span style={{ background: P_BLUE, color: B_BLUE, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{p.area}</span>
                               <span style={{ background: P_BLUE, color: B_BLUE, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{p.mode}</span>
                               <span style={{ background: "#f5f5fa", color: "#6b6b7a", fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{p.commitment || "Flexible"}</span>
                               <span style={{ background: "#f5f5fa", color: "#8888a0", fontSize: 11, fontWeight: 500, padding: "2px 9px", borderRadius: 100 }}>{p.ngo}</span>
                             </div>
                           </div>
-                          <button onClick={() => navigate("/proengage")} style={{ background: B_INDIGO, color: "#fff", border: "none", borderRadius: 8, padding: "8px 18px", fontSize: 13, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Apply</button>
+                          <button onClick={() => navigate("/proengage")} style={{ background: B_BLUE, color: "#fff", border: "none", borderRadius: 8, padding: "8px 18px", fontSize: 13, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Apply</button>
                         </div>
                       </div>
                     ))}
                   </div>
-                  <button onClick={() => navigate("/proengage")} style={{ marginTop: 14, background: "none", border: "none", fontSize: 13.5, color: B_INDIGO, fontWeight: 600, cursor: "pointer", padding: 0 }}>View all opportunities →</button>
+                  <button onClick={() => navigate("/proengage")} style={{ marginTop: 14, background: "none", border: "none", fontSize: 13.5, color: B_BLUE, fontWeight: 600, cursor: "pointer", padding: 0 }}>View all opportunities →</button>
                 </div>
               )}
 
@@ -1411,7 +1411,7 @@ export default function DashboardView() {
                 <div style={{ ...card, textAlign: "center", padding: "36px 32px" }}>
                   <div style={{ fontSize: 15, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 8 }}>ProEngage applications open in January 2026</div>
                   <div style={{ fontSize: 13.5, color: "#8888a0", lineHeight: 1.65, maxWidth: 380, margin: "0 auto 20px" }}>The next edition isn't open yet, but you can browse projects we think would be a great fit for your profile.</div>
-                  <button onClick={() => navigate("/proengage")} style={{ background: B_INDIGO, color: "#fff", border: "none", borderRadius: 10, padding: "10px 24px", fontSize: 13.5, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Browse upcoming opportunities →</button>
+                  <button onClick={() => navigate("/proengage")} style={{ background: B_BLUE, color: "#fff", border: "none", borderRadius: 10, padding: "10px 24px", fontSize: 13.5, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Browse upcoming opportunities →</button>
                 </div>
               )}
 
