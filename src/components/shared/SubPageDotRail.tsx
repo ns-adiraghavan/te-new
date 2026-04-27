@@ -8,9 +8,7 @@ interface Section {
 
 interface SubPageDotRailProps {
   sections: Section[];
-  /** Kept for backwards compatibility — the rail now uses ACCENT_NAVY for unified site styling. */
   accentColor?: string;
-  /** Backwards-compatible alias used by older views. */
   accentColour?: string;
 }
 
