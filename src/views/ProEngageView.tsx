@@ -341,14 +341,17 @@ function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
 export default function ProEngageView() {
   const navigate = useAppNavigate();
   const { user } = useAuth();
-  const { appliedProjects, setAppliedProjects, likedProjects, setLikedProjects, triggerToast } = useAppContext();
+  const { likedProjects, setLikedProjects, triggerToast } = useAppContext();
   const [selectedCategory, setSelectedCategory] = useState<string|null>(null);
   const [searchQuery,       setSearchQuery]       = useState("");
   const [activeFilter,      setActiveFilter]      = useState<"all"|"saved">("all");
   const [detailProject,     setDetailProject]     = useState<any>(null);
   const [applyProject,      setApplyProject]      = useState<any>(null);
 
-  const toggleSave = (id: number) => setLikedProjects(likedProjects.includes(id)?likedProjects.filter(x=>x!==id):[...likedProjects,id]);
+  const isSpoc = user?.role === "corporate_spoc" || user?.role === "regional_spoc";
+  const backDest = isSpoc ? "spoc-dashboard" : "dashboard";
+
+  const toggleSave = (id: number) => setLikedProjects(likedProjects.includes(id) ? likedProjects.filter(x=>x!==id) : [...likedProjects, id]);
 
   const aiRecommended = PROENGAGE_PROJECTS.filter(p => p.matched);
 
@@ -359,7 +362,6 @@ export default function ProEngageView() {
     return true;
   });
 
-  // Reorder: recommended first when no filters active
   const orderedProjects = (!selectedCategory && activeFilter === "all" && !searchQuery)
     ? [...filteredProjects.filter(p=>p.matched), ...filteredProjects.filter(p=>!p.matched)]
     : filteredProjects;
@@ -371,10 +373,6 @@ export default function ProEngageView() {
 
   const showCategoryGrid = !selectedCategory && !searchQuery && activeFilter === "all";
 
-  const isSpoc = user?.role === "corporate_spoc" || user?.role === "regional_spoc";
-  const backDest = isSpoc ? "spoc-dashboard" : "dashboard";
-
-  // ── UNIFIED VIEW ─────────────────────────────────────────────────────────
   return (
     <div style={{ fontFamily: FONT, background: "#f7f8fc", minHeight: "100vh" }}>
       <div style={{ height: 3, background: B_INDIGO, width: "100%" }} />
@@ -387,11 +385,13 @@ export default function ProEngageView() {
         <div style={DIAG_TEXTURE}/>
         <div style={{ position:"relative",zIndex:1,maxWidth:1100,margin:"0 auto",padding:"0 64px",width:"100%" }}>
           <p style={{ fontSize:11,fontWeight:700,letterSpacing:"1.8px",textTransform:"uppercase",color:"rgba(255,255,255,0.5)",marginBottom:12,fontFamily:FONT }}>
-            Tata Engage · ProEngage {IS_PE_SEASON ? "2025 · Edition 11" : ""}
+            Tata Engage · ProEngage{IS_PE_SEASON ? " 2025 · Edition 11" : ""}
           </p>
           <div style={{ width:48,height:2,borderRadius:2,background:B_INDIGO,marginBottom:22 }}/>
           <h1 style={{ fontFamily:FONT,fontSize:"clamp(2.2rem,4vw,3.4rem)",fontWeight:400,letterSpacing:"-0.5px",lineHeight:1.12,color:"#fff",margin:"0 0 18px" }}>
-            {IS_PE_SEASON ? <>Find a project that matches<br />your skills and passion</> : <>Skill-based volunteering<br />for lasting community impact</>}
+            {IS_PE_SEASON
+              ? <>Find a project that matches<br />your skills and passion</>
+              : <>Skill-based volunteering<br />for lasting community impact</>}
           </h1>
           <p style={{ fontFamily:FONT,fontSize:15,fontWeight:300,color:"rgba(255,255,255,0.65)",lineHeight:1.7,maxWidth:480,margin:"0 0 32px" }}>
             {IS_PE_SEASON
@@ -415,13 +415,14 @@ export default function ProEngageView() {
               </div>
             )}
           </div>
-          {/* Stats — in-season only */}
           {IS_PE_SEASON && (
             <div style={{ display:"flex",gap:32,marginTop:48,paddingTop:32,borderTop:"1px solid rgba(255,255,255,0.12)" }}>
-              {[[`${PROENGAGE_PROJECTS.length}`, "Live projects"],
+              {[
+                [`${PROENGAGE_PROJECTS.length}`, "Live projects"],
                 [`${aiRecommended.length}`,       "Matched to you"],
                 ["14 NGOs",                        "Participating"],
-                ["10 hrs",                         "Avg. weekly commitment"]].map(([num,label])=>(
+                ["10 hrs",                         "Avg. weekly commitment"],
+              ].map(([num,label])=>(
                 <div key={label}>
                   <div style={{ fontFamily:FONT,fontSize:26,fontWeight:900,color:"#fff" }}>{num}</div>
                   <div style={{ fontSize:12,color:"rgba(255,255,255,0.45)",marginTop:2 }}>{label}</div>
@@ -432,10 +433,10 @@ export default function ProEngageView() {
         </div>
       </div>
 
-      {/* ── Projects section ── */}
+      {/* ── Projects ── */}
       <div id="pe-projects" style={{ maxWidth:1200,margin:"0 auto",padding:"56px 48px 80px" }}>
 
-        {/* Recommended strip — always shown */}
+        {/* Recommended strip — always shown when no filters active */}
         {!selectedCategory && activeFilter === "all" && !searchQuery && aiRecommended.length > 0 && (
           <div style={{ marginBottom:52 }}>
             <p style={{ fontSize:11,fontWeight:700,letterSpacing:"1.8px",textTransform:"uppercase",color:"#aaaabc",margin:"0 0 6px" }}>Curated for You</p>
@@ -468,20 +469,19 @@ export default function ProEngageView() {
               onFocus={e=>(e.target.style.borderColor=B_INDIGO)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")}/>
           </div>
           <div style={{ display:"flex",gap:6 }}>
-            {[["all","All Projects"],["saved","Saved"]].map(([id,lbl_])=>(
-              <button key={id} onClick={()=>setActiveFilter(id as any)} style={{ padding:"10px 16px",borderRadius:10,border:`1.5px solid ${activeFilter===id?B_INDIGO:"#e0e0e8"}`,background:activeFilter===id?B_INDIGO:"#fff",color:activeFilter===id?"#fff":"#666",fontSize:13,fontWeight:activeFilter===id?700:400,cursor:"pointer",whiteSpace:"nowrap",fontFamily:FONT }}>{lbl_}</button>
+            {([["all","All Projects"],["saved","Saved"]] as const).map(([id,lbl_])=>(
+              <button key={id} onClick={()=>setActiveFilter(id)} style={{ padding:"10px 16px",borderRadius:10,border:`1.5px solid ${activeFilter===id?B_INDIGO:"#e0e0e8"}`,background:activeFilter===id?B_INDIGO:"#fff",color:activeFilter===id?"#fff":"#666",fontSize:13,fontWeight:activeFilter===id?700:400,cursor:"pointer",whiteSpace:"nowrap",fontFamily:FONT }}>{lbl_}</button>
             ))}
           </div>
         </div>
 
-        {/* Category grid — dimmed off-season */}
+        {/* Category grid */}
         {showCategoryGrid && (
-          <div style={{ marginBottom:36, opacity: IS_PE_SEASON ? 1 : 0.55, pointerEvents: IS_PE_SEASON ? "auto" : "none" }}>
+          <div style={{ marginBottom:36, opacity:IS_PE_SEASON?1:0.55, pointerEvents:IS_PE_SEASON?"auto":"none" }}>
             <div style={{ fontSize:11,fontWeight:700,letterSpacing:"1.5px",textTransform:"uppercase",color:"#aaaabc",marginBottom:14 }}>Browse by Category</div>
             <div style={{ display:"grid",gridTemplateColumns:"repeat(6,1fr)",gap:10 }}>
               {CATEGORIES.map(cat => {
                 const Icon = cat.icon;
-                const count = catCounts[cat.name] || 0;
                 return (
                   <button key={cat.name} onClick={()=>setSelectedCategory(cat.name)}
                     style={{ background:"#fff",border:"1px solid #e8e8f0",borderRadius:12,padding:"14px 10px",cursor:"pointer",textAlign:"center",transition:"all 0.18s",fontFamily:FONT }}
@@ -489,7 +489,7 @@ export default function ProEngageView() {
                     onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.background="#fff";(e.currentTarget as HTMLElement).style.borderColor="#e8e8f0";(e.currentTarget as HTMLElement).style.transform="translateY(0)";}}>
                     <div style={{ width:34,height:34,borderRadius:8,background:cat.pastel,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 8px" }}><Icon size={17} color={cat.color}/></div>
                     <div style={{ fontSize:11,fontWeight:700,color:ACCENT_NAVY,lineHeight:1.3,marginBottom:3 }}>{cat.name}</div>
-                    <div style={{ fontSize:10,fontWeight:600,color:"#aaaabc" }}>{count} projects</div>
+                    <div style={{ fontSize:10,fontWeight:600,color:"#aaaabc" }}>{catCounts[cat.name]||0} projects</div>
                   </button>
                 );
               })}
@@ -500,7 +500,7 @@ export default function ProEngageView() {
           </div>
         )}
 
-        {/* Category header when filtered */}
+        {/* Category back header */}
         {selectedCategory && (
           <div style={{ display:"flex",alignItems:"center",gap:12,marginBottom:20 }}>
             <button onClick={()=>setSelectedCategory(null)} style={{ display:"flex",alignItems:"center",gap:6,background:"none",border:"none",fontSize:13.5,fontWeight:600,color:B_INDIGO,cursor:"pointer",padding:0 }}><ArrowLeft size={15}/> Back to categories</button>
@@ -522,12 +522,12 @@ export default function ProEngageView() {
         {showCategoryGrid && (
           <div style={{ marginBottom:16 }}>
             <p style={{ fontSize:11,fontWeight:700,letterSpacing:"1.8px",textTransform:"uppercase",color:"#aaaabc",margin:"0 0 4px" }}>All Projects</p>
-            <div style={{ width:36,height:3,borderRadius:2,background:B_INDIGO,marginBottom:0 }}/>
+            <div style={{ width:36,height:3,borderRadius:2,background:B_INDIGO }}/>
           </div>
         )}
 
-        {/* Project grid — dimmed off-season */}
-        <div style={{ opacity: IS_PE_SEASON ? 1 : 0.6, pointerEvents: IS_PE_SEASON ? "auto" : "none" }}>
+        {/* Project grid */}
+        <div style={{ opacity:IS_PE_SEASON?1:0.6, pointerEvents:IS_PE_SEASON?"auto":"none" }}>
           {orderedProjects.length > 0 ? (
             <div style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16 }}>
               {orderedProjects.map(p=>(
@@ -547,90 +547,4 @@ export default function ProEngageView() {
       {applyProject  && <ApplyModal project={applyProject} onClose={()=>setApplyProject(null)}/>}
     </div>
   );
-}
-      <div style={{ fontFamily: FONT, background: "#f7f8fc", minHeight: "100vh" }}>
-        <div style={{ height: 3, background: B_INDIGO, width: "100%" }} />
-        <SubPageDotRail sections={[{id:"pe-hero",label:"Overview"},{id:"pe-projects",label:"Opportunities"}]} accentColor={B_INDIGO} />
-
-        {/* Hero */}
-        <div id="pe-hero" style={{ position:"relative", minHeight:"92vh", display:"flex", alignItems:"center", overflow:"hidden", paddingTop:64 }}>
-          <img src={heroImg} alt="" style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",objectPosition:"center 40%" }}/>
-          <div style={{ position:"absolute",inset:0,background:"linear-gradient(105deg,rgba(8,12,22,0.88) 0%,rgba(8,12,22,0.70) 40%,rgba(8,12,22,0.28) 75%,rgba(8,12,22,0.08) 100%)" }}/>
-          <div style={DIAG_TEXTURE}/>
-          <div style={{ position:"relative",zIndex:1,maxWidth:1100,margin:"0 auto",padding:"0 64px",width:"100%" }}>
-            <p style={{ fontSize:11,fontWeight:700,letterSpacing:"1.8px",textTransform:"uppercase",color:"rgba(255,255,255,0.5)",marginBottom:12,fontFamily:FONT }}>
-              Tata Engage · ProEngage
-            </p>
-            <div style={{ width:48,height:2,borderRadius:2,background:B_INDIGO,marginBottom:22 }}/>
-            <h1 style={{ fontFamily:FONT,fontSize:"clamp(2.2rem,4vw,3.4rem)",fontWeight:400,letterSpacing:"-0.5px",lineHeight:1.12,color:"#fff",margin:"0 0 18px" }}>
-              Skill-based volunteering<br />for lasting community impact
-            </h1>
-            <p style={{ fontFamily:FONT,fontSize:15,fontWeight:300,color:"rgba(255,255,255,0.65)",lineHeight:1.7,maxWidth:480,margin:"0 0 32px" }}>
-              ProEngage matches Tata professionals with NGOs for meaningful, skill-led projects. The next edition opens soon.
-            </p>
-            <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.18)",borderRadius:100,padding:"10px 20px" }}>
-              <div style={{ width:8,height:8,borderRadius:"50%",background:"#FDE68A" }}/>
-              <span style={{ fontSize:13,fontWeight:600,color:"rgba(255,255,255,0.8)" }}>Next edition opening announced shortly</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Off-season recommended projects */}
-        <div id="pe-projects" style={{ maxWidth:1100,margin:"0 auto",padding:"64px 48px 80px" }}>
-          <div style={{ marginBottom:40 }}>
-            <p style={{ fontSize:11,fontWeight:700,letterSpacing:"1.8px",textTransform:"uppercase",color:"#aaaabc",marginBottom:8 }}>Curated for You</p>
-            <div style={{ width:36,height:3,borderRadius:2,background:B_INDIGO,marginBottom:20 }}/>
-            <div style={{ display:"flex",alignItems:"flex-end",justifyContent:"space-between",flexWrap:"wrap",gap:12 }}>
-              <h2 style={{ fontSize:28,fontWeight:900,color:ACCENT_NAVY,margin:0,letterSpacing:"-0.4px",lineHeight:1.2 }}>
-                Projects we think would be<br/>a great fit for your profile
-              </h2>
-              <button
-                onClick={() => { triggerToast("Season opens soon — you'll be notified!"); }}
-                style={{ background:B_INDIGO,color:"#fff",border:"none",borderRadius:10,padding:"10px 20px",fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:FONT }}
-              >
-                Notify me when season opens
-              </button>
-            </div>
-          </div>
-
-          <div style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16,marginBottom:48 }}>
-            {aiRecommended.slice(0,3).map(p=>(
-              <ProjectCard key={p.id} project={p} onSelect={()=>setDetailProject(p)} onApply={()=>setApplyProject(p)} saved={likedProjects.includes(p.id)} onToggleSave={()=>toggleSave(p.id)} highlight/>
-            ))}
-          </div>
-
-          {/* View more — all projects dimmed/teaser */}
-          <div style={{ borderTop:"1px solid #e8e8f0",paddingTop:40 }}>
-            <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:24 }}>
-              <div>
-                <p style={{ fontSize:11,fontWeight:700,letterSpacing:"1.8px",textTransform:"uppercase",color:"#aaaabc",margin:"0 0 4px" }}>All Opportunities</p>
-                <div style={{ fontSize:16,fontWeight:700,color:ACCENT_NAVY }}>{PROENGAGE_PROJECTS.length} projects available next edition</div>
-              </div>
-              <button
-                onClick={() => triggerToast("Full browse available when the season opens.")}
-                style={{ background:"none",border:`1.5px solid ${B_INDIGO}`,color:B_INDIGO,borderRadius:10,padding:"9px 20px",fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:FONT }}
-              >
-                View all opportunities →
-              </button>
-            </div>
-            {/* Category preview */}
-            <div style={{ display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:10,opacity:0.6,pointerEvents:"none" }}>
-              {CATEGORIES.slice(0,10).map(cat => {
-                const Icon = cat.icon;
-                return (
-                  <div key={cat.name} style={{ background:"#fff",border:"1px solid #e8e8f0",borderRadius:12,padding:"14px 10px",textAlign:"center" }}>
-                    <div style={{ width:32,height:32,borderRadius:8,background:cat.pastel,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 8px" }}><Icon size={15} color={cat.color}/></div>
-                    <div style={{ fontSize:11,fontWeight:700,color:ACCENT_NAVY,lineHeight:1.3,marginBottom:2 }}>{cat.name}</div>
-                    <div style={{ fontSize:10,fontWeight:600,color:"#aaaabc" }}>{catCounts[cat.name]||0} projects</div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {detailProject && <ProjectDetailPanel project={detailProject} onClose={()=>setDetailProject(null)} onApply={()=>{setApplyProject(detailProject);setDetailProject(null);}}/>}
-        {applyProject  && <ApplyModal project={applyProject} onClose={()=>setApplyProject(null)}/>}
-      </div>
-    );
 }
