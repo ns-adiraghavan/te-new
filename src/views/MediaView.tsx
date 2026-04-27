@@ -4,6 +4,7 @@ import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { SOCIAL_POSTS } from "@/data/homeSharedData";
 import { IMPACT_STORIES } from "@/data/impactStoriesData";
+import { EVENTS } from "@/data/eventsData";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import heroImg from "@/assets/tata-projects.jpg";
 
@@ -65,18 +66,6 @@ const VIDEOS = [
   { title: "GCSO Message TVW25", duration: "2:55" },
 ];
 
-const UPCOMING_EVENTS = [
-  { title: "VolCon 2026", date: "Sep 2026", location: "Mumbai", status: "Upcoming" },
-  { title: "TVW26", date: "Mar 2026", location: "Pan-India", status: "Upcoming" },
-  { title: "ProEngage 26 Orientation", date: "Jun 2026", location: "Virtual", status: "Upcoming" },
-];
-
-const PAST_EVENTS = [
-  { title: "VolCon 2024", date: "Sep 2024", location: "Mumbai" },
-  { title: "TVW25", date: "Mar 2025", location: "Pan-India" },
-  { title: "TVW24", date: "Sep 2024", location: "Pan-India" },
-  { title: "ProEngage 25", date: "Dec 2024", location: "Virtual" },
-];
 
 export default function MediaView() {
   const location = useLocation();
