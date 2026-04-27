@@ -1,12 +1,14 @@
 import tsc22Chairman from "@/assets/events/tsc-2022-chairman.png";
 import volconChacko from "@/assets/events/volcon-2024-chacko.png";
 import iavePanel from "@/assets/events/iave-2022-panel.png";
+import iave24Hero from "@/assets/events/iave24-1.jpg";
 
 export interface EventEntry {
   slug: string;
   title: string;
   tag: string;
   date: string;
+  location?: string;
   excerpt: string;
   accentColor: string;
   heroImage: string;
@@ -42,5 +44,16 @@ export const EVENTS: EventEntry[] = [
       "Tata Sustainability Group participated as a panel member at the global volunteering forum in Abu Dhabi.",
     accentColor: "#333399",
     heroImage: iavePanel,
+  },
+  {
+    slug: "iave-2024",
+    title: "27th IAVE World Volunteer Conference",
+    tag: "IAVE 2024",
+    date: "October 2024",
+    location: "Busan, Republic of Korea",
+    excerpt:
+      "Tata Sustainability Group represented at the 27th IAVE World Volunteer Conference, themed 'People Power: Creating a Sustainable Future through Volunteering.'",
+    accentColor: "#333399",
+    heroImage: iave24Hero,
   },
 ];
