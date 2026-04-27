@@ -96,6 +96,7 @@ function Hero() {
         overflow: "hidden",
         display: "flex",
         alignItems: "center",
+        paddingTop: 64,
       }}
     >
       <img
@@ -126,7 +127,6 @@ function Hero() {
           maxWidth: 1100,
           margin: "0 auto",
           padding: "0 64px",
-          paddingTop: 64,
           width: "100%",
         }}
       >
