@@ -60,9 +60,9 @@ const Footer = () => {
         <span onClick={() => navigate("admin-login")} className="text-zinc-600 text-xs hover:text-zinc-400 transition-colors cursor-pointer">Admin</span>
       </div>
       <div className="flex gap-6">
-        <a href="#" className="hover:text-white">Privacy Policy</a>
-        <a href="#" className="hover:text-white">Terms of Use</a>
-        <a href="#" className="hover:text-white">Cookie Policy</a>
+        <span onClick={() => navigate("privacy")} className="cursor-pointer hover:text-white transition-colors">Privacy Policy</span>
+        <span onClick={() => navigate("legal")} className="cursor-pointer hover:text-white transition-colors">Terms of Use</span>
+        <span onClick={() => { navigate("privacy"); setTimeout(() => document.getElementById("privacy-cookies")?.scrollIntoView({ behavior: "smooth" }), 120); }} className="cursor-pointer hover:text-white transition-colors">Cookie Policy</span>
       </div>
     </div>
   </footer>
