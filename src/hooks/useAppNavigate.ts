@@ -47,6 +47,10 @@ const VIEW_TO_PATH: Record<string, string> = {
   "yes-to-access": "/yes-to-access",
   "stories": "/stories",
   "event": "/about/events",
+  "privacy": "/privacy",
+  "legal": "/legal",
+  "volunteering-guidelines": "/volunteering-guidelines",
+  "code-of-conduct": "/code-of-conduct",
 };
 
 export const useAppNavigate = () => {
