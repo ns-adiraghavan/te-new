@@ -14,6 +14,12 @@ import volconMusic1 from "@/assets/events/volcon-2024-music1.png";
 import volconMusic2 from "@/assets/events/volcon-2024-music2.png";
 import volconTribalChefs from "@/assets/events/volcon-2024-tribal-chefs.png";
 import iavePanel from "@/assets/events/iave-2022-panel.png";
+import iave24Img1 from "@/assets/events/iave24-1.jpg";
+import iave24Img2 from "@/assets/events/iave24-2.jpg";
+import iave24Img3 from "@/assets/events/iave24-3.jpg";
+import iave24Img4 from "@/assets/events/iave24-4.png";
+import iave24Img5 from "@/assets/events/iave24-5.png";
+import iave24Img6 from "@/assets/events/iave24-6.png";
 import eventsHeroImg from "@/assets/tce-2.jpg";
 
 const ACCENT_NAVY  = "#0D1B3E";
@@ -561,6 +567,158 @@ function Iave2022() {
   );
 }
 
+function Iave2024() {
+  return (
+    <>
+      <EventHero
+        accent={IAVE_ACCENT}
+        eyebrow="Tata Engage · Global Forum"
+        title="27th IAVE World Volunteer Conference"
+        subtitle="People Power: Creating a Sustainable Future through Volunteering — Busan, Republic of Korea"
+      />
+      <EventSection
+        id="event-overview"
+        accent={IAVE_ACCENT}
+        accentDark={IAVE_ACCENT_DARK}
+        accentLight={IAVE_ACCENT_LIGHT}
+        date="22–24 October 2024"
+        tag="IAVE 2024"
+        title="Tata Group at the 27th IAVE World Volunteer Conference"
+        subtitle="Busan Exhibition and Convention Center, Republic of Korea — 22–24 October 2024"
+        paragraphs={[
+          "Tata Sustainability Group was invited to participate in the 27th IAVE World Volunteer Conference, themed \"People Power: Creating a Sustainable Future through Volunteering.\" The conference was inaugurated by the Hon'ble President of South Korea, Yoon Suk Yeol, who underscored the urgent need for global solidarity.",
+          "The event brought together over 1,500 volunteer leaders from 90 countries, reaffirming the power of volunteering to co-create solutions for pressing global challenges.",
+        ]}
+        heroMedia={
+          <Slideshow
+            accent={IAVE_ACCENT_DARK}
+            accentDark={IAVE_ACCENT_DARK}
+            aspect="3.5/1"
+            slides={[
+              { src: iave24Img1, caption: "27th IAVE World Volunteer Conference, Busan Exhibition and Convention Center, Republic of Korea — October 2024." },
+            ]}
+          />
+        }
+        highlights={[
+          { label: "Volunteer leaders", value: "1,500+" },
+          { label: "Countries represented", value: "90" },
+          { label: "GCVC member since", value: "2020" },
+        ]}
+        heroFullWidth
+        topGap={32}
+      />
+      <EventSection
+        id="event-representation"
+        accent={IAVE_ACCENT}
+        accentDark={IAVE_ACCENT_DARK}
+        accentLight={IAVE_ACCENT_LIGHT}
+        date=""
+        tag=""
+        title="Tata Group's Representation"
+        subtitle=""
+        paragraphs={[]}
+        topGap={0}
+      >
+        <SubEvent
+          accent={IAVE_ACCENT}
+          accentDark={IAVE_ACCENT_DARK}
+          accentLight={IAVE_ACCENT_LIGHT}
+          title="Plenary Session — Shrirang Dhavale"
+          body="Shrirang Dhavale represented Tata Sustainability Group in the plenary session \"Responding to the Sustainability Challenge: The Role of Corporate Volunteering.\" He emphasised how volunteering can help reimagine personal values and lifestyles to address climate change, highlighting Tata's perspective on embedding sustainability into corporate volunteering ecosystems."
+          media={<img src={iave24Img2} alt="Shrirang Dhavale at IAVE 2024 plenary" style={{ width: "100%", borderRadius: 14, objectFit: "cover", maxHeight: 320 }} />}
+          mediaSide="right"
+        />
+        <SubEvent
+          accent={IAVE_ACCENT}
+          accentDark={IAVE_ACCENT_DARK}
+          accentLight={IAVE_ACCENT_LIGHT}
+          title="Global Corporate Volunteer Council — Gauri Rajadhyaksha & Pallavi Barua"
+          body="Gauri Rajadhyaksha and Pallavi Barua joined Shrirang in representing Tata Engage at the Global Corporate Volunteer Council (GCVC) meeting, where the group deliberated on trends in corporate volunteering across Asia — specifically Korea, China, and Japan — and highlighted new opportunities and challenges. The sessions enabled rich cross-sharing of strategies, challenges, and innovative initiatives."
+          media={<img src={iave24Img3} alt="Gauri and Pallavi at GCVC" style={{ width: "100%", borderRadius: 14, objectFit: "cover", maxHeight: 320 }} />}
+          mediaSide="left"
+        />
+        <SubEvent
+          accent={IAVE_ACCENT}
+          accentDark={IAVE_ACCENT_DARK}
+          accentLight={IAVE_ACCENT_LIGHT}
+          title="India Country Spotlight — Pallavi Barua"
+          body="Pallavi Barua presented Tata Communications' DRIVE campaign during the India Country Spotlight, offering a five-point recommendation for companies planning to embed scale in their volunteering programmes."
+          media={<img src={iave24Img4} alt="Pallavi Barua presenting India Country Spotlight" style={{ width: "100%", borderRadius: 14, objectFit: "cover", maxHeight: 320 }} />}
+          mediaSide="right"
+        />
+      </EventSection>
+      <EventSection
+        id="event-highlights"
+        accent={IAVE_ACCENT}
+        accentDark={IAVE_ACCENT_DARK}
+        accentLight={IAVE_ACCENT_LIGHT}
+        date=""
+        tag=""
+        title="Key Highlights"
+        subtitle=""
+        paragraphs={[]}
+        accentBg
+        topGap={0}
+      >
+        <SubEvent
+          accent={IAVE_ACCENT}
+          accentDark={IAVE_ACCENT_DARK}
+          accentLight={IAVE_ACCENT_LIGHT}
+          title="Skill-Based & Impact-Focused Volunteering"
+          body="The plenary and GCVC sessions reinforced the importance of skill-based volunteering and impact-focused initiatives in the post-pandemic era — a direction the Tata Group has been pioneering through ProEngage."
+          media={<img src={iave24Img5} alt="IAVE 2024 session" style={{ width: "100%", borderRadius: 14, objectFit: "cover", maxHeight: 280 }} />}
+          mediaSide="right"
+        />
+        <SubEvent
+          accent={IAVE_ACCENT}
+          accentDark={IAVE_ACCENT_DARK}
+          accentLight={IAVE_ACCENT_LIGHT}
+          title="Tata Engage Spotlighted as Unifying Platform"
+          body="Tata Engage's role as a unifying platform across Tata companies was spotlighted, showcasing how SPOCs and employee champions have enabled the Group to consistently clock over a million volunteering hours annually for seven consecutive years."
+          media={undefined}
+          mediaSide="left"
+        />
+        <SubEvent
+          accent={IAVE_ACCENT}
+          accentDark={IAVE_ACCENT_DARK}
+          accentLight={IAVE_ACCENT_LIGHT}
+          title="GCVC Membership Since 2020"
+          body="Since 2020, the Tata Group has been part of the Global Corporate Volunteer Council, steering discussions on corporate volunteering and remaining committed to fostering a collaborative spirit to help members advance their employee volunteering programmes globally."
+          media={undefined}
+          mediaSide="right"
+        />
+      </EventSection>
+      <EventSection
+        id="event-reflections"
+        accent={IAVE_ACCENT}
+        accentDark={IAVE_ACCENT_DARK}
+        accentLight={IAVE_ACCENT_LIGHT}
+        date=""
+        tag=""
+        title="Reflections"
+        subtitle=""
+        paragraphs={[
+          "The conference celebrated volunteering as a driver of sustainability and inclusion. Tata Sustainability Group's participation highlighted the Group's belief that volunteering is not only about giving time but also about reimagining values, lifestyles, and business contexts to create a more sustainable future.",
+        ]}
+        topGap={0}
+      >
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, marginTop: 32, alignItems: "center" }}>
+          <img src={iave24Img6} alt="IAVE 2024 closing" style={{ width: "100%", borderRadius: 14, objectFit: "cover", maxHeight: 260 }} />
+          <div>
+            <p style={{ fontSize: 14, color: "#475569", lineHeight: 1.75, margin: "0 0 20px" }}>
+              For more information on the 27th IAVE World Volunteer Conference and IAVE's initiatives, visit the International Association for Volunteer Effort.
+            </p>
+            <a href="https://iave.org" target="_blank" rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, background: IAVE_ACCENT, color: "#fff", borderRadius: 10, padding: "10px 22px", fontWeight: 700, fontSize: 13, textDecoration: "none" }}>
+              Visit IAVE ↗
+            </a>
+          </div>
+        </div>
+      </EventSection>
+    </>
+  );
+}
+
 const SECTIONS = [
   { id: "event-hero", label: "Overview" },
   { id: "event-body", label: "Story" },
@@ -577,6 +735,7 @@ export default function EventsView() {
       case "tsc-2022":   return { node: <Tsc2022 />,    accent: TSC_ACCENT };
       case "volcon-2024": return { node: <Volcon2024 />, accent: VOL_ACCENT };
       case "iave-2022":  return { node: <Iave2022 />,   accent: IAVE_ACCENT };
+      case "iave-2024":  return { node: <Iave2024 />,   accent: IAVE_ACCENT };
       default: return null;
     }
   })();

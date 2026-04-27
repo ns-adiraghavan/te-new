@@ -198,6 +198,9 @@ const RESOURCES = [
   { id: "stories", label: "Stories",  desc: "Volunteer experiences and community impact narratives",   count: "94 stories",  accentColor: "#65A30D",  pastel: "#F7FEE7",  photo: imgStories },
   { id: "events",  label: "Events",   desc: "VolCon, Volympics and upcoming community gatherings",     count: "12 upcoming", accentColor: "#1A6B3C",  pastel: "#E6F5EE",  photo: imgEvents  },
   { id: "emodule", label: "E-Module", desc: "ProEngage orientation, NGO readiness kit and dos & don'ts", count: "5 modules", accentColor: "#C8850A",  pastel: "#FEF6E4",  photo: imgEModule },
+  { id: "guidelines", label: "Volunteering Guidelines", desc: "Principles and responsibilities for all Tata volunteers", count: "11 guidelines", accentColor: "#333399", pastel: "#EEF0FF", photo: imgEModule },
+  { id: "conduct",    label: "Code of Conduct",          desc: "Standards of behaviour expected of every volunteer",   count: "11 principles", accentColor: "#0D7C52", pastel: "#E6F5EE", photo: imgEModule },
+  { id: "dr-training", label: "DR Core Volunteer Training", desc: "Become a trained Tata disaster response core volunteer", count: "Apply now", accentColor: "#E8401C", pastel: "#FFF0EE", photo: imgEModule },
 ];
 
 const STAT_TOOLTIPS: Record<string, string> = {
@@ -219,12 +222,14 @@ function getActivitySlicers() {
       { id: "proengage",     label: "My ProEngage Project" },
       { id: "apply",         label: "Apply for ProEngage"  },
       { id: "opportunities", label: "View Opportunities"   },
+      { id: "open",          label: "Open Volunteering"    },
       { id: "diy",           label: "DIY Activities"       },
     ];
   }
   return [
     { id: "apply",         label: "Apply for ProEngage" },
     { id: "opportunities", label: "View Opportunities"  },
+    { id: "open",          label: "Open Volunteering"   },
     { id: "diy",           label: "DIY Activities"      },
   ];
 }
@@ -1282,6 +1287,22 @@ export default function DashboardView() {
                 </div>
               )}
 
+              {activeActivity === "open" && (
+                <div>
+                  <div style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, padding: "28px 24px", textAlign: "center" }}>
+                    <div style={{ width: 56, height: 56, borderRadius: 16, background: "#EEF0FF", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", fontSize: 26 }}>🌐</div>
+                    <div style={{ display: "inline-block", background: "#FEF6E4", color: "#C8850A", fontSize: 11, fontWeight: 800, padding: "3px 12px", borderRadius: 100, letterSpacing: "0.8px", textTransform: "uppercase", marginBottom: 14 }}>Coming Soon</div>
+                    <h3 style={{ fontSize: 17, fontWeight: 800, color: ACCENT_NAVY, margin: "0 0 10px" }}>Open Volunteering</h3>
+                    <p style={{ fontSize: 14, color: "#475569", lineHeight: 1.75, maxWidth: 480, margin: "0 auto 8px" }}>
+                      Apart from providing time-bound, structured programmes, Tata Engage will also connect volunteers with volunteering opportunities throughout the year.
+                    </p>
+                    <p style={{ fontSize: 14, color: "#475569", lineHeight: 1.75, maxWidth: 480, margin: "0 auto 0" }}>
+                      Non-profits registered with Tata Sustainability Group will upload projects on the platform, and Tata employees, family members and retired Tata employees can opt in to volunteer at any time.
+                    </p>
+                  </div>
+                </div>
+              )}
+
               {activeActivity === "diy" && (
                 <div>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>
@@ -1402,6 +1423,20 @@ export default function DashboardView() {
                     ))}
                   </div>
                   <button onClick={() => navigate("/proengage")} style={{ background: "none", border: "none", fontSize: 13, color: B_BLUE, fontWeight: 600, cursor: "pointer", padding: 0 }}>View all opportunities →</button>
+                  {IS_PE_SEASON && (
+                    <div style={{ marginTop: 20, background: "#f5f5fa", border: "1px solid #e8e8f0", borderRadius: 14, padding: "18px 20px", display: "flex", gap: 14, alignItems: "flex-start" }}>
+                      <div style={{ flexShrink: 0, fontSize: 22, marginTop: 2 }}>💡</div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 13.5, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 4 }}>Already working with an NGO?</div>
+                        <p style={{ fontSize: 13, color: "#475569", lineHeight: 1.65, margin: "0 0 10px" }}>
+                          Volunteers already engaged with NGOs in an individual capacity can route their skill-based projects through ProEngage. Your project must be part-time (Saturdays), skill-based, 1–6 months duration, and virtual.
+                        </p>
+                        <a href="mailto:tataengage@tata.com?subject=APPLICATION FOR PRONENGAGE PROJECT SUBMISSION" style={{ display: "inline-flex", alignItems: "center", gap: 6, background: B_BLUE, color: "#fff", borderRadius: 8, padding: "7px 14px", fontSize: 12.5, fontWeight: 700, textDecoration: "none" }}>
+                          Email us to submit ↗
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -1626,6 +1661,9 @@ export default function DashboardView() {
               <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12 }}>
                 {RESOURCES.map(r => <ResourceCard key={r.id} r={r} onClick={() => {
                   if (r.id === "emodule") { setShowOrientationModal(true); }
+                  else if (r.id === "guidelines") { navigate("/volunteering-guidelines"); }
+                  else if (r.id === "conduct") { navigate("/code-of-conduct"); }
+                  else if (r.id === "dr-training") { navigate("/disaster-response"); setTimeout(() => document.getElementById("dr-training")?.scrollIntoView({ behavior: "smooth" }), 300); }
                   else { navigate("/media"); }
                 }} />)}
               </div>

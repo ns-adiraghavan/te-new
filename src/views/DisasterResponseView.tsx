@@ -17,6 +17,7 @@ const SECTIONS = [
   { id: "dr-who",       label: "Who"           },
   { id: "dr-how",       label: "How it works"  },
   { id: "dr-tsg",       label: "TSG Role"      },
+  { id: "dr-training",  label: "Core Training" },
 ];
 
 const DIAG: React.CSSProperties = {
@@ -375,7 +376,50 @@ export default function DisasterResponseView() {
         </div>
       </section>
 
-      
+      {/* DR Core Volunteer Training */}
+      <section id="dr-training" style={{ padding: "88px 56px", background: "#fff", scrollMarginTop: 80 }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#E8401C", marginBottom: 10 }}>Core Volunteer Training Programme</p>
+          <h2 style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 32, fontWeight: 900, color: "#0D1B3E", letterSpacing: "-0.5px", margin: "0 0 12px" }}>Become a Trained Core Volunteer</h2>
+          <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 15, color: "#475569", lineHeight: 1.75, maxWidth: 680, margin: "0 0 48px" }}>
+            Tata Sustainability Group trains a new cadre of Disaster Response Core Volunteers from across Tata companies — equipping them with the skills and knowledge to carry out relief efforts in disaster-affected areas under the guidance of trained Disaster Response Project Managers.
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 40 }}>
+            <div style={{ background: "#FFF0EE", border: "1px solid #f5c6be", borderRadius: 14, padding: "24px" }}>
+              <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 13, fontWeight: 800, textTransform: "uppercase", letterSpacing: "1px", color: "#E8401C", margin: "0 0 10px" }}>Who is a Core Volunteer?</p>
+              <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, color: "#374151", lineHeight: 1.7, margin: "0 0 10px" }}>
+                A Tata employee who will be called upon on priority as a volunteer when the Tata Group responds to a disaster.
+              </p>
+              <ul style={{ paddingLeft: 18, fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, color: "#374151", lineHeight: 1.7, margin: 0 }}>
+                <li style={{ marginBottom: 6 }}>Trained Tata employees deployed for at least 7–10 days on ground</li>
+                <li>Core team members working with trained Project Managers to set up systems and carry out relief efforts</li>
+              </ul>
+            </div>
+            <div style={{ background: "#f5f5fa", border: "1px solid #e8e8f0", borderRadius: 14, padding: "24px" }}>
+              <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 13, fontWeight: 800, textTransform: "uppercase", letterSpacing: "1px", color: "#0D1B3E", margin: "0 0 10px" }}>Eligibility Criteria</p>
+              <ul style={{ paddingLeft: 18, fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, color: "#374151", lineHeight: 1.7, margin: 0 }}>
+                <li style={{ marginBottom: 6 }}>Currently working in a Tata company</li>
+                <li style={{ marginBottom: 6 }}>Registered as a volunteer on Tata Engage (www.tataengage.com)</li>
+                <li style={{ marginBottom: 6 }}>Willing to be deployed within 48 hours for a period of 7–10 days on-ground</li>
+                <li>Physically fit and able to work under stressful conditions for long hours</li>
+              </ul>
+            </div>
+          </div>
+          <div style={{ background: "#0D1B3E", borderRadius: 14, padding: "28px 32px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, flexWrap: "wrap" }}>
+            <div>
+              <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 16, fontWeight: 800, color: "#fff", margin: "0 0 6px" }}>Ready to apply?</p>
+              <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 13.5, color: "rgba(255,255,255,0.65)", margin: 0 }}>
+                Email us with your Name, Designation, Company, City, State, Date of Birth, Gender and Mobile number.
+              </p>
+            </div>
+            <a href="mailto:tataengage@tata.com?subject=APPLICATION FOR DISASTER RESPONSE CORE VOLUNTEERS TRAINING&body=Name:%0ADesignation:%0ACompany:%0ACity:%0AState:%0ADate of Birth:%0AGender:%0AMobile number:"
+              style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 8, background: "#E8401C", color: "#fff", borderRadius: 10, padding: "12px 24px", fontWeight: 800, fontSize: 13.5, textDecoration: "none", fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif" }}>
+              Apply via Email ↗
+            </a>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
