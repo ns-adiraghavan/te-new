@@ -93,13 +93,13 @@ export default function EOEOView() {
               <a
                 href="https://tcsempowers.tcsapps.com/apac2/alp/"
                 target="_blank" rel="noopener noreferrer"
-                style={{ background: "#fff", color: COLOUR_MID, borderRadius: 10, padding: "13px 28px", fontWeight: 800, fontSize: 14, boxShadow: "0 4px 20px rgba(0,0,0,0.2)", textDecoration: "none", display: "inline-block" }}
+                style={{ background: "#fff", color: COLOUR_MID, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, boxShadow: "0 4px 20px rgba(0,0,0,0.25)", textDecoration: "none", display: "inline-block" }}
               >
                 Become a Literacy Champion →
               </a>
               <button
                 onClick={() => document.getElementById("eoeo-about")?.scrollIntoView({ behavior: "smooth" })}
-                style={{ background: "rgba(255,255,255,0.12)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.28)", borderRadius: 10, padding: "13px 22px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}
+                style={{ background: "rgba(255,255,255,0.12)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.28)", borderRadius: 10, padding: "14px 22px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}
               >
                 Learn more
               </button>
@@ -231,7 +231,7 @@ export default function EOEOView() {
               <a
                 href="https://tcsempowers.tcsapps.com/apac2/alp/"
                 target="_blank" rel="noopener noreferrer"
-                style={{ background: "#fff", color: COLOUR_MID, borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, textDecoration: "none", display: "inline-block", boxShadow: "0 4px 20px rgba(0,0,0,0.15)", whiteSpace: "nowrap" }}
+                style={{ background: "#fff", color: COLOUR_MID, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, textDecoration: "none", display: "inline-block", boxShadow: "0 4px 20px rgba(0,0,0,0.25)", whiteSpace: "nowrap" }}
               >
                 Sign Up on TCS Empowers →
               </a>

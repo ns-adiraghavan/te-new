@@ -72,7 +72,7 @@ export default function EOIView() {
             </p>
             <div style={{ display: "flex", gap: 12 }}>
               <button onClick={() => document.getElementById("eoi-overview")?.scrollIntoView({ behavior: "smooth" })}
-                style={{ background: B_MUSTARD, color: "#fff", border: "none", borderRadius: 10, padding: "12px 26px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+                style={{ background: B_MUSTARD, color: "#fff", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
                 Learn more →
               </button>
 

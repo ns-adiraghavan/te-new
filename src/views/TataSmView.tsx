@@ -84,11 +84,11 @@ export default function TataSmView() {
             </p>
             <div style={{ display: "flex", gap: 12 }}>
               <button onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
-                style={{ background: "#C3DB6F", color: "#fff", border: "none", borderRadius: 10, padding: "12px 26px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+                style={{ background: "#C3DB6F", color: "#fff", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
                 Explore Opportunities →
               </button>
               <button onClick={() => document.getElementById("tsm-overview")?.scrollIntoView({ behavior: "smooth" })}
-                style={{ background: "rgba(255,255,255,0.11)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.26)", borderRadius: 10, padding: "12px 22px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
+                style={{ background: "rgba(255,255,255,0.12)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.28)", borderRadius: 10, padding: "14px 22px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
                 Learn more
               </button>
             </div>
@@ -197,7 +197,7 @@ export default function TataSmView() {
           {/* CTA Section */}
           <div style={{ marginTop: 64, textAlign: "center" }}>
             <button onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
-              style={{ background: COLOUR, color: "#fff", border: "none", borderRadius: 10, padding: "14px 32px", fontWeight: 800, fontSize: 15, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+              style={{ background: COLOUR, color: "#fff", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
               Explore Volunteering Opportunities →
             </button>
             <p style={{ fontSize: 13, color: "#64748B", marginTop: 16 }}>

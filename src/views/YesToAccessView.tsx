@@ -78,11 +78,11 @@ export default function YesToAccessView() {
             </p>
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
               <a href="https://yestoaccess.in/" target="_blank" rel="noopener noreferrer"
-                style={{ background: COLOUR, color: "#fff", border: "none", borderRadius: 12, padding: "16px 32px", fontWeight: 800, fontSize: 16, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)", textDecoration: "none", display: "inline-block" }}>
+                style={{ background: COLOUR, color: "#fff", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)", textDecoration: "none", display: "inline-block" }}>
                 Become an Inclusion Champion →
               </a>
               <button onClick={() => document.getElementById("yta-overview")?.scrollIntoView({ behavior: "smooth" })}
-                style={{ background: "rgba(255,255,255,0.11)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.26)", borderRadius: 12, padding: "16px 28px", fontWeight: 600, fontSize: 16, cursor: "pointer" }}>
+                style={{ background: "rgba(255,255,255,0.12)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.28)", borderRadius: 10, padding: "14px 22px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
                 Learn more
               </button>
             </div>
@@ -214,11 +214,11 @@ export default function YesToAccessView() {
           {/* CTA Section */}
           <div style={{ marginTop: 48, textAlign: "center" }}>
             <a href="https://yestoaccess.in/" target="_blank" rel="noopener noreferrer"
-              style={{ display: "inline-block", background: "transparent", color: COLOUR, border: `2px solid ${COLOUR}`, borderRadius: 10, padding: "14px 32px", fontWeight: 700, fontSize: 15, cursor: "pointer", textDecoration: "none", transition: "all 0.2s", marginRight: 12 }}>
+              style={{ display: "inline-block", background: "transparent", color: COLOUR, border: `2px solid ${COLOUR}`, borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", textDecoration: "none", transition: "all 0.2s", marginRight: 12 }}>
               Visit yestoaccess.in
             </a>
             <a href="mailto:tataengage@tata.com"
-              style={{ display: "inline-block", background: COLOUR, color: "#fff", border: `2px solid ${COLOUR}`, borderRadius: 10, padding: "14px 32px", fontWeight: 700, fontSize: 15, cursor: "pointer", textDecoration: "none", transition: "all 0.2s" }}>
+              style={{ display: "inline-block", background: COLOUR, color: "#fff", border: `2px solid ${COLOUR}`, borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", textDecoration: "none", transition: "all 0.2s" }}>
               Request communication collaterals
             </a>
             <p style={{ fontSize: 13, color: "#64748B", marginTop: 16 }}>

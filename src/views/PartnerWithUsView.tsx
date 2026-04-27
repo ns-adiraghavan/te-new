@@ -550,13 +550,13 @@ function ContactSection() {
               color: copied ? "#fff" : ACCENT_NAVY,
               border: "none",
               borderRadius: 10,
-              padding: "13px 28px",
+              padding: "14px 28px",
               fontWeight: 800,
               fontSize: 14,
               cursor: "pointer",
               transition: "background 0.2s",
               width: "100%",
-              boxShadow: copied ? "none" : "0 4px 20px rgba(0,0,0,0.22)",
+              boxShadow: copied ? "none" : "0 4px 20px rgba(0,0,0,0.25)",
             }}
           >
             {copied ? "Copied ✓" : "Copy email address"}

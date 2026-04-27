@@ -85,11 +85,11 @@ export default function EWasteView() {
             </p>
             <div style={{ display: "flex", gap: 14 }}>
               <button onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
-                style={{ background: "#333399", color: "#fff", border: "none", borderRadius: 12, padding: "16px 32px", fontWeight: 800, fontSize: 16, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+                style={{ background: "#333399", color: "#fff", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
                 Become a Warrior →
               </button>
               <button onClick={() => document.getElementById("ewaste-overview")?.scrollIntoView({ behavior: "smooth" })}
-                style={{ background: "rgba(255,255,255,0.11)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.26)", borderRadius: 12, padding: "16px 28px", fontWeight: 600, fontSize: 16, cursor: "pointer" }}>
+                style={{ background: "rgba(255,255,255,0.12)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.28)", borderRadius: 10, padding: "14px 22px", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
                 Learn more
               </button>
             </div>
@@ -202,7 +202,7 @@ export default function EWasteView() {
           {/* CTA Section */}
           <div style={{ marginTop: 64, textAlign: "center" }}>
             <a href="https://www.croma.com/store-locator" target="_blank" rel="noopener noreferrer"
-              style={{ display: "inline-block", background: "transparent", color: COLOUR, border: `2px solid ${COLOUR}`, borderRadius: 10, padding: "14px 32px", fontWeight: 700, fontSize: 15, cursor: "pointer", textDecoration: "none", transition: "all 0.2s" }}>
+              style={{ display: "inline-block", background: "transparent", color: COLOUR, border: `2px solid ${COLOUR}`, borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", textDecoration: "none", transition: "all 0.2s" }}>
               Find a Croma Store
             </a>
             <p style={{ fontSize: 13, color: "#64748B", marginTop: 16 }}>
