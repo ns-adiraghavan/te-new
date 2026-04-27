@@ -77,6 +77,9 @@ export default function ImpactStoryView() {
   const accent = story.accentColor;
   const others = IMPACT_STORIES.filter((s) => s.slug !== story.slug);
 
+  const wordCount = [story.openingPara, ...story.sections.map(sec => [sec.heading ?? "", sec.body ?? "", ...(sec.bullets ?? [])].join(" "))].join(" ").split(/\s+/).filter(Boolean).length;
+  const readMins = Math.max(1, Math.round(wordCount / 150));
+
   return (
     <div style={{ fontFamily: FONT, background: "#f7f8fc", minHeight: "100vh" }}>
 
@@ -86,7 +89,7 @@ export default function ImpactStoryView() {
       <SubPageDotRail sections={SECTIONS_NAV} accentColor={accent} />
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <div id="story-hero" style={{ position: "relative", minHeight: "75vh", display: "flex", alignItems: "flex-end", overflow: "hidden", paddingTop: 64 }}>
+      <div id="story-hero" style={{ position: "relative", minHeight: "92vh", display: "flex", alignItems: "flex-end", overflow: "hidden", paddingTop: 64 }}>
         <img
           src={story.heroImage}
           alt={story.heroImageAlt}
@@ -110,7 +113,7 @@ export default function ImpactStoryView() {
           </div>
 
           <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", margin: "0 0 10px" }}>
-            {story.eyebrow} · {story.date}
+            {story.eyebrow} · {story.date} · {readMins} min read
           </p>
           <div style={{ height: 2, width: 52, borderRadius: 2, background: accent, marginBottom: 20 }} />
 
@@ -341,25 +344,32 @@ export default function ImpactStoryView() {
           <div style={{ width: 36, height: 2, borderRadius: 2, background: B_INDIGO, marginBottom: 28 }} />
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-            {others.map((s) => (
-              <div
-                key={s.slug}
-                onClick={() => { navigate("stories", s.slug); window.scrollTo(0, 0); }}
-                style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, overflow: "hidden", cursor: "pointer", transition: "transform 0.18s, box-shadow 0.18s" }}
-                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
-              >
-                <div style={{ height: 130, overflow: "hidden" }}>
-                  <img src={s.heroImage} alt={s.heroImageAlt} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%" }} />
+            {others.map((s) => {
+              const wc = [s.openingPara, ...s.sections.map(sec => [sec.heading ?? "", sec.body ?? "", ...(sec.bullets ?? [])].join(" "))].join(" ").split(/\s+/).filter(Boolean).length;
+              const rm = Math.max(1, Math.round(wc / 150));
+              return (
+                <div
+                  key={s.slug}
+                  onClick={() => { navigate("stories", s.slug); window.scrollTo(0, 0); }}
+                  style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, overflow: "hidden", cursor: "pointer", transition: "transform 0.18s, box-shadow 0.18s" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+                >
+                  <div style={{ height: 130, overflow: "hidden" }}>
+                    <img src={s.heroImage} alt={s.heroImageAlt} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%" }} />
+                  </div>
+                  <div style={{ padding: "18px 20px" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+                      <span style={{ display: "inline-block", background: `${s.accentColor}15`, color: s.accentColor, fontSize: 10, fontWeight: 700, padding: "3px 9px", borderRadius: 4, textTransform: "uppercase", letterSpacing: "0.6px" }}>{s.tag}</span>
+                      <span style={{ fontSize: 11, color: "#94a3b8", fontWeight: 500 }}>{rm} min read</span>
+                    </div>
+                    <div style={{ fontSize: 15, fontWeight: 700, color: ACCENT_NAVY, lineHeight: 1.4, marginBottom: 8 }}>{s.title}</div>
+                    <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6, margin: "0 0 12px" }}>{s.excerpt}</p>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: B_INDIGO }}>Read story →</span>
+                  </div>
                 </div>
-                <div style={{ padding: "18px 20px" }}>
-                  <span style={{ display: "inline-block", background: `${s.accentColor}15`, color: s.accentColor, fontSize: 10, fontWeight: 700, padding: "3px 9px", borderRadius: 4, marginBottom: 10, textTransform: "uppercase", letterSpacing: "0.6px" }}>{s.tag}</span>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: ACCENT_NAVY, lineHeight: 1.4, marginBottom: 8 }}>{s.title}</div>
-                  <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6, margin: "0 0 12px" }}>{s.excerpt}</p>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: B_INDIGO }}>Read story →</span>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div style={{ textAlign: "center", marginTop: 36 }}>
