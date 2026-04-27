@@ -602,7 +602,8 @@ export default function SPOCDashboardView() {
   }, [spocMode]);
 
   const [spocPipelineFilter, setSpocPipelineFilter] = useState("current");
-  const [activeVolActivity,   setActiveVolActivity]   = useState("opportunities");
+  const [activeVolActivity,   setActiveVolActivity]   = useState(() => IS_PE_SEASON && hasActive ? "proengage" : IS_PE_SEASON ? "apply" : "early");
+  useEffect(() => { setActiveVolActivity(IS_PE_SEASON && hasActive ? "proengage" : IS_PE_SEASON ? "apply" : "early"); }, [IS_PE_SEASON]);
   const [activeVolHistory,    setActiveVolHistory]     = useState("projects");
   const [histEditionFilter,   setHistEditionFilter]    = useState("ProEngage 2025 | 02");
   const [projExpanded,        setProjExpanded]         = useState(false);
@@ -632,10 +633,10 @@ export default function SPOCDashboardView() {
 
   const hasActive = !!volData.activeApplication;
   const volActivitySlicers = IS_PE_SEASON && hasActive
-    ? [{id:"opportunities",label:"View Opportunities"},{id:"diy",label:"DIY Activities"},{id:"proengage",label:"My ProEngage Project"}]
+    ? [{id:"proengage",label:"My ProEngage Project"},{id:"opportunities",label:"View Opportunities"},{id:"diy",label:"DIY Activities"}]
     : IS_PE_SEASON
-    ? [{id:"opportunities",label:"View Opportunities"},{id:"diy",label:"DIY Activities"},{id:"apply",label:"Apply for a Project"}]
-    : [{id:"opportunities",label:"View Opportunities"},{id:"diy",label:"DIY Activities"},{id:"early",label:"Apply Early for ProEngage"}];
+    ? [{id:"apply",label:"Apply for a Project"},{id:"opportunities",label:"View Opportunities"},{id:"diy",label:"DIY Activities"}]
+    : [{id:"early",label:"Apply Early for ProEngage"},{id:"opportunities",label:"View Opportunities"},{id:"diy",label:"DIY Activities"}];
 
   const filteredVolProjects = SPOC_VOL_HISTORY_PROJECTS.filter(p => !histEditionFilter || p.edition === histEditionFilter);
   const filteredVolApps     = SPOC_VOL_APPLICATIONS.filter(a => !histEditionFilter || a.edition === histEditionFilter);

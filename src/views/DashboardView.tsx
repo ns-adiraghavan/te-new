@@ -1081,8 +1081,8 @@ export default function DashboardView() {
 
   // Activity state
   const activitySlicers = getActivitySlicers();
-  const defaultActivity = activitySlicers[0].id;
-  const [activeActivity, setActiveActivity] = useState(defaultActivity);
+  const [activeActivity, setActiveActivity] = useState(() => getActivitySlicers()[0].id);
+  useEffect(() => { setActiveActivity(getActivitySlicers()[0].id); }, [IS_PE_SEASON]);
 
   // History state
   const [activeHistory, setActiveHistory] = useState("projects");
@@ -1262,34 +1262,29 @@ export default function DashboardView() {
               {/* ── View Opportunities tab ─────────────────────────────── */}
               {activeActivity === "opportunities" && (
                 <div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                     {TVW_OPPORTUNITIES.slice(0, 2).map(ev => (
                       <div key={ev.id}
-                        style={{ ...card, display: "flex", gap: 16, alignItems: "center", cursor: "pointer", transition: "box-shadow 0.18s, transform 0.18s", padding: "18px 20px" }}
+                        style={{ ...card, padding: "20px", transition: "box-shadow 0.18s, transform 0.18s" }}
                         onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(13,27,62,0.08)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
                         onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
                       >
-                        <div style={{ width: 44, height: 44, borderRadius: 10, background: ev.pastel, border: `1px solid ${ev.accentColor}22`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                          <div style={{ width: 8, height: 8, borderRadius: "50%", background: ev.accentColor }} />
-                        </div>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontWeight: 700, fontSize: 14, color: ACCENT_NAVY, marginBottom: 8 }}>{ev.title}</div>
-                          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                            {[ev.company, ev.date, ev.mode, ev.duration].map((detail, i) => (
-                              <span key={i} style={{ background: ev.pastel, color: ev.accentColor, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100, display: "inline-block" }}>{detail}</span>
-                            ))}
-                            <span style={{ background: ev.pastel, color: ev.accentColor, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{ev.theme}</span>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontWeight: 700, fontSize: 14.5, color: ACCENT_NAVY, marginBottom: 8, lineHeight: 1.3 }}>{ev.title}</div>
+                            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                              <span style={{ background: ev.pastel, color: ev.accentColor, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{ev.theme}</span>
+                              <span style={{ background: P_BLUE, color: B_BLUE, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{ev.mode}</span>
+                              <span style={{ background: "#f5f5fa", color: "#6b6b7a", fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{ev.duration}</span>
+                              <span style={{ background: "#f5f5fa", color: "#8888a0", fontSize: 11, fontWeight: 500, padding: "2px 9px", borderRadius: 100 }}>{ev.date} · {ev.company}</span>
+                            </div>
                           </div>
-                        </div>
-                        <div style={{ textAlign: "right", flexShrink: 0 }}>
-                                                    <button onClick={(e) => { e.stopPropagation(); ctxToast("Your SPOC has been notified — Rohan Desai will reach out within 24 hours."); }} style={{ background: ev.accentColor, color: "#fff", border: "none", borderRadius: 8, padding: "6px 14px", fontSize: 12.5, fontWeight: 600, cursor: "pointer" }}>Contact SPOC</button>
+                          <button onClick={e => { e.stopPropagation(); ctxToast("Your SPOC has been notified — Rohan Desai will reach out within 24 hours."); }} style={{ background: ev.accentColor, color: "#fff", border: "none", borderRadius: 8, padding: "8px 18px", fontSize: 13, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Contact SPOC</button>
                         </div>
                       </div>
                     ))}
                   </div>
-                  <button onClick={() => navigate("/tvw")} style={{ marginTop: 14, background: "none", border: "none", fontSize: 13.5, color: "#135EA9", fontWeight: 600, cursor: "pointer", padding: 0 }}>
-                    View all opportunities →
-                  </button>
+                  <button onClick={() => navigate("/tvw")} style={{ marginTop: 14, background: "none", border: "none", fontSize: 13.5, color: B_INDIGO, fontWeight: 600, cursor: "pointer", padding: 0 }}>View all opportunities →</button>
                 </div>
               )}
 
