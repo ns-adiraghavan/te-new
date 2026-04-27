@@ -61,6 +61,10 @@ import YesToAccessView from "@/views/YesToAccessView";
 import TataSmView from "@/views/TataSmView";
 import CVPView from "@/views/CVPView";
 import ImpactStoryView from "@/views/ImpactStoryView";
+import PrivacyView from "@/views/PrivacyView";
+import LegalView from "@/views/LegalView";
+import VolunteeringGuidelinesView from "@/views/VolunteeringGuidelinesView";
+import CodeOfConductView from "@/views/CodeOfConductView";
 import NotFound from "@/pages/NotFound";
 
 export default function App() {
@@ -237,6 +241,10 @@ export default function App() {
                 <Route path="/tata-sustainability-month" element={<TataSmView />} />
                 <Route path="/cvp" element={<CVPView />} />
                 <Route path="/stories" element={<ImpactStoryView />} />
+                <Route path="/privacy" element={<PrivacyView />} />
+                <Route path="/legal" element={<LegalView />} />
+                <Route path="/volunteering-guidelines" element={<VolunteeringGuidelinesView />} />
+                <Route path="/code-of-conduct" element={<CodeOfConductView />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
         </main>
