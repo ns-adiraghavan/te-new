@@ -323,7 +323,7 @@ const Navbar = ({
                 <span onClick={() => onNavigate("journey")} className={itemCls}>
                   Our Journey
                 </span>
-                <span onClick={() => onNavigate("about-events")} className={itemCls}>
+                <span onClick={() => onNavigate("media", "tab=events")} className={itemCls}>
                   Events
                 </span>
                 <span onClick={() => onNavigate("about-contact")} className={itemCls}>
