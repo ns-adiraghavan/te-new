@@ -624,6 +624,14 @@ function Iave2024() {
           accentDark={IAVE_ACCENT_DARK}
           accentLight={IAVE_ACCENT_LIGHT}
           title="Plenary Session — Shrirang Dhavale"
+          body={`Shrirang Dhavale represented Tata Sustainability Group in the plenary session "Responding to the Sustainability Challenge: The Role of Corporate Volunteering." He emphasised how volunteering can help reimagine personal values and lifestyles to address climate change, highlighting Tata's perspective on embedding sustainability into corporate volunteering ecosystems.`}
+          media={<img src={iave24Img2} alt="Shrirang Dhavale at IAVE 2024 plenary" style={{ width: "100%", borderRadius: 14, objectFit: "cover", maxHeight: 320 }} />}
+          mediaSide="right"
+/>Event
+          accent={IAVE_ACCENT}
+          accentDark={IAVE_ACCENT_DARK}
+          accentLight={IAVE_ACCENT_LIGHT}
+          title="Plenary Session — Shrirang Dhavale"
           body="Shrirang Dhavale represented Tata Sustainability Group in the plenary session \"Responding to the Sustainability Challenge: The Role of Corporate Volunteering.\" He emphasised how volunteering can help reimagine personal values and lifestyles to address climate change, highlighting Tata's perspective on embedding sustainability into corporate volunteering ecosystems."
           media={<img src={iave24Img2} alt="Shrirang Dhavale at IAVE 2024 plenary" style={{ width: "100%", borderRadius: 14, objectFit: "cover", maxHeight: 320 }} />}
           mediaSide="right"
