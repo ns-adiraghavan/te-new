@@ -32,7 +32,7 @@ const NGOHubView = () => {
 
   const [activeSection, setActiveSection] = useState(0);
   const [showLabel, setShowLabel] = useState(false);
-  const [inHero, setInHero] = useState(true);
+
   const labelTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -54,14 +54,7 @@ const NGOHubView = () => {
     return () => { obs.forEach((o) => o.disconnect()); if (labelTimer.current) clearTimeout(labelTimer.current); };
   }, []);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const heroEl = document.getElementById("hub-hero");
-      if (heroEl) setInHero(window.scrollY < heroEl.offsetHeight - 300);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+
 
   return (
     <div className="min-h-screen bg-white pb-12">
@@ -71,9 +64,9 @@ const NGOHubView = () => {
         {DOT_SECTIONS.map((s, i) => {
           const active = activeSection === i;
           const isLast = i === DOT_SECTIONS.length - 1;
-          const dotColor = inHero ? "white" : ACCENT;
-          const inactiveColor = inHero ? "rgba(255,255,255,0.4)" : "#CBD5E1";
-          const lineColor = inHero ? "rgba(255,255,255,0.25)" : `${ACCENT}50`;
+          const dotColor = ACCENT;
+          const inactiveColor = "#CBD5E1";
+          const lineColor = `${ACCENT}50`;
           return (
             <div key={s.id} className="flex flex-col items-end">
               <button
@@ -88,8 +81,8 @@ const NGOHubView = () => {
                       fontSize: 11, fontWeight: 700, letterSpacing: "0.3px",
                       padding: "3px 9px",
                       borderRadius: 4,
-                      backgroundColor: inHero ? "rgba(0,0,0,0.85)" : "rgba(13,27,62,0.92)",
-                      border: `1px solid ${inHero ? "rgba(255,255,255,0.25)" : ACCENT_NAVY}`,
+                      backgroundColor: "rgba(13,27,62,0.92)",
+                      border: `1px solid ${ACCENT_NAVY}`,
                       color: "#ffffff",
                     }}>
                     {s.label}
