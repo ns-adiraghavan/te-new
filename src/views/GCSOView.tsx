@@ -47,11 +47,8 @@ function Hero() {
         </p>
         <div style={{ height: 2, width: 48, borderRadius: 2, background: "rgba(255,255,255,0.6)", margin: "12px 0 22px" }} />
         <h1 style={{ fontFamily: FONT, fontSize: "clamp(2.4rem,5vw,3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px", maxWidth: 560 }}>
-          From the Desk of the Group Chief Sustainability Officer
+          Letter from GCSO
         </h1>
-        <p style={{ fontFamily: FONT, fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.80)", maxWidth: 440, margin: 0 }}>
-          Chacko Thomas · Group Chief Sustainability Officer, Tata Sons
-        </p>
       </div>
     </div>
   );
@@ -73,27 +70,14 @@ function LetterSection() {
                 style={{ display: "block", width: "100%", height: 480, objectFit: "cover", objectPosition: "30% top" }}
               />
             </div>
-            {/* Name plate */}
-            <div style={{ position: "absolute", bottom: -20, left: 24, right: 24, background: "#fff", borderRadius: 12, padding: "16px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.10)", display: "flex", alignItems: "center", gap: 16 }}>
-              <div style={{ width: 4, height: 40, background: ACCENT, borderRadius: 2, flexShrink: 0 }} />
-              <div>
-                <div style={{ fontFamily: FONT, fontSize: 15, fontWeight: 800, color: NAVY }}>Chacko Thomas</div>
-                <div style={{ fontFamily: FONT, fontSize: 12, color: "#64748B", marginTop: 2 }}>Group Chief Sustainability Officer, Tata Sons</div>
-              </div>
-            </div>
           </div>
 
           {/* Letter */}
           <div style={{ paddingTop: 20 }}>
-            <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: ACCENT, marginBottom: 10 }}>
-              From the desk of the GCSO
-            </p>
-            <h2 style={{ fontFamily: FONT, fontSize: 30, fontWeight: 900, color: NAVY, letterSpacing: "-0.5px", lineHeight: 1.2, margin: 0 }}>
-              A letter from<br />Chacko Thomas
-            </h2>
-            <DefinerBar />
-
-            <div style={{ margin: "32px 0 0" }}>
+            <div style={{ margin: "0" }}>
+              <p style={{ fontFamily: FONT, fontSize: 15, fontWeight: 700, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
+                Dear all,
+              </p>
               <p style={{ fontFamily: FONT, fontSize: 15, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
                 Volunteering has always been integral to the Tata ethos—not as an act separate from business, but as a way of staying closely connected to communities, realities, and responsibilities that shape our shared future. Across the Tata Group, volunteering continues to evolve from acts of compassion to expressions of thoughtful engagement, where time, skills, and intent come together to create meaningful outcomes. Through Tata Engage, we see this spirit come alive every day—in Tata colleagues, family members and retirees choosing to step forward, to contribute consistently, and to work alongside communities with empathy and purpose.
               </p>
