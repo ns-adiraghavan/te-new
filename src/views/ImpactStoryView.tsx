@@ -1,3 +1,4 @@
+import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
@@ -154,7 +155,7 @@ export default function ImpactStoryView() {
           <div style={{ maxWidth: 820, margin: "0 auto", padding: "0 56px" }}>
             {(() => {
               let photoIdx = 0;
-              const out: React.ReactNode[] = [];
+              const out: JSX.Element[] = [];
 
               story.sections.forEach((sec, i) => {
                 if (sec.heading) {
@@ -257,7 +258,6 @@ export default function ImpactStoryView() {
           </div>
 
           <div style={{ height: 56 }} />
-          </div>
         </div>
       </div>
 
