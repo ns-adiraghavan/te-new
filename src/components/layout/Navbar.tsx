@@ -314,7 +314,7 @@ const Navbar = ({
               </span>
               <div className={`${panelCls} w-64`}>
                 <span onClick={() => onNavigate("about")} className={itemCls}>
-                  TE Vision &amp; Mission
+                  About Tata Engage
                 </span>
                 <span onClick={() => onNavigate("about-gcso")} className={itemCls}>
                   Letter from GCSO
