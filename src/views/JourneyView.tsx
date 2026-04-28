@@ -232,7 +232,7 @@ export default function JourneyView() {
         <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: 64 }}>
           <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
             <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 12 }}>
-              Tata Engage · 2014 – 2025
+              Tata Engage · 2014 – the journey continues
             </p>
             <div style={{ width: 48, height: 2, borderRadius: 2, background: "rgba(255,255,255,0.6)", marginBottom: 22 }} />
             <h1 style={{ fontFamily: FONT, fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, letterSpacing: "-0.5px", lineHeight: 1.12, color: "#fff", margin: "0 0 18px" }}>
@@ -284,7 +284,7 @@ export default function JourneyView() {
         <div style={{ position: "absolute", top: "-60px", right: "-60px", width: 360, height: 360, borderRadius: "50%", background: `radial-gradient(circle, ${PALETTE[2]}20 0%, transparent 70%)`, pointerEvents: "none" }} />
         <div style={{ position: "relative", zIndex: 1, maxWidth: 620, margin: "0 auto", textAlign: "center" }}>
           <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 14 }}>
-            The next chapter
+            The legacy continues with you
           </p>
           <div style={{ width: 40, height: 3, borderRadius: 2, background: B_YELLOW, margin: "0 auto 24px" }} />
           <h2 style={{ fontFamily: FONT, fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 900, color: "#fff", letterSpacing: "-0.8px", lineHeight: 1.1, marginBottom: 16 }}>
