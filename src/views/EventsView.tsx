@@ -157,21 +157,6 @@ function MediaBlock({ title, body, media, mediaLeft = false, accent }: {
   );
 }
 
-// ── Stat strip ────────────────────────────────────────────────────────────────
-function StatStrip({ stats, accent }: { stats: { label: string; value: string }[]; accent: string }) {
-  return (
-    <div style={{ display: "flex", gap: 0, margin: "36px 0 8px", border: `1px solid ${accent}22`, borderRadius: 12, overflow: "hidden" }}>
-      {stats.map((s, i) => (
-        <div key={i} style={{ flex: 1, padding: "20px 24px", borderRight: i < stats.length - 1 ? `1px solid ${accent}22` : "none",
-          background: i % 2 === 0 ? "#fff" : `${accent}08` }}>
-          <div style={{ fontFamily: FONT, fontSize: 24, fontWeight: 900, color: accent, letterSpacing: "-0.5px" }}>{s.value}</div>
-          <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 600, color: "#64748b", marginTop: 4, textTransform: "uppercase", letterSpacing: "0.6px" }}>{s.label}</div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 // ── Pull quote ────────────────────────────────────────────────────────────────
 function PullQuote({ text, attribution, accent }: { text: string; attribution: string; accent: string }) {
   return (
@@ -229,13 +214,9 @@ function Tsc2022() {
     <>
       <EventHero accent={accent} eyebrow="Tata Engage · Conclave"
         title="Tata Sustainability Conclave 2022"
-        subtitle="Volunteering @Tata: Embedding Quality & Scale — Taj Lands End, Mumbai · November 2022" />
+        subtitle="Volunteering @Tata: Embedding Quality & Scale — Taj Lands End, Mumbai · November 2022"
+        heroImage={tsc22Chairman} />
       <ArticleBody accent={accent}>
-        <StatStrip accent={accent} stats={[
-          { value: "200+", label: "Leaders in attendance" },
-          { value: "4 PCVH", label: "Group aspiration by 2025" },
-          { value: "7 yrs", label: "Consecutive 1M+ hours" },
-        ]} />
 
         <div style={{ marginTop: 36 }}>
           <Paras texts={[
@@ -291,14 +272,9 @@ function Volcon2024() {
     <>
       <EventHero accent={accent} eyebrow="Tata Engage · VOLCON"
         title="TATA VOLCON 2024"
-        subtitle="Celebrating a Million Hours — Taj Mahal Palace, Mumbai · 6 March 2024" />
+        subtitle="Celebrating a Million Hours — Taj Mahal Palace, Mumbai · 6 March 2024"
+        heroImage={volconChacko} />
       <ArticleBody accent={accent}>
-        <StatStrip accent={accent} stats={[
-          { value: "170", label: "Leaders in attendance" },
-          { value: "1M+", label: "Annual hours clocked" },
-          { value: "9", label: "Award categories" },
-          { value: "11", label: "Companies honoured" },
-        ]} />
 
         <div style={{ marginTop: 36 }}>
           <Paras texts={[
@@ -367,13 +343,9 @@ function Iave2022() {
     <>
       <EventHero accent={accent} eyebrow="Tata Engage · Global Forum"
         title="26th IAVE World Volunteer Conference"
-        subtitle="Volunteering for the Common Good — ADNOC Business Center, Abu Dhabi · 24–27 October 2022" />
+        subtitle="Volunteering for the Common Good — ADNOC Business Center, Abu Dhabi · 24–27 October 2022"
+        heroImage={iavePanel} />
       <ArticleBody accent={accent}>
-        <StatStrip accent={accent} stats={[
-          { value: "2018", label: "IAVE member since" },
-          { value: "2019", label: "Best Global Volunteer Programme" },
-          { value: "8M+", label: "Cumulative volunteering hours" },
-        ]} />
 
         <div style={{ marginTop: 36 }}>
           <Paras texts={[
@@ -408,13 +380,9 @@ function Iave2024() {
     <>
       <EventHero accent={accent} eyebrow="Tata Engage · Global Forum"
         title="27th IAVE World Volunteer Conference"
-        subtitle="People Power: Creating a Sustainable Future through Volunteering — Busan, Republic of Korea · 22–24 October 2024" />
+        subtitle="People Power: Creating a Sustainable Future through Volunteering — Busan, Republic of Korea · 22–24 October 2024"
+        heroImage={iave24Img1} />
       <ArticleBody accent={accent}>
-        <StatStrip accent={accent} stats={[
-          { value: "1,500+", label: "Volunteer leaders" },
-          { value: "90", label: "Countries represented" },
-          { value: "2020", label: "GCVC member since" },
-        ]} />
 
         <div style={{ marginTop: 36 }}>
           <Paras texts={[

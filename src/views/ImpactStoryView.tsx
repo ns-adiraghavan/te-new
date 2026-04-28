@@ -91,18 +91,18 @@ export default function ImpactStoryView() {
       <SubPageDotRail sections={SECTIONS_NAV} accentColour={accent} />
 
       {/* ── Hero ── */}
-      <div id="story-hero" style={{ position: "relative", minHeight: "92vh",
-        display: "flex", alignItems: "flex-end", overflow: "hidden", paddingTop: 64 }}>
+      <div id="story-hero" style={{ position: "relative", minHeight: "72vh",
+        display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 64 }}>
         <img src={story.heroImage} alt={story.heroImageAlt}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
             objectFit: "cover",
-            objectPosition: story.slug === "beyond-the-boardroom" ? "center 65%" : "center 35%" }} />
+            objectPosition: story.slug === "beyond-the-boardroom" ? "center 70%" : "center 35%" }} />
         <div style={{ position: "absolute", inset: 0,
           background: "linear-gradient(160deg,rgba(8,12,22,0.78) 0%,rgba(8,12,22,0.55) 45%,rgba(8,12,22,0.22) 100%)" }} />
         <div style={DIAG} />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto",
-          padding: "0 56px 56px", width: "100%" }}>
+          padding: "0 56px", width: "100%" }}>
 
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20 }}>
             <button onClick={() => navigate("media")}
@@ -138,7 +138,7 @@ export default function ImpactStoryView() {
       {/* ── Body ── */}
       <div id="story-body" style={{ background: "#fff" }}>
         {/* Outer wrapper constrains max width, overflow hidden keeps photos contained */}
-        <div style={{ maxWidth: 740, margin: "0 auto", overflow: "hidden" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", overflow: "hidden" }}>
           {/* Text content has padding; photos use negative margin to break out */}
           <div style={{ padding: "64px 56px 0" }}>
 
