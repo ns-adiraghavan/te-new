@@ -161,12 +161,9 @@ function MilestoneRow({ m, index, colour }: { m: Milestone; index: number; colou
       position: "relative",
       borderTop: "4px solid rgba(255,255,255,0.35)",
     }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18, flexWrap: "wrap" }}>
+      <div style={{ marginBottom: 18 }}>
         <span style={{ background: "rgba(255,255,255,0.18)", color: "#fff", fontFamily: FONT, fontWeight: 800, fontSize: 13, letterSpacing: "-0.2px", padding: "5px 12px", borderRadius: 6, border: "1px solid rgba(255,255,255,0.25)" }}>
           {m.year}
-        </span>
-        <span style={{ background: "rgba(255,255,255,0.14)", color: "rgba(255,255,255,0.92)", fontFamily: FONT, fontSize: 10, fontWeight: 700, letterSpacing: "1.2px", textTransform: "uppercase", padding: "4px 10px", borderRadius: 100 }}>
-          {m.tag}
         </span>
       </div>
       <h3 style={{ fontFamily: FONT, fontSize: 24, fontWeight: 900, color: "#fff", letterSpacing: "-0.4px", lineHeight: 1.2, margin: "0 0 14px" }}>
@@ -184,7 +181,7 @@ function MilestoneRow({ m, index, colour }: { m: Milestone; index: number; colou
 
   const PhotoPanel = (
     <div style={{ position: "relative", overflow: "hidden", background: colour, minHeight: 320 }}>
-      <img src={m.photo} alt={m.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 25%", display: "block", position: "absolute", inset: 0 }} />
+      <img src={m.photo} alt={m.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block", position: "absolute", inset: 0 }} />
       <div style={{ position: "absolute", inset: 0, background: `linear-gradient(${textOnLeft ? "to left" : "to right"}, ${colour}88 0%, ${colour}22 55%, transparent 100%)` }} />
       <div style={{ position: "absolute", bottom: 18, left: 20, right: 20, display: "flex", alignItems: "center", gap: 10 }}>
         <span style={{ background: "rgba(13,27,62,0.78)", backdropFilter: "blur(6px)", color: "#fff", fontFamily: FONT, fontSize: 10, fontWeight: 700, letterSpacing: "1.6px", textTransform: "uppercase", padding: "6px 12px", borderRadius: 4 }}>
