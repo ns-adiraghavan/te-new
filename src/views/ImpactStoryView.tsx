@@ -22,7 +22,7 @@ const StoryImage = ({ src, caption, height }: { src?: string; caption?: string; 
         alt={caption ?? ""}
         style={{
           width: "100%",
-          ...(height ? { height, objectFit: "cover" as const } : { display: "block" }),
+          display: "block",
           borderRadius: 12,
         }}
       />
@@ -37,11 +37,6 @@ const StoryImage = ({ src, caption, height }: { src?: string; caption?: string; 
           <span style={{ fontSize: 11, color: "rgba(0,0,0,0.28)", fontWeight: 600 }}>Photo coming soon</span>
         </div>
       </div>
-    )}
-    {caption && (
-      <figcaption style={{ marginTop: 10, fontSize: 13, fontStyle: "italic", color: "#64748b", lineHeight: 1.5 }}>
-        {caption}
-      </figcaption>
     )}
   </figure>
 );
@@ -139,7 +134,7 @@ export default function ImpactStoryView() {
 
       {/* ── Body ──────────────────────────────────────────────────────────── */}
       <div id="story-body" style={{ background: "#fff" }}>
-        <div style={{ maxWidth: 740, margin: "0 auto", padding: "64px 32px 56px" }}>
+        <div style={{ maxWidth: 740, margin: "0 auto", padding: "64px 0 56px" }}>
 
           {/* i. Opening paragraph — Playfair italic, accent tinted box */}
           <div style={{
@@ -198,11 +193,12 @@ export default function ImpactStoryView() {
                   </p>
                 ))}
                 {sec.bullets && sec.bullets.length > 0 && (
-                  <ul style={{ margin: "0 0 24px", paddingLeft: 22 }}>
+                  <ul style={{ margin: "0 0 24px", paddingLeft: 22, listStyleType: "disc" }}>
                     {sec.bullets.map((b, bi) => (
                       <li key={bi} style={{
                         fontFamily: FONT, fontSize: 16, color: "#374151",
                         lineHeight: 1.75, margin: "0 0 12px", fontWeight: 400,
+                        listStylePosition: "outside",
                       }}>
                         {b}
                       </li>
@@ -278,7 +274,7 @@ export default function ImpactStoryView() {
               if (slots.includes(i) && photoIdx < photos.length) {
                 const p = photos[photoIdx++];
                 out.push(
-                  <StoryImage key={`photo-${i}`} src={p.src || undefined} caption={p.caption} height={300} />
+                  <StoryImage key={`photo-${i}`} src={p.src || undefined} caption={p.caption} />
                 );
               }
             });
