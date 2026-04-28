@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Linkedin, Twitter, Globe } from "lucide-react";
+import { Twitter, Instagram, Linkedin } from "lucide-react";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { useAuth } from "@/context/AuthContext";
 
@@ -570,48 +570,17 @@ function ContactSection() {
 
 // ── 5. Stay Connected (white) ─────────────────────────────────────────────────
 function StayConnectedSection() {
-  const channels = [
-    {
-      platform: "LinkedIn",
-      handle: "Tata Engage",
-      note: "Official page",
-      url: "#",
-      Icon: Linkedin,
-      colour: "#0A66C2",
-    },
-    {
-      platform: "X (Twitter)",
-      handle: "Tata Engage",
-      note: "Official handle",
-      url: "#",
-      Icon: Twitter,
-      colour: "#1DA1F2",
-    },
-    {
-      platform: "Website",
-      handle: "tata.com / Tata Sustainability",
-      note: "Tata Engage on the Tata Sustainability / Tata Group platforms",
-      url: "#",
-      Icon: Globe,
-      colour: COLOUR,
-    },
+  const socialChannels = [
+    { handle: "@TataEngage", platform: "Twitter", note: "Latest news and updates from Tata Engage", time: "Follow us", Icon: Twitter, iconBg: "#0EA5E9", url: "#" },
+    { handle: "@tata_engage", platform: "Instagram", note: "Stories, photos and volunteering moments from across the Group", time: "Follow us", Icon: Instagram, iconBg: "#EC4899", url: "#" },
+    { handle: "Tata Engage", platform: "LinkedIn", note: "Professional updates, programme announcements and impact stories", time: "Follow us", Icon: Linkedin, iconBg: "#1D4ED8", url: "#" },
   ];
 
   return (
     <section id="pwu-social" style={{ padding: "88px 56px", background: "transparent" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ marginBottom: 48 }}>
-          <p
-            style={{
-              fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif",
-              fontSize: 14,
-              fontWeight: 700,
-              letterSpacing: "1.8px",
-              textTransform: "uppercase",
-              color: COLOUR + "cc",
-              marginBottom: 10,
-            }}
-          >
+          <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>
             Stay connected
           </p>
           <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>
@@ -622,43 +591,24 @@ function StayConnectedSection() {
             Stay updated on volunteering programmes, partner opportunities, and impact stories from across the Tata ecosystem.
           </p>
         </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-          {channels.map((c) => {
-            const IconComp = c.Icon;
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 20 }}>
+          {socialChannels.map((ch, i) => {
+            const IconComp = ch.Icon;
             return (
-              <a
-                key={c.platform}
-                href={c.url}
-                style={{
-                  display: "block",
-                  background: "#fff",
-                  border: "1px solid #e8e8f0",
-                  borderRadius: 14,
-                  padding: 20,
-                  textDecoration: "none",
-                  color: "inherit",
-                  transition: "transform 0.2s, box-shadow 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-3px)";
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-                }}
-              >
+              <a key={i} href={ch.url} style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, padding: 20, textDecoration: "none", color: "inherit", display: "block", transition: "transform 0.2s, box-shadow 0.2s" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "none"; (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-                  <div style={{ width: 32, height: 32, borderRadius: "50%", background: c.colour, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ width: 32, height: 32, borderRadius: "50%", background: ch.iconBg, display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <IconComp size={16} color="#fff" />
                   </div>
                   <div>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: ACCENT_NAVY }}>{c.handle}</div>
-                    <div style={{ fontSize: 11, color: "#94A3B8" }}>{c.platform} · Follow</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: "#0D1B3E" }}>{ch.handle}</div>
+                    <div style={{ fontSize: 11, color: "#94A3B8" }}>{ch.platform} · {ch.time}</div>
                   </div>
                 </div>
-                <p style={{ fontSize: 14, color: "#475569", lineHeight: 1.6, margin: 0 }}>{c.note}</p>
+                <p style={{ fontSize: 14, color: "#475569", lineHeight: 1.6, marginBottom: 10 }}>{ch.note}</p>
+                <span style={{ fontSize: 12, color: "#94A3B8" }}>Follow ↗</span>
               </a>
             );
           })}
@@ -667,8 +617,6 @@ function StayConnectedSection() {
     </section>
   );
 }
-
-// ── Main View ─────────────────────────────────────────────────────────────────
 export default function PartnerWithUsView() {
   return (
     <div className="dot-grid-bg"

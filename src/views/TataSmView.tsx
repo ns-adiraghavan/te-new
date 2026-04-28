@@ -87,7 +87,7 @@ export default function TataSmView() {
             </p>
             <div style={{ display: "flex", gap: 12 }}>
               <button onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
-                style={{ background: "#C3DB6F", color: "#fff", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+                style={{ background: "#F5A623", color: "#0D1B3E", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
                 Explore Opportunities →
               </button>
               <button onClick={() => document.getElementById("tsm-overview")?.scrollIntoView({ behavior: "smooth" })}
@@ -123,12 +123,10 @@ export default function TataSmView() {
             </div>
           </div>
           <div style={{ position: "relative" }}>
-            <div style={{ position: "absolute", top: -16, right: -16, zIndex: 0, width: 64, height: 64, borderRadius: 16, background: COLOUR, opacity: 0.12 }} />
             <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(0,0,0,0.10)", position: "relative", zIndex: 1 }}>
               <img src={tsmBelowImg} alt=""
                 style={{ width: "100%", height: 380, objectFit: "cover", display: "block" }} />
             </div>
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 4, background: COLOUR, borderRadius: "0 0 18px 18px", zIndex: 2 }} />
           </div>
         </div>
       </section>
@@ -200,7 +198,7 @@ export default function TataSmView() {
           {/* CTA Section */}
           <div style={{ marginTop: 64, textAlign: "center" }}>
             <button onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
-              style={{ background: COLOUR, color: "#fff", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+              style={{ background: "#F5A623", color: "#0D1B3E", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
               Explore Volunteering Opportunities →
             </button>
             <p style={{ fontSize: 13, color: "#64748B", marginTop: 16 }}>

@@ -15,7 +15,6 @@ import imgAirIndia     from "@/assets/air-india.jpg";
 import imgAIG          from "@/assets/tata-aig-1.jpg";
 import imgTrent2       from "@/assets/trent_2.jpg";
 import img2025         from "@/assets/homepagebanner/2025.png";
-import imgDR2          from "@/assets/dr_photo_2.jpg";
 import journeyHeroImg  from "@/assets/homepagebanner/IHCL 1.jpg";
 
 // ── Brand tokens ──────────────────────────────────────────────────────────────
@@ -166,6 +165,9 @@ function MilestoneRow({ m, index, colour }: { m: Milestone; index: number; colou
         <span style={{ background: "rgba(255,255,255,0.18)", color: "#fff", fontFamily: FONT, fontWeight: 800, fontSize: 13, letterSpacing: "-0.2px", padding: "5px 12px", borderRadius: 6, border: "1px solid rgba(255,255,255,0.25)" }}>
           {m.year}
         </span>
+        <span style={{ background: "rgba(255,255,255,0.14)", color: "rgba(255,255,255,0.92)", fontFamily: FONT, fontSize: 10, fontWeight: 700, letterSpacing: "1.2px", textTransform: "uppercase", padding: "4px 10px", borderRadius: 100 }}>
+          {m.tag}
+        </span>
       </div>
       <h3 style={{ fontFamily: FONT, fontSize: 24, fontWeight: 900, color: "#fff", letterSpacing: "-0.4px", lineHeight: 1.2, margin: "0 0 14px" }}>
         {m.title}
@@ -182,7 +184,7 @@ function MilestoneRow({ m, index, colour }: { m: Milestone; index: number; colou
 
   const PhotoPanel = (
     <div style={{ position: "relative", overflow: "hidden", background: colour, minHeight: 320 }}>
-      <img src={m.photo} alt={m.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block", position: "absolute", inset: 0 }} />
+      <img src={m.photo} alt={m.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 25%", display: "block", position: "absolute", inset: 0 }} />
       <div style={{ position: "absolute", inset: 0, background: `linear-gradient(${textOnLeft ? "to left" : "to right"}, ${colour}88 0%, ${colour}22 55%, transparent 100%)` }} />
       <div style={{ position: "absolute", bottom: 18, left: 20, right: 20, display: "flex", alignItems: "center", gap: 10 }}>
         <span style={{ background: "rgba(13,27,62,0.78)", backdropFilter: "blur(6px)", color: "#fff", fontFamily: FONT, fontSize: 10, fontWeight: 700, letterSpacing: "1.6px", textTransform: "uppercase", padding: "6px 12px", borderRadius: 4 }}>
@@ -232,7 +234,7 @@ export default function JourneyView() {
         <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: 64 }}>
           <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
             <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 12 }}>
-              Tata Engage · 2014 – the journey continues
+              Tata Engage · 2014 – 2025
             </p>
             <div style={{ width: 48, height: 2, borderRadius: 2, background: "rgba(255,255,255,0.6)", marginBottom: 22 }} />
             <h1 style={{ fontFamily: FONT, fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, letterSpacing: "-0.5px", lineHeight: 1.12, color: "#fff", margin: "0 0 18px" }}>
@@ -284,7 +286,7 @@ export default function JourneyView() {
         <div style={{ position: "absolute", top: "-60px", right: "-60px", width: 360, height: 360, borderRadius: "50%", background: `radial-gradient(circle, ${PALETTE[2]}20 0%, transparent 70%)`, pointerEvents: "none" }} />
         <div style={{ position: "relative", zIndex: 1, maxWidth: 620, margin: "0 auto", textAlign: "center" }}>
           <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 14 }}>
-            The legacy continues with you
+            The next chapter
           </p>
           <div style={{ width: 40, height: 3, borderRadius: 2, background: B_YELLOW, margin: "0 auto 24px" }} />
           <h2 style={{ fontFamily: FONT, fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 900, color: "#fff", letterSpacing: "-0.8px", lineHeight: 1.1, marginBottom: 16 }}>
@@ -309,9 +311,6 @@ export default function JourneyView() {
           </div>
         </div>
       </div>
-
-      {/* suppress unused import warning */}
-      <span style={{ display: "none" }} aria-hidden><img src={imgDR2} alt="" /></span>
 
       <SubPageDotRail sections={RAIL_SECTIONS} />
     </div>

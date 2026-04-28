@@ -113,7 +113,6 @@ function LegacySection() {
 
         {/* Founder card — accent coloured, photo at top */}
         <div style={{ background: ACCENT, borderRadius: 20, overflow: "hidden", position: "relative" }}>
-          <div style={DIAG} />
           <div style={{ width: "100%", height: 260, overflow: "hidden", position: "relative" }}>
             <img
               src={jamsetjiImg}
@@ -156,7 +155,6 @@ function WhatSection() {
 
           {/* Vision — accent box */}
           <div style={{ background: ACCENT, borderRadius: 18, padding: "32px", position: "relative", overflow: "hidden" }}>
-            <div style={DIAG} />
             <div style={{ position: "relative", zIndex: 1 }}>
               <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: 14 }}>
                 Our Vision
@@ -179,8 +177,7 @@ function WhatSection() {
         </div>
 
         {/* Register CTA */}
-        <div style={{ marginTop: 20, background: "#1E6BB8", borderRadius: 16, padding: "28px 32px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, position: "relative", overflow: "hidden" }}>
-          <div style={DIAG} />
+        <div style={{ marginTop: 20, background: NAVY, borderRadius: 16, padding: "28px 32px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 8 }}>
               Register to Volunteer
@@ -191,7 +188,7 @@ function WhatSection() {
           </div>
           <button
             onClick={() => navigate("register-role")}
-            style={{ position: "relative", zIndex: 1, background: "#F5A623", color: "#0D1B3E", border: "none", borderRadius: 10, padding: "12px 24px", fontFamily: FONT, fontWeight: 800, fontSize: 14, cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0 }}
+            style={{ position: "relative", zIndex: 1, background: ACCENT, color: "#fff", border: "none", borderRadius: 10, padding: "12px 24px", fontFamily: FONT, fontWeight: 800, fontSize: 14, cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0 }}
           >
             Register Now on Tata Engage →
           </button>
@@ -219,28 +216,23 @@ function ImpactSection() {
         <DefinerBar />
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginTop: 44 }}>
-          {features.map((f, i) => {
-            const isLastOdd = i === features.length - 1 && features.length % 2 === 1;
-            return (
-              <div
-                key={f.label}
-                style={{
-                  ...(isLastOdd ? { gridColumn: "1 / -1" } : {}),
-                  background: f.colour,
-                  borderRadius: 16,
-                  padding: "28px 32px",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-              >
-                <div style={DIAG} />
-                <div style={{ position: "relative", zIndex: 1 }}>
-                  <div style={{ fontFamily: FONT, fontSize: 16, fontWeight: 800, color: "#fff", marginBottom: 8 }}>{f.label}</div>
-                  <div style={{ fontFamily: FONT, fontSize: 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.72 }}>{f.desc}</div>
-                </div>
+          {features.slice(0, 4).map(f => (
+            <div key={f.label} style={{ background: "#fff", borderRadius: 16, padding: "28px", border: "1px solid #e8eef0", borderLeft: `4px solid ${f.colour}`, display: "flex", gap: 20, alignItems: "flex-start" }}>
+              <div style={{ width: 10, height: 10, borderRadius: "50%", background: f.colour, flexShrink: 0, marginTop: 6 }} />
+              <div>
+                <div style={{ fontFamily: FONT, fontSize: 16, fontWeight: 800, color: NAVY, marginBottom: 8 }}>{f.label}</div>
+                <div style={{ fontFamily: FONT, fontSize: 14, color: "#64748B", lineHeight: 1.72 }}>{f.desc}</div>
               </div>
-            );
-          })}
+            </div>
+          ))}
+          {/* 5th — full-width accent box */}
+          <div style={{ gridColumn: "1 / -1", background: ACCENT, borderRadius: 16, padding: "28px 32px", display: "flex", gap: 20, alignItems: "center", position: "relative", overflow: "hidden" }}>
+            <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(255,255,255,0.6)", flexShrink: 0, position: "relative", zIndex: 1 }} />
+            <div style={{ flex: 1, position: "relative", zIndex: 1 }}>
+              <div style={{ fontFamily: FONT, fontSize: 16, fontWeight: 800, color: "#fff", marginBottom: 6 }}>{features[4].label}</div>
+              <div style={{ fontFamily: FONT, fontSize: 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.72, maxWidth: 600 }}>{features[4].desc}</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -315,7 +307,7 @@ function ProgrammesSection() {
           </div>
           <button
             onClick={() => navigate("partner")}
-            style={{ background: "#F5A623", color: "#0D1B3E", border: "none", borderRadius: 10, padding: "11px 24px", fontFamily: FONT, fontWeight: 800, fontSize: 14, cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0 }}
+            style={{ background: NAVY, color: "#fff", border: "none", borderRadius: 10, padding: "11px 24px", fontFamily: FONT, fontWeight: 800, fontSize: 14, cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0 }}
           >
             Partner with us →
           </button>

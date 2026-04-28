@@ -388,53 +388,55 @@ export default function AboutProEngageView() {
             Here's how the journey unfolds — from NGO submission through to volunteer recognition.
           </p>
 
-          {/* Zigzag step layout */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-            {HOW_STEPS.map((step, idx) => (
-              <div key={step.num} style={{
+          {/* Horizontal pipeline — row 1: steps 1-4, row 2: steps 5-7 */}
+          {[HOW_STEPS.slice(0, 4), HOW_STEPS.slice(4)].map((rowSteps, rowIdx) => (
+            <div key={rowIdx} style={{ position: "relative", marginBottom: 48 }}>
+              {/* Connector line */}
+              <div style={{
+                position: "absolute",
+                top: 44,
+                left: `calc(${100 / (rowSteps.length * 2)}% + 28px)`,
+                right: `calc(${100 / (rowSteps.length * 2)}% + 28px)`,
+                height: 2,
+                background: `linear-gradient(90deg, ${rowSteps[0].colour}40, ${rowSteps[rowSteps.length-1].colour}40)`,
+                zIndex: 0,
+                borderRadius: 2,
+              }} />
+              <div style={{
                 display: "grid",
-                gridTemplateColumns: idx % 2 === 0 ? "1fr auto 1fr" : "1fr auto 1fr",
-                gap: 0,
-                alignItems: "center",
-                marginBottom: idx < HOW_STEPS.length - 1 ? 0 : 0,
+                gridTemplateColumns: `repeat(${rowSteps.length}, 1fr)`,
+                gap: 24,
+                position: "relative",
+                zIndex: 1,
               }}>
-                {/* Left content */}
-                {idx % 2 === 0 ? (
-                  <div style={{ padding: "28px 36px 28px 0", textAlign: "right" }}>
-                    <div style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", color: step.colour, textTransform: "uppercase", marginBottom: 8, opacity: 0.7 }}>{step.num}</div>
-                    <div style={{ fontSize: 16, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 8 }}>{step.title}</div>
-                    <div style={{ fontSize: 13, color: "#64748B", lineHeight: 1.7, maxWidth: 320, marginLeft: "auto" }}>{step.desc}</div>
+                {rowSteps.map((step, idx) => (
+                  <div key={step.num} style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+                    <div style={{
+                      width: 88, height: 88, borderRadius: "50%",
+                      background: (rowIdx === 0 && idx === 0) ? step.colour : "#fff",
+                      border: `2px solid ${step.colour}`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      flexShrink: 0, marginBottom: 20,
+                      boxShadow: (rowIdx === 0 && idx === 0) ? `0 8px 28px ${step.colour}40` : `0 4px 16px rgba(0,0,0,0.07)`,
+                      color: (rowIdx === 0 && idx === 0) ? "#fff" : step.colour,
+                      position: "relative",
+                    }}>
+                      <step.Icon />
+                      <div style={{
+                        position: "absolute", top: -6, right: -6,
+                        width: 22, height: 22, borderRadius: "50%",
+                        background: step.colour, color: "#fff",
+                        fontSize: 11, fontWeight: 800,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                      }}>{rowIdx * 4 + idx + 1}</div>
+                    </div>
+                    <div style={{ fontSize: 14, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 8, lineHeight: 1.3 }}>{step.title}</div>
+                    <div style={{ fontSize: 12, color: "#64748B", lineHeight: 1.65 }}>{step.desc}</div>
                   </div>
-                ) : <div />}
-
-                {/* Center icon */}
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
-                  {idx > 0 && <div style={{ width: 2, height: 28, background: `${step.colour}30` }} />}
-                  <div style={{
-                    width: 64, height: 64, borderRadius: "50%",
-                    background: step.colour,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "#fff",
-                    boxShadow: `0 6px 24px ${step.colour}40`,
-                    flexShrink: 0,
-                    zIndex: 1,
-                  }}>
-                    <step.Icon />
-                  </div>
-                  {idx < HOW_STEPS.length - 1 && <div style={{ width: 2, height: 28, background: `${HOW_STEPS[idx + 1].colour}30` }} />}
-                </div>
-
-                {/* Right content */}
-                {idx % 2 !== 0 ? (
-                  <div style={{ padding: "28px 0 28px 36px" }}>
-                    <div style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", color: step.colour, textTransform: "uppercase", marginBottom: 8, opacity: 0.7 }}>{step.num}</div>
-                    <div style={{ fontSize: 16, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 8 }}>{step.title}</div>
-                    <div style={{ fontSize: 13, color: "#64748B", lineHeight: 1.7, maxWidth: 320 }}>{step.desc}</div>
-                  </div>
-                ) : <div />}
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
