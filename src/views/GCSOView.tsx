@@ -47,11 +47,8 @@ function Hero() {
         </p>
         <div style={{ height: 2, width: 48, borderRadius: 2, background: "rgba(255,255,255,0.6)", margin: "12px 0 22px" }} />
         <h1 style={{ fontFamily: FONT, fontSize: "clamp(2.4rem,5vw,3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px", maxWidth: 560 }}>
-          From the Desk of the Group Chief Sustainability Officer
+          Letter from GCSO
         </h1>
-        <p style={{ fontFamily: FONT, fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.80)", maxWidth: 440, margin: 0 }}>
-          Chacko Thomas · Group Chief Sustainability Officer, Tata Sons
-        </p>
       </div>
     </div>
   );
