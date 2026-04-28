@@ -28,7 +28,7 @@ const Footer = () => {
   } as const;
 
   return (
-    <footer style={{ background: NAVY, color: "#fff", fontFamily: FONT, paddingTop: 56, paddingBottom: 32 }}>
+    <footer style={{ background: "#09090b", color: "#fff", fontFamily: FONT, paddingTop: 56, paddingBottom: 32 }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 56px" }}>
 
         {/* Top grid */}
