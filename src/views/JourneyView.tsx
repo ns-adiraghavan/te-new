@@ -4,16 +4,16 @@ import SubPageDotRail from "@/components/shared/SubPageDotRail";
 
 // ── Asset imports ─────────────────────────────────────────────────────────────
 import imgTrent        from "@/assets/trent.jpg";
-import imgBball        from "@/assets/tatabball.jpg";
+import imgBball        from "@/assets/homepagebanner/20240729_114952.jpg";
 import img2016         from "@/assets/homepagebanner/2016.png";
 import img2015         from "@/assets/homepagebanner/2015.png";
 import img2017         from "@/assets/homepagebanner/2017.png";
 import imgIHCL         from "@/assets/IHCL.jpg";
-import imgMotors       from "@/assets/Tata_Motors_1.jpg";
-import imgComms        from "@/assets/tata-communications-1.jpg";
-import imgAirIndia     from "@/assets/air-india.jpg";
-import imgAIG          from "@/assets/tata-aig-1.jpg";
-import imgTrent2       from "@/assets/trent_2.jpg";
+import imgMotors       from "@/assets/Tata_international.jpeg";
+import imgComms        from "@/assets/homepagebanner/DSC_0250.JPG";
+import imgAirIndia     from "@/assets/Taj_Sats.jpeg";
+import imgAIG          from "@/assets/Infiniti_2.jpg";
+import imgTrent2       from "@/assets/Voltas.JPG";
 import img2025         from "@/assets/homepagebanner/2025.png";
 import journeyHeroImg  from "@/assets/homepagebanner/IHCL 1.jpg";
 
@@ -180,14 +180,15 @@ function MilestoneRow({ m, index, colour }: { m: Milestone; index: number; colou
   );
 
   const PhotoPanel = (
-    <div style={{ position: "relative", overflow: "hidden", background: colour, minHeight: 320 }}>
-      <img src={m.photo} alt={m.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block", position: "absolute", inset: 0 }} />
-      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(${textOnLeft ? "to left" : "to right"}, ${colour}88 0%, ${colour}22 55%, transparent 100%)` }} />
-      <div style={{ position: "absolute", bottom: 18, left: 20, right: 20, display: "flex", alignItems: "center", gap: 10 }}>
-        <span style={{ background: "rgba(13,27,62,0.78)", backdropFilter: "blur(6px)", color: "#fff", fontFamily: FONT, fontSize: 10, fontWeight: 700, letterSpacing: "1.6px", textTransform: "uppercase", padding: "6px 12px", borderRadius: 4 }}>
-          {m.year}
-        </span>
-      </div>
+    <div style={{ background: colour, display: "flex", alignItems: "stretch" }}>
+      <img src={m.photo} alt={m.title} style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "contain",
+        objectPosition: "center",
+        display: "block",
+        background: colour,
+      }} />
     </div>
   );
 

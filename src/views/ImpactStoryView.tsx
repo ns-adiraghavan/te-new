@@ -137,9 +137,7 @@ export default function ImpactStoryView() {
 
       {/* ── Body ── */}
       <div id="story-body" style={{ background: "#fff" }}>
-        {/* Outer wrapper constrains max width, overflow hidden keeps photos contained */}
-        <div style={{ maxWidth: 900, margin: "0 auto", overflow: "hidden" }}>
-          {/* Text content has padding; photos use negative margin to break out */}
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ padding: "64px 56px 0" }}>
 
             {/* Opening para — always uses DR red/orange accent */}
@@ -153,7 +151,7 @@ export default function ImpactStoryView() {
           </div>
 
           {/* Body sections */}
-          <div style={{ padding: "0 56px" }}>
+          <div style={{ maxWidth: 820, margin: "0 auto", padding: "0 56px" }}>
             {(() => {
               let photoIdx = 0;
               const out: React.ReactNode[] = [];
@@ -161,8 +159,8 @@ export default function ImpactStoryView() {
               story.sections.forEach((sec, i) => {
                 if (sec.heading) {
                   out.push(
-                    <h2 key={`h-${i}`} style={{ fontFamily: FONT, fontSize: 22, fontWeight: 800,
-                      color: ACCENT_NAVY, lineHeight: 1.3, margin: "36px 0 16px",
+                    <h2 key={`h-${i}`} style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 22, fontWeight: 700,
+                      fontStyle: "italic", color: ACCENT_NAVY, lineHeight: 1.3, margin: "36px 0 16px",
                       letterSpacing: "-0.2px" }}>
                       {sec.heading}
                     </h2>
@@ -259,6 +257,7 @@ export default function ImpactStoryView() {
           </div>
 
           <div style={{ height: 56 }} />
+          </div>
         </div>
       </div>
 
