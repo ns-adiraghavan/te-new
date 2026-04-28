@@ -134,7 +134,7 @@ export default function ImpactStoryView() {
 
       {/* ── Body ──────────────────────────────────────────────────────────── */}
       <div id="story-body" style={{ background: "#fff" }}>
-        <div style={{ maxWidth: 740, margin: "0 auto", padding: "64px 32px 56px" }}>
+        <div style={{ maxWidth: 740, margin: "0 auto", padding: "64px 0 56px" }}>
 
           {/* i. Opening paragraph — Playfair italic, accent tinted box */}
           <div style={{
