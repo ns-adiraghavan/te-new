@@ -569,6 +569,38 @@ function FeedbackCard({ f, supportLabels, attrLabels }: { f: SpocFeedbackEntry; 
   );
 }
 
+function OrientationPanel({ progress, total, onOpen }: { progress: number; total: number; onOpen: () => void }) {
+  const [oOpen, setOOpen] = useState(false);
+  return (
+    <div style={{ background: "#fff", border: "1.5px solid #c8c6f0", borderRadius: 12, marginBottom: 16, overflow: "hidden" }}>
+      <div onClick={() => setOOpen(x => !x)} style={{ display: "flex", alignItems: "center", gap: 12, padding: "13px 16px", cursor: "pointer", userSelect: "none" }}>
+        <div style={{ width: 6, height: 6, borderRadius: "50%", background: B_VOL, flexShrink: 0 }} />
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#aaaabc", marginBottom: 2 }}>SPOC Orientation</div>
+          <div style={{ fontSize: 13.5, fontWeight: 700, color: ACCENT_NAVY, display: "flex", alignItems: "center", gap: 10 }}>
+            E-Module Progress
+            <span style={{ background: P_VOL, color: B_VOL, fontSize: 11, fontWeight: 700, padding: "2px 9px", borderRadius: 100 }}>{progress}/{total} modules</span>
+          </div>
+        </div>
+        <div style={{ width: 80 }}>
+          <div style={{ height: 6, background: "#e8e8f0", borderRadius: 3, overflow: "hidden" }}>
+            <div style={{ height: "100%", width: `${(progress / total) * 100}%`, background: B_VOL, borderRadius: 3 }} />
+          </div>
+        </div>
+        <span style={{ fontSize: 18, color: "#dddde8", transform: oOpen ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>›</span>
+      </div>
+      {oOpen && (
+        <div style={{ padding: "0 16px 16px", borderTop: "1px solid #e8e8f0" }}>
+          <p style={{ fontSize: 13, color: "#6b6b7a", lineHeight: 1.6, margin: "12px 0 14px" }}>Complete all orientation modules to unlock full SPOC capabilities and stay current with ProEngage guidelines.</p>
+          <button onClick={onOpen} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "9px 20px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>
+            {progress < total ? "Continue Orientation" : "Review Orientation"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function SPOCDashboardView() {
   const navigate = useNavigate();
   const onNavigate = useAppNavigate();
@@ -736,37 +768,7 @@ export default function SPOCDashboardView() {
           <SectionHeading eyebrow={IS_PE_SEASON ? "ProEngage Edition 23 · Open" : "Non-PE season"} title="My Activities" />
 
           {/* Orientation — collapsed panel above activity tabs */}
-          {(() => {
-            const [oOpen, setOOpen] = useState(false);
-            return (
-              <div style={{ background: "#fff", border: "1.5px solid #c8c6f0", borderRadius: 12, marginBottom: 16, overflow: "hidden" }}>
-                <div onClick={() => setOOpen(x => !x)} style={{ display: "flex", alignItems: "center", gap: 12, padding: "13px 16px", cursor: "pointer", userSelect: "none" }}>
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: B_VOL, flexShrink: 0 }} />
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#aaaabc", marginBottom: 2 }}>SPOC Orientation</div>
-                    <div style={{ fontSize: 13.5, fontWeight: 700, color: ACCENT_NAVY, display: "flex", alignItems: "center", gap: 10 }}>
-                      E-Module Progress
-                      <span style={{ background: P_VOL, color: B_VOL, fontSize: 11, fontWeight: 700, padding: "2px 9px", borderRadius: 100 }}>{spocData.orientationProgress}/{spocData.totalOrientationModules} modules</span>
-                    </div>
-                  </div>
-                  <div style={{ width: 80 }}>
-                    <div style={{ height: 6, background: "#e8e8f0", borderRadius: 3, overflow: "hidden" }}>
-                      <div style={{ height: "100%", width: `${(spocData.orientationProgress / spocData.totalOrientationModules) * 100}%`, background: B_VOL, borderRadius: 3 }} />
-                    </div>
-                  </div>
-                  <span style={{ fontSize: 18, color: "#dddde8", transform: oOpen ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>›</span>
-                </div>
-                {oOpen && (
-                  <div style={{ padding: "0 16px 16px", borderTop: "1px solid #e8e8f0" }}>
-                    <p style={{ fontSize: 13, color: "#6b6b7a", lineHeight: 1.6, margin: "12px 0 14px" }}>Complete all orientation modules to unlock full SPOC capabilities and stay current with ProEngage guidelines.</p>
-                    <button onClick={() => setShowOrientationModal(true)} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "9px 20px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>
-                      {spocData.orientationProgress < spocData.totalOrientationModules ? "Continue Orientation" : "Review Orientation"}
-                    </button>
-                  </div>
-                )}
-              </div>
-            );
-          })()}
+          <OrientationPanel progress={spocData.orientationProgress} total={spocData.totalOrientationModules} onOpen={() => setShowOrientationModal(true)} />
 
           <Slicers options={volActivitySlicers} active={activeVolActivity} onChange={setActiveVolActivity} accentColor={B_TEAL} />
 

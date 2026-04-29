@@ -110,7 +110,7 @@ function StatTile({
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
     >
       {!isZero && <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1.4, background: "rgba(255,255,255,0.35)" }} />}
-      <div style={{ fontSize: 30, fontWeight: 900, color: isZero ? "#bbb" : "#fff", letterSpacing: "-1.5px", lineHeight: 1 }}>
+      <div style={{ fontSize: 38, fontWeight: 900, color: isZero ? "#bbb" : "#fff", letterSpacing: "-2px", lineHeight: 1 }}>
         {n}{suffix}
       </div>
       <div style={{ fontSize: 11, fontWeight: 600, color: isZero ? "#ccc" : "rgba(255,255,255,0.78)", marginTop: 7, lineHeight: 1.3 }}>
@@ -226,9 +226,9 @@ function Badge({ status }: { status: string }) {
 // ─── Section heading — matches Volunteer/SPOC exactly ────────────────────────
 function SH({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
-    <div style={{ marginBottom: 20 }}>
-      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#aaaabc", marginBottom: 4 }}>{eyebrow}</div>
-      <div style={{ fontSize: 20, fontWeight: 900, color: ACCENT_NAVY }}>{title}</div>
+    <div style={{ marginBottom: 24 }}>
+      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#aaaabc", marginBottom: 5 }}>{eyebrow}</div>
+      <h2 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 21, fontWeight: 900, color: ACCENT_NAVY, margin: 0, letterSpacing: -0.3 }}>{title}</h2>
     </div>
   );
 }
