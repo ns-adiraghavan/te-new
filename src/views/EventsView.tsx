@@ -166,14 +166,8 @@ function MediaBlock({ title, body, media, mediaLeft = false, accent }: {
   return (
     <div style={{ margin: "40px 0" }}>
       {title && <SectionHead title={title} accent={accent} />}
-      {media ? (
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
-          <div style={{ order: mediaLeft ? 2 : 1 }}><Paras texts={paras} /></div>
-          <div style={{ order: mediaLeft ? 1 : 2 }}>{media}</div>
-        </div>
-      ) : (
-        <Paras texts={paras} />
-      )}
+      <Paras texts={paras} />
+      {media && <div style={{ margin: "20px 0 0" }}>{media}</div>}
     </div>
   );
 }

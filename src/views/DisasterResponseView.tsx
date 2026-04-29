@@ -293,10 +293,10 @@ export default function DisasterResponseView() {
 
           {/* Two identification channels */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 48 }}>
-            <div style={{ background: "#fff", borderRadius: 16, padding: "28px 26px", border: `1px solid ${COLOUR}18` }}>
-              <div style={{ width: 32, height: 3, background: COLOUR, borderRadius: 2, marginBottom: 18 }} />
-              <div style={{ fontSize: 15, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 10 }}>Channel 1</div>
-              <div style={{ fontSize: 14, color: "#475569", lineHeight: 1.7 }}>Volunteers who have registered their interest on the Tata Engage platform</div>
+            <div style={{ background: COLOUR, borderRadius: 16, padding: "28px 26px", border: `1px solid ${COLOUR}` }}>
+              <div style={{ width: 32, height: 3, background: "rgba(255,255,255,0.6)", borderRadius: 2, marginBottom: 18 }} />
+              <div style={{ fontSize: 15, fontWeight: 800, color: "#fff", marginBottom: 10 }}>Channel 1</div>
+              <div style={{ fontSize: 14, color: "rgba(255,255,255,0.88)", lineHeight: 1.7 }}>Volunteers who have registered their interest on the Tata Engage platform</div>
             </div>
             <div style={{ background: COLOUR, borderRadius: 16, padding: "28px 26px", border: `1px solid ${COLOUR}` }}>
               <div style={{ width: 32, height: 3, background: "rgba(255,255,255,0.6)", borderRadius: 2, marginBottom: 18 }} />
@@ -306,10 +306,10 @@ export default function DisasterResponseView() {
           </div>
 
           {/* Selection criteria */}
-          <div style={{ background: COLOUR, borderRadius: 18, padding: "36px 40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
+          <div style={{ background: "#fff", border: `1px solid ${COLOUR}20`, borderRadius: 18, padding: "36px 40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
             <div>
-              <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 14 }}>Selection criteria</p>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "#fff", lineHeight: 1.25, marginBottom: 16 }}>Selection is based on parameters such as:</div>
+              <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 14 }}>Selection criteria</p>
+              <div style={{ fontSize: 20, fontWeight: 900, color: ACCENT_NAVY, lineHeight: 1.25, marginBottom: 16 }}>Selection is based on parameters such as:</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {SELECTION_CRITERIA.map((c, i) => (
                   <div key={i} style={{ display: "flex", gap: 12, alignItems: "center" }}>
@@ -318,13 +318,13 @@ export default function DisasterResponseView() {
                         <path d="M1.5 5l2.5 2.5 4.5-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <span style={{ fontSize: 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.5 }}>{c}</span>
+                    <span style={{ fontSize: 14, color: "#475569", lineHeight: 1.5 }}>{c}</span>
                   </div>
                 ))}
               </div>
             </div>
             <div>
-              <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 14 }}>Then</p>
+              <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR, marginBottom: 14 }}>Then</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                 {[
                   { step: "01", text: "Shortlisted volunteers are interviewed and oriented" },
@@ -334,7 +334,7 @@ export default function DisasterResponseView() {
                 ].map((s) => (
                   <div key={s.step} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
                     <div style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 11, fontWeight: 700, color: COLOUR, flexShrink: 0, minWidth: 24 }}>{s.step}</div>
-                    <span style={{ fontSize: 14, color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{s.text}</span>
+                    <span style={{ fontSize: 14, color: "#475569", lineHeight: 1.6 }}>{s.text}</span>
                   </div>
                 ))}
               </div>
