@@ -250,8 +250,13 @@ function PhotoGrid({ images }: { images: { src: string; alt: string }[] }) {
 // ── Opening para block ────────────────────────────────────────────────────────
 function OpeningParas({ texts, accent }: { texts: string[]; accent: string }) {
   return (
-    <div style={{ borderLeft: `3px solid ${accent}`, paddingLeft: 20, margin: "0 0 40px" }}>
-      <Paras texts={texts} />
+    <div style={{ background: `${accent}12`, borderLeft: `3px solid ${accent}`,
+      borderRadius: "0 10px 10px 0", padding: "20px 24px", margin: "0 0 40px" }}>
+      {texts.map((t, i) => (
+        <p key={i} style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 16,
+          fontStyle: "italic", color: "#0D1B3E", lineHeight: 1.78,
+          margin: i < texts.length - 1 ? "0 0 14px" : 0 }}>{t}</p>
+      ))}
     </div>
   );
 }
