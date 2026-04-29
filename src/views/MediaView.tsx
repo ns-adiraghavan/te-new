@@ -4,7 +4,7 @@ import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { SOCIAL_POSTS } from "@/data/homeSharedData";
 import { IMPACT_STORIES } from "@/data/impactStoriesData";
-import { EVENTS } from "@/data/eventsData";
+
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import heroImg          from "@/assets/tata-projects.jpg";
 import photo01 from "@/assets/homepagebanner/TVW 6  - 7th Day 7.JPG";
@@ -24,14 +24,13 @@ const B_INDIGO = "#333399";
 const B_BLUE = "#333399";
 const ACCENT_NAVY = "#0D1B3E";
 
-const TABS = ["Impact Stories", "Photos", "Videos", "Social Media", "Events"] as const;
+const TABS = ["Impact Stories", "Photos", "Videos", "Social Media"] as const;
 
 const HASH_TO_TAB: Record<string, typeof TABS[number]> = {
   stories: "Impact Stories",
   photos: "Photos",
   videos: "Videos",
   social: "Social Media",
-  events: "Events",
 };
 
 const SECTIONS = [
@@ -88,7 +87,6 @@ export default function MediaView() {
   const { triggerToast } = useAppContext();
   const navigate = useAppNavigate();
   const [storiesSort, setStoriesSort] = useState<"newest" | "oldest">("newest");
-  const [eventsSort, setEventsSort] = useState<"newest" | "oldest">("newest");
 
   useEffect(() => {
     const raw = location.hash.replace(/^#/, "");
@@ -102,9 +100,6 @@ export default function MediaView() {
 
   const sortedStories = [...IMPACT_STORIES].sort((a, b) =>
     storiesSort === "newest" ? parseDateVal(b.date) - parseDateVal(a.date) : parseDateVal(a.date) - parseDateVal(b.date)
-  );
-  const sortedEvents = [...EVENTS].sort((a, b) =>
-    eventsSort === "newest" ? parseDateVal(b.date) - parseDateVal(a.date) : parseDateVal(a.date) - parseDateVal(b.date)
   );
 
   const SortBar = ({ value, onChange }: { value: "newest" | "oldest"; onChange: (v: "newest" | "oldest") => void }) => (
@@ -288,45 +283,6 @@ export default function MediaView() {
           </div>
         )}
 
-        {/* 7 — Events */}
-        {activeTab === "Events" && (
-          <div>
-            <SortBar value={eventsSort} onChange={setEventsSort} />
-            <div style={{ columns: 2, columnGap: 20 }}>
-              {sortedEvents.map((e) => (
-                <div
-                  key={e.slug}
-                  onClick={() => navigate("event", e.slug)}
-                  style={{
-                    breakInside: "avoid", marginBottom: 20,
-                    background: "#fff", border: "1px solid #e8e8f0",
-                    borderRadius: 14, overflow: "hidden", cursor: "pointer",
-                    transition: "transform 0.2s, box-shadow 0.2s",
-                  }}
-                  onMouseEnter={(ev) => { ev.currentTarget.style.transform = "translateY(-3px)"; ev.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)"; }}
-                  onMouseLeave={(ev) => { ev.currentTarget.style.transform = "translateY(0)"; ev.currentTarget.style.boxShadow = "none"; }}
-                >
-                  <div style={{ aspectRatio: "16/10", overflow: "hidden", position: "relative" }}>
-                    <img src={e.heroImage} alt={e.title}
-                      style={{ width: "100%", height: "100%", objectFit: "cover",
-                        objectPosition: "center 30%" }} />
-                    <div style={{ position: "absolute", bottom: 0, left: 0, right: 0,
-                      height: 3, background: e.accentColor }} />
-                  </div>
-                  <div style={{ padding: "20px 22px 22px" }}>
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-                      <span style={{ display: "inline-block", background: `${e.accentColor}15`, color: e.accentColor, fontSize: 10, fontWeight: 700, padding: "3px 9px", borderRadius: 4, textTransform: "uppercase", letterSpacing: "0.5px" }}>{e.tag}</span>
-                      <span style={{ fontSize: 11, color: "#94a3b8", fontWeight: 500 }}>{e.date}</span>
-                    </div>
-                    <div style={{ fontSize: 15, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 10, lineHeight: 1.4 }}>{e.title}</div>
-                    <p style={{ fontSize: 13, color: "#64748B", lineHeight: 1.7, marginBottom: 16 }}>{e.excerpt}</p>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: B_INDIGO }}>View event →</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
       
