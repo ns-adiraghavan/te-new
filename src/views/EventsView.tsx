@@ -14,7 +14,7 @@ import volconMusic1  from "@/assets/events/volcon-2024-music1.png";
 import volconMusic2  from "@/assets/events/volcon-2024-music2.png";
 import volconTribalChefs from "@/assets/events/volcon-2024-tribal-chefs.png";
 import iavePanel     from "@/assets/events/iave-2022-panel.png";
-import iave24Img1    from "@/assets/events/iave24-1.jpg";
+import iave24Img1    from "@/assets/events/iave24-hero.png";
 import iave24Img2    from "@/assets/events/iave24-2.jpg";
 import iave24Img3    from "@/assets/events/iave24-3.jpg";
 import iave24Img4    from "@/assets/events/iave24-4.png";
@@ -441,17 +441,13 @@ function Iave2024({ onBack }: { onBack: () => void }) {
         eyebrow="Tata Engage · Global Forum"
         title="27th IAVE World Volunteer Conference"
         subtitle="People Power: Creating a Sustainable Future through Volunteering — Busan, Republic of Korea · 22–24 October 2024"
-        heroImage={iave24Img2} />
+        heroImage={iave24Img1} />
       <ArticleBody accent={accent}>
         <Breadcrumb onBack={onBack} />
 
         <OpeningParas accent={accent} texts={[
           "Tata Sustainability Group was invited to participate in the 27th IAVE World Volunteer Conference, themed 'People Power: Creating a Sustainable Future through Volunteering.' The conference was inaugurated by the Hon'ble President of South Korea, Yoon Suk Yeol, who underscored the urgent need for global solidarity.",
           "The event brought together over 1,500 volunteer leaders from 90 countries, reaffirming the power of volunteering to co-create solutions for pressing global challenges.",
-        ]} />
-
-        <Slideshow slides={[
-          { src: iave24Img1, caption: "27th IAVE World Volunteer Conference, Busan Exhibition and Convention Center, Republic of Korea — October 2024." },
         ]} />
 
         <MediaBlock accent={accent} title="Plenary Session — Shrirang Dhavale"
