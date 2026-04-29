@@ -395,6 +395,7 @@ export default function App() {
             <Route path="/about/gcso" element={<GCSOView />} />
             <Route path="/about/team" element={<TeamView />} />
             <Route path="/about/events" element={<EventsIndexView />} />
+            <Route path="/about/events/detail" element={<EventsView />} />
             <Route path="/about/contact" element={<ContactView />} />
             <Route path="/partner" element={<PartnerWithUsView />} />
             <Route path="/media" element={<MediaView />} />

@@ -6,7 +6,7 @@ import volconHero from "@/assets/events/volcon-2024-panel.png";
 
 const ACCENT_NAVY = "#0D1B3E";
 const B_INDIGO    = "#333399";
-const FONT        = "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif";
+const FONT        = "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif";
 const ACCENT      = "#5B21B6";   // Events page accent — deep purple
 
 const DIAG: React.CSSProperties = {
@@ -62,27 +62,15 @@ export default function EventsIndexView() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto",
           padding: "0 56px", width: "100%" }}>
 
-          {/* Breadcrumb */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20 }}>
-            <button onClick={() => navigate("media")}
-              style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)",
-                color: "rgba(255,255,255,0.7)", borderRadius: 6, padding: "4px 12px",
-                fontSize: 11, fontWeight: 600, cursor: "pointer", fontFamily: FONT }}>
-              ← Media &amp; Resources
-            </button>
-          </div>
-
-          <p style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "2px",
-            textTransform: "uppercase", color: "rgba(255,255,255,0.55)", margin: "0 0 10px" }}>
-            Tata Engage · Events
-          </p>
-          <div style={{ height: 2, width: 52, borderRadius: 2, background: ACCENT, marginBottom: 20 }} />
-
-          <h1 style={{ fontFamily: FONT, fontSize: "clamp(1.9rem,3.8vw,3rem)", fontWeight: 400,
-            color: "#fff", lineHeight: 1.12, letterSpacing: "-0.4px",
-            margin: "0 0 14px", maxWidth: 720 }}>
-            Conclaves, forums and gatherings<br />that shape the volunteering agenda
+          <h1 style={{ fontFamily: FONT, fontSize: "clamp(2.4rem,5vw,3.8rem)", fontWeight: 400,
+            color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px",
+            margin: "0 0 14px" }}>
+            Events
           </h1>
+          <p style={{ fontFamily: FONT, fontSize: 18, fontWeight: 300,
+            color: "rgba(255,255,255,0.8)", lineHeight: 1.6, maxWidth: 560, margin: "0 0 32px" }}>
+            Conclaves, forums and gatherings that shape the volunteering agenda.
+          </p>
           <p style={{ fontFamily: FONT, fontSize: 15, fontWeight: 300,
             color: "rgba(255,255,255,0.72)", lineHeight: 1.7, maxWidth: 480, margin: 0 }}>
             From TSG's flagship Sustainability Conclave to the global IAVE forum — moments where leaders, champions and the community come together.
@@ -131,7 +119,7 @@ export default function EventsIndexView() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
           {sorted.map((e) => (
             <div key={e.slug}
-              onClick={() => navigate("event", e.slug)}
+              onClick={() => navigate("event-detail", e.slug)}
               style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14,
                 overflow: "hidden", cursor: "pointer",
                 transition: "transform 0.18s, box-shadow 0.18s" }}
