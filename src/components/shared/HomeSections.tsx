@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
-import { Twitter, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import {
@@ -1191,7 +1191,7 @@ export function NumbersSection() {
               {blockEyebrow("Social Feed")}
               <div style={{ display: "flex", gap: 6 }}>
                 {[
-                  { Icon: Twitter, c: "#0EA5E9" },
+                  { Icon: Facebook, c: "#1877F2" },
                   { Icon: Instagram, c: "#EC4899" },
                   { Icon: Linkedin, c: "#1D4ED8" },
                 ].map(({ Icon, c }) => (
