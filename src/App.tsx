@@ -12,7 +12,6 @@ import { PRIYA_SHARMA, ANJALI_MEHTA } from "@/data/mockData";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-
 import OrientationModal from "@/components/shared/OrientationModal";
 import Chatbot from "@/components/shared/Chatbot";
 import SocialCluster from "@/components/shared/SocialCluster";
@@ -50,6 +49,7 @@ import AboutProEngageView from "@/views/AboutProEngageView";
 import GCSOView from "@/views/GCSOView";
 import TeamView from "@/views/TeamView";
 import EventsView from "@/views/EventsView";
+import EventsIndexView from "@/views/EventsIndexView";
 import ContactView from "@/views/ContactView";
 import PartnerWithUsView from "@/views/PartnerWithUsView";
 import MediaView from "@/views/MediaView";
@@ -74,7 +74,7 @@ export default function App() {
   usePageTitle();
 
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
-  
+
   const [isConsentOpen, setIsConsentOpen] = useState(false);
   const [isOrientationDismissed, setIsOrientationDismissed] = useState(false);
   const [showOrientationModal, setShowOrientationModal] = useState(false);
@@ -86,7 +86,7 @@ export default function App() {
   const [likedProjects, setLikedProjects] = useState<number[]>([]);
   const [formStep, setFormStep] = useState(1);
   const [formData, setFormData] = useState<any>({});
-  
+
   const [projectStatus, setProjectStatus] = useState<"matched" | "active" | "completed">("matched");
   const [showPulseCheck, setShowPulseCheck] = useState(true);
   const [pulseCheckSubmitted, setPulseCheckSubmitted] = useState(false);
@@ -100,7 +100,10 @@ export default function App() {
   const [drDeploymentLog, setDrDeploymentLog] = useState<any[]>([]);
   const [isDRClosed, setIsDRClosed] = useState(false);
   const [chatMessages, setChatMessages] = useState<any[]>([
-    { role: "bot", text: "Hi! I'm your Tata Engage assistant. Ask me anything about programmes, applications, or deadlines." }
+    {
+      role: "bot",
+      text: "Hi! I'm your Tata Engage assistant. Ask me anything about programmes, applications, or deadlines.",
+    },
   ]);
   const [clonedProject, setClonedProject] = useState<any>(null);
   const [activeProject, setActiveProject] = useState<any>(null);
@@ -110,7 +113,13 @@ export default function App() {
   const [ngoData, setNgoData] = useState(ANJALI_MEHTA);
   const [adminActiveTab, setAdminActiveTab] = useState("Dashboard");
   const [auditLogs, setAuditLogs] = useState<any[]>([
-    { id: 1, timestamp: new Date().toISOString(), action: "User Login", user: "Vikram Nair", details: "Admin session started" }
+    {
+      id: 1,
+      timestamp: new Date().toISOString(),
+      action: "User Login",
+      user: "Vikram Nair",
+      details: "Admin session started",
+    },
   ]);
 
   const addAuditLog = (action: string, details: string) => {
@@ -119,7 +128,7 @@ export default function App() {
       timestamp: new Date().toISOString(),
       action,
       user: "Vikram Nair",
-      details
+      details,
     };
     setAuditLogs([newLog, ...auditLogs]);
   };
@@ -153,8 +162,13 @@ export default function App() {
       navigate("otp");
     }
   };
-  
-  const handleOtpVerify = () => { setIsLoggedIn(true); setUser(PRIYA_SHARMA); navigate("dashboard"); triggerToast("Registration Successful! Welcome to Tata Engage."); };
+
+  const handleOtpVerify = () => {
+    setIsLoggedIn(true);
+    setUser(PRIYA_SHARMA);
+    navigate("dashboard");
+    triggerToast("Registration Successful! Welcome to Tata Engage.");
+  };
 
   const onLogout = () => {
     authLogout();
@@ -163,95 +177,243 @@ export default function App() {
   };
 
   const ctx = {
-    selectedRole, setSelectedRole,
-    isConsentOpen, setIsConsentOpen,
-    isOrientationDismissed, setIsOrientationDismissed,
-    showOrientationModal, setShowOrientationModal,
-    otp, setOtp, showToast, setShowToast, toastMessage, setToastMessage,
-    registeredEvents, setRegisteredEvents, appliedProjects, setAppliedProjects,
-    likedProjects, setLikedProjects, formStep, setFormStep,
-    formData, setFormData,
-    projectStatus, setProjectStatus, showPulseCheck, setShowPulseCheck,
-    pulseCheckSubmitted, setPulseCheckSubmitted,
-    showFeedbackForm, setShowFeedbackForm, feedbackSubmitted, setFeedbackSubmitted,
-    referralCount, setReferralCount, isChatOpen, setIsChatOpen,
-    isDRActive, setIsDRActive, drResponses, setDrResponses,
-    hasSubmittedAvailability, setHasSubmittedAvailability,
-    drDeploymentLog, setDrDeploymentLog, isDRClosed, setIsDRClosed,
-    chatMessages, setChatMessages, clonedProject, setClonedProject,
-    activeProject, setActiveProject, supportHistory, setSupportHistory,
-    showSupportModal, setShowSupportModal, supportSubject, setSupportSubject,
-    ngoData, setNgoData, adminActiveTab, setAdminActiveTab,
-    auditLogs, setAuditLogs,
-    addAuditLog, triggerToast,
-    handleRoleSelect, handleFormSubmit, handleConsentAccept, handleOtpVerify,
+    selectedRole,
+    setSelectedRole,
+    isConsentOpen,
+    setIsConsentOpen,
+    isOrientationDismissed,
+    setIsOrientationDismissed,
+    showOrientationModal,
+    setShowOrientationModal,
+    otp,
+    setOtp,
+    showToast,
+    setShowToast,
+    toastMessage,
+    setToastMessage,
+    registeredEvents,
+    setRegisteredEvents,
+    appliedProjects,
+    setAppliedProjects,
+    likedProjects,
+    setLikedProjects,
+    formStep,
+    setFormStep,
+    formData,
+    setFormData,
+    projectStatus,
+    setProjectStatus,
+    showPulseCheck,
+    setShowPulseCheck,
+    pulseCheckSubmitted,
+    setPulseCheckSubmitted,
+    showFeedbackForm,
+    setShowFeedbackForm,
+    feedbackSubmitted,
+    setFeedbackSubmitted,
+    referralCount,
+    setReferralCount,
+    isChatOpen,
+    setIsChatOpen,
+    isDRActive,
+    setIsDRActive,
+    drResponses,
+    setDrResponses,
+    hasSubmittedAvailability,
+    setHasSubmittedAvailability,
+    drDeploymentLog,
+    setDrDeploymentLog,
+    isDRClosed,
+    setIsDRClosed,
+    chatMessages,
+    setChatMessages,
+    clonedProject,
+    setClonedProject,
+    activeProject,
+    setActiveProject,
+    supportHistory,
+    setSupportHistory,
+    showSupportModal,
+    setShowSupportModal,
+    supportSubject,
+    setSupportSubject,
+    ngoData,
+    setNgoData,
+    adminActiveTab,
+    setAdminActiveTab,
+    auditLogs,
+    setAuditLogs,
+    addAuditLog,
+    triggerToast,
+    handleRoleSelect,
+    handleFormSubmit,
+    handleConsentAccept,
+    handleOtpVerify,
   };
 
   return (
     <AppContext.Provider value={ctx}>
       <div className="relative min-h-screen">
         {user?.role !== "platform_admin" && (
-          <Navbar
-            onNavigate={navigate}
-            isLoggedIn={isLoggedIn}
-            onLogout={onLogout}
-            user={user}
-          />
+          <Navbar onNavigate={navigate} isLoggedIn={isLoggedIn} onLogout={onLogout} user={user} />
         )}
 
         <main>
-              <Routes location={location}>
-                <Route path="/" element={<HomeView />} />
-                <Route path="/login" element={<LoginView />} />
-                <Route path="/register" element={<RegisterRoleView />} />
-                <Route path="/register/form" element={<RegisterFormView />} />
-                <Route path="/admin-login" element={<LoginView />} />
-                <Route path="/otp/verify" element={<OtpView />} />
-                <Route path="/forgot-password" element={<ForgotPasswordView />} />
-                <Route path="/dashboard" element={<ProtectedRoute><DashboardView /></ProtectedRoute>} />
-                <Route path="/ngo/dashboard" element={<ProtectedRoute><NGODashboardView /></ProtectedRoute>} />
-                <Route path="/projects/create" element={<ProtectedRoute><CreateProjectView /></ProtectedRoute>} />
-                <Route path="/projects/active" element={<ProtectedRoute><ActiveProjectManagementView project={activeProject} /></ProtectedRoute>} />
-                <Route path="/projects/feedback" element={<ProtectedRoute><ProjectFeedbackView project={activeProject} /></ProtectedRoute>} />
-                <Route path="/profile" element={<ProtectedRoute><ProfileView /></ProtectedRoute>} />
-                <Route path="/tvw" element={<ProtectedRoute><TVWHubView /></ProtectedRoute>} />
-                <Route path="/proengage" element={<ProtectedRoute><ProEngageView /></ProtectedRoute>} />
-                <Route path="/disaster-response" element={<DisasterResponseView />} />
-                <Route path="/disaster-response/availability" element={<ProtectedRoute><DRAvailabilityForm /></ProtectedRoute>} />
-                <Route path="/disaster-response/confirmation" element={<ProtectedRoute><DRConfirmationView /></ProtectedRoute>} />
-                <Route path="/spoc/dashboard" element={<ProtectedRoute><SPOCDashboardView /></ProtectedRoute>} />
-                <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboardView /></ProtectedRoute>} />
-                <Route path="/hub" element={<ProtectedRoute><VolunteerHubView /></ProtectedRoute>} />
-                <Route path="/ngo/hub" element={<ProtectedRoute><NGOHubView /></ProtectedRoute>} />
-                <Route path="/spoc/hub" element={<ProtectedRoute><SPOCHubView /></ProtectedRoute>} />
-                <Route path="/journey" element={<JourneyView />} />
-                <Route path="/about" element={<AboutView />} />
-                <Route path="/about/tvw" element={<AboutTVWView />} />
-                <Route path="/about/proengage" element={<AboutProEngageView />} />
-                <Route path="/about/gcso" element={<GCSOView />} />
-                <Route path="/about/team" element={<TeamView />} />
-                <Route path="/about/events" element={<EventsView />} />
-                <Route path="/about/contact" element={<ContactView />} />
-                <Route path="/partner" element={<PartnerWithUsView />} />
-                <Route path="/media" element={<MediaView />} />
-                <Route path="/eoi" element={<EOIView />} />
-                <Route path="/eoeo" element={<EOEOView />} />
-                <Route path="/ewaste" element={<EWasteView />} />
-                <Route path="/yes-to-access" element={<YesToAccessView />} />
-                <Route path="/tata-sustainability-month" element={<TataSmView />} />
-                <Route path="/cvp" element={<CVPView />} />
-                <Route path="/stories" element={<ImpactStoryView />} />
-                <Route path="/privacy" element={<PrivacyView />} />
-                <Route path="/legal" element={<LegalView />} />
-                <Route path="/volunteering-guidelines" element={<VolunteeringGuidelinesView />} />
-                <Route path="/code-of-conduct" element={<CodeOfConductView />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+          <Routes location={location}>
+            <Route path="/" element={<HomeView />} />
+            <Route path="/login" element={<LoginView />} />
+            <Route path="/register" element={<RegisterRoleView />} />
+            <Route path="/register/form" element={<RegisterFormView />} />
+            <Route path="/admin-login" element={<LoginView />} />
+            <Route path="/otp/verify" element={<OtpView />} />
+            <Route path="/forgot-password" element={<ForgotPasswordView />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <DashboardView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/ngo/dashboard"
+              element={
+                <ProtectedRoute>
+                  <NGODashboardView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/projects/create"
+              element={
+                <ProtectedRoute>
+                  <CreateProjectView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/projects/active"
+              element={
+                <ProtectedRoute>
+                  <ActiveProjectManagementView project={activeProject} />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/projects/feedback"
+              element={
+                <ProtectedRoute>
+                  <ProjectFeedbackView project={activeProject} />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <ProfileView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tvw"
+              element={
+                <ProtectedRoute>
+                  <TVWHubView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/proengage"
+              element={
+                <ProtectedRoute>
+                  <ProEngageView />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/disaster-response" element={<DisasterResponseView />} />
+            <Route
+              path="/disaster-response/availability"
+              element={
+                <ProtectedRoute>
+                  <DRAvailabilityForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/disaster-response/confirmation"
+              element={
+                <ProtectedRoute>
+                  <DRConfirmationView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/spoc/dashboard"
+              element={
+                <ProtectedRoute>
+                  <SPOCDashboardView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/dashboard"
+              element={
+                <ProtectedRoute>
+                  <AdminDashboardView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/hub"
+              element={
+                <ProtectedRoute>
+                  <VolunteerHubView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/ngo/hub"
+              element={
+                <ProtectedRoute>
+                  <NGOHubView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/spoc/hub"
+              element={
+                <ProtectedRoute>
+                  <SPOCHubView />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/journey" element={<JourneyView />} />
+            <Route path="/about" element={<AboutView />} />
+            <Route path="/about/tvw" element={<AboutTVWView />} />
+            <Route path="/about/proengage" element={<AboutProEngageView />} />
+            <Route path="/about/gcso" element={<GCSOView />} />
+            <Route path="/about/team" element={<TeamView />} />
+            <Route path="/about/events" element={<EventsIndexView />} />
+            <Route path="/about/contact" element={<ContactView />} />
+            <Route path="/partner" element={<PartnerWithUsView />} />
+            <Route path="/media" element={<MediaView />} />
+            <Route path="/eoi" element={<EOIView />} />
+            <Route path="/eoeo" element={<EOEOView />} />
+            <Route path="/ewaste" element={<EWasteView />} />
+            <Route path="/yes-to-access" element={<YesToAccessView />} />
+            <Route path="/tata-sustainability-month" element={<TataSmView />} />
+            <Route path="/cvp" element={<CVPView />} />
+            <Route path="/stories" element={<ImpactStoryView />} />
+            <Route path="/privacy" element={<PrivacyView />} />
+            <Route path="/legal" element={<LegalView />} />
+            <Route path="/volunteering-guidelines" element={<VolunteeringGuidelinesView />} />
+            <Route path="/code-of-conduct" element={<CodeOfConductView />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </main>
 
-        {user?.role !== "platform_admin" && (
-          <SocialCluster isLoggedIn={isLoggedIn} inHero={false} />
-        )}
+        {user?.role !== "platform_admin" && <SocialCluster isLoggedIn={isLoggedIn} inHero={false} />}
         {(() => {
           const path = location.pathname;
           const hideFooter =
