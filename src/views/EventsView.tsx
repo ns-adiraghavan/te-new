@@ -24,7 +24,7 @@ import eventsHeroImg from "@/assets/tce-2.jpg";
 
 const ACCENT_NAVY = "#0D1B3E";
 const B_INDIGO    = "#333399";
-const FONT        = "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif";
+const FONT        = "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif";
 
 const EVENT_ACCENT = "#5B21B6";  // Single purple accent for all events
 const TSC_ACCENT  = EVENT_ACCENT;
@@ -98,7 +98,7 @@ function EventHero({ accent, eyebrow, title, subtitle, heroImage }: {
   accent: string; eyebrow: string; title: string; subtitle: string; heroImage?: string;
 }) {
   return (
-    <div style={{ position: "relative", minHeight: "72vh", display: "flex",
+    <div style={{ position: "relative", minHeight: "92vh", display: "flex",
       flexDirection: "column", justifyContent: "flex-end", overflow: "hidden", paddingTop: 64 }}>
       <img src={heroImage ?? eventsHeroImg} alt=""
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
@@ -108,12 +108,12 @@ function EventHero({ accent, eyebrow, title, subtitle, heroImage }: {
       <div style={DIAG} />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto",
         padding: "0 56px 56px", width: "100%" }}>
-        <p style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "2px",
-          textTransform: "uppercase", color: "rgba(255,255,255,0.55)", margin: "0 0 10px" }}>
+        <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, letterSpacing: "1.8px",
+          textTransform: "uppercase", color: "#ffffff", margin: "0 0 10px" }}>
           {eyebrow}
         </p>
         <div style={{ height: 2, width: 52, borderRadius: 2, background: accent, marginBottom: 20 }} />
-        <h1 style={{ fontFamily: FONT, fontSize: "clamp(1.9rem,3.8vw,3rem)", fontWeight: 400,
+        <h1 style={{ fontFamily: FONT, fontSize: "clamp(2.4rem,5vw,3.8rem)", fontWeight: 400,
           color: "#fff", lineHeight: 1.12, letterSpacing: "-0.4px", margin: "0 0 14px",
           maxWidth: 720 }}>{title}</h1>
         <p style={{ fontFamily: FONT, fontSize: 15, fontWeight: 300,

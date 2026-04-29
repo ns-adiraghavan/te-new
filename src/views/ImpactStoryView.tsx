@@ -6,7 +6,7 @@ import { IMPACT_STORIES } from "@/data/impactStoriesData";
 
 const ACCENT_NAVY = "#0D1B3E";
 const B_INDIGO    = "#333399";
-const FONT        = "'Noto Sans','DM Sans',ui-sans-serif,system-ui,sans-serif";
+const FONT        = "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif";
 
 const DIAG: React.CSSProperties = {
   position: "absolute", inset: 0,
@@ -168,7 +168,7 @@ export default function ImpactStoryView() {
       <SubPageDotRail sections={SECTIONS_NAV} accentColour={accent} />
 
       {/* ── Hero ── */}
-      <div id="story-hero" style={{ position: "relative", minHeight: "72vh",
+      <div id="story-hero" style={{ position: "relative", minHeight: "92vh",
         display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 64 }}>
         <img src={story.heroImage} alt={story.heroImageAlt}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
@@ -192,13 +192,13 @@ export default function ImpactStoryView() {
             <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 11, fontWeight: 600 }}>Impact Stories</span>
           </div>
 
-          <p style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "2px",
-            textTransform: "uppercase", color: "rgba(255,255,255,0.55)", margin: "0 0 10px" }}>
+          <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, letterSpacing: "1.8px",
+            textTransform: "uppercase", color: "#ffffff", margin: "0 0 10px" }}>
             {story.eyebrow} · {story.date} · {readMins} min read
           </p>
           <div style={{ height: 2, width: 52, borderRadius: 2, background: accent, marginBottom: 20 }} />
 
-          <h1 style={{ fontFamily: FONT, fontSize: "clamp(1.9rem,3.8vw,3rem)", fontWeight: 400,
+          <h1 style={{ fontFamily: FONT, fontSize: "clamp(2.4rem,5vw,3.8rem)", fontWeight: 400,
             color: "#fff", lineHeight: 1.12, letterSpacing: "-0.4px", margin: "0 0 12px", maxWidth: 720 }}>
             {story.title}
           </h1>

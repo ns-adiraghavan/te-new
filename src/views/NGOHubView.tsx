@@ -17,7 +17,7 @@ const DOT_SECTIONS = [
   { id: "journey", label: "Journey" },
   { id: "numbers", label: "Numbers" },
 ];
-const ACCENT = B_NGO;
+const ACCENT = B_TICKER;
 
 const greeting = () => {
   const h = new Date().getHours();

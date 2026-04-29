@@ -150,7 +150,7 @@ export const IMPACT_STORIES: ImpactStory[] = [
     eyebrow: "Long-form Volunteering",
     tag: "Community",
     accentColor: B_ORANGE,
-    heroImage: melghatHero,
+    heroImage: melghatHero2,
     heroImageAlt: "Tata Motors volunteers in Melghat",
     photos: [
       { src: melghatP1 },
@@ -272,7 +272,7 @@ export const IMPACT_STORIES: ImpactStory[] = [
     eyebrow: "Leadership Volunteering",
     tag: "Climate Resilience",
     accentColor: B_ORANGE,
-    heroImage: btbPhoto3,
+    heroImage: tataComms,
     heroImageAlt: "Tata Communications leaders in the Garo Hills, Meghalaya",
     photos: [
       { src: btbPhoto3 }, // Lighting Homes — solar installation
