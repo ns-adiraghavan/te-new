@@ -153,7 +153,7 @@ function SocialSection() {
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function ContactView() {
   return (
-    <div style={{ background: "transparent", minHeight: "100vh", fontFamily: FONT, paddingTop: 64 }}>
+    <div style={{ background: "transparent", minHeight: "100vh", fontFamily: FONT }}>
       <SubPageDotRail sections={SECTIONS} accentColour={ACCENT} />
       <Hero />
       <TouchSection />

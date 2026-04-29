@@ -312,7 +312,7 @@ function ProgrammesSection() {
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function AboutView() {
   return (
-    <div style={{ background: "transparent", minHeight: "100vh", fontFamily: FONT, paddingTop: 64 }}>
+    <div style={{ background: "transparent", minHeight: "100vh", fontFamily: FONT }}>
       <SubPageDotRail sections={SECTIONS} accentColour={ACCENT} />
       <Hero />
       <LegacySection />

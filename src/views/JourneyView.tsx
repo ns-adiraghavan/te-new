@@ -227,7 +227,7 @@ export default function JourneyView() {
   const navigate = useAppNavigate();
 
   return (
-    <div style={{ paddingTop: 64, background: "#f4f5f8", minHeight: "100vh", fontFamily: FONT }}>
+    <div style={{ background: "#f4f5f8", minHeight: "100vh", fontFamily: FONT }}>
 
       {/* ── Hero ── */}
       <div style={{ position: "relative", minHeight: "92vh", overflow: "hidden", background: ACCENT_NAVY }}>

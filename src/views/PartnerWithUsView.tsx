@@ -608,7 +608,6 @@ export default function PartnerWithUsView() {
         background: "transparent",
         minHeight: "100vh",
         fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif",
-        paddingTop: 64,
       }}
     >
       <div style={{ height: 4, background: COLOUR, position: "sticky", top: 0, zIndex: 40 }} />

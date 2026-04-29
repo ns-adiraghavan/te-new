@@ -1,311 +1,378 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Users, Search, Calendar, MapPin, Filter, CalendarDays, List, Check, Download, FileText, Camera, BookOpen, ArrowRight } from "lucide-react";
+import { Users, Search, Calendar, MapPin, CalendarDays, List, Check, Download, FileText, Camera, BookOpen, X } from "lucide-react";
 
 import { TVW_EVENTS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
-import { B_YELLOW, B_RED, B_TEAL, ACCENT_NAVY } from "@/data/homeSharedData";
+import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import { TickerBar } from "@/components/shared/HomeSections";
+import tvwHeroImg from "@/assets/banner_photos/TVW Inner Banner.JPG";
+import tvwVibeImg from "@/assets/banner_photos/TVW Inner Page below Banner.jpg";
 
-const COBALT = "#0047AB";
+// ── Tokens (aligned with ProEngageView) ───────────────────────────────────────
+const B_YELLOW    = "#F5A623";
+const B_TEAL      = "#00A896";
+const ACCENT_NAVY = "#0D1B3E";
+const TVW_BLUE    = "#135EA9";
 
-
-
-const VIBE_STORIES = [
-  { location: "Mumbai", caption: "Teaching digital literacy to senior citizens at a local community centre.", status: "Published" },
-  { location: "Pune", caption: "Tree plantation drive across 3 campuses — 500 saplings in one morning.", status: "Published" },
-  { location: "Chennai", caption: "Blood donation camp organised with Rotary Club partnership.", status: "Under Review" },
-];
-
-const RESOURCES = [
-  { title: "Campaign Kit", desc: "Posters, banners and social media templates for TVW 2025.", icon: FileText, photo: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&q=80" },
-  { title: "Volunteer Handbook", desc: "Guidelines, FAQs and best practices for first-time volunteers.", icon: BookOpen, photo: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&q=80" },
-  { title: "Photo Submission Guide", desc: "How to capture, tag and submit your volunteering photos.", icon: Camera, photo: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80" },
-];
+const FONT = "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif";
 
 const DIAG_TEXTURE: React.CSSProperties = {
-  position: "absolute",
-  inset: 0,
-  backgroundImage: "repeating-linear-gradient(45deg, rgba(245,166,35,0.06) 0px, rgba(245,166,35,0.06) 1px, transparent 1px, transparent 22px)",
-  backgroundSize: "22px 22px",
+  position: "absolute", inset: 0,
+  backgroundImage: "repeating-linear-gradient(45deg,rgba(255,255,255,0.035) 1px,transparent 1px)",
+  backgroundSize: "28px 28px",
   pointerEvents: "none",
 };
 
+const SECTIONS_NAV = [
+  { id: "tvw-hero",       label: "Overview"  },
+  { id: "tvw-events",     label: "Events"    },
+  { id: "tvw-vibe",       label: "TVW Vibe"  },
+  { id: "tvw-collateral", label: "Resources" },
+];
+
+const VIBE_STORIES = [
+  { location: "Mumbai",  caption: "Teaching digital literacy to senior citizens at a local community centre.", status: "Published"    },
+  { location: "Pune",    caption: "Tree plantation drive across 3 campuses — 500 saplings in one morning.",   status: "Published"    },
+  { location: "Chennai", caption: "Blood donation camp organised with Rotary Club partnership.",               status: "Under Review" },
+];
+
+const RESOURCES = [
+  { title: "Campaign Kit",           desc: "Posters, banners and social media templates for TVW 2025.", icon: FileText, photo: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&q=80" },
+  { title: "Volunteer Handbook",     desc: "Guidelines, FAQs and best practices for first-time volunteers.", icon: BookOpen, photo: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&q=80" },
+  { title: "Photo Submission Guide", desc: "How to capture, tag and submit your volunteering photos.",    icon: Camera,   photo: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80" },
+];
+
+// ── Drawer Shell (matches DashboardView / SPOCDashboardView) ──────────────────
+function DrawerShell({ onClose, title, subtitle, accentTag, children }: {
+  onClose: () => void; title: string; subtitle?: string; accentTag?: string; children: React.ReactNode;
+}) {
+  return (
+    <div
+      style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(13,27,62,0.45)", backdropFilter: "blur(2px)" }}
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div style={{ background: "#fff", borderRadius: 16, width: "min(540px,92vw)", overflow: "hidden", animation: "drawerScale 0.18s ease-out forwards", boxShadow: "0 24px 64px rgba(0,0,0,0.22)" }}>
+        <style>{`@keyframes drawerScale{from{transform:scale(0.97);opacity:0}to{transform:scale(1);opacity:1}}`}</style>
+        <div style={{ background: ACCENT_NAVY, padding: "22px 28px" }}>
+          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
+            <div>
+              {accentTag && (
+                <div style={{ display: "inline-block", background: `${B_YELLOW}22`, border: `1px solid ${B_YELLOW}44`, borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: B_YELLOW, letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 10, fontFamily: FONT }}>
+                  {accentTag}
+                </div>
+              )}
+              <div style={{ fontFamily: FONT, fontSize: 17, fontWeight: 700, color: "#fff", lineHeight: 1.25 }}>{title}</div>
+              {subtitle && <div style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.55)", marginTop: 4 }}>{subtitle}</div>}
+            </div>
+            <button onClick={onClose} style={{ background: "rgba(255,255,255,0.1)", border: "none", borderRadius: 8, padding: "6px 10px", cursor: "pointer", color: "rgba(255,255,255,0.7)", display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontFamily: FONT, flexShrink: 0 }}>
+              <X size={14} /> Close
+            </button>
+          </div>
+        </div>
+        <div style={{ padding: "24px 28px" }}>{children}</div>
+      </div>
+    </div>
+  );
+}
+
+// ── Event Card ────────────────────────────────────────────────────────────────
+function EventCard({ event, isRegistered, onContact }: { event: typeof TVW_EVENTS[0]; isRegistered: boolean; onContact: () => void }) {
+  const [hov, setHov] = useState(false);
+  const isFull = event.capacity === "Full";
+  return (
+    <div
+      style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, overflow: "hidden", display: "flex", flexDirection: "column", transform: hov ? "translateY(-3px)" : "translateY(0)", boxShadow: hov ? "0 8px 28px rgba(13,27,62,0.10)" : "none", transition: "transform 0.18s, box-shadow 0.18s" }}
+      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+    >
+      <div style={{ height: 3, background: TVW_BLUE }} />
+      <div style={{ padding: "20px 22px", flex: 1, display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
+          <span style={{ background: event.mode === "Virtual" ? "#e0f2fe" : "#ede9fe", color: event.mode === "Virtual" ? "#0369a1" : "#6d28d9", fontSize: 11, fontWeight: 700, padding: "2px 9px", borderRadius: 100, fontFamily: FONT }}>
+            {event.mode}
+          </span>
+          {isRegistered && (
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 4, background: B_TEAL, color: "#fff", fontSize: 11, fontWeight: 700, padding: "2px 9px", borderRadius: 100, fontFamily: FONT }}>
+              <Check size={11} /> Registered
+            </span>
+          )}
+          {isFull && !isRegistered && (
+            <span style={{ background: "#fef2f2", color: "#E8401C", fontSize: 11, fontWeight: 700, padding: "2px 9px", borderRadius: 100, fontFamily: FONT }}>Full</span>
+          )}
+        </div>
+        <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 700, color: "#94a3b8", letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 6 }}>{event.company}</div>
+        <h3 style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, color: ACCENT_NAVY, margin: "0 0 8px", lineHeight: 1.3, flex: 1 }}>{event.title}</h3>
+        <p style={{ fontFamily: FONT, fontSize: 13, color: "#64748b", lineHeight: 1.55, margin: "0 0 16px" }}>{event.description}</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 18 }}>
+          {[
+            { icon: <Calendar size={13} style={{ color: "#94a3b8" }} />, text: event.date },
+            { icon: <MapPin    size={13} style={{ color: "#94a3b8" }} />, text: event.location },
+          ].map(({ icon, text }, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "#475569", fontFamily: FONT }}>{icon}{text}</div>
+          ))}
+        </div>
+        <button
+          onClick={e => { e.stopPropagation(); onContact(); }}
+          style={{ background: TVW_BLUE, color: "#fff", border: "none", borderRadius: 10, padding: "12px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: FONT }}
+        >
+          Contact SPOC to Register
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ── Calendar View ─────────────────────────────────────────────────────────────
+function CalendarView({ events, onContact }: { events: typeof TVW_EVENTS; onContact: (ev: typeof TVW_EVENTS[0]) => void }) {
+  return (
+    <div style={{ background: "#fff", borderRadius: 14, border: "1px solid #e8e8f0", overflow: "hidden" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", borderBottom: "1px solid #e8e8f0" }}>
+        {["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d => (
+          <div key={d} style={{ padding: "12px 8px", textAlign: "center", fontSize: 11, fontWeight: 700, color: "#94a3b8", letterSpacing: "1px", textTransform: "uppercase", fontFamily: FONT }}>{d}</div>
+        ))}
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)" }}>
+        {Array.from({ length: 30 }).map((_, i) => {
+          const day = i + 1;
+          const hasEvent = events.find(e => e.date.includes(`June ${day}`));
+          return (
+            <div key={i} style={{ minHeight: 100, padding: "10px 8px", borderRight: (i+1)%7 !== 0 ? "1px solid #f0f0f5" : "none", borderBottom: "1px solid #f0f0f5" }}>
+              <span style={{ fontSize: 12, fontWeight: 700, color: "#cbd5e1", display: "block", marginBottom: 4, fontFamily: FONT }}>{day}</span>
+              {hasEvent && (
+                <div onClick={() => onContact(hasEvent)} style={{ background: "#EEF4FF", border: "1px solid #bfdbfe", borderRadius: 6, padding: "4px 6px", cursor: "pointer" }}>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: TVW_BLUE, lineHeight: 1.3, fontFamily: FONT }}>{hasEvent.title}</div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ── Resource Card ─────────────────────────────────────────────────────────────
+function ResourceCard({ resource, onDownload }: { resource: typeof RESOURCES[0]; onDownload: () => void }) {
+  const [hov, setHov] = useState(false);
+  const IconComp = resource.icon;
+  return (
+    <div
+      onClick={onDownload}
+      style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, overflow: "hidden", cursor: "pointer", transform: hov ? "translateY(-3px)" : "translateY(0)", boxShadow: hov ? "0 8px 28px rgba(13,27,62,0.10)" : "none", transition: "transform 0.18s, box-shadow 0.18s" }}
+      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+    >
+      <div style={{ height: 140, overflow: "hidden" }}>
+        <img src={resource.photo} alt={resource.title} style={{ width: "100%", height: "100%", objectFit: "cover", transform: hov ? "scale(1.05)" : "scale(1)", transition: "transform 0.5s" }} referrerPolicy="no-referrer" />
+      </div>
+      <div style={{ padding: "18px 20px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+          <IconComp size={15} style={{ color: TVW_BLUE }} />
+          <h3 style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, color: ACCENT_NAVY, margin: 0 }}>{resource.title}</h3>
+        </div>
+        <p style={{ fontFamily: FONT, fontSize: 13, color: "#64748b", lineHeight: 1.55, marginBottom: 14 }}>{resource.desc}</p>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 700, color: TVW_BLUE, textTransform: "uppercase", letterSpacing: "0.8px", fontFamily: FONT }}>
+          <Download size={13} /> Download
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Main View ─────────────────────────────────────────────────────────────────
 const TVWHubView = () => {
   const { registeredEvents, triggerToast } = useAppContext();
-  
-  const [viewMode, setViewMode] = useState<"list" | "calendar">("list");
-  const [filters, setFilters] = useState({ location: "All", theme: "All", mode: "All" });
-  const [searchQuery, setSearchQuery] = useState("");
+  const [viewMode,   setViewMode]   = useState<"list"|"calendar">("list");
+  const [filters,    setFilters]    = useState({ location: "All", mode: "All" });
+  const [search,     setSearch]     = useState("");
+  const [spocModal,  setSpocModal]  = useState<typeof TVW_EVENTS[0] | null>(null);
 
-  const filteredEvents = TVW_EVENTS.filter(event => {
-    const matchesSearch = event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         event.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesLocation = filters.location === "All" || event.location.includes(filters.location);
-    const matchesTheme = filters.theme === "All" || event.theme === filters.theme;
-    const matchesMode = filters.mode === "All" || event.mode === filters.mode;
-    return matchesSearch && matchesLocation && matchesTheme && matchesMode;
+  const filteredEvents = TVW_EVENTS.filter(ev => {
+    const q = search.toLowerCase();
+    const matchesSearch   = ev.title.toLowerCase().includes(q) || ev.description.toLowerCase().includes(q);
+    const matchesLocation = filters.location === "All" || ev.location.includes(filters.location);
+    const matchesMode     = filters.mode === "All" || ev.mode === filters.mode;
+    return matchesSearch && matchesLocation && matchesMode;
   });
 
   return (
-    <div style={{ paddingTop: 80, paddingBottom: 48 }} className="min-h-screen bg-white">
-      {/* 2px accent line */}
-      <div style={{ background: B_YELLOW, height: 2, width: "100%" }} />
+    <div style={{ fontFamily: FONT, background: "#f7f8fc", minHeight: "100vh" }}>
+      {/* Top accent line */}
+      <div style={{ height: 3, background: TVW_BLUE, width: "100%" }} />
 
-      {/* ═══ HERO ═══ */}
-      <section id="tvw-hero" className="relative overflow-hidden" style={{ minHeight: 420, backgroundColor: ACCENT_NAVY, padding: 64 }}>
+      <SubPageDotRail sections={SECTIONS_NAV} accentColor={TVW_BLUE} />
+
+      {/* ══ HERO ══ */}
+      <div id="tvw-hero" style={{ position: "relative", minHeight: "92vh", display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 64 }}>
+        <img src={tvwHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(105deg,rgba(8,12,22,0.88) 0%,rgba(8,12,22,0.70) 40%,rgba(8,12,22,0.28) 75%,rgba(8,12,22,0.08) 100%)" }} />
         <div style={DIAG_TEXTURE} />
-
-        <div className="relative z-10 flex flex-col justify-between h-full" style={{ minHeight: 292 }}>
-          {/* Top */}
-          <div>
-            <p style={{ fontSize: 11, letterSpacing: "2px", color: "rgba(255,255,255,0.45)" }} className="uppercase font-semibold mb-4">
-              Tata Volunteering Week · Edition 2025
-            </p>
-            <h1 style={{ fontSize: 48, fontWeight: 900 }} className="text-white tracking-tight mb-3">
-              Make Every Hour Count
-            </h1>
-            <p style={{ color: "rgba(255,255,255,0.65)", fontWeight: 300 }} className="text-lg max-w-xl">
-              One week. Every Tata company. Thousands of acts of service.
-            </p>
-          </div>
-
-          {/* Key dates pills */}
-          <div className="flex flex-wrap gap-3 mt-10">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white" style={{ background: "rgba(255,255,255,0.10)" }}>
-              <CalendarDays size={14} className="text-white/60" />
-              22 Sep — 4 Oct 2025
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white" style={{ background: "rgba(255,255,255,0.10)" }}>
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Active Now
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white" style={{ background: "rgba(255,255,255,0.10)" }}>
-              <Users size={14} className="text-white/60" />
-              47 Events Registered
-            </div>
-          </div>
-
-          {/* Bottom-right CTA */}
-          <div className="flex justify-end mt-8">
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 12, fontFamily: FONT }}>
+            Tata Engage · Tata Volunteering Week · Edition 2025
+          </p>
+          <div style={{ width: 48, height: 2, borderRadius: 2, background: B_YELLOW, marginBottom: 22 }} />
+          <h1 style={{ fontFamily: FONT, fontSize: "clamp(2.2rem,4vw,3.4rem)", fontWeight: 400, letterSpacing: "-0.5px", lineHeight: 1.12, color: "#fff", margin: "0 0 18px" }}>
+            Make Every Hour Count
+          </h1>
+          <p style={{ fontFamily: FONT, fontSize: 15, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 480, margin: "0 0 32px" }}>
+            One week. Every Tata company. Thousands of acts of service — coming together to drive real community impact.
+          </p>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
             <button
-              onClick={() => {
-                const el = document.getElementById("tvw-events");
-                el?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="flex items-center gap-2 text-sm font-bold px-6 py-2.5 rounded-xl hover:brightness-105 transition-all cursor-pointer shadow-lg"
-              style={{ backgroundColor: B_YELLOW, color: "#111" }}
+              onClick={() => document.getElementById("tvw-events")?.scrollIntoView({ behavior: "smooth" })}
+              style={{ background: TVW_BLUE, color: "#fff", border: "none", borderRadius: 10, padding: "12px 28px", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: FONT }}
             >
-              Browse Events <ArrowRight size={15} />
+              Browse Events
             </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ EVENTS ═══ */}
-      <section id="tvw-events" className="px-6 md:px-16 py-16 max-w-7xl mx-auto" style={{ paddingTop: 48 }}>
-        <h2 className="text-3xl font-black tracking-tight mb-8" style={{ color: ACCENT_NAVY }}>Events</h2>
-
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-          <div className="flex items-center gap-1 bg-white p-1 rounded-2xl border border-zinc-100 shadow-sm">
-            <button
-              onClick={() => setViewMode("list")}
-              className="flex items-center gap-2 px-4 py-2 rounded-2xl text-sm font-bold transition-all"
-              style={viewMode === "list" ? { backgroundColor: COBALT, color: "#fff" } : { color: "#64748b" }}
-            >
-              <List size={18} /> List
-            </button>
-            <button
-              onClick={() => setViewMode("calendar")}
-              className="flex items-center gap-2 px-4 py-2 rounded-2xl text-sm font-bold transition-all"
-              style={viewMode === "calendar" ? { backgroundColor: COBALT, color: "#fff" } : { color: "#64748b" }}
-            >
-              <CalendarDays size={18} /> Calendar
-            </button>
-          </div>
-
-          <div className="flex items-center gap-3 w-full md:w-auto">
-            <div className="relative flex-1 md:w-64">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-              <input
-                type="text"
-                placeholder="Search events..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-white border border-zinc-100 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0047AB]/20"
-              />
-            </div>
-            <div className="flex gap-2">
-              <select
-                value={filters.location}
-                onChange={(e) => setFilters({ ...filters, location: e.target.value })}
-                className="px-4 py-3 bg-white border border-zinc-100 rounded-2xl text-sm focus:outline-none"
-              >
-                <option>All Locations</option>
-                <option>Mumbai</option>
-                <option>Pune</option>
-                <option>Chennai</option>
-                <option>Virtual</option>
-              </select>
-              <button className="p-3 bg-white border border-zinc-100 rounded-2xl text-slate-400 hover:text-zinc-900 transition-colors">
-                <Filter size={20} />
-              </button>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 100, padding: "10px 20px" }}>
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#4ade80" }} />
+              <span style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.8)", fontFamily: FONT }}>22 Sep – 4 Oct 2025 · Active</span>
             </div>
           </div>
-        </div>
-
-        {viewMode === "list" ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredEvents.map((event) => {
-              const isRegistered = registeredEvents.includes(event.id);
-              return (
-                <motion.div
-                  key={event.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="bg-white rounded-2xl border border-zinc-100 shadow-sm flex overflow-hidden group"
-                  style={{ transition: "transform 0.2s, box-shadow 0.2s" }}
-                  onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 1px 2px rgba(0,0,0,0.04)"; }}
-                >
-                  <div className="w-[3px] rounded-l-full flex-shrink-0" style={{ backgroundColor: COBALT }} />
-                  <div className="flex-1 p-8">
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="flex items-center gap-2">
-                        <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${event.mode === "Virtual" ? "bg-[#00b4d8]/10 text-[#00b4d8]" : "bg-[#7c3aed]/10 text-[#7c3aed]"}`}>
-                          {event.mode}
-                        </div>
-                        {isRegistered && (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-white" style={{ backgroundColor: B_TEAL }}>
-                            <Check size={12} /> Registered
-                          </span>
-                        )}
-                      </div>
-                      <div className="text-xs font-bold text-slate-400 uppercase">{event.company}</div>
-                    </div>
-                    <h3 className="text-xl font-bold text-zinc-900 mb-2 group-hover:text-[#0047AB] transition-colors">{event.title}</h3>
-                    <p className="text-sm text-slate-500 line-clamp-2 mb-6">{event.description}</p>
-                    <div className="space-y-2 mb-6 text-sm text-slate-600">
-                      <div className="flex items-center gap-3"><Calendar size={16} className="text-slate-400" /> {event.date}</div>
-                      <div className="flex items-center gap-3"><MapPin size={16} className="text-slate-400" /> {event.location}</div>
-                      <div className="flex items-center gap-3">
-                        <Users size={16} className="text-slate-400" />
-                        {event.capacity === "Full" ? (
-                          <span className="font-bold text-white text-xs px-2.5 py-0.5 rounded-full" style={{ backgroundColor: B_RED }}>Full</span>
-                        ) : (
-                          <span className="font-bold text-green-600">Open for Registration</span>
-                        )}
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => triggerToast("Please contact your SPOC to register for this event.")}
-                      className="w-full py-3.5 rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-sm text-white hover:opacity-90 shadow-lg shadow-black/10 cursor-pointer"
-                      style={{ backgroundColor: COBALT }}
-                    >
-                      Contact SPOC
-                    </button>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="bg-white rounded-2xl p-8 border border-zinc-100 shadow-sm">
-            <div className="grid grid-cols-7 gap-px bg-slate-100 rounded-xl overflow-hidden border border-slate-100">
-              {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(day => (
-                <div key={day} className="bg-slate-50 p-4 text-center text-xs font-bold text-slate-400 uppercase tracking-widest">{day}</div>
-              ))}
-              {Array.from({ length: 30 }).map((_, i) => {
-                const day = i + 1;
-                const hasEvent = filteredEvents.find(e => e.date.includes(`June ${day}`));
-                return (
-                  <div key={i} className="bg-white min-h-[120px] p-3 hover:bg-slate-50 transition-colors group relative">
-                    <span className="text-sm font-bold text-slate-300 group-hover:text-zinc-900 transition-colors">{day}</span>
-                    {hasEvent && (
-                      <div
-                        onClick={() => triggerToast("Please contact your SPOC to register for this event.")}
-                        className="mt-2 p-2 rounded-lg cursor-pointer transition-all"
-                        style={{ backgroundColor: `${COBALT}0d`, border: `1px solid ${COBALT}1a` }}
-                      >
-                        <div className="text-xs font-bold line-clamp-2 leading-tight" style={{ color: COBALT }}>{hasEvent.title}</div>
-                        <div className="text-[10px] text-slate-400 mt-1">{hasEvent.mode}</div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* ═══ VIBE ═══ */}
-      <section id="tvw-vibe" className="relative overflow-hidden py-16 px-6 md:px-16" style={{ backgroundColor: ACCENT_NAVY }}>
-        <div style={DIAG_TEXTURE} />
-        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <h2 className="text-3xl font-black text-white tracking-tight mb-3">TVW Vibe · Live Stories</h2>
-            <p className="text-white/60 mb-8">Share your volunteering moments with the Tata Engage community.</p>
-            <button
-              onClick={() => triggerToast("Story submission form opening...")}
-              className="px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-widest border border-white/20 cursor-pointer transition-colors hover:bg-white/10"
-              style={{ color: B_YELLOW }}
-            >
-              Submit Your Story
-            </button>
-          </div>
-          <div className="space-y-4">
-            {VIBE_STORIES.map((s, i) => (
-              <div key={i} className="rounded-xl p-5" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)" }}>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full" style={{ backgroundColor: `${COBALT}44`, color: "#a5b4fc" }}>
-                    {s.location}
-                  </span>
-                  <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full ${s.status === "Published" ? "text-green-400 bg-green-400/10" : "text-amber-400 bg-amber-400/10"}`}>
-                    {s.status}
-                  </span>
-                </div>
-                <p className="text-white/80 text-sm leading-relaxed">{s.caption}</p>
+          <div style={{ display: "flex", gap: 32, marginTop: 48, paddingTop: 32, borderTop: "1px solid rgba(255,255,255,0.12)" }}>
+            {[
+              [`${TVW_EVENTS.length}`, "Events posted"],
+              ["47",   "Registered so far"],
+              ["100+", "Tata companies"],
+              ["2 hrs","Avg. event duration"],
+            ].map(([num, label]) => (
+              <div key={label}>
+                <div style={{ fontFamily: FONT, fontSize: 26, fontWeight: 900, color: "#fff" }}>{num}</div>
+                <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", marginTop: 2, fontFamily: FONT }}>{label}</div>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* ═══ RESOURCES ═══ */}
-      <section id="tvw-collateral" className="px-6 md:px-16 py-16 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-black tracking-tight mb-8" style={{ color: ACCENT_NAVY }}>Resources</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {RESOURCES.map((r, i) => (
-            <div
-              key={i}
-              onClick={() => triggerToast(`Downloading ${r.title}...`)}
-              className="rounded-2xl overflow-hidden border border-zinc-100 shadow-sm cursor-pointer group"
-              style={{ transition: "transform 0.2s, box-shadow 0.2s" }}
-              onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 1px 2px rgba(0,0,0,0.04)"; }}
-            >
-              <div className="h-40 overflow-hidden">
-                <img src={r.photo} alt={r.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+      {/* ══ EVENTS ══ */}
+      <div id="tvw-events" style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 48px 80px" }}>
+        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#aaaabc", margin: "0 0 6px", fontFamily: FONT }}>Browse & Register</p>
+        <div style={{ width: 36, height: 3, borderRadius: 2, background: TVW_BLUE, marginBottom: 16 }} />
+        <h2 style={{ fontSize: 22, fontWeight: 900, color: ACCENT_NAVY, margin: "0 0 28px", letterSpacing: "-0.3px", fontFamily: FONT }}>TVW 2025 Events</h2>
+
+        {/* Controls */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 28, alignItems: "center" }}>
+          {/* View toggle */}
+          <div style={{ display: "flex", alignItems: "center", gap: 2, background: "#fff", padding: 4, borderRadius: 10, border: "1.5px solid #e0e0e8" }}>
+            {([["list","list","List"  ],["calendar","calendar","Calendar"]] as const).map(([mode,_,label]) => (
+              <button key={mode} onClick={() => setViewMode(mode as "list"|"calendar")}
+                style={{ display:"flex",alignItems:"center",gap:6,padding:"7px 14px",borderRadius:7,border:"none",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:FONT,background:viewMode===mode?TVW_BLUE:"transparent",color:viewMode===mode?"#fff":"#64748b",transition:"all 0.15s" }}>
+                {mode==="list" ? <List size={15}/> : <CalendarDays size={15}/>}{label}
+              </button>
+            ))}
+          </div>
+          {/* Search */}
+          <div style={{ flex: 1, position: "relative", minWidth: 220 }}>
+            <Search size={16} style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", color: "#aaaabc" }} />
+            <input type="text" placeholder="Search events..." value={search} onChange={e => setSearch(e.target.value)}
+              style={{ width:"100%",paddingLeft:40,paddingRight:14,paddingTop:11,paddingBottom:11,border:"1.5px solid #e0e0e8",borderRadius:10,fontSize:13.5,fontFamily:FONT,color:ACCENT_NAVY,outline:"none",background:"#fff",boxSizing:"border-box" }}
+              onFocus={e=>(e.target.style.borderColor=TVW_BLUE)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")}/>
+          </div>
+          {/* Location */}
+          <select value={filters.location} onChange={e=>setFilters({...filters,location:e.target.value})}
+            style={{ padding:"10px 14px",border:"1.5px solid #e0e0e8",borderRadius:10,fontSize:13,fontFamily:FONT,color:ACCENT_NAVY,background:"#fff",outline:"none",cursor:"pointer" }}>
+            <option value="All">All Locations</option>
+            {["Mumbai","Pune","Chennai","Virtual"].map(l=><option key={l} value={l}>{l}</option>)}
+          </select>
+          {/* Mode */}
+          <select value={filters.mode} onChange={e=>setFilters({...filters,mode:e.target.value})}
+            style={{ padding:"10px 14px",border:"1.5px solid #e0e0e8",borderRadius:10,fontSize:13,fontFamily:FONT,color:ACCENT_NAVY,background:"#fff",outline:"none",cursor:"pointer" }}>
+            <option value="All">All Modes</option>
+            <option value="In-person">In-person</option>
+            <option value="Virtual">Virtual</option>
+          </select>
+        </div>
+
+        {/* List / Calendar */}
+        {viewMode === "list" ? (
+          <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(320px,1fr))",gap:16 }}>
+            {filteredEvents.map(ev => (
+              <EventCard key={ev.id} event={ev} isRegistered={registeredEvents.includes(ev.id)} onContact={()=>setSpocModal(ev)} />
+            ))}
+            {filteredEvents.length === 0 && (
+              <div style={{ gridColumn:"1/-1",textAlign:"center",padding:"64px 0",color:"#94a3b8",fontFamily:FONT }}>
+                <div style={{ fontSize:32,marginBottom:12 }}>🔍</div>
+                <div style={{ fontSize:15,fontWeight:600 }}>No events match your filters</div>
               </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <r.icon size={16} style={{ color: COBALT }} />
-                  <h3 className="font-bold text-zinc-900">{r.title}</h3>
-                </div>
-                <p className="text-sm text-slate-500 mb-4">{r.desc}</p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest" style={{ color: COBALT }}>
-                  <Download size={14} /> Download
-                </span>
-              </div>
+            )}
+          </div>
+        ) : (
+          <CalendarView events={filteredEvents} onContact={ev=>setSpocModal(ev)} />
+        )}
+      </div>
+
+      {/* ══ TVW VIBE ══ */}
+      <section id="tvw-vibe" style={{ position:"relative",overflow:"hidden" }}>
+        <img src={tvwVibeImg} alt="" style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",objectPosition:"center" }}/>
+        <div style={{ position:"absolute",inset:0,background:"linear-gradient(105deg,rgba(8,12,22,0.90) 0%,rgba(8,12,22,0.75) 50%,rgba(8,12,22,0.55) 100%)" }}/>
+        <div style={DIAG_TEXTURE}/>
+        <div style={{ position:"relative",zIndex:1,maxWidth:1100,margin:"0 auto",padding:"96px 64px" }}>
+          <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:80,alignItems:"start" }}>
+            <div>
+              <p style={{ fontSize:11,fontWeight:700,letterSpacing:"1.8px",textTransform:"uppercase",color:"rgba(255,255,255,0.45)",marginBottom:8,fontFamily:FONT }}>Community Stories</p>
+              <div style={{ width:36,height:2,borderRadius:2,background:B_YELLOW,marginBottom:20 }}/>
+              <h2 style={{ fontFamily:FONT,fontSize:30,fontWeight:900,color:"#fff",letterSpacing:"-0.5px",margin:"0 0 18px" }}>TVW Vibe</h2>
+              <p style={{ fontFamily:FONT,fontSize:15,fontWeight:300,color:"rgba(255,255,255,0.65)",lineHeight:1.7,marginBottom:32 }}>
+                Volunteering moments from across the Tata Group — submitted by SPOCs and reviewed by Admin before going live.
+              </p>
+              <button onClick={()=>triggerToast("Story submission form opening...")}
+                style={{ background:B_YELLOW,color:ACCENT_NAVY,border:"none",borderRadius:10,padding:"12px 24px",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:FONT }}>
+                Submit Your Story
+              </button>
             </div>
-          ))}
+            <div style={{ display:"flex",flexDirection:"column",gap:12 }}>
+              {VIBE_STORIES.map((s,i) => (
+                <div key={i} style={{ background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.12)",borderRadius:12,padding:"18px 20px" }}>
+                  <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10 }}>
+                    <span style={{ fontFamily:FONT,fontSize:10,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",color:"#93c5fd",background:"rgba(147,197,253,0.12)",borderRadius:100,padding:"3px 10px" }}>{s.location}</span>
+                    <span style={{ fontFamily:FONT,fontSize:10,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",borderRadius:100,padding:"3px 10px",color:s.status==="Published"?"#4ade80":"#fbbf24",background:s.status==="Published"?"rgba(74,222,128,0.12)":"rgba(251,191,36,0.12)" }}>{s.status}</span>
+                  </div>
+                  <p style={{ fontFamily:FONT,fontSize:14,color:"rgba(255,255,255,0.8)",lineHeight:1.6,margin:0 }}>{s.caption}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ═══ TICKER ═══ */}
-      <TickerBar fixed />
+      {/* ══ RESOURCES ══ */}
+      <div id="tvw-collateral" style={{ maxWidth:1200,margin:"0 auto",padding:"56px 48px 80px" }}>
+        <p style={{ fontSize:11,fontWeight:700,letterSpacing:"1.8px",textTransform:"uppercase",color:"#aaaabc",margin:"0 0 6px",fontFamily:FONT }}>Downloads</p>
+        <div style={{ width:36,height:3,borderRadius:2,background:TVW_BLUE,marginBottom:16 }}/>
+        <h2 style={{ fontSize:22,fontWeight:900,color:ACCENT_NAVY,margin:"0 0 28px",letterSpacing:"-0.3px",fontFamily:FONT }}>Campaign Resources</h2>
+        <div style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16 }}>
+          {RESOURCES.map((r,i) => <ResourceCard key={i} resource={r} onDownload={()=>triggerToast(`Downloading ${r.title}...`)}/>)}
+        </div>
+      </div>
 
+      {/* ══ SPOC DRAWER ══ */}
+      {spocModal && (
+        <DrawerShell onClose={()=>setSpocModal(null)} title={spocModal.title} subtitle={`${spocModal.date} · ${spocModal.location}`} accentTag="TVW 22">
+          <div style={{ display:"flex",flexDirection:"column",gap:12,fontFamily:FONT }}>
+            {[
+              { label:"Event",     value:spocModal.title    },
+              { label:"Date",      value:spocModal.date     },
+              { label:"Mode",      value:spocModal.mode     },
+              { label:"Venue",     value:spocModal.location },
+              { label:"Hosted by", value:spocModal.company  },
+            ].map(({label,value}) => (
+              <div key={label} style={{ display:"flex",justifyContent:"space-between",fontSize:14,paddingBottom:10,borderBottom:"1px solid #f0f0f5" }}>
+                <span style={{ color:"#94a3b8",fontWeight:600 }}>{label}</span>
+                <span style={{ color:ACCENT_NAVY,fontWeight:600,textAlign:"right",maxWidth:"60%" }}>{value}</span>
+              </div>
+            ))}
+            <div style={{ background:"#f0fdf4",border:"1px solid #bbf7d0",borderRadius:10,padding:"12px 16px",fontSize:13,color:"#166534",marginTop:4 }}>
+              Your SPOC has been notified — Rohan Desai will reach out within 24 hours to complete your registration.
+            </div>
+            <button onClick={()=>{ triggerToast("Your SPOC has been notified — Rohan Desai will reach out within 24 hours."); setSpocModal(null); }}
+              style={{ background:TVW_BLUE,color:"#fff",border:"none",borderRadius:10,padding:"14px",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:FONT,marginTop:4 }}>
+              Confirm – Notify SPOC
+            </button>
+          </div>
+        </DrawerShell>
+      )}
+
+      <TickerBar fixed />
     </div>
   );
 };
