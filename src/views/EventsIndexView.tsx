@@ -102,7 +102,7 @@ export default function EventsIndexView() {
         {/* Sort bar */}
         <div style={{ display: "flex", alignItems: "center", gap: 8,
           marginBottom: 28, justifyContent: "flex-end" }}>
-          <span style={{ fontSize: 12, color: "#94a3b8", fontWeight: 600 }}>Sort:</span>
+          <span style={{ fontSize: 12, color: ACCENT_NAVY, fontWeight: 600 }}>Sort:</span>
           {(["newest", "oldest"] as const).map((opt) => (
             <button key={opt} onClick={() => setSort(opt)} style={{
               background: sort === opt ? B_INDIGO : "#f5f5fa",
@@ -150,7 +150,7 @@ export default function EventsIndexView() {
                     borderRadius: 4, textTransform: "uppercase", letterSpacing: "0.5px" }}>
                     {e.tag}
                   </span>
-                  <span style={{ fontSize: 11, color: "#94a3b8", fontWeight: 500 }}>
+                  <span style={{ fontSize: 11, color: ACCENT_NAVY, fontWeight: 500 }}>
                     {e.date}{e.location ? ` · ${e.location}` : ""}
                   </span>
                 </div>

@@ -315,7 +315,7 @@ export default function ImpactStoryView() {
         <div id="story-quotes" style={{ background: "#f7f8fc", padding: "48px 56px" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <p style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "2px",
-              textTransform: "uppercase", color: "#94a3b8", marginBottom: 8 }}>
+              textTransform: "uppercase", color: ACCENT_NAVY, marginBottom: 8 }}>
               Voices from the Field
             </p>
             <div style={{ width: 36, height: 2, borderRadius: 2, background: accent, marginBottom: 28 }} />
@@ -332,8 +332,8 @@ export default function ImpactStoryView() {
       {/* ── More Stories ── */}
       <div id="story-more" style={{ background: "#f7f8fc", padding: "56px 56px 72px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "2px",
-            textTransform: "uppercase", color: "#94a3b8", marginBottom: 8 }}>More Impact Stories</p>
+            <p style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "2px",
+              textTransform: "uppercase", color: ACCENT_NAVY, marginBottom: 8 }}>More Impact Stories</p>
           <div style={{ width: 36, height: 2, borderRadius: 2, background: B_INDIGO, marginBottom: 28 }} />
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
