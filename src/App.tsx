@@ -50,7 +50,6 @@ import AboutProEngageView from "@/views/AboutProEngageView";
 import GCSOView from "@/views/GCSOView";
 import TeamView from "@/views/TeamView";
 import EventsView from "@/views/EventsView";
-import EventsIndexView from "@/views/EventsIndexView";
 import ContactView from "@/views/ContactView";
 import PartnerWithUsView from "@/views/PartnerWithUsView";
 import MediaView from "@/views/MediaView";
@@ -232,7 +231,6 @@ export default function App() {
                 <Route path="/about/gcso" element={<GCSOView />} />
                 <Route path="/about/team" element={<TeamView />} />
                 <Route path="/about/events" element={<EventsView />} />
-                <Route path="/events" element={<EventsIndexView />} />
                 <Route path="/about/contact" element={<ContactView />} />
                 <Route path="/partner" element={<PartnerWithUsView />} />
                 <Route path="/media" element={<MediaView />} />

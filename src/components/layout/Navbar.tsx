@@ -322,14 +322,14 @@ const Navbar = ({
                 <span onClick={() => onNavigate("journey")} className={itemCls}>
                   Our Journey
                 </span>
-                <span onClick={() => onNavigate("media", "tab=events")} className={itemCls}>
-                  Events
-                </span>
                 <span onClick={() => onNavigate("about-contact")} className={itemCls}>
                   Contact Us
                 </span>
                 <span onClick={() => onNavigate("about-team")} className={itemCls}>
                   Team
+                </span>
+                <span onClick={() => onNavigate("about-events")} className={itemCls}>
+                  Events
                 </span>
                 {isLoggedIn && (
                   <>
@@ -452,9 +452,6 @@ const Navbar = ({
                 </span>
                 <span onClick={() => onNavigate("media", "tab=social")} className={itemCls}>
                   Social Media Snippets
-                </span>
-                <span onClick={() => onNavigate("media", "tab=events")} className={itemCls}>
-                  Events
                 </span>
               </div>
             </div>
