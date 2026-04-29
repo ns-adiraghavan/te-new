@@ -33,7 +33,7 @@ const VIEW_TO_PATH: Record<string, string> = {
   "about-gcso": "/about/gcso",
   "about-team": "/about/team",
   "about-events": "/about/events",
-  "event-detail": "/about/events/detail",
+  "event-detail": "/about/events/",
   "about-contact": "/about/contact",
   "partner": "/partner",
   "media": "/media",
@@ -47,7 +47,7 @@ const VIEW_TO_PATH: Record<string, string> = {
   "cvp": "/cvp",
   "yes-to-access": "/yes-to-access",
   "stories": "/stories",
-  "event": "/about/events",
+  "event": "/about/events/",
   "events-page": "/events",
   "privacy": "/privacy",
   "legal": "/legal",
@@ -60,7 +60,9 @@ export const useAppNavigate = () => {
   return useCallback(
     (view: string, slugOrHash?: string) => {
       const path = VIEW_TO_PATH[view] || "/";
-      if ((view === "stories" || view === "event" || view === "event-detail") && slugOrHash) {
+      if ((view === "event" || view === "event-detail") && slugOrHash) {
+        nav(`${path}${slugOrHash}`);
+      } else if (view === "stories" && slugOrHash) {
         nav(`${path}?id=${slugOrHash}`);
       } else {
         nav(slugOrHash ? `${path}#${slugOrHash.replace(/^#/, "")}` : path);
