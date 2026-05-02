@@ -117,67 +117,6 @@ const CARDS = [
   { img: "https://www.tataengage.com/images/TVW25_Campaign/Update1/image_23.jpg", tag: "Environment",     tagColor: B_GREEN,  company: "Tata Motors",                 accent: B_GREEN,  title: "Mulching and Watering of Plants at Plantation Site",                          desc: "50 volunteers from the TML Pantnagar Quality Team carried out mulching and watering in Haldwani to improve soil moisture and support healthy plant growth, strengthening ongoing plantation efforts.", loc: "Haldwani, March 13" },
 ];
 
-function PinIcon() {
-  return (
-    <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-      <path d="M6 1C4.07 1 2.5 2.57 2.5 4.5c0 3.15 3.5 6.5 3.5 6.5s3.5-3.35 3.5-6.5C9.5 2.57 7.93 1 6 1z" stroke="#94a3b8" strokeWidth="1.2"/>
-      <circle cx="6" cy="4.5" r="1.2" stroke="#94a3b8" strokeWidth="1"/>
-    </svg>
-  );
-}
-
-function ActivityCard({ card }: { card: typeof CARDS[0] }) {
-  const [hov, setHov] = useState(false);
-  return (
-    <div
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      style={{
-        background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14,
-        overflow: "hidden", display: "flex", flexDirection: "column",
-        boxShadow: hov ? "0 8px 24px rgba(0,0,0,0.08)" : "none",
-        transform: hov ? "translateY(-3px)" : "translateY(0)",
-        transition: "transform 0.18s, box-shadow 0.18s",
-        breakInside: "avoid" as any,
-        marginBottom: 20,
-      }}
-    >
-      <div style={{ position: "relative", height: 200, overflow: "hidden" }}>
-        <img src={card.img} alt={card.title} style={{
-          width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block",
-          transform: hov ? "scale(1.04)" : "scale(1)", transition: "transform 0.4s ease",
-        }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top,rgba(13,27,62,0.52) 0%,transparent 55%)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: card.accent }} />
-        <span style={{
-          position: "absolute", top: 12, right: 12,
-          fontFamily: FONT, fontSize: 9, fontWeight: 800,
-          letterSpacing: "0.8px", textTransform: "uppercase",
-          color: "#fff", padding: "4px 10px", borderRadius: 100,
-          background: card.tagColor + "dd", backdropFilter: "blur(6px)",
-        }}>{card.tag}</span>
-        <span style={{
-          position: "absolute", bottom: 12, left: 12,
-          fontFamily: FONT, fontSize: 9, fontWeight: 700,
-          color: "rgba(255,255,255,0.9)", background: "rgba(0,0,0,0.42)",
-          backdropFilter: "blur(4px)", padding: "2px 8px", borderRadius: 100,
-        }}>{card.company}</span>
-      </div>
-      <div style={{ padding: "18px 20px 20px", flex: 1, display: "flex", flexDirection: "column" }}>
-        <div style={{ width: 24, height: 3, borderRadius: 2, background: card.accent, marginBottom: 10 }} />
-        <div style={{ fontFamily: FONT, fontSize: 14, fontWeight: 800, color: ACCENT_NAVY, lineHeight: 1.35, marginBottom: 8 }}>{card.title}</div>
-        <p style={{
-          fontFamily: FONT, fontSize: 13, color: "#475569", lineHeight: 1.72, flex: 1,
-          display: "-webkit-box", WebkitLineClamp: 4, WebkitBoxOrient: "vertical" as any, overflow: "hidden",
-        }}>{card.desc}</p>
-        <div style={{ marginTop: 12, display: "flex", alignItems: "center", gap: 5, fontFamily: FONT, fontSize: 11, color: "#94a3b8", fontWeight: 600 }}>
-          <PinIcon />{card.loc}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function TVW25Update1View() {
   return (
     <div style={{ fontFamily: FONT, background: "#f5f5fa", minHeight: "100vh" }}>
