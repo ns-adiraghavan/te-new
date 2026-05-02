@@ -33,7 +33,9 @@ import ActiveProjectManagementView from "@/views/ActiveProjectManagementView";
 import ProjectFeedbackView from "@/views/ProjectFeedbackView";
 import ProfileView from "@/views/ProfileView";
 import TVWHubView from "@/views/TVWHubView";
+import TVW25Update1View from "@/views/TVW25Update1View";
 import ProEngageView from "@/views/ProEngageView";
+import ProEngageCampaignKitView from "@/views/ProEngageCampaignKitView";
 import DisasterResponseView from "@/views/DisasterResponseView";
 
 import DRAvailabilityForm from "@/views/DRAvailabilityForm";
@@ -405,6 +407,8 @@ export default function App() {
             <Route path="/yes-to-access" element={<YesToAccessView />} />
             <Route path="/tata-sustainability-month" element={<TataSmView />} />
             <Route path="/cvp" element={<CVPView />} />
+            <Route path="/tvw/update-1" element={<TVW25Update1View />} />
+            <Route path="/proengage/campaign-kit" element={<ProEngageCampaignKitView />} />
             <Route path="/stories" element={<ImpactStoryView />} />
             <Route path="/privacy" element={<PrivacyView />} />
             <Route path="/legal" element={<LegalView />} />

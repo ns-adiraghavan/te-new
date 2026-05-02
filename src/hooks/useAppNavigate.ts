@@ -18,7 +18,9 @@ const VIEW_TO_PATH: Record<string, string> = {
   "project-feedback": "/projects/feedback",
   profile: "/profile",
   tvw: "/tvw",
+  "tvw25-update1": "/tvw/update-1",
   proengage: "/proengage",
+  "proengage-campaign-kit": "/proengage/campaign-kit",
   "disaster-response": "/disaster-response",
   
   "dr-availability-form": "/disaster-response/availability",
