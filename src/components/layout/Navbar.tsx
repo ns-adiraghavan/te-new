@@ -32,8 +32,10 @@ function getNavBg(pathname: string): string {
   // Home — greyish (matches original archive feel)
   if (pathname === "/") return "rgba(52,52,62,0.88)";
   // TVW — blue accent
+  if (pathname === "/tvw/update-1") return "rgba(10,46,90,0.80)";
   if (pathname.startsWith("/tvw") || pathname.startsWith("/about/tvw")) return "rgba(10,46,90,0.80)";
   // ProEngage — purple accent
+  if (pathname === "/proengage/campaign-kit") return "rgba(58,22,72,0.80)";
   if (pathname.startsWith("/proengage") || pathname.startsWith("/about/proengage")) return "rgba(58,22,72,0.80)";
   // Disaster response — teal accent
   if (pathname.startsWith("/disaster-response") || pathname.startsWith("/dr-")) return "rgba(0,68,60,0.80)";
