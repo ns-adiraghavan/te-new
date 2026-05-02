@@ -265,29 +265,24 @@ export default function ProEngageCampaignKitView() {
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 56px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
 
-            <FeaturedCard thumbBg={`linear-gradient(135deg,${COLOUR_LIGHT},#c890e0)`} typeTag="Poster" typeTagColor={COLOUR_DARK} accent={COLOUR}
+            <FeaturedCard typeTag="Poster" accent={COLOUR}
               sectionTag="ProEngage · Main Poster" title="ProEngage Poster — Portrait A"
               desc="Primary recruitment poster for ProEngage. Use on office notice boards, internal screens, intranet pages and team communications to drive volunteer registrations."
+              thumbLabel="Primary Recruitment Poster" dims="A4 · Portrait"
               links={[{ label: "Download PNG", href: PE_DRIVE, solid: true }, { label: "Download PDF", href: PE_DRIVE }]}
-            >
-              <ThumbIcon bg={`${COLOUR}1a`} color={COLOUR} label="Primary Recruitment Poster">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={COLOUR} strokeWidth="1.7" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 3v18"/></svg>
-              </ThumbIcon>
-            </FeaturedCard>
+            />
 
             {[
-              { bg: `linear-gradient(135deg,${COLOUR_LIGHT},#d0a8e8)`, tag: "Poster",   label: "Portrait B",    title: "ProEngage Poster — Portrait B",          meta: "Secondary portrait variant. A4 print and digital-screen ready.", links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "PDF", href: PE_DRIVE }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={COLOUR} strokeWidth="1.6" strokeLinecap="round"><rect x="4" y="2" width="14" height="18" rx="2"/><path d="M7 7h8M7 11h5"/></svg> },
-              { bg: "linear-gradient(135deg,#ece0ff,#c898e0)",           tag: "Poster",   label: "Portrait C",    title: "ProEngage Poster — Portrait C",          meta: "Third portrait variant. Suitable for WhatsApp and internal messaging.", links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "PDF", href: PE_DRIVE }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={COLOUR} strokeWidth="1.6" strokeLinecap="round"><rect x="4" y="2" width="14" height="18" rx="2"/><circle cx="11" cy="11" r="4"/></svg> },
-              { bg: `linear-gradient(135deg,${COLOUR_LIGHT},#bda0d8)`,   tag: "Banner",   label: "Landscape A",   title: "ProEngage Banner — Landscape A",         meta: "Email headers, intranet banners, digital displays. 1200×628.", links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "PDF", href: PE_DRIVE }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={COLOUR} strokeWidth="1.6" strokeLinecap="round"><rect x="2" y="6" width="18" height="10" rx="2"/><path d="M6 11h10"/></svg> },
-              { bg: "linear-gradient(135deg,#ede0ff,#c090d8)",            tag: "Social",   label: "Social Square A",title: "Social Media Square — Option A",        meta: "1080×1080 for LinkedIn, Instagram and Yammer posts.", links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "JPG", href: PE_DRIVE }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={COLOUR} strokeWidth="1.6" strokeLinecap="round"><rect x="4" y="4" width="14" height="14" rx="2"/><path d="M8 11h6M11 8v6"/></svg> },
-              { bg: "linear-gradient(135deg,#e8d8fc,#b070cc)",            tag: "Social",   label: "Social Square B",title: "Social Media Square — Option B",        meta: "Alternate square layout. Different visual treatment to Option A.", links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "JPG", href: PE_DRIVE }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={COLOUR} strokeWidth="1.6" strokeLinecap="round"><rect x="4" y="4" width="14" height="14" rx="2"/><path d="M8 8h6M8 12h4"/></svg> },
-              { bg: "linear-gradient(180deg,#f0e4ff,#c080d8)",            tag: "Story",    label: "Story Format",   title: "Instagram / WhatsApp Story",            meta: "1080×1920 vertical format for Instagram Stories and WhatsApp status.", links: [{ label: "PNG", href: PE_DRIVE, solid: true }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={COLOUR} strokeWidth="1.6" strokeLinecap="round"><rect x="7" y="2" width="8" height="18" rx="2"/></svg> },
-              { bg: "linear-gradient(135deg,#ede0ff,#a868c8)",            tag: "Display",  label: "Screensaver",    title: "Laptop / Screen Wallpaper",             meta: "Desktop wallpaper for employee devices. 1920×1080 resolution.", links: [{ label: "PNG", href: PE_DRIVE, solid: true }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={COLOUR} strokeWidth="1.6" strokeLinecap="round"><rect x="2" y="4" width="18" height="12" rx="2"/><path d="M8 20h6M11 16v4"/></svg> },
-              { bg: "linear-gradient(135deg,#ece0ff,#b878d8)",            tag: "Email",    label: "Email Header",   title: "Email Campaign Header",                 meta: "For internal email announcements and ProEngage newsletters.", links: [{ label: "PNG", href: PE_DRIVE, solid: true }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={COLOUR} strokeWidth="1.6" strokeLinecap="round"><rect x="2" y="5" width="18" height="12" rx="2"/><path d="M2 7l9 6 9-6"/></svg> },
+              { tag: "Poster",  label: "Portrait B",     dims: "A4 · Portrait",  title: "ProEngage Poster — Portrait B",   meta: "Secondary portrait variant. A4 print and digital-screen ready.",          links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "PDF", href: PE_DRIVE }] },
+              { tag: "Poster",  label: "Portrait C",     dims: "A4 · Portrait",  title: "ProEngage Poster — Portrait C",   meta: "Third portrait variant. Suitable for WhatsApp and internal messaging.",   links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "PDF", href: PE_DRIVE }] },
+              { tag: "Banner",  label: "Landscape A",    dims: "1200 × 628",     title: "ProEngage Banner — Landscape A",  meta: "Email headers, intranet banners, digital displays. 1200×628.",            links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "PDF", href: PE_DRIVE }] },
+              { tag: "Social",  label: "Social Square A",dims: "1080 × 1080",    title: "Social Media Square — Option A",  meta: "1080×1080 for LinkedIn, Instagram and Yammer posts.",                     links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "JPG", href: PE_DRIVE }] },
+              { tag: "Social",  label: "Social Square B",dims: "1080 × 1080",    title: "Social Media Square — Option B",  meta: "Alternate square layout. Different visual treatment to Option A.",        links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "JPG", href: PE_DRIVE }] },
+              { tag: "Story",   label: "Story Format",   dims: "1080 × 1920",    title: "Instagram / WhatsApp Story",      meta: "1080×1920 vertical format for Instagram Stories and WhatsApp status.",    links: [{ label: "PNG", href: PE_DRIVE, solid: true }] },
+              { tag: "Display", label: "Screensaver",    dims: "1920 × 1080",    title: "Laptop / Screen Wallpaper",       meta: "Desktop wallpaper for employee devices. 1920×1080 resolution.",           links: [{ label: "PNG", href: PE_DRIVE, solid: true }] },
+              { tag: "Email",   label: "Email Header",   dims: "1200 × 400",     title: "Email Campaign Header",           meta: "For internal email announcements and ProEngage newsletters.",             links: [{ label: "PNG", href: PE_DRIVE, solid: true }] },
             ].map((c, i) => (
-              <AssetCard key={i} thumbBg={c.bg} typeTag={c.tag} typeTagColor={COLOUR_DARK} accent={COLOUR} title={c.title} meta={c.meta} links={c.links}>
-                <ThumbIcon bg={`${COLOUR}1a`} color={COLOUR} label={c.label}>{c.icon}</ThumbIcon>
-              </AssetCard>
+              <AssetCard key={i} typeTag={c.tag} accent={COLOUR} title={c.title} meta={c.meta} thumbLabel={c.label} dims={c.dims} links={c.links} />
             ))}
           </div>
         </div>
