@@ -298,26 +298,21 @@ export default function ProEngageCampaignKitView() {
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 56px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
 
-            <FeaturedCard thumbBg="linear-gradient(135deg,#EEF4FF,#b8d0f0)" typeTag="Poster" typeTagColor="#0d3a69" accent={B_BLUE}
+            <FeaturedCard typeTag="Poster" accent={B_BLUE}
               sectionTag="TVW25 · Campaign Poster" title="Tata Volunteering Week 25 — Main Poster"
               desc="Primary TVW25 campaign poster featuring the IVY League of Volunteers theme. Use for office displays, intranet, and internal communications across your company."
+              thumbLabel="TVW25 Main Poster" dims="A4 · Portrait"
               links={[{ label: "Download PNG", href: TVW_DRIVE, solid: true }, { label: "Download PDF", href: TVW_DRIVE }]}
-            >
-              <ThumbIcon bg={`${B_BLUE}1a`} color={B_BLUE} label="TVW25 Main Poster">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={B_BLUE} strokeWidth="1.7" strokeLinecap="round"><path d="M12 2l1.5 4.5H18l-3.75 2.75L15.75 13 12 10.5 8.25 13l1.5-3.75L6 6.5h4.5z"/></svg>
-              </ThumbIcon>
-            </FeaturedCard>
+            />
 
             {[
-              { bg: "linear-gradient(135deg,#EEF4FF,#a0c0e8)", tag: "Poster",  label: "TVW Portrait B",  title: "TVW25 Poster — Portrait B",      meta: "Secondary TVW25 portrait poster. A4 print and digital display.", links: [{ label: "PNG", href: TVW_DRIVE, solid: true }, { label: "PDF", href: TVW_DRIVE }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={B_BLUE} strokeWidth="1.6" strokeLinecap="round"><rect x="4" y="2" width="14" height="18" rx="2"/><path d="M7 7h8M7 11h5"/></svg> },
-              { bg: "linear-gradient(135deg,#ddeeff,#88b8e8)",  tag: "Social", label: "Social Square",    title: "TVW25 Social Media Square",      meta: "1080×1080 for LinkedIn and Instagram promoting TVW25.", links: [{ label: "PNG", href: TVW_DRIVE, solid: true }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={B_BLUE} strokeWidth="1.6" strokeLinecap="round"><rect x="4" y="4" width="14" height="14" rx="2"/><path d="M8 11h6M11 8v6"/></svg> },
-              { bg: "linear-gradient(135deg,#ddeeff,#70a8d8)",  tag: "Banner", label: "Landscape Banner", title: "TVW25 Landscape Banner",          meta: "Wide format for email headers, intranet and digital boards.", links: [{ label: "PNG", href: TVW_DRIVE, solid: true }, { label: "PDF", href: TVW_DRIVE }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={B_BLUE} strokeWidth="1.6" strokeLinecap="round"><rect x="2" y="6" width="18" height="10" rx="2"/><path d="M5 11h12"/></svg> },
-              { bg: "linear-gradient(180deg,#ddeeff,#60a0d0)",  tag: "Story",  label: "Story Format",     title: "TVW25 Instagram Story",          meta: "1080×1920 vertical for Instagram Stories and WhatsApp status.", links: [{ label: "PNG", href: TVW_DRIVE, solid: true }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={B_BLUE} strokeWidth="1.6" strokeLinecap="round"><rect x="7" y="2" width="8" height="18" rx="2"/></svg> },
-              { bg: "linear-gradient(135deg,#EEF4FF,#90b8e0)",  tag: "Guide",  label: "DIY Guide",        title: "TVW25 DIY Activity Guide",       meta: "Step-by-step guide for volunteers running independent DIY activities.", links: [{ label: "PDF", href: "https://tataengage.com/TVW25/PDF/TVW25_DIY_Guide.pdf", solid: true }], icon: <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke={B_BLUE} strokeWidth="1.6" strokeLinecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-4-6z"/><path d="M14 2v6h6M9 13h4M9 17h6"/></svg> },
+              { tag: "Poster", label: "TVW Portrait B",  dims: "A4 · Portrait", title: "TVW25 Poster — Portrait B",   meta: "Secondary TVW25 portrait poster. A4 print and digital display.",         links: [{ label: "PNG", href: TVW_DRIVE, solid: true }, { label: "PDF", href: TVW_DRIVE }] },
+              { tag: "Social", label: "Social Square",   dims: "1080 × 1080",   title: "TVW25 Social Media Square",   meta: "1080×1080 for LinkedIn and Instagram promoting TVW25.",                  links: [{ label: "PNG", href: TVW_DRIVE, solid: true }] },
+              { tag: "Banner", label: "Landscape Banner",dims: "1920 × 1080",   title: "TVW25 Landscape Banner",      meta: "Wide format for email headers, intranet and digital boards.",            links: [{ label: "PNG", href: TVW_DRIVE, solid: true }, { label: "PDF", href: TVW_DRIVE }] },
+              { tag: "Story",  label: "Story Format",    dims: "1080 × 1920",   title: "TVW25 Instagram Story",       meta: "1080×1920 vertical for Instagram Stories and WhatsApp status.",          links: [{ label: "PNG", href: TVW_DRIVE, solid: true }] },
+              { tag: "Guide",  label: "DIY Guide",       dims: "PDF · A4",      title: "TVW25 DIY Activity Guide",    meta: "Step-by-step guide for volunteers running independent DIY activities.", links: [{ label: "PDF", href: "https://tataengage.com/TVW25/PDF/TVW25_DIY_Guide.pdf", solid: true }] },
             ].map((c, i) => (
-              <AssetCard key={i} thumbBg={c.bg} typeTag={c.tag} typeTagColor="#0d3a69" accent={B_BLUE} title={c.title} meta={c.meta} links={c.links}>
-                <ThumbIcon bg={`${B_BLUE}1a`} color={B_BLUE} label={c.label}>{c.icon}</ThumbIcon>
-              </AssetCard>
+              <AssetCard key={i} typeTag={c.tag} accent={B_BLUE} title={c.title} meta={c.meta} thumbLabel={c.label} dims={c.dims} links={c.links} />
             ))}
           </div>
         </div>
