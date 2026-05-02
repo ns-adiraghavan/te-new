@@ -1,0 +1,359 @@
+import React, { useEffect, useRef, useState } from "react";
+import SubPageDotRail from "@/components/shared/SubPageDotRail";
+
+// Import real platform assets — same folder structure as AbouProEngageView
+import peHeroImg from "@/assets/banner_photos/Inner Page ProEngage banner.jpg";
+
+// ── Tokens ────────────────────────────────────────────────────────────────────
+const FONT         = "'DM Sans',ui-sans-serif,system-ui,sans-serif";
+const ACCENT_NAVY  = "#0D1B3E";
+const B_YELLOW     = "#F79425";
+const B_BLUE       = "#135EA9";
+const COLOUR       = "#803998";   // ProEngage purple
+const COLOUR_DARK  = "#4a1f5c";
+const COLOUR_LIGHT = "#F3EEFF";
+const BORDER       = "#e8e8f0";
+
+const DIAG: React.CSSProperties = {
+  position: "absolute", inset: 0,
+  backgroundImage: "repeating-linear-gradient(45deg,rgba(255,255,255,0.03) 1px,transparent 1px)",
+  backgroundSize: "28px 28px",
+  pointerEvents: "none",
+};
+
+const SECTIONS = [
+  { id: "ckit-hero", label: "Overview"  },
+  { id: "ckit-pe",   label: "ProEngage" },
+  { id: "ckit-tvw",  label: "TVW25"     },
+];
+
+// Drive links
+const PE_DRIVE  = "https://drive.google.com/drive/folders/1yH2VG6bEHYN6I0f8-eAMdnI6pCmVqbBb";
+const TVW_DRIVE = "https://drive.google.com/drive/folders/110-97fEP1DhitHy1LxRAoG2KagVsBNsU";
+
+// ── DefinerBar ────────────────────────────────────────────────────────────────
+function DefinerBar({ colour }: { colour: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setOn(true); }, { threshold: 0.4 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <div ref={ref} style={{ height: 3, background: "#e8e8f0", borderRadius: 2, overflow: "hidden", width: 48, marginTop: 10 }}>
+      <div style={{ height: "100%", background: colour, borderRadius: 2, transition: "width 0.65s cubic-bezier(0.22,1,0.36,1)", width: on ? "100%" : "0%" }} />
+    </div>
+  );
+}
+
+// ── Download button ───────────────────────────────────────────────────────────
+function DlBtn({ label, href, solid, accent }: { label: string; href: string; solid?: boolean; accent: string }) {
+  const [hov, setHov] = useState(false);
+  return (
+    <a
+      href={href}
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        display: "inline-flex", alignItems: "center", gap: 4,
+        padding: "5px 10px", borderRadius: 6,
+        fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "0.2px",
+        textDecoration: "none",
+        background: solid ? (hov ? COLOUR_DARK : accent) : (hov ? COLOUR_LIGHT : "transparent"),
+        color: solid ? "#fff" : accent,
+        border: `1.5px solid ${solid ? accent : accent + "55"}`,
+        transition: "all 0.15s",
+      }}
+    >
+      {solid && (
+        <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="white" strokeWidth="1.7" strokeLinecap="round">
+          <path d="M6 2v7M3 7l3 3 3-3"/><path d="M2 10h8"/>
+        </svg>
+      )}
+      {label}
+    </a>
+  );
+}
+
+// ── Info tile (KPI-style) ─────────────────────────────────────────────────────
+// inverted=false → solid accent bg, white text (default)
+// inverted=true  → light pastel bg, coloured text — visual variance on adjacent cards
+function InfoTile({ accent, typeTag, thumbLabel, dims, minHeight = 140, inverted = false }: {
+  accent: string; typeTag: string; thumbLabel: string; dims: string;
+  minHeight?: number; inverted?: boolean;
+}) {
+  // Derive pastel from accent — 12% opacity overlay on white
+  const bg       = inverted ? "#fff" : accent;
+  const eyebrow  = inverted ? accent + "99" : "rgba(255,255,255,0.65)";
+  const heading  = inverted ? accent         : "#fff";
+  const sub      = inverted ? accent + "88"  : "rgba(255,255,255,0.55)";
+  const topBar   = inverted ? accent + "55"  : "rgba(255,255,255,0.35)";
+  // Subtle pattern colour
+  const diagClr  = inverted ? accent         : "rgba(255,255,255,1)";
+
+  return (
+    <div style={{
+      position: "relative", width: "100%", minHeight, background: bg,
+      borderRadius: 0, overflow: "hidden",
+      display: "flex", flexDirection: "column", justifyContent: "space-between",
+      padding: "18px 20px",
+      // Inverted gets a very faint dot grid instead of diagonal lines
+      backgroundImage: inverted
+        ? `radial-gradient(circle, ${accent}18 1.5px, transparent 1.5px)`
+        : "repeating-linear-gradient(45deg,rgba(255,255,255,0.025) 0px,rgba(255,255,255,0.025) 1px,transparent 1px,transparent 22px)",
+      backgroundSize: inverted ? "16px 16px" : "22px 22px",
+    }}>
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: topBar }} />
+      <div style={{
+        fontFamily: FONT, fontSize: 11, fontWeight: 800, letterSpacing: "1.6px",
+        textTransform: "uppercase", color: eyebrow,
+      }}>{typeTag}</div>
+      <div style={{
+        fontFamily: FONT, fontSize: 22, fontWeight: 900, color: heading,
+        letterSpacing: "-0.3px", lineHeight: 1.1,
+      }}>{thumbLabel}</div>
+      <div style={{
+        fontFamily: FONT, fontSize: 11, fontWeight: 600,
+        color: sub, letterSpacing: "0.4px",
+      }}>{dims}</div>
+    </div>
+  );
+}
+
+// ── Asset card ────────────────────────────────────────────────────────────────
+function AssetCard({
+  typeTag, accent, title, meta, thumbLabel, dims,
+  links, inverted = false,
+}: {
+  typeTag: string; accent: string;
+  title: string; meta: string; thumbLabel: string; dims: string;
+  links: { label: string; href: string; solid?: boolean }[];
+  inverted?: boolean;
+}) {
+  const [hov, setHov] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14,
+        overflow: "hidden", display: "flex", flexDirection: "column",
+        boxShadow: hov ? "0 8px 24px rgba(0,0,0,0.08)" : "none",
+        transform: hov ? "translateY(-3px)" : "translateY(0)",
+        transition: "transform 0.18s, box-shadow 0.18s",
+      }}
+    >
+      <InfoTile accent={accent} typeTag={typeTag} thumbLabel={thumbLabel} dims={dims} minHeight={140} inverted={inverted} />
+      <div style={{ padding: "14px 16px 16px", flex: 1, display: "flex", flexDirection: "column" }}>
+        <div style={{ fontFamily: FONT, fontSize: 13, fontWeight: 800, color: ACCENT_NAVY, lineHeight: 1.35, marginBottom: 5 }}>{title}</div>
+        <div style={{ fontFamily: FONT, fontSize: 12, color: "#64748b", lineHeight: 1.55, flex: 1, marginBottom: 12 }}>{meta}</div>
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+          {links.map((l, i) => <DlBtn key={i} label={l.label} href={l.href} solid={l.solid} accent={accent} />)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Featured card (spans 2 cols)
+function FeaturedCard({
+  typeTag, accent, sectionTag, title, desc, thumbLabel, dims, links,
+}: {
+  typeTag: string; accent: string;
+  sectionTag: string; title: string; desc: string;
+  thumbLabel: string; dims: string;
+  links: { label: string; href: string; solid?: boolean }[];
+}) {
+  const [hov, setHov] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        gridColumn: "span 2",
+        display: "grid", gridTemplateColumns: "1fr 1fr",
+        background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14,
+        overflow: "hidden",
+        boxShadow: hov ? "0 8px 24px rgba(0,0,0,0.08)" : "none",
+        transform: hov ? "translateY(-3px)" : "translateY(0)",
+        transition: "transform 0.18s, box-shadow 0.18s",
+      }}
+    >
+      <InfoTile accent={accent} typeTag={typeTag} thumbLabel={thumbLabel} dims={dims} minHeight={180} />
+      <div style={{ padding: "22px 24px", borderLeft: `1px solid ${BORDER}`, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "1.2px", textTransform: "uppercase", color: accent, marginBottom: 8 }}>{sectionTag}</div>
+        <div style={{ fontFamily: FONT, fontSize: 15, fontWeight: 900, color: ACCENT_NAVY, lineHeight: 1.3, marginBottom: 8 }}>{title}</div>
+        <p style={{ fontFamily: FONT, fontSize: 12, color: "#475569", lineHeight: 1.65, marginBottom: 16 }}>{desc}</p>
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+          {links.map((l, i) => <DlBtn key={i} label={l.label} href={l.href} solid={l.solid} accent={accent} />)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Section header
+function SectionHd({ label, accent, count, icon }: { label: string; accent: string; count: string; icon: React.ReactNode }) {
+  return (
+    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "56px 56px 20px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: accent, borderRadius: 8, padding: "7px 16px 7px 12px", fontFamily: FONT, fontSize: 12, fontWeight: 800, color: "#fff", whiteSpace: "nowrap" }}>
+          {icon}{label}
+        </div>
+        <div style={{ flex: 1, height: 1.5, background: BORDER, borderRadius: 2 }} />
+        <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#94a3b8" }}>{count}</div>
+      </div>
+    </div>
+  );
+}
+
+// ── Component ─────────────────────────────────────────────────────────────────
+export default function ProEngageCampaignKitView() {
+  return (
+    <div style={{ fontFamily: FONT, background: "#f5f5fa", minHeight: "100vh" }}>
+
+      {/* Top accent line */}
+      <div style={{ height: 3, background: COLOUR, width: "100%" }} />
+
+      <SubPageDotRail sections={SECTIONS} accentColour={COLOUR} />
+
+      {/* ── HERO — real PE banner photo with purple overlay, mirrors AboutProEngageView ── */}
+      <div id="ckit-hero" style={{ position: "relative", minHeight: "92vh", overflow: "hidden", display: "flex", alignItems: "center", paddingTop: 64 }}>
+        <img src={peHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg,${COLOUR}e8 0%,${COLOUR}cc 38%,${COLOUR}aa 58%,${COLOUR}77 78%,${COLOUR}44 100%)` }} />
+        <div style={DIAG} />
+
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%", display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 56, alignItems: "center" }}>
+
+          {/* Left */}
+          <div>
+            <p style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "1.6px", textTransform: "uppercase", color: "rgba(255,255,255,0.65)", margin: "0 0 12px" }}>
+              Tata Engage · Skill-Based Volunteering
+            </p>
+            <div style={{ height: 2, width: 48, borderRadius: 2, background: "rgba(255,255,255,0.6)", margin: "0 0 22px" }} />
+            <h1 style={{ fontFamily: FONT, fontSize: "clamp(2.4rem,5vw,3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px" }}>
+              ProEngage Campaign Kit
+            </h1>
+            <p style={{ fontFamily: FONT, fontSize: 15, fontWeight: 300, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", margin: "0 0 32px", maxWidth: 480 }}>
+              Download and share official ProEngage creative assets — posters, social media graphics, banners, and more — to amplify participation across your company.
+            </p>
+            <a href="mailto:tataengage@tata.com" style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              background: B_YELLOW, color: ACCENT_NAVY, borderRadius: 10, padding: "14px 28px",
+              fontFamily: FONT, fontSize: 14, fontWeight: 800, textDecoration: "none",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
+            }}>
+              Request custom assets
+            </a>
+          </div>
+
+          {/* Right — contents summary panel */}
+          <div style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 16, padding: 28, position: "relative", overflow: "hidden" }}>
+            <div style={DIAG} />
+            <div style={{ fontFamily: FONT, display: "inline-block", background: B_YELLOW, color: ACCENT_NAVY, fontSize: 9, fontWeight: 900, letterSpacing: "1.5px", textTransform: "uppercase", padding: "4px 10px", borderRadius: 100, marginBottom: 16, position: "relative", zIndex: 1 }}>
+              What's inside
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10, position: "relative", zIndex: 1 }}>
+              {[
+                { dot: COLOUR,  label: "ProEngage Assets", count: "10 files" },
+                { dot: B_BLUE,  label: "TVW Assets",       count: "6 files"  },
+                { dot: "#13BBB4",label:"Posters, Banners, Social", count: "Multiple formats" },
+              ].map((r, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 10, padding: "10px 14px" }}>
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: r.dot, flexShrink: 0 }} />
+                  <span style={{ fontFamily: FONT, fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.85)" }}>{r.label}</span>
+                  <span style={{ marginLeft: "auto", fontFamily: FONT, fontSize: 10, fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>{r.count}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── PROENGAGE ASSETS ── */}
+      <div id="ckit-pe">
+        <SectionHd label="ProEngage Assets" accent={COLOUR} count="10 Assets" icon={
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round">
+            <rect x="1" y="1" width="12" height="12" rx="2"/><path d="M1 5h12M5 1v12"/>
+          </svg>
+        } />
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 56px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
+
+            <FeaturedCard typeTag="Poster" accent={COLOUR}
+              sectionTag="ProEngage · Main Poster" title="ProEngage Poster — Portrait A"
+              desc="Primary recruitment poster for ProEngage. Use on office notice boards, internal screens, intranet pages and team communications to drive volunteer registrations."
+              thumbLabel="Primary Recruitment Poster" dims="A4 · Portrait"
+              links={[{ label: "Download PNG", href: PE_DRIVE, solid: true }, { label: "Download PDF", href: PE_DRIVE }]}
+            />
+
+            {[
+              { tag: "Poster",  label: "Portrait B",     dims: "A4 · Portrait",  title: "ProEngage Poster — Portrait B",   meta: "Secondary portrait variant. A4 print and digital-screen ready.",          links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "PDF", href: PE_DRIVE }] },
+              { tag: "Poster",  label: "Portrait C",     dims: "A4 · Portrait",  title: "ProEngage Poster — Portrait C",   meta: "Third portrait variant. Suitable for WhatsApp and internal messaging.",   links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "PDF", href: PE_DRIVE }] },
+              { tag: "Banner",  label: "Landscape A",    dims: "1200 × 628",     title: "ProEngage Banner — Landscape A",  meta: "Email headers, intranet banners, digital displays. 1200×628.",            links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "PDF", href: PE_DRIVE }] },
+              { tag: "Social",  label: "Social Square A",dims: "1080 × 1080",    title: "Social Media Square — Option A",  meta: "1080×1080 for LinkedIn, Instagram and Yammer posts.",                     links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "JPG", href: PE_DRIVE }] },
+              { tag: "Social",  label: "Social Square B",dims: "1080 × 1080",    title: "Social Media Square — Option B",  meta: "Alternate square layout. Different visual treatment to Option A.",        links: [{ label: "PNG", href: PE_DRIVE, solid: true }, { label: "JPG", href: PE_DRIVE }] },
+              { tag: "Story",   label: "Story Format",   dims: "1080 × 1920",    title: "Instagram / WhatsApp Story",      meta: "1080×1920 vertical format for Instagram Stories and WhatsApp status.",    links: [{ label: "PNG", href: PE_DRIVE, solid: true }] },
+              { tag: "Display", label: "Screensaver",    dims: "1920 × 1080",    title: "Laptop / Screen Wallpaper",       meta: "Desktop wallpaper for employee devices. 1920×1080 resolution.",           links: [{ label: "PNG", href: PE_DRIVE, solid: true }] },
+              { tag: "Email",   label: "Email Header",   dims: "1200 × 400",     title: "Email Campaign Header",           meta: "For internal email announcements and ProEngage newsletters.",             links: [{ label: "PNG", href: PE_DRIVE, solid: true }] },
+            ].map((c, i) => (
+              <AssetCard key={i} typeTag={c.tag} accent={COLOUR} title={c.title} meta={c.meta} thumbLabel={c.label} dims={c.dims} links={c.links} inverted={i % 2 === 1} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── TVW ASSETS ── */}
+      <div id="ckit-tvw" style={{ paddingTop: 8 }}>
+        <SectionHd label="TVW Assets" accent={B_BLUE} count="6 Assets" icon={
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round">
+            <path d="M7 2l1.5 4.5H13l-3.75 2.75L10.75 13 7 10.5 3.25 13l1.5-3.75L1 6.5h4.5z"/>
+          </svg>
+        } />
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 56px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
+
+            <FeaturedCard typeTag="Poster" accent={B_BLUE}
+              sectionTag="TVW25 · Campaign Poster" title="Tata Volunteering Week 25 — Main Poster"
+              desc="Primary TVW25 campaign poster featuring the IVY League of Volunteers theme. Use for office displays, intranet, and internal communications across your company."
+              thumbLabel="TVW25 Main Poster" dims="A4 · Portrait"
+              links={[{ label: "Download PNG", href: TVW_DRIVE, solid: true }, { label: "Download PDF", href: TVW_DRIVE }]}
+            />
+
+            {[
+              { tag: "Poster", label: "TVW Portrait B",  dims: "A4 · Portrait", title: "TVW25 Poster — Portrait B",   meta: "Secondary TVW25 portrait poster. A4 print and digital display.",         links: [{ label: "PNG", href: TVW_DRIVE, solid: true }, { label: "PDF", href: TVW_DRIVE }] },
+              { tag: "Social", label: "Social Square",   dims: "1080 × 1080",   title: "TVW25 Social Media Square",   meta: "1080×1080 for LinkedIn and Instagram promoting TVW25.",                  links: [{ label: "PNG", href: TVW_DRIVE, solid: true }] },
+              { tag: "Banner", label: "Landscape Banner",dims: "1920 × 1080",   title: "TVW25 Landscape Banner",      meta: "Wide format for email headers, intranet and digital boards.",            links: [{ label: "PNG", href: TVW_DRIVE, solid: true }, { label: "PDF", href: TVW_DRIVE }] },
+              { tag: "Story",  label: "Story Format",    dims: "1080 × 1920",   title: "TVW25 Instagram Story",       meta: "1080×1920 vertical for Instagram Stories and WhatsApp status.",          links: [{ label: "PNG", href: TVW_DRIVE, solid: true }] },
+              { tag: "Guide",  label: "DIY Guide",       dims: "PDF · A4",      title: "TVW25 DIY Activity Guide",    meta: "Step-by-step guide for volunteers running independent DIY activities.", links: [{ label: "PDF", href: "https://tataengage.com/TVW25/PDF/TVW25_DIY_Guide.pdf", solid: true }] },
+            ].map((c, i) => (
+              <AssetCard key={i} typeTag={c.tag} accent={B_BLUE} title={c.title} meta={c.meta} thumbLabel={c.label} dims={c.dims} links={c.links} inverted={i % 2 === 1} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── INFO STRIP ── */}
+      <div style={{ maxWidth: 1100, margin: "40px auto 0", padding: "0 56px" }}>
+        <div style={{ background: COLOUR, borderRadius: 14, padding: "22px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
+          <div>
+            <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: 4 }}>Need help or custom assets?</div>
+            <div style={{ fontFamily: FONT, fontSize: 17, fontWeight: 900, color: "#fff" }}>Reach out to the Tata Engage team</div>
+          </div>
+          <a href="mailto:tataengage@tata.com" style={{
+            background: B_YELLOW, color: ACCENT_NAVY, borderRadius: 10, padding: "11px 22px",
+            fontFamily: FONT, fontSize: 13, fontWeight: 800, textDecoration: "none",
+            whiteSpace: "nowrap", flexShrink: 0,
+          }}>tataengage@tata.com</a>
+        </div>
+      </div>
+
+      {/* bottom padding — real footer mounts above this */}
+      <div style={{ height: 80 }} />
+
+    </div>
+  );
+}
