@@ -142,12 +142,12 @@ function AssetCard({
 
 // Featured card (spans 2 cols)
 function FeaturedCard({
-  thumbBg, typeTag, typeTagColor, accent, sectionTag, title, desc, links, children,
+  typeTag, accent, sectionTag, title, desc, thumbLabel, dims, links,
 }: {
-  thumbBg: string; typeTag: string; typeTagColor: string; accent: string;
+  typeTag: string; accent: string;
   sectionTag: string; title: string; desc: string;
+  thumbLabel: string; dims: string;
   links: { label: string; href: string; solid?: boolean }[];
-  children?: React.ReactNode;
 }) {
   const [hov, setHov] = useState(false);
   return (
@@ -164,17 +164,7 @@ function FeaturedCard({
         transition: "transform 0.18s, box-shadow 0.18s",
       }}
     >
-      <div style={{ position: "relative", background: thumbBg, minHeight: 180, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-        {children}
-        <span style={{
-          position: "absolute", top: 10, right: 10,
-          fontFamily: FONT, fontSize: 9, fontWeight: 800, letterSpacing: "0.8px", textTransform: "uppercase",
-          padding: "3px 8px", borderRadius: 100,
-          background: "rgba(255,255,255,0.92)", color: typeTagColor,
-          border: `1px solid ${typeTagColor}30`,
-        }}>{typeTag}</span>
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: accent }} />
-      </div>
+      <InfoTile accent={accent} typeTag={typeTag} thumbLabel={thumbLabel} dims={dims} minHeight={180} />
       <div style={{ padding: "22px 24px", borderLeft: `1px solid ${BORDER}`, display: "flex", flexDirection: "column", justifyContent: "center" }}>
         <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "1.2px", textTransform: "uppercase", color: accent, marginBottom: 8 }}>{sectionTag}</div>
         <div style={{ fontFamily: FONT, fontSize: 15, fontWeight: 900, color: ACCENT_NAVY, lineHeight: 1.3, marginBottom: 8 }}>{title}</div>
@@ -183,16 +173,6 @@ function FeaturedCard({
           {links.map((l, i) => <DlBtn key={i} label={l.label} href={l.href} solid={l.solid} accent={accent} />)}
         </div>
       </div>
-    </div>
-  );
-}
-
-// Thumb icon content
-function ThumbIcon({ bg, color, label, children }: { bg: string; color: string; label: string; children: React.ReactNode }) {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, textAlign: "center", padding: 16 }}>
-      <div style={{ width: 42, height: 42, borderRadius: 10, background: bg, display: "flex", alignItems: "center", justifyContent: "center" }}>{children}</div>
-      <span style={{ fontFamily: FONT, fontSize: 10, fontWeight: 700, color }}>{label}</span>
     </div>
   );
 }
