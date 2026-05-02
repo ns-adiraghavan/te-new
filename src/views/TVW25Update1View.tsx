@@ -1,5 +1,70 @@
-import React, { useState } from "react";
+import React from "react";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
+
+const MILESTONE_CYCLE = ["#135EA9", "#307FE2", "#00A896", "#803998", "#F4838A"];
+
+// ── Milestone row (verbatim from JourneyView) ───────────────────────────────
+function MilestoneRow({ m, index, colour }: { m: { photo: string; year: string; title: string; body: string; stat: string; statSub: string; key: string }; index: number; colour: string }) {
+  const textOnLeft = index % 2 === 0;
+
+  const TextPanel = (
+    <div style={{
+      background: colour,
+      padding: "32px 44px",
+      display: "flex", flexDirection: "column", justifyContent: "center",
+      position: "relative",
+      borderTop: "4px solid rgba(255,255,255,0.35)",
+      overflow: "hidden",
+      height: "360px",
+    }}>
+      <div style={{ marginBottom: 18 }}>
+        <span style={{ background: "rgba(255,255,255,0.18)", color: "#fff", fontFamily: "'DM Sans',ui-sans-serif,system-ui,sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "-0.2px", padding: "5px 12px", borderRadius: 6, border: "1px solid rgba(255,255,255,0.25)" }}>
+          {m.year}
+        </span>
+      </div>
+      <h3 style={{ fontFamily: "'DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 24, fontWeight: 900, color: "#fff", letterSpacing: "-0.4px", lineHeight: 1.2, margin: "0 0 14px" }}>
+        {m.title}
+      </h3>
+      <p style={{ fontFamily: "'DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14.5, color: "rgba(255,255,255,0.88)", lineHeight: 1.72, margin: 0, maxWidth: 460 }}>
+        {m.body}
+      </p>
+      <div style={{ marginTop: 24, display: "inline-flex", alignItems: "baseline", gap: 10, paddingTop: 16, borderTop: "1px dashed rgba(255,255,255,0.4)" }}>
+        <span style={{ fontFamily: "'DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 26, fontWeight: 900, color: "#fff", letterSpacing: "-0.6px" }}>{m.stat}</span>
+        <span style={{ fontFamily: "'DM Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.72)", letterSpacing: "0.4px" }}>{m.statSub}</span>
+      </div>
+    </div>
+  );
+
+  const PhotoPanel = (
+    <div style={{ background: colour, display: "flex", alignItems: "center", justifyContent: "center", padding: "24px", height: "360px" }}>
+      <img src={m.photo} alt={m.title} style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        objectPosition: "center",
+        display: "block",
+      }} />
+    </div>
+  );
+
+  return (
+    <section id={m.key} data-milestone-row style={{ position: "relative", scrollMarginTop: 80 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderRadius: 22, overflow: "hidden", boxShadow: "0 18px 44px rgba(13,27,62,0.10), 0 2px 6px rgba(13,27,62,0.04)", height: 360 }}>
+        {textOnLeft ? <>{TextPanel}{PhotoPanel}</> : <>{PhotoPanel}{TextPanel}</>}
+      </div>
+    </section>
+  );
+}
+
+// ── Dotted connector (verbatim from JourneyView) ────────────────────────────
+function DottedConnector({ colourFrom, colourTo }: { colourFrom: string; colourTo: string }) {
+  return (
+    <div aria-hidden style={{ position: "relative", height: 72, margin: "0 auto", width: "100%", display: "flex", justifyContent: "center" }}>
+      <div style={{ width: 2, height: "100%", backgroundImage: `repeating-linear-gradient(to bottom, ${colourFrom}cc 0px, ${colourFrom}cc 4px, transparent 4px, transparent 10px)` }} />
+      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 12, height: 12, borderRadius: "50%", background: `linear-gradient(135deg, ${colourFrom}, ${colourTo})`, boxShadow: "0 0 0 4px #f4f5f8" }} />
+    </div>
+  );
+}
 
 // ── Tokens — exact platform values ───────────────────────────────────────────
 const FONT        = "'DM Sans',ui-sans-serif,system-ui,sans-serif";
@@ -162,9 +227,28 @@ export default function TVW25Update1View() {
         </div>
       </div>
 
-      {/* ── MASONRY CARD GRID ── */}
-      <div id="tvw-updates" style={{ maxWidth: 1100, margin: "0 auto", padding: "36px 56px 80px", columns: 2, columnGap: 20 }}>
-        {CARDS.map((card, i) => <ActivityCard key={i} card={card} />)}
+      {/* ── MILESTONE ROWS ── */}
+      <div id="tvw-updates" style={{ maxWidth: 1080, margin: "0 auto", padding: "72px 32px 80px" }}>
+        {CARDS.map((card, i) => {
+          const colour = MILESTONE_CYCLE[i % MILESTONE_CYCLE.length];
+          const nextColour = MILESTONE_CYCLE[(i + 1) % MILESTONE_CYCLE.length];
+          const isLast = i === CARDS.length - 1;
+          const m = {
+            key: `tvw-card-${i}`,
+            photo: card.img,
+            year: card.company,
+            title: card.title,
+            body: card.desc,
+            stat: card.tag,
+            statSub: card.loc,
+          };
+          return (
+            <div key={i}>
+              <MilestoneRow m={m} index={i} colour={colour} />
+              {!isLast && <DottedConnector colourFrom={colour} colourTo={nextColour} />}
+            </div>
+          );
+        })}
       </div>
 
     </div>
