@@ -78,15 +78,42 @@ function DlBtn({ label, href, solid, accent }: { label: string; href: string; so
   );
 }
 
+// ── Info tile (KPI-style, replaces old ThumbIcon thumbnails) ─────────────────
+function InfoTile({ accent, typeTag, thumbLabel, dims, minHeight = 140 }: {
+  accent: string; typeTag: string; thumbLabel: string; dims: string; minHeight?: number;
+}) {
+  return (
+    <div style={{
+      position: "relative", width: "100%", minHeight, background: accent,
+      borderRadius: 0, overflow: "hidden",
+      display: "flex", flexDirection: "column", justifyContent: "space-between",
+      padding: "18px 20px",
+    }}>
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "rgba(255,255,255,0.35)" }} />
+      <div style={{
+        fontFamily: FONT, fontSize: 11, fontWeight: 800, letterSpacing: "1.6px",
+        textTransform: "uppercase", color: "rgba(255,255,255,0.65)",
+      }}>{typeTag}</div>
+      <div style={{
+        fontFamily: FONT, fontSize: 22, fontWeight: 900, color: "#fff",
+        letterSpacing: "-0.3px", lineHeight: 1.1,
+      }}>{thumbLabel}</div>
+      <div style={{
+        fontFamily: FONT, fontSize: 11, fontWeight: 600,
+        color: "rgba(255,255,255,0.55)", letterSpacing: "0.4px",
+      }}>{dims}</div>
+    </div>
+  );
+}
+
 // ── Asset card ────────────────────────────────────────────────────────────────
 function AssetCard({
-  thumbBg, typeTag, typeTagColor, accent, title, meta,
-  links, children,
+  typeTag, accent, title, meta, thumbLabel, dims,
+  links,
 }: {
-  thumbBg: string; typeTag: string; typeTagColor: string; accent: string;
-  title: string; meta: string;
+  typeTag: string; accent: string;
+  title: string; meta: string; thumbLabel: string; dims: string;
   links: { label: string; href: string; solid?: boolean }[];
-  children?: React.ReactNode;
 }) {
   const [hov, setHov] = useState(false);
   return (
@@ -101,17 +128,7 @@ function AssetCard({
         transition: "transform 0.18s, box-shadow 0.18s",
       }}
     >
-      <div style={{ position: "relative", height: 140, background: thumbBg, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-        {children}
-        <span style={{
-          position: "absolute", top: 10, right: 10,
-          fontFamily: FONT, fontSize: 9, fontWeight: 800, letterSpacing: "0.8px", textTransform: "uppercase",
-          padding: "3px 8px", borderRadius: 100,
-          background: "rgba(255,255,255,0.92)", color: typeTagColor,
-          border: `1px solid ${typeTagColor}30`,
-        }}>{typeTag}</span>
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: accent }} />
-      </div>
+      <InfoTile accent={accent} typeTag={typeTag} thumbLabel={thumbLabel} dims={dims} minHeight={140} />
       <div style={{ padding: "14px 16px 16px", flex: 1, display: "flex", flexDirection: "column" }}>
         <div style={{ fontFamily: FONT, fontSize: 13, fontWeight: 800, color: ACCENT_NAVY, lineHeight: 1.35, marginBottom: 5 }}>{title}</div>
         <div style={{ fontFamily: FONT, fontSize: 12, color: "#64748b", lineHeight: 1.55, flex: 1, marginBottom: 12 }}>{meta}</div>
