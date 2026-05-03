@@ -137,41 +137,73 @@ const VolunteerHubView = () => {
           background: `linear-gradient(110deg, #135EA9e8 0%, #135EA9cc 38%, #135EA9aa 58%, #135EA977 78%, #135EA944 100%)`
         }} />
 
-        <div className="relative z-10 flex flex-col justify-between px-8 md:px-16 py-8" style={{ minHeight: "92vh", paddingTop: 80 }}>
+        <div className="relative z-10 flex flex-col justify-between px-6 md:px-16 py-16" style={{ minHeight: "92vh", paddingTop: 96 }}>
 
             {/* Top — greeting */}
-            <div>
+            <div style={{ maxWidth: 580 }}>
               {(user?.role?.includes("spoc") || user?.role === "corporate_spoc") && (
-                <RoleToggle activeView="volunteer" className="mb-3" />
+                <RoleToggle activeView="volunteer" className="mb-4" />
               )}
-              <p className="text-white/50 text-sm font-medium tracking-wide mb-1">
-                {"\n"}
+              <span style={{
+                display: "inline-block",
+                fontSize: 14, fontWeight: 800, letterSpacing: "2.3px",
+                textTransform: "uppercase", color: "#ffffff",
+                fontFamily: "'DM Sans', 'Noto Sans', ui-sans-serif, system-ui, sans-serif",
+              }}>
+                Volunteer Hub
+              </span>
+              <div style={{ height: 1.4, width: 80, borderRadius: 2, background: "rgba(255,255,255,0.12)", marginTop: 4, marginBottom: 20, overflow: "hidden" }}>
+                <div style={{ height: "100%", borderRadius: 2, background: B_YELLOW }} />
+              </div>
+              <h1 style={{
+                fontFamily: "'DM Sans', 'Noto Sans', ui-sans-serif, system-ui, sans-serif",
+                fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
+                lineHeight: 1.12, letterSpacing: "-0.5px",
+                color: "white", margin: "0 0 10px", fontWeight: 400,
+              }}>
+                Welcome, <span style={{ fontWeight: 700 }}>{user?.firstName ?? "there"}</span>.
+              </h1>
+              <p style={{
+                fontFamily: "'DM Sans', 'Noto Sans', ui-sans-serif, system-ui, sans-serif",
+                fontSize: "clamp(1rem, 1.6vw, 1.25rem)",
+                color: "rgba(255,255,255,0.82)", lineHeight: 1.5,
+                margin: 0, fontWeight: 300,
+              }}>
+                Let's make today count.
               </p>
-              <p className="text-white text-5xl font-sans font-bold" style={{ letterSpacing: "-0.5px", lineHeight: 1.1 }}>
-                Welcome, {user?.firstName ?? "there"}.
-              </p>
-              <p className="text-white/70 text-lg mt-3 font-light">Let's make today count.</p>
             </div>
 
             {/* Centre — quote */}
-            <div className="max-w-lg">
-              <svg width="24" height="20" viewBox="0 0 28 22" fill="none" className="mb-3 opacity-20">
+            <div style={{ maxWidth: 520 }}>
+              <svg width="24" height="20" viewBox="0 0 28 22" fill="none" style={{ marginBottom: 12, opacity: 0.2 }}>
                 <path d="M0 22V13.5C0 5.8 4.5 1.5 13.5 0L15 3C10.5 4.2 8 7 7.5 11H12V22H0ZM16 22V13.5C16 5.8 20.5 1.5 29.5 0L31 3C26.5 4.2 24 7 23.5 11H28V22H16Z" fill="white"/>
               </svg>
-              <h2 className="text-white font-bold text-xl md:text-2xl leading-snug tracking-tight mb-3">
+              <h2 style={{
+                fontFamily: "'DM Sans', 'Noto Sans', ui-sans-serif, system-ui, sans-serif",
+                fontSize: "clamp(1.1rem, 1.8vw, 1.4rem)",
+                lineHeight: 1.4, letterSpacing: "-0.2px",
+                color: "white", margin: "0 0 10px", fontWeight: 400,
+              }}>
                 The smallest act of kindness is worth more than the grandest intention.
               </h2>
-              <p className="text-white/40 text-xs font-bold uppercase tracking-widest">— Oscar Wilde</p>
+              <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", margin: 0 }}>
+                — Oscar Wilde
+              </p>
             </div>
 
             {/* Bottom — CTA */}
             <div className="flex justify-end">
               <button
                 onClick={() => navigate("dashboard")}
-                className="flex items-center gap-2 text-zinc-900 text-sm font-bold px-6 py-2.5 rounded-xl hover:brightness-105 transition-all cursor-pointer shadow-lg"
-                style={{ backgroundColor: B_YELLOW }}
+                className="flex items-center gap-2 cursor-pointer cta-btn"
+                style={{
+                  padding: "11px 24px", borderRadius: 10,
+                  fontSize: 13, fontWeight: 800, color: "#0D1B3E",
+                  background: B_YELLOW, border: "none",
+                  fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif",
+                }}
               >
-                My Space <ArrowRight size={15} />
+                My Space <ArrowRight size={14} />
               </button>
             </div>
         </div>
