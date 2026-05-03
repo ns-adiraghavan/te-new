@@ -135,25 +135,17 @@ const SPOCHubView = () => {
 
             {/* Top — greeting */}
             <div style={{ maxWidth: 580 }}>
-              <span style={{
-                display: "inline-block",
-                fontSize: 14, fontWeight: 800, letterSpacing: "2.3px",
-                textTransform: "uppercase", color: "#ffffff",
-                fontFamily: "'DM Sans', 'Noto Sans', ui-sans-serif, system-ui, sans-serif",
-              }}>
-                SPOC Hub
-              </span>
-              <div style={{ height: 1.4, width: 80, borderRadius: 2, background: "rgba(255,255,255,0.12)", marginTop: 4, marginBottom: 20, overflow: "hidden" }}>
-                <div style={{ height: "100%", borderRadius: 2, background: B_TICKER }} />
-              </div>
               <h1 style={{
                 fontFamily: "'DM Sans', 'Noto Sans', ui-sans-serif, system-ui, sans-serif",
                 fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
                 lineHeight: 1.12, letterSpacing: "-0.5px",
-                color: "white", margin: "0 0 10px", fontWeight: 400,
+                color: "white", margin: "0 0 16px", fontWeight: 400,
               }}>
                 {greeting()}, <span style={{ fontWeight: 700 }}>{user?.firstName ?? "Rohan"}</span>.
               </h1>
+              <div style={{ height: 1.4, width: 80, borderRadius: 2, background: "rgba(255,255,255,0.12)", marginBottom: 18, overflow: "hidden" }}>
+                <div style={{ height: "100%", borderRadius: 2, background: B_TICKER }} />
+              </div>
               <p style={{
                 fontFamily: "'DM Sans', 'Noto Sans', ui-sans-serif, system-ui, sans-serif",
                 fontSize: "clamp(1rem, 1.6vw, 1.25rem)",
