@@ -76,14 +76,12 @@ function LetterSection() {
           {/* Letter */}
           <div style={{ paddingTop: 20 }}>
             <h2 style={{ fontFamily: FONT, fontSize: 30, fontWeight: 900, color: NAVY, letterSpacing: "-0.5px", lineHeight: 1.2, margin: 0 }}>
-              From the desk of the Group Chief Sustainability Officer
+              Dear All,
             </h2>
             <DefinerBar />
 
             <div style={{ margin: "32px 0 0" }}>
-              <p style={{ fontFamily: FONT, fontSize: 15, fontWeight: 700, color: NAVY, lineHeight: 1.82, marginBottom: 16 }}>
-                Dear all,
-              </p>
+              {/* Salutation removed per request */}
               <p style={{ fontFamily: FONT, fontSize: 15, color: "#475569", lineHeight: 1.82, marginBottom: 16 }}>
                 Volunteering has always been integral to the Tata ethos—not as an act separate from business, but as a way of staying closely connected to communities, realities, and responsibilities that shape our shared future. Across the Tata Group, volunteering continues to evolve from acts of compassion to expressions of thoughtful engagement, where time, skills, and intent come together to create meaningful outcomes. Through Tata Engage, we see this spirit come alive every day—in Tata colleagues, family members and retirees choosing to step forward, to contribute consistently, and to work alongside communities with empathy and purpose.
               </p>
