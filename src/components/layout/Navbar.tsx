@@ -567,7 +567,7 @@ const Navbar = ({
                           },
                           {
                             icon: LayoutDashboard,
-                            label: "My Hub",
+                            label: "My Space",
                             action: () => {
                               onNavigate(hubView());
                               setDropdownOpen(false);
