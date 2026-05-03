@@ -297,8 +297,15 @@ const Navbar = ({
           <div className="hidden md:flex items-center gap-10 lg:gap-[60px]">
             {/* HOME */}
             <span
-              onClick={() => triggerBounce("home", () => onNavigate("home"))}
-              className={navLinkCls(location.pathname === "/", "home")}
+              onClick={() => triggerBounce("home", () => (isLoggedIn ? onNavigate(hubView()) : onNavigate("home")))}
+              className={navLinkCls(
+                location.pathname === "/" ||
+                  (isLoggedIn &&
+                    (location.pathname === "/hub" ||
+                      location.pathname === "/ngo/hub" ||
+                      location.pathname === "/spoc/hub")),
+                "home",
+              )}
             >
               Home
             </span>
