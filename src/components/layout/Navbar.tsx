@@ -298,7 +298,14 @@ const Navbar = ({
             {/* HOME */}
             <span
               onClick={() => triggerBounce("home", () => (isLoggedIn ? onNavigate(hubView()) : onNavigate("home")))}
-              className={navLinkCls(location.pathname === "/", "home")}
+              className={navLinkCls(
+                location.pathname === "/" ||
+                  (isLoggedIn &&
+                    (location.pathname === "/hub" ||
+                      location.pathname === "/ngo/hub" ||
+                      location.pathname === "/spoc/hub")),
+                "home",
+              )}
             >
               Home
             </span>
