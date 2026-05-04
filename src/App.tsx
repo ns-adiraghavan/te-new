@@ -144,7 +144,6 @@ export default function App() {
   const handleRoleSelect = (role: Role) => {
     setSelectedRole(role);
     setFormStep(1);
-    navigate("register-form");
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
