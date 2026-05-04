@@ -126,10 +126,10 @@ function StatTile({
 
 // ─── DrawerShell — centred modal (identical spec to Volunteer/SPOC) ────────────
 function DrawerShell({
-  open, onClose, title, subtitle, accentTag, width = 560, children,
+  open, onClose, title, subtitle, accentTag, accentColor, width = 560, doodle, children,
 }: {
   open: boolean; onClose: () => void; title: string;
-  subtitle?: string; accentTag?: string; width?: number; children: React.ReactNode;
+  subtitle?: string; accentTag?: string; accentColor?: string; width?: number; doodle?: boolean; children: React.ReactNode;
 }) {
   useEffect(() => {
     const h = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -141,11 +141,20 @@ function DrawerShell({
     <>
       <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(13,27,62,0.45)", zIndex: 200, opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none", transition: "opacity 0.22s", backdropFilter: "blur(2px)" }} />
       <div style={{ position: "fixed", top: "50%", left: "50%", transform: open ? "translate(-50%, -50%) scale(1)" : "translate(-50%, -48%) scale(0.97)", transition: "transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s", opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none", width, maxWidth: "calc(100vw - 40px)", maxHeight: "calc(100vh - 80px)", background: "#fff", borderRadius: 16, zIndex: 201, boxShadow: "0 24px 64px rgba(13,27,62,0.22)", display: "flex", flexDirection: "column", overflowY: "auto" }}>
-        <div style={{ background: B_NGO, padding: "24px 28px", borderRadius: "16px 16px 0 0", flexShrink: 0 }}>
-          <button onClick={onClose} style={{ background: "rgba(255,255,255,0.1)", border: "none", borderRadius: 7, color: "rgba(255,255,255,0.7)", fontSize: 13, fontWeight: 500, padding: "5px 12px", cursor: "pointer", marginBottom: 16 }}>← Close</button>
-          {accentTag && <div style={{ display: "inline-block", background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: "#fff", letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 10 }}>{accentTag}</div>}
-          <div style={{ fontSize: 17, fontWeight: 700, color: "#fff", lineHeight: 1.3 }}>{title}</div>
-          {subtitle && <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.45)", marginTop: 5 }}>{subtitle}</div>}
+        <div style={{ background: accentColor ?? B_NGO, padding: "24px 28px", borderRadius: "16px 16px 0 0", flexShrink: 0, position: "relative", overflow: "hidden" }}>
+          {doodle && (
+            <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.10, pointerEvents: "none" }} viewBox="0 0 560 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <style>{`@keyframes dsh1{0%,100%{transform:translate(0,0)}50%{transform:translate(6px,-8px)}} @keyframes dsh2{0%,100%{transform:translate(0,0)}50%{transform:translate(-8px,6px)}} .dsh-a{animation:dsh1 18s ease-in-out infinite} .dsh-b{animation:dsh2 24s ease-in-out infinite}`}</style>
+              <g className="dsh-a"><circle cx="500" cy="30" r="36" fill="none" stroke="white" strokeWidth="2"/><circle cx="500" cy="30" r="20" fill="none" stroke="white" strokeWidth="1.2"/></g>
+              <g className="dsh-b"><path d="M440 90 C460 70,490 80,510 60" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+              <g className="dsh-a" style={{animationDelay:"-6s"}}><path d="M20 20 L46 46 L20 72 L-6 46 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></g>
+              <g className="dsh-b" style={{animationDelay:"-12s"}}><rect x="60" y="55" width="24" height="24" rx="4" fill="none" stroke="white" strokeWidth="1.8" transform="rotate(18,72,67)"/></g>
+            </svg>
+          )}
+          <button onClick={onClose} style={{ background: "rgba(255,255,255,0.1)", border: "none", borderRadius: 7, color: "rgba(255,255,255,0.7)", fontSize: 13, fontWeight: 500, padding: "5px 12px", cursor: "pointer", marginBottom: 16, position: "relative", zIndex: 1 }}>← Close</button>
+          {accentTag && <div style={{ display: "inline-block", background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: "#fff", letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 10, position: "relative", zIndex: 1 }}>{accentTag}</div>}
+          <div style={{ fontSize: 17, fontWeight: 700, color: "#fff", lineHeight: 1.3, position: "relative", zIndex: 1 }}>{title}</div>
+          {subtitle && <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.45)", marginTop: 5, position: "relative", zIndex: 1 }}>{subtitle}</div>}
         </div>
         <div style={{ flex: 1, overflowY: "auto", padding: "24px 28px" }}>{children}</div>
       </div>
@@ -1164,7 +1173,7 @@ const NGODashboardView = () => {
       </DrawerShell>
 
       {/* Add project */}
-      <DrawerShell open={modal === "addProject"} onClose={() => { setModal(null); setClonedFrom(null); }} title={clonedFrom ? `New Project (from "${clonedFrom.title}")` : "Add New Project"} accentTag={clonedFrom ? "Cloned" : "New"} width={620}>
+      <DrawerShell open={modal === "addProject"} onClose={() => { setModal(null); setClonedFrom(null); }} doodle title={clonedFrom ? `New Project (from "${clonedFrom.title}")` : "Add New Project"} accentTag={clonedFrom ? "Cloned" : "New"} width={620}>
         <AddProjectForm clonedFrom={clonedFrom} onClose={() => { setModal(null); setClonedFrom(null); }} onSubmit={() => { setModal(null); setClonedFrom(null); triggerToast("Project submitted for TSG Admin review. You'll be notified once approved."); }} />
       </DrawerShell>
 
@@ -1193,7 +1202,7 @@ const NGODashboardView = () => {
       </DrawerShell>
 
       {/* Applicant detail */}
-      <DrawerShell open={modal === "selectedApplicant"} onClose={() => setModal(null)} title="Volunteer Profile" accentTag={selectedApplicant ? `${selectedApplicant.matchPercentage}% Match` : ""}>
+      <DrawerShell open={modal === "selectedApplicant"} onClose={() => setModal(null)} doodle title="Volunteer Profile" accentTag={selectedApplicant ? `${selectedApplicant.matchPercentage}% Match` : ""}>
         {selectedApplicant && (
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
@@ -1373,7 +1382,7 @@ const NGODashboardView = () => {
       </DrawerShell>
 
       {/* Share story */}
-      <DrawerShell open={modal === "shareStory"} onClose={() => setModal(null)} title="Share Your Story" accentTag="Story" subtitle="Post a project highlight or impact experience">
+      <DrawerShell open={modal === "shareStory"} onClose={() => setModal(null)} doodle title="Share Your Story" accentTag="Story" subtitle="Post a project highlight or impact experience">
         <div>
           <div style={{ background: P_NGO_MID, border: `1px solid ${B_NGO}25`, borderRadius: 10, padding: "12px 14px", marginBottom: 18, fontSize: 12.5, color: ACCENT_NAVY, lineHeight: 1.5 }}>
             Stories go to TSG Admin for moderation before being published. Approved stories may appear on the TVW Vibe wall and TataEngage homepage.

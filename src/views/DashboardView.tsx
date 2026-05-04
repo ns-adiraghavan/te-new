@@ -450,7 +450,7 @@ function ResourceCard({ r, onClick }: { r: typeof RESOURCES[0]; onClick?: () => 
 // ─── DrawerShell — centred modal ──────────────────────────────────────────────
 type AppRecord = typeof HISTORY_APPLICATIONS[0];
 
-function DrawerShell({ open, onClose, title, subtitle, accentTag, accentColor, children, width }: { open: boolean; onClose: () => void; title: string; subtitle?: string; accentTag?: string; accentColor?: string; children: React.ReactNode; width?: number; }) {
+function DrawerShell({ open, onClose, title, subtitle, accentTag, accentColor, children, width, doodle }: { open: boolean; onClose: () => void; title: string; subtitle?: string; accentTag?: string; accentColor?: string; children: React.ReactNode; width?: number; doodle?: boolean; }) {
   useEffect(() => {
     const h = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", h);
@@ -460,11 +460,21 @@ function DrawerShell({ open, onClose, title, subtitle, accentTag, accentColor, c
     <>
       <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(13,27,62,0.45)", zIndex: 200, opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none", transition: "opacity 0.22s", backdropFilter: "blur(2px)" }} />
       <div style={{ position: "fixed", top: "50%", left: "50%", transform: open ? "translate(-50%, -50%) scale(1)" : "translate(-50%, -48%) scale(0.97)", transition: "transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s", opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none", width: width ?? 560, maxWidth: "calc(100vw - 40px)", maxHeight: "calc(100vh - 80px)", background: "#fff", borderRadius: 16, zIndex: 201, boxShadow: "0 24px 64px rgba(13,27,62,0.22)", display: "flex", flexDirection: "column", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", overflowY: "auto" }}>
-        <div style={{ background: accentColor || "linear-gradient(135deg, #065666 0%, #135EA9 100%)", padding: "24px 28px", borderRadius: "16px 16px 0 0", flexShrink: 0 }}>
-          <button onClick={onClose} style={{ background: "rgba(255,255,255,0.18)", border: "none", borderRadius: 7, color: "rgba(255,255,255,0.95)", fontSize: 13, fontWeight: 500, padding: "5px 12px", cursor: "pointer", marginBottom: 16 }}>← Close</button>
-          {accentTag && <div style={{ display: "inline-block", background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: "#fff", letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 10 }}>{accentTag}</div>}
-          <div style={{ fontSize: 17, fontWeight: 700, color: "#fff", lineHeight: 1.3 }}>{title}</div>
-          {subtitle && <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.7)", marginTop: 5 }}>{subtitle}</div>}
+        <div style={{ background: accentColor || "linear-gradient(135deg, #065666 0%, #135EA9 100%)", padding: "24px 28px", borderRadius: "16px 16px 0 0", flexShrink: 0, position: "relative", overflow: "hidden" }}>
+          {doodle && (
+            <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.10, pointerEvents: "none" }} viewBox="0 0 720 140" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <style>{`@keyframes dsh1{0%,100%{transform:translate(0,0)}50%{transform:translate(6px,-8px)}} @keyframes dsh2{0%,100%{transform:translate(0,0)}50%{transform:translate(-8px,6px)}} .dsh-a{animation:dsh1 18s ease-in-out infinite} .dsh-b{animation:dsh2 24s ease-in-out infinite}`}</style>
+              <g className="dsh-a"><circle cx="640" cy="30" r="40" fill="none" stroke="white" strokeWidth="2"/><circle cx="640" cy="30" r="22" fill="none" stroke="white" strokeWidth="1.2"/></g>
+              <g className="dsh-b"><path d="M580 100 C600 80,630 90,650 70 C670 50,700 60,720 40" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+              <g className="dsh-a" style={{animationDelay:"-6s"}}><path d="M20 20 L50 50 L20 80 L-10 50 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></g>
+              <g className="dsh-b" style={{animationDelay:"-12s"}}><rect x="60" y="60" width="28" height="28" rx="4" fill="none" stroke="white" strokeWidth="1.8" transform="rotate(18,74,74)"/></g>
+              <g className="dsh-a" style={{animationDelay:"-3s"}}><line x1="500" y1="20" x2="500" y2="50" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="485" y1="35" x2="515" y2="35" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+            </svg>
+          )}
+          <button onClick={onClose} style={{ background: "rgba(255,255,255,0.18)", border: "none", borderRadius: 7, color: "rgba(255,255,255,0.95)", fontSize: 13, fontWeight: 500, padding: "5px 12px", cursor: "pointer", marginBottom: 16, position: "relative", zIndex: 1 }}>← Close</button>
+          {accentTag && <div style={{ display: "inline-block", background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: "#fff", letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 10, position: "relative", zIndex: 1 }}>{accentTag}</div>}
+          <div style={{ fontSize: 17, fontWeight: 700, color: "#fff", lineHeight: 1.3, position: "relative", zIndex: 1 }}>{title}</div>
+          {subtitle && <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.7)", marginTop: 5, position: "relative", zIndex: 1 }}>{subtitle}</div>}
         </div>
         <div style={{ flex: 1, overflowY: "auto" }}>{children}</div>
       </div>
@@ -830,15 +840,15 @@ function PEStepRail({ step, accent }: { step: number; accent: string }) {
 }
 
 function PEFieldLabel({ children }: { children: React.ReactNode }) {
-  return <label style={{ display: "block", fontSize: 11, fontWeight: 700, color: "#888", textTransform: "uppercase" as const, letterSpacing: "1px", marginBottom: 7, fontFamily: FONT_PE }}>{children}</label>;
+  return <label style={{ display: "block", fontSize: 11.5, fontWeight: 800, color: ACCENT_NAVY, textTransform: "uppercase" as const, letterSpacing: "0.8px", marginBottom: 8, fontFamily: FONT_PE }}>{children}</label>;
 }
 
 function PEInput({ value, onChange, placeholder, type = "text", accent }: { value: string; onChange: (v: string) => void; placeholder?: string; type?: string; accent: string }) {
   return (
     <input type={type} value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder}
-      onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}06`; }}
-      onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; }}
-      style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "11px 14px", fontSize: 14, fontFamily: FONT_PE, color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" as const, background: "#fff", transition: "border-color 0.15s, background 0.15s" }}
+      onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}06`; e.target.style.boxShadow = `0 0 0 3px ${accent}18`; }}
+      onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; e.target.style.boxShadow = "none"; }}
+      style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "11px 14px", fontSize: 14, fontFamily: FONT_PE, color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" as const, background: "#fff", transition: "border-color 0.15s, background 0.15s, box-shadow 0.15s" }}
     />
   );
 }
@@ -846,9 +856,9 @@ function PEInput({ value, onChange, placeholder, type = "text", accent }: { valu
 function PETextarea({ value, onChange, placeholder, rows = 4, accent }: { value: string; onChange: (v: string) => void; placeholder?: string; rows?: number; accent: string }) {
   return (
     <textarea value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder} rows={rows}
-      onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}06`; }}
-      onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; }}
-      style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "11px 14px", fontSize: 14, fontFamily: FONT_PE, color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" as const, resize: "vertical", background: "#fff", transition: "border-color 0.15s, background 0.15s" }}
+      onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}06`; e.target.style.boxShadow = `0 0 0 3px ${accent}18`; }}
+      onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; e.target.style.boxShadow = "none"; }}
+      style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "11px 14px", fontSize: 14, fontFamily: FONT_PE, color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" as const, resize: "vertical", background: "#fff", transition: "border-color 0.15s, background 0.15s, box-shadow 0.15s" }}
     />
   );
 }
@@ -894,10 +904,11 @@ function PERadio({ value, selected, onSelect, label, accent }: { value: string; 
 
 function PESectionDivider({ label, accent }: { label: string; accent: string }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, margin: "4px 0" }}>
-      <div style={{ height: 1, background: "#f0f0f8", flex: 1 }} />
-      <span style={{ fontSize: 9.5, fontWeight: 700, color: accent, textTransform: "uppercase" as const, letterSpacing: "1.4px", fontFamily: FONT_PE, whiteSpace: "nowrap" as const }}>{label}</span>
-      <div style={{ height: 1, background: "#f0f0f8", flex: 1 }} />
+    <div style={{ display: "flex", alignItems: "center", gap: 10, margin: "8px 0 4px" }}>
+      <div style={{ background: accent, borderRadius: 6, padding: "4px 12px" }}>
+        <span style={{ fontSize: 9.5, fontWeight: 800, color: "#fff", textTransform: "uppercase" as const, letterSpacing: "1.4px", fontFamily: FONT_PE, whiteSpace: "nowrap" as const }}>{label}</span>
+      </div>
+      <div style={{ height: 1.5, background: `${accent}22`, flex: 1, borderRadius: 1 }} />
     </div>
   );
 }
@@ -1095,10 +1106,10 @@ function ApplyDrawer({ project, onClose }: { project: PEProject | null; onClose:
   );
 
   return (
-    <DrawerShell open={open} onClose={reset} title={submitted ? "Application Submitted" : project?.title ?? ""} subtitle={submitted ? undefined : project ? `${project.ngo} · ${project.skillArea}` : ""} accentTag="ProEngage Application" accentColor={accent} width={720}>
+    <DrawerShell open={open} onClose={reset} title={submitted ? "Application Submitted" : project?.title ?? ""} subtitle={submitted ? undefined : project ? `${project.ngo} · ${project.skillArea}` : ""} accentTag="ProEngage Application" accentColor={accent} width={860} doodle>
       {project && (
         submitted ? renderSubmitted() : (
-          <div style={{ padding: "28px 32px" }}>
+          <div style={{ padding: "28px 40px" }}>
             <PEStepRail step={step} accent={accent} />
             <div style={{ minHeight: 340 }}>
               {step === 1 && renderStep1()}
@@ -1505,7 +1516,7 @@ export default function DashboardView() {
                   {/* 4 action tiles — white bg, coloured dot icon square */}
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
                     {[
-                      { label: "Post Your Monthly Update", tags: ["Progress Report", "NGO Partner & TSG"],       color: KPI_PROENGAGE, pastel: "#E6F4EE", action: () => setUpdateOpen(true),           disabled: false },
+                      { label: "Post Your Monthly Update", tags: ["Progress Report", "NGO Partner & TSG"],       color: KPI_PROENGAGE, pastel: P_BLUE, action: () => setUpdateOpen(true),           disabled: false },
                       { label: "Access E-Module",          tags: ["Orientations", "Roles & Responsibilities"],   color: KPI_TVW,       pastel: "#E8F3FB", action: () => setShowOrientationModal(true),  disabled: false },
                       { label: "Submit Feedback",          tags: ["Experience Rating", "Share Learnings"],        color: KPI_CVP,       pastel: P_YELLOW,  action: () => setFeedbackOpen(true),          disabled: false },
                       { label: "Download Certificate",     tags: [] as string[],                                  color: "#bbb",        pastel: "#f8f8fc", action: () => {},                             disabled: true  },

@@ -237,8 +237,8 @@ function FLabel({ children }: { children: React.ReactNode }) {
   return <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#444", marginBottom: 6, fontFamily: FONT }}>{children}</label>;
 }
 
-function TInput({ placeholder, type = "text", required = false, accent, onChange, value }: { placeholder: string; type?: string; required?: boolean; accent: string; onChange?: (v: string) => void; value?: string }) {
-  return <input type={type} placeholder={placeholder} required={required} value={value} onChange={e => onChange?.(e.target.value)} onFocus={e => (e.target.style.borderColor = accent)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "10px 14px", fontSize: 13.5, fontFamily: FONT, color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" as const }} />;
+function TInput({ placeholder, type = "text", required = false, accent, onChange, value, navFocusBg }: { placeholder: string; type?: string; required?: boolean; accent: string; onChange?: (v: string) => void; value?: string; navFocusBg?: string }) {
+  return <input type={type} placeholder={placeholder} required={required} value={value} onChange={e => onChange?.(e.target.value)} onFocus={e => { e.target.style.borderColor = accent; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "10px 14px", fontSize: 13.5, fontFamily: FONT, color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" as const }} />;
 }
 
 function SectionDivider({ label, accent }: { label: string; accent: string }) {
@@ -272,7 +272,7 @@ const RegisterFormView = () => {
 
   // Wrap TInput to auto-pass navFocusBg
   const Input = (props: Omit<Parameters<typeof TInput>[0], "navFocusBg">) =>
-    <Input {...props} navFocusBg={navFocus} />;
+    <TInput {...props} navFocusBg={navFocus} />;
 
   const toggle = (setter: React.Dispatch<React.SetStateAction<string[]>>, multi: boolean) => (v: string) =>
     setter(p => multi ? (p.includes(v) ? p.filter(x => x !== v) : [...p, v]) : [v]);
