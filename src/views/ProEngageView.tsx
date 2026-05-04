@@ -71,18 +71,28 @@ const SECTIONS_NAV = [
 ];
 
 // ── DrawerShell ──────────────────────────────────────────────────────────────
-function DrawerShell({ open, onClose, title, subtitle, accentTag, children }: {
-  open: boolean; onClose: () => void; title: string; subtitle?: string; accentTag?: string; children: React.ReactNode;
+function DrawerShell({ open, onClose, title, subtitle, accentTag, accentColor, doodle, children }: {
+  open: boolean; onClose: () => void; title: string; subtitle?: string; accentTag?: string; accentColor?: string; doodle?: boolean; children: React.ReactNode;
 }) {
   return (
     <>
       <div onClick={onClose} style={{ position:"fixed",inset:0,background:"rgba(13,27,62,0.45)",zIndex:200,opacity:open?1:0,pointerEvents:open?"auto":"none",transition:"opacity 0.22s",backdropFilter:"blur(2px)" }} />
-      <div style={{ position:"fixed",top:"50%",left:"50%",transform:open?"translate(-50%,-50%) scale(1)":"translate(-50%,-48%) scale(0.97)",transition:"transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s",opacity:open?1:0,pointerEvents:open?"auto":"none",width:720,maxWidth:"calc(100vw - 40px)",maxHeight:"calc(100vh - 48px)",background:"#fff",borderRadius:16,zIndex:201,boxShadow:"0 24px 64px rgba(13,27,62,0.22)",display:"flex",flexDirection:"column",fontFamily:FONT,overflowY:"auto" }}>
-        <div style={{ background:ACCENT_NAVY,padding:"24px 28px",borderRadius:"16px 16px 0 0",flexShrink:0 }}>
-          <button onClick={onClose} style={{ background:"rgba(255,255,255,0.1)",border:"none",borderRadius:7,color:"rgba(255,255,255,0.7)",fontSize:13,fontWeight:500,padding:"5px 12px",cursor:"pointer",marginBottom:16 }}>← Close</button>
-          {accentTag && <div style={{ display:"inline-block",background:`${B_YELLOW}22`,border:`1px solid ${B_YELLOW}44`,borderRadius:100,padding:"3px 10px",fontSize:10.5,fontWeight:700,color:B_YELLOW,letterSpacing:"0.6px",textTransform:"uppercase",marginBottom:10 }}>{accentTag}</div>}
-          <div style={{ fontSize:17,fontWeight:700,color:"#fff",lineHeight:1.3 }}>{title}</div>
-          {subtitle && <div style={{ fontSize:12.5,color:"rgba(255,255,255,0.45)",marginTop:5 }}>{subtitle}</div>}
+      <div style={{ position:"fixed",top:"50%",left:"50%",transform:open?"translate(-50%,-50%) scale(1)":"translate(-50%,-48%) scale(0.97)",transition:"transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s",opacity:open?1:0,pointerEvents:open?"auto":"none",width:860,maxWidth:"calc(100vw - 40px)",maxHeight:"calc(100vh - 48px)",background:"#fff",borderRadius:16,zIndex:201,boxShadow:"0 24px 64px rgba(13,27,62,0.22)",display:"flex",flexDirection:"column",fontFamily:FONT,overflowY:"auto" }}>
+        <div style={{ background: accentColor ?? ACCENT_NAVY, padding:"24px 28px",borderRadius:"16px 16px 0 0",flexShrink:0, position:"relative", overflow:"hidden" }}>
+          {doodle && (
+            <svg style={{ position:"absolute",inset:0,width:"100%",height:"100%",opacity:0.10,pointerEvents:"none" }} viewBox="0 0 860 140" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <style>{`@keyframes dsh1{0%,100%{transform:translate(0,0)}50%{transform:translate(6px,-8px)}} @keyframes dsh2{0%,100%{transform:translate(0,0)}50%{transform:translate(-8px,6px)}} .dsh-a{animation:dsh1 18s ease-in-out infinite} .dsh-b{animation:dsh2 24s ease-in-out infinite}`}</style>
+              <g className="dsh-a"><circle cx="800" cy="30" r="40" fill="none" stroke="white" strokeWidth="2"/><circle cx="800" cy="30" r="22" fill="none" stroke="white" strokeWidth="1.2"/></g>
+              <g className="dsh-b"><path d="M720 100 C748 78,780 90,808 68 C836 46,860 58,880 38" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+              <g className="dsh-a" style={{animationDelay:"-6s"}}><path d="M20 20 L50 50 L20 80 L-10 50 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></g>
+              <g className="dsh-b" style={{animationDelay:"-12s"}}><rect x="60" y="60" width="28" height="28" rx="4" fill="none" stroke="white" strokeWidth="1.8" transform="rotate(18,74,74)"/></g>
+              <g className="dsh-a" style={{animationDelay:"-3s"}}><line x1="620" y1="20" x2="620" y2="50" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="605" y1="35" x2="635" y2="35" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+            </svg>
+          )}
+          <button onClick={onClose} style={{ background:"rgba(255,255,255,0.18)",border:"none",borderRadius:7,color:"rgba(255,255,255,0.95)",fontSize:13,fontWeight:500,padding:"5px 12px",cursor:"pointer",marginBottom:16,position:"relative",zIndex:1 }}>← Close</button>
+          {accentTag && <div style={{ display:"inline-block",background:"rgba(255,255,255,0.18)",border:"1px solid rgba(255,255,255,0.3)",borderRadius:100,padding:"3px 10px",fontSize:10.5,fontWeight:700,color:"#fff",letterSpacing:"0.6px",textTransform:"uppercase",marginBottom:10,position:"relative",zIndex:1 }}>{accentTag}</div>}
+          <div style={{ fontSize:17,fontWeight:700,color:"#fff",lineHeight:1.3,position:"relative",zIndex:1 }}>{title}</div>
+          {subtitle && <div style={{ fontSize:12.5,color:"rgba(255,255,255,0.7)",marginTop:5,position:"relative",zIndex:1 }}>{subtitle}</div>}
         </div>
         <div style={{ flex:1,overflowY:"auto" }}>{children}</div>
       </div>
@@ -230,10 +240,10 @@ function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
   const sel = (ac: string): React.CSSProperties => ({ ...inp(ac), appearance: "none", cursor: "pointer" });
 
   const onFocusInp = (e: React.FocusEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>, ac: string) => {
-    e.target.style.borderColor = ac; e.target.style.background = `${ac}07`;
+    e.target.style.borderColor = ac; e.target.style.background = `${ac}07`; e.target.style.boxShadow = `0 0 0 3px ${ac}18`;
   };
   const onBlurInp = (e: React.FocusEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>) => {
-    e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff";
+    e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; e.target.style.boxShadow = "none";
   };
 
   const UNDERTAKING = [
@@ -269,15 +279,16 @@ function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
   };
 
   const SDiv = ({ label }: { label: string }) => (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, margin: "4px 0" }}>
-      <div style={{ height: 1, background: "#f0f0f8", flex: 1 }} />
-      <span style={{ fontSize: 9.5, fontWeight: 700, color: accent, textTransform: "uppercase", letterSpacing: "1.4px", fontFamily: FONT, whiteSpace: "nowrap" }}>{label}</span>
-      <div style={{ height: 1, background: "#f0f0f8", flex: 1 }} />
+    <div style={{ display: "flex", alignItems: "center", gap: 10, margin: "8px 0 4px" }}>
+      <div style={{ background: accent, borderRadius: 6, padding: "4px 12px" }}>
+        <span style={{ fontSize: 9.5, fontWeight: 800, color: "#fff", textTransform: "uppercase" as const, letterSpacing: "1.4px", fontFamily: FONT, whiteSpace: "nowrap" as const }}>{label}</span>
+      </div>
+      <div style={{ height: 1.5, background: `${accent}22`, flex: 1, borderRadius: 1 }} />
     </div>
   );
 
   const FLabel = ({ children }: { children: React.ReactNode }) => (
-    <label style={{ display: "block", fontSize: 11, fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 7, fontFamily: FONT }}>{children}</label>
+    <label style={{ display: "block", fontSize: 11.5, fontWeight: 800, color: ACCENT_NAVY, textTransform: "uppercase" as const, letterSpacing: "0.8px", marginBottom: 8, fontFamily: FONT }}>{children}</label>
   );
 
   const Radio = ({ value, label }: { value: "yes"|"no"; label: string }) => {
@@ -434,7 +445,7 @@ function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
 
   // ── Submitted ──────────────────────────────────────────────────────────────
   if (submitted) return (
-    <DrawerShell open={true} onClose={reset} title="Application Submitted" accentTag="ProEngage Application">
+    <DrawerShell open={true} onClose={reset} title="Application Submitted" accentTag="ProEngage Application" accentColor={accent} doodle>
       <div style={{ padding: "44px 32px", textAlign: "center" }}>
         <div style={{ width: 64, height: 64, borderRadius: "50%", background: `${accent}18`, border: `2px solid ${accent}44`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px" }}>
           <svg width="26" height="20" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke={accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -450,8 +461,8 @@ function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
   );
 
   return (
-    <DrawerShell open={!!project} onClose={reset} title={project.title} subtitle={`${project.ngo} · ${project.area}`} accentTag="ProEngage Application">
-      <div style={{ padding: "28px 32px" }}>
+    <DrawerShell open={!!project} onClose={reset} title={project.title} subtitle={`${project.ngo} · ${project.area}`} accentTag="ProEngage Application" accentColor={accent} doodle>
+      <div style={{ padding: "28px 40px" }}>
         <StepRail />
         <div style={{ minHeight: 320 }}>
           {step === 1 && <Step1 />}

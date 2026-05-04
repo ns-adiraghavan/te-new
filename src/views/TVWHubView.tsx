@@ -46,35 +46,44 @@ const RESOURCES = [
 ];
 
 // ── Shared Drawer Shell ───────────────────────────────────────────────────────
-function DrawerShell({ onClose, title, subtitle, accentTag, children }: {
-  onClose: () => void; title: string; subtitle?: string; accentTag?: string; children: React.ReactNode;
+function DrawerShell({ onClose, title, subtitle, accentTag, accentColor, doodle, children }: {
+  onClose: () => void; title: string; subtitle?: string; accentTag?: string; accentColor?: string; doodle?: boolean; children: React.ReactNode;
 }) {
   return (
     <div
       style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(13,27,62,0.45)", backdropFilter: "blur(2px)" }}
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div style={{ background: "#fff", borderRadius: 16, width: "min(540px,92vw)", maxHeight: "88vh", overflow: "hidden", display: "flex", flexDirection: "column", animation: "drawerScale 0.18s ease-out forwards", boxShadow: "0 24px 64px rgba(0,0,0,0.22)" }}>
-        <style>{`@keyframes drawerScale{from{transform:scale(0.97);opacity:0}to{transform:scale(1);opacity:1}}`}</style>
+      <div style={{ background: "#fff", borderRadius: 16, width: "min(680px,92vw)", maxHeight: "88vh", overflow: "hidden", display: "flex", flexDirection: "column", animation: "drawerScale 0.18s ease-out forwards", boxShadow: "0 24px 64px rgba(0,0,0,0.22)" }}>
+        <style>{`@keyframes drawerScale{from{transform:scale(0.97);opacity:0}to{transform:scale(1);opacity:1}} @keyframes dsh1{0%,100%{transform:translate(0,0)}50%{transform:translate(6px,-8px)}} @keyframes dsh2{0%,100%{transform:translate(0,0)}50%{transform:translate(-8px,6px)}} .dsh-a{animation:dsh1 18s ease-in-out infinite} .dsh-b{animation:dsh2 24s ease-in-out infinite}`}</style>
         {/* Header */}
-        <div style={{ background: ACCENT_NAVY, padding: "22px 28px", flexShrink: 0 }}>
-          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
+        <div style={{ background: accentColor ?? ACCENT_NAVY, padding: "22px 28px", flexShrink: 0, position: "relative", overflow: "hidden" }}>
+          {doodle && (
+            <svg style={{ position:"absolute",inset:0,width:"100%",height:"100%",opacity:0.10,pointerEvents:"none" }} viewBox="0 0 680 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <g className="dsh-a"><circle cx="620" cy="30" r="38" fill="none" stroke="white" strokeWidth="2"/><circle cx="620" cy="30" r="20" fill="none" stroke="white" strokeWidth="1.2"/></g>
+              <g className="dsh-b"><path d="M540 95 C568 73,600 85,628 63" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+              <g className="dsh-a" style={{animationDelay:"-6s"}}><path d="M20 20 L46 46 L20 72 L-6 46 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></g>
+              <g className="dsh-b" style={{animationDelay:"-12s"}}><rect x="58" y="58" width="26" height="26" rx="4" fill="none" stroke="white" strokeWidth="1.8" transform="rotate(18,71,71)"/></g>
+              <g className="dsh-a" style={{animationDelay:"-3s"}}><line x1="480" y1="20" x2="480" y2="48" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="466" y1="34" x2="494" y2="34" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+            </svg>
+          )}
+          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, position: "relative", zIndex: 1 }}>
             <div>
               {accentTag && (
-                <div style={{ display: "inline-block", background: `${B_YELLOW}22`, border: `1px solid ${B_YELLOW}44`, borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: B_YELLOW, letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 10, fontFamily: FONT }}>
+                <div style={{ display: "inline-block", background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: "#fff", letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 10, fontFamily: FONT }}>
                   {accentTag}
                 </div>
               )}
               <div style={{ fontFamily: FONT, fontSize: 17, fontWeight: 700, color: "#fff", lineHeight: 1.25 }}>{title}</div>
-              {subtitle && <div style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.55)", marginTop: 4 }}>{subtitle}</div>}
+              {subtitle && <div style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.7)", marginTop: 4 }}>{subtitle}</div>}
             </div>
-            <button onClick={onClose} style={{ background: "rgba(255,255,255,0.1)", border: "none", borderRadius: 8, padding: "6px 10px", cursor: "pointer", color: "rgba(255,255,255,0.7)", display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontFamily: FONT, flexShrink: 0 }}>
+            <button onClick={onClose} style={{ background: "rgba(255,255,255,0.18)", border: "none", borderRadius: 8, padding: "6px 10px", cursor: "pointer", color: "rgba(255,255,255,0.9)", display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontFamily: FONT, flexShrink: 0 }}>
               <X size={14} /> Close
             </button>
           </div>
         </div>
         {/* Scrollable body */}
-        <div style={{ padding: "24px 28px", overflowY: "auto", flex: 1 }}>{children}</div>
+        <div style={{ padding: "24px 32px", overflowY: "auto", flex: 1 }}>{children}</div>
       </div>
     </div>
   );
@@ -100,10 +109,10 @@ function VibeSubmitDrawer({ onClose, onSubmit }: { onClose: () => void; onSubmit
     fontSize: 13.5, fontFamily: FONT, color: ACCENT_NAVY, outline: "none", background: "#fff", boxSizing: "border-box",
   });
 
-  const labelStyle: React.CSSProperties = { fontFamily: FONT, fontSize: 12, fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.6px", marginBottom: 6, display: "block" };
+  const labelStyle: React.CSSProperties = { fontFamily: FONT, fontSize: 11.5, fontWeight: 800, color: ACCENT_NAVY, textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 8, display: "block" };
 
   return (
-    <DrawerShell onClose={onClose} title="Submit a TVW Vibe Story" subtitle="Your moment goes to Admin review before publishing." accentTag="TVW Vibe">
+    <DrawerShell onClose={onClose} title="Submit a TVW Vibe Story" subtitle="Your moment goes to Admin review before publishing." accentTag="TVW Vibe" accentColor={TVW_BLUE} doodle>
       <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
 
         {/* Location */}
@@ -111,7 +120,7 @@ function VibeSubmitDrawer({ onClose, onSubmit }: { onClose: () => void; onSubmit
           <label style={labelStyle}>Location <span style={{ color: "#E8401C" }}>*</span></label>
           <input type="text" placeholder="e.g. Mumbai, Delhi, Virtual" value={form.location} onChange={e => set("location", e.target.value)}
             style={inputStyle(errors.location)}
-            onFocus={e => (e.target.style.borderColor = TVW_BLUE)} onBlur={e => (e.target.style.borderColor = errors.location ? "#E8401C" : "#e0e0e8")} />
+            onFocus={e => { e.target.style.borderColor = TVW_BLUE; e.target.style.boxShadow = `0 0 0 3px ${TVW_BLUE}18`; }} onBlur={e => { e.target.style.boxShadow = 'none'; e.target.style.borderColor = errors.location ? "#E8401C" : "#e0e0e8")} />
           {errors.location && <p style={{ fontFamily: FONT, fontSize: 12, color: "#E8401C", margin: "4px 0 0" }}>Required</p>}
         </div>
 
@@ -134,7 +143,7 @@ function VibeSubmitDrawer({ onClose, onSubmit }: { onClose: () => void; onSubmit
           <label style={labelStyle}>Story Caption <span style={{ color: "#E8401C" }}>*</span></label>
           <textarea rows={3} placeholder="Describe the volunteering moment in 1–2 sentences…" value={form.caption} onChange={e => set("caption", e.target.value)}
             style={{ ...inputStyle(errors.caption), resize: "vertical", lineHeight: 1.6 }}
-            onFocus={e => (e.target.style.borderColor = TVW_BLUE)} onBlur={e => (e.target.style.borderColor = errors.caption ? "#E8401C" : "#e0e0e8")} />
+            onFocus={e => { e.target.style.borderColor = TVW_BLUE; e.target.style.boxShadow = `0 0 0 3px ${TVW_BLUE}18`; }} onBlur={e => { e.target.style.boxShadow = 'none'; e.target.style.borderColor = errors.caption ? "#E8401C" : "#e0e0e8")} />
           {errors.caption && <p style={{ fontFamily: FONT, fontSize: 12, color: "#E8401C", margin: "4px 0 0" }}>Required</p>}
         </div>
 
@@ -143,7 +152,7 @@ function VibeSubmitDrawer({ onClose, onSubmit }: { onClose: () => void; onSubmit
           <label style={labelStyle}>Impact / Outcome <span style={{ color: "#94a3b8", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(optional)</span></label>
           <input type="text" placeholder="e.g. 200 meals served, 50 children taught" value={form.impact} onChange={e => set("impact", e.target.value)}
             style={inputStyle()}
-            onFocus={e => (e.target.style.borderColor = TVW_BLUE)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")} />
+            onFocus={e => { e.target.style.borderColor = TVW_BLUE; e.target.style.boxShadow = `0 0 0 3px ${TVW_BLUE}18`; }} onBlur={e => { e.target.style.borderColor = '#e0e0e8'; e.target.style.boxShadow = 'none'; }} />
         </div>
 
         {/* Photo upload (simulated) */}
@@ -460,7 +469,7 @@ const TVWHubView = () => {
 
       {/* ══ SPOC DRAWER ══ */}
       {spocModal && (
-        <DrawerShell onClose={()=>setSpocModal(null)} title={spocModal.title} subtitle={`${spocModal.date} · ${spocModal.location}`} accentTag="TVW 22">
+        <DrawerShell onClose={()=>setSpocModal(null)} title={spocModal.title} subtitle={`${spocModal.date} · ${spocModal.location}`} accentTag="TVW 22" accentColor={TVW_BLUE} doodle>
           <div style={{ display:"flex",flexDirection:"column",gap:12,fontFamily:FONT }}>
             {[
               { label:"Event",     value:spocModal.title    },
