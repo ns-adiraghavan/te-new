@@ -143,7 +143,7 @@ function VibeSubmitDrawer({ onClose, onSubmit }: { onClose: () => void; onSubmit
           <label style={labelStyle}>Story Caption <span style={{ color: "#E8401C" }}>*</span></label>
           <textarea rows={3} placeholder="Describe the volunteering moment in 1–2 sentences…" value={form.caption} onChange={e => set("caption", e.target.value)}
             style={{ ...inputStyle(errors.caption), resize: "vertical", lineHeight: 1.6 }}
-            onFocus={e => { e.target.style.borderColor = TVW_BLUE; e.target.style.boxShadow = `0 0 0 3px ${TVW_BLUE}18`; }} onBlur={e => { e.target.style.boxShadow = 'none'; e.target.style.borderColor = errors.caption ? "#E8401C" : "#e0e0e8")} />
+            onFocus={e => { e.target.style.borderColor = TVW_BLUE; e.target.style.boxShadow = `0 0 0 3px ${TVW_BLUE}18`; }} onBlur={e => { e.target.style.boxShadow = 'none'; e.target.style.borderColor = errors.caption ? "#E8401C" : "#e0e0e8"; }} />
           {errors.caption && <p style={{ fontFamily: FONT, fontSize: 12, color: "#E8401C", margin: "4px 0 0" }}>Required</p>}
         </div>
 
