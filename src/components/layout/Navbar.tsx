@@ -70,8 +70,8 @@ function getNavBg(pathname: string): string {
   // Volunteer hub + dashboard
   if (pathname.startsWith("/hub") || pathname.startsWith("/dashboard") || pathname.startsWith("/volunteer"))
     return "rgba(28,40,80,0.82)";
-  // NGO — red-dark (legacy routes)
-  if (pathname.startsWith("/ngo/")) return "rgba(80,14,18,0.80)";
+  // NGO — purple (matches NGO brand colour)
+  if (pathname.startsWith("/ngo/")) return "rgba(58,22,72,0.80)";
   // Register + Login — dark navy baseline (role-reactive focus handled via te:formFocus event)
   if (pathname.startsWith("/register") || pathname.startsWith("/login")) return "rgba(4,42,48,0.92)";
   // Default
@@ -559,7 +559,7 @@ const Navbar = ({
                     onClick={() => setDropdownOpen((o) => !o)}
                     className="flex items-center gap-2 cursor-pointer group"
                   >
-                    <div className="w-9 h-9 rounded-full text-white flex items-center justify-center text-sm font-bold" style={{ background: user?.role === "ngo" ? "#7C2D3A" : user?.role === "corporate_spoc" || user?.role === "regional_spoc" ? "#135EA9" : user?.role === "platform_admin" ? "#4B2D8A" : "#3E7EB0" }}>
+                    <div className="w-9 h-9 rounded-full text-white flex items-center justify-center text-sm font-bold" style={{ background: user?.role === "ngo" ? "#6B21A8" : user?.role === "corporate_spoc" || user?.role === "regional_spoc" ? "#135EA9" : user?.role === "platform_admin" ? "#7C2D3A" : "#3E7EB0" }}>
                       {user?.firstName?.[0]}
                       {user?.lastName?.[0]}
                     </div>
