@@ -64,13 +64,6 @@ function StepRail({ accent }: { accent: string }) {
   );
 }
 
-const ROLE_STATS: Record<string, { label: string; value: string }[]> = {
-  tata_employee:    [{ label: "Projects", value: "240+" }, { label: "NGO Partners", value: "80+" }],
-  family_member:    [{ label: "Family Volunteers", value: "1,200+" }, { label: "Hours logged", value: "4,800+" }],
-  retired_employee: [{ label: "Mentors", value: "320+" }, { label: "Avg. tenure", value: "28 yrs" }],
-  ngo:              [{ label: "Active NGOs", value: "80+" }, { label: "Projects matched", value: "500+" }],
-};
-
 const RegisterRoleView = () => {
   const { selectedRole, handleRoleSelect } = useAppContext();
   const navigate = useAppNavigate();
@@ -121,7 +114,6 @@ const RegisterRoleView = () => {
               {ROLES.map((role, i) => {
                 const active = selectedRole === role.id;
                 const isHovered = hovered === role.id;
-                const stats = ROLE_STATS[role.id] ?? [];
                 return (
                   <motion.div key={role.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }}
                     onClick={() => handleRoleSelect(role.id as Role)}
@@ -132,15 +124,6 @@ const RegisterRoleView = () => {
                       <role.icon size={23} />
                     </div>
                     <h4 style={{ fontWeight: 700, fontSize: 14, color: "#fff", margin: 0, fontFamily: FONT }}>{role.title}</h4>
-                    {/* Stats chips — appear on hover / active */}
-                    <div style={{ display: "flex", gap: 7, justifyContent: "center", opacity: active || isHovered ? 1 : 0, maxHeight: active || isHovered ? 60 : 0, overflow: "hidden", transition: "opacity 0.2s, max-height 0.22s" }}>
-                      {stats.map(s => (
-                        <div key={s.label} style={{ background: "rgba(255,255,255,0.15)", borderRadius: 10, padding: "4px 9px", textAlign: "center" }}>
-                          <div style={{ fontSize: 12, fontWeight: 800, color: "#fff", fontFamily: FONT }}>{s.value}</div>
-                          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.55)", fontFamily: FONT, textTransform: "uppercase", letterSpacing: "0.4px" }}>{s.label}</div>
-                        </div>
-                      ))}
-                    </div>
                     {active && <div style={{ fontSize: 11, fontWeight: 700, color: B_YELLOW, letterSpacing: "0.3px" }}>Selected ✓</div>}
                   </motion.div>
                 );
