@@ -272,7 +272,7 @@ const RegisterFormView = () => {
 
   // Wrap TInput to auto-pass navFocusBg
   const Input = (props: Omit<Parameters<typeof TInput>[0], "navFocusBg">) =>
-    <Input {...props} navFocusBg={navFocus} />;
+    <TInput {...props} navFocusBg={navFocus} />;
 
   const toggle = (setter: React.Dispatch<React.SetStateAction<string[]>>, multi: boolean) => (v: string) =>
     setter(p => multi ? (p.includes(v) ? p.filter(x => x !== v) : [...p, v]) : [v]);
