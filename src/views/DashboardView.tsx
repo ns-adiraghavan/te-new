@@ -1291,7 +1291,7 @@ export default function DashboardView() {
             <g className="dbd"><path d="M860 60 C876 50, 890 60, 886 76 C882 90, 864 94, 856 80 C850 70, 860 60, 860 60 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/></g>
           </svg>
           <div>
-            <div style={{ fontSize: "clamp(1.8rem,3vw,2.6rem)", fontWeight: 900, color: "#fff", letterSpacing: -0.5 }}>{VOLUNTEER.firstName}, this is your volunteering space.</div>
+            <div style={{ fontSize: "clamp(1.9rem,3vw,2.7rem)", fontWeight: 700, color: "#fff", letterSpacing: -0.5 }}>{VOLUNTEER.firstName}, this is your volunteering space.</div>
             <div style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", marginTop: 6, fontWeight: 300 }}>Your story, Your impact.</div>
           </div>
           {hasActive ? (

@@ -64,6 +64,13 @@ function StepRail({ accent }: { accent: string }) {
   );
 }
 
+const ROLE_STATS: Record<string, { label: string; value: string }[]> = {
+  tata_employee:    [{ label: "Projects", value: "240+" }, { label: "NGO Partners", value: "80+" }],
+  family_member:    [{ label: "Family Volunteers", value: "1,200+" }, { label: "Hours logged", value: "4,800+" }],
+  retired_employee: [{ label: "Mentors", value: "320+" }, { label: "Avg. tenure", value: "28 yrs" }],
+  ngo:              [{ label: "Active NGOs", value: "80+" }, { label: "Projects matched", value: "500+" }],
+};
+
 const RegisterRoleView = () => {
   const { selectedRole, handleRoleSelect } = useAppContext();
   const navigate = useAppNavigate();
@@ -75,34 +82,66 @@ const RegisterRoleView = () => {
   const bg = displayRole?.gradient ?? DEFAULT_GRADIENT;
   const accent = displayRole?.accent ?? DEFAULT_ACCENT;
 
+  // Sync navbar colour whenever display role changes
+  useEffect(() => {
+    document.dispatchEvent(new CustomEvent("te:formFocus", { detail: { bg: displayRole?.gradient ?? null } }));
+  }, [displayRole?.id]);
+
+  // Clear on unmount
+  useEffect(() => {
+    return () => document.dispatchEvent(new CustomEvent("te:formFocus", { detail: { bg: null } }));
+  }, []);
+
   return (
-    <div style={{ minHeight: "100vh", background: bg, position: "relative", fontFamily: FONT, transition: "background 0.45s ease" }}>
+    <div style={{ minHeight: "100vh", background: bg, position: "relative", fontFamily: FONT, transition: "background 0.5s ease" }}>
       <DoodleLayer />
+      {/* Reactive radial glow */}
+      <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, background: `radial-gradient(ellipse 65% 55% at 50% 65%, ${accent}30 0%, transparent 70%)`, transition: "background 0.5s ease" }} />
       <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", padding: "80px 24px 56px" }}>
-        <div style={{ width: "100%", maxWidth: 880 }}>
+        <div style={{ width: "100%", maxWidth: 900 }}>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
             <StepRail accent={accent} />
-            <div style={{ textAlign: "center", marginBottom: 36 }}>
-              <h2 style={{ fontSize: 28, fontWeight: 900, color: "#fff", marginBottom: 8, letterSpacing: "-0.4px", lineHeight: 1.15, fontFamily: FONT }}>Create Your Account</h2>
-              <p style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", margin: 0, fontFamily: FONT }}>Who are you joining as?</p>
+            <div style={{ textAlign: "center", marginBottom: 40 }}>
+              <motion.h2
+                key={displayRole?.id ?? "default"}
+                initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28 }}
+                style={{ fontSize: 28, fontWeight: 900, color: "#fff", marginBottom: 8, letterSpacing: "-0.4px", lineHeight: 1.15, fontFamily: FONT }}
+              >
+                {displayRole ? `Joining as ${displayRole.title}` : "Create Your Account"}
+              </motion.h2>
+              <motion.p
+                key={`sub-${displayRole?.id ?? "default"}`}
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.28, delay: 0.06 }}
+                style={{ fontSize: 13.5, color: "rgba(255,255,255,0.6)", margin: 0, fontFamily: FONT }}
+              >
+                {displayRole?.desc ?? "Who are you joining as?"}
+              </motion.p>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
               {ROLES.map((role, i) => {
                 const active = selectedRole === role.id;
+                const isHovered = hovered === role.id;
+                const stats = ROLE_STATS[role.id] ?? [];
                 return (
                   <motion.div key={role.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }}
                     onClick={() => handleRoleSelect(role.id as Role)}
                     onMouseEnter={() => setHovered(role.id)}
                     onMouseLeave={() => setHovered(null)}
-                    style={{ background: active ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.10)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", border: `1.5px solid ${active ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.18)"}`, borderRadius: 16, padding: "28px 20px 24px", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 12, transition: "all 0.2s", boxShadow: active ? "0 8px 32px rgba(0,0,0,0.22)" : "0 2px 8px rgba(0,0,0,0.10)", transform: active ? "translateY(-3px)" : "translateY(0)" }}>
-                    <div style={{ width: 52, height: 52, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: active ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.12)", color: "#fff", flexShrink: 0 }}>
+                    style={{ background: active ? "rgba(255,255,255,0.22)" : isHovered ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.10)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: `1.5px solid ${active ? "rgba(255,255,255,0.65)" : isHovered ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.18)"}`, borderRadius: 18, padding: "26px 18px 22px", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 10, transition: "all 0.22s cubic-bezier(0.4,0,0.2,1)", boxShadow: active ? `0 12px 40px rgba(0,0,0,0.28), 0 0 0 1px ${accent}55` : isHovered ? "0 6px 20px rgba(0,0,0,0.18)" : "0 2px 8px rgba(0,0,0,0.10)", transform: active ? "translateY(-5px) scale(1.025)" : isHovered ? "translateY(-2px)" : "translateY(0)" }}>
+                    <div style={{ width: 52, height: 52, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: active ? "rgba(255,255,255,0.28)" : "rgba(255,255,255,0.14)", color: "#fff", flexShrink: 0, transition: "all 0.22s", boxShadow: active ? `0 0 0 6px ${accent}38` : "none" }}>
                       <role.icon size={23} />
                     </div>
-                    <div>
-                      <h4 style={{ fontWeight: 700, fontSize: 14, color: "#fff", marginBottom: 6, fontFamily: FONT }}>{role.title}</h4>
-                      <p style={{ fontSize: 11.5, color: "rgba(255,255,255,0.6)", lineHeight: 1.55, margin: 0, fontFamily: FONT }}>{role.desc}</p>
+                    <h4 style={{ fontWeight: 700, fontSize: 14, color: "#fff", margin: 0, fontFamily: FONT }}>{role.title}</h4>
+                    {/* Stats chips — appear on hover / active */}
+                    <div style={{ display: "flex", gap: 7, justifyContent: "center", opacity: active || isHovered ? 1 : 0, maxHeight: active || isHovered ? 60 : 0, overflow: "hidden", transition: "opacity 0.2s, max-height 0.22s" }}>
+                      {stats.map(s => (
+                        <div key={s.label} style={{ background: "rgba(255,255,255,0.15)", borderRadius: 8, padding: "4px 9px", textAlign: "center" }}>
+                          <div style={{ fontSize: 12, fontWeight: 800, color: "#fff", fontFamily: FONT }}>{s.value}</div>
+                          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.55)", fontFamily: FONT, textTransform: "uppercase", letterSpacing: "0.4px" }}>{s.label}</div>
+                        </div>
+                      ))}
                     </div>
-                    {active && <div style={{ fontSize: 11, fontWeight: 700, color: B_YELLOW, letterSpacing: "0.3px", marginTop: 2 }}>Selected ✓</div>}
+                    {active && <div style={{ fontSize: 11, fontWeight: 700, color: B_YELLOW, letterSpacing: "0.3px" }}>Selected ✓</div>}
                   </motion.div>
                 );
               })}
