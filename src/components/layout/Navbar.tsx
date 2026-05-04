@@ -72,8 +72,8 @@ function getNavBg(pathname: string): string {
     return "rgba(28,40,80,0.82)";
   // NGO — purple (matches NGO brand colour)
   if (pathname.startsWith("/ngo/")) return "rgba(58,22,72,0.80)";
-  // Register + Login — dark navy baseline (role-reactive focus handled via te:formFocus event)
-  if (pathname.startsWith("/register") || pathname.startsWith("/login")) return "rgba(4,42,48,0.92)";
+  // Register + Login — neutral dark navy; role-reactive colour driven by te:formFocus event from RegisterRoleView
+  if (pathname.startsWith("/register") || pathname.startsWith("/login")) return "rgba(13,27,62,0.88)";
   // Default
   return "rgba(28,40,80,0.80)";
 }
