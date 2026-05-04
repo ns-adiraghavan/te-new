@@ -645,8 +645,9 @@ const Navbar = ({
                   Log In
                 </span>
                 <button
+                  type="button"
                   onClick={() => triggerBounce("register", () => onNavigate("register-role"))}
-                  className={`py-2 px-5 text-sm font-semibold rounded-lg cursor-pointer transition-all hover:brightness-95 ${bouncingItem === "register" ? "[animation:teNavBounce_0.4s_ease]" : ""}`}
+                  className={`py-2 px-5 text-sm font-semibold rounded-lg cursor-pointer transition-all hover:brightness-95 whitespace-nowrap ${bouncingItem === "register" ? "[animation:teNavBounce_0.4s_ease]" : ""}`}
                   style={{ background: "#FCB514", color: "#0D1B3E" }}
                 >
                   Register
