@@ -632,10 +632,7 @@ export default function ProfileView() {
         position: "relative",
         overflow: "hidden",
       }}>
-        {/* Subtle diagonal texture */}
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 40px)", pointerEvents: "none" }} />
-        {/* Radial glow top-right */}
-        <div style={{ position: "absolute", top: -60, right: -60, width: 360, height: 360, borderRadius: "50%", background: `radial-gradient(circle, rgba(8,145,178,0.35) 0%, transparent 70%)`, pointerEvents: "none" }} />
+        {/* Clean banner — no texture overlay */}
 
         <div style={{ maxWidth: 1080, margin: "0 auto", padding: "32px 40px 0", position: "relative", zIndex: 1 }}>
           {/* Avatar + name row */}

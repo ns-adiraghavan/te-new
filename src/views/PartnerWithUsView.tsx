@@ -269,6 +269,7 @@ function IntroSection() {
 
 // ── 3. For NGOs — three steps (light bg) ──────────────────────────────────────
 function NGOSection() {
+  const navigate = useAppNavigate();
   const steps: Array<{
     num: string;
     title: string;
@@ -433,6 +434,30 @@ function NGOSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Register CTA */}
+        <div style={{ marginTop: 48, paddingTop: 40, borderTop: "1px solid #dde8ea" }}>
+          <p style={{ fontSize: 14, color: "#64748B", lineHeight: 1.75, marginBottom: 20, maxWidth: 560 }}>
+            Ready to partner with Tata Engage? Register your organisation to get started.
+          </p>
+          <button
+            onClick={() => navigate("register-role")}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 10,
+              padding: "13px 28px", borderRadius: 10, border: "none", cursor: "pointer",
+              background: COLOUR, color: "#fff",
+              fontSize: 14, fontWeight: 700,
+              fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif",
+              boxShadow: "0 4px 20px rgba(13,107,122,0.25)",
+              transition: "filter 0.15s",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.filter = "brightness(1.1)")}
+            onMouseLeave={e => (e.currentTarget.style.filter = "brightness(1)")}
+          >
+            <IconRegister />
+            Register Your Organisation
+          </button>
         </div>
       </div>
     </section>

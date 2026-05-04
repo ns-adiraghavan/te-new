@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Users, Building2, Briefcase, Heart } from "lucide-react";
 import type { Role } from "@/types";

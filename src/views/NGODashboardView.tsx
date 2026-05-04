@@ -542,7 +542,7 @@ const NGODashboardView = () => {
     <div style={{ background: "#f8f9ff", minHeight: "100vh", paddingBottom: 80 }}>
 
       {/* Full-bleed greeting banner */}
-      <div style={{ background: `linear-gradient(135deg, #3d1a5e 0%, ${B_NGO} 55%, ${B_NGO_SOFT} 100%)`, minHeight: 340, padding: "92px 40px 40px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24, flexWrap: "wrap", position: "relative", overflow: "hidden" }}>
+      <div style={{ background: `linear-gradient(135deg, #3d1a5e 0%, ${B_NGO} 55%, ${B_NGO_SOFT} 100%)`, minHeight: 340, padding: "92px 40px 40px", display: "flex", justifyContent: "center", alignItems: "center", gap: 40, flexWrap: "wrap", position: "relative", overflow: "hidden" }}>
         {/* Hand-drawn doodle overlay */}
         <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", opacity: 0.12, overflow: "hidden" }} viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
         <style>{`@keyframes ndA{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(6px,-10px) rotate(5deg)}} @keyframes ndB{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-8px,7px) rotate(-7deg)}} @keyframes ndC{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(5px,9px) rotate(3deg)}} @keyframes ndD{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-6px,-5px) rotate(-4deg)}} .nda{animation:ndA 22s ease-in-out infinite;transform-origin:center} .ndb{animation:ndB 28s ease-in-out infinite;transform-origin:center} .ndc{animation:ndC 18s ease-in-out infinite;transform-origin:center} .ndd{animation:ndD 32s ease-in-out infinite;transform-origin:center}`}</style>

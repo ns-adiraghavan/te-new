@@ -8,30 +8,33 @@ import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { ACCENT_NAVY, B_TICKER } from "@/data/homeSharedData";
 
-const DEMO_BUTTONS = [
+const MAIN_DEMO_BUTTONS = [
   {
-    label: "Tata Employee SSO",
+    label: "Tata Employee",
     icon: ShieldCheck,
     user: PRIYA_SHARMA,
     dest: "volunteer-hub" as const,
     toast: "Login Successful! Welcome back, Shrirang.",
   },
   {
-    label: "Login as SPOC",
+    label: "NGO",
+    icon: Landmark,
+    user: ANJALI_MEHTA,
+    dest: "ngo-hub" as const,
+    toast: "Login Successful! Welcome back, Anjali.",
+  },
+];
+
+const SPOC_DEMO_BUTTONS = [
+  {
+    label: "Corp. SPOC",
     icon: Building2,
     user: ROHAN_DESAI,
     dest: "spoc-hub" as const,
     toast: "Login Successful! Welcome back, Rohan.",
   },
   {
-    label: "Login as NGO",
-    icon: Landmark,
-    user: ANJALI_MEHTA,
-    dest: "ngo-hub" as const,
-    toast: "Login Successful! Welcome back, Anjali.",
-  },
-  {
-    label: "Anjali (Regional SPOC)",
+    label: "Regional SPOC",
     icon: MapPin,
     user: ANJALI_GUPTA_REGIONAL,
     dest: "spoc-hub" as const,
@@ -104,7 +107,8 @@ const LoginView = () => {
               {/* Demo login buttons */}
               {!isAdminLogin && (
                 <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 24 }}>
-                  {DEMO_BUTTONS.map(({ label, icon: Icon, user, dest, toast }) => (
+                  {/* Main: Tata Employee + NGO */}
+                  {MAIN_DEMO_BUTTONS.map(({ label, icon: Icon, user, dest, toast }) => (
                     <button
                       key={label}
                       onClick={() => handleLogin(user, dest, toast)}
@@ -123,23 +127,46 @@ const LoginView = () => {
                     </button>
                   ))}
 
-                  {/* PE season toggle */}
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginTop: 4 }}>
-                    <span style={{ fontSize: 10, fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1px" }}>Demo mode</span>
-                    <button
-                      onClick={togglePE}
-                      style={{
-                        display: "flex", alignItems: "center", gap: 6,
-                        padding: "5px 12px", borderRadius: 100, fontSize: 11, fontWeight: 600,
-                        border: `1px solid ${isPESeason ? `${B_TICKER}40` : "#e2e8f0"}`,
-                        background: isPESeason ? `${B_TICKER}10` : "#f8fafc",
-                        color: isPESeason ? B_TICKER : "#94a3b8",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <span style={{ width: 6, height: 6, borderRadius: "50%", background: isPESeason ? "#22c55e" : "#94a3b8", display: "inline-block" }} />
-                      {isPESeason ? "PE Season active" : "Outside PE Season"}
-                    </button>
+                  {/* PE season toggle + SPOC pills on same row */}
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: 4, flexWrap: "wrap" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <span style={{ fontSize: 10, fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1px" }}>Demo</span>
+                      <button
+                        onClick={togglePE}
+                        style={{
+                          display: "flex", alignItems: "center", gap: 6,
+                          padding: "5px 12px", borderRadius: 100, fontSize: 11, fontWeight: 600,
+                          border: `1px solid ${isPESeason ? `${B_TICKER}40` : "#e2e8f0"}`,
+                          background: isPESeason ? `${B_TICKER}10` : "#f8fafc",
+                          color: isPESeason ? B_TICKER : "#94a3b8",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <span style={{ width: 6, height: 6, borderRadius: "50%", background: isPESeason ? "#22c55e" : "#94a3b8", display: "inline-block" }} />
+                        {isPESeason ? "PE Season active" : "Outside PE Season"}
+                      </button>
+                    </div>
+                    {/* SPOC pill buttons */}
+                    <div style={{ display: "flex", gap: 6 }}>
+                      {SPOC_DEMO_BUTTONS.map(({ label, icon: Icon, user, dest, toast }) => (
+                        <button
+                          key={label}
+                          onClick={() => handleLogin(user, dest, toast)}
+                          style={{
+                            display: "flex", alignItems: "center", gap: 5,
+                            padding: "5px 12px", borderRadius: 100, fontSize: 11, fontWeight: 700,
+                            background: "rgba(62,126,176,0.12)", color: B_TICKER,
+                            border: `1px solid ${B_TICKER}30`, cursor: "pointer",
+                            transition: "background 0.15s",
+                          }}
+                          onMouseEnter={e => (e.currentTarget.style.background = `${B_TICKER}22`)}
+                          onMouseLeave={e => (e.currentTarget.style.background = "rgba(62,126,176,0.12)")}
+                        >
+                          <Icon size={11} />
+                          {label}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}

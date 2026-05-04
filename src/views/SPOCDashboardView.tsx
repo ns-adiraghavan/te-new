@@ -934,7 +934,7 @@ export default function SPOCDashboardView() {
             accentColor={B_BLUE}
           />
           <div style={{ marginBottom: 16 }}>
-            <select value={histEditionFilter} onChange={e => { setHistEditionFilter(e.target.value); setProjExpanded(false); setAppsExpanded(false); }} style={{ padding: "6px 12px", borderRadius: 10, border: "1.5px solid #e8e8f0", background: "#fff", fontSize: 13, color: ACCENT_NAVY, fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", cursor: "pointer", outline: "none" }}>
+            <select value={histEditionFilter} onChange={e => { setHistEditionFilter(e.target.value); setProjExpanded(false); setAppsExpanded(false); }} style={{ padding: "6px 12px", borderRadius: 10, border: `1.5px solid ${histEditionFilter ? B_BLUE : "#e8e8f0"}`, background: histEditionFilter ? P_BLUE : "#fff", fontSize: 13, color: ACCENT_NAVY, fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", cursor: "pointer", outline: "none", fontWeight: histEditionFilter ? 600 : 400, accentColor: B_BLUE }}>
               <option value="ProEngage 2025 | 02">ProEngage 2025 | 02 (Latest)</option>
               <option value="">All Editions</option>
               {PE_EDITIONS_SPOC.filter(e => e !== "ProEngage 2025 | 02").map(e => <option key={e} value={e}>{e}</option>)}
@@ -1153,7 +1153,7 @@ export default function SPOCDashboardView() {
 
           {/* Top-level edition filter */}
           <div style={{ marginBottom: 16 }}>
-            <select value={spocPipelineFilter} onChange={e => setSpocPipelineFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 10, border: "1.5px solid #e8e8f0", background: "#fff", fontSize: 13, color: ACCENT_NAVY, fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", cursor: "pointer", outline: "none" }}>
+            <select value={spocPipelineFilter} onChange={e => setSpocPipelineFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 10, border: `1.5px solid ${spocPipelineFilter ? B_BLUE : "#e8e8f0"}`, background: spocPipelineFilter ? P_BLUE : "#fff", fontSize: 13, color: ACCENT_NAVY, fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", cursor: "pointer", outline: "none", fontWeight: spocPipelineFilter ? 600 : 400, accentColor: B_BLUE }}>
               <option value="current">ProEngage 2025 | 02 (Current)</option>
               <option value="past">Past Editions</option>
             </select>
@@ -1370,7 +1370,7 @@ export default function SPOCDashboardView() {
       <div style={{ background: "#f8f9ff", minHeight: "100vh", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", paddingBottom: 80 }}>
 
         {/* Greeting bar */}
-        <div style={{ background: spocMode ? "linear-gradient(135deg, #1a2a5e 0%, #333399 60%, #4376BB 100%)" : "linear-gradient(135deg, #065666 0%, #135EA9 60%, #0891b2 100%)", minHeight: 340, padding: "92px 40px 40px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24, flexWrap: "wrap", position: "relative", overflow: "hidden" }}>
+        <div style={{ background: spocMode ? "linear-gradient(135deg, #1a2a5e 0%, #333399 60%, #4376BB 100%)" : "linear-gradient(135deg, #065666 0%, #135EA9 60%, #0891b2 100%)", minHeight: 340, padding: "92px 40px 40px", display: "flex", justifyContent: "center", alignItems: "center", gap: 40, flexWrap: "wrap", position: "relative", overflow: "hidden" }}>
           {/* Hand-drawn doodle overlay */}
           <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", opacity: 0.12, overflow: "hidden" }} viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <style>{`@keyframes sdA{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(6px,-10px) rotate(5deg)}} @keyframes sdB{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-8px,7px) rotate(-7deg)}} @keyframes sdC{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(5px,9px) rotate(3deg)}} @keyframes sdD{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-6px,-5px) rotate(-4deg)}} .sda{animation:sdA 22s ease-in-out infinite;transform-origin:center} .sdb{animation:sdB 28s ease-in-out infinite;transform-origin:center} .sdc{animation:sdC 18s ease-in-out infinite;transform-origin:center} .sdd{animation:sdD 32s ease-in-out infinite;transform-origin:center}`}</style>

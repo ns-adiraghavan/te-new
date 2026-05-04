@@ -131,10 +131,10 @@ const SPOCHubView = () => {
           background: `linear-gradient(110deg, ${B_INDIGO}e8 0%, ${B_INDIGO}cc 38%, ${B_INDIGO}aa 58%, ${B_INDIGO}77 78%, ${B_INDIGO}44 100%)`
         }} />
 
-        <div className="relative z-10 flex flex-col justify-between" style={{ minHeight: "92vh", paddingTop: 64, padding: "64px 64px 56px", maxWidth: 1100, margin: "0 auto", width: "100%" }}>
+        <div className="relative z-10 flex flex-col" style={{ minHeight: "92vh", paddingTop: 64, padding: "80px 64px 64px", maxWidth: 1100, margin: "0 auto", width: "100%" }}>
 
-            {/* Top — greeting */}
-            <div style={{ maxWidth: 580 }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: 48 }}>
+              <div style={{ maxWidth: 580 }}>
               <h1 style={{
                 fontFamily: "'DM Sans', 'Noto Sans', ui-sans-serif, system-ui, sans-serif",
                 fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
@@ -173,9 +173,10 @@ const SPOCHubView = () => {
                 — Simon Sinek
               </p>
             </div>
+            </div>
 
-            {/* Bottom — CTA */}
-            <div className="flex justify-end">
+            {/* Bottom — CTA pinned to bottom-right */}
+            <div className="flex justify-end" style={{ paddingTop: 32 }}>
               <button
                 onClick={() => navigate("spoc-dashboard")}
                 className="flex items-center gap-2 cursor-pointer cta-btn"
