@@ -94,7 +94,7 @@ const RegisterRoleView = () => {
                     onClick={() => handleRoleSelect(role.id as Role)}
                     onMouseEnter={() => setHovered(role.id)}
                     onMouseLeave={() => setHovered(null)}
-                    style={{ background: active ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.10)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", border: `1.5px solid ${active ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.18)"}`, borderRadius: 16, padding: "28px 20px 24px", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 12, transition: "all 0.2s", boxShadow: active ? "0 8px 32px rgba(0,0,0,0.22)" : "0 2px 8px rgba(0,0,0,0.10)", transform: active ? "translateY(-4px)" : "translateY(0)" }}>
+                    style={{ background: active ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.10)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", border: `1.5px solid ${active ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.18)"}`, borderRadius: 16, padding: "28px 20px 24px", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 12, transition: "all 0.2s", boxShadow: active ? "0 8px 32px rgba(0,0,0,0.22)" : "0 2px 8px rgba(0,0,0,0.10)", transform: active ? "translateY(-3px)" : "translateY(0)" }}>
                     <div style={{ width: 52, height: 52, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: active ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.12)", color: "#fff", flexShrink: 0 }}>
                       <role.icon size={23} />
                     </div>

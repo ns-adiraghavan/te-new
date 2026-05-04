@@ -434,7 +434,7 @@ const HomeView = () => {
           }
           @keyframes ctaWordBounce {
             0%, 100% { transform: translateY(0); }
-            45%       { transform: translateY(-2px); }
+            45%       { transform: translateY(-3px); }
             65%       { transform: translateY(-1px); }
           }
           .cta-shimmer {

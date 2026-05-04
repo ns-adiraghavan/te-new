@@ -613,7 +613,7 @@ export default function ProEngageView() {
                 return (
                   <button key={cat.name} onClick={()=>setSelectedCategory(cat.name)}
                     style={{ background:"#fff",border:"1px solid #e8e8f0",borderRadius:12,padding:"14px 10px",cursor:"pointer",textAlign:"center",transition:"all 0.18s",fontFamily:FONT }}
-                    onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.background=cat.pastel;(e.currentTarget as HTMLElement).style.borderColor=`${cat.color}33`;(e.currentTarget as HTMLElement).style.transform="translateY(-2px)";}}
+                    onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.background=cat.pastel;(e.currentTarget as HTMLElement).style.borderColor=`${cat.color}33`;(e.currentTarget as HTMLElement).style.transform="translateY(-3px)";}}
                     onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.background="#fff";(e.currentTarget as HTMLElement).style.borderColor="#e8e8f0";(e.currentTarget as HTMLElement).style.transform="translateY(0)";}}>
                     <div style={{ width:34,height:34,borderRadius:8,background:cat.pastel,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 8px" }}><Icon size={17} color={cat.color}/></div>
                     <div style={{ fontSize:11,fontWeight:700,color:ACCENT_NAVY,lineHeight:1.3,marginBottom:3 }}>{cat.name}</div>

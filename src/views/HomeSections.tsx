@@ -113,7 +113,7 @@ const GLOBAL_STYLES = `
     transform-style: preserve-3d;
   }
   .prog-tilt:hover {
-    transform: perspective(800px) rotateY(-2deg) rotateX(1deg) translateY(-4px);
+    transform: perspective(800px) rotateY(-2deg) rotateX(1deg) translateY(-3px);
     box-shadow: 8px 20px 48px rgba(0,0,0,0.18);
   }
 

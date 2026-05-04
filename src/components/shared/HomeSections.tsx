@@ -156,7 +156,7 @@ const GLOBAL_STYLES = `
     transform-style: preserve-3d;
   }
   .prog-tilt:hover {
-    transform: perspective(800px) rotateY(-2deg) rotateX(1deg) translateY(-4px);
+    transform: perspective(800px) rotateY(-2deg) rotateX(1deg) translateY(-3px);
     box-shadow: 8px 20px 48px rgba(0,0,0,0.18);
   }
 
@@ -191,7 +191,7 @@ const GLOBAL_STYLES = `
 
   /* Programme tile hover */
   .prog-style-a { transition: transform 0.35s ease, box-shadow 0.35s ease; }
-  .prog-style-a:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,0.18); }
+  .prog-style-a:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.10); }
   .prog-style-a .prog-img-card { transition: transform 0.4s ease; }
   .prog-style-a:hover .prog-img-card { transform: scale(1.04); }
 

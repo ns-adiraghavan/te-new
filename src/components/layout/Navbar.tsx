@@ -15,7 +15,7 @@ const SHIMMER_STYLE = `
   }
   @keyframes teNavBounce {
     0%,100% { transform: translateY(0);    }
-    30%      { transform: translateY(-4px); }
+    30%      { transform: translateY(-3px); }
     60%      { transform: translateY(-1px); }
   }
   @keyframes teLogoBreathe {

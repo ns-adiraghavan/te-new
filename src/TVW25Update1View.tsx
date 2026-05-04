@@ -79,7 +79,7 @@ function ActivityCard({ card, colour }: { card: typeof CARDS[0]; colour: string 
         display: "flex",
         flexDirection: "column",
         boxShadow: hov ? "0 12px 32px rgba(13,27,62,0.12)" : "0 2px 8px rgba(13,27,62,0.04)",
-        transform: hov ? "translateY(-4px)" : "translateY(0)",
+        transform: hov ? "translateY(-3px)" : "translateY(0)",
         transition: "transform 0.2s ease, box-shadow 0.2s ease",
       }}
     >
