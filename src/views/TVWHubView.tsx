@@ -120,7 +120,7 @@ function VibeSubmitDrawer({ onClose, onSubmit }: { onClose: () => void; onSubmit
           <label style={labelStyle}>Location <span style={{ color: "#E8401C" }}>*</span></label>
           <input type="text" placeholder="e.g. Mumbai, Delhi, Virtual" value={form.location} onChange={e => set("location", e.target.value)}
             style={inputStyle(errors.location)}
-            onFocus={e => { e.target.style.borderColor = TVW_BLUE; e.target.style.boxShadow = `0 0 0 3px ${TVW_BLUE}18`; }} onBlur={e => { e.target.style.boxShadow = 'none'; e.target.style.borderColor = errors.location ? "#E8401C" : "#e0e0e8")} />
+            onFocus={e => { e.target.style.borderColor = TVW_BLUE; e.target.style.boxShadow = `0 0 0 3px ${TVW_BLUE}18`; }} onBlur={e => { e.target.style.boxShadow = 'none'; e.target.style.borderColor = errors.location ? "#E8401C" : "#e0e0e8"; }} />
           {errors.location && <p style={{ fontFamily: FONT, fontSize: 12, color: "#E8401C", margin: "4px 0 0" }}>Required</p>}
         </div>
 

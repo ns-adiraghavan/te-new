@@ -1296,7 +1296,7 @@ export default function DashboardView() {
           </div>
           {hasActive ? (
             <div style={{ background: "rgba(255,255,255,0.14)", border: "1px solid rgba(255,255,255,0.28)", borderRadius: 14, padding: "18px 24px", maxWidth: 380, backdropFilter: "blur(8px)" }}>
-              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", marginBottom: 8, letterSpacing: "1.2px" }}>Active · {VOLUNTEER.activeApplication!.edition}</div>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.2px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", marginBottom: 8 }}>Active · {VOLUNTEER.activeApplication!.edition}</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: "#fff", lineHeight: 1.3, marginBottom: 6 }}>{VOLUNTEER.activeApplication!.title}</div>
               <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.6)", marginTop: 0 }}>{VOLUNTEER.activeApplication!.ngo} · Matched {VOLUNTEER.activeApplication!.matchDate}</div>
             </div>
