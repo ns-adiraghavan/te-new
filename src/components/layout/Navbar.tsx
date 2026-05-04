@@ -51,8 +51,8 @@ function getNavBg(pathname: string): string {
   if (pathname.startsWith("/journey")) return "rgba(20,48,100,0.85)";
   // About (main) — steel blue
   if (pathname === "/about") return "rgba(30,56,110,0.82)";
-  // Events — slate blue
-  if (pathname.startsWith("/about/events")) return "rgba(28,28,36,0.88)";
+  // Events — DR teal (visual consistency with disaster-response)
+  if (pathname.startsWith("/about/events")) return "rgba(0,68,60,0.80)";
   // About catch-all (sub-pages not explicitly listed)
   if (pathname.startsWith("/about")) return "rgba(28,52,90,0.82)";
   // TSM — olive
@@ -135,6 +135,9 @@ const Navbar = ({
 
   const hubView = (): View =>
     user?.role === "ngo" ? "ngo-hub" : user?.role === "corporate_spoc" ? "spoc-hub" : "volunteer-hub";
+
+  const dashView = (): View =>
+    user?.role === "ngo" ? "ngo-dashboard" : user?.role === "corporate_spoc" ? "spoc-dashboard" : "dashboard";
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
@@ -576,7 +579,7 @@ const Navbar = ({
                             icon: LayoutDashboard,
                             label: "My Space",
                             action: () => {
-                              onNavigate(hubView());
+                              onNavigate(dashView());
                               setDropdownOpen(false);
                             },
                           },
