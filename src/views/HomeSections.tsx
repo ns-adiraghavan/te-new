@@ -48,9 +48,9 @@ const GLOBAL_STYLES = `
   .section-block { padding: 72px 48px; position: relative; overflow: hidden; }
   .section-header { margin-bottom: 40px; }
 
-  /* Lift on hover */
-  .hover-lift { transition: transform 0.25s ease, box-shadow 0.25s ease; }
-  .hover-lift:hover { transform: translateY(-3px); }
+  /* Lift on hover — site-wide standard */
+  .hover-lift { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+  .hover-lift:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.10); }
 
   /* Definer underline — animated fill */
   .te-definer-track {
@@ -146,9 +146,9 @@ const GLOBAL_STYLES = `
 
 
 
-  /* Programme tile hover */
-  .prog-style-a { transition: transform 0.35s ease, box-shadow 0.35s ease; }
-  .prog-style-a:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,0.18); }
+  /* Programme tile hover — site-wide standard */
+  .prog-style-a { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+  .prog-style-a:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.10); }
   .prog-style-a .prog-img-card { transition: transform 0.4s ease; }
   .prog-style-a:hover .prog-img-card { transform: scale(1.04); }
 
