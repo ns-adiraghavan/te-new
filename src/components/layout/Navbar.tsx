@@ -70,8 +70,10 @@ function getNavBg(pathname: string): string {
   // Volunteer hub + dashboard
   if (pathname.startsWith("/hub") || pathname.startsWith("/dashboard") || pathname.startsWith("/volunteer"))
     return "rgba(28,40,80,0.82)";
-  // NGO — red-dark
+  // NGO — red-dark (legacy routes)
   if (pathname.startsWith("/ngo/")) return "rgba(80,14,18,0.80)";
+  // Register + Login — dark navy baseline (role-reactive focus handled via te:formFocus event)
+  if (pathname.startsWith("/register") || pathname.startsWith("/login")) return "rgba(4,42,48,0.92)";
   // Default
   return "rgba(28,40,80,0.80)";
 }
@@ -102,6 +104,7 @@ const Navbar = ({
   const [notifOpen, setNotifOpen] = useState(false);
   const [notifications, setNotifications] = useState(getRoleNotifications());
   const [bouncingItem, setBouncingItem] = useState<string | null>(null);
+  const [focusBg, setFocusBg] = useState<string | null>(null);
 
   useEffect(() => {
     setNotifications(getRoleNotifications());
@@ -117,6 +120,15 @@ const Navbar = ({
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const { bg } = (e as CustomEvent).detail ?? {};
+      setFocusBg(bg ?? null);
+    };
+    document.addEventListener("te:formFocus", handler);
+    return () => document.removeEventListener("te:formFocus", handler);
   }, []);
 
   const triggerBounce = (key: string, cb: () => void) => {
@@ -261,7 +273,7 @@ const Navbar = ({
           className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_24px_rgba(0,0,0,0.22)] relative"
           style={{
             paddingLeft: 200,
-            background: getNavBg(location.pathname),
+            background: focusBg ?? getNavBg(location.pathname),
             backdropFilter: "blur(18px)",
             WebkitBackdropFilter: "blur(18px)",
             transition: "background 0.35s ease",
