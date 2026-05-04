@@ -36,13 +36,13 @@ const CATEGORIES = [
   { name: "IT Enabled Services",              icon: Monitor,       color: B_INDIGO,   pastel: P_INDIGO  },
   { name: "Content Writing / Documentation",  icon: FileText,      color: B_BLUE,     pastel: P_BLUE    },
   { name: "Marketing & Communications",       icon: Megaphone,     color: B_RED,      pastel: P_RED     },
-  { name: "Coaching & Training",              icon: GraduationCap, color: "#65A30D",  pastel: "#F7FEE7" },
+  { name: "Coaching & Training",              icon: GraduationCap, color: "#3B7ABD",  pastel: "#EBF4FF" },
   { name: "Research",                         icon: Search,        color: B_BLUE,     pastel: P_BLUE    },
   { name: "Accounting & Finance",             icon: TrendingUp,    color: B_INDIGO,   pastel: P_INDIGO  },
   { name: "Fundraising",                      icon: Heart,         color: B_RED,      pastel: P_RED     },
   { name: "Management & Strategy",            icon: Package,       color: B_INDIGO,   pastel: P_INDIGO  },
   { name: "Legal",                            icon: Scale,         color: B_BLUE,     pastel: P_BLUE    },
-  { name: "HR & People",                      icon: Users,         color: "#65A30D",  pastel: "#F7FEE7" },
+  { name: "HR & People",                      icon: Users,         color: "#4376BB",  pastel: "#EBF4FF" },
   { name: "Others",                           icon: Plus,          color: "#888",     pastel: "#f5f5f5" },
 ];
 
@@ -77,7 +77,7 @@ function DrawerShell({ open, onClose, title, subtitle, accentTag, children }: {
   return (
     <>
       <div onClick={onClose} style={{ position:"fixed",inset:0,background:"rgba(13,27,62,0.45)",zIndex:200,opacity:open?1:0,pointerEvents:open?"auto":"none",transition:"opacity 0.22s",backdropFilter:"blur(2px)" }} />
-      <div style={{ position:"fixed",top:"50%",left:"50%",transform:open?"translate(-50%,-50%) scale(1)":"translate(-50%,-48%) scale(0.97)",transition:"transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s",opacity:open?1:0,pointerEvents:open?"auto":"none",width:580,maxWidth:"calc(100vw - 40px)",maxHeight:"calc(100vh - 60px)",background:"#fff",borderRadius:16,zIndex:201,boxShadow:"0 24px 64px rgba(13,27,62,0.22)",display:"flex",flexDirection:"column",fontFamily:FONT,overflowY:"auto" }}>
+      <div style={{ position:"fixed",top:"50%",left:"50%",transform:open?"translate(-50%,-50%) scale(1)":"translate(-50%,-48%) scale(0.97)",transition:"transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s",opacity:open?1:0,pointerEvents:open?"auto":"none",width:720,maxWidth:"calc(100vw - 40px)",maxHeight:"calc(100vh - 48px)",background:"#fff",borderRadius:16,zIndex:201,boxShadow:"0 24px 64px rgba(13,27,62,0.22)",display:"flex",flexDirection:"column",fontFamily:FONT,overflowY:"auto" }}>
         <div style={{ background:ACCENT_NAVY,padding:"24px 28px",borderRadius:"16px 16px 0 0",flexShrink:0 }}>
           <button onClick={onClose} style={{ background:"rgba(255,255,255,0.1)",border:"none",borderRadius:7,color:"rgba(255,255,255,0.7)",fontSize:13,fontWeight:500,padding:"5px 12px",cursor:"pointer",marginBottom:16 }}>← Close</button>
           {accentTag && <div style={{ display:"inline-block",background:`${B_YELLOW}22`,border:`1px solid ${B_YELLOW}44`,borderRadius:100,padding:"3px 10px",fontSize:10.5,fontWeight:700,color:B_YELLOW,letterSpacing:"0.6px",textTransform:"uppercase",marginBottom:10 }}>{accentTag}</div>}
@@ -124,7 +124,7 @@ function ProjectDetailPanel({ project, onClose, onApply }: { project: any; onClo
             <div style={{ fontSize:11,fontWeight:700,letterSpacing:"1.5px",textTransform:"uppercase",color:"#aaaabc",marginBottom:10 }}>Expected Learning</div>
             <ul style={{ margin:0,padding:0,listStyle:"none",display:"flex",flexDirection:"column",gap:7 }}>
               {["Experience co-creating solutions alongside NGO teams","Apply and strengthen your technical expertise","Gain project management experience","Broaden your perspective on community impact","Build appreciation for different organisational cultures"].map(pt=>(
-                <li key={pt} style={{ display:"flex",gap:10,fontSize:13,color:"#555",lineHeight:1.5 }}><span style={{ color:"#65A30D",flexShrink:0 }}>•</span>{pt}</li>
+                <li key={pt} style={{ display:"flex",gap:10,fontSize:13,color:"#555",lineHeight:1.5 }}><span style={{ color:B_INDIGO,flexShrink:0 }}>•</span>{pt}</li>
               ))}
             </ul>
           </div>
@@ -190,28 +190,53 @@ function ProjectCard({ project, onSelect, onApply, saved, onToggleSave, highligh
 
 // ── Apply Modal ──────────────────────────────────────────────────────────────
 function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
-  const [designation,setDesignation]   = useState("Senior Product Manager");
-  const [skills,setSkills]             = useState<string[]>([]);
-  const [attributes,setAttributes]     = useState("");
-  const [eduQual,setEduQual]           = useState("MBA");
-  const [workExp,setWorkExp]           = useState(VOLUNTEER_EXP);
-  const [similarTask,setSimilarTask]   = useState<""|"yes"|"no">("");
-  const [whyBestFit,setWhyBestFit]     = useState("");
-  const [threeSteps,setThreeSteps]     = useState("");
-  const [managerName,setManagerName]   = useState("");
-  const [managerEmail,setManagerEmail] = useState("");
-  const [agreed,setAgreed]             = useState(false);
-  const [submitted,setSubmitted]       = useState(false);
+  const [step, setStep]                         = useState(1);
+  const [designation, setDesignation]           = useState("Senior Product Manager");
+  const [designationDetail, setDesignationDetail] = useState("");
+  const [skills, setSkills]                     = useState<string[]>([]);
+  const [attributes, setAttributes]             = useState("");
+  const [eduQual, setEduQual]                   = useState("MBA");
+  const [workExp, setWorkExp]                   = useState(VOLUNTEER_EXP);
+  const [similarTask, setSimilarTask]           = useState<""|"yes"|"no">("");
+  const [whyBestFit, setWhyBestFit]             = useState("");
+  const [threeSteps, setThreeSteps]             = useState("");
+  const [managerName, setManagerName]           = useState("");
+  const [managerEmail, setManagerEmail]         = useState("");
+  const [agreed, setAgreed]                     = useState(false);
+  const [submitted, setSubmitted]               = useState(false);
   const { triggerToast } = useAppContext();
 
-  const canSubmit = whyBestFit.trim()&&threeSteps.trim()&&similarTask&&agreed;
-  const reset = ()=>{onClose();setSubmitted(false);setWhyBestFit("");setThreeSteps("");setAgreed(false);setSimilarTask("");};
+  if (!project) return null;
+  const cat   = CATEGORIES.find(c => c.name === getCategory(project.area)) || CATEGORIES[CATEGORIES.length-1];
+  const accent = cat.color === "#888" ? B_INDIGO : cat.color;
+  const pastel = cat.pastel === "#f5f5f5" ? P_INDIGO : cat.pastel;
 
-  const lbl: React.CSSProperties = {fontSize:11,fontWeight:700,color:"#aaaabc",textTransform:"uppercase",letterSpacing:"1px",display:"block",marginBottom:8};
-  const inp: React.CSSProperties = {width:"100%",border:"1.5px solid #e0e0e8",borderRadius:10,padding:"10px 14px",fontSize:13.5,fontFamily:FONT,color:ACCENT_NAVY,outline:"none",boxSizing:"border-box"};
-  const sel: React.CSSProperties = {...inp,appearance:"none",cursor:"pointer",background:"#fff"};
+  const step2Valid = whyBestFit.trim().length > 0 && threeSteps.trim().length > 0 && similarTask !== "";
+  const step3Valid = agreed;
 
-  const undertaking = [
+  const reset = () => {
+    onClose();
+    setTimeout(() => { setStep(1); setSubmitted(false); setAgreed(false); setWhyBestFit(""); setThreeSteps(""); setSimilarTask(""); setSkills([]); setDesignationDetail(""); setAttributes(""); }, 300);
+  };
+
+  const toggleSkill = (s: string) => setSkills(p => p.includes(s) ? p.filter(x => x !== s) : [...p, s]);
+
+  const inp = (ac: string): React.CSSProperties => ({
+    width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10,
+    padding: "11px 14px", fontSize: 14, fontFamily: FONT,
+    color: ACCENT_NAVY, outline: "none", boxSizing: "border-box",
+    background: "#fff", transition: "border-color 0.15s, background 0.15s",
+  });
+  const sel = (ac: string): React.CSSProperties => ({ ...inp(ac), appearance: "none", cursor: "pointer" });
+
+  const onFocusInp = (e: React.FocusEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>, ac: string) => {
+    e.target.style.borderColor = ac; e.target.style.background = `${ac}07`;
+  };
+  const onBlurInp = (e: React.FocusEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>) => {
+    e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff";
+  };
+
+  const UNDERTAKING = [
     "I am voluntarily applying for a project of my choice under ProEngage",
     "I understand that these projects, and my contribution through them, are of great value to society",
     "I know that the Tata group has a reputation of doing good and this is an opportunity for me to do good with something I am good at",
@@ -221,118 +246,235 @@ function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
     "I understand that following Tata best practices will help me remain true to Tata values while undertaking the project",
   ];
 
-  if (!project) return null;
+  // ── Step rail ──────────────────────────────────────────────────────────────
+  const StepRail = () => {
+    const steps = ["Project", "Application", "Undertaking"];
+    return (
+      <div style={{ display: "flex", alignItems: "center", marginBottom: 28 }}>
+        <style>{`@keyframes apsp{0%,100%{box-shadow:0 0 0 3px ${accent}44}50%{box-shadow:0 0 0 7px ${accent}18}}`}</style>
+        {steps.map((label, i) => {
+          const s = i + 1; const done = step > s; const active = step === s;
+          return (
+            <React.Fragment key={s}>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 5 }}>
+                <div style={{ width: active ? 11 : 9, height: active ? 11 : 9, borderRadius: "50%", background: (done || active) ? accent : "#dddde8", boxShadow: active ? `0 0 0 3px ${accent}33` : "none", transition: "all 0.25s", animation: active ? "apsp 2s ease-in-out infinite" : "none" }} />
+                <span style={{ fontSize: 10, fontWeight: active ? 700 : 500, color: active ? accent : done ? "#666" : "#aaa", fontFamily: FONT, whiteSpace: "nowrap" }}>{label}</span>
+              </div>
+              {i < steps.length - 1 && <div style={{ flex: 1, height: 1.5, background: step > s ? accent : "#e8e8f0", margin: "0 8px", marginBottom: 18, transition: "background 0.3s" }} />}
+            </React.Fragment>
+          );
+        })}
+      </div>
+    );
+  };
+
+  const SDiv = ({ label }: { label: string }) => (
+    <div style={{ display: "flex", alignItems: "center", gap: 10, margin: "4px 0" }}>
+      <div style={{ height: 1, background: "#f0f0f8", flex: 1 }} />
+      <span style={{ fontSize: 9.5, fontWeight: 700, color: accent, textTransform: "uppercase", letterSpacing: "1.4px", fontFamily: FONT, whiteSpace: "nowrap" }}>{label}</span>
+      <div style={{ height: 1, background: "#f0f0f8", flex: 1 }} />
+    </div>
+  );
+
+  const FLabel = ({ children }: { children: React.ReactNode }) => (
+    <label style={{ display: "block", fontSize: 11, fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 7, fontFamily: FONT }}>{children}</label>
+  );
+
+  const Radio = ({ value, label }: { value: "yes"|"no"; label: string }) => {
+    const active = similarTask === value;
+    return (
+      <button type="button" onClick={() => setSimilarTask(value)}
+        style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", background: "none", border: "none", padding: 0, fontFamily: FONT }}>
+        <div style={{ width: 18, height: 18, borderRadius: "50%", border: `2px solid ${active ? accent : "#dddde8"}`, background: active ? accent : "#fff", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.15s", flexShrink: 0 }}>
+          {active && <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#fff" }} />}
+        </div>
+        <span style={{ fontSize: 14, color: active ? accent : ACCENT_NAVY, fontWeight: active ? 600 : 400 }}>{label}</span>
+      </button>
+    );
+  };
+
+  // ── Step 1 ─────────────────────────────────────────────────────────────────
+  const Step1 = () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+      <div style={{ background: `linear-gradient(135deg, ${accent}18 0%, ${accent}08 100%)`, border: `1.5px solid ${accent}22`, borderRadius: 14, padding: "20px 22px" }}>
+        <div style={{ display: "inline-block", background: accent, borderRadius: 100, padding: "3px 11px", fontSize: 10.5, fontWeight: 700, color: "#fff", letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 10 }}>{project.area} · {project.commitment || "Flexible"}</div>
+        <div style={{ fontSize: 18, fontWeight: 800, color: ACCENT_NAVY, lineHeight: 1.3, marginBottom: 6, fontFamily: FONT }}>{project.title}</div>
+        <div style={{ fontSize: 13, color: "#666", marginBottom: 16 }}>{project.ngo}</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 24px" }}>
+          {[["Mode", project.mode], ["Commitment", project.commitment || "Flexible"], ["Skills", project.skills.slice(0,2).join(", ")], ["Match", project.matched ? "Recommended for you" : "Open application"]].map(([k, v]) => (
+            <div key={k as string}>
+              <div style={{ fontSize: 10, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 2 }}>{k}</div>
+              <div style={{ fontSize: 13.5, fontWeight: 600, color: k === "Match" && project.matched ? accent : ACCENT_NAVY, fontFamily: FONT }}>{v}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <SDiv label="Your Profile (auto-filled)" />
+      <div style={{ background: "#f8f9fc", borderRadius: 12, padding: "14px 16px", display: "flex", flexDirection: "column", gap: 10 }}>
+        {[["Skill Area", project.area], ["Work Experience", `${VOLUNTEER_EXP} years`], ["Languages", VOLUNTEER_LANGS.join(", ")], ["Location", "Mumbai, India"]].map(([k, v]) => (
+          <div key={k} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ fontSize: 13, color: "#888", fontFamily: FONT }}>{k}</span>
+            <span style={{ fontSize: 13, fontWeight: 600, color: ACCENT_NAVY, fontFamily: FONT }}>{v}</span>
+          </div>
+        ))}
+      </div>
+      <div style={{ background: `${accent}08`, border: `1px solid ${accent}20`, borderRadius: 10, padding: "12px 14px" }}>
+        <p style={{ fontSize: 12.5, color: "#555", lineHeight: 1.65, margin: 0, fontFamily: FONT }}>
+          You are applying for a <strong>{project.mode.toLowerCase().includes("remote") ? "remote" : "hybrid"}</strong> project with <strong>{project.ngo}</strong>. For queries, contact <span style={{ color: accent, textDecoration: "underline" }}>tataengage@tata.com</span>
+        </p>
+      </div>
+    </div>
+  );
+
+  // ── Step 2 ─────────────────────────────────────────────────────────────────
+  const Step2 = () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+      <SDiv label="Your Background" />
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+        <div>
+          <FLabel>Current Designation *</FLabel>
+          <select value={designation} onChange={e => setDesignation(e.target.value)} style={sel(accent)} onFocus={e => onFocusInp(e, accent)} onBlur={onBlurInp}>
+            {["Senior Product Manager","Product Manager","Software Engineer","Business Analyst","Finance Manager","HR Manager","Others"].map(d => <option key={d}>{d}</option>)}
+          </select>
+        </div>
+        <div>
+          <FLabel>Educational Qualifications *</FLabel>
+          <select value={eduQual} onChange={e => setEduQual(e.target.value)} style={sel(accent)} onFocus={e => onFocusInp(e, accent)} onBlur={onBlurInp}>
+            {["MBA","B.Tech / B.E.","CA","LLB","MBBS","M.Tech","BA / B.Com / B.Sc","Others"].map(q => <option key={q}>{q}</option>)}
+          </select>
+        </div>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+        <div>
+          <FLabel>Specify Designation (if Others)</FLabel>
+          <input type="text" value={designationDetail} onChange={e => setDesignationDetail(e.target.value)} placeholder="e.g. Associate Director" style={inp(accent)} onFocus={e => onFocusInp(e, accent)} onBlur={onBlurInp} />
+        </div>
+        <div>
+          <FLabel>Years of Work Experience *</FLabel>
+          <input type="number" value={workExp} onChange={e => setWorkExp(e.target.value)} min="0" max="50" style={inp(accent)} onFocus={e => onFocusInp(e, accent)} onBlur={onBlurInp} />
+        </div>
+      </div>
+      <div>
+        <FLabel>Project-specific Skills *</FLabel>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginTop: 6 }}>
+          {SKILL_OPTIONS.map(skill => {
+            const active = skills.includes(skill);
+            return (
+              <button key={skill} type="button" onClick={() => toggleSkill(skill)}
+                style={{ padding: "6px 13px", borderRadius: 100, border: `1.5px solid ${active ? accent : "#e0e0e8"}`, background: active ? accent : "#fafafa", color: active ? "#fff" : "#555", fontSize: 12.5, fontWeight: 600, fontFamily: FONT, cursor: "pointer", transition: "all 0.15s", display: "flex", alignItems: "center", gap: 5, boxShadow: active ? `0 2px 8px ${accent}33` : "none" }}>
+                {active && <span style={{ fontSize: 10 }}>✓</span>}{skill}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <div>
+        <FLabel>Relevant Attributes</FLabel>
+        <textarea value={attributes} onChange={e => setAttributes(e.target.value)} rows={2} placeholder="Describe any relevant attributes" style={{ ...inp(accent), resize: "vertical" as const }} onFocus={e => onFocusInp(e, accent)} onBlur={onBlurInp} />
+      </div>
+      <SDiv label="Your Application" />
+      <div>
+        <FLabel>Similar work before? *</FLabel>
+        <div style={{ display: "flex", gap: 24, marginTop: 6 }}>
+          <Radio value="yes" label="Yes" />
+          <Radio value="no" label="No" />
+        </div>
+      </div>
+      <div>
+        <FLabel>Why are you the best fit? *</FLabel>
+        <textarea value={whyBestFit} onChange={e => setWhyBestFit(e.target.value)} rows={4} placeholder="Describe your motivation and relevant experience..." style={{ ...inp(accent), resize: "vertical" as const }} onFocus={e => onFocusInp(e, accent)} onBlur={onBlurInp} />
+      </div>
+      <div>
+        <FLabel>In 3 steps, how will you complete this project? *</FLabel>
+        <textarea value={threeSteps} onChange={e => setThreeSteps(e.target.value)} rows={4} placeholder={"Step 1: ...\nStep 2: ...\nStep 3: ..."} style={{ ...inp(accent), resize: "vertical" as const }} onFocus={e => onFocusInp(e, accent)} onBlur={onBlurInp} />
+      </div>
+      <SDiv label="Manager Details (Optional)" />
+      <p style={{ fontSize: 12.5, color: "#888", lineHeight: 1.55, margin: "0 0 4px", fontFamily: FONT }}>Should we inform your manager if you are selected?</p>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+        <div>
+          <FLabel>Manager's Full Name</FLabel>
+          <input type="text" value={managerName} onChange={e => setManagerName(e.target.value)} placeholder="Manager's name" style={inp(accent)} onFocus={e => onFocusInp(e, accent)} onBlur={onBlurInp} />
+        </div>
+        <div>
+          <FLabel>Manager's Email</FLabel>
+          <input type="email" value={managerEmail} onChange={e => setManagerEmail(e.target.value)} placeholder="manager@tata.com" style={inp(accent)} onFocus={e => onFocusInp(e, accent)} onBlur={onBlurInp} />
+        </div>
+      </div>
+    </div>
+  );
+
+  // ── Step 3 ─────────────────────────────────────────────────────────────────
+  const Step3 = () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+      <SDiv label="Volunteer Undertaking" />
+      <div style={{ background: "#f8f9fc", borderRadius: 12, padding: "16px 18px" }}>
+        <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
+          {UNDERTAKING.map((pt, i) => (
+            <li key={i} style={{ display: "flex", gap: 10, fontSize: 13, color: "#555", lineHeight: 1.6, fontFamily: FONT }}>
+              <span style={{ color: accent, fontWeight: 700, flexShrink: 0, marginTop: 2 }}>•</span>{pt}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <label style={{ display: "flex", alignItems: "flex-start", gap: 10, cursor: "pointer", background: `${accent}08`, border: `1.5px solid ${accent}22`, borderRadius: 10, padding: "14px 16px" }}>
+        <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} style={{ marginTop: 3, accentColor: accent, width: 16, height: 16, flexShrink: 0, cursor: "pointer" }} />
+        <span style={{ fontSize: 13.5, color: ACCENT_NAVY, fontWeight: 600, lineHeight: 1.55, fontFamily: FONT }}>I agree to the above terms and confirm my application under ProEngage</span>
+      </label>
+      <div style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 12, padding: "14px 16px" }}>
+        <div style={{ fontSize: 10.5, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 10, fontFamily: FONT }}>Application Summary</div>
+        {[["Project", project.title], ["NGO", project.ngo], ["Mode", project.mode], ["Skills", skills.length > 0 ? skills.slice(0,3).join(", ") + (skills.length > 3 ? ` +${skills.length - 3}` : "") : "—"]].map(([k, v]) => (
+          <div key={k} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "5px 0", borderBottom: "1px solid #f4f4f8" }}>
+            <span style={{ fontSize: 12.5, color: "#888", fontFamily: FONT }}>{k}</span>
+            <span style={{ fontSize: 12.5, fontWeight: 600, color: ACCENT_NAVY, fontFamily: FONT, maxWidth: 300, textAlign: "right" }}>{v}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  // ── Submitted ──────────────────────────────────────────────────────────────
+  if (submitted) return (
+    <DrawerShell open={true} onClose={reset} title="Application Submitted" accentTag="ProEngage Application">
+      <div style={{ padding: "44px 32px", textAlign: "center" }}>
+        <div style={{ width: 64, height: 64, borderRadius: "50%", background: `${accent}18`, border: `2px solid ${accent}44`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px" }}>
+          <svg width="26" height="20" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke={accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </div>
+        <div style={{ fontSize: 20, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 10, fontFamily: FONT }}>Application Submitted!</div>
+        <div style={{ background: `${accent}0c`, border: `1px solid ${accent}25`, borderRadius: 12, padding: "16px 20px", marginBottom: 24, textAlign: "left" }}>
+          <p style={{ fontSize: 13.5, color: "#555", lineHeight: 1.7, margin: "0 0 8px", fontFamily: FONT }}>This is a <strong>{project.mode.toLowerCase().includes("remote") ? "remote" : "hybrid"}</strong> project with <strong>{project.ngo}</strong>.</p>
+          <p style={{ fontSize: 13.5, color: "#555", lineHeight: 1.7, margin: 0, fontFamily: FONT }}>You'll receive an email confirmation shortly.</p>
+        </div>
+        <button onClick={reset} style={{ padding: "11px 28px", borderRadius: 10, border: `1.5px solid ${accent}`, background: "transparent", color: accent, fontWeight: 700, fontSize: 14, fontFamily: FONT, cursor: "pointer" }}>Done</button>
+      </div>
+    </DrawerShell>
+  );
+
   return (
     <DrawerShell open={!!project} onClose={reset} title={project.title} subtitle={`${project.ngo} · ${project.area}`} accentTag="ProEngage Application">
-      {submitted ? (
-        <div style={{ padding:"40px 28px",textAlign:"center" }}>
-          <div style={{ background:"#FEFCE8",border:"1px solid #FDE68A",borderRadius:12,padding:"18px",marginBottom:20,textAlign:"left" }}>
-            <div style={{ fontSize:13.5,color:"#064e3b",lineHeight:1.7 }}>
-              <p style={{ marginBottom:6 }}>This being an <strong>{project.mode.toLowerCase().includes("remote")?"ONLINE":"ON-SITE"}</strong> project, you will be required to deliver it to: <strong>{project.ngo}</strong></p>
-              <p>Commitment: <strong>{project.commitment||"Flexible"}</strong></p>
-            </div>
-          </div>
-          <div style={{ width:56,height:56,borderRadius:"50%",background:"#F7FEE7",border:"2px solid #84CC16",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 16px" }}>
-            <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#65A30D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </div>
-          <div style={{ fontSize:16,fontWeight:700,color:ACCENT_NAVY,marginBottom:8 }}>Application submitted!</div>
-          <div style={{ fontSize:13.5,color:"#6b6b7a",lineHeight:1.6 }}>Your application has been sent to {project.ngo}. You'll receive an email confirmation shortly.</div>
+      <div style={{ padding: "28px 32px" }}>
+        <StepRail />
+        <div style={{ minHeight: 320 }}>
+          {step === 1 && <Step1 />}
+          {step === 2 && <Step2 />}
+          {step === 3 && <Step3 />}
         </div>
-      ) : (
-        <div style={{ padding:"24px 28px" }}>
-          <div style={{ background:P_INDIGO,border:`1px solid ${B_INDIGO}22`,borderRadius:10,padding:"12px 16px",marginBottom:22,display:"flex",flexWrap:"wrap",gap:"8px 24px" }}>
-            {[["Mode",project.mode],["Commitment",project.commitment||"Flexible"]].map(([k,v])=>(
-              <div key={k}><div style={{ fontSize:10,fontWeight:700,color:"#aaaabc",textTransform:"uppercase",letterSpacing:"0.8px" }}>{k}</div><div style={{ fontSize:13,fontWeight:600,color:ACCENT_NAVY }}>{v}</div></div>
-            ))}
-          </div>
-          <div style={{ marginBottom:22 }}>
-            <div style={{ fontSize:11,fontWeight:700,letterSpacing:"1.5px",textTransform:"uppercase",color:"#aaaabc",marginBottom:10 }}>Candidate Requirements (from your profile)</div>
-            <div style={{ background:"#f8f8fc",borderRadius:10,padding:"12px 16px",display:"flex",flexDirection:"column",gap:8 }}>
-              {[["Skill Area",project.area],["Work Experience",`${VOLUNTEER_EXP} years`],["Languages",VOLUNTEER_LANGS.join(", ")]].map(([k,v])=>(
-                <div key={k} style={{ display:"flex",justifyContent:"space-between",gap:12 }}><span style={{ fontSize:12.5,color:"#8888a0" }}>{k}</span><span style={{ fontSize:12.5,color:ACCENT_NAVY,fontWeight:600 }}>{v}</span></div>
-              ))}
-            </div>
-          </div>
-          <div style={{ fontSize:13,fontWeight:700,color:ACCENT_NAVY,marginBottom:16,paddingTop:4,borderTop:"1px solid #e8e8f0" }}>Application Details <span style={{ fontSize:11,color:B_RED,fontWeight:400 }}>* all fields are mandatory</span></div>
-
-          <div style={{ marginBottom:14 }}>
-            <label style={lbl}>Current Designation and Role *</label>
-            <select value={designation} onChange={e=>setDesignation(e.target.value)} style={{...sel,marginBottom:8}}>
-              {["Senior Product Manager","Product Manager","Software Engineer","Business Analyst","Finance Manager","HR Manager","Others"].map(d=><option key={d}>{d}</option>)}
-            </select>
-            <input type="text" placeholder="Specify if 'Others'" style={inp} onFocus={e=>(e.target.style.borderColor=B_INDIGO)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")}/>
-          </div>
-          <div style={{ marginBottom:14 }}>
-            <label style={lbl}>Project-specific skills / experience *</label>
-            <div style={{ border:"1.5px solid #e0e0e8",borderRadius:10,overflow:"hidden" }}>
-              <div style={{ display:"flex",flexWrap:"wrap",gap:6,padding:"10px 12px",minHeight:44,borderBottom:skills.length?"1px solid #e8e8f0":"none" }}>
-                {skills.map(s=><span key={s} style={{ background:P_INDIGO,color:B_INDIGO,fontSize:12,fontWeight:600,padding:"3px 10px",borderRadius:100,display:"flex",alignItems:"center",gap:4 }}>{s}<span onClick={()=>setSkills(skills.filter(x=>x!==s))} style={{ cursor:"pointer",opacity:0.6 }}><X size={10}/></span></span>)}
-                {skills.length===0&&<span style={{ fontSize:13,color:"#aaaabc" }}>Select skills...</span>}
-              </div>
-              <div style={{ maxHeight:120,overflowY:"auto" }}>
-                {SKILL_OPTIONS.filter(o=>!skills.includes(o)).map(o=>(
-                  <div key={o} onClick={()=>setSkills([...skills,o])} style={{ padding:"7px 14px",fontSize:13,color:ACCENT_NAVY,cursor:"pointer" }} onMouseEnter={e=>(e.currentTarget.style.background=P_INDIGO)} onMouseLeave={e=>(e.currentTarget.style.background="transparent")}>{o}</div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div style={{ marginBottom:14 }}>
-            <label style={lbl}>Attributes relevant to project</label>
-            <textarea value={attributes} onChange={e=>setAttributes(e.target.value)} rows={2} placeholder="Describe relevant attributes" style={{...inp,resize:"none"}} onFocus={e=>(e.target.style.borderColor=B_INDIGO)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")}/>
-          </div>
-          <div style={{ marginBottom:14 }}>
-            <label style={lbl}>Educational Qualifications *</label>
-            <select value={eduQual} onChange={e=>setEduQual(e.target.value)} style={{...sel,marginBottom:8}}>
-              {["MBA","B.Tech / B.E.","CA","LLB","MBBS","M.Tech","BA / B.Com / B.Sc","Others"].map(q=><option key={q}>{q}</option>)}
-            </select>
-          </div>
-          <div style={{ marginBottom:14 }}>
-            <label style={lbl}>Total Years of Work Experience *</label>
-            <input type="number" value={workExp} onChange={e=>setWorkExp(e.target.value)} min="0" max="50" style={inp} onFocus={e=>(e.target.style.borderColor=B_INDIGO)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")}/>
-          </div>
-          <div style={{ marginBottom:14 }}>
-            <label style={lbl}>Have you done a similar task before? *</label>
-            <div style={{ display:"flex",gap:24 }}>
-              {[["yes","Yes"],["no","No"]].map(([val,lbl_])=>(
-                <label key={val} style={{ display:"flex",alignItems:"center",gap:8,cursor:"pointer",fontSize:13.5,color:similarTask===val?B_INDIGO:ACCENT_NAVY,fontWeight:similarTask===val?600:400 }}>
-                  <div onClick={()=>setSimilarTask(val as "yes"|"no")} style={{ width:18,height:18,borderRadius:"50%",border:`2px solid ${similarTask===val?B_INDIGO:"#dddde8"}`,background:similarTask===val?B_INDIGO:"#fff",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer" }}>
-                    {similarTask===val&&<div style={{ width:7,height:7,borderRadius:"50%",background:"#fff" }}/>}
-                  </div>{lbl_}
-                </label>
-              ))}
-            </div>
-          </div>
-          <div style={{ marginBottom:14 }}>
-            <label style={lbl}>Why are you the best fit for this project? *</label>
-            <textarea value={whyBestFit} onChange={e=>setWhyBestFit(e.target.value)} rows={4} placeholder="Describe your motivation and how your skills can help" style={{...inp,resize:"none"}} onFocus={e=>(e.target.style.borderColor=B_INDIGO)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")}/>
-          </div>
-          <div style={{ marginBottom:14 }}>
-            <label style={lbl}>Describe in 3 steps how you will complete this project *</label>
-            <textarea value={threeSteps} onChange={e=>setThreeSteps(e.target.value)} rows={4} placeholder={"Step 1: ...\nStep 2: ...\nStep 3: ..."} style={{...inp,resize:"none"}} onFocus={e=>(e.target.style.borderColor=B_INDIGO)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")}/>
-          </div>
-          <div style={{ marginBottom:18 }}>
-            <div style={{ fontSize:13,fontWeight:700,color:ACCENT_NAVY,marginBottom:6 }}>Manager Details <span style={{ fontWeight:400,color:"#8888a0",fontSize:12 }}>(Optional)</span></div>
-            <div style={{ display:"flex",flexDirection:"column",gap:8 }}>
-              <input type="text" value={managerName} onChange={e=>setManagerName(e.target.value)} placeholder="Manager's full name" style={inp} onFocus={e=>(e.target.style.borderColor=B_INDIGO)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")}/>
-              <input type="email" value={managerEmail} onChange={e=>setManagerEmail(e.target.value)} placeholder="manager@tata.com" style={inp} onFocus={e=>(e.target.style.borderColor=B_INDIGO)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")}/>
-            </div>
-          </div>
-          <div style={{ marginBottom:20,background:"#f8f8fc",borderRadius:12,padding:"16px 18px" }}>
-            <div style={{ fontSize:13,fontWeight:700,color:ACCENT_NAVY,marginBottom:4 }}>Volunteer Undertaking <span style={{ fontWeight:400,fontSize:11.5,color:"#8888a0" }}>(Please read before applying.)</span></div>
-            <ul style={{ margin:"10px 0 0",padding:0,listStyle:"none",display:"flex",flexDirection:"column",gap:6 }}>
-              {undertaking.map((pt,i)=><li key={i} style={{ display:"flex",gap:10,fontSize:12.5,color:"#555",lineHeight:1.5 }}><span style={{ color:B_INDIGO,fontWeight:700,flexShrink:0 }}>•</span>{pt}</li>)}
-            </ul>
-            <label style={{ display:"flex",alignItems:"flex-start",gap:10,marginTop:14,cursor:"pointer" }}>
-              <input type="checkbox" checked={agreed} onChange={e=>setAgreed(e.target.checked)} style={{ marginTop:3,accentColor:B_INDIGO,width:15,height:15,flexShrink:0 }}/>
-              <span style={{ fontSize:13,color:B_INDIGO,fontWeight:600,lineHeight:1.5 }}>I agree to the above mentioned terms of submitting an application under ProEngage</span>
-            </label>
-          </div>
-          <div style={{ display:"flex",gap:10 }}>
-            <button onClick={reset} style={{ flex:1,background:"#fff",border:"1.5px solid #dddde8",borderRadius:10,padding:"12px",fontSize:13.5,fontWeight:600,color:"#6b6b7a",cursor:"pointer",fontFamily:FONT }}>Save for Later</button>
-            <button disabled={!canSubmit} onClick={()=>{setSubmitted(true);triggerToast(`Application for ${project.title} submitted!`);}} style={{ flex:2,background:canSubmit?B_INDIGO:"#e0e0e8",color:canSubmit?"#fff":"#aaa",border:"none",borderRadius:10,padding:"12px",fontSize:14,fontWeight:700,cursor:canSubmit?"pointer":"not-allowed",fontFamily:FONT }}>Submit Application</button>
-          </div>
+        <div style={{ display: "flex", gap: 10, marginTop: 28, paddingTop: 20, borderTop: "1px solid #f0f0f8" }}>
+          {step > 1 && (
+            <button onClick={() => setStep(s => s - 1)} style={{ flex: 1, padding: "12px", borderRadius: 10, border: `1.5px solid ${accent}40`, background: "transparent", color: accent, fontWeight: 700, fontSize: 14, fontFamily: FONT, cursor: "pointer" }}>← Back</button>
+          )}
+          {step < 3 ? (
+            <button onClick={() => setStep(s => s + 1)} disabled={step === 2 && !step2Valid}
+              style={{ flex: 2, padding: "12px", borderRadius: 10, border: "none", background: (step === 2 && !step2Valid) ? "#e0e0e8" : accent, color: (step === 2 && !step2Valid) ? "#aaa" : "#fff", fontWeight: 700, fontSize: 14, fontFamily: FONT, cursor: (step === 2 && !step2Valid) ? "not-allowed" : "pointer", boxShadow: (step === 2 && !step2Valid) ? "none" : `0 4px 16px ${accent}40`, transition: "all 0.2s" }}>
+              Continue →
+            </button>
+          ) : (
+            <button onClick={() => { setSubmitted(true); triggerToast(`Application for ${project.title} submitted!`); }} disabled={!step3Valid}
+              style={{ flex: 2, padding: "12px", borderRadius: 10, border: "none", background: step3Valid ? accent : "#e0e0e8", color: step3Valid ? "#fff" : "#aaa", fontWeight: 700, fontSize: 14, fontFamily: FONT, cursor: step3Valid ? "pointer" : "not-allowed", boxShadow: step3Valid ? `0 4px 16px ${accent}40` : "none", transition: "all 0.2s" }}>
+              Submit Application
+            </button>
+          )}
         </div>
-      )}
+      </div>
     </DrawerShell>
   );
 }
