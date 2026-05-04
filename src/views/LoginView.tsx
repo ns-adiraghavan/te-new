@@ -89,11 +89,11 @@ const LoginView = () => {
 
             {/* Heading */}
             <div style={{ textAlign: "center", marginBottom: 32 }}>
-              <h2 style={{ fontSize: 28, fontWeight: 900, color: ACCENT_NAVY, marginBottom: 8, letterSpacing: "-0.4px" }}>
+              <h2 style={{ fontSize: 28, fontWeight: 900, color: "#fff", marginBottom: 8, letterSpacing: "-0.4px" }}>
                 {isAdminLogin ? "Admin Login" : "Welcome Back"}
               </h2>
               <div style={{ width: 48, height: 3, borderRadius: 2, background: B_TICKER, margin: "0 auto 14px" }} />
-              <p style={{ fontSize: 14, color: "#64748b", margin: 0 }}>
+              <p style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", margin: 0 }}>
                 {isAdminLogin ? "Login to your admin dashboard" : "Login to your volunteering dashboard"}
               </p>
             </div>
@@ -174,7 +174,7 @@ const LoginView = () => {
               {/* Email/password form */}
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 <div>
-                   <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: ACCENT_NAVY, marginBottom: 6 }}>Email Address</label>
+                   <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.75)", marginBottom: 6 }}>Email Address</label>
                   <div style={{ position: "relative" }}>
                     <Mail size={16} style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", color: "#94a3b8" }} />
                     <input type="text" placeholder="Enter email or phone" className="form-input" style={{ paddingLeft: 40 }} />
@@ -182,7 +182,7 @@ const LoginView = () => {
                 </div>
                 <div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-                    <label style={{ fontSize: 12, fontWeight: 600, color: ACCENT_NAVY }}>Password</label>
+                    <label style={{ fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.75)" }}>Password</label>
                     <button onClick={() => navigate("forgot-password")} style={{ fontSize: 11, fontWeight: 700, color: B_TICKER, background: "none", border: "none", cursor: "pointer" }}>
                       Forgot Password?
                     </button>

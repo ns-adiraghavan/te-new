@@ -136,11 +136,11 @@ function SkillBubbles({ selected, onToggle, accent }: { selected: string[]; onTo
   );
 }
 
-function CompanySelect({ value, onChange, label = "Tata Company*", accent }: { value: string; onChange: (v: string) => void; label?: string; accent: string }) {
+function CompanySelect({ value, onChange, label = "Tata Company*", accent, navFocusBg }: { value: string; onChange: (v: string) => void; label?: string; accent: string; navFocusBg?: string }) {
   return (
     <div>
       <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#444", marginBottom: 6, fontFamily: FONT }}>{label}</label>
-      <select required value={value} onChange={e => onChange(e.target.value)} onFocus={e => { e.target.style.borderColor = accent; dispatchFocus(null); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 12, padding: "13px 16px", fontSize: 14.5, fontFamily: FONT, color: value ? ACCENT_NAVY : "#94a3b8", outline: "none", background: "#fff", cursor: "pointer", appearance: "none" as const, transition: "border-color 0.15s" }}>
+      <select required value={value} onChange={e => onChange(e.target.value)} onFocus={e => { e.target.style.borderColor = accent; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 12, padding: "13px 16px", fontSize: 14.5, fontFamily: FONT, color: value ? ACCENT_NAVY : "#94a3b8", outline: "none", background: "#fff", cursor: "pointer", appearance: "none" as const, transition: "border-color 0.15s" }}>
         <option value="">Select company</option>
         {TATA_COMPANIES.map(c => <option key={c}>{c}</option>)}
       </select>
@@ -156,7 +156,7 @@ function CompanySelect({ value, onChange, label = "Tata Company*", accent }: { v
   );
 }
 
-function PasswordField({ label, value, onChange, accent }: { label: string; value: string; onChange: (v: string) => void; accent: string }) {
+function PasswordField({ label, value, onChange, accent, navFocusBg }: { label: string; value: string; onChange: (v: string) => void; accent: string; navFocusBg?: string }) {
   const [show, setShow] = useState(false);
   const strength = !value ? 0 : value.length < 6 ? 1 : value.length < 10 || !/[^a-zA-Z0-9]/.test(value) ? 2 : value.length < 14 ? 3 : 4;
   const colours = ["#e0e0e8", B_RED, "#F79425", B_TICKER, B_TEAL];
@@ -165,7 +165,7 @@ function PasswordField({ label, value, onChange, accent }: { label: string; valu
     <div>
       <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#444", marginBottom: 6, fontFamily: FONT }}>{label}</label>
       <div style={{ position: "relative" }}>
-        <input type={show ? "text" : "password"} value={value} onChange={e => onChange(e.target.value)} placeholder="••••••••" required onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; dispatchFocus(null); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 12, padding: "13px 44px 13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", boxSizing: "border-box" as const, background: "#fff", transition: "border-color 0.15s, background 0.15s" }} />
+        <input type={show ? "text" : "password"} value={value} onChange={e => onChange(e.target.value)} placeholder="••••••••" required onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 12, padding: "13px 44px 13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", boxSizing: "border-box" as const, background: "#fff", transition: "border-color 0.15s, background 0.15s" }} />
         <button type="button" onClick={() => setShow(v => !v)} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#94a3b8" }}>{show ? <EyeOff size={15} /> : <Eye size={15} />}</button>
       </div>
       {value && (
@@ -197,7 +197,7 @@ function YearSlider({ value, onChange, accent }: { value: number; onChange: (v: 
   );
 }
 
-function EmployeeLookup({ email, onChange, onFound, accent }: { email: string; onChange: (v: string) => void; onFound: (d: { company: string; designation: string } | null) => void; accent: string }) {
+function EmployeeLookup({ email, onChange, onFound, accent, navFocusBg }: { email: string; onChange: (v: string) => void; onFound: (d: { company: string; designation: string } | null) => void; accent: string; navFocusBg?: string }) {
   const [status, setStatus] = useState<"idle"|"loading"|"found"|"notfound">("idle");
   useEffect(() => {
     onFound(null); setStatus("idle");
@@ -213,7 +213,7 @@ function EmployeeLookup({ email, onChange, onFound, accent }: { email: string; o
     <div>
       <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#444", marginBottom: 6, fontFamily: FONT }}>Linked Tata Employee Email*</label>
       <div style={{ position: "relative" }}>
-        <input type="email" required value={email} onChange={e => onChange(e.target.value)} placeholder="Enter employee's email" onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; dispatchFocus(null); }} onBlur={e => { e.target.style.borderColor = status === "found" ? B_TEAL : status === "notfound" ? B_RED : "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: `1.5px solid ${status === "found" ? B_TEAL : status === "notfound" ? B_RED : "#e0e0e8"}`, borderRadius: 12, padding: "13px 44px 13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", boxSizing: "border-box" as const, transition: "border-color 0.2s, background 0.15s", background: "#fff" }} />
+        <input type="email" required value={email} onChange={e => onChange(e.target.value)} placeholder="Enter employee's email" onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = status === "found" ? B_TEAL : status === "notfound" ? B_RED : "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: `1.5px solid ${status === "found" ? B_TEAL : status === "notfound" ? B_RED : "#e0e0e8"}`, borderRadius: 12, padding: "13px 44px 13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", boxSizing: "border-box" as const, transition: "border-color 0.2s, background 0.15s", background: "#fff" }} />
         <div style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)" }}>
           {status === "loading" && <div style={{ width: 14, height: 14, borderRadius: "50%", border: `2px solid ${accent}`, borderTopColor: "transparent", animation: "empSpin 0.7s linear infinite" }} />}
           {status === "found" && <Check size={15} color={B_TEAL} />}
@@ -270,9 +270,9 @@ const RegisterFormView = () => {
   const gradient  = ROLE_GRADIENTS[selectedRole ?? "default"]  ?? ROLE_GRADIENTS.default;
   const navFocus  = ROLE_NAV_FOCUS[selectedRole ?? "default"]  ?? ROLE_NAV_FOCUS.default;
 
-  // Wrap TInput (navFocus reserved for future use)
-  void navFocus;
-  const Input = (props: Parameters<typeof TInput>[0]) => <TInput {...props} />;
+  // Wrap TInput to auto-pass navFocusBg
+  const Input = (props: Omit<Parameters<typeof TInput>[0], "navFocusBg">) =>
+    <Input {...props} navFocusBg={navFocus} />;
 
   const toggle = (setter: React.Dispatch<React.SetStateAction<string[]>>, multi: boolean) => (v: string) =>
     setter(p => multi ? (p.includes(v) ? p.filter(x => x !== v) : [...p, v]) : [v]);
@@ -324,7 +324,7 @@ const RegisterFormView = () => {
           </div>
           <div><FLabel>LinkedIn URL</FLabel><Input type="url" placeholder="https://linkedin.com/in/..." accent={accent} /></div>
           <SectionDivider label="Your Tata Connection" accent={accent} />
-          <CompanySelect value={company} onChange={setCompany} accent={accent} />
+          <CompanySelect value={company} onChange={setCompany} accent={accent} navFocusBg={navFocus} />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <div><FLabel>Work / Personal Email*</FLabel><Input type="email" placeholder="Enter email" required accent={accent} onChange={v => setFormData({ ...formData, email: v })} /></div>
             <div><FLabel>SPOC Email</FLabel><Input type="email" placeholder="Required if no @tata.com email" accent={accent} /></div>
@@ -335,7 +335,7 @@ const RegisterFormView = () => {
           <div><FLabel>Area of Interest*</FLabel><PillSelector options={["Education","Environment","Livelihood","Health"]} selected={focusAreas} onToggle={toggle(setFocusAreas, true)} multi accent={accent} /></div>
           <SectionDivider label="Account Security" accent={accent} />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-            <PasswordField label="Password*" value={password} onChange={setPassword} accent={accent} />
+            <PasswordField label="Password*" value={password} onChange={setPassword} accent={accent} navFocusBg={navFocus} />
             <div><FLabel>Confirm Password*</FLabel><Input type="password" placeholder="••••••••" required accent={accent} /></div>
           </div>
         </div>
@@ -352,7 +352,7 @@ const RegisterFormView = () => {
             <div><FLabel>Personal Email*</FLabel><Input type="email" placeholder="Enter personal email" required accent={accent} onChange={v => setFormData({ ...formData, email: v })} /></div>
           </div>
           <SectionDivider label="Your Tata Service" accent={accent} />
-          <CompanySelect value={company} onChange={setCompany} label="Last Tata Company*" accent={accent} />
+          <CompanySelect value={company} onChange={setCompany} label="Last Tata Company*" accent={accent} navFocusBg={navFocus} />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <div><FLabel>Last Designation Held*</FLabel><Input placeholder="e.g. Senior Manager" required accent={accent} /></div>
             <YearSlider value={retireYear} onChange={setRetireYear} accent={accent} />
@@ -362,7 +362,7 @@ const RegisterFormView = () => {
           <div><FLabel>Areas of Interest*</FLabel><PillSelector options={["Education","Environment","Health","Livelihood","Mentoring","Skill Development"]} selected={focusAreas} onToggle={toggle(setFocusAreas, true)} multi accent={accent} /></div>
           <SectionDivider label="Account Security" accent={accent} />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-            <PasswordField label="Password*" value={password} onChange={setPassword} accent={accent} />
+            <PasswordField label="Password*" value={password} onChange={setPassword} accent={accent} navFocusBg={navFocus} />
             <div><FLabel>Confirm Password*</FLabel><Input type="password" placeholder="••••••••" required accent={accent} /></div>
           </div>
         </div>
@@ -380,7 +380,7 @@ const RegisterFormView = () => {
           </div>
           <div>
             <FLabel>Address*</FLabel>
-            <textarea placeholder="Enter full address" rows={3} onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; dispatchFocus(null); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 12, padding: "13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", resize: "vertical", boxSizing: "border-box" as const, transition: "border-color 0.15s, background 0.15s", background: "#fff" }} />
+            <textarea placeholder="Enter full address" rows={3} onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 12, padding: "13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", resize: "vertical", boxSizing: "border-box" as const, transition: "border-color 0.15s, background 0.15s", background: "#fff" }} />
           </div>
           <SectionDivider label="Focus Areas" accent={accent} />
           <div><FLabel>What does your organisation work on?*</FLabel><PillSelector options={["Education","Healthcare","Rural Development","Skill Development","Sustainability","Livelihoods","Women Empowerment"]} selected={focusAreas} onToggle={toggle(setFocusAreas, true)} multi accent={accent} /></div>
@@ -399,7 +399,7 @@ const RegisterFormView = () => {
           </div>
           <SectionDivider label="Your Tata Connection" accent={accent} />
           <div><FLabel>Relation to Employee*</FLabel><PillSelector options={["Spouse","Child","Parent","Sibling"]} selected={relation} onToggle={toggle(setRelation, false)} accent={accent} /></div>
-          <EmployeeLookup email={empEmail} onChange={setEmpEmail} onFound={setEmpFound} accent={accent} />
+          <EmployeeLookup email={empEmail} onChange={setEmpEmail} onFound={setEmpFound} accent={accent} navFocusBg={navFocus} />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <div>
               <FLabel>Company (of Employee)*</FLabel>
@@ -418,7 +418,7 @@ const RegisterFormView = () => {
           </div>
           <SectionDivider label="Account Security" accent={accent} />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-            <PasswordField label="Password*" value={password} onChange={setPassword} accent={accent} />
+            <PasswordField label="Password*" value={password} onChange={setPassword} accent={accent} navFocusBg={navFocus} />
             <div><FLabel>Confirm Password*</FLabel><Input type="password" placeholder="••••••••" required accent={accent} /></div>
           </div>
         </div>

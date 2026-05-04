@@ -231,8 +231,8 @@ function Badge({ status }: { status: string }) {
 function SH({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <div style={{ marginBottom: 24 }}>
-      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#aaaabc", marginBottom: 5 }}>{eyebrow}</div>
-      <h2 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 21, fontWeight: 900, color: ACCENT_NAVY, margin: 0, letterSpacing: -0.3 }}>{title}</h2>
+      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#0D1B3E", marginBottom: 5 }}>{eyebrow}</div>
+      <h2 style={{ fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", fontSize: 21, fontWeight: 900, color: ACCENT_NAVY, margin: 0, letterSpacing: -0.3 }}>{title}</h2>
     </div>
   );
 }
@@ -566,7 +566,7 @@ const NGODashboardView = () => {
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#aaaabc", marginBottom: 16 }}>I · My Engagement Snapshot</div>
 
             {/* KPI tiles — bold coloured, matches Volunteer/SPOC */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginBottom: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 20 }}>
               <StatTile value={activeProjects}  label="Active projects"    accentColor={KPI_GREEN}  delay={0}   started={kpiStarted} />
               <StatTile value={totalVols}       label="Volunteers engaged" accentColor={KPI_TEAL}   delay={80}  started={kpiStarted} />
               <StatTile value={completedVols}   label="Completed"          accentColor={KPI_LIME}   delay={160} started={kpiStarted} />
@@ -1070,7 +1070,7 @@ const NGODashboardView = () => {
         {/* ── RIGHT RAIL ── */}
         <div style={{ width: 148, flexShrink: 0, position: "sticky", top: 108, alignSelf: "flex-start" }}>
           {/* Section nav */}
-          <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#c0c0cc", marginBottom: 12 }}>On this page</div>
+          <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#0D1B3E", marginBottom: 12 }}>On this page</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 1, marginBottom: 28 }}>
             {[
               { id: "snapshot",     label: "Snapshot"     },
@@ -1093,7 +1093,7 @@ const NGODashboardView = () => {
           </div>
           {/* Quick links */}
           <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#c0c0cc", marginBottom: 12 }}>Quick Links</div>
+            <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#0D1B3E", marginBottom: 12 }}>Quick Links</div>
             {[
               { label: "Edit Profile",     action: () => navigate("profile") },
               { label: "Add Co-ordinator", action: () => setModal("manageTeam") },
@@ -1101,7 +1101,7 @@ const NGODashboardView = () => {
               { label: "Raise Grievance",  action: () => setModal("grievance") },
             ].map(({ label, action }) => (
               <button key={label} onClick={action}
-                style={{ display: "block", width: "100%", background: "none", border: "none", padding: "7px 10px", borderRadius: 8, fontSize: 12.5, color: "#8888a0", cursor: "pointer", textAlign: "left", fontFamily: "'DM Sans', sans-serif", transition: "background 0.15s, color 0.15s" }}
+                style={{ display: "block", width: "100%", background: "none", border: "none", padding: "7px 10px", borderRadius: 8, fontSize: 12.5, color: "#8888a0", cursor: "pointer", textAlign: "left", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", transition: "background 0.15s, color 0.15s" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = P_NGO; (e.currentTarget as HTMLElement).style.color = B_NGO; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "none"; (e.currentTarget as HTMLElement).style.color = "#8888a0"; }}>
                 {label}
@@ -1319,7 +1319,7 @@ const NGODashboardView = () => {
             <textarea value={grievanceForm.description} onChange={e => setGrievanceForm(f => ({ ...f, description: e.target.value }))} placeholder="Describe the issue clearly. TSG Admin acknowledges within 2 working days." rows={4}
               style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 8, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box" }} />
           </div>
-          <div style={{ fontSize: 11.5, color: "#aaaabc", marginBottom: 12, fontStyle: "italic" }}>Only 1 open grievance per active project at a time. Auto-acknowledgement sent on submission.</div>
+          <div style={{ fontSize: 11.5, color: "#0D1B3E", marginBottom: 12, fontStyle: "italic" }}>Only 1 open grievance per active project at a time. Auto-acknowledgement sent on submission.</div>
           <div style={{ display: "flex", gap: 10 }}>
             <button onClick={() => setModal(null)} style={{ flex: 1, padding: "10px", background: "#f8f8fc", border: "1px solid #e0e0e8", borderRadius: 9, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
             <button onClick={() => {

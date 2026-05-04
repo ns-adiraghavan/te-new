@@ -74,17 +74,17 @@ const PE_EDITIONS_SPOC = ["ProEngage 2025 | 02","ProEngage 2025 | 01","ProEngage
 
 const DIY_ACTIVITIES = [
   { id: "d1", title: "Create Awareness on Social Entitlements", desc: "TCS' 'Each One Empowers One' initiative. Help citizens understand key entitlements and empower semi-literate individuals with legal and social literacy.", theme: "Citizen Empowerment", org: "TCS Empowers", accentColor: "#13BBB4", pastel: "#E6F8F5" },
-  { id: "d2", title: "Donate Blood, Save Lives", desc: "By choosing to donate blood you're not just giving blood — you're giving hope and a chance at life. Sign up at your nearest Tata blood drive.", theme: "Health", org: "SDG Goal 3", accentColor: "#65A30D", pastel: "#F7FEE7" },
+  { id: "d2", title: "Donate Blood, Save Lives", desc: "By choosing to donate blood you're not just giving blood — you're giving hope and a chance at life. Sign up at your nearest Tata blood drive.", theme: "Health", org: "SDG Goal 3", accentColor: "#3B7ABD", pastel: "#EBF4FF" },
 ];
 
 const TVW_OPPORTUNITIES_SPOC = [
-  { id: "t1", title: "Tree Plantation Drive — Aarey Forest",         company: "Tata Motors", date: "18 Apr 2026", mode: "In-person · Mumbai", theme: "Environment", accentColor: "#65A30D", pastel: "#F7FEE7" },
+  { id: "t1", title: "Tree Plantation Drive — Aarey Forest",         company: "Tata Motors", date: "18 Apr 2026", mode: "In-person · Mumbai", theme: "Environment", accentColor: "#3B7ABD", pastel: "#EBF4FF" },
   { id: "t2", title: "Digital Literacy Workshop for Senior Citizens", company: "TCS",         date: "25 Apr 2026", mode: "Online · Pan-India", theme: "Education",   accentColor: "#135EA9", pastel: "#EBF4FF" },
 ];
 
 const PE_OPPORTUNITIES_SPOC = [
   { id: "p1", title: "Build a Fundraising Dashboard for Child Rights NGO", ngo: "Butterflies India",     skillArea: "Finance / Data",   duration: "3 months", mode: "Online",          closes: "15 Jul 2025", applicants: 14, match: 94, accentColor: "#135EA9", pastel: "#EBF4FF" },
-  { id: "p2", title: "Marketing Strategy for Women's Skilling Programme",  ngo: "Stree Mukti Sanghatna", skillArea: "Marketing",        duration: "4 months", mode: "Hybrid · Mumbai", closes: "20 Jul 2025", applicants: 9,  match: 89, accentColor: "#65A30D", pastel: "#F7FEE7" },
+  { id: "p2", title: "Marketing Strategy for Women's Skilling Programme",  ngo: "Stree Mukti Sanghatna", skillArea: "Marketing",        duration: "4 months", mode: "Hybrid · Mumbai", closes: "20 Jul 2025", applicants: 9,  match: 89, accentColor: "#3B7ABD", pastel: "#EBF4FF" },
   { id: "p3", title: "Product Roadmap for Disability Employment Platform", ngo: "Samarthanam Trust",     skillArea: "Product Strategy", duration: "6 months", mode: "Online",          closes: "30 Jul 2025", applicants: 6,  match: 97, accentColor: "#13BBB4", pastel: "#E6F8F5" },
 ];
 
@@ -150,7 +150,7 @@ function StatTile({ value, suffix = "", label, accentColor, delay, started, tool
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 4px 20px ${accentColor}33`; setShowTip(false); }}
     >
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1.4, background: "rgba(255,255,255,0.35)" }} />
-      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 38, fontWeight: 900, lineHeight: 1, letterSpacing: "-2px", color: "#ffffff", position: "relative", zIndex: 1 }}>
+      <div style={{ fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", fontSize: 38, fontWeight: 900, lineHeight: 1, letterSpacing: "-2px", color: "#ffffff", position: "relative", zIndex: 1 }}>
         {n}{suffix}
       </div>
       <div style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.85)", marginTop: 10, textTransform: "uppercase", letterSpacing: "1px", lineHeight: 1.3 }}>{label}</div>
@@ -171,7 +171,7 @@ function Slicers({ options, active, onChange, accentColor = B_BLUE, notification
   return (
     <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 22 }}>
       {options.map(o => (
-        <button key={o.id} onClick={() => onChange(o.id)} style={{ position: "relative", display: "inline-flex", padding: "6px 16px", borderRadius: 100, border: `1.5px solid ${active === o.id ? accentColor : "#dddde8"}`, background: active === o.id ? accentColor : "transparent", color: active === o.id ? "#fff" : "#666", fontSize: 13, fontWeight: active === o.id ? 600 : 400, cursor: "pointer", transition: "all 0.15s", fontFamily: "'DM Sans', sans-serif" }}>
+        <button key={o.id} onClick={() => onChange(o.id)} style={{ position: "relative", display: "inline-flex", padding: "6px 16px", borderRadius: 100, border: `1.5px solid ${active === o.id ? accentColor : "#dddde8"}`, background: active === o.id ? accentColor : "transparent", color: active === o.id ? "#fff" : "#666", fontSize: 13, fontWeight: active === o.id ? 600 : 400, cursor: "pointer", transition: "all 0.15s", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>
           {o.label}
           {notifications?.[o.id] && <span style={notifDot} />}
         </button>
@@ -183,8 +183,8 @@ function Slicers({ options, active, onChange, accentColor = B_BLUE, notification
 function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <div style={{ marginBottom: 24 }}>
-      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#aaaabc", marginBottom: 5 }}>{eyebrow}</div>
-      <h2 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 21, fontWeight: 900, color: ACCENT_NAVY, margin: 0, letterSpacing: -0.3 }}>{title}</h2>
+      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#0D1B3E", marginBottom: 5 }}>{eyebrow}</div>
+      <h2 style={{ fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", fontSize: 21, fontWeight: 900, color: ACCENT_NAVY, margin: 0, letterSpacing: -0.3 }}>{title}</h2>
     </div>
   );
 }
@@ -245,7 +245,7 @@ function DrawerShell({ open, onClose, title, subtitle, accentTag, accentColor, c
   return (
     <>
       <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(13,27,62,0.45)", zIndex: 200, opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none", transition: "opacity 0.22s", backdropFilter: "blur(2px)" }} />
-      <div style={{ position: "fixed", top: "50%", left: "50%", transform: open ? "translate(-50%, -50%) scale(1)" : "translate(-50%, -48%) scale(0.97)", transition: "transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s", opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none", width: 560, maxWidth: "calc(100vw - 40px)", maxHeight: "calc(100vh - 80px)", background: "#fff", borderRadius: 16, zIndex: 201, boxShadow: "0 24px 64px rgba(13,27,62,0.22)", display: "flex", flexDirection: "column", fontFamily: "'DM Sans', sans-serif", overflowY: "auto" }}>
+      <div style={{ position: "fixed", top: "50%", left: "50%", transform: open ? "translate(-50%, -50%) scale(1)" : "translate(-50%, -48%) scale(0.97)", transition: "transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s", opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none", width: 560, maxWidth: "calc(100vw - 40px)", maxHeight: "calc(100vh - 80px)", background: "#fff", borderRadius: 16, zIndex: 201, boxShadow: "0 24px 64px rgba(13,27,62,0.22)", display: "flex", flexDirection: "column", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", overflowY: "auto" }}>
         <div style={{ background: accentColor || ACCENT_NAVY, padding: "24px 28px", borderRadius: "16px 16px 0 0", flexShrink: 0 }}>
           <button onClick={onClose} style={{ background: "rgba(255,255,255,0.18)", border: "none", borderRadius: 7, color: "rgba(255,255,255,0.95)", fontSize: 13, fontWeight: 500, padding: "5px 12px", cursor: "pointer", marginBottom: 16 }}>← Close</button>
           {accentTag && <div style={{ display: "inline-block", background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: "#fff", letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 10 }}>{accentTag}</div>}
@@ -265,8 +265,8 @@ function TVWRegDrawer({ event, onClose, triggerToast }: { event: any; onClose: (
     <DrawerShell open={!!event} onClose={reset} title={event?.title ?? ""} subtitle={event?.venue ?? ""} accentTag="TVW 22" accentColor={KPI_TVW}>
       {event && (confirmed ? (
         <div style={{ padding: "40px 28px", textAlign: "center" }}>
-          <div style={{ width: 56, height: 56, borderRadius: "50%", background: "#F7FEE7", border: "2px solid #84CC16", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
-            <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#65A30D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          <div style={{ width: 56, height: 56, borderRadius: "50%", background: "#EBF4FF", border: "2px solid #135EA9", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
+            <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#135EA9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </div>
           <div style={{ fontSize: 16, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 8 }}>Registered!</div>
           <div style={{ fontSize: 13.5, color: "#6b6b7a", lineHeight: 1.6 }}>Confirmation email sent to rohan.desai@tcs.com</div>
@@ -285,8 +285,8 @@ function TVWRegDrawer({ event, onClose, triggerToast }: { event: any; onClose: (
             Registering as a volunteer for this event. Hours will be logged against your profile.
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <button onClick={() => { setConfirmed(true); triggerToast("Registered! Confirmation email sent to rohan.desai@tcs.com"); }} style={{ width: "100%", background: KPI_TVW, color: "#fff", border: "none", borderRadius: 10, padding: "13px", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Confirm Registration</button>
-            <button onClick={reset} style={{ width: "100%", background: "#fff", border: "1.5px solid #dddde8", borderRadius: 10, padding: "12px", fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Cancel</button>
+            <button onClick={() => { setConfirmed(true); triggerToast("Registered! Confirmation email sent to rohan.desai@tcs.com"); }} style={{ width: "100%", background: KPI_TVW, color: "#fff", border: "none", borderRadius: 10, padding: "13px", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>Confirm Registration</button>
+            <button onClick={reset} style={{ width: "100%", background: "#fff", border: "1.5px solid #dddde8", borderRadius: 10, padding: "12px", fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>Cancel</button>
           </div>
         </div>
       ))}
@@ -355,8 +355,8 @@ function ProjectUpdateDrawer({ open, onClose, project }: { open: boolean; onClos
     <DrawerShell open={open} onClose={reset} title="Post Your Monthly Update" subtitle={project ? `${project.ngo} · ProEngage 2025` : ""} accentTag="Monthly Update" accentColor={KPI_PROENGAGE}>
       {submitted ? (
         <div style={{ padding: "40px 28px", textAlign: "center" }}>
-          <div style={{ width: 56, height: 56, borderRadius: "50%", background: "#F7FEE7", border: "2px solid #84CC16", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
-            <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#65A30D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          <div style={{ width: 56, height: 56, borderRadius: "50%", background: "#EBF4FF", border: "2px solid #135EA9", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
+            <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#135EA9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </div>
           <div style={{ fontSize: 16, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 8 }}>Update posted</div>
           <div style={{ fontSize: 13.5, color: "#6b6b7a", lineHeight: 1.6 }}>Your update has been shared with TSG and your NGO partner.</div>
@@ -366,10 +366,10 @@ function ProjectUpdateDrawer({ open, onClose, project }: { open: boolean; onClos
           <p style={{ fontSize: 13.5, color: "#6b6b7a", lineHeight: 1.6, marginBottom: 22 }}>Share a brief progress note with TSG and your NGO partner.</p>
           <label style={{ fontSize: 11, fontWeight: 700, color: "#aaaabc", textTransform: "uppercase", letterSpacing: "1px", display: "block", marginBottom: 8 }}>Update</label>
           <textarea value={text} onChange={e => setText(e.target.value)} placeholder="What progress have you made this week? Any blockers or next steps?" rows={6}
-            style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "12px 14px", fontSize: 13.5, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, resize: "vertical", outline: "none", lineHeight: 1.6, boxSizing: "border-box", marginBottom: 16 }}
+            style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "12px 14px", fontSize: 13.5, fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", color: ACCENT_NAVY, resize: "vertical", outline: "none", lineHeight: 1.6, boxSizing: "border-box", marginBottom: 16 }}
             onFocus={e => (e.target.style.borderColor = B_BLUE)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")} />
           <div style={{ border: "1.5px dashed #dddde8", borderRadius: 10, padding: "16px", textAlign: "center", fontSize: 13, color: "#aaaabc", cursor: "pointer", marginBottom: 16 }}>Drop a file here or click to browse (optional)</div>
-          <button disabled={!text.trim()} onClick={() => setSubmitted(true)} style={{ width: "100%", background: text.trim() ? B_BLUE : "#e0e0e8", color: text.trim() ? "#fff" : "#aaa", border: "none", borderRadius: 10, padding: "13px", fontSize: 14, fontWeight: 700, cursor: text.trim() ? "pointer" : "not-allowed", fontFamily: "'DM Sans', sans-serif" }}>Post Update</button>
+          <button disabled={!text.trim()} onClick={() => setSubmitted(true)} style={{ width: "100%", background: text.trim() ? B_BLUE : "#e0e0e8", color: text.trim() ? "#fff" : "#aaa", border: "none", borderRadius: 10, padding: "13px", fontSize: 14, fontWeight: 700, cursor: text.trim() ? "pointer" : "not-allowed", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>Post Update</button>
         </div>
       )}
     </DrawerShell>
@@ -386,7 +386,7 @@ function FeedbackVolDrawer({ open, onClose, project }: { open: boolean; onClose:
   const [dropoutReason, setDropoutReason] = useState("");
   const reset = () => { onClose(); setSubmitted(false); setCompleted(""); setNps(0); setSupportRatings([0,0,0]); setMonths(""); setHoursWeek(""); setDropoutReason(""); };
   const canSubmit = completed === "yes" ? !!(months && hoursWeek && supportRatings.every(r=>r>0) && nps>0) : !!(completed === "no" && dropoutReason);
-  const sel: React.CSSProperties = { width:"100%", border:"1.5px solid #e0e0e8", borderRadius:10, padding:"10px 14px", fontSize:13.5, fontFamily:"'DM Sans', sans-serif", color:ACCENT_NAVY, outline:"none", boxSizing:"border-box", appearance:"none", cursor:"pointer", background:"#fff" };
+  const sel: React.CSSProperties = { width:"100%", border:"1.5px solid #e0e0e8", borderRadius:10, padding:"10px 14px", fontSize:13.5, fontFamily:"'DM Sans', ui-sans-serif, system-ui, sans-serif", color:ACCENT_NAVY, outline:"none", boxSizing:"border-box", appearance:"none", cursor:"pointer", background:"#fff" };
   const lbl: React.CSSProperties = { fontSize:11, fontWeight:700, color:"#aaaabc", textTransform:"uppercase", letterSpacing:"1px", display:"block", marginBottom:8 };
   const supportItems = ["Easily accessible","Resolved queries","Liaising with NGO partners"];
   const dropoutReasons = ["Change in project scope by NGO / NGO Unresponsive","Personal and professional transitions hindered engagement","I didn't feel motivated / I lost interest"];
@@ -397,7 +397,7 @@ function FeedbackVolDrawer({ open, onClose, project }: { open: boolean; onClose:
     <DrawerShell open={open} onClose={reset} title="ProEngage Volunteer Feedback" subtitle={project ? `${project.ngo} · ProEngage 2025` : ""} accentTag="Project Feedback" accentColor={KPI_CVP}>
       {submitted ? (
         <div style={{ padding:"40px 28px", textAlign:"center" }}>
-          <div style={{ width:56, height:56, borderRadius:"50%", background:"#F7FEE7", border:"2px solid #84CC16", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 16px" }}><svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#65A30D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
+          <div style={{ width:56, height:56, borderRadius:"50%", background:"#EBF4FF", border:"2px solid #135EA9", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 16px" }}><svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#135EA9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
           <div style={{ fontSize:16, fontWeight:700, color:ACCENT_NAVY, marginBottom:8 }}>Feedback submitted</div>
           <div style={{ fontSize:13.5, color:"#6b6b7a", lineHeight:1.6 }}>Thank you. Certificate will be generated within 24 hours once the NGO also submits.</div>
         </div>
@@ -424,7 +424,7 @@ function FeedbackVolDrawer({ open, onClose, project }: { open: boolean; onClose:
             <label style={lbl}>2. Reason for no completion *</label>
             {dropoutReasons.map((r,i)=><label key={i} style={{ display:"flex", alignItems:"flex-start", gap:10, cursor:"pointer", fontSize:13, color:dropoutReason===r?B_BLUE:ACCENT_NAVY, fontWeight:dropoutReason===r?600:400, lineHeight:1.5, marginBottom:10 }}><div onClick={()=>setDropoutReason(r)} style={{ width:18, height:18, minWidth:18, borderRadius:"50%", border:`2px solid ${dropoutReason===r?B_BLUE:"#dddde8"}`, background:dropoutReason===r?B_BLUE:"#fff", display:"flex", alignItems:"center", justifyContent:"center", cursor:"pointer", marginTop:2 }}>{dropoutReason===r&&<div style={{ width:7, height:7, borderRadius:"50%", background:"#fff" }} />}</div>{r}</label>)}
           </div>}
-          <button disabled={!canSubmit} onClick={()=>setSubmitted(true)} style={{ width:"100%", background:canSubmit?B_BLUE:"#e0e0e8", color:canSubmit?"#fff":"#aaa", border:"none", borderRadius:10, padding:"13px", fontSize:14, fontWeight:700, cursor:canSubmit?"pointer":"not-allowed", fontFamily:"'DM Sans', sans-serif" }}>Submit Feedback</button>
+          <button disabled={!canSubmit} onClick={()=>setSubmitted(true)} style={{ width:"100%", background:canSubmit?B_BLUE:"#e0e0e8", color:canSubmit?"#fff":"#aaa", border:"none", borderRadius:10, padding:"13px", fontSize:14, fontWeight:700, cursor:canSubmit?"pointer":"not-allowed", fontFamily:"'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>Submit Feedback</button>
         </div>
       )}
     </DrawerShell>
@@ -452,9 +452,9 @@ function GrievanceVolDrawer({ open, onClose }: { open: boolean; onClose: () => v
           </div>
           <div style={{ marginBottom:22 }}>
             <label style={{ fontSize:11, fontWeight:700, color:"#aaaabc", textTransform:"uppercase", letterSpacing:"1px", display:"block", marginBottom:8 }}>Describe the issue *</label>
-            <textarea value={text} onChange={e=>setText(e.target.value)} rows={5} placeholder="Provide as much detail as possible." style={{ width:"100%", border:"1.5px solid #e0e0e8", borderRadius:10, padding:"12px 14px", fontSize:13.5, fontFamily:"'DM Sans', sans-serif", color:ACCENT_NAVY, resize:"none", outline:"none", lineHeight:1.6, boxSizing:"border-box" }} onFocus={e=>(e.target.style.borderColor=B_BLUE)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")} />
+            <textarea value={text} onChange={e=>setText(e.target.value)} rows={5} placeholder="Provide as much detail as possible." style={{ width:"100%", border:"1.5px solid #e0e0e8", borderRadius:10, padding:"12px 14px", fontSize:13.5, fontFamily:"'DM Sans', ui-sans-serif, system-ui, sans-serif", color:ACCENT_NAVY, resize:"none", outline:"none", lineHeight:1.6, boxSizing:"border-box" }} onFocus={e=>(e.target.style.borderColor=B_BLUE)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")} />
           </div>
-          <button disabled={!(category && text.trim().length > 10)} onClick={()=>setSubmitted(true)} style={{ width:"100%", background:category&&text.trim().length>10?B_BLUE:"#e0e0e8", color:category&&text.trim().length>10?"#fff":"#aaa", border:"none", borderRadius:10, padding:"13px", fontSize:14, fontWeight:700, cursor:category&&text.trim().length>10?"pointer":"not-allowed", fontFamily:"'DM Sans', sans-serif" }}>Submit Grievance</button>
+          <button disabled={!(category && text.trim().length > 10)} onClick={()=>setSubmitted(true)} style={{ width:"100%", background:category&&text.trim().length>10?B_BLUE:"#e0e0e8", color:category&&text.trim().length>10?"#fff":"#aaa", border:"none", borderRadius:10, padding:"13px", fontSize:14, fontWeight:700, cursor:category&&text.trim().length>10?"pointer":"not-allowed", fontFamily:"'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>Submit Grievance</button>
         </div>
       )}
     </DrawerShell>
@@ -469,7 +469,7 @@ function ApplyVolDrawer({ project, onClose }: { project: typeof PE_OPPORTUNITIES
     <DrawerShell open={!!project} onClose={reset} title={project?.title ?? ""} subtitle={project ? `${project.ngo} · ${project.skillArea}` : ""} accentTag="ProEngage Application">
       {project && (submitted ? (
         <div style={{ padding:"40px 28px", textAlign:"center" }}>
-          <div style={{ width:56, height:56, borderRadius:"50%", background:"#F7FEE7", border:"2px solid #84CC16", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 16px" }}><svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#65A30D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
+          <div style={{ width:56, height:56, borderRadius:"50%", background:"#EBF4FF", border:"2px solid #135EA9", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 16px" }}><svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#135EA9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
           <div style={{ fontSize:16, fontWeight:700, color:ACCENT_NAVY, marginBottom:8 }}>Application submitted!</div>
           <div style={{ fontSize:13.5, color:"#6b6b7a", lineHeight:1.6 }}>Sent to {project.ngo}. You'll receive email confirmation shortly.</div>
         </div>
@@ -479,14 +479,14 @@ function ApplyVolDrawer({ project, onClose }: { project: typeof PE_OPPORTUNITIES
             {[["Mode",project.mode],["Duration",project.duration],["Closes",project.closes],["Applicants",`${project.applicants} applied`]].map(([k,v])=><div key={k}><div style={{ fontSize:10, fontWeight:700, color:"#aaaabc", textTransform:"uppercase" }}>{k}</div><div style={{ fontSize:13, fontWeight:600, color:ACCENT_NAVY }}>{v}</div></div>)}
           </div>
           <label style={{ fontSize:11, fontWeight:700, color:"#aaaabc", textTransform:"uppercase", letterSpacing:"1px", display:"block", marginBottom:8 }}>Why are you the best fit? *</label>
-          <textarea value={why} onChange={e=>setWhy(e.target.value)} rows={5} placeholder="Describe your motivation and relevant experience" style={{ width:"100%", border:"1.5px solid #e0e0e8", borderRadius:10, padding:"12px 14px", fontSize:13.5, fontFamily:"'DM Sans', sans-serif", color:ACCENT_NAVY, resize:"none", outline:"none", lineHeight:1.6, boxSizing:"border-box", marginBottom:16 }} onFocus={e=>(e.target.style.borderColor=B_BLUE)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")} />
+          <textarea value={why} onChange={e=>setWhy(e.target.value)} rows={5} placeholder="Describe your motivation and relevant experience" style={{ width:"100%", border:"1.5px solid #e0e0e8", borderRadius:10, padding:"12px 14px", fontSize:13.5, fontFamily:"'DM Sans', ui-sans-serif, system-ui, sans-serif", color:ACCENT_NAVY, resize:"none", outline:"none", lineHeight:1.6, boxSizing:"border-box", marginBottom:16 }} onFocus={e=>(e.target.style.borderColor=B_BLUE)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")} />
           <label style={{ display:"flex", alignItems:"flex-start", gap:10, marginBottom:22, cursor:"pointer" }}>
             <input type="checkbox" checked={agreed} onChange={e=>setAgreed(e.target.checked)} style={{ marginTop:3, accentColor:B_BLUE, width:15, height:15 }} />
             <span style={{ fontSize:13, color:B_BLUE, fontWeight:600, lineHeight:1.5 }}>I agree to the volunteer undertaking terms</span>
           </label>
           <div style={{ display:"flex", gap:10 }}>
-            <button onClick={reset} style={{ flex:1, background:"#fff", border:"1.5px solid #dddde8", borderRadius:10, padding:"12px", fontSize:13.5, fontWeight:600, color:"#6b6b7a", cursor:"pointer", fontFamily:"'DM Sans', sans-serif" }}>Save for Later</button>
-            <button disabled={!(agreed&&why.trim())} onClick={()=>setSubmitted(true)} style={{ flex:2, background:agreed&&why.trim()?B_BLUE:"#e0e0e8", color:agreed&&why.trim()?"#fff":"#aaa", border:"none", borderRadius:10, padding:"12px", fontSize:14, fontWeight:700, cursor:agreed&&why.trim()?"pointer":"not-allowed", fontFamily:"'DM Sans', sans-serif" }}>Submit Application</button>
+            <button onClick={reset} style={{ flex:1, background:"#fff", border:"1.5px solid #dddde8", borderRadius:10, padding:"12px", fontSize:13.5, fontWeight:600, color:"#6b6b7a", cursor:"pointer", fontFamily:"'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>Save for Later</button>
+            <button disabled={!(agreed&&why.trim())} onClick={()=>setSubmitted(true)} style={{ flex:2, background:agreed&&why.trim()?B_BLUE:"#e0e0e8", color:agreed&&why.trim()?"#fff":"#aaa", border:"none", borderRadius:10, padding:"12px", fontSize:14, fontWeight:700, cursor:agreed&&why.trim()?"pointer":"not-allowed", fontFamily:"'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>Submit Application</button>
           </div>
         </div>
       ))}
@@ -504,7 +504,7 @@ function ReferralVolDrawer({ open, onClose }: { open: boolean; onClose: () => vo
         <p style={{ fontSize:13.5, color:"#6b6b7a", lineHeight:1.6, marginBottom:22 }}>When someone joins using your link, your Referred count goes up toward the Connector badge.</p>
         <div style={{ background:P_BLUE, border:`1px solid ${B_BLUE}22`, borderRadius:10, padding:"14px 16px", display:"flex", alignItems:"center", gap:12, marginBottom:16 }}>
           <span style={{ flex:1, fontSize:13.5, fontWeight:600, color:B_BLUE, wordBreak:"break-all" }}>{refLink}</span>
-          <button onClick={()=>{setCopied(true);setTimeout(()=>setCopied(false),2000);}} style={{ background:copied?"#65A30D":B_BLUE, color:"#fff", border:"none", borderRadius:8, padding:"8px 16px", fontSize:13, fontWeight:700, cursor:"pointer", whiteSpace:"nowrap", transition:"background 0.2s" }}>{copied?"Copied!":"Copy Link"}</button>
+          <button onClick={()=>{setCopied(true);setTimeout(()=>setCopied(false),2000);}} style={{ background:copied?"#3B7ABD":B_BLUE, color:"#fff", border:"none", borderRadius:8, padding:"8px 16px", fontSize:13, fontWeight:700, cursor:"pointer", whiteSpace:"nowrap", transition:"background 0.2s" }}>{copied?"Copied!":"Copy Link"}</button>
         </div>
         <div style={{ fontSize:12, color:"#aaaabc" }}>Link expires in 30 days. You have referred 3 people so far.</div>
       </div>
@@ -527,9 +527,9 @@ function ShareVolDrawer({ open, onClose }: { open: boolean; onClose: () => void 
           {[["linkedin","LinkedIn"],["twitter","Twitter"],["whatsapp","WhatsApp"]].map(([id,lab])=><button key={id} onClick={()=>setActive(id)} style={{ flex:1, padding:"8px", borderRadius:8, border:`1.5px solid ${active===id?B_BLUE:"#dddde8"}`, background:active===id?P_BLUE:"#fff", color:active===id?B_BLUE:"#6b6b7a", fontSize:12.5, fontWeight:600, cursor:"pointer" }}>{lab}</button>)}
         </div>
         <label style={{ fontSize:11, fontWeight:700, color:"#aaaabc", textTransform:"uppercase", letterSpacing:"1px", display:"block", marginBottom:8 }}>Pre-written caption (you can edit)</label>
-        <textarea defaultValue={captions[active]} rows={5} style={{ width:"100%", border:"1.5px solid #e0e0e8", borderRadius:10, padding:"12px 14px", fontSize:13.5, fontFamily:"'DM Sans', sans-serif", color:ACCENT_NAVY, resize:"none", outline:"none", lineHeight:1.6, boxSizing:"border-box", marginBottom:16 }} onFocus={e=>(e.target.style.borderColor=B_BLUE)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")} />
+        <textarea defaultValue={captions[active]} rows={5} style={{ width:"100%", border:"1.5px solid #e0e0e8", borderRadius:10, padding:"12px 14px", fontSize:13.5, fontFamily:"'DM Sans', ui-sans-serif, system-ui, sans-serif", color:ACCENT_NAVY, resize:"none", outline:"none", lineHeight:1.6, boxSizing:"border-box", marginBottom:16 }} onFocus={e=>(e.target.style.borderColor=B_BLUE)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")} />
         <div style={{ fontSize:12, color:"#aaaabc", marginBottom:20 }}>The platform never auto-posts on your behalf.</div>
-        <button style={{ width:"100%", background:B_BLUE, color:"#fff", border:"none", borderRadius:10, padding:"13px", fontSize:14, fontWeight:700, cursor:"pointer", fontFamily:"'DM Sans', sans-serif" }}>Open {active.charAt(0).toUpperCase()+active.slice(1)}</button>
+        <button style={{ width:"100%", background:B_BLUE, color:"#fff", border:"none", borderRadius:10, padding:"13px", fontSize:14, fontWeight:700, cursor:"pointer", fontFamily:"'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>Open {active.charAt(0).toUpperCase()+active.slice(1)}</button>
       </div>
     </DrawerShell>
   );
@@ -548,7 +548,7 @@ function FeedbackCard({ f, supportLabels, attrLabels }: { f: SpocFeedbackEntry; 
           <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
             <span style={{ background:P_BLUE, color:B_BLUE, fontSize:11, fontWeight:600, padding:"2px 9px", borderRadius:100 }}>{f.ngo}</span>
             <span style={{ background:P_BLUE, color:B_BLUE, fontSize:11, fontWeight:600, padding:"2px 9px", borderRadius:100 }}>{f.edition}</span>
-            <span style={{ background:"#F7FEE7", color:"#65A30D", fontSize:11, fontWeight:700, padding:"2px 9px", borderRadius:100 }}>Submitted</span>
+            <span style={{ background:"#EBF4FF", color:"#135EA9", fontSize:11, fontWeight:700, padding:"2px 9px", borderRadius:100 }}>Submitted</span>
           </div>
         </div>
         <span style={{ fontSize:18, color:"#dddde8", transform:open?"rotate(90deg)":"rotate(0deg)", transition:"transform 0.2s" }}>›</span>
@@ -592,7 +592,7 @@ function OrientationPanel({ progress, total, onOpen }: { progress: number; total
       {oOpen && (
         <div style={{ padding: "0 16px 16px", borderTop: "1px solid #e8e8f0" }}>
           <p style={{ fontSize: 13, color: "#6b6b7a", lineHeight: 1.6, margin: "12px 0 14px" }}>Complete all orientation modules to unlock full SPOC capabilities and stay current with ProEngage guidelines.</p>
-          <button onClick={onOpen} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "9px 20px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>
+          <button onClick={onOpen} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "9px 20px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>
             {progress < total ? "Continue Orientation" : "Review Orientation"}
           </button>
         </div>
@@ -707,7 +707,7 @@ export default function SPOCDashboardView() {
     { id: "emodule", label: "E-Module", desc: "SPOC orientation and guidelines",    count: "5 modules",   accentColor: "#C8850A",     photo: imgEModule },
   ];
 
-  const inp: React.CSSProperties = { width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "10px 14px", fontSize: 13.5, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" };
+  const inp: React.CSSProperties = { width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "10px 14px", fontSize: 13.5, fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" };
 
   // ── Volunteer sections JSX ──────────────────────────────────────────────────
   const volSectionsJSX = (
@@ -716,7 +716,7 @@ export default function SPOCDashboardView() {
       <div style={{ background: "#f0f1f8", borderRadius: 16, padding: "24px 22px", marginBottom: 52 }}>
         <section id="vol-snapshot" style={{ scrollMarginTop: 108 }}>
           <SectionHeading eyebrow="Your impact, at a glance" title="Engagement Snapshot" />
-          <div ref={statsRef} style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 16 }}>
+          <div ref={statsRef} style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 20 }}>
             <StatTile value={volData.hoursVolunteered}      label="Hours Volunteered"  accentColor={KPI_PROENGAGE} delay={0}   started={statsStarted} tooltip="Total hours logged across all ProEngage projects." />
             <StatTile value={SPOC_VOL_APPLICATIONS.length}  label="Projects Applied"   accentColor={KPI_TVW}       delay={100} started={statsStarted} tooltip="ProEngage applications submitted across editions." />
             <StatTile value={4}                             label="Projects Completed" accentColor={KPI_CVP}       delay={200} started={statsStarted} tooltip="Projects where both sides have submitted feedback." />
@@ -725,7 +725,7 @@ export default function SPOCDashboardView() {
             <StatTile value={SPOC_BADGES.length}            label="Badges Earned"      accentColor={KPI_TEAL}      delay={500} started={statsStarted} tooltip="Awarded for key milestones." />
           </div>
           <div style={{ ...card, marginBottom: 10 }}>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#aaaabc", marginBottom: 12 }}>Skills You Bring</div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#0D1B3E", marginBottom: 12 }}>Skills You Bring</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
               {volData.skills.map((s: string) => <span key={s} style={{ background: P_BLUE, color: B_BLUE, fontSize: 12.5, fontWeight: 600, padding: "4px 12px", borderRadius: 100 }}>{s}</span>)}
             </div>
@@ -745,7 +745,7 @@ export default function SPOCDashboardView() {
             </div>
           </div>
           <div>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#aaaabc", marginBottom: 12 }}>Testimonial from the field</div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#0D1B3E", marginBottom: 12 }}>Testimonial from the field</div>
             <div style={{ background: P_TEAL_DARK, borderRadius: 14, padding: "28px 32px", position: "relative", overflow: "hidden", border: `1px solid ${B_LIME_DARK}33` }}>
               <div style={{ position: "absolute", top: -20, left: 20, fontFamily: "Georgia, serif", fontSize: 160, color: `${B_LIME_DARK}0d`, lineHeight: 1, userSelect: "none", pointerEvents: "none" }}>"</div>
               <div style={{ display: "inline-block", background: `${B_LIME_DARK}18`, border: `1px solid ${B_LIME_DARK}44`, borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: B_LIME_DARK, letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 16 }}>ProEngage 2025 | 01</div>
@@ -778,7 +778,7 @@ export default function SPOCDashboardView() {
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 {TVW_OPPORTUNITIES_SPOC.map(ev => (
                   <div key={ev.id} style={{ ...card, display: "flex", gap: 16, alignItems: "center", cursor: "pointer", transition: "box-shadow 0.18s, transform 0.18s", padding: "18px 20px" }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(13,27,62,0.08)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(13,27,62,0.08)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}>
                     <div style={{ width: 44, height: 44, borderRadius: 10, background: ev.pastel, border: `1px solid ${ev.accentColor}22`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <div style={{ width: 8, height: 8, borderRadius: "50%", background: ev.accentColor }} />
@@ -802,7 +802,7 @@ export default function SPOCDashboardView() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
               {DIY_ACTIVITIES.map(a => (
                 <div key={a.id} style={{ ...card, padding: "20px", cursor: "pointer", display: "flex", flexDirection: "column", transition: "transform 0.18s, box-shadow 0.18s" }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 6px 20px ${a.accentColor}18`; }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 6px 20px ${a.accentColor}18`; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}>
                   <div style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: 14 }}>
                     <div style={{ width: 44, height: 44, borderRadius: 10, background: a.pastel, border: `1px solid ${a.accentColor}22`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -817,7 +817,7 @@ export default function SPOCDashboardView() {
                       <div style={{ fontSize: 12.5, color: "#555", lineHeight: 1.55 }}>{a.desc}</div>
                     </div>
                   </div>
-                  <button onClick={e => { e.stopPropagation(); triggerToast("Please contact your SPOC to sign up for this activity."); }} style={{ width: "100%", background: a.accentColor, color: "#fff", border: "none", borderRadius: 10, padding: "10px 0", fontSize: 12.5, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Contact SPOC</button>
+                  <button onClick={e => { e.stopPropagation(); triggerToast("Please contact your SPOC to sign up for this activity."); }} style={{ width: "100%", background: a.accentColor, color: "#fff", border: "none", borderRadius: 10, padding: "10px 0", fontSize: 12.5, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>Contact SPOC</button>
                 </div>
               ))}
             </div>
@@ -846,8 +846,8 @@ export default function SPOCDashboardView() {
                   { label: "Download Certificate",     tags: [] as string[],                           color: "#bbb",     pastel: "#f8f8fc", action: () => {},                            disabled: true  },
                 ].map(a => (
                   <button key={a.label} disabled={a.disabled} onClick={a.action}
-                    style={{ background: "#fff", border: `1px solid ${a.color}22`, borderRadius: 14, padding: "18px 18px 16px", textAlign: "left", cursor: a.disabled ? "not-allowed" : "pointer", opacity: a.disabled ? 0.55 : 1, transition: "transform 0.18s, box-shadow 0.18s", fontFamily: "'DM Sans', sans-serif", boxShadow: `0 2px 12px ${a.color}11` }}
-                    onMouseEnter={e => { if (!a.disabled) { (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 28px ${a.color}22`; }}}
+                    style={{ background: "#fff", border: `1px solid ${a.color}22`, borderRadius: 14, padding: "18px 18px 16px", textAlign: "left", cursor: a.disabled ? "not-allowed" : "pointer", opacity: a.disabled ? 0.55 : 1, transition: "transform 0.18s, box-shadow 0.18s", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", boxShadow: `0 2px 12px ${a.color}11` }}
+                    onMouseEnter={e => { if (!a.disabled) { (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 28px ${a.color}22`; }}}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 2px 12px ${a.color}11`; }}>
                     <div style={{ width: 40, height: 40, borderRadius: 9, background: a.disabled ? "#f0f0f5" : a.pastel, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
                       <div style={{ width: 8, height: 8, borderRadius: "50%", background: a.disabled ? "#ccc" : a.color }} />
@@ -871,7 +871,7 @@ export default function SPOCDashboardView() {
               <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 14 }}>
                 {PROENGAGE_PROJECTS.filter(p => p.matched).slice(0, 3).map((p, i) => (
                   <div key={p.id} style={{ ...card, padding: "18px 20px", border: `1.5px solid ${B_VOL}22`, borderLeft: `3px solid ${B_VOL}`, transition: "transform 0.18s, box-shadow 0.18s" }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 6px 20px ${B_VOL}14`; }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 6px 20px ${B_VOL}14`; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
                       <div style={{ flex: 1 }}>
@@ -886,7 +886,7 @@ export default function SPOCDashboardView() {
                           <span style={{ background: "#f5f5fa", color: "#6b6b7a", fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{p.commitment || "Flexible"}</span>
                         </div>
                       </div>
-                      <button onClick={() => onNavigate("proengage")} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 8, padding: "8px 16px", fontSize: 12.5, fontWeight: 700, cursor: "pointer", flexShrink: 0, fontFamily: "'DM Sans', sans-serif" }}>View & Apply</button>
+                      <button onClick={() => onNavigate("proengage")} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 8, padding: "8px 16px", fontSize: 12.5, fontWeight: 700, cursor: "pointer", flexShrink: 0, fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>View & Apply</button>
                     </div>
                   </div>
                 ))}
@@ -897,13 +897,13 @@ export default function SPOCDashboardView() {
 
           {/* Refer + Share — always visible below active tab */}
           <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
-            <button onClick={() => setReferralOpen(true)} style={{ flex: 1, background: P_TEAL, border: `1.5px solid ${B_TEAL}33`, borderRadius: 10, padding: "13px 16px", fontSize: 13.5, fontWeight: 600, color: B_TEAL, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", transition: "border-color 0.18s, transform 0.18s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = B_TEAL; (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; }}
+            <button onClick={() => setReferralOpen(true)} style={{ flex: 1, background: P_TEAL, border: `1.5px solid ${B_TEAL}33`, borderRadius: 10, padding: "13px 16px", fontSize: 13.5, fontWeight: 600, color: B_TEAL, cursor: "pointer", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", transition: "border-color 0.18s, transform 0.18s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = B_TEAL; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = `${B_TEAL}33`; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}>
               Refer a Colleague or Family Member
             </button>
-            <button onClick={() => setShareOpen(true)} style={{ flex: 1, background: P_BLUE, border: `1.5px solid ${B_BLUE}22`, borderRadius: 10, padding: "13px 16px", fontSize: 13.5, fontWeight: 600, color: B_BLUE, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", transition: "border-color 0.18s, transform 0.18s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = B_BLUE; (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; }}
+            <button onClick={() => setShareOpen(true)} style={{ flex: 1, background: P_BLUE, border: `1.5px solid ${B_BLUE}22`, borderRadius: 10, padding: "13px 16px", fontSize: 13.5, fontWeight: 600, color: B_BLUE, cursor: "pointer", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", transition: "border-color 0.18s, transform 0.18s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = B_BLUE; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = `${B_BLUE}22`; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}>
               Share Your Story
             </button>
@@ -922,7 +922,7 @@ export default function SPOCDashboardView() {
             accentColor={B_BLUE}
           />
           <div style={{ marginBottom: 16 }}>
-            <select value={histEditionFilter} onChange={e => { setHistEditionFilter(e.target.value); setProjExpanded(false); setAppsExpanded(false); }} style={{ padding: "6px 12px", borderRadius: 8, border: "1.5px solid #dddde8", background: "#fff", fontSize: 13, color: ACCENT_NAVY, fontFamily: "'DM Sans', sans-serif", cursor: "pointer", outline: "none" }}>
+            <select value={histEditionFilter} onChange={e => { setHistEditionFilter(e.target.value); setProjExpanded(false); setAppsExpanded(false); }} style={{ padding: "6px 12px", borderRadius: 8, border: "1.5px solid #dddde8", background: "#fff", fontSize: 13, color: ACCENT_NAVY, fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", cursor: "pointer", outline: "none" }}>
               <option value="ProEngage 2025 | 02">ProEngage 2025 | 02 (Latest)</option>
               <option value="">All Editions</option>
               {PE_EDITIONS_SPOC.filter(e => e !== "ProEngage 2025 | 02").map(e => <option key={e} value={e}>{e}</option>)}
@@ -937,12 +937,12 @@ export default function SPOCDashboardView() {
                   const isActive  = p.projectStatus === "Applied";
                   const ac        = isActive ? B_TEAL : B_BLUE;
                   const pas       = isActive ? P_TEAL : P_BLUE;
-                  const statusBg  = isActive ? "#E6F8F5" : "#F7FEE7";
-                  const statusCol = isActive ? B_TEAL_DARK : "#65A30D";
+                  const statusBg  = isActive ? "#E6F8F5" : "#EBF4FF";
+                  const statusCol = isActive ? B_TEAL_DARK : "#135EA9";
                   const statusLbl = isActive ? "Applied" : "Completed";
                   return (
                     <div key={p.id} style={{ ...card, display: "flex", gap: 16, alignItems: "flex-start", padding: "18px 20px", transition: "box-shadow 0.18s, transform 0.18s" }}
-                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(13,27,62,0.08)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(13,27,62,0.08)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}>
                       <div style={{ width: 44, height: 44, borderRadius: 10, background: pas, border: `1px solid ${ac}22`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 2 }}><div style={{ width: 8, height: 8, borderRadius: "50%", background: ac }} /></div>
                       <div style={{ flex: 1 }}>
@@ -955,7 +955,7 @@ export default function SPOCDashboardView() {
                           <span style={{ background: pas, color: ac, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{p.edition}</span>
                           <span style={{ background: pas, color: ac, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{p.hours} hrs</span>
                         </div>
-                        <div style={{ background: isActive ? P_TEAL : "#F7FEE7", borderRadius: 8, padding: "9px 12px", fontSize: 12.5, color: isActive ? B_TEAL_DARK : "#365314", borderLeft: `3px solid ${ac}`, lineHeight: 1.55 }}>{p.outcome}</div>
+                        <div style={{ background: isActive ? P_TEAL : "#EBF4FF", borderRadius: 8, padding: "9px 12px", fontSize: 12.5, color: isActive ? B_TEAL_DARK : "#135EA9", borderLeft: `3px solid ${ac}`, lineHeight: 1.55 }}>{p.outcome}</div>
                       </div>
                       {p.cert && <button style={{ background: B_BLUE, color: "#fff", border: "none", borderRadius: 8, padding: "6px 13px", fontSize: 12, fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap" }}>Download Certificate</button>}
                     </div>
@@ -1053,7 +1053,7 @@ export default function SPOCDashboardView() {
       <div style={{ background: "#f0f1f8", borderRadius: 16, padding: "24px 22px", marginBottom: 52 }}>
         <section id="spoc-kpis" style={{ scrollMarginTop: 108 }}>
           <SectionHeading eyebrow="Company-wide impact" title="Impact KPIs" />
-          <div ref={statsRef} style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 16 }}>
+          <div ref={statsRef} style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 20 }}>
             <StatTile value={spocData.stats.totalVolunteers}  label="Total Volunteers"  accentColor={KPI_PINK}      delay={0}   started={statsStarted} tooltip="All registered volunteers under your company scope." />
             <StatTile value={spocData.stats.activeProEngage}  label="Active ProEngage"  accentColor={KPI_PROENGAGE} delay={100} started={statsStarted} tooltip="Volunteers currently matched to a ProEngage project." />
             <StatTile value={spocData.stats.tvwEvents}        label="TVW Events"         accentColor={KPI_TVW}       delay={200} started={statsStarted} tooltip="Total TVW events posted this edition." />
@@ -1102,7 +1102,7 @@ export default function SPOCDashboardView() {
                 <div style={{ fontSize: 15, fontWeight: 700, color: "#fff" }}>Post a new TVW event</div>
                 <div style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", marginTop: 4 }}>Goes live on the TVW calendar within 5 minutes.</div>
               </div>
-              <button onClick={() => setCreateEventOpen(true)} style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "10px 20px", fontSize: 13.5, fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif" }}>+ Post Event</button>
+              <button onClick={() => setCreateEventOpen(true)} style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "10px 20px", fontSize: 13.5, fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>+ Post Event</button>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -1141,7 +1141,7 @@ export default function SPOCDashboardView() {
 
           {/* Top-level edition filter */}
           <div style={{ marginBottom: 16 }}>
-            <select value={spocPipelineFilter} onChange={e => setSpocPipelineFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "1.5px solid #dddde8", background: "#fff", fontSize: 13, color: ACCENT_NAVY, fontFamily: "'DM Sans', sans-serif", cursor: "pointer", outline: "none" }}>
+            <select value={spocPipelineFilter} onChange={e => setSpocPipelineFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "1.5px solid #dddde8", background: "#fff", fontSize: 13, color: ACCENT_NAVY, fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", cursor: "pointer", outline: "none" }}>
               <option value="current">ProEngage 2025 | 02 (Current)</option>
               <option value="past">Past Editions</option>
             </select>
@@ -1235,7 +1235,7 @@ export default function SPOCDashboardView() {
                   </div>
                 ))}
               </div>
-              <button onClick={() => triggerToast("Bulk ZIP download started — all certificates for current edition.")} style={{ marginTop: 14, background: ACCENT_NAVY, color: "#fff", border: "none", borderRadius: 10, padding: "10px 20px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Bulk Download All (ZIP)</button>
+              <button onClick={() => triggerToast("Bulk ZIP download started — all certificates for current edition.")} style={{ marginTop: 14, background: ACCENT_NAVY, color: "#fff", border: "none", borderRadius: 10, padding: "10px 20px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>Bulk Download All (ZIP)</button>
             </div>
           </CollapsiblePanel>
         </section>
@@ -1284,7 +1284,7 @@ export default function SPOCDashboardView() {
                     <div style={{ fontSize: 11, color: "#aaaabc", whiteSpace: "nowrap" }}>{s.lastActive}</div>
                   </div>
                 ))}
-                <button onClick={() => triggerToast("Add Regional SPOC flow coming soon.")} style={{ background: "none", border: "1.5px solid #dddde8", borderRadius: 10, padding: "10px 16px", fontSize: 13, fontWeight: 600, color: "#6b6b7a", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", marginTop: 4 }}>+ Add Regional SPOC</button>
+                <button onClick={() => triggerToast("Add Regional SPOC flow coming soon.")} style={{ background: "none", border: "1.5px solid #dddde8", borderRadius: 10, padding: "10px 16px", fontSize: 13, fontWeight: 600, color: "#6b6b7a", cursor: "pointer", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", marginTop: 4 }}>+ Add Regional SPOC</button>
               </div>
             </CollapsiblePanel>
 
@@ -1320,7 +1320,7 @@ export default function SPOCDashboardView() {
                   </div>
                   <span style={{ fontSize: 11, fontWeight: 700, color: B_VOL, whiteSpace: "nowrap" }}>{spocData.orientationProgress}/{spocData.totalOrientationModules}</span>
                 </div>
-                <button onClick={() => setShowOrientationModal(true)} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "9px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", alignSelf: "flex-start" }}>
+                <button onClick={() => setShowOrientationModal(true)} style={{ background: B_VOL, color: "#fff", border: "none", borderRadius: 10, padding: "9px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", alignSelf: "flex-start" }}>
                   {spocData.orientationProgress < spocData.totalOrientationModules ? "Continue" : "Review"}
                 </button>
               </div>
@@ -1332,7 +1332,7 @@ export default function SPOCDashboardView() {
                   <div style={{ fontSize: 13.5, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 4 }}>Submit Annual Volunteering Report</div>
                   <div style={{ fontSize: 12, color: "#8888a0", lineHeight: 1.5 }}>Compile and submit the annual volunteering data for TCS to the TSG reporting portal.</div>
                 </div>
-                <button onClick={() => triggerToast("Opening annual reporting portal...")} style={{ background: ACCENT_NAVY, color: "#fff", border: "none", borderRadius: 10, padding: "9px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", alignSelf: "flex-start" }}>Open Portal ↗</button>
+                <button onClick={() => triggerToast("Opening annual reporting portal...")} style={{ background: ACCENT_NAVY, color: "#fff", border: "none", borderRadius: 10, padding: "9px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", alignSelf: "flex-start" }}>Open Portal ↗</button>
               </div>
             </div>
           </section>
@@ -1355,7 +1355,7 @@ export default function SPOCDashboardView() {
 
   return (
     <>
-      <div style={{ background: "#f8f9ff", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif", paddingBottom: 80 }}>
+      <div style={{ background: "#f8f9ff", minHeight: "100vh", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", paddingBottom: 80 }}>
 
         {/* Greeting bar */}
         <div style={{ background: spocMode ? "linear-gradient(135deg, #1a2a5e 0%, #333399 60%, #4376BB 100%)" : "linear-gradient(135deg, #065666 0%, #135EA9 60%, #0891b2 100%)", minHeight: 340, padding: "92px 40px 40px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24, flexWrap: "wrap", position: "relative", overflow: "hidden" }}>
@@ -1428,25 +1428,24 @@ export default function SPOCDashboardView() {
               borderRadius: 12,
               padding: "10px",
             }}>
-              <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: "1.6px", textTransform: "uppercase", color: "#c0c0cc", marginBottom: 8, paddingLeft: 2 }}>View</div>
+              <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: "1.6px", textTransform: "uppercase", color: "#888", marginBottom: 8, paddingLeft: 2 }}>View</div>
               <div style={{ display: "flex", gap: 6 }}>
                 {[{ id: false, label: "My Space", color: "#0B7285" }, { id: true, label: "SPOC", color: ACCENT_NAVY }].map(t => (
                   <button key={String(t.id)}
                     onClick={() => { setSpocMode(t.id); setStatsStarted(false); setTimeout(() => setStatsStarted(true), 300); }}
                     style={{
                       flex: 1,
-                      background: spocMode === t.id ? t.color : "rgba(255,255,255,0.06)",
-                      border: `2px solid ${spocMode === t.id ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.12)"}`,
+                      background: spocMode === t.id ? t.color : "transparent",
+                      border: `1.5px solid ${spocMode === t.id ? t.color : "#dddde8"}`,
                       borderRadius: 8,
-                      padding: "8px 4px",
-                      fontSize: 12, fontWeight: spocMode === t.id ? 800 : 400,
-                      color: spocMode === t.id ? "#fff" : "rgba(255,255,255,0.4)",
-                      cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
+                      padding: "8px 6px",
+                      fontSize: 12, fontWeight: spocMode === t.id ? 700 : 400,
+                      color: spocMode === t.id ? "#fff" : "#888",
+                      cursor: "pointer", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif",
                       transition: "all 0.22s cubic-bezier(0.4,0,0.2,1)",
                       whiteSpace: "nowrap",
-                      boxShadow: spocMode === t.id ? "0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)" : "none",
-                      transform: spocMode === t.id ? "scale(1.04)" : "scale(1)",
-                      letterSpacing: spocMode === t.id ? "0.2px" : "0",
+                      boxShadow: spocMode === t.id ? `0 2px 12px ${t.color}44` : "none",
+                      transform: spocMode === t.id ? "scale(1.03)" : "scale(1)",
                     }}>
                     {t.label}
                   </button>
@@ -1454,7 +1453,7 @@ export default function SPOCDashboardView() {
               </div>
             </div>
 
-            <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#c0c0cc", marginBottom: 12 }}>On this page</div>
+            <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#0D1B3E", marginBottom: 12 }}>On this page</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
               {currentSections.map(s => {
                 const on = activeSection === s.id;
@@ -1462,7 +1461,7 @@ export default function SPOCDashboardView() {
                 const railPastel = spocMode ? P_SPOC : P_VOL;
                 return (
                   <button key={s.id} onClick={() => scrollTo(s.id)}
-                    style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 10px", borderRadius: 8, border: "none", background: on ? railPastel : "transparent", cursor: "pointer", textAlign: "left", transition: "background 0.18s", fontFamily: "'DM Sans', sans-serif" }}>
+                    style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 10px", borderRadius: 8, border: "none", background: on ? railPastel : "transparent", cursor: "pointer", textAlign: "left", transition: "background 0.18s", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>
                     <div style={{ width: 2, height: 12, borderRadius: 2, background: on ? railAccent : "#dddde8", flexShrink: 0, transition: "background 0.18s" }} />
                     <span style={{ fontSize: 12.5, fontWeight: on ? 700 : 400, color: on ? railAccent : "#aaaabc", transition: "color 0.18s" }}>{s.label}</span>
                   </button>
@@ -1470,7 +1469,7 @@ export default function SPOCDashboardView() {
               })}
             </div>
             <div style={{ marginTop: 28 }}>
-              <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#c0c0cc", marginBottom: 12 }}>Quick Links</div>
+              <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#0D1B3E", marginBottom: 12 }}>Quick Links</div>
               {[
                 { label: "Edit Profile",  action: () => onNavigate("profile") },
                 { label: "Orientation",   action: () => setShowOrientationModal(true) },
@@ -1478,7 +1477,7 @@ export default function SPOCDashboardView() {
                 { label: "Media Library", action: () => onNavigate("media") },
               ].map(a => (
                 <button key={a.label} onClick={a.action}
-                  style={{ display: "block", width: "100%", background: "none", border: "none", padding: "7px 10px", borderRadius: 8, fontSize: 12.5, color: "#8888a0", cursor: "pointer", textAlign: "left", fontFamily: "'DM Sans', sans-serif", transition: "background 0.15s, color 0.15s" }}
+                  style={{ display: "block", width: "100%", background: "none", border: "none", padding: "7px 10px", borderRadius: 8, fontSize: 12.5, color: "#8888a0", cursor: "pointer", textAlign: "left", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", transition: "background 0.15s, color 0.15s" }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#f0f0f8"; (e.currentTarget as HTMLElement).style.color = ACCENT_NAVY; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "none"; (e.currentTarget as HTMLElement).style.color = "#8888a0"; }}>
                   {a.label}
@@ -1533,13 +1532,13 @@ export default function SPOCDashboardView() {
               <div style={{ fontSize: 10.5, fontWeight: 700, color: "#aaaabc", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 7 }}>Mode</div>
               <div style={{ display: "flex", gap: 8 }}>
                 {["In-Person", "Virtual", "Hybrid"].map(m => (
-                  <button key={m} onClick={() => setEvMode(m)} style={{ flex: 1, padding: "9px", borderRadius: 8, border: `1.5px solid ${evMode === m ? KPI_TVW : "#dddde8"}`, background: evMode === m ? P_BLUE : "#fff", color: evMode === m ? KPI_TVW : "#666", fontSize: 13, fontWeight: evMode === m ? 700 : 400, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>{m}</button>
+                  <button key={m} onClick={() => setEvMode(m)} style={{ flex: 1, padding: "9px", borderRadius: 8, border: `1.5px solid ${evMode === m ? KPI_TVW : "#dddde8"}`, background: evMode === m ? P_BLUE : "#fff", color: evMode === m ? KPI_TVW : "#666", fontSize: 13, fontWeight: evMode === m ? 700 : 400, cursor: "pointer", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>{m}</button>
                 ))}
               </div>
             </div>
           </div>
           <button disabled={!evTitle.trim() || !evDate.trim()} onClick={() => { setCreateEventOpen(false); triggerToast("Event posted to TVW calendar — live within 5 minutes."); setEvTitle(""); setEvDate(""); setEvVenue(""); setEvCap(""); }}
-            style={{ width: "100%", background: evTitle.trim() && evDate.trim() ? KPI_TVW : "#e0e0e8", color: evTitle.trim() && evDate.trim() ? "#fff" : "#aaa", border: "none", borderRadius: 10, padding: "13px", fontSize: 14, fontWeight: 700, cursor: evTitle.trim() && evDate.trim() ? "pointer" : "not-allowed", fontFamily: "'DM Sans', sans-serif" }}>
+            style={{ width: "100%", background: evTitle.trim() && evDate.trim() ? KPI_TVW : "#e0e0e8", color: evTitle.trim() && evDate.trim() ? "#fff" : "#aaa", border: "none", borderRadius: 10, padding: "13px", fontSize: 14, fontWeight: 700, cursor: evTitle.trim() && evDate.trim() ? "pointer" : "not-allowed", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>
             Post Event
           </button>
         </div>
