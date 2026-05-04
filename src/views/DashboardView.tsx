@@ -1027,9 +1027,7 @@ function ApplyDrawer({ project, onClose }: { project: PEProject | null; onClose:
 
       <div>
         <PEFieldLabel>In 3 steps, how will you complete this project? *</PEFieldLabel>
-        <PETextarea value={threeSteps} onChange={setThreeSteps} placeholder={"Step 1: ...
-Step 2: ...
-Step 3: ..."} rows={4} accent={accent} />
+        <PETextarea value={threeSteps} onChange={setThreeSteps} placeholder={`Step 1: ...\nStep 2: ...\nStep 3: ...`} rows={4} accent={accent} />
       </div>
 
       <PESectionDivider label="Manager Details (Optional)" accent={accent} />
