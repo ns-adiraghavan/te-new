@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
@@ -141,6 +141,13 @@ export default function ImpactStoryView() {
   }
 
   const accent = story.accentColor;
+
+  useEffect(() => {
+    const r = parseInt(accent.slice(1,3),16), g = parseInt(accent.slice(3,5),16), b = parseInt(accent.slice(5,7),16);
+    const navBg = `rgba(${Math.round(r*0.55)},${Math.round(g*0.55)},${Math.round(b*0.55)},0.82)`;
+    document.dispatchEvent(new CustomEvent("te:formFocus", { detail: { bg: navBg } }));
+    return () => document.dispatchEvent(new CustomEvent("te:formFocus", { detail: { bg: null } }));
+  }, [accent]);
   const others = IMPACT_STORIES.filter((s) => s.slug !== story.slug);
 
   const wordCount = [story.openingPara,

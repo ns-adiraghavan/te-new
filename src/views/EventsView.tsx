@@ -377,18 +377,16 @@ function Volcon2024({ onBack }: { onBack: () => void }) {
           ]} />}
           mediaLeft />
 
-        <SectionHead title="Tata Engage Awards" accent={accent} />
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28, alignItems: "start" }}>
-          <Paras texts={[
+        <MediaBlock accent={accent} title="Tata Engage Awards"
+          body={[
             "The evening celebrated dedication to year-round volunteering through the prestigious Tata Engage Awards — presented to 11 companies across 9 categories. Honourees included Tata Consultancy Services, Tata Power Group, Tata Communications, Tata Coffee, Titan Company, Rallis India, Tata Consulting Engineers, Tata Realty and Infrastructure, and Tata Insights and Quants.",
             "Two employees — Nitin Yadav (Tata Motors) and Arjinder Singh (Tata Power) — were honoured for Exemplary Volunteering. The winners were felicitated by Mr. K.R.S. Jamwal, Mr. Harish Bhat, and Mr. Chacko Thomas.",
-          ]} />
-          <Slideshow slides={[
+          ]}
+          media={<Slideshow slides={[
             { src: volconAwardsTCS, caption: "Tata Consultancy Services receiving the Tata Engage Award at VOLCON 2024." },
             { src: volconNitin, caption: "Nitin Yadav, Tata Motors — Exemplary Volunteering Award." },
             { src: volconArjinder, caption: "Arjinder Singh, Tata Power — Exemplary Volunteering Award." },
-          ]} />
-        </div>
+          ]} />} />
 
         <MediaBlock accent={accent} title="Cultural Celebration"
           body={[
@@ -508,6 +506,12 @@ const SECTIONS_NAV = [
   { id: "story-body", label: "Story" },
 ];
 
+function accentToNavBg(hex: string): string {
+  // Parse hex, darken ~40% and apply 0.82 opacity for navbar overlay
+  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  return `rgba(${Math.round(r*0.55)},${Math.round(g*0.55)},${Math.round(b*0.55)},0.82)`;
+}
+
 export default function EventsView() {
   const params = useParams();
   const id = params.slug;
@@ -517,10 +521,15 @@ export default function EventsView() {
   const accentFor: Record<string, string> = {
     "tsc-2022": TSC_ACCENT,
     "volcon-2024": VOL_ACCENT,
-    "iave-2022": IAVE24_ACCENT,
+    "iave-2022": IAVE22_ACCENT,
     "iave-2024": IAVE24_ACCENT,
   };
   const accent = (id && accentFor[id]) || B_INDIGO;
+
+  useEffect(() => {
+    document.dispatchEvent(new CustomEvent("te:formFocus", { detail: { bg: accentToNavBg(accent) } }));
+    return () => document.dispatchEvent(new CustomEvent("te:formFocus", { detail: { bg: null } }));
+  }, [accent]);
 
   const renderer = (() => {
     switch (id) {
