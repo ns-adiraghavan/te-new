@@ -120,7 +120,7 @@ function ProjectDetailPanel({ project, onClose, onApply }: { project: any; onClo
         <div style={{ padding:"24px 28px" }}>
           <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:24 }}>
             {[["Host Organisation",project.ngo],["Area of Work",project.area],["Type of Delivery",project.mode],["Commitment",project.commitment||"Flexible"]].map(([l,v])=>(
-              <div key={l} style={{ background:"#f8f8fc",borderRadius:10,padding:"12px 14px" }}>
+              <div key={l} style={{ background:"#f8f9fc",borderRadius:10,padding:"12px 14px" }}>
                 <div style={{ fontSize:10,fontWeight:700,color:"#aaaabc",textTransform:"uppercase",letterSpacing:"0.8px",marginBottom:4 }}>{l}</div>
                 <div style={{ fontSize:13.5,fontWeight:600,color:ACCENT_NAVY }}>{v}</div>
               </div>
@@ -191,7 +191,7 @@ function ProjectCard({ project, onSelect, onApply, saved, onToggleSave, highligh
         </div>
       </div>
       <div style={{ padding:"10px 14px",borderTop:"1px solid #f0f0f8",display:"flex",gap:8 }}>
-        <button onClick={e=>{e.stopPropagation();onToggleSave();}} style={{ flex:1,background:"none",border:"1.5px solid #dddde8",borderRadius:8,padding:"7px",fontSize:12,fontWeight:600,color:"#6b6b7a",cursor:"pointer",fontFamily:FONT }}>{saved?"Saved ✓":"Save"}</button>
+        <button onClick={e=>{e.stopPropagation();onToggleSave();}} style={{ flex:1,background:"none",border:"1.5px solid #e8e8f0",borderRadius:8,padding:"7px",fontSize:12,fontWeight:600,color:"#6b6b7a",cursor:"pointer",fontFamily:FONT }}>{saved?"Saved ✓":"Save"}</button>
         <button onClick={e=>{e.stopPropagation();onApply();}} style={{ flex:2,background:cat.color,color:"#fff",border:"none",borderRadius:8,padding:"7px",fontSize:12,fontWeight:700,cursor:"pointer",fontFamily:FONT,display:"flex",alignItems:"center",justifyContent:"center",gap:4 }}>View & Apply<ChevronRight size={13}/></button>
       </div>
     </div>
@@ -232,7 +232,7 @@ function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
   const toggleSkill = (s: string) => setSkills(p => p.includes(s) ? p.filter(x => x !== s) : [...p, s]);
 
   const inp = (ac: string): React.CSSProperties => ({
-    width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10,
+    width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 10,
     padding: "11px 14px", fontSize: 14, fontFamily: FONT,
     color: ACCENT_NAVY, outline: "none", boxSizing: "border-box",
     background: "#fff", transition: "border-color 0.15s, background 0.15s",
@@ -321,7 +321,7 @@ function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
         </div>
       </div>
       <SDiv label="Your Profile (auto-filled)" />
-      <div style={{ background: "#f8f9fc", borderRadius: 12, padding: "14px 16px", display: "flex", flexDirection: "column", gap: 10 }}>
+      <div style={{ background: "#f8f9fc", borderRadius: 14, padding: "14px 16px", display: "flex", flexDirection: "column", gap: 10 }}>
         {[["Skill Area", project.area], ["Work Experience", `${VOLUNTEER_EXP} years`], ["Languages", VOLUNTEER_LANGS.join(", ")], ["Location", "Mumbai, India"]].map(([k, v]) => (
           <div key={k} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <span style={{ fontSize: 13, color: "#888", fontFamily: FONT }}>{k}</span>
@@ -372,7 +372,7 @@ function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
             const active = skills.includes(skill);
             return (
               <button key={skill} type="button" onClick={() => toggleSkill(skill)}
-                style={{ padding: "6px 13px", borderRadius: 100, border: `1.5px solid ${active ? accent : "#e0e0e8"}`, background: active ? accent : "#fafafa", color: active ? "#fff" : "#555", fontSize: 12.5, fontWeight: 600, fontFamily: FONT, cursor: "pointer", transition: "all 0.15s", display: "flex", alignItems: "center", gap: 5, boxShadow: active ? `0 2px 8px ${accent}33` : "none" }}>
+                style={{ padding: "6px 13px", borderRadius: 100, border: `1.5px solid ${active ? accent : "#e8e8f0"}`, background: active ? accent : "#fafafa", color: active ? "#fff" : "#555", fontSize: 12.5, fontWeight: 600, fontFamily: FONT, cursor: "pointer", transition: "all 0.15s", display: "flex", alignItems: "center", gap: 5, boxShadow: active ? `0 2px 8px ${accent}33` : "none" }}>
                 {active && <span style={{ fontSize: 10 }}>✓</span>}{skill}
               </button>
             );
@@ -418,7 +418,7 @@ function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
   const Step3 = () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
       <SDiv label="Volunteer Undertaking" />
-      <div style={{ background: "#f8f9fc", borderRadius: 12, padding: "16px 18px" }}>
+      <div style={{ background: "#f8f9fc", borderRadius: 14, padding: "16px 18px" }}>
         <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
           {UNDERTAKING.map((pt, i) => (
             <li key={i} style={{ display: "flex", gap: 10, fontSize: 13, color: "#555", lineHeight: 1.6, fontFamily: FONT }}>
@@ -431,7 +431,7 @@ function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
         <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} style={{ marginTop: 3, accentColor: accent, width: 16, height: 16, flexShrink: 0, cursor: "pointer" }} />
         <span style={{ fontSize: 13.5, color: ACCENT_NAVY, fontWeight: 600, lineHeight: 1.55, fontFamily: FONT }}>I agree to the above terms and confirm my application under ProEngage</span>
       </label>
-      <div style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 12, padding: "14px 16px" }}>
+      <div style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, padding: "14px 16px" }}>
         <div style={{ fontSize: 10.5, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 10, fontFamily: FONT }}>Application Summary</div>
         {[["Project", project.title], ["NGO", project.ngo], ["Mode", project.mode], ["Skills", skills.length > 0 ? skills.slice(0,3).join(", ") + (skills.length > 3 ? ` +${skills.length - 3}` : "") : "—"]].map(([k, v]) => (
           <div key={k} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "5px 0", borderBottom: "1px solid #f4f4f8" }}>
@@ -451,7 +451,7 @@ function ApplyModal({ project, onClose }: { project: any; onClose: ()=>void }) {
           <svg width="26" height="20" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke={accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </div>
         <div style={{ fontSize: 20, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 10, fontFamily: FONT }}>Application Submitted!</div>
-        <div style={{ background: `${accent}0c`, border: `1px solid ${accent}25`, borderRadius: 12, padding: "16px 20px", marginBottom: 24, textAlign: "left" }}>
+        <div style={{ background: `${accent}0c`, border: `1px solid ${accent}25`, borderRadius: 14, padding: "16px 20px", marginBottom: 24, textAlign: "left" }}>
           <p style={{ fontSize: 13.5, color: "#555", lineHeight: 1.7, margin: "0 0 8px", fontFamily: FONT }}>This is a <strong>{project.mode.toLowerCase().includes("remote") ? "remote" : "hybrid"}</strong> project with <strong>{project.ngo}</strong>.</p>
           <p style={{ fontSize: 13.5, color: "#555", lineHeight: 1.7, margin: 0, fontFamily: FONT }}>You'll receive an email confirmation shortly.</p>
         </div>
@@ -604,7 +604,7 @@ export default function ProEngageView() {
           <div style={{ flex:1,position:"relative",minWidth:220 }}>
             <Search size={16} style={{ position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",color:"#aaaabc" }}/>
             <input type="text" placeholder="Search by skill, NGO or project name..." value={searchQuery} onChange={e=>setSearchQuery(e.target.value)}
-              style={{ width:"100%",paddingLeft:40,paddingRight:14,paddingTop:11,paddingBottom:11,border:"1.5px solid #e0e0e8",borderRadius:10,fontSize:13.5,fontFamily:FONT,color:ACCENT_NAVY,outline:"none",background:"#fff",boxSizing:"border-box" }}
+              style={{ width:"100%",paddingLeft:40,paddingRight:14,paddingTop:11,paddingBottom:11,border:"1.5px solid #e8e8f0",borderRadius:10,fontSize:13.5,fontFamily:FONT,color:ACCENT_NAVY,outline:"none",background:"#fff",boxSizing:"border-box" }}
               onFocus={e=>(e.target.style.borderColor=B_INDIGO)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")}/>
           </div>
           <div style={{ display:"flex",gap:6 }}>

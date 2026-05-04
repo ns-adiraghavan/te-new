@@ -52,7 +52,7 @@ function PullQuote({ text, attribution, role, accent }: {
   text: string; attribution: string; role?: string; accent: string;
 }) {
   return (
-    <div style={{ background: accent, borderRadius: 12, padding: "20px 24px", margin: "28px 0",
+    <div style={{ background: accent, borderRadius: 14, padding: "20px 24px", margin: "28px 0",
       display: "flex", flexDirection: "column", minHeight: 0 }}>
       <div style={{ fontFamily: "Georgia,serif", fontSize: 28, lineHeight: 0.7,
         color: "rgba(255,255,255,0.25)", marginBottom: 10 }}>"</div>
@@ -353,7 +353,7 @@ export default function ImpactStoryView() {
                   transition: "transform 0.18s, box-shadow 0.18s" }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-3px)";
-                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.10)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(13,27,62,0.10)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0)";

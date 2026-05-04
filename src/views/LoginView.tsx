@@ -99,7 +99,7 @@ const LoginView = () => {
             </div>
 
             {/* White card */}
-            <div style={{ background: "rgba(255,255,255,0.96)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 16, padding: "36px 32px", boxShadow: "0 24px 64px rgba(0,0,0,0.22)" }}>
+            <div style={{ background: "rgba(255,255,255,0.96)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 16, padding: "36px 32px", boxShadow: "0 24px 64px rgba(13,27,62,0.22)" }}>
 
               {/* Demo login buttons */}
               {!isAdminLogin && (
@@ -177,7 +177,7 @@ const LoginView = () => {
                    <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.75)", marginBottom: 6 }}>Email Address</label>
                   <div style={{ position: "relative" }}>
                     <Mail size={16} style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", color: "#94a3b8" }} />
-                    <input type="text" placeholder="Enter email or phone" className="form-input" style={{ paddingLeft: 40 }} />
+                    <input type="text" placeholder="Enter email ID" className="form-input" style={{ paddingLeft: 40 }} />
                   </div>
                 </div>
                 <div>

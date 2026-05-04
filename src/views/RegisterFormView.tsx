@@ -129,7 +129,7 @@ function SkillBubbles({ selected, onToggle, accent }: { selected: string[]; onTo
         })}
       </div>
       <div style={{ marginTop: 10, display: "flex", gap: 8, alignItems: "center" }}>
-        <input type="text" value={custom} placeholder="+ Add your own" onChange={e => setCustom(e.target.value)} onKeyDown={e => { if (e.key === "Enter" && custom.trim()) { onToggle(custom.trim()); setCustom(""); e.preventDefault(); } }} style={{ fontSize: 12.5, fontFamily: FONT, border: "1.5px solid #e0e0e8", borderRadius: 100, padding: "7px 14px", outline: "none", color: ACCENT_NAVY, width: 180 }} />
+        <input type="text" value={custom} placeholder="+ Add your own" onChange={e => setCustom(e.target.value)} onKeyDown={e => { if (e.key === "Enter" && custom.trim()) { onToggle(custom.trim()); setCustom(""); e.preventDefault(); } }} style={{ fontSize: 12.5, fontFamily: FONT, border: "1.5px solid #e8e8f0", borderRadius: 100, padding: "7px 14px", outline: "none", color: ACCENT_NAVY, width: 180 }} />
         <button type="button" onClick={() => { if (custom.trim()) { onToggle(custom.trim()); setCustom(""); } }} style={{ fontSize: 12, fontWeight: 700, color: accent, background: "none", border: "none", cursor: "pointer", fontFamily: FONT }}>Add</button>
       </div>
     </div>
@@ -140,7 +140,7 @@ function CompanySelect({ value, onChange, label = "Tata Company*", accent, navFo
   return (
     <div>
       <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#444", marginBottom: 6, fontFamily: FONT }}>{label}</label>
-      <select required value={value} onChange={e => onChange(e.target.value)} onFocus={e => { e.target.style.borderColor = accent; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 12, padding: "13px 16px", fontSize: 14.5, fontFamily: FONT, color: value ? ACCENT_NAVY : "#94a3b8", outline: "none", background: "#fff", cursor: "pointer", appearance: "none" as const, transition: "border-color 0.15s" }}>
+      <select required value={value} onChange={e => onChange(e.target.value)} onFocus={e => { e.target.style.borderColor = accent; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 14, padding: "13px 16px", fontSize: 14.5, fontFamily: FONT, color: value ? ACCENT_NAVY : "#94a3b8", outline: "none", background: "#fff", cursor: "pointer", appearance: "none" as const, transition: "border-color 0.15s" }}>
         <option value="">Select company</option>
         {TATA_COMPANIES.map(c => <option key={c}>{c}</option>)}
       </select>
@@ -165,7 +165,7 @@ function PasswordField({ label, value, onChange, accent, navFocusBg }: { label: 
     <div>
       <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#444", marginBottom: 6, fontFamily: FONT }}>{label}</label>
       <div style={{ position: "relative" }}>
-        <input type={show ? "text" : "password"} value={value} onChange={e => onChange(e.target.value)} placeholder="••••••••" required onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 12, padding: "13px 44px 13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", boxSizing: "border-box" as const, background: "#fff", transition: "border-color 0.15s, background 0.15s" }} />
+        <input type={show ? "text" : "password"} value={value} onChange={e => onChange(e.target.value)} placeholder="••••••••" required onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 14, padding: "13px 44px 13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", boxSizing: "border-box" as const, background: "#fff", transition: "border-color 0.15s, background 0.15s" }} />
         <button type="button" onClick={() => setShow(v => !v)} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#94a3b8" }}>{show ? <EyeOff size={15} /> : <Eye size={15} />}</button>
       </div>
       {value && (
@@ -213,7 +213,7 @@ function EmployeeLookup({ email, onChange, onFound, accent, navFocusBg }: { emai
     <div>
       <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#444", marginBottom: 6, fontFamily: FONT }}>Linked Tata Employee Email*</label>
       <div style={{ position: "relative" }}>
-        <input type="email" required value={email} onChange={e => onChange(e.target.value)} placeholder="Enter employee's email" onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = status === "found" ? B_TEAL : status === "notfound" ? B_RED : "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: `1.5px solid ${status === "found" ? B_TEAL : status === "notfound" ? B_RED : "#e0e0e8"}`, borderRadius: 12, padding: "13px 44px 13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", boxSizing: "border-box" as const, transition: "border-color 0.2s, background 0.15s", background: "#fff" }} />
+        <input type="email" required value={email} onChange={e => onChange(e.target.value)} placeholder="Enter employee's email" onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = status === "found" ? B_TEAL : status === "notfound" ? B_RED : "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: `1.5px solid ${status === "found" ? B_TEAL : status === "notfound" ? B_RED : "#e0e0e8"}`, borderRadius: 14, padding: "13px 44px 13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", boxSizing: "border-box" as const, transition: "border-color 0.2s, background 0.15s", background: "#fff" }} />
         <div style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)" }}>
           {status === "loading" && <div style={{ width: 14, height: 14, borderRadius: "50%", border: `2px solid ${accent}`, borderTopColor: "transparent", animation: "empSpin 0.7s linear infinite" }} />}
           {status === "found" && <Check size={15} color={B_TEAL} />}
@@ -223,7 +223,7 @@ function EmployeeLookup({ email, onChange, onFound, accent, navFocusBg }: { emai
       <style>{`@keyframes empSpin{to{transform:rotate(360deg)}}`}</style>
       <AnimatePresence>
         {status === "found" && (
-          <motion.div initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} style={{ marginTop: 8, display: "inline-flex", alignItems: "center", gap: 6, background: `${B_TEAL}14`, border: `1px solid ${B_TEAL}30`, borderRadius: 8, padding: "5px 12px" }}>
+          <motion.div initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} style={{ marginTop: 8, display: "inline-flex", alignItems: "center", gap: 6, background: `${B_TEAL}14`, border: `1px solid ${B_TEAL}30`, borderRadius: 10, padding: "5px 12px" }}>
             <Check size={11} color={B_TEAL} />
             <span style={{ fontSize: 11.5, fontWeight: 700, color: B_TEAL, fontFamily: FONT }}>Employee found</span>
           </motion.div>
@@ -238,15 +238,15 @@ function FLabel({ children }: { children: React.ReactNode }) {
 }
 
 function TInput({ placeholder, type = "text", required = false, accent, onChange, value, navFocusBg }: { placeholder: string; type?: string; required?: boolean; accent: string; onChange?: (v: string) => void; value?: string; navFocusBg?: string }) {
-  return <input type={type} placeholder={placeholder} required={required} value={value} onChange={e => onChange?.(e.target.value)} onFocus={e => { e.target.style.borderColor = accent; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "10px 14px", fontSize: 13.5, fontFamily: FONT, color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" as const }} />;
+  return <input type={type} placeholder={placeholder} required={required} value={value} onChange={e => onChange?.(e.target.value)} onFocus={e => { e.target.style.borderColor = accent; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 10, padding: "10px 14px", fontSize: 13.5, fontFamily: FONT, color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" as const }} />;
 }
 
 function SectionDivider({ label, accent }: { label: string; accent: string }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "4px 0" }}>
-      <div style={{ height: 1, background: "#f0f0f8", flex: 1 }} />
+      <div style={{ height: 1, background: "#f8f9fc", flex: 1 }} />
       <span style={{ fontSize: 10, fontWeight: 700, color: accent, textTransform: "uppercase" as const, letterSpacing: "1.4px", fontFamily: FONT, whiteSpace: "nowrap" as const }}>{label}</span>
-      <div style={{ height: 1, background: "#f0f0f8", flex: 1 }} />
+      <div style={{ height: 1, background: "#f8f9fc", flex: 1 }} />
     </div>
   );
 }
@@ -380,7 +380,7 @@ const RegisterFormView = () => {
           </div>
           <div>
             <FLabel>Address*</FLabel>
-            <textarea placeholder="Enter full address" rows={3} onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 12, padding: "13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", resize: "vertical", boxSizing: "border-box" as const, transition: "border-color 0.15s, background 0.15s", background: "#fff" }} />
+            <textarea placeholder="Enter full address" rows={3} onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 14, padding: "13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", resize: "vertical", boxSizing: "border-box" as const, transition: "border-color 0.15s, background 0.15s", background: "#fff" }} />
           </div>
           <SectionDivider label="Focus Areas" accent={accent} />
           <div><FLabel>What does your organisation work on?*</FLabel><PillSelector options={["Education","Healthcare","Rural Development","Skill Development","Sustainability","Livelihoods","Women Empowerment"]} selected={focusAreas} onToggle={toggle(setFocusAreas, true)} multi accent={accent} /></div>
@@ -404,14 +404,14 @@ const RegisterFormView = () => {
             <div>
               <FLabel>Company (of Employee)*</FLabel>
               <div style={{ position: "relative" }}>
-                <input type="text" readOnly={!!empFound} value={empFound?.company ?? ""} placeholder="Auto-filled on lookup" onFocus={e => (e.target.style.borderColor = accent)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "10px 36px 10px 14px", fontSize: 13.5, fontFamily: FONT, background: empFound ? "#f8f9ff" : "#fff", color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" as const }} />
+                <input type="text" readOnly={!!empFound} value={empFound?.company ?? ""} placeholder="Auto-filled on lookup" onFocus={e => (e.target.style.borderColor = accent)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 10, padding: "10px 36px 10px 14px", fontSize: 13.5, fontFamily: FONT, background: empFound ? "#f8f9ff" : "#fff", color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" as const }} />
                 {empFound && <Lock size={13} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", color: "#94a3b8" }} />}
               </div>
             </div>
             <div>
               <FLabel>Designation (of Employee)*</FLabel>
               <div style={{ position: "relative" }}>
-                <input type="text" readOnly={!!empFound} value={empFound?.designation ?? ""} placeholder="Auto-filled on lookup" onFocus={e => (e.target.style.borderColor = accent)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 10, padding: "10px 36px 10px 14px", fontSize: 13.5, fontFamily: FONT, background: empFound ? "#f8f9ff" : "#fff", color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" as const }} />
+                <input type="text" readOnly={!!empFound} value={empFound?.designation ?? ""} placeholder="Auto-filled on lookup" onFocus={e => (e.target.style.borderColor = accent)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 10, padding: "10px 36px 10px 14px", fontSize: 13.5, fontFamily: FONT, background: empFound ? "#f8f9ff" : "#fff", color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" as const }} />
                 {empFound && <Lock size={13} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", color: "#94a3b8" }} />}
               </div>
             </div>
@@ -438,7 +438,7 @@ const RegisterFormView = () => {
               <h2 style={{ fontSize: 26, fontWeight: 900, color: "#fff", letterSpacing: "-0.4px", margin: "0 0 6px", fontFamily: FONT }}>Register as {roleLabel}</h2>
               <p style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", fontFamily: FONT, margin: 0 }}>Fill in your details below to create your account.</p>
             </div>
-            <div style={{ background: "rgba(255,255,255,0.96)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", borderRadius: 20, padding: "40px 36px", boxShadow: "0 24px 64px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.1)" }}>
+            <div style={{ background: "rgba(255,255,255,0.96)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", borderRadius: 20, padding: "40px 36px", boxShadow: "0 24px 64px rgba(13,27,62,0.22), 0 4px 16px rgba(13,27,62,0.1)" }}>
               <form onSubmit={handleSubmit}>
                 {renderFields()}
                 <div style={{ marginTop: 32, display: "flex", gap: 12 }}>

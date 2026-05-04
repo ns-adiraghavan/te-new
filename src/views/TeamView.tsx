@@ -78,10 +78,10 @@ function TeamSection() {
           {team.map(t => (
             <div
               key={t.name}
-              style={{ background: "#fff", border: "1px solid #e8eef0", borderRadius: 18, padding: "32px 24px", textAlign: "center", transition: "transform 0.2s, box-shadow 0.2s" }}
+              style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 18, padding: "32px 24px", textAlign: "center", transition: "transform 0.2s, box-shadow 0.2s" }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 10px 28px rgba(0,0,0,0.08)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 10px 28px rgba(13,27,62,0.08)";
                 const img = e.currentTarget.querySelector<HTMLImageElement>("[data-portrait-img]");
                 if (img) img.style.transform = "scale(1.08)";
               }}

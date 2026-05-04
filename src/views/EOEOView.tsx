@@ -91,7 +91,7 @@ export default function EOEOView() {
               <a
                 href="https://tcsempowers.tcsapps.com/apac2/alp/"
                 target="_blank" rel="noopener noreferrer"
-                style={{ background: "#F5A623", color: "#0D1B3E", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, boxShadow: "0 4px 20px rgba(0,0,0,0.25)", textDecoration: "none", display: "inline-block" }}
+                style={{ background: "#F5A623", color: "#0D1B3E", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, boxShadow: "0 4px 20px rgba(13,27,62,0.25)", textDecoration: "none", display: "inline-block" }}
               >
                 Become a Literacy Champion →
               </a>
@@ -132,7 +132,7 @@ export default function EOEOView() {
               <a
                 href="https://tcsempowers.tcsapps.com/apac2/alp/"
                 target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-block", background: COLOUR, color: "#fff", borderRadius: 8, padding: "12px 24px", fontWeight: 700, fontSize: 14, textDecoration: "none" }}
+                style={{ display: "inline-block", background: COLOUR, color: "#fff", borderRadius: 10, padding: "12px 24px", fontWeight: 700, fontSize: 14, textDecoration: "none" }}
               >
                 Sign up on TCS Empowers →
               </a>
@@ -196,7 +196,7 @@ export default function EOEOView() {
             {STEPS.map((s, i) => (
               <React.Fragment key={s.num}>
                 <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "0 12px" }}>
-                  <div style={{ width: 60, height: 60, borderRadius: "50%", background: i === 0 ? COLOUR : "#fff", border: "2px solid #007A8A", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, color: i === 0 ? "#fff" : COLOUR, marginBottom: 20, flexShrink: 0, boxShadow: i === 0 ? "0 4px 16px #007A8A50" : "0 2px 8px rgba(0,0,0,0.06)" }}>{s.num}</div>
+                  <div style={{ width: 60, height: 60, borderRadius: "50%", background: i === 0 ? COLOUR : "#fff", border: "2px solid #007A8A", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, color: i === 0 ? "#fff" : COLOUR, marginBottom: 20, flexShrink: 0, boxShadow: i === 0 ? "0 4px 16px #007A8A50" : "0 2px 8px rgba(13,27,62,0.06)" }}>{s.num}</div>
                   <div style={{ fontSize: 14, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 8, lineHeight: 1.25 }}>{s.title}</div>
                   <div style={{ fontSize: 13, color: "#64748B", lineHeight: 1.7 }}>{s.desc}</div>
                 </div>
@@ -226,7 +226,7 @@ export default function EOEOView() {
               <a
                 href="https://tcsempowers.tcsapps.com/apac2/alp/"
                 target="_blank" rel="noopener noreferrer"
-                style={{ background: "#fff", color: COLOUR_MID, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, textDecoration: "none", display: "inline-block", boxShadow: "0 4px 20px rgba(0,0,0,0.25)", whiteSpace: "nowrap" }}
+                style={{ background: "#fff", color: COLOUR_MID, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, textDecoration: "none", display: "inline-block", boxShadow: "0 4px 20px rgba(13,27,62,0.25)", whiteSpace: "nowrap" }}
               >
                 Sign Up on TCS Empowers →
               </a>

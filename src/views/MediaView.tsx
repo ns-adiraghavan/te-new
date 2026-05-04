@@ -46,7 +46,7 @@ const DIAG_TEXTURE = {
 };
 
 const cardHover = {
-  onMouseEnter: (e: React.MouseEvent<HTMLDivElement>) => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.10)"; },
+  onMouseEnter: (e: React.MouseEvent<HTMLDivElement>) => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(13,27,62,0.10)"; },
   onMouseLeave: (e: React.MouseEvent<HTMLDivElement>) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; },
 };
 
@@ -176,7 +176,7 @@ export default function MediaView() {
                   style={{ breakInside: "avoid", marginBottom: 16, borderRadius: 10,
                     overflow: "hidden", cursor: "pointer",
                     transition: "transform 0.2s, box-shadow 0.2s" }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.12)"; }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 24px rgba(13,27,62,0.12)"; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "none"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
                 >
                   <img src={src} alt="" style={{ width: "100%", display: "block" }} />
@@ -195,11 +195,11 @@ export default function MediaView() {
                 onClick={() => triggerToast("Opening video player...")}
                 style={{
                   breakInside: "avoid", marginBottom: 16,
-                  borderRadius: 12, overflow: "hidden", cursor: "pointer",
+                  borderRadius: 14, overflow: "hidden", cursor: "pointer",
                   position: "relative", background: ACCENT_NAVY,
                   transition: "transform 0.2s, box-shadow 0.2s",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 10px 28px rgba(0,0,0,0.18)"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 10px 28px rgba(13,27,62,0.18)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}
               >
                 <div style={{
@@ -236,7 +236,7 @@ export default function MediaView() {
                     borderRadius: 14, overflow: "hidden", cursor: "pointer",
                     transition: "transform 0.2s, box-shadow 0.2s",
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.10)"; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(13,27,62,0.10)"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
                 >
                   <div style={{ aspectRatio: "16/10", overflow: "hidden" }}>

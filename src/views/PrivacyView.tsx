@@ -72,7 +72,7 @@ function Ul({ items }: { items: string[] }) {
 
 function DefTable({ rows }: { rows: [string, string][] }) {
   return (
-    <div style={{ border: "1px solid #e8e8f0", borderRadius: 12, overflow: "hidden", marginTop: 16 }}>
+    <div style={{ border: "1px solid #e8e8f0", borderRadius: 14, overflow: "hidden", marginTop: 16 }}>
       {rows.map(([term, def], i) => (
         <div key={i} style={{ display: "grid", gridTemplateColumns: "160px 1fr", borderBottom: i < rows.length - 1 ? "1px solid #e8e8f0" : "none" }}>
           <div style={{ padding: "12px 16px", background: "#f5f5fa", fontWeight: 700, fontSize: 13.5, color: NAVY }}>{term}</div>
@@ -85,7 +85,7 @@ function DefTable({ rows }: { rows: [string, string][] }) {
 
 function InfoBox({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div style={{ background: "#EEF4FF", border: "1px solid #c7d9f5", borderRadius: 12, padding: "16px 20px", margin: "12px 0 20px" }}>
+    <div style={{ background: "#EEF4FF", border: "1px solid #c7d9f5", borderRadius: 14, padding: "16px 20px", margin: "12px 0 20px" }}>
       <p style={{ fontFamily: FONT, fontSize: 11, fontWeight: 800, letterSpacing: "1px", textTransform: "uppercase", color: ACCENT_DARK, margin: "0 0 8px" }}>{title}</p>
       <div style={{ fontFamily: FONT, fontSize: 13.5, color: "#1e3a8a", lineHeight: 1.7 }}>{children}</div>
     </div>
@@ -111,7 +111,7 @@ export default function PrivacyView() {
           </p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             {[["Applies to", "www.tataengage.com & microsites"], ["Contact", "tataengage@tata.com"]].map(([label, val]) => (
-              <div key={label} style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 8, padding: "8px 16px" }}>
+              <div key={label} style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 10, padding: "8px 16px" }}>
                 <p style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "1px", margin: "0 0 4px" }}>{label}</p>
                 <p style={{ fontSize: 13, fontWeight: 600, color: "#fff", margin: 0 }}>{val}</p>
               </div>
@@ -247,7 +247,7 @@ export default function PrivacyView() {
       {/* 15–18. Cookies */}
       <Sec id="privacy-cookies" num="15–18" title="Cookies" bg="#fff">
         <P>This Website may place and access certain Cookies on your computer. Tata Sons uses Cookies to improve your experience. Before the Website places Cookies on your computer, you will be presented with a message bar requesting your consent. You may deny consent; however certain features of the Website may not function fully or as intended.</P>
-        <div style={{ border: "1px solid #e8e8f0", borderRadius: 12, overflow: "hidden", marginTop: 16, marginBottom: 16 }}>
+        <div style={{ border: "1px solid #e8e8f0", borderRadius: 14, overflow: "hidden", marginTop: 16, marginBottom: 16 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", background: "#f5f5fa", borderBottom: "1px solid #e8e8f0" }}>
             <div style={{ padding: "10px 16px", fontWeight: 800, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.8px", color: NAVY }}>Type of Cookie</div>
             <div style={{ padding: "10px 16px", fontWeight: 800, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.8px", color: NAVY }}>Purpose</div>

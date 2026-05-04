@@ -91,7 +91,7 @@ export default function LegalView() {
       <Sec id="legal-liability" title="Disclaimer &amp; Limitation of Liability" bg="#fff">
         <P>The information on this site has been included in good faith and is for general purposes only. It should not be relied upon for any specific purpose and no representation or warranty is given as regards its accuracy or completeness.</P>
         <P>No information on this site shall constitute an invitation to invest in Tata or any of its affiliates. Neither Tata Sons and Tata affiliates, nor their or their affiliates' officers, employees or agents shall be liable for any loss, damage or expense arising out of any access to or use of this site or any site linked to it, including, without limitation, any loss of profit, indirect, incidental or consequential loss.</P>
-        <div style={{ background: "#FFF8E1", border: "1px solid #f5d76e", borderRadius: 12, padding: "16px 20px", marginTop: 20 }}>
+        <div style={{ background: "#FFF8E1", border: "1px solid #f5d76e", borderRadius: 14, padding: "16px 20px", marginTop: 20 }}>
           <p style={{ fontFamily: FONT, fontSize: 11, fontWeight: 800, letterSpacing: "1px", textTransform: "uppercase", color: "#7c5d00", margin: "0 0 8px" }}>Note</p>
           <p style={{ fontFamily: FONT, fontSize: 13.5, color: "#5a4400", lineHeight: 1.7, margin: 0 }}>For queries relating to this disclaimer or the use of content from this site, please contact us at <strong>tataengage@tata.com</strong>.</p>
         </div>

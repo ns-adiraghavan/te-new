@@ -237,7 +237,7 @@ function IntroSection() {
             style={{
               borderRadius: 18,
               overflow: "hidden",
-              boxShadow: "0 4px 32px rgba(0,0,0,0.10)",
+              boxShadow: "0 4px 32px rgba(13,27,62,0.10)",
               position: "relative",
               zIndex: 1,
             }}
@@ -357,7 +357,7 @@ function NGOSection() {
                   justifyContent: "center",
                   color: COLOUR,
                   flexShrink: 0,
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+                  boxShadow: "0 2px 12px rgba(13,27,62,0.06)",
                 }}
               >
                 <s.Icon />
@@ -402,9 +402,9 @@ function NGOSection() {
                           gap: 10,
                           alignItems: "flex-start",
                           background: "#fff",
-                          border: "1px solid #e8eef0",
+                          border: "1px solid #e8e8f0",
                           borderLeft: `3px solid ${COLOUR}`,
-                          borderRadius: 8,
+                          borderRadius: 10,
                           padding: "10px 14px",
                         }}
                       >
@@ -541,7 +541,7 @@ function ContactSection() {
               cursor: "pointer",
               transition: "background 0.2s",
               width: "100%",
-              boxShadow: copied ? "none" : "0 4px 20px rgba(0,0,0,0.25)",
+              boxShadow: copied ? "none" : "0 4px 20px rgba(13,27,62,0.25)",
             }}
           >
             {copied ? "Copied ✓" : "Copy email address"}
@@ -580,7 +580,7 @@ function StayConnectedSection() {
             const IconComp = ch.Icon;
             return (
               <a key={i} href={ch.url} style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, padding: 20, textDecoration: "none", color: "inherit", display: "block", transition: "transform 0.2s, box-shadow 0.2s" }}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.10)"; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 24px rgba(13,27,62,0.10)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "none"; (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
                   <div style={{ width: 32, height: 32, borderRadius: "50%", background: ch.iconBg, display: "flex", alignItems: "center", justifyContent: "center" }}>

@@ -54,7 +54,7 @@ function DrawerShell({ onClose, title, subtitle, accentTag, accentColor, doodle,
       style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(13,27,62,0.45)", backdropFilter: "blur(2px)" }}
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div style={{ background: "#fff", borderRadius: 16, width: "min(680px,92vw)", maxHeight: "88vh", overflow: "hidden", display: "flex", flexDirection: "column", animation: "drawerScale 0.18s ease-out forwards", boxShadow: "0 24px 64px rgba(0,0,0,0.22)" }}>
+      <div style={{ background: "#fff", borderRadius: 16, width: "min(680px,92vw)", maxHeight: "88vh", overflow: "hidden", display: "flex", flexDirection: "column", animation: "drawerScale 0.18s ease-out forwards", boxShadow: "0 24px 64px rgba(13,27,62,0.22)" }}>
         <style>{`@keyframes drawerScale{from{transform:scale(0.97);opacity:0}to{transform:scale(1);opacity:1}} @keyframes dsh1{0%,100%{transform:translate(0,0)}50%{transform:translate(6px,-8px)}} @keyframes dsh2{0%,100%{transform:translate(0,0)}50%{transform:translate(-8px,6px)}} .dsh-a{animation:dsh1 18s ease-in-out infinite} .dsh-b{animation:dsh2 24s ease-in-out infinite}`}</style>
         {/* Header */}
         <div style={{ background: accentColor ?? ACCENT_NAVY, padding: "22px 28px", flexShrink: 0, position: "relative", overflow: "hidden" }}>
@@ -77,7 +77,7 @@ function DrawerShell({ onClose, title, subtitle, accentTag, accentColor, doodle,
               <div style={{ fontFamily: FONT, fontSize: 17, fontWeight: 700, color: "#fff", lineHeight: 1.25 }}>{title}</div>
               {subtitle && <div style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.7)", marginTop: 4 }}>{subtitle}</div>}
             </div>
-            <button onClick={onClose} style={{ background: "rgba(255,255,255,0.18)", border: "none", borderRadius: 8, padding: "6px 10px", cursor: "pointer", color: "rgba(255,255,255,0.9)", display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontFamily: FONT, flexShrink: 0 }}>
+            <button onClick={onClose} style={{ background: "rgba(255,255,255,0.18)", border: "none", borderRadius: 10, padding: "6px 10px", cursor: "pointer", color: "rgba(255,255,255,0.9)", display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontFamily: FONT, flexShrink: 0 }}>
               <X size={14} /> Close
             </button>
           </div>
@@ -105,7 +105,7 @@ function VibeSubmitDrawer({ onClose, onSubmit }: { onClose: () => void; onSubmit
   };
 
   const inputStyle = (err?: boolean): React.CSSProperties => ({
-    width: "100%", padding: "10px 14px", border: `1.5px solid ${err ? "#E8401C" : "#e0e0e8"}`, borderRadius: 10,
+    width: "100%", padding: "10px 14px", border: `1.5px solid ${err ? "#E8401C" : "#e8e8f0"}`, borderRadius: 10,
     fontSize: 13.5, fontFamily: FONT, color: ACCENT_NAVY, outline: "none", background: "#fff", boxSizing: "border-box",
   });
 
@@ -160,7 +160,7 @@ function VibeSubmitDrawer({ onClose, onSubmit }: { onClose: () => void; onSubmit
           <label style={labelStyle}>Photo <span style={{ color: "#94a3b8", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(optional)</span></label>
           <div
             onClick={() => set("fileName", "volunteer-photo.jpg")}
-            style={{ border: "2px dashed #e0e0e8", borderRadius: 10, padding: "20px", textAlign: "center", cursor: "pointer", background: form.fileName ? "#f0fdf4" : "#fafafa", transition: "border-color 0.15s, background 0.15s" }}
+            style={{ border: "2px dashed #e8e8f0", borderRadius: 10, padding: "20px", textAlign: "center", cursor: "pointer", background: form.fileName ? "#f0fdf4" : "#fafafa", transition: "border-color 0.15s, background 0.15s" }}
             onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = TVW_BLUE; }}
             onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "#e0e0e8"; }}
           >
@@ -373,7 +373,7 @@ const TVWHubView = () => {
 
         {/* Controls */}
         <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 28, alignItems: "center" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 2, background: "#fff", padding: 4, borderRadius: 10, border: "1.5px solid #e0e0e8" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 2, background: "#fff", padding: 4, borderRadius: 10, border: "1.5px solid #e8e8f0" }}>
             {(["list","calendar"] as const).map(mode => (
               <button key={mode} onClick={() => setViewMode(mode)}
                 style={{ display:"flex",alignItems:"center",gap:6,padding:"7px 14px",borderRadius:7,border:"none",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:FONT,background:viewMode===mode?TVW_BLUE:"transparent",color:viewMode===mode?"#fff":"#64748b",transition:"all 0.15s" }}>
@@ -385,16 +385,16 @@ const TVWHubView = () => {
           <div style={{ flex: 1, position: "relative", minWidth: 220 }}>
             <Search size={16} style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", color: "#aaaabc" }} />
             <input type="text" placeholder="Search events…" value={search} onChange={e => setSearch(e.target.value)}
-              style={{ width:"100%",paddingLeft:40,paddingRight:14,paddingTop:11,paddingBottom:11,border:"1.5px solid #e0e0e8",borderRadius:10,fontSize:13.5,fontFamily:FONT,color:ACCENT_NAVY,outline:"none",background:"#fff",boxSizing:"border-box" }}
+              style={{ width:"100%",paddingLeft:40,paddingRight:14,paddingTop:11,paddingBottom:11,border:"1.5px solid #e8e8f0",borderRadius:10,fontSize:13.5,fontFamily:FONT,color:ACCENT_NAVY,outline:"none",background:"#fff",boxSizing:"border-box" }}
               onFocus={e=>(e.target.style.borderColor=TVW_BLUE)} onBlur={e=>(e.target.style.borderColor="#e0e0e8")}/>
           </div>
           <select value={filters.location} onChange={e=>setFilters({...filters,location:e.target.value})}
-            style={{ padding:"10px 14px",border:"1.5px solid #e0e0e8",borderRadius:10,fontSize:13,fontFamily:FONT,color:ACCENT_NAVY,background:"#fff",outline:"none",cursor:"pointer" }}>
+            style={{ padding:"10px 14px",border:"1.5px solid #e8e8f0",borderRadius:10,fontSize:13,fontFamily:FONT,color:ACCENT_NAVY,background:"#fff",outline:"none",cursor:"pointer" }}>
             <option value="All">All Locations</option>
             {["Mumbai","Pune","Chennai","Virtual"].map(l=><option key={l} value={l}>{l}</option>)}
           </select>
           <select value={filters.mode} onChange={e=>setFilters({...filters,mode:e.target.value})}
-            style={{ padding:"10px 14px",border:"1.5px solid #e0e0e8",borderRadius:10,fontSize:13,fontFamily:FONT,color:ACCENT_NAVY,background:"#fff",outline:"none",cursor:"pointer" }}>
+            style={{ padding:"10px 14px",border:"1.5px solid #e8e8f0",borderRadius:10,fontSize:13,fontFamily:FONT,color:ACCENT_NAVY,background:"#fff",outline:"none",cursor:"pointer" }}>
             <option value="All">All Modes</option>
             <option value="In-person">In-person</option>
             <option value="Virtual">Virtual</option>

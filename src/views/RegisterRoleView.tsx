@@ -135,7 +135,7 @@ const RegisterRoleView = () => {
                     {/* Stats chips — appear on hover / active */}
                     <div style={{ display: "flex", gap: 7, justifyContent: "center", opacity: active || isHovered ? 1 : 0, maxHeight: active || isHovered ? 60 : 0, overflow: "hidden", transition: "opacity 0.2s, max-height 0.22s" }}>
                       {stats.map(s => (
-                        <div key={s.label} style={{ background: "rgba(255,255,255,0.15)", borderRadius: 8, padding: "4px 9px", textAlign: "center" }}>
+                        <div key={s.label} style={{ background: "rgba(255,255,255,0.15)", borderRadius: 10, padding: "4px 9px", textAlign: "center" }}>
                           <div style={{ fontSize: 12, fontWeight: 800, color: "#fff", fontFamily: FONT }}>{s.value}</div>
                           <div style={{ fontSize: 9, color: "rgba(255,255,255,0.55)", fontFamily: FONT, textTransform: "uppercase", letterSpacing: "0.4px" }}>{s.label}</div>
                         </div>
@@ -148,7 +148,7 @@ const RegisterRoleView = () => {
             </div>
             {selectedRole && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} style={{ textAlign: "center", marginTop: 32 }}>
-                <button onClick={() => navigate("register-form")} style={{ padding: "13px 40px", borderRadius: 10, border: "none", background: "rgba(255,255,255,0.95)", color: ACCENT_NAVY, fontWeight: 700, fontSize: 15, fontFamily: FONT, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.18)" }}>
+                <button onClick={() => navigate("register-form")} style={{ padding: "13px 40px", borderRadius: 10, border: "none", background: "rgba(255,255,255,0.95)", color: ACCENT_NAVY, fontWeight: 700, fontSize: 15, fontFamily: FONT, cursor: "pointer", boxShadow: "0 4px 20px rgba(13,27,62,0.18)" }}>
                   Continue →
                 </button>
               </motion.div>

@@ -74,7 +74,7 @@ export default function EOIView() {
             </p>
             <div style={{ display: "flex", gap: 12 }}>
               <button onClick={() => document.getElementById("eoi-overview")?.scrollIntoView({ behavior: "smooth" })}
-                style={{ background: "#F5A623", color: "#0D1B3E", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+                style={{ background: "#F5A623", color: "#0D1B3E", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(13,27,62,0.25)" }}>
                 Learn more →
               </button>
 
@@ -105,7 +105,7 @@ export default function EOIView() {
           </div>
           <div style={{ position: "relative" }}>
             <div style={{ position: "absolute", top: -16, right: -16, zIndex: 0, width: 64, height: 64, borderRadius: 16, background: COLOUR, opacity: 0.12 }} />
-            <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(0,0,0,0.10)", position: "relative", zIndex: 1 }}>
+            <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(13,27,62,0.10)", position: "relative", zIndex: 1 }}>
               <img src={eoiBelowImg} alt=""
                 style={{ width: "100%", height: 380, objectFit: "cover", objectPosition: "center", display: "block" }} />
             </div>

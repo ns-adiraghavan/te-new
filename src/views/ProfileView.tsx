@@ -71,7 +71,7 @@ function ReadOnly({ value }: { value: string }) {
 function TextInput({ value, onChange, placeholder, type = "text" }: { value: string; onChange: (v: string) => void; placeholder?: string; type?: string }) {
   return (
     <input type={type} value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder}
-      style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 9, padding: "10px 13px", fontSize: 13.5, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" }}
+      style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 14, padding: "10px 13px", fontSize: 13.5, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" }}
       onFocus={e => (e.target.style.borderColor = ACCENT_ACTIVE)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")} />
   );
 }
@@ -79,7 +79,7 @@ function TextInput({ value, onChange, placeholder, type = "text" }: { value: str
 function SelectInput({ value, onChange, options }: { value: string; onChange: (v: string) => void; options: string[] }) {
   return (
     <select value={value} onChange={e => onChange(e.target.value)}
-      style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 9, padding: "10px 13px", fontSize: 13.5, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none", appearance: "none", background: "#fff", cursor: "pointer", boxSizing: "border-box" }}
+      style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 14, padding: "10px 13px", fontSize: 13.5, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none", appearance: "none", background: "#fff", cursor: "pointer", boxSizing: "border-box" }}
       onFocus={e => (e.target.style.borderColor = ACCENT_ACTIVE)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")}>
       {options.map(o => <option key={o}>{o}</option>)}
     </select>
@@ -90,7 +90,7 @@ function Toggle({ on, onChange }: { on: boolean; onChange: (v: boolean) => void 
   return (
     <div onClick={() => onChange(!on)}
       style={{ position: "relative", width: 40, height: 22, borderRadius: 11, background: on ? ACCENT_ACTIVE : "#d0d0e0", cursor: "pointer", transition: "background 0.2s", flexShrink: 0 }}>
-      <div style={{ position: "absolute", top: 3, left: on ? 21 : 3, width: 16, height: 16, borderRadius: "50%", background: "#fff", boxShadow: "0 1px 3px rgba(0,0,0,0.2)", transition: "left 0.2s" }} />
+      <div style={{ position: "absolute", top: 3, left: on ? 21 : 3, width: 16, height: 16, borderRadius: "50%", background: "#fff", boxShadow: "0 1px 3px rgba(13,27,62,0.2)", transition: "left 0.2s" }} />
     </div>
   );
 }
@@ -107,7 +107,7 @@ function MultiSelectList({ selected, onChange, options, maxH = 160 }: { selected
         ))}
         {selected.length === 0 && <span style={{ fontSize: 13, color: "#aaaabc" }}>None selected</span>}
       </div>
-      <div style={{ border: "1.5px solid #e0e0e8", borderRadius: 9, maxHeight: maxH, overflowY: "auto" }}>
+      <div style={{ border: "1.5px solid #e8e8f0", borderRadius: 14, maxHeight: maxH, overflowY: "auto" }}>
         {options.map(o => (
           <div key={o} onClick={() => toggle(o)}
             style={{ padding: "9px 14px", fontSize: 13, cursor: "pointer", color: ACCENT_NAVY, display: "flex", alignItems: "center", gap: 10, background: selected.includes(o) ? P_CYAN : "transparent", transition: "background 0.1s" }}>
@@ -135,7 +135,7 @@ function SectionHeading({ label, accent }: { label: string; accent?: string }) {
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, [string, string]> = {
     Active:   [P_CYAN, ACCENT_ACTIVE],
-    Inactive: ["#f0f0f4", "#888"],
+    Inactive: ["#f8f9fc", "#888"],
     Pending:  ["#FEF6E4", "#9a6500"],
     Approved: [P_CYAN, ACCENT_ACTIVE],
   };
@@ -146,7 +146,7 @@ function StatusBadge({ status }: { status: string }) {
 // ─── KPI Stat Tile ─────────────────────────────────────────────────────────────
 function KpiTile({ value, label, pastel, accent }: { value: string | number; label: string; pastel: string; accent: string }) {
   return (
-    <div style={{ background: pastel, border: `1px solid ${accent}22`, borderRadius: 12, padding: "16px 14px", textAlign: "center", flex: 1 }}>
+    <div style={{ background: pastel, border: `1px solid ${accent}22`, borderRadius: 14, padding: "16px 14px", textAlign: "center", flex: 1 }}>
       <div style={{ fontSize: 26, fontWeight: 900, color: accent, letterSpacing: -1 }}>{value}</div>
       <div style={{ fontSize: 10.5, fontWeight: 700, color: accent, marginTop: 4, textTransform: "uppercase", letterSpacing: "0.5px", opacity: 0.8, lineHeight: 1.3 }}>{label}</div>
     </div>
@@ -341,9 +341,9 @@ export default function ProfileView() {
           <FieldLabel>Phone (Landline)</FieldLabel>
           {isEditing ? (
             <div style={{ display: "flex", gap: 6 }}>
-              <input value={profile.phoneCountryCode} onChange={e => set("phoneCountryCode", e.target.value)} placeholder="+91" style={{ width: 54, border: "1.5px solid #e0e0e8", borderRadius: 9, padding: "10px 8px", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none", textAlign: "center" }} />
-              <input value={profile.phoneArea} onChange={e => set("phoneArea", e.target.value)} placeholder="022" style={{ width: 60, border: "1.5px solid #e0e0e8", borderRadius: 9, padding: "10px 8px", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none", textAlign: "center" }} />
-              <input value={profile.phoneNum} onChange={e => set("phoneNum", e.target.value)} placeholder="66660000" style={{ flex: 1, border: "1.5px solid #e0e0e8", borderRadius: 9, padding: "10px 12px", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none" }} />
+              <input value={profile.phoneCountryCode} onChange={e => set("phoneCountryCode", e.target.value)} placeholder="+91" style={{ width: 54, border: "1.5px solid #e8e8f0", borderRadius: 14, padding: "10px 8px", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none", textAlign: "center" }} />
+              <input value={profile.phoneArea} onChange={e => set("phoneArea", e.target.value)} placeholder="022" style={{ width: 60, border: "1.5px solid #e8e8f0", borderRadius: 14, padding: "10px 8px", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none", textAlign: "center" }} />
+              <input value={profile.phoneNum} onChange={e => set("phoneNum", e.target.value)} placeholder="66660000" style={{ flex: 1, border: "1.5px solid #e8e8f0", borderRadius: 14, padding: "10px 12px", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none" }} />
             </div>
           ) : <ReadOnly value={`+${profile.phoneCountryCode} (${profile.phoneArea}) ${profile.phoneNum}`} />}
         </div>
@@ -351,8 +351,8 @@ export default function ProfileView() {
           <FieldLabel>Mobile</FieldLabel>
           {isEditing ? (
             <div style={{ display: "flex", gap: 6 }}>
-              <input value={profile.mobileCountryCode} onChange={e => set("mobileCountryCode", e.target.value)} placeholder="+91" style={{ width: 54, border: "1.5px solid #e0e0e8", borderRadius: 9, padding: "10px 8px", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none", textAlign: "center" }} />
-              <input value={profile.mobileNum} onChange={e => set("mobileNum", e.target.value)} placeholder="9876543210" style={{ flex: 1, border: "1.5px solid #e0e0e8", borderRadius: 9, padding: "10px 12px", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none" }} />
+              <input value={profile.mobileCountryCode} onChange={e => set("mobileCountryCode", e.target.value)} placeholder="+91" style={{ width: 54, border: "1.5px solid #e8e8f0", borderRadius: 14, padding: "10px 8px", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none", textAlign: "center" }} />
+              <input value={profile.mobileNum} onChange={e => set("mobileNum", e.target.value)} placeholder="9876543210" style={{ flex: 1, border: "1.5px solid #e8e8f0", borderRadius: 14, padding: "10px 12px", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: ACCENT_NAVY, outline: "none" }} />
             </div>
           ) : <ReadOnly value={`+${profile.mobileCountryCode} ${profile.mobileNum}`} />}
         </div>
@@ -376,7 +376,7 @@ export default function ProfileView() {
           {profile.firstName.charAt(0)}{profile.lastName.charAt(0)}
         </div>
         {isEditing ? (
-          <div><button onClick={() => toast("Photo upload coming soon.")} style={{ fontSize: 13, fontWeight: 600, color: ACCENT_ACTIVE, background: P_CYAN, border: `1px solid ${B_CYAN}`, borderRadius: 9, padding: "8px 16px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Upload Photo</button><div style={{ fontSize: 11, color: "#aaaabc", marginTop: 5 }}>JPG or PNG, max 2MB. Square crop recommended.</div></div>
+          <div><button onClick={() => toast("Photo upload coming soon.")} style={{ fontSize: 13, fontWeight: 600, color: ACCENT_ACTIVE, background: P_CYAN, border: `1px solid ${B_CYAN}`, borderRadius: 14, padding: "8px 16px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Upload Photo</button><div style={{ fontSize: 11, color: "#aaaabc", marginTop: 5 }}>JPG or PNG, max 2MB. Square crop recommended.</div></div>
         ) : <div style={{ fontSize: 13, color: "#6b6b7a" }}>No photo uploaded. Edit profile to add one.</div>}
       </div>
     </div>
@@ -474,7 +474,7 @@ export default function ProfileView() {
   // ─── Tab: SPOC Profile ────────────────────────────────────────────────────
   const SPOCTab = () => (
     <div>
-      <div style={{ background: P_CYAN, border: `1.5px solid ${B_CYAN}`, borderRadius: 12, padding: "16px 20px", marginBottom: 24, display: "flex", alignItems: "center", gap: 14 }}>
+      <div style={{ background: P_CYAN, border: `1.5px solid ${B_CYAN}`, borderRadius: 14, padding: "16px 20px", marginBottom: 24, display: "flex", alignItems: "center", gap: 14 }}>
         <div style={{ fontSize: 24 }}>🧑‍💼</div>
         <div>
           <div style={{ fontSize: 14, fontWeight: 700, color: ACCENT_ACTIVE }}>Corporate SPOC — Tata Consultancy Services</div>
@@ -491,7 +491,7 @@ export default function ProfileView() {
         <div style={col}><FieldLabel>Geography / Scope</FieldLabel>{isEditing ? <SelectInput value={profile.spocGeography} onChange={v => set("spocGeography", v)} options={GEOGRAPHIES} /> : <ReadOnly value={profile.spocGeography} />}</div>
       </div>
       <SectionHeading label="Orientation Progress" />
-      <div style={{ background: "#fafafa", border: "1px solid #e8e8f0", borderRadius: 12, padding: "16px" }}>
+      <div style={{ background: "#fafafa", border: "1px solid #e8e8f0", borderRadius: 14, padding: "16px" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
           <div style={{ fontSize: 13.5, fontWeight: 700, color: ACCENT_NAVY }}>SPOC Orientation Module</div>
           <span style={{ background: "#FEF6E4", color: "#9a6500", fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 100 }}>2 of 5 complete</span>
@@ -500,11 +500,11 @@ export default function ProfileView() {
           <div style={{ height: "100%", width: "40%", background: ACCENT_ACTIVE, borderRadius: 4 }} />
         </div>
         <div style={{ fontSize: 12, color: "#6b6b7a", marginBottom: 12 }}>Complete all 5 modules to receive your SPOC certification. Admin tracks progress.</div>
-        <button onClick={() => toast("Opening orientation module 3…")} style={{ fontSize: 13, fontWeight: 600, color: "#fff", background: ACCENT_ACTIVE, border: "none", borderRadius: 9, padding: "8px 18px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Continue Orientation →</button>
+        <button onClick={() => toast("Opening orientation module 3…")} style={{ fontSize: 13, fontWeight: 600, color: "#fff", background: ACCENT_ACTIVE, border: "none", borderRadius: 14, padding: "8px 18px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Continue Orientation →</button>
       </div>
       <SectionHeading label="Regional SPOCs Under Me" />
-      <div style={{ border: "1px solid #e8e8f0", borderRadius: 12, overflow: "hidden", marginBottom: 12 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1.5fr 1.5fr 1fr 1fr", gap: 12, padding: "10px 16px", background: "#f8f8fc", borderBottom: "1px solid #e8e8f0" }}>
+      <div style={{ border: "1px solid #e8e8f0", borderRadius: 14, overflow: "hidden", marginBottom: 12 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1.5fr 1.5fr 1fr 1fr", gap: 12, padding: "10px 16px", background: "#f8f9fc", borderBottom: "1px solid #e8e8f0" }}>
           {["Name","Role","Geography","Status",""].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: "#aaaabc", textTransform: "uppercase", letterSpacing: "0.8px" }}>{h}</div>)}
         </div>
         {spocDir.map((s, i) => (
@@ -517,9 +517,9 @@ export default function ProfileView() {
           </div>
         ))}
       </div>
-      <button onClick={() => toast("Opening add Regional SPOC form…")} style={{ fontSize: 13, fontWeight: 600, color: ACCENT_ACTIVE, background: P_CYAN, border: `1px solid ${B_CYAN}`, borderRadius: 9, padding: "8px 16px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>+ Add Regional SPOC</button>
+      <button onClick={() => toast("Opening add Regional SPOC form…")} style={{ fontSize: 13, fontWeight: 600, color: ACCENT_ACTIVE, background: P_CYAN, border: `1px solid ${B_CYAN}`, borderRadius: 14, padding: "8px 16px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>+ Add Regional SPOC</button>
       <SectionHeading label="Family Members Linked" />
-      <div style={{ border: "1px solid #e8e8f0", borderRadius: 12, overflow: "hidden" }}>
+      <div style={{ border: "1px solid #e8e8f0", borderRadius: 14, overflow: "hidden" }}>
         {FAMILY_MEMBERS.map((f, i) => (
           <div key={f.id} style={{ display: "flex", alignItems: "center", gap: 14, padding: "12px 16px", borderBottom: i < FAMILY_MEMBERS.length - 1 ? "1px solid #f0f0f8" : "none" }}>
             <div style={{ width: 36, height: 36, borderRadius: "50%", background: P_CYAN, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: ACCENT_ACTIVE, flexShrink: 0 }}>{f.name.split(" ").map(n => n[0]).join("")}</div>
@@ -736,7 +736,7 @@ export default function ProfileView() {
 
             {/* Badges shelf — below nav */}
             {!isEditing && !IS_NGO && (
-              <div style={{ marginTop: 28, background: "#fff", border: "1px solid #e8e8f0", borderRadius: 12, padding: "16px" }}>
+              <div style={{ marginTop: 28, background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, padding: "16px" }}>
                 <div style={{ fontSize: 10, fontWeight: 700, color: "#aaaabc", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 12 }}>Badges</div>
                 {[
                   { image: badgeAmbassador, name: "ProEngage Ambassador"  },
@@ -754,7 +754,7 @@ export default function ProfileView() {
 
             {/* Certificates — forest green tint */}
             {!isEditing && !IS_NGO && (
-              <div style={{ marginTop: 12, background: CP_TEAL_CERT, border: `1px solid ${C_TEAL_CERT}22`, borderRadius: 12, padding: "14px 16px" }}>
+              <div style={{ marginTop: 12, background: CP_TEAL_CERT, border: `1px solid ${C_TEAL_CERT}22`, borderRadius: 14, padding: "14px 16px" }}>
                 <div style={{ fontSize: 10, fontWeight: 700, color: C_TEAL_CERT, textTransform: "uppercase", letterSpacing: "1px", marginBottom: 10 }}>My Certificates</div>
                 {[
                   { edition: "Mock Interviews · ProEngage 2024 | 02",            date: "2024" },
@@ -793,7 +793,7 @@ export default function ProfileView() {
             {isEditing && (
               <div style={{ display: "flex", gap: 10, marginTop: 28, paddingTop: 20, borderTop: "1px solid #e8e8f0" }}>
                 <button onClick={IS_NGO ? handleNGOSave : handleSave} style={{ fontSize: 13.5, fontWeight: 700, color: "#fff", background: IS_NGO ? B_ORANGE : ACCENT_ACTIVE, border: "none", borderRadius: 10, padding: "10px 22px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Save Changes</button>
-                <button onClick={IS_NGO ? handleNGOCancel : handleCancel} style={{ fontSize: 13.5, fontWeight: 700, color: "#6b6b7a", background: "#f8f8fc", border: "1px solid #e0e0e8", borderRadius: 10, padding: "10px 18px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Cancel</button>
+                <button onClick={IS_NGO ? handleNGOCancel : handleCancel} style={{ fontSize: 13.5, fontWeight: 700, color: "#6b6b7a", background: "#f8f9fc", border: "1px solid #e8e8f0", borderRadius: 10, padding: "10px 18px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Cancel</button>
               </div>
             )}
           </div>

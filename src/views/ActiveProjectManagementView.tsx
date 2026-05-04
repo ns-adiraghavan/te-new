@@ -116,7 +116,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
                     className="p-6 rounded-2xl flex justify-between items-center"
                     style={
                       update.status === "Pending"
-                        ? { backgroundColor: "#f8fafc", border: "1px dashed #e2e8f0" }
+                        ? { backgroundColor: "#f8fafc", border: "1px dashed #e8e8f0" }
                         : { backgroundColor: "#f8fafc", border: "1px solid #f1f5f9" }
                     }
                   >

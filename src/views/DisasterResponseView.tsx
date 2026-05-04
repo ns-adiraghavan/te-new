@@ -146,7 +146,7 @@ export default function DisasterResponseView() {
           </p>
           <div style={{ display: "flex", gap: 12 }}>
             <button onClick={() => navigate(isLoggedIn ? "dr-availability-form" : "register-role")}
-              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(13,27,62,0.25)" }}>
               Register your interest →
             </button>
             <button onClick={() => document.getElementById("dr-overview")?.scrollIntoView({ behavior: "smooth" })}
@@ -176,7 +176,7 @@ export default function DisasterResponseView() {
           </div>
           <div style={{ position: "relative" }}>
             <div style={{ position: "absolute", top: -16, right: -16, zIndex: 0, width: 64, height: 64, borderRadius: 16, background: COLOUR, opacity: 0.12 }} />
-            <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(0,0,0,0.10)", position: "relative", zIndex: 1 }}>
+            <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(13,27,62,0.10)", position: "relative", zIndex: 1 }}>
               <img src={drBelowImg} alt=""
                 style={{ width: "100%", height: 380, objectFit: "cover", objectPosition: "center", display: "block" }} />
             </div>
@@ -363,7 +363,7 @@ export default function DisasterResponseView() {
               Expressions of interest are invited from Tata employees registered on tataengage.com. Join the Disaster Response volunteer pool today.
             </p>
             <button onClick={() => navigate(isLoggedIn ? "dr-availability-form" : "register-role")}
-              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 15, cursor: "pointer", width: "100%", boxShadow: "0 4px 20px rgba(0,0,0,0.22)" }}>
+              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 15, cursor: "pointer", width: "100%", boxShadow: "0 4px 20px rgba(13,27,62,0.22)" }}>
               Register your interest →
             </button>
             <button onClick={() => navigate("about")}

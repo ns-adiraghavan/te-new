@@ -167,10 +167,10 @@ function Label({ children, required }: { children: React.ReactNode; required?: b
   return <div style={{ fontSize: 10.5, fontWeight: 700, color: "#aaaabc", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 6 }}>{children}{required && <span style={{ color: B_RED, marginLeft: 3 }}>*</span>}</div>;
 }
 function FInput({ value, onChange, placeholder, type = "text" }: { value: string; onChange?: (v: string) => void; placeholder?: string; type?: string }) {
-  return <input type={type} value={value} placeholder={placeholder} onChange={e => onChange?.(e.target.value)} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 8, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" }} onFocus={e => (e.target.style.borderColor = B_NGO)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")} />;
+  return <input type={type} value={value} placeholder={placeholder} onChange={e => onChange?.(e.target.value)} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 10, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", boxSizing: "border-box" }} onFocus={e => (e.target.style.borderColor = B_NGO)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")} />;
 }
 function FSelect({ value, onChange, options }: { value: string; onChange: (v: string) => void; options: string[] }) {
-  return <select value={value} onChange={e => onChange(e.target.value)} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 8, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", background: "#fff", appearance: "none", cursor: "pointer", boxSizing: "border-box" }} onFocus={e => (e.target.style.borderColor = B_NGO)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")}>{options.map(o => <option key={o}>{o}</option>)}</select>;
+  return <select value={value} onChange={e => onChange(e.target.value)} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 10, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", background: "#fff", appearance: "none", cursor: "pointer", boxSizing: "border-box" }} onFocus={e => (e.target.style.borderColor = B_NGO)} onBlur={e => (e.target.style.borderColor = "#e0e0e8")}>{options.map(o => <option key={o}>{o}</option>)}</select>;
 }
 
 // ─── AI Enhance textarea (reused from current file) ──────────────────────────
@@ -200,7 +200,7 @@ function AITextarea({ value, onChange, placeholder, rows = 3, label }: {
         </button>
       </div>
       <textarea value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder} rows={rows}
-        style={{ width: "100%", border: `1.5px solid ${enhanced ? B_TEAL : "#e0e0e8"}`, borderRadius: 8, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box", transition: "border-color 0.2s" }}
+        style={{ width: "100%", border: `1.5px solid ${enhanced ? B_TEAL : "#e8e8f0"}`, borderRadius: 10, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box", transition: "border-color 0.2s" }}
         onFocus={e => (e.target.style.borderColor = B_NGO)} onBlur={e => (e.target.style.borderColor = enhanced ? B_TEAL : "#e0e0e8")} />
       {value.length > 0 && (
         <div style={{ marginTop: 5, display: "flex", alignItems: "center", gap: 8 }}>
@@ -223,16 +223,16 @@ function Badge({ status }: { status: string }) {
     Live:           [P_TEAL,    "#0A8246"],
     Matched:        [P_TEAL,    "#0A8246"],
     Submitted:      [P_TEAL,    "#0A8246"],
-    Completed:      ["#f0f0f4", "#888"],
-    Closed:         ["#f0f0f4", "#888"],
-    Draft:          ["#f0f0f4", "#888"],
+    Completed:      ["#f8f9fc", "#888"],
+    Closed:         ["#f8f9fc", "#888"],
+    Draft:          ["#f8f9fc", "#888"],
     "Under Review": [P_YELLOW,  "#9a6500"],
     Pending:        [P_YELLOW,  "#9a6500"],
     Rejected:       [P_RED,     "#c0392b"],
-    Inactive:       ["#f0f0f4", "#888"],
-    Fulfilled:      ["#f0f0f4", "#888"],
+    Inactive:       ["#f8f9fc", "#888"],
+    Fulfilled:      ["#f8f9fc", "#888"],
   };
-  const [bg, color] = map[status] ?? ["#f0f0f4", "#666"];
+  const [bg, color] = map[status] ?? ["#f8f9fc", "#666"];
   return <span style={{ background: bg, color, fontSize: 11, fontWeight: 700, padding: "2px 9px", borderRadius: 100, whiteSpace: "nowrap" }}>{status}</span>;
 }
 
@@ -331,7 +331,7 @@ function AddProjectForm({ clonedFrom, onClose, onSubmit }: { clonedFrom?: any; o
         <AITextarea label="Deliverables *" value={form.deliverables} onChange={v => set("deliverables", v)} placeholder="What will volunteers produce or accomplish?" rows={3} />
         <AITextarea label="Expected Learning for Volunteer *" value={form.expectedLearning} onChange={v => set("expectedLearning", v)} placeholder="What skills or perspectives will volunteers gain?" rows={3} />
         <AITextarea label="Ideal Volunteer Profile" value={form.volunteerProfile} onChange={v => set("volunteerProfile", v)} placeholder="e.g. Finance professional, 3+ years experience" rows={2} />
-        <div style={{ background: "#f8f9ff", border: "1px solid #e8e8f0", borderRadius: 10, padding: "12px 14px" }}>
+        <div style={{ background: "#f5f5fa", border: "1px solid #e8e8f0", borderRadius: 10, padding: "12px 14px" }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: "#aaaabc", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 8 }}>🤖 AI Quality Score</div>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
             <div style={{ flex: 1, height: 8, background: "#e8e8f0", borderRadius: 4, overflow: "hidden" }}>
@@ -350,8 +350,8 @@ function AddProjectForm({ clonedFrom, onClose, onSubmit }: { clonedFrom?: any; o
         </label>
       </div>
       <div style={{ display: "flex", gap: 10, marginTop: 16, paddingTop: 16, borderTop: "1px solid #f0f0f8" }}>
-        <button onClick={onClose} style={{ flex: 1, padding: "10px", background: "#f8f8fc", border: "1px solid #e0e0e8", borderRadius: 9, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
-        <button onClick={onSubmit} style={{ flex: 1, padding: "10px", background: B_NGO, border: "none", borderRadius: 9, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Submit for Review</button>
+        <button onClick={onClose} style={{ flex: 1, padding: "10px", background: "#f8f9fc", border: "1px solid #e8e8f0", borderRadius: 14, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
+        <button onClick={onSubmit} style={{ flex: 1, padding: "10px", background: B_NGO, border: "none", borderRadius: 14, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Submit for Review</button>
       </div>
     </div>
   );
@@ -365,7 +365,7 @@ function FeedbackForm({ onClose, onSubmit }: { onClose: () => void; onSubmit: ()
   const [testimonial, setTestimonial] = useState("");
   return (
     <div>
-      <div style={{ background: P_YELLOW, border: `1px solid ${B_YELLOW}44`, borderRadius: 9, padding: "10px 14px", marginBottom: 16, fontSize: 12.5, color: "#7c5500" }}>
+      <div style={{ background: P_YELLOW, border: `1px solid ${B_YELLOW}44`, borderRadius: 14, padding: "10px 14px", marginBottom: 16, fontSize: 12.5, color: "#7c5500" }}>
         Feedback is mandatory for certificate generation. Both volunteer and NGO must submit before TSG Admin triggers certificates.
       </div>
       <div style={{ marginBottom: 14 }}>
@@ -386,7 +386,7 @@ function FeedbackForm({ onClose, onSubmit }: { onClose: () => void; onSubmit: ()
           </div>
           <div style={{ marginBottom: 14 }}>
             <Label>Q3 — Rate PE team support</Label>
-            <div style={{ background: "#f8f9ff", border: "1px solid #e8e8f0", borderRadius: 9, padding: "12px 14px" }}>
+            <div style={{ background: "#f8f9ff", border: "1px solid #e8e8f0", borderRadius: 14, padding: "12px 14px" }}>
               {["Team was accessible and responsive", "Queries were resolved effectively"].map((lbl, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
                   <div style={{ fontSize: 13, color: "#555", flex: 1 }}>{lbl}</div>
@@ -403,7 +403,7 @@ function FeedbackForm({ onClose, onSubmit }: { onClose: () => void; onSubmit: ()
           <div style={{ marginBottom: 16 }}>
             <Label>Q4 — Testimonial (optional)</Label>
             <textarea value={testimonial} onChange={e => setTestimonial(e.target.value)} placeholder="Share your experience with this volunteer…" rows={4}
-              style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 8, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box" }} />
+              style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 10, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box" }} />
             <div style={{ fontSize: 11, color: "#aaaabc", marginTop: 4 }}>Testimonials go to Admin moderation before being published.</div>
           </div>
         </>
@@ -419,8 +419,8 @@ function FeedbackForm({ onClose, onSubmit }: { onClose: () => void; onSubmit: ()
         </div>
       )}
       <div style={{ display: "flex", gap: 10 }}>
-        <button onClick={onClose} style={{ flex: 1, padding: "10px", background: "#f8f8fc", border: "1px solid #e0e0e8", borderRadius: 9, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
-        <button onClick={onSubmit} style={{ flex: 1, padding: "10px", background: B_NGO, border: "none", borderRadius: 9, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Submit Feedback</button>
+        <button onClick={onClose} style={{ flex: 1, padding: "10px", background: "#f8f9fc", border: "1px solid #e8e8f0", borderRadius: 14, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
+        <button onClick={onSubmit} style={{ flex: 1, padding: "10px", background: B_NGO, border: "none", borderRadius: 14, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Submit Feedback</button>
       </div>
     </div>
   );
@@ -518,7 +518,7 @@ const NGODashboardView = () => {
   // Rail link style — SPOC-matching pattern with NGO accent
   const railLink = (active: boolean): React.CSSProperties => ({
     display: "flex", alignItems: "center", gap: 10,
-    padding: "9px 10px", borderRadius: 8, cursor: "pointer",
+    padding: "9px 10px", borderRadius: 10, cursor: "pointer",
     background: active ? P_NGO : "transparent",
     transition: "background 0.18s",
   });
@@ -636,14 +636,14 @@ const NGODashboardView = () => {
 
             {/* Popout panels */}
             {snapPopout === "skills" && (
-              <div style={{ background: "#f8f9ff", border: `1.5px solid ${B_BLUE}30`, borderRadius: 10, padding: "16px", marginBottom: 4 }}>
+              <div style={{ background: "#f5f5fa", border: `1.5px solid ${B_BLUE}30`, borderRadius: 10, padding: "16px", marginBottom: 4 }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
                   <div style={{ fontSize: 12.5, fontWeight: 700, color: ACCENT_NAVY }}>Skills Utilised This Edition</div>
                   <button onClick={() => setSnapPopout(null)} style={{ background: "none", border: "none", color: "#aaa", cursor: "pointer", fontSize: 16 }}>✕</button>
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                   {[{ skill: "Finance & Accounting", count: 14 },{ skill: "Education & Training", count: 22 },{ skill: "IT / Technology", count: 9 },{ skill: "Human Resources", count: 7 },{ skill: "Communications", count: 11 },{ skill: "Project Management", count: 5 }].map(s => (
-                    <div key={s.skill} style={{ display: "flex", alignItems: "center", gap: 8, background: "#fff", border: `1px solid ${B_BLUE}25`, borderRadius: 8, padding: "8px 12px", minWidth: 180 }}>
+                    <div key={s.skill} style={{ display: "flex", alignItems: "center", gap: 8, background: "#fff", border: `1px solid ${B_BLUE}25`, borderRadius: 10, padding: "8px 12px", minWidth: 180 }}>
                       <div style={{ flex: 1, fontSize: 12.5, color: ACCENT_NAVY, fontWeight: 500 }}>{s.skill}</div>
                       <div style={{ fontSize: 12, fontWeight: 700, color: B_BLUE }}>{s.count} vols</div>
                     </div>
@@ -679,7 +679,7 @@ const NGODashboardView = () => {
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, marginBottom: 12 }}>
                   {[{ label: "Total Posts", value: "12" },{ label: "Est. Reach", value: "3,400" },{ label: "Shares", value: "47" }].map(s => (
-                    <div key={s.label} style={{ background: "#fff", borderRadius: 8, padding: "10px 12px", textAlign: "center", border: `1px solid ${B_NGO}20` }}>
+                    <div key={s.label} style={{ background: "#fff", borderRadius: 10, padding: "10px 12px", textAlign: "center", border: `1px solid ${B_NGO}20` }}>
                       <div style={{ fontSize: 20, fontWeight: 700, color: B_NGO, letterSpacing: "-0.5px" }}>{s.value}</div>
                       <div style={{ fontSize: 10.5, color: "#6b6b7a", marginTop: 2 }}>{s.label}</div>
                     </div>
@@ -700,7 +700,7 @@ const NGODashboardView = () => {
                       <strong>Feedback due {days <= 0 ? "today" : `in ${days} day${days !== 1 ? "s" : ""}`}</strong> — "{p.title}"
                     </div>
                     <button onClick={() => { setActiveProject(p); setFeedbackProject(p); setModal("feedback"); }}
-                      style={{ background: "#9a6500", border: "none", borderRadius: 8, padding: "7px 14px", fontSize: 12.5, fontWeight: 700, color: "#fff", cursor: "pointer", whiteSpace: "nowrap" }}>
+                      style={{ background: "#9a6500", border: "none", borderRadius: 10, padding: "7px 14px", fontSize: 12.5, fontWeight: 700, color: "#fff", cursor: "pointer", whiteSpace: "nowrap" }}>
                       Complete Feedback
                     </button>
                   </div>
@@ -718,7 +718,7 @@ const NGODashboardView = () => {
                   </div>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                     {p.healthUpdates.map((h: any, i: number) => {
-                      const bg    = h.status === "Healthy" ? P_TEAL : h.status === "At Risk" ? P_RED : "#f0f0f4";
+                      const bg    = h.status === "Healthy" ? P_TEAL : h.status === "At Risk" ? P_RED : "#f8f9fc";
                       const color = h.status === "Healthy" ? "#0A8246" : h.status === "At Risk" ? B_RED : "#888";
                       return (
                         <div key={i} style={{ background: bg, borderRadius: 7, padding: "6px 10px", minWidth: 78 }}>
@@ -758,7 +758,7 @@ const NGODashboardView = () => {
               </div>
             </div>
             {/* Tab switcher */}
-            <div style={{ display: "flex", gap: 6, padding: "4px", background: "#f0f0f4", borderRadius: 9, marginBottom: 14, width: "fit-content" }}>
+            <div style={{ display: "flex", gap: 6, padding: "4px", background: "#f8f9fc", borderRadius: 14, marginBottom: 14, width: "fit-content" }}>
               {(["shortlist","all"] as const).map(t => (
                 <button key={t} onClick={() => setAppTab(t)} style={{ ...tabBtn(appTab === t), minWidth: 120 }}>
                   {t === "shortlist" ? "🤖 AI Shortlist" : `All (${applicants.length})`}
@@ -768,7 +768,7 @@ const NGODashboardView = () => {
             <div style={{ position: "relative", marginBottom: 12 }}>
               <Search size={13} style={{ position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)", color: "#aaa" }} />
               <input placeholder="Search name or skill…" value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-                style={{ width: "100%", paddingLeft: 32, paddingRight: 12, paddingTop: 8, paddingBottom: 8, border: "1px solid #e0e0e8", borderRadius: 8, fontSize: 13, outline: "none", boxSizing: "border-box" }} />
+                style={{ width: "100%", paddingLeft: 32, paddingRight: 12, paddingTop: 8, paddingBottom: 8, border: "1px solid #e8e8f0", borderRadius: 10, fontSize: 13, outline: "none", boxSizing: "border-box" }} />
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 1, maxHeight: 340, overflowY: "auto" }}>
               {(appTab === "shortlist" ? shortlisted : filtered).map((a, i) => (
@@ -801,7 +801,7 @@ const NGODashboardView = () => {
             </div>
             {appTab === "shortlist" && shortlisted.filter(a => a.status === "Pending").length >= 5 && (
               <button onClick={() => shortlisted.filter(a => a.status === "Pending").forEach(a => handleAccept(a.id))}
-                style={{ width: "100%", marginTop: 12, padding: "10px", background: B_NGO, border: "none", borderRadius: 9, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>
+                style={{ width: "100%", marginTop: 12, padding: "10px", background: B_NGO, border: "none", borderRadius: 14, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>
                 Bulk Accept Top {shortlisted.filter(a => a.status === "Pending").length}
               </button>
             )}
@@ -825,7 +825,7 @@ const NGODashboardView = () => {
             {/* Edition filter — matches SPOC pattern */}
             <div style={{ display: "flex", gap: 8, marginBottom: 14, alignItems: "center" }}>
               <select value={selectedEdition} onChange={e => setSelectedEdition(e.target.value)}
-                style={{ fontSize: 11.5, padding: "5px 10px", border: "1px solid #e0e0e8", borderRadius: 7, background: "#f8f9ff", color: "#555", outline: "none" }}>
+                style={{ fontSize: 11.5, padding: "5px 10px", border: "1px solid #e8e8f0", borderRadius: 7, background: "#f5f5fa", color: "#555", outline: "none" }}>
                 <option>Edition 23 · 2025–26</option>
                 <option>Edition 22 · 2024–25</option>
                 <option>Edition 21 · 2023–24</option>
@@ -888,7 +888,7 @@ const NGODashboardView = () => {
                 {drillProject && (
                   <div>
                     <div style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 10, overflow: "hidden" }}>
-                      <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr", padding: "8px 14px", background: "#f8f9ff", borderBottom: "1px solid #e8e8f0" }}>
+                      <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr", padding: "8px 14px", background: "#f5f5fa", borderBottom: "1px solid #e8e8f0" }}>
                         {["Volunteer","Status","Feedback","Hours",""].map(h => (
                           <div key={h} style={{ fontSize: 10, fontWeight: 700, color: "#aaaabc", textTransform: "uppercase", letterSpacing: "0.7px" }}>{h}</div>
                         ))}
@@ -927,7 +927,7 @@ const NGODashboardView = () => {
                       <div style={{ fontSize: 13, fontWeight: 600, color: ACCENT_NAVY }}>{v.name}</div>
                       <div style={{ display: "flex", gap: 5, marginTop: 4, flexWrap: "wrap" }}>
                         <span style={{ fontSize: 10.5, fontWeight: 600, background: P_NGO, color: B_NGO, borderRadius: 100, padding: "1px 7px" }}>{v.skill}</span>
-                        <span style={{ fontSize: 10.5, fontWeight: 600, background: "#f0f0f4", color: "#555", borderRadius: 100, padding: "1px 7px" }}>{v.edition}</span>
+                        <span style={{ fontSize: 10.5, fontWeight: 600, background: "#f8f9fc", color: "#555", borderRadius: 100, padding: "1px 7px" }}>{v.edition}</span>
                         <span style={{ fontSize: 10.5, color: "#888", padding: "1px 0" }}>{v.project}</span>
                       </div>
                     </div>
@@ -949,8 +949,8 @@ const NGODashboardView = () => {
                       <div style={{ fontSize: 13, fontWeight: 600, color: ACCENT_NAVY }}>{f.project}</div>
                       <div style={{ display: "flex", gap: 5, marginTop: 4, flexWrap: "wrap" }}>
                         <span style={{ fontSize: 10.5, fontWeight: 600, background: P_BLUE, color: B_BLUE, borderRadius: 100, padding: "1px 7px" }}>{f.vol}</span>
-                        <span style={{ fontSize: 10.5, fontWeight: 600, background: "#f0f0f4", color: "#555", borderRadius: 100, padding: "1px 7px" }}>{f.edition}</span>
-                        {f.done && <span style={{ fontSize: 10.5, fontWeight: 600, background: "#f0f0f4", color: "#888", borderRadius: 100, padding: "1px 7px" }}>{f.submitted}</span>}
+                        <span style={{ fontSize: 10.5, fontWeight: 600, background: "#f8f9fc", color: "#555", borderRadius: 100, padding: "1px 7px" }}>{f.edition}</span>
+                        {f.done && <span style={{ fontSize: 10.5, fontWeight: 600, background: "#f8f9fc", color: "#888", borderRadius: 100, padding: "1px 7px" }}>{f.submitted}</span>}
                       </div>
                     </div>
                     <Badge status={f.done ? "Submitted" : "Pending"} />
@@ -973,28 +973,28 @@ const NGODashboardView = () => {
                 {partnerNGOs.map((partner: any) => {
                   const isOpen = expandedPartner === partner.id;
                   return (
-                    <div key={partner.id} style={{ border: "1px solid #e8e8f0", borderRadius: 12, overflow: "hidden" }}>
+                    <div key={partner.id} style={{ border: "1px solid #e8e8f0", borderRadius: 14, overflow: "hidden" }}>
                       <div onClick={() => setExpandedPartner(isOpen ? null : partner.id)}
                         style={{ display: "flex", alignItems: "center", gap: 12, padding: "13px 16px", cursor: "pointer", background: isOpen ? "#f8f9ff" : "#fff" }}
                         onMouseEnter={e => { if (!isOpen) e.currentTarget.style.background = "#fafafa"; }}
                         onMouseLeave={e => { if (!isOpen) e.currentTarget.style.background = "#fff"; }}>
-                        <div style={{ width: 36, height: 36, borderRadius: 9, background: P_NGO, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: B_NGO, flexShrink: 0 }}>{partner.name.charAt(0)}</div>
+                        <div style={{ width: 36, height: 36, borderRadius: 14, background: P_NGO, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: B_NGO, flexShrink: 0 }}>{partner.name.charAt(0)}</div>
                         <div style={{ flex: 1 }}>
                           <div style={{ fontSize: 13.5, fontWeight: 600, color: ACCENT_NAVY }}>{partner.name}</div>
                           <div style={{ display: "flex", gap: 5, marginTop: 4, flexWrap: "wrap" }}>
                             <span style={{ fontSize: 10.5, fontWeight: 600, background: P_BLUE, color: B_BLUE, borderRadius: 100, padding: "1px 7px" }}>{partner.city}</span>
                             <span style={{ fontSize: 10.5, fontWeight: 600, background: P_NGO, color: B_NGO, borderRadius: 100, padding: "1px 7px" }}>{partner.focusArea}</span>
-                            <span style={{ fontSize: 10.5, fontWeight: 600, background: "#f0f0f4", color: "#555", borderRadius: 100, padding: "1px 7px" }}>{partner.projects.length} project{partner.projects.length !== 1 ? "s" : ""}</span>
+                            <span style={{ fontSize: 10.5, fontWeight: 600, background: "#f8f9fc", color: "#555", borderRadius: 100, padding: "1px 7px" }}>{partner.projects.length} project{partner.projects.length !== 1 ? "s" : ""}</span>
                           </div>
                         </div>
                         <Badge status={partner.status} />
                         {isOpen ? <ChevronUp size={14} color="#aaa" /> : <ChevronDown size={14} color="#aaa" />}
                       </div>
                       {isOpen && (
-                        <div style={{ padding: "0 16px 16px", borderTop: "1px solid #f0f0f8", background: "#f8f9ff" }}>
+                        <div style={{ padding: "0 16px 16px", borderTop: "1px solid #f0f0f8", background: "#f5f5fa" }}>
                           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, margin: "14px 0" }}>
                             {[{ label: "Volunteers", val: partner.volunteersTotal },{ label: "Projects", val: partner.projects.length },{ label: "Partner since", val: new Date(partner.joinedDate).getFullYear() }].map(s => (
-                              <div key={s.label} style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 9, padding: "10px 12px", textAlign: "center" }}>
+                              <div key={s.label} style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, padding: "10px 12px", textAlign: "center" }}>
                                 <div style={{ fontSize: 10, fontWeight: 700, color: "#aaaabc", textTransform: "uppercase", letterSpacing: "0.7px", marginBottom: 4 }}>{s.label}</div>
                                 <div style={{ fontSize: 18, fontWeight: 700, color: ACCENT_NAVY }}>{s.val}</div>
                               </div>
@@ -1008,7 +1008,7 @@ const NGODashboardView = () => {
                           <div style={{ fontSize: 10, fontWeight: 700, color: "#aaaabc", textTransform: "uppercase", letterSpacing: "0.7px", marginBottom: 8 }}>Projects</div>
                           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                             {partner.projects.map((proj: any) => (
-                              <div key={proj.id} style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 12px", background: "#fff", border: "1px solid #e8e8f0", borderRadius: 9 }}>
+                              <div key={proj.id} style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 12px", background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14 }}>
                                 <div style={{ flex: 1 }}>
                                   <div style={{ fontSize: 13, fontWeight: 600, color: ACCENT_NAVY }}>{proj.title}</div>
                                   <div style={{ marginTop: 4 }}>
@@ -1038,7 +1038,7 @@ const NGODashboardView = () => {
                 { title: "Project Health Report",         desc: "Monthly M&E status across all active projects", date: "Generated 20 Mar 2026", tag: "Active projects", tagColor: KPI_LIME, tagBg: P_NGO_MID },
                 { title: "Feedback Completion Tracker",   desc: "Who has and hasn't submitted feedback", date: "Generated 5 Apr 2026", tag: "Pending",  tagColor: "#9a6500", tagBg: P_YELLOW },
               ].map((r, i) => (
-                <div key={i} style={{ background: "#f8f9ff", border: "1px solid #e8e8f0", borderRadius: 10, padding: "14px" }}>
+                <div key={i} style={{ background: "#f5f5fa", border: "1px solid #e8e8f0", borderRadius: 10, padding: "14px" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: ACCENT_NAVY, flex: 1 }}>{r.title}</div>
                     <span style={{ fontSize: 10.5, fontWeight: 700, background: r.tagBg, color: r.tagColor, borderRadius: 100, padding: "2px 8px", whiteSpace: "nowrap" }}>{r.tag}</span>
@@ -1057,7 +1057,7 @@ const NGODashboardView = () => {
           </div>
 
           {/* ─── VII. Resource Library ─── */}
-          <div id="resources" ref={resourcesRef} style={{ background: "#f0f1f8", borderRadius: 16, padding: "24px 22px", marginTop: 20 }}>
+          <div id="resources" ref={resourcesRef} style={{ background: "#f8f9fc", borderRadius: 16, padding: "24px 22px", marginTop: 20 }}>
             <SH eyebrow={`${isLeadPartner ? "VII" : "VI"} · Learning & Support`} title="Resource Library" />
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
               {[
@@ -1116,7 +1116,7 @@ const NGODashboardView = () => {
               { label: "Raise Grievance",  action: () => setModal("grievance") },
             ].map(({ label, action }) => (
               <button key={label} onClick={action}
-                style={{ display: "block", width: "100%", background: "none", border: "none", padding: "7px 10px", borderRadius: 8, fontSize: 12.5, color: "#8888a0", cursor: "pointer", textAlign: "left", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", transition: "background 0.15s, color 0.15s" }}
+                style={{ display: "block", width: "100%", background: "none", border: "none", padding: "7px 10px", borderRadius: 10, fontSize: 12.5, color: "#8888a0", cursor: "pointer", textAlign: "left", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", transition: "background 0.15s, color 0.15s" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = P_NGO; (e.currentTarget as HTMLElement).style.color = B_NGO; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "none"; (e.currentTarget as HTMLElement).style.color = "#8888a0"; }}>
                 {label}
@@ -1157,7 +1157,7 @@ const NGODashboardView = () => {
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {projects.filter((p: any) => ["Active","Closed","Under Review"].includes(p.status)).map((p: any) => (
               <div key={p.id} onClick={() => { setClonedFrom(p); setClonedProject({ title: p.title, isClone: true, sourceTitle: p.title }); setModal("addProject"); }}
-                style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", background: "#f8f9ff", border: "1px solid #e8e8f0", borderRadius: 10, cursor: "pointer" }}
+                style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", background: "#f5f5fa", border: "1px solid #e8e8f0", borderRadius: 10, cursor: "pointer" }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = B_NGO; e.currentTarget.style.background = P_NGO; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = "#e8e8f0"; e.currentTarget.style.background = "#f8f9ff"; }}>
                 <div style={{ flex: 1 }}>
@@ -1182,7 +1182,7 @@ const NGODashboardView = () => {
         <div>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 14 }}>
             {["All","Active","Under Review","Draft","Closed"].map(f => (
-              <span key={f} style={{ fontSize: 12, padding: "4px 11px", border: "1px solid #e0e0e8", borderRadius: 6, color: "#555", cursor: "pointer", fontWeight: 500 }}>{f}</span>
+              <span key={f} style={{ fontSize: 12, padding: "4px 11px", border: "1px solid #e8e8f0", borderRadius: 6, color: "#555", cursor: "pointer", fontWeight: 500 }}>{f}</span>
             ))}
           </div>
           {projects.map((p: any) => (
@@ -1217,7 +1217,7 @@ const NGODashboardView = () => {
             </div>
             <div style={{ marginBottom: 14 }}>
               <div style={{ fontSize: 10.5, fontWeight: 700, color: "#aaaabc", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 6 }}>Experience Summary</div>
-              <div style={{ background: "#f8f9ff", border: "1px solid #e8e8f0", borderRadius: 9, padding: "12px 14px", fontSize: 13, color: "#444", lineHeight: 1.6 }}>{selectedApplicant.experience}</div>
+              <div style={{ background: "#f5f5fa", border: "1px solid #e8e8f0", borderRadius: 14, padding: "12px 14px", fontSize: 13, color: "#444", lineHeight: 1.6 }}>{selectedApplicant.experience}</div>
             </div>
             <div style={{ marginBottom: 14 }}>
               <div style={{ fontSize: 10.5, fontWeight: 700, color: "#aaaabc", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 6 }}>Skills</div>
@@ -1228,13 +1228,13 @@ const NGODashboardView = () => {
             <div style={{ marginBottom: 20 }}>
               <div style={{ fontSize: 10.5, fontWeight: 700, color: "#aaaabc", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 6 }}>Languages</div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                {selectedApplicant.languages.map((l: string) => <span key={l} style={{ background: "#f0f0f4", color: "#555", fontSize: 12, fontWeight: 600, padding: "3px 10px", borderRadius: 100 }}>{l}</span>)}
+                {selectedApplicant.languages.map((l: string) => <span key={l} style={{ background: "#f8f9fc", color: "#555", fontSize: 12, fontWeight: 600, padding: "3px 10px", borderRadius: 100 }}>{l}</span>)}
               </div>
             </div>
             {selectedApplicant.status === "Pending" && (
               <div style={{ display: "flex", gap: 10 }}>
-                <button onClick={() => handleReject(selectedApplicant.id)} style={{ flex: 1, padding: "11px", background: P_RED, border: `1px solid ${B_RED}30`, borderRadius: 9, fontSize: 13.5, fontWeight: 700, color: B_RED, cursor: "pointer" }}>Reject</button>
-                <button onClick={() => handleAccept(selectedApplicant.id)} style={{ flex: 1, padding: "11px", background: ACCENT_NAVY, border: "none", borderRadius: 9, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Accept Volunteer</button>
+                <button onClick={() => handleReject(selectedApplicant.id)} style={{ flex: 1, padding: "11px", background: P_RED, border: `1px solid ${B_RED}30`, borderRadius: 14, fontSize: 13.5, fontWeight: 700, color: B_RED, cursor: "pointer" }}>Reject</button>
+                <button onClick={() => handleAccept(selectedApplicant.id)} style={{ flex: 1, padding: "11px", background: ACCENT_NAVY, border: "none", borderRadius: 14, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Accept Volunteer</button>
               </div>
             )}
           </div>
@@ -1260,7 +1260,7 @@ const NGODashboardView = () => {
           </div>
         ) : (
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16, padding: "8px 12px", background: P_NGO, borderRadius: 8 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16, padding: "8px 12px", background: P_NGO, borderRadius: 10 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: B_NGO, flex: 1 }}>{feedbackProject.title}</div>
               <button onClick={() => setFeedbackProject(null)} style={{ fontSize: 11, color: B_NGO, background: "none", border: "none", cursor: "pointer" }}>← Change</button>
             </div>
@@ -1278,11 +1278,11 @@ const NGODashboardView = () => {
             <div><Label>Status</Label><FSelect value="Healthy" onChange={() => {}} options={["Healthy","At Risk","Drop Out","Paused","Extended","Close Early"]} /></div>
           </div>
           <div style={{ marginBottom: 18 }}><Label>Notes (optional)</Label>
-            <textarea rows={3} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 8, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box" }} placeholder="Context for this update…" />
+            <textarea rows={3} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 10, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box" }} placeholder="Context for this update…" />
           </div>
           <div style={{ display: "flex", gap: 10 }}>
-            <button onClick={() => setModal(null)} style={{ flex: 1, padding: "10px", background: "#f8f8fc", border: "1px solid #e0e0e8", borderRadius: 9, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
-            <button onClick={() => { setModal(null); triggerToast("Health update submitted. TSG Admin notified."); }} style={{ flex: 1, padding: "10px", background: B_NGO, border: "none", borderRadius: 9, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Submit Update</button>
+            <button onClick={() => setModal(null)} style={{ flex: 1, padding: "10px", background: "#f8f9fc", border: "1px solid #e8e8f0", borderRadius: 14, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
+            <button onClick={() => { setModal(null); triggerToast("Health update submitted. TSG Admin notified."); }} style={{ flex: 1, padding: "10px", background: B_NGO, border: "none", borderRadius: 14, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Submit Update</button>
           </div>
         </div>
       </DrawerShell>
@@ -1305,7 +1305,7 @@ const NGODashboardView = () => {
           ))}
 
           {/* Add co-ordinator form — same inline-form pattern as SPOC directory */}
-          <div style={{ marginTop: 20, background: "#f8f9ff", border: `1.5px solid ${B_NGO}30`, borderRadius: 12, padding: "16px" }}>
+          <div style={{ marginTop: 20, background: "#f8f9ff", border: `1.5px solid ${B_NGO}30`, borderRadius: 14, padding: "16px" }}>
             <div style={{ fontSize: 12, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 14 }}>Add Co-ordinator</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               <div><Label required>Name</Label><FInput value={addCoordName} onChange={setAddCoordName} placeholder="Full name" /></div>
@@ -1317,7 +1317,7 @@ const NGODashboardView = () => {
               setCoordinators((prev: any[]) => [...prev, { id: Date.now(), name: addCoordName, email: addCoordEmail, role: addCoordRole }]);
               setAddCoordName(""); setAddCoordEmail(""); setAddCoordRole("Project Coordinator");
               triggerToast("Co-ordinator added successfully.");
-            }} style={{ marginTop: 14, width: "100%", padding: "10px", background: B_NGO, border: "none", borderRadius: 9, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>
+            }} style={{ marginTop: 14, width: "100%", padding: "10px", background: B_NGO, border: "none", borderRadius: 14, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>
               Add Co-ordinator
             </button>
           </div>
@@ -1332,18 +1332,18 @@ const NGODashboardView = () => {
           <div style={{ marginBottom: 12 }}><Label>Category</Label><FSelect value={grievanceForm.category} onChange={v => setGrievanceForm(f => ({ ...f, category: v }))} options={["Select category…","Volunteer conduct","Communication breakdown","Project scope disagreement","Scheduling conflict","Platform / technical issue","Other"]} /></div>
           <div style={{ marginBottom: 18 }}><Label>Description</Label>
             <textarea value={grievanceForm.description} onChange={e => setGrievanceForm(f => ({ ...f, description: e.target.value }))} placeholder="Describe the issue clearly. TSG Admin acknowledges within 2 working days." rows={4}
-              style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 8, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box" }} />
+              style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 10, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box" }} />
           </div>
           <div style={{ fontSize: 11.5, color: "#0D1B3E", marginBottom: 12, fontStyle: "italic" }}>Only 1 open grievance per active project at a time. Auto-acknowledgement sent on submission.</div>
           <div style={{ display: "flex", gap: 10 }}>
-            <button onClick={() => setModal(null)} style={{ flex: 1, padding: "10px", background: "#f8f8fc", border: "1px solid #e0e0e8", borderRadius: 9, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
+            <button onClick={() => setModal(null)} style={{ flex: 1, padding: "10px", background: "#f8f9fc", border: "1px solid #e8e8f0", borderRadius: 14, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
             <button onClick={() => {
               if (!grievanceForm.category || !grievanceForm.description || !grievanceForm.projectId) { triggerToast("Please fill all fields."); return; }
               setSubmittedGrievances(prev => [...prev, { ...grievanceForm, id: Date.now(), status: "Open", date: new Date().toLocaleDateString() }]);
               setGrievanceForm({ projectId: "", category: "", description: "" });
               setModal(null);
               triggerToast("Grievance submitted. TSG Admin notified. Auto-acknowledgement sent to your email.");
-            }} style={{ flex: 1, padding: "10px", background: B_RED, border: "none", borderRadius: 9, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Submit Grievance</button>
+            }} style={{ flex: 1, padding: "10px", background: B_RED, border: "none", borderRadius: 14, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Submit Grievance</button>
           </div>
         </div>
       </DrawerShell>
@@ -1352,7 +1352,7 @@ const NGODashboardView = () => {
       <DrawerShell open={modal === "projectGuide"} onClose={() => setModal(null)} title="NGO Project Guide" accentTag="Resources">
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {["Project Brief Template","Volunteer Undertaking Form","M&E Reporting Guidelines","Photo & Media Consent Form","Code of Conduct — NGO","ProEngage Edition Calendar","Feedback Submission Guide","TSG Contact Directory"].map(name => (
-            <div key={name} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px", background: "#f8f9ff", borderRadius: 9, border: "1px solid #e8e8f0" }}>
+            <div key={name} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px", background: "#f8f9ff", borderRadius: 14, border: "1px solid #e8e8f0" }}>
               <span style={{ fontSize: 13, fontWeight: 600, color: ACCENT_NAVY }}>📄 {name}</span>
               <button onClick={() => triggerToast(`Downloading ${name}...`)} style={{ fontSize: 12, fontWeight: 700, color: B_NGO, background: P_NGO, border: "none", borderRadius: 7, padding: "5px 14px", cursor: "pointer" }}>Download</button>
             </div>
@@ -1372,11 +1372,11 @@ const NGODashboardView = () => {
           <div style={{ marginBottom: 12 }}><Label>Contact Phone</Label><FInput value="" placeholder="+91 98XXXXXXXX" /></div>
           <div style={{ marginBottom: 12 }}><Label>Focus Area</Label><FSelect value="Select focus area" onChange={() => {}} options={["Select focus area","Education","Health","Environment","Livelihood","Disaster Relief","Women Empowerment","Other"]} /></div>
           <div style={{ marginBottom: 18 }}><Label>Why are you recommending them?</Label>
-            <textarea placeholder="What makes this NGO a good fit for ProEngage?" rows={3} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 8, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box" }} />
+            <textarea placeholder="What makes this NGO a good fit for ProEngage?" rows={3} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 10, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box" }} />
           </div>
           <div style={{ display: "flex", gap: 10 }}>
-            <button onClick={() => setModal(null)} style={{ flex: 1, padding: "10px", background: "#f8f8fc", border: "1px solid #e0e0e8", borderRadius: 9, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
-            <button onClick={() => { setModal(null); triggerToast("Referral submitted! TSG Admin will reach out within 3 working days."); }} style={{ flex: 1, padding: "10px", background: B_NGO, border: "none", borderRadius: 9, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Submit Referral</button>
+            <button onClick={() => setModal(null)} style={{ flex: 1, padding: "10px", background: "#f8f9fc", border: "1px solid #e8e8f0", borderRadius: 14, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
+            <button onClick={() => { setModal(null); triggerToast("Referral submitted! TSG Admin will reach out within 3 working days."); }} style={{ flex: 1, padding: "10px", background: B_NGO, border: "none", borderRadius: 14, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Submit Referral</button>
           </div>
         </div>
       </DrawerShell>
@@ -1390,16 +1390,16 @@ const NGODashboardView = () => {
           <div style={{ marginBottom: 12 }}><Label required>Story Type</Label><FSelect value="Select type" onChange={() => {}} options={["Select type","Project Highlight","Impact Story","Volunteer Spotlight","Community Change","Partnership Achievement"]} /></div>
           <div style={{ marginBottom: 12 }}><Label required>Headline</Label><FInput value="" placeholder="A short, compelling title for your story" /></div>
           <div style={{ marginBottom: 12 }}><Label required>Your Story</Label>
-            <textarea placeholder="Describe the experience, impact, or moment you want to share…" rows={5} style={{ width: "100%", border: "1.5px solid #e0e0e8", borderRadius: 8, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box" }} />
+            <textarea placeholder="Describe the experience, impact, or moment you want to share…" rows={5} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 10, padding: "9px 12px", fontSize: 13.5, color: ACCENT_NAVY, outline: "none", resize: "none", boxSizing: "border-box" }} />
           </div>
           <div style={{ marginBottom: 12 }}><Label>Link to a Project (optional)</Label><FSelect value="Select project" onChange={() => {}} options={["Select project", ...(ngoData.projects ?? []).map((p: any) => p.title)]} /></div>
           <div style={{ marginBottom: 18 }}>
             <Label>Add Image (optional)</Label>
-            <div style={{ border: "1.5px dashed #e0e0e8", borderRadius: 8, padding: "18px", textAlign: "center", cursor: "pointer", color: "#aaa", fontSize: 13 }} onClick={() => triggerToast("File upload simulated.")}>📎 Click to attach a photo</div>
+            <div style={{ border: "1.5px dashed #e8e8f0", borderRadius: 10, padding: "18px", textAlign: "center", cursor: "pointer", color: "#aaa", fontSize: 13 }} onClick={() => triggerToast("File upload simulated.")}>📎 Click to attach a photo</div>
           </div>
           <div style={{ display: "flex", gap: 10 }}>
-            <button onClick={() => setModal(null)} style={{ flex: 1, padding: "10px", background: "#f8f8fc", border: "1px solid #e0e0e8", borderRadius: 9, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
-            <button onClick={() => { setModal(null); triggerToast("Story submitted for moderation. TSG Admin will review within 2 working days."); }} style={{ flex: 1, padding: "10px", background: B_NGO, border: "none", borderRadius: 9, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Submit Story</button>
+            <button onClick={() => setModal(null)} style={{ flex: 1, padding: "10px", background: "#f8f9fc", border: "1px solid #e8e8f0", borderRadius: 14, fontSize: 13.5, fontWeight: 600, color: "#6b6b7a", cursor: "pointer" }}>Cancel</button>
+            <button onClick={() => { setModal(null); triggerToast("Story submitted for moderation. TSG Admin will review within 2 working days."); }} style={{ flex: 1, padding: "10px", background: B_NGO, border: "none", borderRadius: 14, fontSize: 13.5, fontWeight: 700, color: "#fff", cursor: "pointer" }}>Submit Story</button>
           </div>
         </div>
       </DrawerShell>

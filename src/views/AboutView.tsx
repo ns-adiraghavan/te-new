@@ -165,7 +165,7 @@ function WhatSection() {
           </div>
 
           {/* Purpose — white box */}
-          <div style={{ background: "#fff", border: "1px solid #e8eef0", borderRadius: 18, padding: "32px" }}>
+          <div style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 18, padding: "32px" }}>
             <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: ACCENT_DARK, marginBottom: 14 }}>
               Our Purpose
             </p>
@@ -265,7 +265,7 @@ function ProgrammesSection() {
                 <p style={{ fontFamily: FONT, fontSize: 14, color: "rgba(255,255,255,0.92)", lineHeight: 1.7, marginBottom: 20, flex: 1 }}>{p.desc}</p>
                 <button
                   onClick={() => navigate(p.route)}
-                  style={{ background: "#fff", border: "none", borderRadius: 8, padding: "10px 20px", fontFamily: FONT, fontSize: 13, fontWeight: 800, color: p.colour, cursor: "pointer", alignSelf: "flex-start" }}
+                  style={{ background: "#fff", border: "none", borderRadius: 10, padding: "10px 20px", fontFamily: FONT, fontSize: 13, fontWeight: 800, color: p.colour, cursor: "pointer", alignSelf: "flex-start" }}
                 >
                   Learn more →
                 </button>

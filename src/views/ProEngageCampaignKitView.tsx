@@ -141,7 +141,7 @@ function AssetCard({
       style={{
         background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14,
         overflow: "hidden", display: "flex", flexDirection: "column",
-        boxShadow: hov ? "0 8px 24px rgba(0,0,0,0.10)" : "none",
+        boxShadow: hov ? "0 8px 24px rgba(13,27,62,0.10)" : "none",
         transform: hov ? "translateY(-3px)" : "translateY(0)",
         transition: "transform 0.18s, box-shadow 0.18s",
       }}
@@ -177,7 +177,7 @@ function FeaturedCard({
         display: "grid", gridTemplateColumns: "1fr 1fr",
         background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14,
         overflow: "hidden",
-        boxShadow: hov ? "0 8px 24px rgba(0,0,0,0.10)" : "none",
+        boxShadow: hov ? "0 8px 24px rgba(13,27,62,0.10)" : "none",
         transform: hov ? "translateY(-3px)" : "translateY(0)",
         transition: "transform 0.18s, box-shadow 0.18s",
       }}
@@ -200,7 +200,7 @@ function SectionHd({ label, accent, count, icon }: { label: string; accent: stri
   return (
     <div style={{ maxWidth: 1100, margin: "0 auto", padding: "56px 56px 20px" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-        <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: accent, borderRadius: 8, padding: "7px 16px 7px 12px", fontFamily: FONT, fontSize: 12, fontWeight: 800, color: "#fff", whiteSpace: "nowrap" }}>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: accent, borderRadius: 10, padding: "7px 16px 7px 12px", fontFamily: FONT, fontSize: 12, fontWeight: 800, color: "#fff", whiteSpace: "nowrap" }}>
           {icon}{label}
         </div>
         <div style={{ flex: 1, height: 1.5, background: BORDER, borderRadius: 2 }} />
@@ -244,7 +244,7 @@ export default function ProEngageCampaignKitView() {
               display: "inline-flex", alignItems: "center", gap: 8,
               background: B_YELLOW, color: ACCENT_NAVY, borderRadius: 10, padding: "14px 28px",
               fontFamily: FONT, fontSize: 14, fontWeight: 800, textDecoration: "none",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
+              boxShadow: "0 4px 20px rgba(13,27,62,0.25)",
             }}>
               Request custom assets
             </a>

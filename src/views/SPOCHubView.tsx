@@ -131,7 +131,7 @@ const SPOCHubView = () => {
           background: `linear-gradient(110deg, ${B_INDIGO}e8 0%, ${B_INDIGO}cc 38%, ${B_INDIGO}aa 58%, ${B_INDIGO}77 78%, ${B_INDIGO}44 100%)`
         }} />
 
-        <div className="relative z-10 flex flex-col justify-between px-6 md:px-16 py-16" style={{ minHeight: "92vh", paddingTop: 96 }}>
+        <div className="relative z-10 flex flex-col justify-between" style={{ minHeight: "92vh", paddingTop: 64, padding: "64px 64px 56px", maxWidth: 1100, margin: "0 auto", width: "100%" }}>
 
             {/* Top — greeting */}
             <div style={{ maxWidth: 580 }}>
@@ -217,9 +217,9 @@ const SPOCHubView = () => {
             className="w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer"
             style={{
               backgroundColor: "white",
-              border: "1px solid #e2e8f0",
+              border: "1px solid #e8e8f0",
               color: B_TICKER,
-              boxShadow: "0 1px 6px rgba(0,0,0,0.10)",
+              boxShadow: "0 1px 6px rgba(13,27,62,0.10)",
             }}
             onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#EEF0FF")}
             onMouseLeave={e => (e.currentTarget.style.backgroundColor = "white")}

@@ -92,7 +92,7 @@ function LetterSection() {
                 Tata Engage remains a vital platform in this journey, not just as an enabler of volunteering, but as a reflection of who we are as a Group—committed, compassionate, and connected by a shared sense of purpose.
               </p>
               {/* Signature */}
-              <div style={{ borderTop: "1px solid #e8eef0", paddingTop: 24 }}>
+              <div style={{ borderTop: "1px solid #e8e8f0", paddingTop: 24 }}>
                 <div style={{ fontFamily: FONT, fontSize: 16, fontWeight: 800, color: NAVY }}>Chacko Thomas</div>
                 <div style={{ fontFamily: FONT, fontSize: 13, color: "#64748B", marginTop: 4 }}>Group Chief Sustainability Officer, Tata Sons</div>
               </div>

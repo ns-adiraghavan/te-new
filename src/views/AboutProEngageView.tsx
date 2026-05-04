@@ -247,7 +247,7 @@ export default function AboutProEngageView() {
           </p>
           <div style={{ display: "flex", gap: 14 }}>
             <button onClick={() => navigate(isLoggedIn ? "proengage" : "register-role")}
-              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(13,27,62,0.25)" }}>
               Browse open projects →
             </button>
             <button onClick={() => document.getElementById("pe-overview")?.scrollIntoView({ behavior: "smooth" })}
@@ -279,7 +279,7 @@ export default function AboutProEngageView() {
             </div>
           </div>
           <div style={{ position: "relative" }}>
-            <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(0,0,0,0.10)", position: "relative", zIndex: 1 }}>
+            <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(13,27,62,0.10)", position: "relative", zIndex: 1 }}>
               <img src={peBelowImg} alt=""
                 style={{ width: "100%", height: 380, objectFit: "cover", objectPosition: "center", display: "block" }} />
             </div>
@@ -306,7 +306,7 @@ export default function AboutProEngageView() {
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 {VOLUNTEER_VALUES.map((v, i) => (
                   <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                    <div style={{ width: 32, height: 32, borderRadius: 8, background: COLOUR_LIGHT, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", color: COLOUR }}>
+                    <div style={{ width: 32, height: 32, borderRadius: 10, background: COLOUR_LIGHT, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", color: COLOUR }}>
                       <v.Icon />
                     </div>
                     <span style={{ fontSize: 14, color: "#475569", lineHeight: 1.55, paddingTop: 5 }}>{v.label}</span>
@@ -326,7 +326,7 @@ export default function AboutProEngageView() {
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 {NGO_VALUES.map((v, i) => (
                   <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                    <div style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(255,255,255,0.18)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
+                    <div style={{ width: 32, height: 32, borderRadius: 10, background: "rgba(255,255,255,0.18)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
                       <v.Icon />
                     </div>
                     <span style={{ fontSize: 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.55, paddingTop: 5 }}>{v.label}</span>
@@ -466,7 +466,7 @@ export default function AboutProEngageView() {
             ))}
           </div>
 
-          <div style={{ marginTop: 40, padding: "18px 22px", background: COLOUR_LIGHT, border: `1px dashed ${COLOUR}55`, borderRadius: 12, fontSize: 13, color: COLOUR_DARK, fontWeight: 500, lineHeight: 1.6 }}>
+          <div style={{ marginTop: 40, padding: "18px 22px", background: COLOUR_LIGHT, border: `1px dashed ${COLOUR}55`, borderRadius: 14, fontSize: 13, color: COLOUR_DARK, fontWeight: 500, lineHeight: 1.6 }}>
             <strong style={{ fontWeight: 800 }}>Engagement length:</strong> Projects typically run 1–6 months, undertaken during weekends, holidays, and after-work hours.
           </div>
         </div>
@@ -486,7 +486,7 @@ export default function AboutProEngageView() {
               <div key={skill.label}
                 style={{ background: "#fff", border: `1.5px solid ${COLOUR}18`, borderRadius: 14, padding: "20px 16px", display: "flex", flexDirection: "column", alignItems: "center", gap: 12, textAlign: "center", cursor: "default" }}>
                 {/* Monogram badge instead of emoji */}
-                <div style={{ width: 36, height: 36, borderRadius: 8, background: COLOUR_LIGHT, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ width: 36, height: 36, borderRadius: 10, background: COLOUR_LIGHT, display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <span style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 10, fontWeight: 800, color: COLOUR, letterSpacing: "0.5px" }}>{skill.icon}</span>
                 </div>
                 <div style={{ fontSize: 12, fontWeight: 700, color: ACCENT_NAVY, lineHeight: 1.3 }}>{skill.label}</div>
@@ -526,7 +526,7 @@ export default function AboutProEngageView() {
               Join thousands of Tata colleagues who contribute their professional skills through ProEngage.
             </p>
             <button onClick={() => navigate(isLoggedIn ? "proengage" : "register-role")}
-              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", width: "100%", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", width: "100%", boxShadow: "0 4px 20px rgba(13,27,62,0.25)" }}>
               Browse open projects →
             </button>
             <button onClick={() => navigate("about")}

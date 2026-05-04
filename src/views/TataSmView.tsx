@@ -87,7 +87,7 @@ export default function TataSmView() {
             </p>
             <div style={{ display: "flex", gap: 12 }}>
               <button onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
-                style={{ background: "#F5A623", color: "#0D1B3E", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+                style={{ background: "#F5A623", color: "#0D1B3E", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(13,27,62,0.25)" }}>
                 Explore Opportunities →
               </button>
               <button onClick={() => document.getElementById("tsm-overview")?.scrollIntoView({ behavior: "smooth" })}
@@ -120,7 +120,7 @@ export default function TataSmView() {
             </div>
           </div>
           <div style={{ position: "relative" }}>
-            <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(0,0,0,0.10)", position: "relative", zIndex: 1 }}>
+            <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(13,27,62,0.10)", position: "relative", zIndex: 1 }}>
               <img src={tsmBelowImg} alt=""
                 style={{ width: "100%", height: 380, objectFit: "cover", display: "block" }} />
             </div>
@@ -135,15 +135,15 @@ export default function TataSmView() {
           <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>TSM aims to</h2>
           <DefinerBar colour={COLOUR} />
           <div style={{ marginTop: 56, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
-            <div style={{ background: "#fff", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", border: "1px solid #e2e8f0" }}>
+            <div style={{ background: "#fff", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px rgba(13,27,62,0.06)", border: "1px solid #e8e8f0" }}>
               <div style={{ fontSize: 17, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 12 }}>Unpack 'sustainability'</div>
               <div style={{ fontSize: 14, color: "#64748B", lineHeight: 1.7 }}>To have a common understanding of the term and what it means for the Tata group.</div>
             </div>
-            <div style={{ background: "#fff", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", border: "1px solid #e2e8f0" }}>
+            <div style={{ background: "#fff", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px rgba(13,27,62,0.06)", border: "1px solid #e8e8f0" }}>
               <div style={{ fontSize: 17, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 12 }}>Mainstream sustainability</div>
               <div style={{ fontSize: 14, color: "#64748B", lineHeight: 1.7 }}>And position it at the heart of business, by disseminating attributes of Tata sustainability policy, philosophy, principles and commitments.</div>
             </div>
-            <div style={{ background: "#fff", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", border: "1px solid #e2e8f0" }}>
+            <div style={{ background: "#fff", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px rgba(13,27,62,0.06)", border: "1px solid #e8e8f0" }}>
               <div style={{ fontSize: 17, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 12 }}>Inspire colleagues</div>
               <div style={{ fontSize: 14, color: "#64748B", lineHeight: 1.7 }}>To take this understanding to the next level and to bring about a change in their lives through sustainable actions, making sustainability a habit.</div>
             </div>
@@ -182,8 +182,8 @@ export default function TataSmView() {
           <DefinerBar colour={COLOUR} />
           <div style={{ marginTop: 56, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
             {PARTICIPATE_CARDS.map((card, i) => (
-              <div key={i} style={{ background: "#fff", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", border: "1px solid #e2e8f0" }}>
-                <div style={{ width: 48, height: 48, borderRadius: 12, background: COLOUR_LIGHT, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20, fontSize: 20, fontWeight: 700, color: COLOUR }}>
+              <div key={i} style={{ background: "#fff", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px rgba(13,27,62,0.06)", border: "1px solid #e8e8f0" }}>
+                <div style={{ width: 48, height: 48, borderRadius: 14, background: COLOUR_LIGHT, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20, fontSize: 20, fontWeight: 700, color: COLOUR }}>
                   {String(i + 1).padStart(2, '0')}
                 </div>
                 <div style={{ fontSize: 17, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 10 }}>{card.title}</div>
@@ -195,7 +195,7 @@ export default function TataSmView() {
           {/* CTA Section */}
           <div style={{ marginTop: 64, textAlign: "center" }}>
             <button onClick={() => navigate(isLoggedIn ? "dashboard" : "register-role")}
-              style={{ background: "#F5A623", color: "#0D1B3E", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+              style={{ background: "#F5A623", color: "#0D1B3E", border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(13,27,62,0.25)" }}>
               Explore Volunteering Opportunities →
             </button>
             <p style={{ fontSize: 13, color: "#64748B", marginTop: 16 }}>

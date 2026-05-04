@@ -166,7 +166,7 @@ export default function AboutTVWView() {
           </p>
           <div style={{ display: "flex", gap: 14 }}>
             <button onClick={() => navigate(isLoggedIn ? "tvw" : "register-role")}
-              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", boxShadow: "0 4px 20px rgba(13,27,62,0.25)" }}>
               Register to Volunteer →
             </button>
             <button onClick={() => document.getElementById("tvw-overview")?.scrollIntoView({ behavior: "smooth" })}
@@ -195,7 +195,7 @@ export default function AboutTVWView() {
             </div>
           </div>
           <div style={{ position: "relative" }}>
-            <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(0,0,0,0.10)", position: "relative", zIndex: 1 }}>
+            <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(13,27,62,0.10)", position: "relative", zIndex: 1 }}>
               <img src={tvwBelowImg} alt=""
                 style={{ width: "100%", height: 380, objectFit: "cover", objectPosition: "center", display: "block" }} />
             </div>
@@ -225,7 +225,7 @@ export default function AboutTVWView() {
                 { theme: "Children & Education", desc: "Engaging with children and youth to create lasting change" },
                 { theme: "Health & Wellbeing", desc: "Caring for patients and those who need support" },
               ].map((item) => (
-                <div key={item.theme} style={{ display: "flex", gap: 14, alignItems: "flex-start", background: "#fff", borderRadius: 12, padding: "16px 20px", border: `1px solid ${COLOUR}18` }}>
+                <div key={item.theme} style={{ display: "flex", gap: 14, alignItems: "flex-start", background: "#fff", borderRadius: 14, padding: "16px 20px", border: `1px solid ${COLOUR}18` }}>
                   <div style={{ width: 6, height: 6, borderRadius: "50%", background: COLOUR, flexShrink: 0, marginTop: 7 }} />
                   <div>
                     <div style={{ fontSize: 13, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 3 }}>{item.theme}</div>
@@ -351,7 +351,7 @@ export default function AboutTVWView() {
               { date: "3 March", label: "Spring Edition", desc: "Marks the beginning of the volunteering year across the Tata Group." },
               { date: "5 September", label: "Autumn Edition", desc: "Carried forward from the momentum of the spring edition." },
             ].map((ed) => (
-              <div key={ed.date} style={{ background: COLOUR, borderRadius: 16, padding: "28px 26px", boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
+              <div key={ed.date} style={{ background: COLOUR, borderRadius: 16, padding: "28px 26px", boxShadow: "0 2px 12px rgba(13,27,62,0.08)" }}>
                 <div style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "1.2px", color: "rgba(255,255,255,0.75)", textTransform: "uppercase", marginBottom: 10 }}>{ed.label}</div>
                 <div style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px", marginBottom: 8 }}>{ed.date}</div>
                 <div style={{ width: 24, height: 3, background: "rgba(255,255,255,0.6)", borderRadius: 2, marginBottom: 14 }} />
@@ -394,7 +394,7 @@ export default function AboutTVWView() {
               Join thousands of Tata volunteers across the world and experience the joy and power of collective action.
             </p>
             <button onClick={() => navigate(isLoggedIn ? "tvw" : "register-role")}
-              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", width: "100%", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
+              style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 14, cursor: "pointer", width: "100%", boxShadow: "0 4px 20px rgba(13,27,62,0.25)" }}>
               Register to Volunteer →
             </button>
             <button onClick={() => navigate(isLoggedIn ? "tvw" : "register-role")}

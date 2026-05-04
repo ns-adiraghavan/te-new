@@ -176,7 +176,7 @@ const CreateProjectView = () => {
                           ? { backgroundColor: B_TEAL, color: "#fff" }
                           : step === s.id
                             ? { backgroundColor: B_ORANGE, color: "#fff" }
-                            : { backgroundColor: "#f1f5f9", color: "#94a3b8", border: "2px solid #e2e8f0" }
+                            : { backgroundColor: "#f1f5f9", color: "#94a3b8", border: "2px solid #e8e8f0" }
                       }
                     >
                       {step > s.id ? <Check size={14} /> : s.id}

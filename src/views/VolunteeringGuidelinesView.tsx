@@ -64,7 +64,7 @@ export default function VolunteeringGuidelinesView() {
           <p style={{ fontFamily: FONT, fontSize: 15, fontWeight: 300, color: "rgba(255,255,255,0.65)", maxWidth: 560, lineHeight: 1.7, margin: "0 0 28px" }}>
             Principles and responsibilities for all Tata volunteers. These guidelines ensure that every volunteering engagement is safe, respectful, and impactful.
           </p>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 8, padding: "8px 16px" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 10, padding: "8px 16px" }}>
             <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "1px" }}>11 guidelines</span>
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function VolunteeringGuidelinesView() {
       <section style={{ padding: "48px 56px", background: "#f5f5fa" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ background: "#EEF0FF", border: "1px solid #c5c9f5", borderRadius: 14, padding: "24px 28px", display: "flex", gap: 20, alignItems: "center" }}>
-            <div style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 12, background: ACCENT, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>📋</div>
+            <div style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 14, background: ACCENT, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>📋</div>
             <div>
               <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, color: NAVY, margin: "0 0 4px" }}>Questions about these guidelines?</p>
               <p style={{ fontFamily: FONT, fontSize: 13.5, color: "#475569", margin: 0 }}>Contact the Tata Engage team at <a href="mailto:tataengage@tata.com" style={{ color: ACCENT, fontWeight: 600 }}>tataengage@tata.com</a></p>

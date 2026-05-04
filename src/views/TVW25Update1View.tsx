@@ -258,7 +258,7 @@ export default function TVW25Update1View() {
               borderRadius: 10, padding: "14px 28px",
               fontFamily: FONT, fontSize: 14, fontWeight: 800,
               textDecoration: "none",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
+              boxShadow: "0 4px 20px rgba(13,27,62,0.25)",
             }}
           >
             Explore Opportunities

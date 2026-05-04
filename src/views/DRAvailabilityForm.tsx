@@ -211,7 +211,7 @@ const DRAvailabilityForm = () => {
                         className="px-4 py-2.5 rounded-lg text-xs font-bold transition-all cursor-pointer"
                         style={selected
                           ? { backgroundColor: `${B_RED}1a`, border: `1px solid ${B_RED}`, color: B_RED }
-                          : { backgroundColor: "#fff", border: "1px solid #e2e8f0", color: "#334155" }
+                          : { backgroundColor: "#fff", border: "1px solid #e8e8f0", color: "#334155" }
                         }
                       >
                         {skill}
@@ -235,7 +235,7 @@ const DRAvailabilityForm = () => {
                         className="py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-2"
                         style={active
                           ? { backgroundColor: ACCENT_NAVY, color: "#fff" }
-                          : { backgroundColor: "#fff", border: "1px solid #e2e8f0", color: "#64748b" }
+                          : { backgroundColor: "#fff", border: "1px solid #e8e8f0", color: "#64748b" }
                         }
                       >
                         {active && <Check size={14} />}
