@@ -1,29 +1,72 @@
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
-import { Twitter, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import {
-  B_INDIGO, B_YELLOW, B_RED, B_TEAL, B_BLUE, B_TICKER,
-  P_INDIGO, P_TEAL, P_RED, P_YELLOW,
-  secBg, SectionDivider,
-  FLAGSHIP_PROGRAMMES, JOURNEY_MILESTONES, FUN_FACTS,
-  HERO_STATS, SOCIAL_POSTS, TICKER_ITEMS, EOEO,
+  B_INDIGO,
+  B_YELLOW,
+  B_RED,
+  B_TEAL,
+  B_BLUE,
+  B_TICKER,
+  P_INDIGO,
+  P_TEAL,
+  P_RED,
+  P_YELLOW,
+  secBg,
+  SectionDivider,
+  FLAGSHIP_PROGRAMMES,
+  JOURNEY_MILESTONES,
+  FUN_FACTS,
+  HERO_STATS,
+  SOCIAL_POSTS,
+  TICKER_ITEMS,
+  EOEO,
   ACCENT_NAVY,
 } from "@/data/homeSharedData";
 import doodleCluster1 from "@/assets/doodle-cluster-1.png";
 import doodleCluster2 from "@/assets/doodle-cluster-2.png";
 import doodleCluster3 from "@/assets/doodle-cluster-3.png";
 import doodleCluster4 from "@/assets/doodle-cluster-4.png";
-import tataElxsiImg   from "@/assets/tata-elxsi.jpg";
+import tataElxsiImg from "@/assets/tata-elxsi.jpg";
 import airIndia from "@/assets/air-india.jpg";
 import tataCommunications from "@/assets/tata-communications-1.jpg";
 import infiniti from "@/assets/Infiniti_2.jpg";
-import tcsForest from "@/assets/tcs-forest.png";
-import drPhoto from "@/assets/dr_photo.jpg";
+import tataPower from "@/assets/tata_power.JPG";
+import drPhoto from "@/assets/Home_Page_DR_Option2.JPG";
 import tajSatsImg from "@/assets/tata-motors-2.jpg";
 import titanImg from "@/assets/titain.jpeg";
 import trentImg from "@/assets/trent_2.jpg";
+import tataMotors3 from "@/assets/tata-motors-3.jpg";
+import tataProjects from "@/assets/tata-projects.jpg";
+import tataBball from "@/assets/tatabball.jpg";
+import drPhoto2 from "@/assets/dr_photo_2.jpg";
+import happyEyes from "@/assets/happy-eyes.jpg";
+import tataAig from "@/assets/tata-aig-1.jpg";
+import tataInfinit from "@/assets/tata-infinit.jpg";
+import tataComm2 from "@/assets/tata-comm-2.jpeg";
+import tataMotors1 from "@/assets/Tata_Motors_1.jpg";
+import tajSats1 from "@/assets/Taj_Sats.jpeg";
+import trent1 from "@/assets/trent.jpg";
+
+// Journey collage — homepagebanner folder
+import hb_jcapcpl22 from "@/assets/homepagebanner/JCAPCPL22.JPG";
+import hb_antarang from "@/assets/homepagebanner/Antarang Foundation - Project Horizon - Mentoring Session by Leadership - Tata AIA.jpg";
+import hb_ihcl from "@/assets/homepagebanner/IHCL 1.jpg";
+import hb_tvw6 from "@/assets/homepagebanner/TVW 6  - 7th Day 7.JPG";
+import hb_roadSafety from "@/assets/homepagebanner/Road Safety Awareness by HRM (2).JPG";
+import hb_eyeScanning from "@/assets/homepagebanner/Eye Scanning Camp Joda 1.jpg";
+import hb_images3 from "@/assets/homepagebanner/images3.jpg";
+import hb_titan from "@/assets/homepagebanner/General_Titan Company Ltd_01.jpg";
+import hb_voltas from "@/assets/homepagebanner/Voltas.jpg";
+import hb_volunteeringInAction from "@/assets/homepagebanner/Volunteering in Action 5.jpg";
+import hb_jcapcpl3 from "@/assets/homepagebanner/JCAPCPL 3 (2).JPG";
+import hb_2021 from "@/assets/homepagebanner/2021-09-08T17_58_56.4567530+05_30.jpg";
+import hb_img20230211 from "@/assets/homepagebanner/IMG-20230211-WA0080.jpg";
+import hb_bluescope from "@/assets/homepagebanner/Tata Bluescope Steel (2).jpg";
+import hb_westside from "@/assets/homepagebanner/Westside Store employees_Paint an Orphanage - Trent.JPG";
+import hb_mithapur from "@/assets/homepagebanner/4. Mithapur_Eco-Tourism_LEEPEN_Harivan Farm_2022-23_Lipan Work (5).jpeg";
 
 export { SectionDivider };
 
@@ -48,7 +91,7 @@ const GLOBAL_STYLES = `
   .section-block { padding: 72px 48px; position: relative; overflow: hidden; }
   .section-header { margin-bottom: 40px; }
 
-  /* Lift on hover — site-wide standard */
+  /* Lift on hover */
   .hover-lift { transition: transform 0.18s ease, box-shadow 0.18s ease; }
   .hover-lift:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.10); }
 
@@ -146,8 +189,8 @@ const GLOBAL_STYLES = `
 
 
 
-  /* Programme tile hover — site-wide standard */
-  .prog-style-a { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+  /* Programme tile hover */
+  .prog-style-a { transition: transform 0.35s ease, box-shadow 0.35s ease; }
   .prog-style-a:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.10); }
   .prog-style-a .prog-img-card { transition: transform 0.4s ease; }
   .prog-style-a:hover .prog-img-card { transform: scale(1.04); }
@@ -171,8 +214,13 @@ function DefinerUnderline({ colour = B_INDIGO, width = 56 }: { colour?: string; 
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setOn(true); obs.disconnect(); } },
-      { threshold: 0.4 }
+      ([e]) => {
+        if (e.isIntersecting) {
+          setOn(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.4 },
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -216,16 +264,18 @@ const GeoIcon = {
 // ─────────────────────────────────────────────────────────────────────────────
 function SectionEyebrow({ label, dark = false }: { label: string; dark?: boolean }) {
   return (
-    <p style={{
-      fontFamily: FONT_SANS,
-      fontSize: 14,
-      fontWeight: 700,
-      letterSpacing: "1.8px",
-      textTransform: "uppercase",
-      color: dark ? "#ffffff" : ACCENT_NAVY,
-      margin: "0 0 8px",
-      opacity: 1,
-    }}>
+    <p
+      style={{
+        fontFamily: FONT_SANS,
+        fontSize: 14,
+        fontWeight: 700,
+        letterSpacing: "1.8px",
+        textTransform: "uppercase",
+        color: dark ? "#ffffff" : ACCENT_NAVY,
+        margin: "0 0 8px",
+        opacity: 1,
+      }}
+    >
       {label}
     </p>
   );
@@ -237,15 +287,17 @@ function SectionEyebrow({ label, dark = false }: { label: string; dark?: boolean
 // ─────────────────────────────────────────────────────────────────────────────
 function SectionH2({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
   return (
-    <h2 style={{
-      fontFamily: FONT_SANS,
-      fontSize: 32,
-      fontWeight: 900,
-      color: dark ? "#ffffff" : ACCENT_NAVY,
-      letterSpacing: "-0.5px",
-      margin: 0,
-      lineHeight: 1.15,
-    }}>
+    <h2
+      style={{
+        fontFamily: FONT_SANS,
+        fontSize: 32,
+        fontWeight: 900,
+        color: dark ? "#ffffff" : ACCENT_NAVY,
+        letterSpacing: "-0.5px",
+        margin: 0,
+        lineHeight: 1.15,
+      }}
+    >
       {children}
     </h2>
   );
@@ -256,30 +308,39 @@ function SectionH2({ children, dark = false }: { children: React.ReactNode; dark
 // ─────────────────────────────────────────────────────────────────────────────
 const PROG_CONFIG = [
   {
-    id: "TVW", route: "about-tvw",
+    id: "TVW",
+    route: "about-tvw",
     title: "Tata Volunteering Week",
     label: "Bi-annual · Global",
-    stat1: "12 Editions", stat2: "50K+ Volunteers",
+    stat1: "12 Editions",
+    stat2: "50K+ Volunteers",
     colour: "#3B7ABD",
-    photo: airIndia, photoPos: "center 25%",
-    accentWord: "Volunteering",         // word to italicise in card title
+    photo: airIndia,
+    photoPos: "center 25%",
+    accentWord: "Volunteering", // word to italicise in card title
   },
   {
-    id: "ProEngage", route: "about-proengage",
+    id: "ProEngage",
+    route: "about-proengage",
     title: "ProEngage",
     label: "Skill-based · Year-round",
-    stat1: "1,200+ Projects", stat2: "85 NGO Partners",
+    stat1: "1,200+ Projects",
+    stat2: "85 NGO Partners",
     colour: "#803998",
-    photo: tataCommunications, photoPos: "center center",
+    photo: tataCommunications,
+    photoPos: "center center",
     accentWord: "ProEngage",
   },
   {
-    id: "Disaster Response", route: "disaster-response",
+    id: "Disaster Response",
+    route: "disaster-response",
     title: "Disaster Response",
     label: "Rapid Action",
-    stat1: "24 Responses", stat2: "8 States",
+    stat1: "24 Responses",
+    stat2: "8 States",
     colour: "#13BBB4",
-    photo: drPhoto, photoPos: "center 20%",
+    photo: drPhoto,
+    photoPos: "center 20%",
     accentWord: "Response",
   },
 ];
@@ -297,20 +358,25 @@ const PROG_SUBS = [
 // scroll effect without reinventing the component.
 // ─────────────────────────────────────────────────────────────────────────────
 export function ProgrammeSpotlight() {
-  const navigate        = useAppNavigate();
-  const [idx, setIdx]   = useState(0);
+  const navigate = useAppNavigate();
+  const [idx, setIdx] = useState(0);
   const [rightBox, setRightBox] = useState(0);
-  const [visible, setVisible]   = useState(false);
-  const timerRef        = useRef<ReturnType<typeof setInterval> | null>(null);
-  const sectionRef      = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   // Intersection → trigger card entrance animation
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold: 0.1 }
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.1 },
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -318,16 +384,15 @@ export function ProgrammeSpotlight() {
 
   const resetTimer = (nextIdx?: number) => {
     if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(
-      () => setIdx((p) => (p + 1) % PROG_CONFIG.length),
-      5000
-    );
+    timerRef.current = setInterval(() => setIdx((p) => (p + 1) % PROG_CONFIG.length), 5000);
     if (nextIdx !== undefined) setIdx(nextIdx);
   };
 
   useEffect(() => {
     resetTimer();
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
   }, []);
 
   const p = PROG_CONFIG[idx];
@@ -347,30 +412,36 @@ export function ProgrammeSpotlight() {
         className="section-block"
         style={{
           background: "#fafafa",
-          padding: "72px 48px",
+          padding: "72px 28px",
           backgroundImage: "radial-gradient(circle, rgba(51,51,153,0.09) 1.2px, transparent 1.2px)",
           backgroundSize: "20px 20px",
         }}
       >
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
-
           {/* Section header */}
           <div className="section-header">
             <SectionEyebrow label="Our Programmes" />
             <SectionH2>
               Volunteering <em style={{ fontStyle: "italic", color: B_INDIGO }}>Opportunities</em>
             </SectionH2>
-            <div style={{ width: 120, height: 1.4, borderRadius: 2, background: "#e8e8f0", marginTop: 10, overflow: "hidden" }}>
+            <div
+              style={{
+                width: 120,
+                height: 1.4,
+                borderRadius: 2,
+                background: "#e8e8f0",
+                marginTop: 10,
+                overflow: "hidden",
+              }}
+            >
               <div className="te-draw" style={{ height: "100%", background: B_INDIGO, borderRadius: 2 }} />
             </div>
           </div>
 
           {/* Main grid */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 260px", gap: 16, alignItems: "start" }}>
-
             {/* LEFT: programme card with scroll-entrance animation */}
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-
               {/* Animated card wrapper — staggered entrance mimicking scroll card reveal */}
               <div
                 key={idx}
@@ -406,29 +477,64 @@ export function ProgrammeSpotlight() {
                     }}
                   />
                   {/* Text portion */}
-                  <div style={{
-                    background: `linear-gradient(135deg, ${p.colour} 0%, ${p.colour}cc 100%)`,
-                    padding: "36px 28px 36px 16px",
-                    display: "flex", flexDirection: "column",
-                    justifyContent: "center",
-                  }}>
+                  <div
+                    style={{
+                      background: `linear-gradient(135deg, ${p.colour} 0%, ${p.colour}cc 100%)`,
+                      padding: "36px 28px 36px 16px",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                    }}
+                  >
                     <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
                       {/* Italic title with accent word */}
-                      <h3 style={{
-                        fontFamily: FONT_SANS,
-                        fontSize: 28, fontWeight: 900, color: "#ffffff",
-                        letterSpacing: "-0.4px", lineHeight: 1.2, margin: "0 0 8px",
-                      }}>
+                      <h3
+                        style={{
+                          fontFamily: FONT_SANS,
+                          fontSize: 28,
+                          fontWeight: 900,
+                          color: "#ffffff",
+                          letterSpacing: "-0.4px",
+                          lineHeight: 1.2,
+                          margin: "0 0 8px",
+                        }}
+                      >
                         {renderTitle(p.title, p.accentWord, "rgba(255,255,255,0.7)")}
                       </h3>
-                      <div style={{ width: 40, height: 2, background: "rgba(255,255,255,0.6)", borderRadius: 1, margin: "6px 0 10px" }} />
-                      <p style={{ fontFamily: FONT_SANS, fontSize: 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.55, margin: 0 }}>
+                      <div
+                        style={{
+                          width: 40,
+                          height: 2,
+                          background: "rgba(255,255,255,0.6)",
+                          borderRadius: 1,
+                          margin: "6px 0 10px",
+                        }}
+                      />
+                      <p
+                        style={{
+                          fontFamily: FONT_SANS,
+                          fontSize: 14,
+                          color: "rgba(255,255,255,0.85)",
+                          lineHeight: 1.55,
+                          margin: 0,
+                        }}
+                      >
                         {PROG_SUBS[idx]}
                       </p>
                     </div>
                     <div style={{ marginTop: 16 }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: FONT_SANS, fontSize: 13, fontWeight: 700, color: "#ffffff" }}>
-                        Learn more <ArrowRight size={13} />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 6,
+                          fontFamily: FONT_SANS,
+                          fontSize: 13,
+                          fontWeight: 700,
+                          color: "#ffffff",
+                        }}
+                      >
+                        Learn More <ArrowRight size={13} />
                       </div>
                     </div>
                   </div>
@@ -442,8 +548,12 @@ export function ProgrammeSpotlight() {
                     key={i}
                     onClick={() => resetTimer(i)}
                     style={{
-                      width: i === idx ? 24 : 8, height: 7,
-                      borderRadius: 100, border: "none", cursor: "pointer", padding: 0,
+                      width: i === idx ? 24 : 8,
+                      height: 7,
+                      borderRadius: 100,
+                      border: "none",
+                      cursor: "pointer",
+                      padding: 0,
                       background: i === idx ? pc.colour : "#d1d5db",
                       transition: "all 0.35s ease",
                     }}
@@ -454,48 +564,100 @@ export function ProgrammeSpotlight() {
 
             {/* RIGHT: CVP + EOI tiles — B_ACCENT replaces forest green */}
             <div style={{ position: "relative", overflow: "hidden", borderRadius: 14, minHeight: 340 }}>
-
               {/* CVP tile — B_ACCENT (#D84926) */}
-              <div style={{
-                position: "absolute", inset: 0,
-                background: "#333399",
-                padding: "28px 20px 16px",
-                display: "flex", flexDirection: "column",
-                justifyContent: "center",
-                borderRadius: 14,
-                opacity: rightBox === 0 ? 1 : 0,
-                transform: rightBox === 0 ? "translateY(0)" : "translateY(-24px)",
-                transition: "opacity 0.3s ease, transform 0.3s ease",
-                pointerEvents: rightBox === 0 ? "auto" : "none",
-                boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(13,27,62,0.08)",
-              }}>
+              <div
+                onClick={() => navigate("cvp")}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "#135EA9",
+                  padding: "28px 20px 16px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  borderRadius: 14,
+                  opacity: rightBox === 0 ? 1 : 0,
+                  transform: rightBox === 0 ? "translateY(0)" : "translateY(-24px)",
+                  transition: "opacity 0.3s ease, transform 0.3s ease",
+                  pointerEvents: rightBox === 0 ? "auto" : "none",
+                  boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(0,0,0,0.08)",
+                  cursor: "pointer",
+                }}
+              >
                 <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                  <h3 style={{
-                    fontFamily: FONT_SANS,
-                    fontSize: 22, fontWeight: 900, color: "#ffffff",
-                    lineHeight: 1.2, margin: "0 0 8px", letterSpacing: "-0.4px",
-                  }}>
+                  <h3
+                    style={{
+                      fontFamily: FONT_SANS,
+                      fontSize: 22,
+                      fontWeight: 900,
+                      color: "#ffffff",
+                      lineHeight: 1.2,
+                      margin: "0 0 8px",
+                      letterSpacing: "-0.4px",
+                    }}
+                  >
                     Company Volunteering Programme
                   </h3>
-                  <div style={{ width: 40, height: 2, background: "rgba(255,255,255,0.6)", borderRadius: 1, margin: "6px 0 10px" }} />
-                  <p style={{
-                    fontFamily: FONT_SANS, fontSize: 14, color: "rgba(255,255,255,0.85)",
-                    lineHeight: 1.55, margin: "0 0 0",
-                  }}>
-                    Company led volunteering programme or opportunities customised for operating context and needs of the local communities
+                  <div
+                    style={{
+                      width: 40,
+                      height: 2,
+                      background: "rgba(255,255,255,0.6)",
+                      borderRadius: 1,
+                      margin: "6px 0 10px",
+                    }}
+                  />
+                  <p
+                    style={{
+                      fontFamily: FONT_SANS,
+                      fontSize: 14,
+                      color: "rgba(255,255,255,0.85)",
+                      lineHeight: 1.55,
+                      margin: "0 0 0",
+                    }}
+                  >
+                    Company led volunteering programme or opportunities customised for operating context and needs of
+                    the local communities
                   </p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 16 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: FONT_SANS, fontSize: 13, fontWeight: 700, color: "#ffffff" }}>
-                    Learn More <ArrowRight size={13} />
-                  </div>
                   <button
-                    onClick={(e) => { e.stopPropagation(); setRightBox(1); }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate("cvp");
+                    }}
                     style={{
-                      width: 26, height: 26, borderRadius: "50%",
-                      background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.4)",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      cursor: "pointer", color: "#ffffff",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 6,
+                      fontFamily: FONT_SANS,
+                      fontSize: 13,
+                      fontWeight: 700,
+                      color: "#ffffff",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      padding: 0,
+                    }}
+                  >
+                    Learn More <ArrowRight size={13} />
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setRightBox(1);
+                    }}
+                    style={{
+                      width: 26,
+                      height: 26,
+                      borderRadius: "50%",
+                      background: "rgba(255,255,255,0.18)",
+                      border: "1px solid rgba(255,255,255,0.4)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                      color: "#ffffff",
                     }}
                   >
                     <ChevronDown size={14} />
@@ -504,46 +666,98 @@ export function ProgrammeSpotlight() {
               </div>
 
               {/* EOI tile — pink */}
-              <div style={{
-                position: "absolute", inset: 0,
-                background: "#F4838A",
-                padding: "28px 20px 16px",
-                display: "flex", flexDirection: "column",
-                justifyContent: "center",
-                borderRadius: 14,
-                opacity: rightBox === 1 ? 1 : 0,
-                transform: rightBox === 1 ? "translateY(0)" : "translateY(24px)",
-                transition: "opacity 0.3s ease, transform 0.3s ease",
-                pointerEvents: rightBox === 1 ? "auto" : "none",
-                boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(13,27,62,0.08)",
-              }}>
+              <div
+                onClick={() => navigate("eoi")}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "#F4838A",
+                  padding: "28px 20px 16px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  borderRadius: 14,
+                  opacity: rightBox === 1 ? 1 : 0,
+                  transform: rightBox === 1 ? "translateY(0)" : "translateY(24px)",
+                  transition: "opacity 0.3s ease, transform 0.3s ease",
+                  pointerEvents: rightBox === 1 ? "auto" : "none",
+                  boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(0,0,0,0.08)",
+                  cursor: "pointer",
+                }}
+              >
                 <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                  <h3 style={{
-                    fontFamily: FONT_SANS,
-                    fontSize: 22, fontWeight: 900, color: "#ffffff",
-                    lineHeight: 1.2, margin: "0 0 8px", letterSpacing: "-0.4px",
-                  }}>
+                  <h3
+                    style={{
+                      fontFamily: FONT_SANS,
+                      fontSize: 22,
+                      fontWeight: 900,
+                      color: "#ffffff",
+                      lineHeight: 1.2,
+                      margin: "0 0 8px",
+                      letterSpacing: "-0.4px",
+                    }}
+                  >
                     Employees' Own Initiatives
                   </h3>
-                  <div style={{ width: 40, height: 2, background: "rgba(255,255,255,0.6)", borderRadius: 1, margin: "6px 0 10px" }} />
-                  <p style={{
-                    fontFamily: FONT_SANS, fontSize: 14, color: "rgba(255,255,255,0.85)",
-                    lineHeight: 1.55, margin: "0 0 0",
-                  }}>
+                  <div
+                    style={{
+                      width: 40,
+                      height: 2,
+                      background: "rgba(255,255,255,0.6)",
+                      borderRadius: 1,
+                      margin: "6px 0 10px",
+                    }}
+                  />
+                  <p
+                    style={{
+                      fontFamily: FONT_SANS,
+                      fontSize: 14,
+                      color: "rgba(255,255,255,0.85)",
+                      lineHeight: 1.55,
+                      margin: "0 0 0",
+                    }}
+                  >
                     Empowering employees to volunteer their way for causes close to their heart
                   </p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 16 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: FONT_SANS, fontSize: 13, fontWeight: 700, color: "#ffffff" }}>
-                    Learn More <ArrowRight size={13} />
-                  </div>
                   <button
-                    onClick={(e) => { e.stopPropagation(); setRightBox(0); }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate("eoi");
+                    }}
                     style={{
-                      width: 26, height: 26, borderRadius: "50%",
-                      background: "#F9A8D460", border: "1px solid #F9A8D4",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      cursor: "pointer", color: "#9D174D",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 6,
+                      fontFamily: FONT_SANS,
+                      fontSize: 13,
+                      fontWeight: 700,
+                      color: "#ffffff",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      padding: 0,
+                    }}
+                  >
+                    Learn More <ArrowRight size={13} />
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setRightBox(0);
+                    }}
+                    style={{
+                      width: 26,
+                      height: 26,
+                      borderRadius: "50%",
+                      background: "#F9A8D460",
+                      border: "1px solid #F9A8D4",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                      color: "#9D174D",
                     }}
                   >
                     <ChevronUp size={14} />
@@ -571,8 +785,13 @@ export function QuoteBanner() {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } },
-      { threshold: 0.25 }
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVis(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.25 },
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -588,80 +807,95 @@ export function QuoteBanner() {
         backgroundPosition: "center 40%",
         position: "relative",
         overflow: "hidden",
-        padding: "52px 48px",          // shorter than Journey's 72px
+        padding: "52px 48px", // shorter than Journey's 72px
       }}
     >
-      {/* Dark overlay — heavier than journey for quote legibility */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: "linear-gradient(135deg, rgba(5,5,20,0.75) 0%, rgba(5,5,20,0.65) 100%)",
-        pointerEvents: "none",
-      }} />
+      {/* Dark overlay — lightened for image visibility */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(135deg, rgba(5,5,20,0.72) 0%, rgba(5,5,20,0.68) 100%)",
+          pointerEvents: "none",
+        }}
+      />
 
       {/* Subtle diagonal texture overlay */}
-      <div style={{
-        position: "absolute", inset: 0,
-        backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 18px)",
-        pointerEvents: "none",
-      }} />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 18px)",
+          pointerEvents: "none",
+        }}
+      />
 
-      <div style={{
-        maxWidth: 820,
-        margin: "0 auto",
-        position: "relative",
-        textAlign: "center",
-        opacity: vis ? 1 : 0,
-        transform: vis ? "translateY(0)" : "translateY(20px)",
-        transition: "opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1)",
-      }}>
-
+      <div
+        style={{
+          maxWidth: 820,
+          margin: "0 auto",
+          position: "relative",
+          textAlign: "center",
+          opacity: vis ? 1 : 0,
+          transform: vis ? "translateY(0)" : "translateY(20px)",
+          transition: "opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1)",
+        }}
+      >
         {/* Opening quote mark */}
-        <div style={{
-          fontFamily: FONT_SANS,
-          fontSize: 72,
-          lineHeight: 1,
-          color: "#ffffff",
-          opacity: 0.5,
-          marginBottom: -12,
-          fontWeight: 900,
-          userSelect: "none",
-        }}>
+        <div
+          style={{
+            fontFamily: FONT_SANS,
+            fontSize: 72,
+            lineHeight: 1,
+            color: "#ffffff",
+            opacity: 0.5,
+            marginBottom: -12,
+            fontWeight: 900,
+            userSelect: "none",
+          }}
+        >
           "
         </div>
 
         {/* Primary quote */}
-        <blockquote style={{
-          fontFamily: FONT_SANS,
-          fontSize: 22,
-          fontWeight: 400,
-          fontStyle: "italic",
-          color: "rgba(255,255,255,0.93)",
-          lineHeight: 1.65,
-          margin: "0 0 24px",
-          letterSpacing: "-0.2px",
-        }}>
+        <blockquote
+          style={{
+            fontFamily: FONT_SANS,
+            fontSize: 22,
+            fontWeight: 400,
+            fontStyle: "italic",
+            color: "rgba(255,255,255,0.93)",
+            lineHeight: 1.65,
+            margin: "0 0 24px",
+            letterSpacing: "-0.2px",
+          }}
+        >
           Volunteering is not about doing more. It is about{" "}
-          <em style={{ fontStyle: "italic", color: B_YELLOW, fontWeight: 600 }}>refusing to look away</em>
-          {" "}— and choosing, consistently, to be part of something{" "}
+          <em style={{ fontStyle: "italic", color: B_YELLOW, fontWeight: 600 }}>refusing to look away</em> — and
+          choosing, consistently, to be part of something{" "}
           <em style={{ fontStyle: "italic", color: B_YELLOW, fontWeight: 600 }}>larger than ourselves</em>.
         </blockquote>
 
         {/* Attribution */}
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 12,
-        }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 12,
+          }}
+        >
           <div style={{ height: 1, width: 32, background: "#ffffff", opacity: 0.7, borderRadius: 1 }} />
-          <span style={{
-            fontFamily: FONT_SANS,
-            fontSize: 12,
-            fontWeight: 700,
-            letterSpacing: "2px",
-            textTransform: "uppercase",
-            color: "#ffffff",
-          }}>
+          <span
+            style={{
+              fontFamily: FONT_SANS,
+              fontSize: 12,
+              fontWeight: 700,
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+              color: "#ffffff",
+            }}
+          >
             Tata Engage · Spirit of Service
           </span>
           <div style={{ height: 1, width: 32, background: "#ffffff", opacity: 0.7, borderRadius: 1 }} />
@@ -676,10 +910,10 @@ export function QuoteBanner() {
 // ─────────────────────────────────────────────────────────────────────────────
 export function NumbersSection() {
   const { triggerToast } = useAppContext();
-  const [factIdx,    setFactIdx]    = useState(0);
+  const [factIdx, setFactIdx] = useState(0);
   const [factFading, setFactFading] = useState(false);
-  const [socialIdx,  setSocialIdx]  = useState(0);
-  const [shimmer,    setShimmer]    = useState(false);
+  const [socialIdx, setSocialIdx] = useState(0);
+  const [shimmer, setShimmer] = useState(false);
 
   useEffect(() => {
     const t = setInterval(() => setSocialIdx((p) => (p + 1) % SOCIAL_POSTS.length), 4000);
@@ -688,32 +922,41 @@ export function NumbersSection() {
 
   const cycleFact = () => {
     setFactFading(true);
-    setTimeout(() => { setFactIdx((p) => (p + 1) % FUN_FACTS.length); setFactFading(false); }, 280);
+    setTimeout(() => {
+      setFactIdx((p) => (p + 1) % FUN_FACTS.length);
+      setFactFading(false);
+    }, 280);
   };
 
   const blockEyebrow = (label: string, dark = false) => (
-    <span style={{
-      fontFamily: FONT_SANS,
-      fontSize: 14, fontWeight: 800, letterSpacing: "1.6px",
-      textTransform: "uppercase",
-      color: dark ? "#ffffff" : "#64748b",
-      display: "block",
-      marginBottom: 10,
-    }}>
+    <span
+      style={{
+        fontFamily: FONT_SANS,
+        fontSize: 14,
+        fontWeight: 800,
+        letterSpacing: "1.6px",
+        textTransform: "uppercase",
+        color: dark ? "#ffffff" : "#64748b",
+        display: "block",
+        marginBottom: 10,
+      }}
+    >
       {label}
     </span>
   );
 
   return (
     // Radial dot grid texture on the Numbers white section
-    <section className="section-block" style={{
-      background: "#fafafa",
-      padding: "72px 48px",
-      backgroundImage: "radial-gradient(circle, rgba(51,51,153,0.09) 1.2px, transparent 1.2px)",
-      backgroundSize: "20px 20px",
-    }}>
+    <section
+      className="section-block"
+      style={{
+        background: "#fafafa",
+        padding: "72px 28px",
+        backgroundImage: "radial-gradient(circle, rgba(51,51,153,0.09) 1.2px, transparent 1.2px)",
+        backgroundSize: "20px 20px",
+      }}
+    >
       <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
-
         <div className="section-header">
           <SectionEyebrow label="By the numbers" />
           <SectionH2>
@@ -723,37 +966,58 @@ export function NumbersSection() {
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, alignItems: "center" }}>
-
           {/* Tile 1 — "Did you know?" — B_ACCENT (salmon-red) replaces old pink */}
-          <div style={{
-            borderRadius: 14,
-            position: "relative", overflow: "hidden", minHeight: 280,
-            background: "#F4838A",
-            boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(13,27,62,0.08)",
-            alignSelf: "center",
-          }}>
-            <div style={{
-              position: "relative", zIndex: 10, padding: "20px 28px",
-              display: "flex", flexDirection: "column",
-              justifyContent: "space-between", height: "100%", minHeight: 280, gap: 14,
-            }}>
-              <span style={{
-                fontFamily: FONT_SANS,
-                fontSize: 14, fontWeight: 800, letterSpacing: "1.6px",
-                textTransform: "uppercase",
-                color: "#ffffff",
-                display: "block",
-                marginBottom: 10,
-              }}>
+          <div
+            style={{
+              borderRadius: 14,
+              position: "relative",
+              overflow: "hidden",
+              minHeight: 280,
+              background: "#F4838A",
+              boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(0,0,0,0.08)",
+              alignSelf: "center",
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                zIndex: 10,
+                padding: "20px 28px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                height: "100%",
+                minHeight: 280,
+                gap: 14,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: FONT_SANS,
+                  fontSize: 14,
+                  fontWeight: 800,
+                  letterSpacing: "1.6px",
+                  textTransform: "uppercase",
+                  color: "#ffffff",
+                  display: "block",
+                  marginBottom: 10,
+                }}
+              >
                 Did you know?
               </span>
-              <p style={{
-                fontFamily: FONT_SANS,
-                color: "#ffffff", fontSize: 19, fontWeight: 600,
-                lineHeight: 1.55, maxWidth: 520,
-                opacity: factFading ? 0 : 1,
-                transition: "opacity 0.28s", margin: 0,
-              }}>
+              <p
+                style={{
+                  fontFamily: FONT_SANS,
+                  color: "#ffffff",
+                  fontSize: 19,
+                  fontWeight: 600,
+                  lineHeight: 1.55,
+                  maxWidth: 520,
+                  opacity: factFading ? 0 : 1,
+                  transition: "opacity 0.28s",
+                  margin: 0,
+                }}
+              >
                 {FUN_FACTS[factIdx]}
               </p>
 
@@ -762,17 +1026,33 @@ export function NumbersSection() {
                   onClick={cycleFact}
                   title="Next fact"
                   style={{
-                    width: 28, height: 28, borderRadius: "50%",
+                    width: 28,
+                    height: 28,
+                    borderRadius: "50%",
                     background: "rgba(255,255,255,0.18)",
                     border: "1px solid rgba(255,255,255,0.3)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    cursor: "pointer", color: "rgba(255,255,255,0.9)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    color: "rgba(255,255,255,0.9)",
                     flexShrink: 0,
                   }}
                 >
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-                    <path d="M11 6.5A4.5 4.5 0 1 1 6.5 2c1.2 0 2.3.47 3.1 1.24" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-                    <polyline points="9.5,1 9.5,3.5 12,3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path
+                      d="M11 6.5A4.5 4.5 0 1 1 6.5 2c1.2 0 2.3.47 3.1 1.24"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                    />
+                    <polyline
+                      points="9.5,1 9.5,3.5 12,3.5"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </button>
               </div>
@@ -783,46 +1063,81 @@ export function NumbersSection() {
           <div style={{ display: "flex", flexDirection: "column", gap: 0, minHeight: 280, alignSelf: "center" }}>
             <div style={{ flex: 1, position: "relative" }}>
               {HERO_STATS.map((s, i) => (
-                <div key={s.label} style={{
-                  position: "absolute", inset: 0,
-                  display: "flex",
-                  flexDirection: "column", justifyContent: "flex-start", alignItems: "center", textAlign: "center",
-                  borderRadius: 14, padding: "20px 28px",
-                  background: "#333399",
-                  boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 20px rgba(13,27,62,0.12)",
-                  opacity: i === 0 ? 1 : 0,
-                  transition: "opacity 0.5s ease",
-                  animation: `kpiCycle${i} ${HERO_STATS.length * 3.5}s ${i * 3.5}s infinite`,
-                }}>
+                <div
+                  key={s.label}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    textAlign: "center",
+                    borderRadius: 14,
+                    padding: "20px 28px",
+                    background: "#135EA9",
+                    boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 20px rgba(0,0,0,0.12)",
+                    opacity: i === 0 ? 1 : 0,
+                    transition: "opacity 0.5s ease",
+                    animation: `kpiCycle${i} ${HERO_STATS.length * 3.5}s ${i * 3.5}s infinite`,
+                  }}
+                >
                   {/* Top accent line */}
-                  <div style={{
-                    position: "absolute", top: 0, left: 0, right: 0, height: 1.4,
-                    background: "rgba(255,255,255,0.35)",
-                  }} />
-                  <p style={{
-                    fontFamily: FONT_SANS,
-                    fontSize: 14, fontWeight: 800, textTransform: "uppercase",
-                    letterSpacing: "1.4px", margin: 0, color: "#ffffff",
-                    alignSelf: "flex-start", textAlign: "left",
-                  }}>
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: 1.4,
+                      background: "rgba(255,255,255,0.35)",
+                    }}
+                  />
+                  <p
+                    style={{
+                      fontFamily: FONT_SANS,
+                      fontSize: 14,
+                      fontWeight: 800,
+                      textTransform: "uppercase",
+                      letterSpacing: "1.4px",
+                      margin: 0,
+                      color: "#ffffff",
+                      alignSelf: "flex-start",
+                      textAlign: "left",
+                    }}
+                  >
                     In the numbers
                   </p>
                   <div style={{ flex: 1 }} />
-                  <p style={{
-                    fontFamily: FONT_SANS,
-                    fontSize: 12, fontWeight: 800, textTransform: "uppercase",
-                    letterSpacing: "1.2px", margin: "0 0 8px", color: "rgba(255,255,255,0.9)",
-                  }}>
+                  <p
+                    style={{
+                      fontFamily: FONT_SANS,
+                      fontSize: 12,
+                      fontWeight: 800,
+                      textTransform: "uppercase",
+                      letterSpacing: "1.2px",
+                      margin: "0 0 8px",
+                      color: "rgba(255,255,255,0.9)",
+                    }}
+                  >
                     {s.label}
                   </p>
-                  <p style={{
-                    fontFamily: FONT_SANS,
-                    fontSize: 64, fontWeight: 900, color: "#ffffff",
-                    letterSpacing: "-1.5px", lineHeight: 1, margin: 0,
-                  }}>
+                  <p
+                    style={{
+                      fontFamily: FONT_SANS,
+                      fontSize: 64,
+                      fontWeight: 900,
+                      color: "#ffffff",
+                      letterSpacing: "-1.5px",
+                      lineHeight: 1,
+                      margin: 0,
+                    }}
+                  >
                     {s.num}
                   </p>
-                  <p style={{ fontFamily: FONT_SANS, fontSize: 13, margin: "8px 0 0", color: "rgba(255,255,255,0.78)" }}>
+                  <p
+                    style={{ fontFamily: FONT_SANS, fontSize: 13, margin: "8px 0 0", color: "rgba(255,255,255,0.78)" }}
+                  >
                     {s.sub}
                   </p>
                   <div style={{ flex: 1 }} />
@@ -834,36 +1149,65 @@ export function NumbersSection() {
           {/* Tile 3 — Social feed */}
           <div
             style={{
-              borderRadius: 14, background: "white", minHeight: 280,
-              overflow: "hidden", position: "relative",
-              boxShadow: "6px 0 24px rgba(13,27,62,0.08), 0 4px 16px rgba(13,27,62,0.04)",
-              border: "1px solid #f0f0f5", display: "flex", flexDirection: "column",
+              borderRadius: 14,
+              background: "white",
+              minHeight: 280,
+              overflow: "hidden",
+              position: "relative",
+              boxShadow: "6px 0 24px rgba(13,27,62,0.08), 0 4px 16px rgba(0,0,0,0.04)",
+              border: "1px solid #f0f0f5",
+              display: "flex",
+              flexDirection: "column",
               alignSelf: "start",
             }}
             onMouseEnter={() => setShimmer(true)}
             onMouseLeave={() => setShimmer(false)}
           >
             {shimmer && (
-              <div style={{
-                position: "absolute", top: 0, bottom: 0, width: "40%",
-                background: "linear-gradient(105deg, transparent 0%, rgba(51,51,153,0.04) 45%, rgba(51,51,153,0.06) 50%, rgba(51,51,153,0.04) 55%, transparent 100%)",
-                animation: "te-shimmer 0.6s ease-out forwards",
-                pointerEvents: "none", zIndex: 5,
-              }} />
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  bottom: 0,
+                  width: "40%",
+                  background:
+                    "linear-gradient(105deg, transparent 0%, rgba(51,51,153,0.04) 45%, rgba(51,51,153,0.06) 50%, rgba(51,51,153,0.04) 55%, transparent 100%)",
+                  animation: "te-shimmer 0.6s ease-out forwards",
+                  pointerEvents: "none",
+                  zIndex: 5,
+                }}
+              />
             )}
 
-            <div style={{
-              padding: "16px 20px 12px", borderBottom: "1px solid #f0f0f5",
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-            }}>
+            <div
+              style={{
+                padding: "16px 20px 12px",
+                borderBottom: "1px solid #f0f0f5",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               {blockEyebrow("Social Feed")}
               <div style={{ display: "flex", gap: 6 }}>
-                {[{ Icon: Twitter, c: "#0EA5E9" }, { Icon: Instagram, c: "#EC4899" }, { Icon: Linkedin, c: "#1D4ED8" }].map(({ Icon, c }) => (
-                  <div key={c} style={{
-                    width: 24, height: 24, borderRadius: 6,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    background: `${c}12`, cursor: "pointer",
-                  }}>
+                {[
+                  { Icon: Facebook, c: "#1877F2" },
+                  { Icon: Instagram, c: "#EC4899" },
+                  { Icon: Linkedin, c: "#1D4ED8" },
+                ].map(({ Icon, c }) => (
+                  <div
+                    key={c}
+                    style={{
+                      width: 24,
+                      height: 24,
+                      borderRadius: 6,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      background: `${c}12`,
+                      cursor: "pointer",
+                    }}
+                  >
                     <Icon size={10} style={{ color: c }} />
                   </div>
                 ))}
@@ -874,23 +1218,50 @@ export function NumbersSection() {
               {SOCIAL_POSTS.map((post, i) => (
                 <div key={i} style={{ display: i === socialIdx ? "block" : "none" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-                    <div style={{
-                      width: 36, height: 36, borderRadius: 10, flexShrink: 0,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      background: `linear-gradient(135deg, ${post.iconBg}, ${post.iconBg}cc)`,
-                    }}>
+                    <div
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: 10,
+                        flexShrink: 0,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        background: `linear-gradient(135deg, ${post.iconBg}, ${post.iconBg}cc)`,
+                      }}
+                    >
                       <post.Icon size={13} color="white" />
                     </div>
                     <div>
-                      <p style={{ fontFamily: FONT_SANS, fontSize: 13, fontWeight: 800, color: ACCENT_NAVY, margin: 0 }}>{post.handle}</p>
-                      <p style={{ fontFamily: FONT_SANS, fontSize: 11, color: "#94a3b8", margin: 0 }}>{post.time} · {post.platform}</p>
+                      <p
+                        style={{ fontFamily: FONT_SANS, fontSize: 13, fontWeight: 800, color: ACCENT_NAVY, margin: 0 }}
+                      >
+                        {post.handle}
+                      </p>
+                      <p style={{ fontFamily: FONT_SANS, fontSize: 11, color: "#94a3b8", margin: 0 }}>
+                        {post.time} · {post.platform}
+                      </p>
                     </div>
                   </div>
-                  <p style={{ fontFamily: FONT_SANS, fontSize: 13, color: "#475569", lineHeight: 1.6, margin: 0 }}>{post.text}</p>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 12 }}>
+                  <p style={{ fontFamily: FONT_SANS, fontSize: 13, color: "#475569", lineHeight: 1.6, margin: 0 }}>
+                    {post.text}
+                  </p>
+                  <div
+                    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 12 }}
+                  >
                     <span style={{ fontFamily: FONT_SANS, fontSize: 11, color: "#94a3b8" }}>❤️ {post.likes}</span>
-                    <button onClick={() => triggerToast("Opening social post...")}
-                      style={{ fontFamily: FONT_SANS, fontSize: 11, fontWeight: 800, color: B_TICKER, background: "none", border: "none", cursor: "pointer" }}>
+                    <button
+                      onClick={() => triggerToast("Opening social post...")}
+                      style={{
+                        fontFamily: FONT_SANS,
+                        fontSize: 11,
+                        fontWeight: 800,
+                        color: B_TICKER,
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
+                    >
                       View →
                     </button>
                   </div>
@@ -901,21 +1272,41 @@ export function NumbersSection() {
             <div style={{ padding: "0 20px 16px" }}>
               <div style={{ display: "flex", gap: 5, justifyContent: "center", marginBottom: 10 }}>
                 {SOCIAL_POSTS.map((_, i) => (
-                  <button key={i} onClick={() => setSocialIdx(i)} style={{
-                    width: i === socialIdx ? 16 : 6, height: 4,
-                    borderRadius: 100, border: "none", cursor: "pointer", padding: 0,
-                    background: i === socialIdx ? B_TICKER : "#e2e8f0",
-                    transition: "all 0.2s",
-                  }} />
+                  <button
+                    key={i}
+                    onClick={() => setSocialIdx(i)}
+                    style={{
+                      width: i === socialIdx ? 16 : 6,
+                      height: 4,
+                      borderRadius: 100,
+                      border: "none",
+                      cursor: "pointer",
+                      padding: 0,
+                      background: i === socialIdx ? B_TICKER : "#e2e8f0",
+                      transition: "all 0.2s",
+                    }}
+                  />
                 ))}
               </div>
-              <button onClick={() => triggerToast("Opening social media...")} style={{
-                width: "100%", display: "flex", alignItems: "center", justifyContent: "center",
-                gap: 6, padding: "9px 0", borderRadius: 10,
-                fontFamily: FONT_SANS, fontSize: 12, fontWeight: 800,
-                background: B_TICKER,
-                color: "white", border: "none", cursor: "pointer",
-              }}>
+              <button
+                onClick={() => triggerToast("Opening social media...")}
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 6,
+                  padding: "9px 0",
+                  borderRadius: 10,
+                  fontFamily: FONT_SANS,
+                  fontSize: 12,
+                  fontWeight: 800,
+                  background: B_TICKER,
+                  color: "white",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
                 Follow @TataEngage <ArrowRight size={9} />
               </button>
             </div>
@@ -933,197 +1324,208 @@ export function NumbersSection() {
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// JOURNEY SECTION — shrunk to ~50% of original height
-// Wave pattern texture on dark bg (subtle)
-// ─────────────────────────────────────────────────────────────────────────────
 export function JourneySection() {
-  const navigate    = useAppNavigate();
-  const ref         = useRef<HTMLElement>(null);
+  const navigate = useAppNavigate();
+  const ref = useRef<HTMLElement>(null);
   const [vis, setVis] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } },
-      { threshold: 0.12 }
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVis(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.08 },
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
-  const milestones = JOURNEY_MILESTONES;
+  // 5 milestones — left-to-right, slight zigzag (FY15 topmost, FY25 bottommost)
+  const milestones = [
+    { fy: "FY 2015", colour: "#135EA9", key: "fy2015", text: "Launched Tata Engage\nTVW & ProEngage" },
+    { fy: "FY 2017", colour: "#307FE2", key: "fy2017", text: "Group volunteering\nguidelines launched" },
+    { fy: "FY 2019", colour: "#00A896", key: "fy2019", text: "Best Global Volunteer\nProgram — IAVE" },
+    { fy: "FY 2022", colour: "#803998", key: "fy2022", text: "1.34M hours clocked\nPhygital pivot" },
+    { fy: "FY 2025", colour: "#F4838A", key: "fy2025", text: "10.87M hours\nhighest ever" },
+  ];
+
+  // All available images — will be distributed to fill every gap
+  const imgs = [
+    hb_jcapcpl22, // idx 0  — large 2×2 (col 1/3, row 3/5)
+    hb_antarang, // idx 1  — tall 1×2 (col 1/2, row 5/7)
+    hb_ihcl, // idx 2  — tall 1×2 (col 2/3, row 5/7)
+    hb_tvw6, // idx 3  — large 2×2 (col 3/5, row 4/6)
+    hb_roadSafety, // idx 4  — wide 2×1 (col 3/5, row 6/7)
+    hb_eyeScanning, // idx 5  — small 1×1 (col 3/4, row 1/2)
+    hb_images3, // idx 6  — small 1×1 (col 4/5, row 1/2)
+    hb_titan, // idx 7  — large 2×2 (col 5/7, row 1/3)
+    hb_voltas, // idx 8  — tall 1×2 (col 5/6, row 5/7)
+    hb_volunteeringInAction, // idx 9  — tall 1×2 (col 6/7, row 5/7)
+    hb_jcapcpl3, // idx 10 — large 2×2 (col 7/9, row 1/3)
+    hb_2021, // idx 11 — small 1×1 (col 7/8, row 3/4)
+    hb_img20230211, // idx 12 — small 1×1 (col 8/9, row 3/4)
+    hb_bluescope, // idx 13 — wide 2×1 (col 7/9, row 6/7)
+    hb_westside, // idx 14 — large 2×2 (col 9/11, row 1/3)
+    hb_mithapur, // idx 15 — tall 1×2 (col 9/10, row 3/5)
+    tataCommunications, // idx 16 — tall 1×2 (col 10/11, row 3/5)
+  ];
+
+  // Grid: 10 cols × 6 rows of 52px. Milestones placed left→right on a gentle zigzag.
+  // Row 0 = top. FY15 at col 0-1 row 0-2, FY17 at col 2-3 row 1-3,
+  // FY19 at col 4-5 row 2-4, FY22 at col 6-7 row 3-5, FY25 at col 8-9 row 4-6.
+  const mPositions = [
+    { col: "1 / 3", row: "1 / 3" },
+    { col: "3 / 5", row: "2 / 4" },
+    { col: "5 / 7", row: "3 / 5" },
+    { col: "7 / 9", row: "4 / 6" },
+    { col: "9 / 11", row: "5 / 7" },
+  ];
+
+  // Remaining cells for photos — fill column-by-column to avoid any empty cells
+  // We pre-define photo placements that don't overlap with milestones
+  const photoSlots: { col: string; row: string; aspect?: number }[] = [
+    { col: "1 / 3", row: "3 / 5" },
+    { col: "1 / 2", row: "5 / 7" },
+    { col: "2 / 3", row: "5 / 7" },
+    { col: "3 / 5", row: "4 / 6" },
+    { col: "3 / 5", row: "6 / 7" },
+    { col: "3 / 4", row: "1 / 2" },
+    { col: "4 / 5", row: "1 / 2" },
+    { col: "5 / 7", row: "1 / 3" },
+    { col: "5 / 6", row: "5 / 7" },
+    { col: "6 / 7", row: "5 / 7" },
+    { col: "7 / 9", row: "1 / 3" },
+    { col: "7 / 8", row: "3 / 4" },
+    { col: "8 / 9", row: "3 / 4" },
+    { col: "7 / 9", row: "6 / 7" },
+    { col: "9 / 11", row: "1 / 3" },
+    { col: "9 / 10", row: "3 / 5" },
+    { col: "10 / 11", row: "3 / 5" },
+  ];
 
   return (
-    <section ref={ref} className="section-block" style={{
-      backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.016) 24px, rgba(255,255,255,0.016) 25px), url(${tcsForest})`,
-      backgroundSize: "auto, cover",
-      backgroundPosition: "center, center",
-      position: "relative", overflow: "hidden",
-      // Reduced from 72px to ~36px for 50% height reduction
-      padding: "40px 48px",
-    }}>
-      {/* Dark overlay */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: "linear-gradient(135deg, rgba(5,5,20,0.75) 0%, rgba(5,5,20,0.65) 100%)",
-        pointerEvents: "none",
-      }} />
-
-      {/* Faint wave pattern on dark bg */}
-      <div style={{
-        position: "absolute", inset: 0,
-        backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.018) 24px, rgba(255,255,255,0.018) 25px)",
-        pointerEvents: "none",
-      }} />
-
-      <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
-
+    <section
+      ref={ref}
+      className="section-block"
+      style={{
+        background: "#e8e9ee",
+        backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.18) 1px, transparent 1px)",
+        backgroundSize: "18px 18px",
+        padding: "32px 48px",
+      }}
+    >
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* Header */}
-        <div style={{ marginBottom: 28 }}>
-          <SectionEyebrow label="Our Journey" dark />
-          <SectionH2 dark>
-            A <em style={{ fontStyle: "italic", color: B_YELLOW }}>Decade</em> of Giving Back
+        <div style={{ marginBottom: 14 }}>
+          <SectionEyebrow label="Our Journey" />
+          <SectionH2>
+            A <em style={{ fontStyle: "italic", color: B_INDIGO }}>Decade</em> of Giving Back
           </SectionH2>
-          <div style={{ width: 48, height: 1.4, borderRadius: 2, background: B_YELLOW, marginTop: 10 }} />
+          <div style={{ width: 36, height: 1.2, background: B_INDIGO, marginTop: 6 }} />
         </div>
 
-        {/* Desktop timeline — compact */}
-        <div className="hidden lg:block">
+        {/* Grid — 10 cols × 6 rows, each 52px tall, 4px gap */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(10, 1fr)",
+            gridTemplateRows: "repeat(6, 52px)",
+            gap: 4,
+          }}
+        >
+          {/* Photos */}
+          {photoSlots.map((slot, i) => (
+            <div
+              key={"ph" + i}
+              style={{
+                gridColumn: slot.col,
+                gridRow: slot.row,
+                borderRadius: 5,
+                overflow: "hidden",
+                opacity: vis ? 1 : 0,
+                transition: `opacity 0.25s ease ${i * 0.015}s`,
+              }}
+            >
+              <img src={imgs[i % imgs.length]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            </div>
+          ))}
 
-          {/* ROW 1 — even milestones above track */}
-          <div style={{ display: "flex", alignItems: "flex-end" }}>
-            {milestones.map((m, i) => {
-              const isAbove = i % 2 === 0;
-              return (
-                <div
-                  key={`top-${i}`}
-                  style={{
-                    flex: 1,
-                    display: "flex", flexDirection: "column",
-                    alignItems: "center", textAlign: "center",
-                    visibility: isAbove ? "visible" : "hidden",
-                    minHeight: 72,                     // reduced from 100
-                    opacity: vis ? 1 : 0,
-                    transform: vis ? "translateY(0)" : "translateY(-10px)",
-                    transition: `opacity 0.45s ease ${i * 0.09}s, transform 0.45s ease ${i * 0.09}s`,
-                  }}
-                >
-                  <span style={{
-                    fontFamily: FONT_SANS,
-                    fontSize: 22, fontWeight: 900, color: m.colour,
-                    background: `${m.colour}14`,
-                    borderRadius: 5, padding: "3px 9px",
-                    letterSpacing: "-0.3px", marginBottom: 4,
-                    display: "inline-block",
-                  }}>
-                    {m.year}
-                  </span>
-                  <div style={{ fontFamily: FONT_SANS, fontSize: 13, fontWeight: 800, color: "white", lineHeight: 1.3, marginBottom: 6 }}>
-                    {m.title}
-                  </div>
-                  <div style={{
-                    width: 1.5, flex: 1, minHeight: 10,
-                    background: `linear-gradient(to bottom, ${m.colour}, ${m.colour}44)`,
-                    opacity: vis ? 1 : 0,
-                    transition: `opacity 0.55s ease ${i * 0.09 + 0.25}s`,
-                  }} />
-                </div>
-              );
-            })}
-          </div>
-
-          {/* TRACK */}
-          <div style={{ position: "relative", height: 14 }}>
-            <svg width="100%" height="14" viewBox="0 0 1000 14" preserveAspectRatio="none"
-              style={{ position: "absolute", top: 0, left: 0 }}>
-              <line x1="0" y1="7" x2="1000" y2="7" stroke="rgba(255,255,255,0.30)" strokeWidth="1.2" />
-              {milestones.map((m, i) => {
-                const cx = (i / (milestones.length - 1)) * 1000;
-                return (
-                  <circle key={i} cx={cx} cy="7" r="4"
-                    fill={m.colour} stroke="rgba(255,255,255,0.5)" strokeWidth="1.5"
-                    opacity={vis ? 1 : 0}
-                    style={{ transition: `opacity 0.35s ease ${i * 0.1 + 0.35}s` }}
-                  />
-                );
-              })}
-            </svg>
-          </div>
-
-          {/* ROW 3 — odd milestones below track */}
-          <div style={{ display: "flex", alignItems: "flex-start" }}>
-            {milestones.map((m, i) => {
-              const isBelow = i % 2 !== 0;
-              return (
-                <div
-                  key={`bot-${i}`}
-                  style={{
-                    flex: 1,
-                    display: "flex", flexDirection: "column",
-                    alignItems: "center", textAlign: "center",
-                    visibility: isBelow ? "visible" : "hidden",
-                    minHeight: 72,
-                    opacity: vis ? 1 : 0,
-                    transform: vis ? "translateY(0)" : "translateY(10px)",
-                    transition: `opacity 0.45s ease ${i * 0.09}s, transform 0.45s ease ${i * 0.09}s`,
-                  }}
-                >
-                  <div style={{
-                    width: 1.5, flex: 1, minHeight: 10,
-                    background: `linear-gradient(to bottom, ${m.colour}44, ${m.colour})`,
-                    opacity: vis ? 1 : 0,
-                    transition: `opacity 0.55s ease ${i * 0.09 + 0.25}s`,
-                  }} />
-                  <span style={{
-                    fontFamily: FONT_SANS,
-                    fontSize: 22, fontWeight: 900, color: m.colour,
-                    background: `${m.colour}14`,
-                    borderRadius: 5, padding: "3px 9px",
-                    letterSpacing: "-0.3px", marginTop: 6, marginBottom: 3,
-                    display: "inline-block",
-                  }}>
-                    {m.year}
-                  </span>
-                  <div style={{ fontFamily: FONT_SANS, fontSize: 13, fontWeight: 800, color: "white", lineHeight: 1.3 }}>
-                    {m.title}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Mobile fallback */}
-        <div className="lg:hidden" style={{ paddingLeft: 24, position: "relative" }}>
-          <div style={{
-            position: "absolute", left: 8, top: 0, bottom: 0, width: 1.5,
-            background: `linear-gradient(180deg, ${B_TICKER}60, ${B_TEAL}60)`,
-          }} />
+          {/* Milestone tiles — left→right zigzag */}
           {milestones.map((m, i) => (
-            <div key={i} style={{ position: "relative", marginBottom: 14 }}>
-              <div style={{
-                position: "absolute", left: -20, top: 6, width: 8, height: 8,
-                borderRadius: "50%", background: m.colour,
-              }} />
-              <span style={{ fontFamily: FONT_SANS, fontSize: 15, fontWeight: 900, color: m.colour }}>{m.year}</span>
-              <div style={{ fontFamily: FONT_SANS, fontSize: 12, fontWeight: 800, color: "white", marginTop: 2 }}>{m.title}</div>
+            <div
+              key={"ms" + i}
+              onClick={() => {
+                navigate("journey");
+                setTimeout(() => document.getElementById(m.key)?.scrollIntoView({ behavior: "smooth" }), 120);
+              }}
+              style={{
+                gridColumn: mPositions[i].col,
+                gridRow: mPositions[i].row,
+                background: m.colour,
+                borderRadius: 5,
+                padding: "8px 10px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                opacity: vis ? 1 : 0,
+                transition: `opacity 0.3s ease ${i * 0.07}s`,
+                cursor: "pointer",
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: FONT_SANS,
+                  fontSize: 14,
+                  fontWeight: 800,
+                  letterSpacing: "1.8px",
+                  textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.8)",
+                  marginBottom: 3,
+                }}
+              >
+                {m.fy}
+              </div>
+              <div
+                style={{
+                  fontFamily: FONT_SANS,
+                  fontSize: 14,
+                  lineHeight: 1.35,
+                  color: "#fff",
+                  whiteSpace: "pre-line",
+                  fontWeight: 700,
+                  letterSpacing: "0.5px",
+                }}
+              >
+                {m.text}
+              </div>
             </div>
           ))}
         </div>
 
-        <div style={{ marginTop: 28, display: "flex", justifyContent: "flex-end" }}>
+        {/* CTA */}
+        <div style={{ marginTop: 8, display: "flex", justifyContent: "flex-end" }}>
           <button
             onClick={() => navigate("journey")}
             style={{
-              display: "inline-flex", alignItems: "center", gap: 6,
-              fontFamily: FONT_SANS, fontSize: 13, fontWeight: 700,
-              background: "none", color: "#ffffff",
-              border: "none", cursor: "pointer", padding: 0,
+              fontSize: 12,
+              fontWeight: 700,
+              background: "none",
+              border: "none",
+              color: "#333399",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
             }}
           >
-            Learn more <ArrowRight size={13} />
+            Learn More <ArrowRight size={12} />
           </button>
         </div>
       </div>
@@ -1137,27 +1539,44 @@ export function JourneySection() {
 export function TickerBar({ fixed = false }: { fixed?: boolean }) {
   const tickerDouble = [...TICKER_ITEMS, ...TICKER_ITEMS];
   return (
-    <div style={{
-      ...(fixed ? { position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 50 } : {}),
-      padding: "10px 0", overflow: "hidden",
-      background: B_TICKER,
-    }}>
+    <div
+      style={{
+        ...(fixed ? { position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 50 } : {}),
+        padding: "10px 0",
+        overflow: "hidden",
+        background: B_TICKER,
+      }}
+    >
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         <div style={{ flexShrink: 0, paddingLeft: 24 }}>
-          <span style={{
-            fontFamily: FONT_SANS,
-            fontSize: 11, fontWeight: 900,
-            background: B_YELLOW, color: ACCENT_NAVY,
-            padding: "3px 12px", borderRadius: 100, whiteSpace: "nowrap",
-          }}>
+          <span
+            style={{
+              fontFamily: FONT_SANS,
+              fontSize: 11,
+              fontWeight: 900,
+              background: B_YELLOW,
+              color: ACCENT_NAVY,
+              padding: "3px 12px",
+              borderRadius: 100,
+              whiteSpace: "nowrap",
+            }}
+          >
             🔴 LIVE
           </span>
         </div>
         <div style={{ flex: 1, overflow: "hidden" }}>
           <div className="te-marquee">
             {tickerDouble.map((item, i) => (
-              <span key={i}
-                style={{ fontFamily: FONT_SANS, fontSize: 13, color: "rgba(255,255,255,1)", flexShrink: 0, cursor: "pointer", transition: "color 0.15s" }}
+              <span
+                key={i}
+                style={{
+                  fontFamily: FONT_SANS,
+                  fontSize: 13,
+                  color: "rgba(255,255,255,1)",
+                  flexShrink: 0,
+                  cursor: "pointer",
+                  transition: "color 0.15s",
+                }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,1)")}
               >
@@ -1196,64 +1615,101 @@ export function HeroBanner({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollDown = () =>
-    document.getElementById(scrollTargetId)?.scrollIntoView({ behavior: "smooth" });
+  const scrollDown = () => document.getElementById(scrollTargetId)?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <>
       <style>{GLOBAL_STYLES}</style>
-      <div style={{
-        position: "relative", overflow: "hidden",
-        height: "100vh", minHeight: 600,
-        display: "flex", flexDirection: "column",
-        alignItems: "flex-start", justifyContent: "center",
-      }}>
+      <div
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          height: "100vh",
+          minHeight: 600,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          justifyContent: "center",
+        }}
+      >
         <div
           ref={imgRef}
           style={{
             position: "absolute",
-            top: "-20%", left: 0, right: 0, bottom: "-20%",
+            top: "-20%",
+            left: 0,
+            right: 0,
+            bottom: "-20%",
             backgroundImage: `url(${tataElxsiImg})`,
-            backgroundSize: "cover", backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
             willChange: "transform",
           }}
         />
 
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(155deg, rgba(8,12,22,0.74) 0%, rgba(8,12,22,0.50) 100%)",
-        }} />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(155deg, rgba(8,12,22,0.74) 0%, rgba(8,12,22,0.50) 100%)",
+          }}
+        />
 
-        <img src={doodleCluster4} alt="" style={{
-          position: "absolute", top: 40, right: -60, width: 280, opacity: 0.06,
-          pointerEvents: "none", userSelect: "none", transform: "rotate(-10deg)",
-        }} />
+        <img
+          src={doodleCluster4}
+          alt=""
+          style={{
+            position: "absolute",
+            top: 40,
+            right: -60,
+            width: 280,
+            opacity: 0.06,
+            pointerEvents: "none",
+            userSelect: "none",
+            transform: "rotate(-10deg)",
+          }}
+        />
 
         <div style={{ position: "relative", zIndex: 10, padding: "0 64px", maxWidth: 760 }}>
-          <p style={{
-            fontFamily: FONT_SANS,
-            fontSize: 11, fontWeight: 800, letterSpacing: "2.5px",
-            textTransform: "uppercase", color: "rgba(255,255,255,0.5)",
-            margin: 0,
-          }}>
+          <p
+            style={{
+              fontFamily: FONT_SANS,
+              fontSize: 11,
+              fontWeight: 800,
+              letterSpacing: "2.5px",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.5)",
+              margin: 0,
+            }}
+          >
             {eyebrow}
           </p>
           <DefinerUnderline colour={B_TEAL} width={60} />
 
-          <h1 style={{
-            fontFamily: FONT_SANS,
-            fontSize: 52, lineHeight: 1.1, letterSpacing: "-0.5px",
-            color: "white", margin: "18px 0 20px",
-          }}>
+          <h1
+            style={{
+              fontFamily: FONT_SANS,
+              fontSize: 52,
+              lineHeight: 1.1,
+              letterSpacing: "-0.5px",
+              color: "white",
+              margin: "18px 0 20px",
+            }}
+          >
             {title}
           </h1>
 
-          <p style={{
-            fontFamily: FONT_SANS,
-            fontSize: 16, lineHeight: 1.7, fontWeight: 300,
-            color: "rgba(255,255,255,0.65)",
-            maxWidth: 520, margin: 0,
-          }}>
+          <p
+            style={{
+              fontFamily: FONT_SANS,
+              fontSize: 16,
+              lineHeight: 1.7,
+              fontWeight: 300,
+              color: "rgba(255,255,255,0.65)",
+              maxWidth: 520,
+              margin: 0,
+            }}
+          >
             {description}
           </p>
         </div>
@@ -1261,11 +1717,19 @@ export function HeroBanner({
         <button
           onClick={scrollDown}
           style={{
-            position: "absolute", bottom: 40, left: "50%",
+            position: "absolute",
+            bottom: 40,
+            left: "50%",
             transform: "translateX(-50%)",
-            background: "none", border: "none", cursor: "pointer",
-            display: "flex", flexDirection: "column",
-            alignItems: "center", gap: 2, padding: 8, zIndex: 10,
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 2,
+            padding: 8,
+            zIndex: 10,
           }}
           aria-label="Scroll down"
         >
