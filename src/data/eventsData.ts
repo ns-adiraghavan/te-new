@@ -16,8 +16,11 @@ import iave24Img4      from "@/assets/events/iave24-4.png";
 import iave24Img5      from "@/assets/events/iave24-5.png";
 import iave24Img6      from "@/assets/events/iave24-6.png";
 
-const ACCENT_NAVY = "#0D1B3E";
-const B_CVP       = "#135EA9";   // Events accent — blue
+const ACCENT_NAVY  = "#0D1B3E";
+const E_BLUE_TVW   = "#135EA9";   // iave-2024 — TVW blue
+const E_BLUE_MID   = "#3B7ABD";   // volcon-2024 — mid blue
+const E_PURPLE     = "#5B21B6";   // tsc-2022 — purple
+const E_BLUE_ABOUT = "#4376BB";   // iave-2022 — about blue
 
 export interface EventPhoto {
   src: string;
@@ -70,7 +73,7 @@ export const EVENTS: EventEntry[] = [
     location: "Busan, Republic of Korea",
     excerpt:
       "1,500+ volunteer leaders from 90 countries. Tata Sustainability Group represented at the global forum on the role of corporate volunteering in addressing the sustainability challenge.",
-    accentColor: B_CVP,
+    accentColor: E_BLUE_TVW,
     heroImage: iave24Hero,
     heroImageAlt: "Tata Engage delegation at the 27th IAVE World Volunteer Conference, Busan",
     photos: [
@@ -124,7 +127,7 @@ export const EVENTS: EventEntry[] = [
     location: "Taj Mahal Palace, Mumbai",
     excerpt:
       "170 Tata leaders, volunteering leads, and champions came together to celebrate a million hours, recognise outstanding contributors, and chart the Group's volunteering future.",
-    accentColor: B_CVP,
+    accentColor: E_BLUE_MID,
     heroImage: volconPanel,
     heroImageAlt: "Panel discussion at TATA VOLCON 2024, Taj Mahal Palace Mumbai",
     photos: [
@@ -192,7 +195,7 @@ export const EVENTS: EventEntry[] = [
     location: "Taj Lands End, Mumbai",
     excerpt:
       "200+ leaders and sustainability professionals deliberated on embedding quality and scale in volunteering — on the path to 4 per capita volunteering hours by 2025.",
-    accentColor: B_CVP,
+    accentColor: E_PURPLE,
     heroImage: tsc22Chairman,
     heroImageAlt: "N. Chandrasekaran, Chairman Tata Sons, delivering the inaugural address at TSC 2022",
     photos: [
@@ -242,7 +245,7 @@ export const EVENTS: EventEntry[] = [
     location: "Abu Dhabi",
     excerpt:
       "Tata Sustainability Group participated as a panellist at the global volunteering forum, sharing the Group's approach to embedding scale and quality in volunteering in a post-pandemic world.",
-    accentColor: B_CVP,
+    accentColor: E_BLUE_ABOUT,
     heroImage: iavePanel,
     heroImageAlt: "Gauri Rajadhyaksha, Tata Sons, on the panel at the 26th IAVE World Volunteer Conference",
     photos: [],

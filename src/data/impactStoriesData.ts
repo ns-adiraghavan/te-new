@@ -22,8 +22,10 @@ import btbPhoto4 from "@/assets/story_photos/beyond-the-boardroom/Blog-4-scaled.
 import btbPhoto5 from "@/assets/story_photos/beyond-the-boardroom/Blog-5.jpg";
 import btbPhoto6 from "@/assets/story_photos/beyond-the-boardroom/Volunteering (2).JPG";
 
-const ACCENT_NAVY = "#0D1B3E";
-const B_ORANGE    = "#C14D00";   // Single accent for all stories
+const ACCENT_NAVY  = "#0D1B3E";
+const S_TVW_BLUE   = "#135EA9";   // Wayanad — TVW blue
+const S_MID_BLUE   = "#3B7ABD";   // Melghat — slightly darker blue
+const S_PURPLE     = "#5B21B6";   // Beyond the Boardroom — purple
 
 export interface StoryQuote {
   text: string;
@@ -72,7 +74,7 @@ export const IMPACT_STORIES: ImpactStory[] = [
     subtitle: "Volunteer voices from the ONE Tata Wayanad Landslide Response 2024",
     eyebrow: "Disaster Response",
     tag: "Disaster Response",
-    accentColor: B_ORANGE,
+    accentColor: S_TVW_BLUE,
     heroImage: wayanadHero,
     heroImageAlt: "Tata volunteers on the ground in Wayanad",
     photos: [
@@ -149,7 +151,7 @@ export const IMPACT_STORIES: ImpactStory[] = [
     subtitle: "When Service Becomes Stewardship",
     eyebrow: "Long-form Volunteering",
     tag: "Community",
-    accentColor: B_ORANGE,
+    accentColor: S_MID_BLUE,
     heroImage: melghatHero2,
     heroImageAlt: "Tata Motors volunteers in Melghat",
     photos: [
@@ -271,7 +273,7 @@ export const IMPACT_STORIES: ImpactStory[] = [
     subtitle: "Tata Communications ExCom lead through their volunteering action",
     eyebrow: "Leadership Volunteering",
     tag: "Climate Resilience",
-    accentColor: B_ORANGE,
+    accentColor: S_PURPLE,
     heroImage: tataComms,
     heroImageAlt: "Tata Communications leaders in the Garo Hills, Meghalaya",
     photos: [
