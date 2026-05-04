@@ -530,22 +530,22 @@ const NGODashboardView = () => {
       <div style={{ background: `linear-gradient(135deg, #3d1a5e 0%, ${B_NGO} 55%, ${B_NGO_SOFT} 100%)`, minHeight: 340, padding: "92px 40px 40px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24, flexWrap: "wrap", position: "relative", overflow: "hidden" }}>
         {/* Hand-drawn doodle overlay */}
         <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", opacity: 0.12, overflow: "hidden" }} viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1090 52 C1110 34, 1142 38, 1150 64 C1158 90, 1138 114, 1112 116 C1086 118, 1068 96, 1074 70 C1077 56, 1090 52, 1090 52 Z" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-          <g transform="translate(1038, 82)"><line x1="0" y1="-16" x2="0" y2="16" stroke="white" strokeWidth="2.2" strokeLinecap="round"/><line x1="-16" y1="0" x2="16" y2="0" stroke="white" strokeWidth="2.2" strokeLinecap="round"/><line x1="-11" y1="-11" x2="11" y2="11" stroke="white" strokeWidth="1.6" strokeLinecap="round"/><line x1="11" y1="-11" x2="-11" y2="11" stroke="white" strokeWidth="1.6" strokeLinecap="round"/></g>
-          <path d="M820 210 C840 196, 860 224, 880 210 C900 196, 920 224, 940 210 C960 196, 980 224, 1000 210" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
-          <rect x="960" y="240" width="28" height="28" rx="4" fill="none" stroke="white" strokeWidth="2" transform="rotate(14, 974, 254)"/>
-          <path d="M60 280 C80 260, 110 275, 100 300 C90 325, 58 320, 55 295 C53 280, 60 280, 60 280 Z" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-          <path d="M140 60 C158 46, 178 52, 174 72 C170 92, 148 98, 136 82 C128 70, 140 60, 140 60 Z" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-          <g transform="translate(200, 270)"><line x1="0" y1="-10" x2="0" y2="10" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-10" y1="0" x2="10" y2="0" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-7" y1="-7" x2="7" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/><line x1="7" y1="-7" x2="-7" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/></g>
-          <path d="M420 290 C438 278, 456 298, 474 286 C492 274, 510 294, 528 282" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-          <circle cx="700" cy="42" r="22" fill="none" stroke="white" strokeWidth="2.2"/>
-          <circle cx="700" cy="42" r="10" fill="none" stroke="white" strokeWidth="1.4"/>
-          <rect x="1100" y="280" width="22" height="22" rx="3" fill="none" stroke="white" strokeWidth="2" transform="rotate(-10, 1111, 291)"/>
-          <path d="M330 80 C348 70, 362 80, 358 96 C354 112, 336 116, 326 102 C318 90, 330 80, 330 80 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
-          <path d="M860 60 C876 50, 890 60, 886 76 C882 90, 864 94, 856 80 C850 70, 860 60, 860 60 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+        <style>{`@keyframes ndA{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(6px,-10px) rotate(5deg)}} @keyframes ndB{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-8px,7px) rotate(-7deg)}} @keyframes ndC{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(5px,9px) rotate(3deg)}} @keyframes ndD{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-6px,-5px) rotate(-4deg)}} .nda{animation:ndA 22s ease-in-out infinite;transform-origin:center} .ndb{animation:ndB 28s ease-in-out infinite;transform-origin:center} .ndc{animation:ndC 18s ease-in-out infinite;transform-origin:center} .ndd{animation:ndD 32s ease-in-out infinite;transform-origin:center}`}</style>
+          <g className="nda"><path d="M1090 52 C1110 34, 1142 38, 1150 64 C1158 90, 1138 114, 1112 116 C1086 118, 1068 96, 1074 70 C1077 56, 1090 52, 1090 52 Z" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></g>
+          <g className="ndb" transform="translate(1038, 82)"><line x1="0" y1="-16" x2="0" y2="16" stroke="white" strokeWidth="2.2" strokeLinecap="round"/><line x1="-16" y1="0" x2="16" y2="0" stroke="white" strokeWidth="2.2" strokeLinecap="round"/><line x1="-11" y1="-11" x2="11" y2="11" stroke="white" strokeWidth="1.6" strokeLinecap="round"/><line x1="11" y1="-11" x2="-11" y2="11" stroke="white" strokeWidth="1.6" strokeLinecap="round"/></g>
+          <g className="ndc"><path d="M820 210 C840 196, 860 224, 880 210 C900 196, 920 224, 940 210 C960 196, 980 224, 1000 210" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round"/></g>
+          <g className="ndd"><rect x="960" y="240" width="28" height="28" rx="4" fill="none" stroke="white" strokeWidth="2" transform="rotate(14, 974, 254)"/></g>
+          <g className="ndb"><path d="M60 280 C80 260, 110 275, 100 300 C90 325, 58 320, 55 295 C53 280, 60 280, 60 280 Z" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+          <g className="nda"><path d="M140 60 C158 46, 178 52, 174 72 C170 92, 148 98, 136 82 C128 70, 140 60, 140 60 Z" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+          <g className="ndc" transform="translate(200, 270)"><line x1="0" y1="-10" x2="0" y2="10" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-10" y1="0" x2="10" y2="0" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-7" y1="-7" x2="7" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/><line x1="7" y1="-7" x2="-7" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/></g>
+          <g className="ndd"><path d="M420 290 C438 278, 456 298, 474 286 C492 274, 510 294, 528 282" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+          <g className="nda"><circle cx="700" cy="42" r="22" fill="none" stroke="white" strokeWidth="2.2"/><circle cx="700" cy="42" r="10" fill="none" stroke="white" strokeWidth="1.4"/></g>
+          <g className="ndb"><rect x="1100" y="280" width="22" height="22" rx="3" fill="none" stroke="white" strokeWidth="2" transform="rotate(-10, 1111, 291)"/></g>
+          <g className="ndc"><path d="M330 80 C348 70, 362 80, 358 96 C354 112, 336 116, 326 102 C318 90, 330 80, 330 80 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/></g>
+          <g className="ndd"><path d="M860 60 C876 50, 890 60, 886 76 C882 90, 864 94, 856 80 C850 70, 860 60, 860 60 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/></g>
         </svg>
         <div>
-          <div style={{ fontSize: 24, fontWeight: 900, color: "#fff", letterSpacing: -0.5 }}>
+          <div style={{ fontSize: "clamp(1.8rem,3vw,2.6rem)", fontWeight: 900, color: "#fff", letterSpacing: -0.5 }}>
             {ngoData.organization ?? "Pratham Foundation"}, this is your NGO space.
           </div>
           <div style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", marginTop: 6, fontWeight: 300 }}>

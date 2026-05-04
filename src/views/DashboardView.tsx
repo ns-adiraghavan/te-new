@@ -31,12 +31,12 @@ const B_LIME_DARK = "#3D6B1E";   // dark green — testimonial text
 const P_BLUE      = "#EBF4FF";   // cobalt pastel — replaces P_BLUE everywhere
 
 // ─── KPI colours — bold solid backgrounds matching HomeSections tiles ─────────
-const KPI_PROENGAGE  = "#1A6B3C";   // ProEngage green
-const KPI_TVW        = "#3B7ABD";   // TVW blue
-const KPI_CVP        = "#F79425";   // CVP yellow (B_YELLOW)
-const KPI_PINK       = "#F4838A";   // Salmon pink (home screen)
-const KPI_NUMBERS    = "#A8C94A";   // In the numbers (lime green)
-const KPI_TEAL       = "#13BBB4";   // Disaster Response teal
+const KPI_PROENGAGE  = "#135EA9";   // TVW blue — primary
+const KPI_TVW        = "#3B7ABD";   // mid blue
+const KPI_CVP        = "#4376BB";   // about blue
+const KPI_PINK       = "#F4838A";   // pink accent
+const KPI_NUMBERS    = "#5B21B6";   // purple
+const KPI_TEAL       = "#803998";   // ProEngage purple (was teal)
 const IS_NEW_VOLUNTEER = false;
 
 const NOTIFICATIONS: Record<string, boolean> = {
@@ -101,7 +101,7 @@ const TESTIMONIAL = {
 };
 
 const TVW_OPPORTUNITIES = [
-  { id: "t1", title: "Tree Plantation Drive — Aarey Forest",         company: "Tata Motors",              date: "18 Apr 2026", mode: "In-person · Mumbai",  duration: "Half day", spotsLeft: 12, theme: "Environment",  accentColor: "#65A30D", pastel: "#F7FEE7" },
+  { id: "t1", title: "Tree Plantation Drive — Aarey Forest",         company: "Tata Motors",              date: "18 Apr 2026", mode: "In-person · Mumbai",  duration: "Half day", spotsLeft: 12, theme: "Environment",  accentColor: "#3B7ABD", pastel: "#EBF4FF" },
   { id: "t2", title: "Digital Literacy Workshop for Senior Citizens", company: "Tata Consultancy Services", date: "25 Apr 2026", mode: "Online · Pan-India",  duration: "3 hours",  spotsLeft: 45, theme: "Education",    accentColor: B_BLUE,   pastel: P_BLUE   },
   { id: "t3", title: "Healthcare Camp — Blood Donation Drive",        company: "Tata Steel",               date: "4 Oct 2025",  mode: "In-person · Pune",    duration: "Half day", spotsLeft: 8,  theme: "Health",      accentColor: B_RED,    pastel: P_RED    },
 ];
@@ -124,14 +124,14 @@ const DIY_ACTIVITIES = [
     theme: "Health",
     org: "SDG Goal 3",
     effort: "Low",
-    accentColor: "#65A30D",
+    accentColor: "#3B7ABD",
     pastel: "#F7FEE7",
   },
 ];
 
 const PE_OPPORTUNITIES = [
   { id: "p1", title: "Build a Fundraising Dashboard for Child Rights NGO",  ngo: "Butterflies India",     skillArea: "Finance / Data",   duration: "3 months", mode: "Online",          closes: "15 Jul 2025", applicants: 14, match: 94, accentColor: B_BLUE,   pastel: P_BLUE   },
-  { id: "p2", title: "Marketing Strategy for Women's Skilling Programme",   ngo: "Stree Mukti Sanghatna", skillArea: "Marketing",        duration: "4 months", mode: "Hybrid · Mumbai", closes: "20 Jul 2025", applicants: 9,  match: 89, accentColor: "#65A30D", pastel: "#F7FEE7" },
+  { id: "p2", title: "Marketing Strategy for Women's Skilling Programme",   ngo: "Stree Mukti Sanghatna", skillArea: "Marketing",        duration: "4 months", mode: "Hybrid · Mumbai", closes: "20 Jul 2025", applicants: 9,  match: 89, accentColor: "#3B7ABD", pastel: "#EBF4FF" },
   { id: "p3", title: "Product Roadmap for Disability Employment Platform",  ngo: "Samarthanam Trust",     skillArea: "Product Strategy", duration: "6 months", mode: "Online",          closes: "30 Jul 2025", applicants: 6,  match: 97, accentColor: B_TEAL, pastel: P_TEAL },
 ];
 
@@ -195,9 +195,9 @@ const BADGES = [
 const RESOURCES = [
   { id: "photos",  label: "Photos",   desc: "Gallery from TVW22, VolCon 2024 and ProEngage projects", count: "247 items",   accentColor: B_BLUE,     pastel: P_BLUE,     photo: imgPhotos  },
   { id: "videos",  label: "Videos",   desc: "Volunteer stories, impact films and event highlights",    count: "38 videos",   accentColor: B_TEAL,     pastel: P_TEAL,     photo: imgVideos  },
-  { id: "stories", label: "Stories",  desc: "Volunteer experiences and community impact narratives",   count: "94 stories",  accentColor: "#65A30D",  pastel: "#F7FEE7",  photo: imgStories },
-  { id: "events",  label: "Events",   desc: "VolCon, Volympics and upcoming community gatherings",     count: "12 upcoming", accentColor: "#1A6B3C",  pastel: "#E6F5EE",  photo: imgEvents  },
-  { id: "emodule", label: "E-Module", desc: "ProEngage orientation, NGO readiness kit and dos & don'ts", count: "5 modules", accentColor: "#C8850A",  pastel: "#FEF6E4",  photo: imgEModule },
+  { id: "stories", label: "Stories",  desc: "Volunteer experiences and community impact narratives",   count: "94 stories",  accentColor: "#3B7ABD",  pastel: "#EBF4FF",  photo: imgStories },
+  { id: "events",  label: "Events",   desc: "VolCon, Volympics and upcoming community gatherings",     count: "12 upcoming", accentColor: "#5B21B6", pastel: "#F3EEFF",  photo: imgEvents  },
+  { id: "emodule", label: "E-Module", desc: "ProEngage orientation, NGO readiness kit and dos & don'ts", count: "5 modules", accentColor: "#4376BB", pastel: "#EBF4FF",  photo: imgEModule },
 ];
 
 const STAT_TOOLTIPS: Record<string, string> = {
@@ -372,7 +372,7 @@ function FeedbackCard({ f, supportLabels, attrLabels }: { f: FeedbackEntry; supp
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
             <span style={{ background: P_BLUE, color: B_BLUE, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{f.ngo}</span>
             <span style={{ background: P_BLUE, color: B_BLUE, fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 100 }}>{f.edition}</span>
-            <span style={{ background: "#F7FEE7", color: "#65A30D", fontSize: 11, fontWeight: 700, padding: "2px 9px", borderRadius: 100 }}>Submitted</span>
+            <span style={{ background: "#EBF4FF", color: "#135EA9", fontSize: 11, fontWeight: 700, padding: "2px 9px", borderRadius: 100 }}>Submitted</span>
           </div>
         </div>
         <span style={{ fontSize: 18, color: "#dddde8", transform: open ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.2s", flexShrink: 0 }}>›</span>
@@ -525,7 +525,7 @@ function ProjectUpdateDrawer({ open, onClose }: { open: boolean; onClose: () => 
       {submitted ? (
         <div style={{ padding: "40px 28px", textAlign: "center" }}>
           <div style={{ width: 56, height: 56, borderRadius: "50%", background: "#F7FEE7", border: "2px solid #84CC16", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
-            <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#65A30D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#135EA9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </div>
           <div style={{ fontSize: 16, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 8 }}>Update posted</div>
           <div style={{ fontSize: 13.5, color: "#6b6b7a", lineHeight: 1.6 }}>Your update has been shared with TSG and your NGO partner at {VOLUNTEER.activeApplication?.ngo}.</div>
@@ -605,7 +605,7 @@ function FeedbackDrawer({ open, onClose }: { open: boolean; onClose: () => void 
       {submitted ? (
         <div style={{ padding: "40px 28px", textAlign: "center" }}>
           <div style={{ width: 56, height: 56, borderRadius: "50%", background: "#F7FEE7", border: "2px solid #84CC16", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
-            <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#65A30D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#135EA9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </div>
           <div style={{ fontSize: 16, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 8 }}>Feedback submitted</div>
           <div style={{ fontSize: 13.5, color: "#6b6b7a", lineHeight: 1.6 }}>Thank you. Once the NGO also submits feedback, your certificate will be generated within 24 hours.</div>
@@ -842,7 +842,7 @@ function ApplyDrawer({ project, onClose }: { project: PEProject | null; onClose:
               </div>
             </div>
             <div style={{ width: 56, height: 56, borderRadius: "50%", background: "#F7FEE7", border: "2px solid #84CC16", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
-              <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#65A30D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 9l7 7L20 2" stroke="#135EA9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </div>
             <div style={{ fontSize: 16, fontWeight: 700, color: ACCENT_NAVY, marginBottom: 8 }}>Application submitted!</div>
             <div style={{ fontSize: 13.5, color: "#6b6b7a", lineHeight: 1.6 }}>Your application has been sent to {project.ngo}. You'll receive an email confirmation shortly.</div>
@@ -1011,7 +1011,7 @@ function ReferralDrawer({ open, onClose }: { open: boolean; onClose: () => void 
         <p style={{ fontSize: 13.5, color: "#6b6b7a", lineHeight: 1.6, marginBottom: 22 }}>When someone joins TataEngage using your referral link, your Referred count goes up and you're one step closer to earning the Connector badge.</p>
         <div style={{ background: P_BLUE, border: `1px solid ${B_BLUE}22`, borderRadius: 10, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
           <span style={{ flex: 1, fontSize: 13.5, fontWeight: 600, color: B_BLUE, wordBreak: "break-all" }}>{refLink}</span>
-          <button onClick={copy} style={{ background: copied ? "#65A30D" : B_BLUE, color: "#fff", border: "none", borderRadius: 8, padding: "8px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap", transition: "background 0.2s" }}>{copied ? "Copied!" : "Copy Link"}</button>
+          <button onClick={copy} style={{ background: copied ? "#3B7ABD" : B_BLUE, color: "#fff", border: "none", borderRadius: 8, padding: "8px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap", transition: "background 0.2s" }}>{copied ? "Copied!" : "Copy Link"}</button>
         </div>
         <div style={{ fontSize: 12, color: "#aaaabc" }}>Link expires in 30 days. You have referred 3 people so far.</div>
       </div>
@@ -1137,22 +1137,22 @@ export default function DashboardView() {
         <div style={{ background: "linear-gradient(135deg, #065666 0%, #135EA9 60%, #0891b2 100%)", minHeight: 340, padding: "92px 40px 40px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24, flexWrap: "wrap", position: "relative", overflow: "hidden" }}>
           {/* Hand-drawn doodle overlay */}
           <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", opacity: 0.12, overflow: "hidden" }} viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1090 52 C1110 34, 1142 38, 1150 64 C1158 90, 1138 114, 1112 116 C1086 118, 1068 96, 1074 70 C1077 56, 1090 52, 1090 52 Z" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-            <g transform="translate(1038, 82)"><line x1="0" y1="-16" x2="0" y2="16" stroke="white" strokeWidth="2.2" strokeLinecap="round"/><line x1="-16" y1="0" x2="16" y2="0" stroke="white" strokeWidth="2.2" strokeLinecap="round"/><line x1="-11" y1="-11" x2="11" y2="11" stroke="white" strokeWidth="1.6" strokeLinecap="round"/><line x1="11" y1="-11" x2="-11" y2="11" stroke="white" strokeWidth="1.6" strokeLinecap="round"/></g>
-            <path d="M820 210 C840 196, 860 224, 880 210 C900 196, 920 224, 940 210 C960 196, 980 224, 1000 210" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
-            <rect x="960" y="240" width="28" height="28" rx="4" fill="none" stroke="white" strokeWidth="2" transform="rotate(14, 974, 254)"/>
-            <path d="M60 280 C80 260, 110 275, 100 300 C90 325, 58 320, 55 295 C53 280, 60 280, 60 280 Z" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            <path d="M140 60 C158 46, 178 52, 174 72 C170 92, 148 98, 136 82 C128 70, 140 60, 140 60 Z" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            <g transform="translate(200, 270)"><line x1="0" y1="-10" x2="0" y2="10" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-10" y1="0" x2="10" y2="0" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-7" y1="-7" x2="7" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/><line x1="7" y1="-7" x2="-7" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/></g>
-            <path d="M420 290 C438 278, 456 298, 474 286 C492 274, 510 294, 528 282" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            <circle cx="700" cy="42" r="22" fill="none" stroke="white" strokeWidth="2.2"/>
-            <circle cx="700" cy="42" r="10" fill="none" stroke="white" strokeWidth="1.4"/>
-            <rect x="1100" y="280" width="22" height="22" rx="3" fill="none" stroke="white" strokeWidth="2" transform="rotate(-10, 1111, 291)"/>
-            <path d="M330 80 C348 70, 362 80, 358 96 C354 112, 336 116, 326 102 C318 90, 330 80, 330 80 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
-            <path d="M860 60 C876 50, 890 60, 886 76 C882 90, 864 94, 856 80 C850 70, 860 60, 860 60 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+            <style>{`@keyframes dbA{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(6px,-10px) rotate(5deg)}} @keyframes dbB{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-8px,7px) rotate(-7deg)}} @keyframes dbC{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(5px,9px) rotate(3deg)}} @keyframes dbD{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-6px,-5px) rotate(-4deg)}} .dba{animation:dbA 22s ease-in-out infinite;transform-origin:center} .dbb{animation:dbB 28s ease-in-out infinite;transform-origin:center} .dbc{animation:dbC 18s ease-in-out infinite;transform-origin:center} .dbd{animation:dbD 32s ease-in-out infinite;transform-origin:center}`}</style>
+            <g className="dba"><path d="M1090 52 C1110 34, 1142 38, 1150 64 C1158 90, 1138 114, 1112 116 C1086 118, 1068 96, 1074 70 C1077 56, 1090 52, 1090 52 Z" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></g>
+            <g className="dbb" transform="translate(1038, 82)"><line x1="0" y1="-16" x2="0" y2="16" stroke="white" strokeWidth="2.2" strokeLinecap="round"/><line x1="-16" y1="0" x2="16" y2="0" stroke="white" strokeWidth="2.2" strokeLinecap="round"/><line x1="-11" y1="-11" x2="11" y2="11" stroke="white" strokeWidth="1.6" strokeLinecap="round"/><line x1="11" y1="-11" x2="-11" y2="11" stroke="white" strokeWidth="1.6" strokeLinecap="round"/></g>
+            <g className="dbc"><path d="M820 210 C840 196, 860 224, 880 210 C900 196, 920 224, 940 210 C960 196, 980 224, 1000 210" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round"/></g>
+            <g className="dbd"><rect x="960" y="240" width="28" height="28" rx="4" fill="none" stroke="white" strokeWidth="2" transform="rotate(14, 974, 254)"/></g>
+            <g className="dbb"><path d="M60 280 C80 260, 110 275, 100 300 C90 325, 58 320, 55 295 C53 280, 60 280, 60 280 Z" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+            <g className="dba"><path d="M140 60 C158 46, 178 52, 174 72 C170 92, 148 98, 136 82 C128 70, 140 60, 140 60 Z" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+            <g className="dbc" transform="translate(200, 270)"><line x1="0" y1="-10" x2="0" y2="10" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-10" y1="0" x2="10" y2="0" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-7" y1="-7" x2="7" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/><line x1="7" y1="-7" x2="-7" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/></g>
+            <g className="dbd"><path d="M420 290 C438 278, 456 298, 474 286 C492 274, 510 294, 528 282" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+            <g className="dba"><circle cx="700" cy="42" r="22" fill="none" stroke="white" strokeWidth="2.2"/><circle cx="700" cy="42" r="10" fill="none" stroke="white" strokeWidth="1.4"/></g>
+            <g className="dbb"><rect x="1100" y="280" width="22" height="22" rx="3" fill="none" stroke="white" strokeWidth="2" transform="rotate(-10, 1111, 291)"/></g>
+            <g className="dbc"><path d="M330 80 C348 70, 362 80, 358 96 C354 112, 336 116, 326 102 C318 90, 330 80, 330 80 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/></g>
+            <g className="dbd"><path d="M860 60 C876 50, 890 60, 886 76 C882 90, 864 94, 856 80 C850 70, 860 60, 860 60 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/></g>
           </svg>
           <div>
-            <div style={{ fontSize: 24, fontWeight: 900, color: "#fff", letterSpacing: -0.5 }}>{VOLUNTEER.firstName}, this is your volunteering space.</div>
+            <div style={{ fontSize: "clamp(1.8rem,3vw,2.6rem)", fontWeight: 900, color: "#fff", letterSpacing: -0.5 }}>{VOLUNTEER.firstName}, this is your volunteering space.</div>
             <div style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", marginTop: 6, fontWeight: 300 }}>Your story, Your impact.</div>
           </div>
           {hasActive ? (
@@ -1304,7 +1304,7 @@ export default function DashboardView() {
                 <div>
                   <div style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, padding: "28px 24px", textAlign: "center" }}>
                     <div style={{ width: 56, height: 56, borderRadius: 16, background: "#EEF0FF", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", fontSize: 26 }}>🌐</div>
-                    <div style={{ display: "inline-block", background: "#FEF6E4", color: "#C8850A", fontSize: 11, fontWeight: 800, padding: "3px 12px", borderRadius: 100, letterSpacing: "0.8px", textTransform: "uppercase", marginBottom: 14 }}>Coming Soon</div>
+                    <div style={{ display: "inline-block", background: "#F3EEFF", color: "#803998", fontSize: 11, fontWeight: 800, padding: "3px 12px", borderRadius: 100, letterSpacing: "0.8px", textTransform: "uppercase", marginBottom: 14 }}>Coming Soon</div>
                     <h3 style={{ fontSize: 17, fontWeight: 800, color: ACCENT_NAVY, margin: "0 0 10px" }}>Open Volunteering</h3>
                     <p style={{ fontSize: 14, color: "#475569", lineHeight: 1.75, maxWidth: 480, margin: "0 auto 8px" }}>
                       Apart from providing time-bound, structured programmes, Tata Engage will also connect volunteers with volunteering opportunities throughout the year.
@@ -1537,7 +1537,7 @@ export default function DashboardView() {
                           const pastel      = isActive ? P_TEAL : isDropped ? P_RED : P_BLUE;
                           const statusLabel = isActive ? "Active" : isDropped ? "Dropped" : "Completed";
                           const statusBg    = isActive ? "#E6F8F5" : isDropped ? P_RED : "#F7FEE7";
-                          const statusColor = isActive ? B_TEAL_DARK : isDropped ? B_RED : "#65A30D";
+                          const statusColor = isActive ? B_TEAL_DARK : isDropped ? B_RED : "#135EA9";
                           return (
                             <div key={p.id}
                               style={{ ...card, display: "flex", gap: 16, alignItems: "flex-start", padding: "18px 20px", transition: "box-shadow 0.18s, transform 0.18s" }}
@@ -1565,7 +1565,7 @@ export default function DashboardView() {
                                   ))}
                                 </div>
                                 {/* Outcome */}
-                                <div style={{ background: isActive ? P_TEAL : isDropped ? "#FFF0EE" : "#F7FEE7", borderRadius: 8, padding: "9px 12px", fontSize: 12.5, color: isActive ? B_TEAL_DARK : isDropped ? B_RED : "#365314", borderLeft: `3px solid ${accentColor}`, lineHeight: 1.55 }}>{p.outcome}</div>
+                                <div style={{ background: isActive ? P_TEAL : isDropped ? "#FFF0EE" : "#F7FEE7", borderRadius: 8, padding: "9px 12px", fontSize: 12.5, color: isActive ? B_TEAL_DARK : isDropped ? B_RED : "#1a2a5e", borderLeft: `3px solid ${accentColor}`, lineHeight: 1.55 }}>{p.outcome}</div>
                               </div>
                               {/* Certificate button */}
                               {p.cert && (
@@ -1591,11 +1591,11 @@ export default function DashboardView() {
                   {/* My Experience (testimonials) */}
                   {activeHistory === "experience" && (
                     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                      <div style={{ background: "#F7FEE7", borderRadius: 14, padding: "28px 32px", position: "relative", overflow: "hidden", border: "1px solid #d9f99d" }}>
+                      <div style={{ background: "#EBF4FF", borderRadius: 14, padding: "28px 32px", position: "relative", overflow: "hidden", border: "1px solid #bfdbfe" }}>
                         <div style={{ position: "absolute", top: -20, left: 20, fontFamily: "Georgia, serif", fontSize: 140, color: "rgba(22,101,52,0.06)", lineHeight: 1, pointerEvents: "none" }}>"</div>
-                        <div style={{ display: "inline-block", background: "#ecfccb", border: "1px solid #d9f99d", borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: "#365314", marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.5px" }}>ProEngage Edition 11 · Pending approval</div>
-                        <blockquote style={{ fontSize: 16, lineHeight: 1.7, color: "#365314", fontStyle: "italic", fontWeight: 300, margin: "0 0 18px", position: "relative", zIndex: 1 }}>"{TESTIMONIAL.quote}"</blockquote>
-                        <div style={{ fontSize: 13, color: "#365314", opacity: 0.7 }}>— {TESTIMONIAL.author}, {TESTIMONIAL.role}</div>
+                        <div style={{ display: "inline-block", background: "#EBF4FF", border: "1px solid #bfdbfe", borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: "#1a2a5e", marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.5px" }}>ProEngage Edition 11 · Pending approval</div>
+                        <blockquote style={{ fontSize: 16, lineHeight: 1.7, color: "#1a2a5e", fontStyle: "italic", fontWeight: 300, margin: "0 0 18px", position: "relative", zIndex: 1 }}>"{TESTIMONIAL.quote}"</blockquote>
+                        <div style={{ fontSize: 13, color: "#1a2a5e", opacity: 0.7 }}>— {TESTIMONIAL.author}, {TESTIMONIAL.role}</div>
                       </div>
                       <div style={{ ...card, fontSize: 13.5, color: "#8888a0", lineHeight: 1.6 }}>Testimonials are written reflections by your NGO partners on your project contribution. They appear here once approved by the TSG Admin team.</div>
                     </div>

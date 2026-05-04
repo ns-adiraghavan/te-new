@@ -26,10 +26,10 @@ const ACCENT_NAVY = "#0D1B3E";
 const B_INDIGO    = "#333399";
 const FONT        = "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif";
 
-const EVENT_ACCENT = "#135EA9";  // Single blue accent for all events
-const TSC_ACCENT  = EVENT_ACCENT;
-const VOL_ACCENT  = EVENT_ACCENT;
-const IAVE_ACCENT = EVENT_ACCENT;
+const TSC_ACCENT   = "#5B21B6";   // TSC 2022 — purple
+const VOL_ACCENT   = "#3B7ABD";   // VolCon 2024 — mid blue
+const IAVE24_ACCENT = "#135EA9";  // IAVE 2024 — TVW blue
+const IAVE22_ACCENT = "#4376BB";  // IAVE 2022 — about blue
 
 const DIAG: React.CSSProperties = {
   position: "absolute", inset: 0,
@@ -107,7 +107,7 @@ function EventHero({ accent, eyebrow, title, subtitle, heroImage }: {
         background: "linear-gradient(160deg,rgba(0,68,60,0.90) 0%,rgba(0,52,48,0.72) 50%,rgba(0,40,36,0.45) 100%)" }} />
       <div style={DIAG} />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto",
-        padding: "0 56px", width: "100%" }}>
+        padding: "0 56px 72px", width: "100%" }}>
         <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, letterSpacing: "1.8px",
           textTransform: "uppercase", color: "#ffffff", margin: "0 0 10px" }}>
           {eyebrow}

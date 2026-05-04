@@ -2,10 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Building2, ShieldCheck, Landmark, Mail, Lock, Eye, MapPin } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import doodleCluster1 from "@/assets/doodle-cluster-1.png";
-import doodleCluster2 from "@/assets/doodle-cluster-2.png";
-import doodleCluster3 from "@/assets/doodle-cluster-3.png";
-import doodleCluster5 from "@/assets/doodle-cluster-5.png";
 import { VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA, ANJALI_MEHTA, ANJALI_GUPTA_REGIONAL, IS_PE_SEASON, togglePESeason } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
@@ -66,16 +62,27 @@ const LoginView = () => {
   };
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "#f5f5fa" }}>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "linear-gradient(135deg, #065666 0%, #135EA9 60%, #0891b2 100%)", transition: "background 0.5s" }}>
 
       {/* MAIN CONTENT */}
       <div style={{ flex: 1, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", padding: "80px 32px 52px", overflow: "hidden" }}>
 
         {/* Doodles */}
-        <img src={doodleCluster1} alt="" style={{ position: "absolute", left: -48, top: "50%", transform: "translateY(-60%)", width: 280, opacity: 0.10, pointerEvents: "none", userSelect: "none", rotate: "-8deg" }} />
-        <img src={doodleCluster5} alt="" style={{ position: "absolute", left: 60, bottom: 24, width: 180, opacity: 0.07, pointerEvents: "none", userSelect: "none", rotate: "6deg" }} />
-        <img src={doodleCluster2} alt="" style={{ position: "absolute", right: -40, top: "50%", transform: "translateY(-50%)", width: 260, opacity: 0.10, pointerEvents: "none", userSelect: "none", rotate: "12deg" }} />
-        <img src={doodleCluster3} alt="" style={{ position: "absolute", right: 72, top: 20, width: 160, opacity: 0.07, pointerEvents: "none", userSelect: "none", rotate: "-6deg" }} />
+        <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", opacity: 0.13, overflow: "hidden" }} viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <style>{`@keyframes lda{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(8px,-12px) rotate(6deg)}} @keyframes ldb{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-10px,8px) rotate(-8deg)}} @keyframes ldc{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(6px,10px) rotate(4deg)}} @keyframes ldd{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-8px,-6px) rotate(-5deg)}} .lla{animation:lda 22s ease-in-out infinite;transform-origin:center} .llb{animation:ldb 28s ease-in-out infinite;transform-origin:center} .llc{animation:ldc 18s ease-in-out infinite;transform-origin:center} .lld{animation:ldd 32s ease-in-out infinite;transform-origin:center}`}</style>
+          <g className="lla"><path d="M1280 80 C1308 54,1352 60,1362 94 C1372 128,1346 160,1314 162 C1282 164,1258 136,1266 102 C1270 82,1280 80,1280 80 Z" fill="none" stroke="white" strokeWidth="2.8" strokeLinecap="round"/></g>
+          <g className="llb" transform="translate(1210,110)"><line x1="0" y1="-20" x2="0" y2="20" stroke="white" strokeWidth="2.4" strokeLinecap="round"/><line x1="-20" y1="0" x2="20" y2="0" stroke="white" strokeWidth="2.4" strokeLinecap="round"/><line x1="-14" y1="-14" x2="14" y2="14" stroke="white" strokeWidth="1.8" strokeLinecap="round"/><line x1="14" y1="-14" x2="-14" y2="14" stroke="white" strokeWidth="1.8" strokeLinecap="round"/></g>
+          <g className="llc"><path d="M980 480 C1008 460,1036 500,1064 480 C1092 460,1120 500,1148 480 C1176 460,1204 500,1232 480" fill="none" stroke="white" strokeWidth="2.4" strokeLinecap="round"/></g>
+          <g className="lld"><rect x="1180" y="720" width="44" height="44" rx="6" fill="none" stroke="white" strokeWidth="2.2" transform="rotate(16,1202,742)"/></g>
+          <g className="llb"><path d="M80 600 C108 572,150 578,158 614 C166 650,138 678,106 676 C74 674,54 644,64 610 C68 594,80 600,80 600 Z" fill="none" stroke="white" strokeWidth="2.4" strokeLinecap="round"/></g>
+          <g className="lla" transform="translate(160,340)"><line x1="0" y1="-14" x2="0" y2="14" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-14" y1="0" x2="14" y2="0" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-10" y1="-10" x2="10" y2="10" stroke="white" strokeWidth="1.4" strokeLinecap="round"/><line x1="10" y1="-10" x2="-10" y2="10" stroke="white" strokeWidth="1.4" strokeLinecap="round"/></g>
+          <g className="llc"><path d="M60 160 C88 142,116 168,144 150 C172 132,200 158,228 140" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+          <g className="lld"><circle cx="120" cy="800" r="36" fill="none" stroke="white" strokeWidth="2.2"/><circle cx="120" cy="800" r="18" fill="none" stroke="white" strokeWidth="1.4"/></g>
+          <g className="lla"><path d="M680 50 L720 90 L680 130 L640 90 Z" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></g>
+          <g className="llb"><rect x="620" y="820" width="32" height="32" rx="4" fill="none" stroke="white" strokeWidth="2" transform="rotate(-12,636,836)"/></g>
+          <g className="llc"><path d="M330 80 C348 70,362 80,358 96 C354 112,336 116,326 102 C318 90,330 80,330 80 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/></g>
+          <g className="lld"><path d="M860 60 C876 50,890 60,886 76 C882 90,864 94,856 80 C850 70,860 60,860 60 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/></g>
+        </svg>
 
         <div style={{ width: "100%", maxWidth: 480, position: "relative", zIndex: 1 }}>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
@@ -92,7 +99,7 @@ const LoginView = () => {
             </div>
 
             {/* White card */}
-            <div style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 16, padding: "36px 32px" }}>
+            <div style={{ background: "rgba(255,255,255,0.96)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 16, padding: "36px 32px", boxShadow: "0 24px 64px rgba(0,0,0,0.22)" }}>
 
               {/* Demo login buttons */}
               {!isAdminLogin && (
