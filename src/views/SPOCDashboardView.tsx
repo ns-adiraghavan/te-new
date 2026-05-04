@@ -38,14 +38,14 @@ const P_SPOC      = "#E8EEF7";   // SPOC accent pastel
 
 const KPI_PINK       = "#F4838A";
 const KPI_YELLOW     = "#F79425";
-const KPI_PROENGAGE  = "#1A6B3C";
+const KPI_PROENGAGE  = "#135EA9";
 const KPI_TVW        = "#3B7ABD";
-const KPI_NUMBERS    = "#A8C94A";
-const KPI_TEAL       = "#13BBB4";
-const KPI_CVP        = "#F79425";
-const B_LIME_DARK    = "#365314";
+const KPI_NUMBERS    = "#5B21B6";
+const KPI_TEAL       = "#803998";
+const KPI_CVP        = "#4376BB";
+const B_LIME_DARK    = "#1a2a5e";
 const B_TEAL_DARK    = "#0F766E";
-const P_TEAL_DARK    = "#D1FAE5";
+const P_TEAL_DARK    = "#EBF4FF";
 
 const IS_TVW_SEASON = true;
 
@@ -746,15 +746,18 @@ export default function SPOCDashboardView() {
           </div>
           <div>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#0D1B3E", marginBottom: 12 }}>Testimonial from the field</div>
-            <div style={{ background: P_TEAL_DARK, borderRadius: 14, padding: "28px 32px", position: "relative", overflow: "hidden", border: `1px solid ${B_LIME_DARK}33` }}>
-              <div style={{ position: "absolute", top: -20, left: 20, fontFamily: "Georgia, serif", fontSize: 160, color: `${B_LIME_DARK}0d`, lineHeight: 1, userSelect: "none", pointerEvents: "none" }}>"</div>
-              <div style={{ display: "inline-block", background: `${B_LIME_DARK}18`, border: `1px solid ${B_LIME_DARK}44`, borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: B_LIME_DARK, letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 16 }}>ProEngage 2025 | 01</div>
-              <blockquote style={{ fontSize: 15, lineHeight: 1.72, color: B_LIME_DARK, fontStyle: "italic", fontWeight: 300, margin: "0 0 22px", position: "relative", zIndex: 1 }}>"Rohan's contribution to the NGO digitisation project was exceptional. His systematic approach and stakeholder management made the entire process seamless."</blockquote>
-              <div style={{ display: "flex", alignItems: "center", gap: 12, position: "relative", zIndex: 1 }}>
-                <div style={{ width: 38, height: 38, borderRadius: "50%", background: "#1A4731", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: "#fff" }}>PK</div>
-                <div>
-                  <div style={{ fontWeight: 700, color: ACCENT_NAVY, fontSize: 13.5 }}>Pradeep Kumar</div>
-                  <div style={{ fontSize: 12, color: "#6b6b7a", marginTop: 2 }}>Director, Saksham Foundation</div>
+            <div style={{ background: "#fff", borderRadius: 14, padding: "24px 26px", border: "1px solid #e8e8f0", boxShadow: "0 2px 12px rgba(13,27,62,0.06)" }}>
+              <div style={{ marginBottom: 14 }}>
+                <div style={{ display: "inline-block", background: "rgba(13,27,62,0.06)", border: "1px solid rgba(13,27,62,0.12)", borderRadius: 100, padding: "3px 10px", fontSize: 10, fontWeight: 700, color: "#0D1B3E", letterSpacing: "0.8px", textTransform: "uppercase" }}>ProEngage 2025 | 01</div>
+              </div>
+              <div style={{ position: "relative", paddingLeft: 16, borderLeft: "3px solid #1a2a5e", marginBottom: 18 }}>
+                <blockquote style={{ fontSize: 14.5, lineHeight: 1.75, color: "#2d2d3a", fontStyle: "italic", fontWeight: 400, margin: 0 }}>Rohan's contribution to the NGO digitisation project was exceptional. His systematic approach and stakeholder management made the entire process seamless.</blockquote>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#1A4731", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: "#fff", flexShrink: 0 }}>PK</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontWeight: 700, color: ACCENT_NAVY, fontSize: 13 }}>Pradeep Kumar</div>
+                  <div style={{ fontSize: 11.5, color: "#8888a0", marginTop: 1 }}>Director, Saksham Foundation</div>
                 </div>
               </div>
             </div>

@@ -1370,19 +1370,20 @@ export default function DashboardView() {
                     <div style={{ fontSize: 13, color: "#8888a0", lineHeight: 1.65, maxWidth: 380, margin: "0 auto" }}>Once you complete a ProEngage project, your NGO partner can write a testimonial about your work.</div>
                   </div>
                 ) : (
-                  <div style={{ background: P_TEAL_DARK, borderRadius: 14, padding: "28px 32px", position: "relative", overflow: "hidden", border: `1px solid ${B_LIME_DARK}33` }}>
-                    <div style={{ position: "absolute", top: -20, left: 20, fontFamily: "Georgia, serif", fontSize: 160, color: `${B_LIME_DARK}0d`, lineHeight: 1, userSelect: "none", pointerEvents: "none" }}>"</div>
-                    <div style={{ display: "inline-block", background: `${B_LIME_DARK}18`, border: `1px solid ${B_LIME_DARK}44`, borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: B_LIME_DARK, letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 16 }}>{TESTIMONIAL.edition}</div>
-                    <blockquote style={{ fontSize: 15, lineHeight: 1.72, color: B_LIME_DARK, fontStyle: "italic", fontWeight: 300, margin: "0 0 22px", position: "relative", zIndex: 1 }}>"{TESTIMONIAL.quote}"</blockquote>
-                    <div style={{ display: "flex", alignItems: "center", gap: 12, position: "relative", zIndex: 1 }}>
-                      <div style={{ width: 38, height: 38, borderRadius: "50%", background: TESTIMONIAL.avatarBg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: "#fff", flexShrink: 0 }}>{TESTIMONIAL.avatarInitials}</div>
-                      <div>
-                        <div style={{ fontWeight: 700, color: ACCENT_NAVY, fontSize: 13.5 }}>{TESTIMONIAL.author}</div>
-                        <div style={{ fontSize: 12, color: "#6b6b7a", marginTop: 2 }}>{TESTIMONIAL.role}</div>
+                  <div style={{ background: "#fff", borderRadius: 14, padding: "24px 26px", border: "1px solid #e8e8f0", boxShadow: "0 2px 12px rgba(13,27,62,0.06)" }}>
+                    <div style={{ marginBottom: 14 }}>
+                      <div style={{ display: "inline-block", background: `${ACCENT_NAVY}0e`, border: `1px solid ${ACCENT_NAVY}22`, borderRadius: 100, padding: "3px 10px", fontSize: 10, fontWeight: 700, color: ACCENT_NAVY, letterSpacing: "0.8px", textTransform: "uppercase" }}>{TESTIMONIAL.edition}</div>
+                    </div>
+                    <div style={{ position: "relative", paddingLeft: 16, borderLeft: `3px solid ${B_LIME_DARK}`, marginBottom: 18 }}>
+                      <blockquote style={{ fontSize: 14.5, lineHeight: 1.75, color: "#2d2d3a", fontStyle: "italic", fontWeight: 400, margin: 0 }}>{TESTIMONIAL.quote}</blockquote>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      <div style={{ width: 36, height: 36, borderRadius: "50%", background: TESTIMONIAL.avatarBg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: "#fff", flexShrink: 0 }}>{TESTIMONIAL.avatarInitials}</div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: 700, color: ACCENT_NAVY, fontSize: 13 }}>{TESTIMONIAL.author}</div>
+                        <div style={{ fontSize: 11.5, color: "#8888a0", marginTop: 1 }}>{TESTIMONIAL.role}</div>
                       </div>
-                      <div style={{ marginLeft: "auto", textAlign: "right" }}>
-                        <div style={{ fontSize: 11, color: "#6b6b7a", lineHeight: 1.4 }}>{TESTIMONIAL.project}</div>
-                      </div>
+                      <div style={{ fontSize: 11, color: "#8888a0", textAlign: "right", lineHeight: 1.4 }}>{TESTIMONIAL.project}</div>
                     </div>
                   </div>
                 )}

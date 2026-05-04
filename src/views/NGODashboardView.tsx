@@ -265,10 +265,16 @@ function ResourceCard({ label, desc, count, photo, accent, pastel, onClick }: {
   const [hov, setHov] = useState(false);
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={onClick}
-      style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, overflow: "hidden", cursor: "pointer", transform: hov ? "translateY(-3px)" : "translateY(0)", boxShadow: hov ? `0 8px 24px ${accent}18` : "none", transition: "transform 0.18s, box-shadow 0.18s" }}>
-      <div style={{ height: 150, background: `url(${photo}) center/cover no-repeat` }} />
-      <div style={{ background: accent, padding: "12px 14px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ fontSize: 14.5, fontWeight: 900, color: "#fff", textAlign: "center", lineHeight: 1.3 }}>{label}</div>
+      style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, overflow: "hidden", cursor: "pointer", transform: hov ? "translateY(-3px)" : "translateY(0)", boxShadow: hov ? `0 8px 24px ${accent}18` : "none", transition: "transform 0.18s, box-shadow 0.18s", display: "flex", flexDirection: "column" }}>
+      <div style={{ height: 120, background: `url(${photo}) center/cover no-repeat`, position: "relative", flexShrink: 0 }}>
+        <div style={{ position: "absolute", inset: 0, background: `${accent}cc` }} />
+        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: "10px 14px" }}>
+          <div style={{ fontSize: 14.5, fontWeight: 900, color: "#fff", textAlign: "center", lineHeight: 1.3 }}>{label}</div>
+        </div>
+      </div>
+      <div style={{ padding: "12px 14px", flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
+        <div style={{ fontSize: 12.5, color: "#555", lineHeight: 1.5 }}>{desc}</div>
+        {count && <div style={{ fontSize: 11.5, fontWeight: 700, color: accent, marginTop: "auto" }}>{count}</div>}
       </div>
     </div>
   );
