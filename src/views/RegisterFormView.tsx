@@ -270,9 +270,9 @@ const RegisterFormView = () => {
   const gradient  = ROLE_GRADIENTS[selectedRole ?? "default"]  ?? ROLE_GRADIENTS.default;
   const navFocus  = ROLE_NAV_FOCUS[selectedRole ?? "default"]  ?? ROLE_NAV_FOCUS.default;
 
-  // Wrap TInput to auto-pass navFocusBg
-  const Input = (props: Omit<Parameters<typeof TInput>[0], "navFocusBg">) =>
-    <TInput {...props} navFocusBg={navFocus} />;
+  // Wrap TInput (navFocus reserved for future use)
+  void navFocus;
+  const Input = (props: Parameters<typeof TInput>[0]) => <TInput {...props} />;
 
   const toggle = (setter: React.Dispatch<React.SetStateAction<string[]>>, multi: boolean) => (v: string) =>
     setter(p => multi ? (p.includes(v) ? p.filter(x => x !== v) : [...p, v]) : [v]);
