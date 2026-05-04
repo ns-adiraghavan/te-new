@@ -559,7 +559,7 @@ const Navbar = ({
                     onClick={() => setDropdownOpen((o) => !o)}
                     className="flex items-center gap-2 cursor-pointer group"
                   >
-                    <div className="w-9 h-9 rounded-full bg-[#3E7EB0] text-white flex items-center justify-center text-sm font-bold">
+                    <div className="w-9 h-9 rounded-full text-white flex items-center justify-center text-sm font-bold" style={{ background: user?.role === "ngo" ? "#7C2D3A" : user?.role === "corporate_spoc" || user?.role === "regional_spoc" ? "#135EA9" : user?.role === "platform_admin" ? "#4B2D8A" : "#3E7EB0" }}>
                       {user?.firstName?.[0]}
                       {user?.lastName?.[0]}
                     </div>
