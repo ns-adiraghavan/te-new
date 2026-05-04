@@ -141,7 +141,7 @@ function AssetCard({
       style={{
         background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14,
         overflow: "hidden", display: "flex", flexDirection: "column",
-        boxShadow: hov ? "0 8px 24px rgba(0,0,0,0.08)" : "none",
+        boxShadow: hov ? "0 8px 24px rgba(0,0,0,0.10)" : "none",
         transform: hov ? "translateY(-3px)" : "translateY(0)",
         transition: "transform 0.18s, box-shadow 0.18s",
       }}
@@ -177,7 +177,7 @@ function FeaturedCard({
         display: "grid", gridTemplateColumns: "1fr 1fr",
         background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14,
         overflow: "hidden",
-        boxShadow: hov ? "0 8px 24px rgba(0,0,0,0.08)" : "none",
+        boxShadow: hov ? "0 8px 24px rgba(0,0,0,0.10)" : "none",
         transform: hov ? "translateY(-3px)" : "translateY(0)",
         transition: "transform 0.18s, box-shadow 0.18s",
       }}

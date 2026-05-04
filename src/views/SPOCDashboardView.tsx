@@ -778,7 +778,7 @@ export default function SPOCDashboardView() {
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 {TVW_OPPORTUNITIES_SPOC.map(ev => (
                   <div key={ev.id} style={{ ...card, display: "flex", gap: 16, alignItems: "center", cursor: "pointer", transition: "box-shadow 0.18s, transform 0.18s", padding: "18px 20px" }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(13,27,62,0.08)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(13,27,62,0.08)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}>
                     <div style={{ width: 44, height: 44, borderRadius: 10, background: ev.pastel, border: `1px solid ${ev.accentColor}22`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <div style={{ width: 8, height: 8, borderRadius: "50%", background: ev.accentColor }} />
@@ -802,7 +802,7 @@ export default function SPOCDashboardView() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
               {DIY_ACTIVITIES.map(a => (
                 <div key={a.id} style={{ ...card, padding: "20px", cursor: "pointer", display: "flex", flexDirection: "column", transition: "transform 0.18s, box-shadow 0.18s" }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 6px 20px ${a.accentColor}18`; }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 6px 20px ${a.accentColor}18`; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}>
                   <div style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: 14 }}>
                     <div style={{ width: 44, height: 44, borderRadius: 10, background: a.pastel, border: `1px solid ${a.accentColor}22`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -847,7 +847,7 @@ export default function SPOCDashboardView() {
                 ].map(a => (
                   <button key={a.label} disabled={a.disabled} onClick={a.action}
                     style={{ background: "#fff", border: `1px solid ${a.color}22`, borderRadius: 14, padding: "18px 18px 16px", textAlign: "left", cursor: a.disabled ? "not-allowed" : "pointer", opacity: a.disabled ? 0.55 : 1, transition: "transform 0.18s, box-shadow 0.18s", fontFamily: "'DM Sans', sans-serif", boxShadow: `0 2px 12px ${a.color}11` }}
-                    onMouseEnter={e => { if (!a.disabled) { (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 28px ${a.color}22`; }}}
+                    onMouseEnter={e => { if (!a.disabled) { (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 28px ${a.color}22`; }}}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 2px 12px ${a.color}11`; }}>
                     <div style={{ width: 40, height: 40, borderRadius: 9, background: a.disabled ? "#f0f0f5" : a.pastel, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
                       <div style={{ width: 8, height: 8, borderRadius: "50%", background: a.disabled ? "#ccc" : a.color }} />
@@ -871,7 +871,7 @@ export default function SPOCDashboardView() {
               <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 14 }}>
                 {PROENGAGE_PROJECTS.filter(p => p.matched).slice(0, 3).map((p, i) => (
                   <div key={p.id} style={{ ...card, padding: "18px 20px", border: `1.5px solid ${B_VOL}22`, borderLeft: `3px solid ${B_VOL}`, transition: "transform 0.18s, box-shadow 0.18s" }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 6px 20px ${B_VOL}14`; }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 6px 20px ${B_VOL}14`; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
                       <div style={{ flex: 1 }}>
@@ -898,12 +898,12 @@ export default function SPOCDashboardView() {
           {/* Refer + Share — always visible below active tab */}
           <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
             <button onClick={() => setReferralOpen(true)} style={{ flex: 1, background: P_TEAL, border: `1.5px solid ${B_TEAL}33`, borderRadius: 10, padding: "13px 16px", fontSize: 13.5, fontWeight: 600, color: B_TEAL, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", transition: "border-color 0.18s, transform 0.18s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = B_TEAL; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = B_TEAL; (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = `${B_TEAL}33`; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}>
               Refer a Colleague or Family Member
             </button>
             <button onClick={() => setShareOpen(true)} style={{ flex: 1, background: P_BLUE, border: `1.5px solid ${B_BLUE}22`, borderRadius: 10, padding: "13px 16px", fontSize: 13.5, fontWeight: 600, color: B_BLUE, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", transition: "border-color 0.18s, transform 0.18s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = B_BLUE; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = B_BLUE; (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = `${B_BLUE}22`; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}>
               Share Your Story
             </button>
@@ -942,7 +942,7 @@ export default function SPOCDashboardView() {
                   const statusLbl = isActive ? "Applied" : "Completed";
                   return (
                     <div key={p.id} style={{ ...card, display: "flex", gap: 16, alignItems: "flex-start", padding: "18px 20px", transition: "box-shadow 0.18s, transform 0.18s" }}
-                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(13,27,62,0.08)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(13,27,62,0.08)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}>
                       <div style={{ width: 44, height: 44, borderRadius: 10, background: pas, border: `1px solid ${ac}22`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 2 }}><div style={{ width: 8, height: 8, borderRadius: "50%", background: ac }} /></div>
                       <div style={{ flex: 1 }}>

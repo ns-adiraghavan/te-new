@@ -405,7 +405,7 @@ function Volcon2024({ onBack }: { onBack: () => void }) {
 }
 
 function Iave2022({ onBack }: { onBack: () => void }) {
-  const accent = IAVE_ACCENT;
+  const accent = IAVE24_ACCENT;
   return (
     <>
       <EventHero accent={accent}
@@ -441,7 +441,7 @@ function Iave2022({ onBack }: { onBack: () => void }) {
 }
 
 function Iave2024({ onBack }: { onBack: () => void }) {
-  const accent = IAVE_ACCENT;
+  const accent = IAVE24_ACCENT;
   return (
     <>
       <EventHero accent={accent}
@@ -517,8 +517,8 @@ export default function EventsView() {
   const accentFor: Record<string, string> = {
     "tsc-2022": TSC_ACCENT,
     "volcon-2024": VOL_ACCENT,
-    "iave-2022": IAVE_ACCENT,
-    "iave-2024": IAVE_ACCENT,
+    "iave-2022": IAVE24_ACCENT,
+    "iave-2024": IAVE24_ACCENT,
   };
   const accent = (id && accentFor[id]) || B_INDIGO;
 

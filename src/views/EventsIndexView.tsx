@@ -108,7 +108,7 @@ export default function EventsIndexView() {
                 transition: "transform 0.18s, box-shadow 0.18s" }}
               onMouseEnter={(ev) => {
                 ev.currentTarget.style.transform = "translateY(-3px)";
-                ev.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)";
+                ev.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.10)";
               }}
               onMouseLeave={(ev) => {
                 ev.currentTarget.style.transform = "translateY(0)";
