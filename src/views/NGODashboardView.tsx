@@ -25,27 +25,31 @@ import imgEModule from "@/assets/Tata_international.jpeg";
 const B_YELLOW    = "#F5A623";
 const B_TEAL      = "#00A896";
 const B_RED       = "#E8401C";
-const B_BLUE      = "#1E6BB8";
+const B_BLUE      = "#135EA9";    // TVW blue
+const B_MID_BLUE  = "#3B7ABD";    // mid blue
+const B_ABOUT_BLUE = "#4376BB";   // about blue
+const B_PINK      = "#F4838A";    // pink accent
 const ACCENT_NAVY = "#0D1B3E";
 
 const P_YELLOW    = "#FEF6E4";
 const P_TEAL      = "#E6F8F5";
 const P_BLUE      = "#EBF4FF";
 const P_RED       = "#FFF0EE";
+const P_PINK      = "#FEF0F4";
 
-// NGO primary palette
-const B_NGO       = "#F0494E";   // NGO primary — interactive, KPI, active states
-const B_NGO_SOFT  = "#F4838A";   // NGO secondary — hover, chips, progress
-const P_NGO       = "#FEF0F0";   // NGO pastel — active pill bg, light surfaces
-const P_NGO_MID   = "#FDE0E1";   // NGO mid-pastel — avatar bg, mini chips
+// NGO primary palette — purple (#803998)
+const B_NGO       = "#803998";   // NGO primary — ProEngage purple
+const B_NGO_SOFT  = "#9B4DB5";   // NGO secondary — lighter purple
+const P_NGO       = "#F3EEFF";   // NGO pastel — light purple surface
+const P_NGO_MID   = "#E9DAFF";   // NGO mid-pastel — avatar bg, mini chips
 
-// KPI tile colours
-const KPI_GREEN     = "#1A6B3C";   // matched/active (ProEngage green — semantic)
-const KPI_TEAL      = "#00A896";   // teal — completions
-const KPI_LIME      = B_NGO;       // primary NGO colour for top KPI
-const KPI_BLUE      = "#1E6BB8";   // pending/review
+// KPI tile colours — rotate across 5 primary site colours
+const KPI_GREEN     = B_BLUE;        // active projects — TVW blue
+const KPI_TEAL      = B_MID_BLUE;    // volunteers engaged — mid blue
+const KPI_LIME      = B_NGO;         // completed — NGO purple
+const KPI_BLUE      = B_ABOUT_BLUE;  // pending reviews — about blue
 
-// Aliases so every former B_NGO / P_NGO / P_NGO_MID reference maps cleanly
+// Aliases for legacy references
 const B_GREEN = B_NGO;
 const P_GREEN = P_NGO;
 const P_LIME  = P_NGO_MID;
@@ -523,7 +527,23 @@ const NGODashboardView = () => {
     <div style={{ background: "#f8f9ff", minHeight: "100vh", paddingBottom: 80 }}>
 
       {/* Full-bleed greeting banner */}
-      <div style={{ background: `linear-gradient(135deg, #9B1B1F 0%, ${B_NGO} 55%, ${B_NGO_SOFT} 100%)`, padding: "92px 40px 28px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24, flexWrap: "wrap" }}>
+      <div style={{ background: `linear-gradient(135deg, #3d1a5e 0%, ${B_NGO} 55%, ${B_NGO_SOFT} 100%)`, minHeight: 340, padding: "92px 40px 40px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24, flexWrap: "wrap", position: "relative", overflow: "hidden" }}>
+        {/* Hand-drawn doodle overlay */}
+        <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", opacity: 0.12, overflow: "hidden" }} viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1090 52 C1110 34, 1142 38, 1150 64 C1158 90, 1138 114, 1112 116 C1086 118, 1068 96, 1074 70 C1077 56, 1090 52, 1090 52 Z" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+          <g transform="translate(1038, 82)"><line x1="0" y1="-16" x2="0" y2="16" stroke="white" strokeWidth="2.2" strokeLinecap="round"/><line x1="-16" y1="0" x2="16" y2="0" stroke="white" strokeWidth="2.2" strokeLinecap="round"/><line x1="-11" y1="-11" x2="11" y2="11" stroke="white" strokeWidth="1.6" strokeLinecap="round"/><line x1="11" y1="-11" x2="-11" y2="11" stroke="white" strokeWidth="1.6" strokeLinecap="round"/></g>
+          <path d="M820 210 C840 196, 860 224, 880 210 C900 196, 920 224, 940 210 C960 196, 980 224, 1000 210" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
+          <rect x="960" y="240" width="28" height="28" rx="4" fill="none" stroke="white" strokeWidth="2" transform="rotate(14, 974, 254)"/>
+          <path d="M60 280 C80 260, 110 275, 100 300 C90 325, 58 320, 55 295 C53 280, 60 280, 60 280 Z" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+          <path d="M140 60 C158 46, 178 52, 174 72 C170 92, 148 98, 136 82 C128 70, 140 60, 140 60 Z" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+          <g transform="translate(200, 270)"><line x1="0" y1="-10" x2="0" y2="10" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-10" y1="0" x2="10" y2="0" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-7" y1="-7" x2="7" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/><line x1="7" y1="-7" x2="-7" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/></g>
+          <path d="M420 290 C438 278, 456 298, 474 286 C492 274, 510 294, 528 282" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+          <circle cx="700" cy="42" r="22" fill="none" stroke="white" strokeWidth="2.2"/>
+          <circle cx="700" cy="42" r="10" fill="none" stroke="white" strokeWidth="1.4"/>
+          <rect x="1100" y="280" width="22" height="22" rx="3" fill="none" stroke="white" strokeWidth="2" transform="rotate(-10, 1111, 291)"/>
+          <path d="M330 80 C348 70, 362 80, 358 96 C354 112, 336 116, 326 102 C318 90, 330 80, 330 80 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+          <path d="M860 60 C876 50, 890 60, 886 76 C882 90, 864 94, 856 80 C850 70, 860 60, 860 60 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+        </svg>
         <div>
           <div style={{ fontSize: 24, fontWeight: 900, color: "#fff", letterSpacing: -0.5 }}>
             {ngoData.organization ?? "Pratham Foundation"}, this is your NGO space.
@@ -617,7 +637,7 @@ const NGODashboardView = () => {
               </div>
             )}
             {snapPopout === "badges" && (
-              <div style={{ background: "#f8fff4", border: `1.5px solid ${B_NGO}30`, borderRadius: 10, padding: "16px", marginBottom: 4 }}>
+              <div style={{ background: P_NGO, border: `1.5px solid ${B_NGO}30`, borderRadius: 10, padding: "16px", marginBottom: 4 }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
                   <div style={{ fontSize: 12.5, fontWeight: 700, color: ACCENT_NAVY }}>Badges Earned</div>
                   <button onClick={() => setSnapPopout(null)} style={{ background: "none", border: "none", color: "#aaa", cursor: "pointer", fontSize: 16 }}>✕</button>
@@ -1328,7 +1348,7 @@ const NGODashboardView = () => {
       {/* Refer an NGO */}
       <DrawerShell open={modal === "referNGO"} onClose={() => setModal(null)} title="Refer an NGO" accentTag="Refer" subtitle="Help grow the ProEngage partner network">
         <div>
-          <div style={{ background: P_NGO, border: `1px solid ${B_NGO}30`, borderRadius: 10, padding: "12px 14px", marginBottom: 18, fontSize: 12.5, color: "#365314", lineHeight: 1.5 }}>
+          <div style={{ background: P_NGO, border: `1px solid ${B_NGO}30`, borderRadius: 10, padding: "12px 14px", marginBottom: 18, fontSize: 12.5, color: ACCENT_NAVY, lineHeight: 1.5 }}>
             Know a like-minded NGO? Fill in their details and we'll reach out on your behalf.
           </div>
           <div style={{ marginBottom: 12 }}><Label required>NGO Name</Label><FInput value="" placeholder="e.g. Akanksha Foundation" /></div>
@@ -1349,7 +1369,7 @@ const NGODashboardView = () => {
       {/* Share story */}
       <DrawerShell open={modal === "shareStory"} onClose={() => setModal(null)} title="Share Your Story" accentTag="Story" subtitle="Post a project highlight or impact experience">
         <div>
-          <div style={{ background: P_NGO_MID, border: `1px solid ${B_NGO}25`, borderRadius: 10, padding: "12px 14px", marginBottom: 18, fontSize: 12.5, color: "#365314", lineHeight: 1.5 }}>
+          <div style={{ background: P_NGO_MID, border: `1px solid ${B_NGO}25`, borderRadius: 10, padding: "12px 14px", marginBottom: 18, fontSize: 12.5, color: ACCENT_NAVY, lineHeight: 1.5 }}>
             Stories go to TSG Admin for moderation before being published. Approved stories may appear on the TVW Vibe wall and TataEngage homepage.
           </div>
           <div style={{ marginBottom: 12 }}><Label required>Story Type</Label><FSelect value="Select type" onChange={() => {}} options={["Select type","Project Highlight","Impact Story","Volunteer Spotlight","Community Change","Partnership Achievement"]} /></div>

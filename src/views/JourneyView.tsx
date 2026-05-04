@@ -244,9 +244,12 @@ export default function JourneyView() {
               Tata Engage · 2014 – the journey continues
             </p>
             <div style={{ width: 48, height: 2, borderRadius: 2, background: "rgba(255,255,255,0.6)", marginBottom: 22 }} />
-            <h1 style={{ fontFamily: FONT, fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, letterSpacing: "-0.5px", lineHeight: 1.12, color: "#fff", margin: 0 }}>
+            <h1 style={{ fontFamily: FONT, fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 400, letterSpacing: "-0.5px", lineHeight: 1.12, color: "#fff", margin: "0 0 18px" }}>
               The Story Thus Far.
             </h1>
+            <p style={{ fontFamily: FONT, fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.75)", lineHeight: 1.7, maxWidth: 520, margin: 0 }}>
+              A decade of purpose-led action — from a single volunteering week to a movement spanning the entire Tata Group.
+            </p>
           </div>
         </div>
 
