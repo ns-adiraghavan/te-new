@@ -182,7 +182,7 @@ export default function ImpactStoryView() {
             objectFit: "cover",
             objectPosition: story.slug === "beyond-the-boardroom" ? "center 70%" : "center 35%" }} />
         <div style={{ position: "absolute", inset: 0,
-          background: "linear-gradient(160deg,rgba(8,12,22,0.78) 0%,rgba(8,12,22,0.55) 45%,rgba(8,12,22,0.22) 100%)" }} />
+          background: `linear-gradient(160deg,${accent}e0 0%,${accent}bb 38%,${accent}88 58%,${accent}55 78%,${accent}22 100%)` }} />
         <div style={DIAG} />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto",

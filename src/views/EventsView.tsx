@@ -94,17 +94,17 @@ function YouTubeEmbed({ id, caption }: { id: string; caption?: string }) {
 }
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
-function EventHero({ accent, eyebrow, title, subtitle, heroImage }: {
-  accent: string; eyebrow: string; title: string; subtitle: string; heroImage?: string;
+function EventHero({ accent, eyebrow, title, subtitle, heroImage, heroImagePosition }: {
+  accent: string; eyebrow: string; title: string; subtitle: string; heroImage?: string; heroImagePosition?: string;
 }) {
   return (
     <div style={{ position: "relative", minHeight: "92vh", display: "flex",
       flexDirection: "column", justifyContent: "flex-end", overflow: "hidden", paddingTop: 64 }}>
       <img src={heroImage ?? eventsHeroImg} alt=""
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
-          objectFit: "cover", objectPosition: "center 30%" }} />
+          objectFit: "cover", objectPosition: heroImagePosition ?? "center 30%" }} />
       <div style={{ position: "absolute", inset: 0,
-        background: "linear-gradient(160deg,rgba(0,68,60,0.90) 0%,rgba(0,52,48,0.72) 50%,rgba(0,40,36,0.45) 100%)" }} />
+        background: `linear-gradient(160deg,${accent}e8 0%,${accent}cc 38%,${accent}88 58%,${accent}55 78%,${accent}22 100%)` }} />
       <div style={DIAG} />
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto",
         padding: "0 56px 72px", width: "100%" }}>
@@ -446,7 +446,8 @@ function Iave2024({ onBack }: { onBack: () => void }) {
         eyebrow="Tata Engage · Global Forum"
         title="27th IAVE World Volunteer Conference"
         subtitle="People Power: Creating a Sustainable Future through Volunteering — Busan, Republic of Korea · 22–24 October 2024"
-        heroImage={iave24Img1} />
+        heroImage={iave24Img1}
+        heroImagePosition="center center" />
       <ArticleBody accent={accent}>
         <Breadcrumb onBack={onBack} />
 
