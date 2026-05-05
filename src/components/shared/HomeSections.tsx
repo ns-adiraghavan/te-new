@@ -1526,6 +1526,7 @@ export function JourneySection() {
               </div>
             </div>
           ))}
+          </div>
         </div>
 
         {/* CTA */}
