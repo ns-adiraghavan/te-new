@@ -468,7 +468,7 @@ export function ProgrammeSpotlight() {
                 }}
               >
                 <div
-                  className="prog-style-a prog-tilt card-shadow-right"
+                  className="prog-style-a prog-tilt card-shadow-right te-card-split"
                   onClick={() => navigate(p.route)}
                   style={{
                     minHeight: 340,
