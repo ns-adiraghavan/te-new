@@ -1381,7 +1381,7 @@ export default function DashboardView() {
                     <div style={{ fontSize: 13, color: "#8888a0", lineHeight: 1.65, maxWidth: 380, margin: "0 auto" }}>Once you complete a ProEngage project, your NGO partner can write a testimonial about your work.</div>
                   </div>
                 ) : (
-                  <div style={{ background: "#fff", borderRadius: 14, padding: "24px 26px", border: "1px solid #e8e8f0", boxShadow: "0 2px 12px rgba(13,27,62,0.06)" }}>
+                  <div style={{ background: "#fff", borderRadius: 16, padding: 24, border: "1px solid #e8e8f0", boxShadow: "0 2px 12px rgba(13,27,62,0.06)" }}>
                     <div style={{ marginBottom: 14 }}>
                       <div style={{ display: "inline-block", background: `${ACCENT_NAVY}0e`, border: `1px solid ${ACCENT_NAVY}22`, borderRadius: 100, padding: "3px 10px", fontSize: 10, fontWeight: 700, color: ACCENT_NAVY, letterSpacing: "0.8px", textTransform: "uppercase" }}>{TESTIMONIAL.edition}</div>
                     </div>
@@ -1442,7 +1442,7 @@ export default function DashboardView() {
 
               {activeActivity === "open" && (
                 <div>
-                  <div style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, padding: "28px 24px", textAlign: "center" }}>
+                  <div style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 16, padding: 24, textAlign: "center", boxShadow: "0 2px 12px rgba(13,27,62,0.06)" }}>
                     <div style={{ width: 56, height: 56, borderRadius: 16, background: "#EEF0FF", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", fontSize: 26 }}>🌐</div>
                     <div style={{ display: "inline-block", background: "#F3EEFF", color: "#803998", fontSize: 11, fontWeight: 800, padding: "3px 12px", borderRadius: 100, letterSpacing: "0.8px", textTransform: "uppercase", marginBottom: 14 }}>Coming Soon</div>
                     <h3 style={{ fontSize: 17, fontWeight: 800, color: ACCENT_NAVY, margin: "0 0 10px" }}>Open Volunteering</h3>
