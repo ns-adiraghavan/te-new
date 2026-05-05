@@ -981,7 +981,7 @@ export function NumbersSection() {
           <div style={{ width: 48, height: 1.4, borderRadius: 2, background: B_TEAL, marginTop: 10 }} />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, alignItems: "center" }}>
+        <div className="te-num-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, alignItems: "center" }}>
           {/* Tile 1 — "Did you know?" — B_ACCENT (salmon-red) replaces old pink */}
           <div
             style={{
