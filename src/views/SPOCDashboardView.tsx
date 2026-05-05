@@ -1432,7 +1432,7 @@ export default function SPOCDashboardView() {
           </div>
 
           {/* Right rail */}
-          <div style={{ width: 148, flexShrink: 0, position: "sticky", top: 108, alignSelf: "flex-start" }}>
+          {!isTablet && (<div style={{ width: 148, flexShrink: 0, position: "sticky", top: 108, alignSelf: "flex-start" }}>
 
             {/* Mode toggle */}
             <div style={{
@@ -1498,7 +1498,7 @@ export default function SPOCDashboardView() {
                 </button>
               ))}
             </div>
-          </div>
+          </div>)}
         </div>
       </div>
 
