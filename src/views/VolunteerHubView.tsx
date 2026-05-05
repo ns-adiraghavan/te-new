@@ -215,7 +215,7 @@ const VolunteerHubView = () => {
       <TickerBar fixed />
 
       {/* Floating social cluster */}
-      <div className="fixed bottom-24 left-5 z-40 flex flex-col gap-2 items-center">
+      <div className="fixed bottom-24 left-5 z-40 hidden md:flex flex-col gap-2 items-center">
         {[
           { icon: <Linkedin size={15} />, label: "LinkedIn" },
           { icon: <Instagram size={15} />, label: "Instagram" },
