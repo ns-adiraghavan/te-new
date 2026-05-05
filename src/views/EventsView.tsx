@@ -528,7 +528,7 @@ export default function EventsView() {
 
   useEffect(() => {
     document.dispatchEvent(new CustomEvent("te:formFocus", { detail: { bg: accentToNavBg(accent) } }));
-    return () => document.dispatchEvent(new CustomEvent("te:formFocus", { detail: { bg: null } }));
+    return () => { document.dispatchEvent(new CustomEvent("te:formFocus", { detail: { bg: null } })); };
   }, [accent]);
 
   const renderer = (() => {

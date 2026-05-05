@@ -82,7 +82,7 @@ const RegisterRoleView = () => {
 
   // Clear on unmount
   useEffect(() => {
-    return () => document.dispatchEvent(new CustomEvent("te:formFocus", { detail: { bg: null } }));
+    return () => { document.dispatchEvent(new CustomEvent("te:formFocus", { detail: { bg: null } })); };
   }, []);
 
   return (
