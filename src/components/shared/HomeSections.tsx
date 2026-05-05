@@ -3,6 +3,7 @@ import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
+import { IMPACT_STORIES } from "@/data/impactStoriesData";
 import {
   B_INDIGO,
   B_YELLOW,
@@ -925,6 +926,7 @@ export function QuoteBanner() {
 // NUMBERS SECTION — with radial dot grid background texture
 // ─────────────────────────────────────────────────────────────────────────────
 export function NumbersSection() {
+  const navigate = useAppNavigate();
   const { triggerToast } = useAppContext();
   const [factIdx, setFactIdx] = useState(0);
   const [factFading, setFactFading] = useState(false);
@@ -1075,92 +1077,72 @@ export function NumbersSection() {
             </div>
           </div>
 
-          {/* Tile 2 — KPI stat cards — B_ACCENT replaces forest green */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 0, minHeight: 280, alignSelf: "center" }}>
-            <div style={{ flex: 1, position: "relative" }}>
-              {HERO_STATS.map((s, i) => (
-                <div
-                  key={s.label}
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "flex-start",
-                    alignItems: "center",
-                    textAlign: "center",
-                    borderRadius: 14,
-                    padding: "20px 28px",
-                    background: "#135EA9",
-                    boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 20px rgba(0,0,0,0.12)",
-                    opacity: i === 0 ? 1 : 0,
-                    transition: "opacity 0.5s ease",
-                    animation: `kpiCycle${i} ${HERO_STATS.length * 3.5}s ${i * 3.5}s infinite`,
-                  }}
-                >
-                  {/* Top accent line */}
+          {/* Tile 2 — Impact Story cards (3 stories stacked) */}
+          {(() => {
+            const stories = IMPACT_STORIES.slice(0, 3);
+            return (
+              <div style={{ display: "flex", flexDirection: "column", gap: 6, minHeight: 280, alignSelf: "center" }}>
+                {stories.map((story) => (
                   <div
+                    key={story.slug}
+                    onClick={() => navigate("stories", story.slug)}
                     style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      height: 1.4,
-                      background: "rgba(255,255,255,0.35)",
+                      borderRadius: 10,
+                      overflow: "hidden",
+                      cursor: "pointer",
+                      position: "relative",
+                      flex: 1,
+                      minHeight: 80,
+                      backgroundImage: `url(${story.heroImage})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      boxShadow: "0 2px 12px rgba(0,0,0,0.12)",
+                      transition: "transform 0.2s ease, box-shadow 0.2s ease",
                     }}
-                  />
-                  <p
-                    style={{
-                      fontFamily: FONT_SANS,
-                      fontSize: 14,
-                      fontWeight: 800,
-                      textTransform: "uppercase",
-                      letterSpacing: "1.4px",
-                      margin: 0,
-                      color: "#ffffff",
-                      alignSelf: "flex-start",
-                      textAlign: "left",
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)";
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 6px 20px rgba(0,0,0,0.20)";
                     }}
-                  >
-                    In the numbers
-                  </p>
-                  <div style={{ flex: 1 }} />
-                  <p
-                    style={{
-                      fontFamily: FONT_SANS,
-                      fontSize: 12,
-                      fontWeight: 800,
-                      textTransform: "uppercase",
-                      letterSpacing: "1.2px",
-                      margin: "0 0 8px",
-                      color: "rgba(255,255,255,0.9)",
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.12)";
                     }}
                   >
-                    {s.label}
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: FONT_SANS,
-                      fontSize: 64,
-                      fontWeight: 900,
-                      color: "#ffffff",
-                      letterSpacing: "-1.5px",
-                      lineHeight: 1,
-                      margin: 0,
-                    }}
-                  >
-                    {s.num}
-                  </p>
-                  <p
-                    style={{ fontFamily: FONT_SANS, fontSize: 13, margin: "8px 0 0", color: "rgba(255,255,255,0.78)" }}
-                  >
-                    {s.sub}
-                  </p>
-                  <div style={{ flex: 1 }} />
-                </div>
-              ))}
-            </div>
-          </div>
+                    {/* Tinted overlay using story accent colour */}
+                    <div style={{
+                      position: "absolute", inset: 0,
+                      background: `linear-gradient(135deg, ${story.accentColor}cc 0%, ${story.accentColor}88 50%, rgba(0,0,0,0.45) 100%)`,
+                    }} />
+                    <div style={{
+                      position: "relative", zIndex: 1,
+                      padding: "10px 12px",
+                      height: "100%",
+                      display: "flex", flexDirection: "column", justifyContent: "flex-end",
+                    }}>
+                      <p style={{
+                        fontFamily: FONT_SANS,
+                        fontSize: 10,
+                        fontWeight: 800,
+                        textTransform: "uppercase",
+                        letterSpacing: "1.2px",
+                        color: "rgba(255,255,255,0.75)",
+                        margin: "0 0 2px",
+                      }}>{story.tag}</p>
+                      <p style={{
+                        fontFamily: FONT_SANS,
+                        fontSize: 12,
+                        fontWeight: 800,
+                        color: "#ffffff",
+                        margin: 0,
+                        lineHeight: 1.3,
+                        letterSpacing: "-0.2px",
+                      }}>{story.title}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          })()}
 
           {/* Tile 3 — Social feed */}
           <div
@@ -1330,12 +1312,6 @@ export function NumbersSection() {
         </div>
       </div>
 
-      {/* KPI cycle keyframes */}
-      <style>{`
-        @keyframes kpiCycle0 { 0%,30%{opacity:1} 33%,96%{opacity:0} 100%{opacity:1} }
-        @keyframes kpiCycle1 { 0%,30%{opacity:0} 33%,63%{opacity:1} 66%,100%{opacity:0} }
-        @keyframes kpiCycle2 { 0%,63%{opacity:0} 66%,96%{opacity:1} 100%{opacity:0} }
-      `}</style>
     </section>
   );
 }
