@@ -1333,7 +1333,7 @@ export default function DashboardView() {
               )}
 
               {/* Stat tiles */}
-              <div ref={statsRef} style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 20 }}>
+              <div ref={statsRef} style={{ display: "grid", gridTemplateColumns: isTablet ? "repeat(2, 1fr)" : "repeat(3, 1fr)", gap: 16, marginBottom: 20 }}>
                 <StatTile value={VOLUNTEER.stats.hoursVolunteered} label="Hours Volunteered"  pastel={KPI_PROENGAGE} accentColor={KPI_PROENGAGE} delay={0}   started={statsStarted} />
                 <StatTile value={VOLUNTEER.stats.projectsApplied}                label="Projects Applied"   pastel={KPI_TVW}      accentColor={KPI_TVW}      delay={100} started={statsStarted} />
                 <StatTile value={VOLUNTEER.stats.projectsCompleted}              label="Projects Completed" pastel={KPI_CVP}      accentColor={KPI_CVP}      delay={200} started={statsStarted} />
@@ -1813,7 +1813,7 @@ export default function DashboardView() {
             <div style={{ background: "#f8f9fc", borderRadius: 16, padding: "24px 22px", marginBottom: 52 }}>
             <section id="resources" style={{ scrollMarginTop: 108 }}>
               <SectionHeading eyebrow="Learning and inspiration" title="Resource Library" />
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12 }}>
+              <div style={{ display: "grid", gridTemplateColumns: isTablet ? "repeat(2, 1fr)" : "repeat(5, 1fr)", gap: 12 }}>
                 {RESOURCES.map(r => <ResourceCard key={r.id} r={r} onClick={() => {
                   if (r.id === "emodule") { setShowOrientationModal(true); }
                   else { navigate("/media"); }
