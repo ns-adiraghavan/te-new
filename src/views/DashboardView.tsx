@@ -1189,6 +1189,7 @@ function ShareDrawer({ open, onClose }: { open: boolean; onClose: () => void }) 
 export default function DashboardView() {
   const navigate = useNavigate();
   const { setShowOrientationModal, triggerToast: ctxToast } = useAppContext();
+  const isTablet = useIsTablet();
 
   // Section tracking
   const statsRef = useRef<HTMLDivElement>(null);
