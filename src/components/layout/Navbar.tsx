@@ -320,8 +320,8 @@ const Navbar = ({
             </svg>
           </div>
 
-          {/* ── CENTRE: nav links ── */}
-          <div className="hidden md:flex items-center gap-10 lg:gap-[60px]">
+          {/* ── CENTRE: nav links (desktop only) ── */}
+          <div className="hidden lg:flex items-center gap-10 lg:gap-[60px]">
             {/* HOME */}
             <span
               onClick={() => triggerBounce("home", () => (isLoggedIn ? onNavigate(hubView()) : onNavigate("home")))}
