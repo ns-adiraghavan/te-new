@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 // (badge icons replaced with image assets)
 import { IS_PE_SEASON, PROENGAGE_PROJECTS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
+import { useIsTablet } from "@/hooks/useMediaQuery";
 
 // ─── Brand tokens ─────────────────────────────────────────────────────────────
 const B_YELLOW    = "#F79425";
@@ -1315,7 +1316,7 @@ export default function DashboardView() {
         </div>
 
         {/* Body */}
-        <div style={{ display: "flex", maxWidth: 1200, margin: "0 auto", padding: "40px 40px 100px", gap: 44 }}>
+        <div style={{ display: "flex", flexDirection: isTablet ? "column" : "row", maxWidth: 1200, margin: "0 auto", padding: isTablet ? "24px 16px 80px" : "40px 40px 100px", gap: isTablet ? 24 : 44 }}>
 
           {/* Main */}
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -1824,7 +1825,7 @@ export default function DashboardView() {
           </div>
 
           {/* Right rail */}
-          <div style={{ width: 148, flexShrink: 0, position: "sticky", top: 108, alignSelf: "flex-start" }}>
+          {!isTablet && (<div style={{ width: 148, flexShrink: 0, position: "sticky", top: 108, alignSelf: "flex-start" }}>
             <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: ACCENT_NAVY, marginBottom: 12 }}>On this page</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
               {SECTIONS.map(s => {
@@ -1848,7 +1849,7 @@ export default function DashboardView() {
                 </button>
               ))}
             </div>
-          </div>
+          </div>)}
 
         </div>
       </div>
