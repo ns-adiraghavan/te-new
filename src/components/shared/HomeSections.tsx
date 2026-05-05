@@ -925,6 +925,117 @@ export function QuoteBanner() {
 // ─────────────────────────────────────────────────────────────────────────────
 // NUMBERS SECTION — with radial dot grid background texture
 // ─────────────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// STORY ROTATOR — single card that cycles through 3 impact stories
+// ─────────────────────────────────────────────────────────────────────────────
+function StoryRotator({ navigate }: { navigate: (view: any, slug?: string) => void }) {
+  const stories = IMPACT_STORIES.slice(0, 3);
+  const [idx, setIdx] = useState(0);
+  const [fading, setFading] = useState(false);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setFading(true);
+      setTimeout(() => {
+        setIdx((p) => (p + 1) % stories.length);
+        setFading(false);
+      }, 320);
+    }, 4000);
+    return () => clearInterval(t);
+  }, []);
+
+  const story = stories[idx];
+
+  return (
+    <div
+      style={{
+        borderRadius: 14,
+        overflow: "hidden",
+        cursor: "pointer",
+        position: "relative",
+        minHeight: 280,
+        alignSelf: "center",
+        backgroundImage: `url(${story.heroImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(0,0,0,0.08)",
+        transition: "opacity 0.32s ease",
+        opacity: fading ? 0 : 1,
+      }}
+      onClick={() => navigate("stories", story.slug)}
+    >
+      {/* Accent tinted overlay */}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: `linear-gradient(160deg, ${story.accentColor}dd 0%, ${story.accentColor}99 45%, rgba(0,0,0,0.55) 100%)`,
+      }} />
+
+      {/* Content */}
+      <div style={{
+        position: "relative", zIndex: 1,
+        padding: "20px 22px",
+        height: "100%",
+        minHeight: 280,
+        display: "flex", flexDirection: "column", justifyContent: "space-between",
+      }}>
+        {/* Top: tag + dots */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span style={{
+            fontFamily: FONT_SANS,
+            fontSize: 10, fontWeight: 800,
+            textTransform: "uppercase", letterSpacing: "1.4px",
+            color: "rgba(255,255,255,0.80)",
+            background: "rgba(255,255,255,0.14)",
+            border: "1px solid rgba(255,255,255,0.22)",
+            borderRadius: 100, padding: "3px 9px",
+          }}>{story.tag}</span>
+          <div style={{ display: "flex", gap: 5 }}>
+            {stories.map((_, i) => (
+              <button
+                key={i}
+                onClick={(e) => { e.stopPropagation(); setFading(true); setTimeout(() => { setIdx(i); setFading(false); }, 320); }}
+                style={{
+                  width: i === idx ? 18 : 6, height: 6,
+                  borderRadius: 100, border: "none", padding: 0, cursor: "pointer",
+                  background: i === idx ? "rgba(255,255,255,0.90)" : "rgba(255,255,255,0.35)",
+                  transition: "all 0.3s ease",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom: title */}
+        <div>
+          <p style={{
+            fontFamily: FONT_SANS,
+            fontSize: 18, fontWeight: 900,
+            color: "#ffffff",
+            margin: "0 0 6px",
+            lineHeight: 1.25,
+            letterSpacing: "-0.3px",
+          }}>{story.title}</p>
+          {story.subtitle && (
+            <p style={{
+              fontFamily: FONT_SANS,
+              fontSize: 12, fontWeight: 400,
+              color: "rgba(255,255,255,0.72)",
+              margin: "0 0 12px",
+              lineHeight: 1.5,
+            }}>{story.subtitle}</p>
+          )}
+          <span style={{
+            fontFamily: FONT_SANS,
+            fontSize: 11, fontWeight: 700,
+            color: "rgba(255,255,255,0.80)",
+            display: "flex", alignItems: "center", gap: 4,
+          }}>Read story <ArrowRight size={10} /></span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function NumbersSection() {
   const navigate = useAppNavigate();
   const { triggerToast } = useAppContext();
@@ -1077,72 +1188,8 @@ export function NumbersSection() {
             </div>
           </div>
 
-          {/* Tile 2 — Impact Story cards (3 stories stacked) */}
-          {(() => {
-            const stories = IMPACT_STORIES.slice(0, 3);
-            return (
-              <div style={{ display: "flex", flexDirection: "column", gap: 6, minHeight: 280, alignSelf: "center" }}>
-                {stories.map((story) => (
-                  <div
-                    key={story.slug}
-                    onClick={() => navigate("stories", story.slug)}
-                    style={{
-                      borderRadius: 10,
-                      overflow: "hidden",
-                      cursor: "pointer",
-                      position: "relative",
-                      flex: 1,
-                      minHeight: 80,
-                      backgroundImage: `url(${story.heroImage})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      boxShadow: "0 2px 12px rgba(0,0,0,0.12)",
-                      transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)";
-                      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 6px 20px rgba(0,0,0,0.20)";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-                      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.12)";
-                    }}
-                  >
-                    {/* Tinted overlay using story accent colour */}
-                    <div style={{
-                      position: "absolute", inset: 0,
-                      background: `linear-gradient(135deg, ${story.accentColor}cc 0%, ${story.accentColor}88 50%, rgba(0,0,0,0.45) 100%)`,
-                    }} />
-                    <div style={{
-                      position: "relative", zIndex: 1,
-                      padding: "10px 12px",
-                      height: "100%",
-                      display: "flex", flexDirection: "column", justifyContent: "flex-end",
-                    }}>
-                      <p style={{
-                        fontFamily: FONT_SANS,
-                        fontSize: 10,
-                        fontWeight: 800,
-                        textTransform: "uppercase",
-                        letterSpacing: "1.2px",
-                        color: "rgba(255,255,255,0.75)",
-                        margin: "0 0 2px",
-                      }}>{story.tag}</p>
-                      <p style={{
-                        fontFamily: FONT_SANS,
-                        fontSize: 12,
-                        fontWeight: 800,
-                        color: "#ffffff",
-                        margin: 0,
-                        lineHeight: 1.3,
-                        letterSpacing: "-0.2px",
-                      }}>{story.title}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            );
-          })()}
+          {/* Tile 2 — Auto-rotating impact story card */}
+          <StoryRotator navigate={navigate} />
 
           {/* Tile 3 — Social feed */}
           <div
