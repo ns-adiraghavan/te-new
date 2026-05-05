@@ -306,8 +306,9 @@ function NGOSection() {
   ];
 
   return (
-    <section id="pwu-ngo" style={{ padding: "88px 56px", background: "#F0F4FA" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+    <section id="pwu-ngo" style={{ padding: "88px 56px", background: COLOUR_DARK, position: "relative", overflow: "hidden" }}>
+      <div style={DIAG} />
+      <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
         <div style={{ marginBottom: 56 }}>
           <p
             style={{
@@ -316,19 +317,19 @@ function NGOSection() {
               fontWeight: 700,
               letterSpacing: "1.8px",
               textTransform: "uppercase",
-              color: COLOUR + "cc",
+              color: "rgba(255,255,255,0.55)",
               marginBottom: 10,
             }}
           >
             For not-for-profit organisations
           </p>
-          <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>
+          <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>
             Are you a Not-for-Profit organisation who needs volunteers?
           </h2>
-          <DefinerBar />
-          <p style={{ fontSize: 15, color: "#64748B", lineHeight: 1.82, marginTop: 20, maxWidth: 680 }}>
+          <div style={{ height: 3, background: "rgba(255,255,255,0.25)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 0 }} />
+          <p style={{ fontSize: 15, color: "rgba(255,255,255,0.70)", lineHeight: 1.82, marginTop: 20, maxWidth: 680 }}>
             Not-for-Profit organisations seeking to collaborate with the{" "}
-            <strong style={{ color: ACCENT_NAVY }}>Tata Sustainability Group</strong>{" "}
+            <strong style={{ color: "#fff" }}>Tata Sustainability Group</strong>{" "}
             can partner with Tata Engage to access skilled and committed volunteers.
           </p>
         </div>
@@ -340,7 +341,7 @@ function NGOSection() {
               style={{
                 paddingBottom: i < steps.length - 1 ? 36 : 0,
                 marginBottom: i < steps.length - 1 ? 36 : 0,
-                borderBottom: i < steps.length - 1 ? "1px solid #dde8ea" : "none",
+                borderBottom: i < steps.length - 1 ? "1px solid rgba(255,255,255,0.10)" : "none",
                 display: "flex",
                 gap: 24,
                 alignItems: "flex-start",
@@ -351,14 +352,13 @@ function NGOSection() {
                   width: 56,
                   height: 56,
                   borderRadius: 16,
-                  background: "#fff",
-                  border: `1.5px solid ${COLOUR}22`,
+                  background: "rgba(255,255,255,0.08)",
+                  border: "1.5px solid rgba(255,255,255,0.18)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: COLOUR,
+                  color: "rgba(255,255,255,0.80)",
                   flexShrink: 0,
-                  boxShadow: "0 2px 12px rgba(13,27,62,0.06)",
                 }}
               >
                 <s.Icon />
@@ -370,17 +370,17 @@ function NGOSection() {
                     fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif",
                     fontSize: 10,
                     fontWeight: 700,
-                    color: COLOUR + "80",
+                    color: "rgba(255,255,255,0.40)",
                     letterSpacing: "1px",
                     marginBottom: 6,
                   }}
                 >
                   Step {s.num}
                 </div>
-                <div style={{ fontSize: 16, fontWeight: 800, color: ACCENT_NAVY, marginBottom: 8 }}>
+                <div style={{ fontSize: 16, fontWeight: 800, color: "#fff", marginBottom: 8 }}>
                   {s.title}
                 </div>
-                <div style={{ fontSize: 14, color: "#64748B", lineHeight: 1.75 }}>
+                <div style={{ fontSize: 14, color: "rgba(255,255,255,0.68)", lineHeight: 1.75 }}>
                   {s.desc}
                 </div>
 
@@ -402,9 +402,9 @@ function NGOSection() {
                           display: "flex",
                           gap: 10,
                           alignItems: "flex-start",
-                          background: "#fff",
-                          border: "1px solid #e8e8f0",
-                          borderLeft: `3px solid ${COLOUR}`,
+                          background: "rgba(255,255,255,0.06)",
+                          border: "1px solid rgba(255,255,255,0.10)",
+                          borderLeft: "3px solid rgba(255,255,255,0.35)",
                           borderRadius: 10,
                           padding: "10px 14px",
                         }}
@@ -414,14 +414,14 @@ function NGOSection() {
                             width: 6,
                             height: 6,
                             borderRadius: "50%",
-                            background: COLOUR,
+                            background: "rgba(255,255,255,0.55)",
                             marginTop: 8,
                             flexShrink: 0,
                           }}
                         />
-                        <span style={{ fontSize: 13, color: "#475569", lineHeight: 1.65 }}>
+                        <span style={{ fontSize: 13, color: "rgba(255,255,255,0.72)", lineHeight: 1.65 }}>
                           {b.heading && (
-                            <strong style={{ color: ACCENT_NAVY, fontWeight: 800 }}>
+                            <strong style={{ color: "#fff", fontWeight: 800 }}>
                               {b.heading}:{" "}
                             </strong>
                           )}
@@ -436,9 +436,9 @@ function NGOSection() {
           ))}
         </div>
 
-        {/* Register CTA */}
-        <div style={{ marginTop: 48, paddingTop: 40, borderTop: "1px solid #dde8ea" }}>
-          <p style={{ fontSize: 14, color: "#64748B", lineHeight: 1.75, marginBottom: 20, maxWidth: 560 }}>
+        {/* Register CTA — inline, yellow/navy */}
+        <div style={{ marginTop: 48, paddingTop: 40, borderTop: "1px solid rgba(255,255,255,0.12)", display: "flex", alignItems: "center", gap: 32 }}>
+          <p style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", lineHeight: 1.75, margin: 0, maxWidth: 480 }}>
             Ready to partner with Tata Engage? Register your organisation to get started.
           </p>
           <button
@@ -446,13 +446,15 @@ function NGOSection() {
             style={{
               display: "inline-flex", alignItems: "center", gap: 10,
               padding: "13px 28px", borderRadius: 10, border: "none", cursor: "pointer",
-              background: COLOUR, color: "#fff",
-              fontSize: 14, fontWeight: 700,
+              background: B_YELLOW, color: ACCENT_NAVY,
+              fontSize: 14, fontWeight: 800,
               fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif",
-              boxShadow: "0 4px 20px rgba(13,107,122,0.25)",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
+              whiteSpace: "nowrap",
+              flexShrink: 0,
               transition: "filter 0.15s",
             }}
-            onMouseEnter={e => (e.currentTarget.style.filter = "brightness(1.1)")}
+            onMouseEnter={e => (e.currentTarget.style.filter = "brightness(1.08)")}
             onMouseLeave={e => (e.currentTarget.style.filter = "brightness(1)")}
           >
             <IconRegister />
