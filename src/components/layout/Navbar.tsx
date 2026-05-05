@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Bell, ChevronDown, ChevronRight, User, LogOut, Share2, LayoutDashboard, Search } from "lucide-react";
+import { Bell, ChevronDown, ChevronRight, User, LogOut, Share2, LayoutDashboard, Search, Menu, X } from "lucide-react";
 import tataLogo from "@/assets/tata-logo.png";
 import tataEngageLogo from "@/assets/tata-engage-logo-nobg.png";
 import type { View } from "@/types";
 import { NOTIFICATIONS_VOLUNTEER, NOTIFICATIONS_NGO, NOTIFICATIONS_SPOC, NOTIFICATIONS_ADMIN } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
+import { useIsTablet } from "@/hooks/useMediaQuery";
 
 /* ── shimmer keyframe injected once ── */
 const SHIMMER_STYLE = `
@@ -105,6 +106,17 @@ const Navbar = ({
   const [notifications, setNotifications] = useState(getRoleNotifications());
   const [bouncingItem, setBouncingItem] = useState<string | null>(null);
   const [focusBg, setFocusBg] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSection, setMobileSection] = useState<string | null>(null);
+  const isTablet = useIsTablet();
+
+  // Close mobile menu on route change
+  useEffect(() => { setMobileOpen(false); setMobileSection(null); }, [location.pathname]);
+  // Lock body scroll when drawer open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
   useEffect(() => {
     setNotifications(getRoleNotifications());
