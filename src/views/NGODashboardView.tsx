@@ -1085,7 +1085,7 @@ const NGODashboardView = () => {
         </div>
 
         {/* ── RIGHT RAIL ── */}
-        <div style={{ width: 148, flexShrink: 0, position: "sticky", top: 108, alignSelf: "flex-start" }}>
+        {!isTablet && (<div style={{ width: 148, flexShrink: 0, position: "sticky", top: 108, alignSelf: "flex-start" }}>
           {/* Section nav */}
           <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#0D1B3E", marginBottom: 12 }}>On this page</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 1, marginBottom: 28 }}>
@@ -1145,7 +1145,7 @@ const NGODashboardView = () => {
             <div style={{ fontSize: 11, color: B_NGO, fontWeight: 600 }}>Applications open</div>
             <div style={{ fontSize: 11, color: "#365314", marginTop: 3 }}>Closes 29 Jan 2026</div>
           </div>
-        </div>
+        </div>)}
       </div>
 
       {/* ═══════ MODALS ═══════ */}
