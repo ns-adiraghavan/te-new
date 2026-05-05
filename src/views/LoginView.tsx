@@ -229,7 +229,7 @@ const LoginView = () => {
             </div>
 
             {!isAdminLogin && (
-              <p style={{ textAlign: "center", fontSize: 13, color: "#94a3b8", marginTop: 20 }}>
+              <p style={{ textAlign: "center", fontSize: 13, color: "#fff", marginTop: 20 }}>
                 Don't have an account?{" "}
                 <button onClick={() => navigate("register-role")} style={{ fontWeight: 700, color: B_TICKER, background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
                   Register Now

@@ -380,7 +380,7 @@ const RegisterFormView = () => {
           </div>
           <div>
             <FLabel>Address*</FLabel>
-            <textarea placeholder="Enter full address" rows={3} onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; if (navFocusBg) dispatchFocus(navFocusBg); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 14, padding: "13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", resize: "vertical", boxSizing: "border-box" as const, transition: "border-color 0.15s, background 0.15s", background: "#fff" }} />
+            <textarea placeholder="Enter full address" rows={3} onFocus={e => { e.target.style.borderColor = accent; e.target.style.background = `${accent}08`; if (navFocus) dispatchFocus(navFocus); }} onBlur={e => { e.target.style.borderColor = "#e0e0e8"; e.target.style.background = "#fff"; dispatchFocus(null); }} style={{ width: "100%", border: "1.5px solid #e8e8f0", borderRadius: 14, padding: "13px 16px", fontSize: 14.5, fontFamily: FONT, outline: "none", resize: "vertical", boxSizing: "border-box" as const, transition: "border-color 0.15s, background 0.15s", background: "#fff" }} />
           </div>
           <SectionDivider label="Focus Areas" accent={accent} />
           <div><FLabel>What does your organisation work on?*</FLabel><PillSelector options={["Education","Healthcare","Rural Development","Skill Development","Sustainability","Livelihoods","Women Empowerment"]} selected={focusAreas} onToggle={toggle(setFocusAreas, true)} multi accent={accent} /></div>
