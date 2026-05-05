@@ -21,6 +21,7 @@ import imgStories from "@/assets/trent.jpg";
 import imgEvents  from "@/assets/IHCL.jpg";
 import imgEModule from "@/assets/Tata_international.jpeg";
 
+const B_INDIGO    = "#333399";   // Tata Blue — used for pending/amber text labels
 const B_YELLOW    = "#F79425";
 const B_TEAL      = "#13BBB4";
 const B_RED       = "#D84926";
@@ -192,18 +193,18 @@ function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) 
 
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, [string, string, string]> = {
-    "Active":            ["#F0FDF4", "#16A34A", "Active"],
-    "Matched":           ["#F0FDF4", "#16A34A", "Matched"],
+    "Active":            [P_TEAL,    B_TEAL,    "Active"],
+    "Matched":           [P_TEAL,    B_TEAL,    "Matched"],
     "Applied":           [P_TEAL,    B_TEAL,    "Applied"],
     "Completed":         [P_BLUE,    B_BLUE,    "Completed"],
     "Dropped":           [P_RED,     B_RED,     "Dropped Out"],
-    "Pending":           [P_YELLOW,  "#9a6500", "Pending"],
-    "Approved":          ["#F0FDF4", "#16A34A", "Approved"],
+    "Pending":           [P_YELLOW,  B_INDIGO, "Pending"],
+    "Approved":          [P_TEAL,    B_TEAL,    "Approved"],
     "Inactive":          ["#f8f9fc", "#888",    "Inactive"],
     "Live":              [P_VOL,     B_VOL,     "Live"],
     "Upcoming":          [P_BLUE,    B_BLUE,    "Upcoming"],
-    "Generated":         ["#F0FDF4", "#16A34A", "Generated"],
-    "Pending Feedback":  [P_YELLOW,  "#9a6500", "Pending Feedback"],
+    "Generated":         [P_TEAL,    B_TEAL,    "Generated"],
+    "Pending Feedback":  [P_YELLOW,  B_INDIGO, "Pending Feedback"],
   };
   const [bg, color, label] = map[status] ?? ["#f0f0f0", "#555", status];
   return <span style={{ background: bg, color, fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 100, letterSpacing: "0.3px", whiteSpace: "nowrap" }}>{label}</span>;
@@ -291,7 +292,7 @@ function TVWRegDrawer({ event, onClose, triggerToast }: { event: any; onClose: (
               </div>
             ))}
           </div>
-          <div style={{ background: "#F0FDF4", border: "1px solid #bbf7d0", borderRadius: 10, padding: "12px 14px", fontSize: 13, color: "#15803d", marginBottom: 20, lineHeight: 1.5 }}>
+          <div style={{ background: P_TEAL, border: `1px solid ${B_TEAL}44`, borderRadius: 10, padding: "12px 14px", fontSize: 13, color: B_TEAL, marginBottom: 20, lineHeight: 1.5 }}>
             Registering as a volunteer for this event. Hours will be logged against your profile.
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -319,7 +320,7 @@ function ResourceCard({ r, onClick }: { r: { label: string; desc: string; count:
 
 function PipelineRow({ v }: { v: typeof PROENGAGE_PIPELINE[0] }) {
   const [open, setOpen] = useState(false);
-  const statusColor  = v.status === "Active" || v.status === "Matched" ? KPI_PROENGAGE : v.status === "Completed" ? B_BLUE : v.status === "Dropped" ? B_RED : "#9a6500";
+  const statusColor  = v.status === "Active" || v.status === "Matched" ? KPI_PROENGAGE : v.status === "Completed" ? B_BLUE : v.status === "Dropped" ? B_RED : B_INDIGO;
   const statusPastel = v.status === "Active" || v.status === "Matched" ? P_BLUE : v.status === "Completed" ? P_BLUE : v.status === "Dropped" ? P_RED : P_YELLOW;
   return (
     <div style={{ background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, overflow: "hidden", marginBottom: 8 }}>
@@ -765,7 +766,7 @@ export default function SPOCDashboardView() {
                 <blockquote style={{ fontSize: 14.5, lineHeight: 1.75, color: "#2d2d3a", fontStyle: "italic", fontWeight: 400, margin: 0 }}>Rohan's contribution to the NGO digitisation project was exceptional. His systematic approach and stakeholder management made the entire process seamless.</blockquote>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#1A4731", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: "#fff", flexShrink: 0 }}>PK</div>
+                <div style={{ width: 36, height: 36, borderRadius: "50%", background: ACCENT_NAVY, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: "#fff", flexShrink: 0 }}>PK</div>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: 700, color: ACCENT_NAVY, fontSize: 13 }}>Pradeep Kumar</div>
                   <div style={{ fontSize: 11.5, color: "#8888a0", marginTop: 1 }}>Director, Saksham Foundation</div>
@@ -890,7 +891,7 @@ export default function SPOCDashboardView() {
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
                       <div style={{ flex: 1 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, color: "#aaaabc" }}>0{i + 1}</span>
+                          <span style={{ fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", fontSize: 10, fontWeight: 600, color: "#aaaabc" }}>0{i + 1}</span>
                           <div style={{ fontWeight: 700, fontSize: 14, color: ACCENT_NAVY, lineHeight: 1.3 }}>{p.title}</div>
                         </div>
                         <div style={{ fontSize: 12, color: "#6b6b7a", marginBottom: 8 }}>{p.ngo}</div>
@@ -1080,7 +1081,7 @@ export default function SPOCDashboardView() {
             <div style={{ background: "#fff", border: `1.5px solid ${KPI_YELLOW}55`, borderRadius: 14, padding: "16px 20px" }}>
               <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#aaaabc", marginBottom: 14 }}>
                 At-Risk Volunteers
-                <span style={{ background: P_YELLOW, color: "#9a6500", fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 100, marginLeft: 6 }}>{AT_RISK_VOLUNTEERS.length} flagged</span>
+                <span style={{ background: P_YELLOW, color: B_INDIGO, fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 100, marginLeft: 6 }}>{AT_RISK_VOLUNTEERS.length} flagged</span>
               </div>
               {AT_RISK_VOLUNTEERS.map((v: any) => {
                 const sc = v.severity === "high" ? B_RED : B_YELLOW;
@@ -1196,7 +1197,7 @@ export default function SPOCDashboardView() {
                     <div style={{ fontSize: 12, color: "#aaaabc", marginTop: 2 }}>{f.project} · Due {f.dueDate}</div>
                     {f.reminders.length > 0 && (
                       <div style={{ display: "flex", gap: 5, marginTop: 6 }}>
-                        {f.reminders.map((r: string) => <span key={r} style={{ background: P_YELLOW, color: "#9a6500", fontSize: 10.5, fontWeight: 600, padding: "2px 8px", borderRadius: 100 }}>{r}</span>)}
+                        {f.reminders.map((r: string) => <span key={r} style={{ background: P_YELLOW, color: B_INDIGO, fontSize: 10.5, fontWeight: 600, padding: "2px 8px", borderRadius: 100 }}>{r}</span>)}
                       </div>
                     )}
                   </div>
@@ -1222,7 +1223,7 @@ export default function SPOCDashboardView() {
                     <StatusBadge status={p.status} />
                     {p.status === "Pending" && (
                       <div style={{ display: "flex", gap: 6 }}>
-                        <button onClick={() => triggerToast(`${p.name} approved. Welcome email sent.`)} style={{ background: "#F0FDF4", color: "#16A34A", border: "1px solid #bbf7d0", borderRadius: 7, padding: "5px 11px", fontSize: 12, fontWeight: 700, cursor: "pointer" }}>Approve</button>
+                        <button onClick={() => triggerToast(`${p.name} approved. Welcome email sent.`)} style={{ background: P_TEAL, color: B_TEAL, border: `1px solid ${B_TEAL}44`, borderRadius: 7, padding: "5px 11px", fontSize: 12, fontWeight: 700, cursor: "pointer" }}>Approve</button>
                         <button onClick={() => triggerToast(`${p.name}'s registration declined.`)} style={{ background: P_RED, color: B_RED, border: `1px solid ${B_RED}33`, borderRadius: 7, padding: "5px 11px", fontSize: 12, fontWeight: 700, cursor: "pointer" }}>Reject</button>
                       </div>
                     )}

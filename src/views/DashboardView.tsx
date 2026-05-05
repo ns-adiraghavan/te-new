@@ -97,7 +97,7 @@ const TESTIMONIAL = {
   role: "Project Lead, Friends of Children",
   project: "Mock Interviews - Students",
   edition: "ProEngage 2025 | 01",
-  avatarBg: "#1A4731",
+  avatarBg: ACCENT_NAVY,
   avatarInitials: "MK",
 };
 
@@ -189,7 +189,7 @@ const BADGES = [
   { id: "b1", name: "ProEngage Veteran",     image: badgeVeteran,    desc: "Successfully completed 5+ PE projects logging over 100 hours",         earned: "2026", color: "#8E2548" },
   { id: "b2", name: "ProEngage Ambassador",  image: badgeAmbassador, desc: "Successfully shared a testimonial on LinkedIn",                         earned: "2025", color: "#135EA9" },
   { id: "b3", name: "ProEngage North Star",  image: badgeNorthStar,  desc: "Successfully signed up at least 3 family members who completed PE project", earned: "2026", color: "#0D1B3E" },
-  { id: "b4", name: "ProEngage 23 Champion", image: badgeChampion,   desc: "Successfully completed 23rd Edition of PE",                              earned: "2026", color: "#E8551C" },
+  { id: "b4", name: "ProEngage 23 Champion", image: badgeChampion,   desc: "Successfully completed 23rd Edition of PE",                              earned: "2026", color: "#D84926" },
   { id: "b5", name: "ProEngage Pioneer",     image: badgeLead,       desc: "Successfully completed the very first PE project",                      earned: "2020", color: "#E91E80" },
 ];
 
@@ -326,18 +326,18 @@ function Slicers({ options, active, onChange, accentColor = B_BLUE, notification
 // ─── Status badge ─────────────────────────────────────────────────────────────
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, [string, string, string]> = {
-    "Matched":                         ["#F0FDF4", "#16A34A", "Selected"],
-    "Selected":                        ["#F0FDF4", "#16A34A", "Selected"],
+    "Matched":                         [P_TEAL, B_TEAL, "Selected"],
+    "Selected":                        [P_TEAL, B_TEAL, "Selected"],
     "Completed":                       [P_BLUE,    B_BLUE,    "Completed"],
     "Project requirement fulfilled":   ["#EFF6FF", "#2563EB", "Requirement fulfilled"],
     "Fulfilled":                       ["#EFF6FF", "#2563EB", "Requirement fulfilled"],
     "Dropped":                         [P_RED,     B_RED,     "Dropped Out"],
     "Dropped Out":                     [P_RED,     B_RED,     "Dropped Out"],
     "DROP OUT":                        [P_RED,     B_RED,     "Dropped Out"],
-    "Not Selected":                    ["#FFF7ED", "#C2410C", "Not Selected"],
+    "Not Selected":                    [P_RED,     B_RED,     "Not Selected"],
     "Rejected":                        [P_RED,     B_RED,     "Rejected"],
-    "Volunteer Selected by Other NGO": ["#FFF7ED", "#92400E", "Other NGO"],
-    "Selected by Other NGO":           ["#FFF7ED", "#92400E", "Other NGO"],
+    "Volunteer Selected by Other NGO": [P_RED,     B_RED,     "Other NGO"],
+    "Selected by Other NGO":           [P_RED,     B_RED,     "Other NGO"],
     "Applied":                         [P_TEAL,    B_TEAL,    "Applied"],
     "Pending":                         [P_TEAL,    B_TEAL,    "Pending"],
     "Under Review":                    ["#F5F3FF", "#6D28D9",  "Under Review"],
@@ -1562,7 +1562,7 @@ export default function DashboardView() {
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
                           <div style={{ flex: 1 }}>
                             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                              <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 600, color: "#aaaabc" }}>0{i + 1}</span>
+                              <span style={{ fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", fontSize: 10, fontWeight: 600, color: "#aaaabc" }}>0{i + 1}</span>
                               <div style={{ fontWeight: 700, fontSize: 14, color: ACCENT_NAVY, lineHeight: 1.3 }}>{p.title}</div>
                             </div>
                             <div style={{ fontSize: 12, color: "#6b6b7a", marginBottom: 8 }}>{p.ngo}</div>

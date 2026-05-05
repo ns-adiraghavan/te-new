@@ -219,16 +219,16 @@ function AITextarea({ value, onChange, placeholder, rows = 3, label }: {
 // ─── Status badge ─────────────────────────────────────────────────────────────
 function Badge({ status }: { status: string }) {
   const map: Record<string, [string, string]> = {
-    Approved:       [P_TEAL,    "#0A8246"],
-    Active:         [P_TEAL,    "#0A8246"],
-    Live:           [P_TEAL,    "#0A8246"],
-    Matched:        [P_TEAL,    "#0A8246"],
-    Submitted:      [P_TEAL,    "#0A8246"],
+    Approved:       [P_TEAL,    B_TEAL],
+    Active:         [P_TEAL,    B_TEAL],
+    Live:           [P_TEAL,    B_TEAL],
+    Matched:        [P_TEAL,    B_TEAL],
+    Submitted:      [P_TEAL,    B_TEAL],
     Completed:      ["#f8f9fc", "#888"],
     Closed:         ["#f8f9fc", "#888"],
     Draft:          ["#f8f9fc", "#888"],
-    "Under Review": [P_YELLOW,  "#9a6500"],
-    Pending:        [P_YELLOW,  "#9a6500"],
+    "Under Review": [P_YELLOW, ACCENT_NAVY],
+    Pending:        [P_YELLOW, ACCENT_NAVY],
     Rejected:       [P_RED,     "#c0392b"],
     Inactive:       ["#f8f9fc", "#888"],
     Fulfilled:      ["#f8f9fc", "#888"],
@@ -314,7 +314,7 @@ function AddProjectForm({ clonedFrom, onClose, onSubmit }: { clonedFrom?: any; o
   return (
     <div>
       {clonedFrom && (
-        <div style={{ background: P_YELLOW, border: `1px solid ${B_YELLOW}44`, borderRadius: 10, padding: "10px 14px", marginBottom: 18, fontSize: 12.5, color: "#7c5500", display: "flex", gap: 8 }}>
+        <div style={{ background: P_YELLOW, border: `1px solid ${B_YELLOW}44`, borderRadius: 10, padding: "10px 14px", marginBottom: 18, fontSize: 12.5, color: ACCENT_NAVY, display: "flex", gap: 8 }}>
           <Sparkles size={14} style={{ flexShrink: 0, marginTop: 1 }} />
           Cloned from <strong>"{clonedFrom.title}"</strong>. Update outcomes, deliverables and impact for this edition.
         </div>
@@ -366,7 +366,7 @@ function FeedbackForm({ onClose, onSubmit }: { onClose: () => void; onSubmit: ()
   const [testimonial, setTestimonial] = useState("");
   return (
     <div>
-      <div style={{ background: P_YELLOW, border: `1px solid ${B_YELLOW}44`, borderRadius: 14, padding: "10px 14px", marginBottom: 16, fontSize: 12.5, color: "#7c5500" }}>
+      <div style={{ background: P_YELLOW, border: `1px solid ${B_YELLOW}44`, borderRadius: 14, padding: "10px 14px", marginBottom: 16, fontSize: 12.5, color: ACCENT_NAVY }}>
         Feedback is mandatory for certificate generation. Both volunteer and NGO must submit before TSG Admin triggers certificates.
       </div>
       <div style={{ marginBottom: 14 }}>
@@ -611,7 +611,7 @@ const NGODashboardView = () => {
               <div onClick={() => setSnapPopout(snapPopout === "badges" ? null : "badges")}
                 style={{ background: P_YELLOW, borderRadius: 10, padding: "12px 14px", cursor: "pointer", border: `1.5px solid ${snapPopout === "badges" ? B_YELLOW : "transparent"}`, transition: "border-color 0.15s" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
-                  <Award size={13} color="#9a6500" />
+                  <Award size={13} color={ACCENT_NAVY} />
                   <div style={{ fontSize: 10.5, fontWeight: 700, color: "#6b6b7a", textTransform: "uppercase", letterSpacing: "0.6px" }}>Badges Earned</div>
                 </div>
                 <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
@@ -619,8 +619,8 @@ const NGODashboardView = () => {
                     <img key={b.id} src={b.image} alt={b.name} style={{ width: 28, height: 28, objectFit: "contain" }} />
                   ))}
                 </div>
-                <div style={{ fontSize: 24, fontWeight: 700, color: "#9a6500", letterSpacing: "-1px", marginTop: 4 }}>{NGO_BADGES.length}</div>
-                <div style={{ fontSize: 10, color: "#9a6500", fontWeight: 600 }}>View all →</div>
+                <div style={{ fontSize: 24, fontWeight: 700, color: ACCENT_NAVY, letterSpacing: "-1px", marginTop: 4 }}>{NGO_BADGES.length}</div>
+                <div style={{ fontSize: 10, color: ACCENT_NAVY, fontWeight: 600 }}>View all →</div>
               </div>
 
               {/* Social */}
@@ -697,12 +697,12 @@ const NGODashboardView = () => {
                 const days = Math.ceil((new Date(p.endDate).getTime() - Date.now()) / 86400000);
                 return (
                   <div key={p.id} style={{ background: P_YELLOW, border: "1px solid #f5d48a", borderRadius: 10, padding: "12px 16px", display: "flex", alignItems: "center", gap: 12, marginTop: 14 }}>
-                    <AlertTriangle size={15} color="#9a6500" style={{ flexShrink: 0 }} />
-                    <div style={{ flex: 1, fontSize: 13, color: "#7c5500", lineHeight: 1.5 }}>
+                    <AlertTriangle size={15} color={ACCENT_NAVY} style={{ flexShrink: 0 }} />
+                    <div style={{ flex: 1, fontSize: 13, color: ACCENT_NAVY, lineHeight: 1.5 }}>
                       <strong>Feedback due {days <= 0 ? "today" : `in ${days} day${days !== 1 ? "s" : ""}`}</strong> — "{p.title}"
                     </div>
                     <button onClick={() => { setActiveProject(p); setFeedbackProject(p); setModal("feedback"); }}
-                      style={{ background: "#9a6500", border: "none", borderRadius: 10, padding: "7px 14px", fontSize: 12.5, fontWeight: 700, color: "#fff", cursor: "pointer", whiteSpace: "nowrap" }}>
+                      style={{ background: "#333399", border: "none", borderRadius: 10, padding: "7px 14px", fontSize: 12.5, fontWeight: 700, color: "#fff", cursor: "pointer", whiteSpace: "nowrap" }}>
                       Complete Feedback
                     </button>
                   </div>
@@ -721,7 +721,7 @@ const NGODashboardView = () => {
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                     {p.healthUpdates.map((h: any, i: number) => {
                       const bg    = h.status === "Healthy" ? P_TEAL : h.status === "At Risk" ? P_RED : "#f8f9fc";
-                      const color = h.status === "Healthy" ? "#0A8246" : h.status === "At Risk" ? B_RED : "#888";
+                      const color = h.status === "Healthy" ? B_TEAL : h.status === "At Risk" ? B_RED : "#888";
                       return (
                         <div key={i} style={{ background: bg, borderRadius: 7, padding: "6px 10px", minWidth: 78 }}>
                           <div style={{ fontSize: 10, fontWeight: 700, color: "#888", marginBottom: 2 }}>{h.month}</div>
@@ -788,7 +788,7 @@ const NGODashboardView = () => {
                     <div style={{ fontSize: 13, fontWeight: 600, color: ACCENT_NAVY }}>{a.name}</div>
                     <div style={{ display: "flex", gap: 5, marginTop: 4, flexWrap: "wrap" }}>
                       <span style={{ fontSize: 10.5, fontWeight: 600, background: P_BLUE, color: B_BLUE, borderRadius: 100, padding: "1px 7px" }}>{a.city}</span>
-                      <span style={{ fontSize: 10.5, fontWeight: 600, background: P_TEAL, color: "#0A8246", borderRadius: 100, padding: "1px 7px" }}>{a.availability}</span>
+                      <span style={{ fontSize: 10.5, fontWeight: 600, background: P_TEAL, color: B_TEAL, borderRadius: 100, padding: "1px 7px" }}>{a.availability}</span>
                       {a.skills.slice(0, 2).map((s: string) => (
                         <span key={s} style={{ fontSize: 10.5, fontWeight: 600, background: P_NGO, color: B_NGO, borderRadius: 100, padding: "1px 7px" }}>{s}</span>
                       ))}
@@ -878,7 +878,7 @@ const NGODashboardView = () => {
                         <div style={{ flex: 1 }}>
                           <div style={{ fontSize: 13.5, fontWeight: 600, color: ACCENT_NAVY }}>{p.title}</div>
                           <div style={{ display: "flex", gap: 5, marginTop: 4 }}>
-                            <span style={{ fontSize: 10.5, fontWeight: 600, background: P_TEAL, color: "#0A8246", borderRadius: 100, padding: "1px 7px" }}>{p.volunteers ?? 0} volunteers</span>
+                            <span style={{ fontSize: 10.5, fontWeight: 600, background: P_TEAL, color: B_TEAL, borderRadius: 100, padding: "1px 7px" }}>{p.volunteers ?? 0} volunteers</span>
                             <span style={{ fontSize: 10.5, fontWeight: 600, background: P_BLUE, color: B_BLUE, borderRadius: 100, padding: "1px 7px" }}>{p.applications ?? 0} applications</span>
                           </div>
                         </div>
@@ -1014,7 +1014,7 @@ const NGODashboardView = () => {
                                 <div style={{ flex: 1 }}>
                                   <div style={{ fontSize: 13, fontWeight: 600, color: ACCENT_NAVY }}>{proj.title}</div>
                                   <div style={{ marginTop: 4 }}>
-                                    <span style={{ fontSize: 10.5, fontWeight: 600, background: P_TEAL, color: "#0A8246", borderRadius: 100, padding: "1px 7px" }}>{proj.volunteers} volunteer{proj.volunteers !== 1 ? "s" : ""}</span>
+                                    <span style={{ fontSize: 10.5, fontWeight: 600, background: P_TEAL, color: B_TEAL, borderRadius: 100, padding: "1px 7px" }}>{proj.volunteers} volunteer{proj.volunteers !== 1 ? "s" : ""}</span>
                                   </div>
                                 </div>
                                 <Badge status={proj.status} />
@@ -1038,7 +1038,7 @@ const NGODashboardView = () => {
                 { title: "Edition Participation Report",  desc: "Applications, matches, completions", date: "Generated 1 Apr 2026",  tag: "Edn 23",    tagColor: B_NGO,  tagBg: P_NGO  },
                 { title: "Volunteer Engagement Summary",  desc: "Hours logged, feedback rates, certificate status", date: "Generated 1 Apr 2026", tag: "Edn 23", tagColor: B_TEAL, tagBg: P_TEAL },
                 { title: "Project Health Report",         desc: "Monthly M&E status across all active projects", date: "Generated 20 Mar 2026", tag: "Active projects", tagColor: KPI_LIME, tagBg: P_NGO_MID },
-                { title: "Feedback Completion Tracker",   desc: "Who has and hasn't submitted feedback", date: "Generated 5 Apr 2026", tag: "Pending",  tagColor: "#9a6500", tagBg: P_YELLOW },
+                { title: "Feedback Completion Tracker",   desc: "Who has and hasn't submitted feedback", date: "Generated 5 Apr 2026", tag: "Pending",  tagColor: ACCENT_NAVY, tagBg: P_YELLOW },
               ].map((r, i) => (
                 <div key={i} style={{ background: "#f5f5fa", border: "1px solid #e8e8f0", borderRadius: 10, padding: "14px" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
@@ -1127,7 +1127,7 @@ const NGODashboardView = () => {
           </div>
           {/* Pending tasks */}
           <div style={{ background: "#fff", border: "1.5px solid #fde68a", borderRadius: 10, padding: "10px 12px", marginBottom: 10 }}>
-            <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: "#9a6500", marginBottom: 8 }}>Pending Tasks</div>
+            <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: ACCENT_NAVY, marginBottom: 8 }}>Pending Tasks</div>
             {[
               { label: "Feedback due", detail: "2 projects", color: B_RED },
               { label: "Co-ord request", detail: "1 pending", color: B_NGO },
@@ -1214,7 +1214,7 @@ const NGODashboardView = () => {
               <div>
                 <div style={{ fontSize: 16, fontWeight: 700, color: ACCENT_NAVY }}>{selectedApplicant.name}</div>
                 <div style={{ fontSize: 12, color: "#6b6b7a", marginTop: 2 }}>{selectedApplicant.city} · {selectedApplicant.availability}</div>
-                {selectedApplicant.isReturning && <span style={{ background: P_YELLOW, color: "#9a6500", fontSize: 11, fontWeight: 700, padding: "2px 9px", borderRadius: 100, marginTop: 6, display: "inline-block" }}>Returning</span>}
+                {selectedApplicant.isReturning && <span style={{ background: P_YELLOW, color: ACCENT_NAVY, fontSize: 11, fontWeight: 700, padding: "2px 9px", borderRadius: 100, marginTop: 6, display: "inline-block" }}>Returning</span>}
               </div>
             </div>
             <div style={{ marginBottom: 14 }}>
