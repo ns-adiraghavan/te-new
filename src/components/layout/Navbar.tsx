@@ -282,9 +282,9 @@ const Navbar = ({
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
         <div
-          className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_24px_rgba(0,0,0,0.22)] relative"
+          className="h-16 flex items-center justify-between px-4 sm:px-6 md:px-12 shadow-[0_1px_24px_rgba(0,0,0,0.22)] relative"
           style={{
-            paddingLeft: 200,
+            paddingLeft: isTablet ? 92 : 200,
             background: focusBg ?? getNavBg(location.pathname),
             backdropFilter: "blur(18px)",
             WebkitBackdropFilter: "blur(18px)",
@@ -296,9 +296,9 @@ const Navbar = ({
             style={{
               position: "absolute",
               top: 4,
-              left: 36,
-              width: 82,
-              height: 90,
+              left: isTablet ? 12 : 36,
+              width: isTablet ? 64 : 82,
+              height: isTablet ? 70 : 90,
               zIndex: 60,
               cursor: "pointer",
               filter:
