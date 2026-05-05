@@ -6,7 +6,28 @@
   body {
     @apply bg-white text-slate-900 font-sans;
   }
+  /* Prevent horizontal page scroll across the app on small screens */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
 }
+
+/* ─── Responsive safety net for inline-style layouts ─────────────────────── */
+@media (max-width: 1023px) {
+  /* Make any fixed-width grid/flex container shrink gracefully on tablet/mobile */
+  .te-mobile-stack { flex-direction: column !important; }
+  .te-mobile-fullw { width: 100% !important; max-width: 100% !important; }
+}
+@media (max-width: 767px) {
+  /* Reduce overly-large inline padding on phones (last-resort) */
+  .te-pad-resp { padding-left: 16px !important; padding-right: 16px !important; }
+}
+
 
 /* ─── Global branded scrollbar (used across all pages and scroll containers) ── */
 /* Firefox — applies to root viewport + any inner scrollable element */

@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 // (badge icons replaced with image assets)
 import { IS_PE_SEASON, PROENGAGE_PROJECTS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
+import { useIsTablet } from "@/hooks/useMediaQuery";
 
 // ─── Brand tokens ─────────────────────────────────────────────────────────────
 const B_YELLOW    = "#F79425";
@@ -1189,6 +1190,7 @@ function ShareDrawer({ open, onClose }: { open: boolean; onClose: () => void }) 
 export default function DashboardView() {
   const navigate = useNavigate();
   const { setShowOrientationModal, triggerToast: ctxToast } = useAppContext();
+  const isTablet = useIsTablet();
 
   // Section tracking
   const statsRef = useRef<HTMLDivElement>(null);
@@ -1314,7 +1316,7 @@ export default function DashboardView() {
         </div>
 
         {/* Body */}
-        <div style={{ display: "flex", maxWidth: 1200, margin: "0 auto", padding: "40px 40px 100px", gap: 44 }}>
+        <div style={{ display: "flex", flexDirection: isTablet ? "column" : "row", maxWidth: 1200, margin: "0 auto", padding: isTablet ? "24px 16px 80px" : "40px 40px 100px", gap: isTablet ? 24 : 44 }}>
 
           {/* Main */}
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -1331,7 +1333,7 @@ export default function DashboardView() {
               )}
 
               {/* Stat tiles */}
-              <div ref={statsRef} style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 20 }}>
+              <div ref={statsRef} style={{ display: "grid", gridTemplateColumns: isTablet ? "repeat(2, 1fr)" : "repeat(3, 1fr)", gap: 16, marginBottom: 20 }}>
                 <StatTile value={VOLUNTEER.stats.hoursVolunteered} label="Hours Volunteered"  pastel={KPI_PROENGAGE} accentColor={KPI_PROENGAGE} delay={0}   started={statsStarted} />
                 <StatTile value={VOLUNTEER.stats.projectsApplied}                label="Projects Applied"   pastel={KPI_TVW}      accentColor={KPI_TVW}      delay={100} started={statsStarted} />
                 <StatTile value={VOLUNTEER.stats.projectsCompleted}              label="Projects Completed" pastel={KPI_CVP}      accentColor={KPI_CVP}      delay={200} started={statsStarted} />
@@ -1811,7 +1813,7 @@ export default function DashboardView() {
             <div style={{ background: "#f8f9fc", borderRadius: 16, padding: "24px 22px", marginBottom: 52 }}>
             <section id="resources" style={{ scrollMarginTop: 108 }}>
               <SectionHeading eyebrow="Learning and inspiration" title="Resource Library" />
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12 }}>
+              <div style={{ display: "grid", gridTemplateColumns: isTablet ? "repeat(2, 1fr)" : "repeat(5, 1fr)", gap: 12 }}>
                 {RESOURCES.map(r => <ResourceCard key={r.id} r={r} onClick={() => {
                   if (r.id === "emodule") { setShowOrientationModal(true); }
                   else { navigate("/media"); }
@@ -1823,7 +1825,7 @@ export default function DashboardView() {
           </div>
 
           {/* Right rail */}
-          <div style={{ width: 148, flexShrink: 0, position: "sticky", top: 108, alignSelf: "flex-start" }}>
+          {!isTablet && (<div style={{ width: 148, flexShrink: 0, position: "sticky", top: 108, alignSelf: "flex-start" }}>
             <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: ACCENT_NAVY, marginBottom: 12 }}>On this page</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
               {SECTIONS.map(s => {
@@ -1847,7 +1849,7 @@ export default function DashboardView() {
                 </button>
               ))}
             </div>
-          </div>
+          </div>)}
 
         </div>
       </div>

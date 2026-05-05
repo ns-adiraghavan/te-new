@@ -2,6 +2,7 @@ import { Facebook, Instagram, Linkedin } from "lucide-react";
 import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
+import { useIsMobile, useIsTablet } from "@/hooks/useMediaQuery";
 
 const FONT = "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif";
 const NAVY = "#0D1B3E";
@@ -10,6 +11,9 @@ const B_YELLOW = "#F5A623";
 const Footer = () => {
   const { triggerToast } = useAppContext();
   const navigate = useAppNavigate();
+  const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
+  const cols = isMobile ? "1fr" : isTablet ? "1fr 1fr" : "1.6fr 1fr 1fr 1.4fr";
 
   const scrollTo = (view: string, id: string) => {
     navigate(view as any);
@@ -28,11 +32,11 @@ const Footer = () => {
   } as const;
 
   return (
-    <footer style={{ background: "#09090b", color: "#fff", fontFamily: FONT, paddingTop: 56, paddingBottom: 32 }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 56px" }}>
+    <footer style={{ background: "#09090b", color: "#fff", fontFamily: FONT, paddingTop: isMobile ? 40 : 56, paddingBottom: isMobile ? 24 : 32 }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: isMobile ? "0 20px" : isTablet ? "0 32px" : "0 56px" }}>
 
         {/* Top grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1.4fr", gap: 48, marginBottom: 48 }}>
+        <div style={{ display: "grid", gridTemplateColumns: cols, gap: isMobile ? 32 : 48, marginBottom: isMobile ? 32 : 48 }}>
 
           {/* Brand */}
           <div>

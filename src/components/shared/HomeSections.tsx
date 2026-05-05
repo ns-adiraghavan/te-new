@@ -91,6 +91,22 @@ const GLOBAL_STYLES = `
   .section-block { padding: 72px 48px; position: relative; overflow: hidden; }
   .section-header { margin-bottom: 40px; }
 
+  /* ── Responsive overrides for shared HomeSections (Hubs + Home) ── */
+  @media (max-width: 1023px) {
+    .section-block { padding: 56px 28px !important; }
+    .section-block #programmes-grid,
+    .section-block .te-prog-grid { grid-template-columns: 1fr !important; }
+    .section-block .te-num-grid { grid-template-columns: 1fr 1fr !important; }
+    .section-block .te-card-split { grid-template-columns: 1fr !important; }
+    .section-block .te-card-split > * { clip-path: none !important; }
+  }
+  @media (max-width: 639px) {
+    .section-block { padding: 40px 18px !important; }
+    .section-block .te-num-grid { grid-template-columns: 1fr !important; }
+    .section-block h1, .section-block h2 { font-size: clamp(1.4rem, 6vw, 2rem) !important; line-height: 1.2 !important; }
+  }
+
+
   /* Lift on hover */
   .hover-lift { transition: transform 0.18s ease, box-shadow 0.18s ease; }
   .hover-lift:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.10); }
@@ -439,7 +455,7 @@ export function ProgrammeSpotlight() {
           </div>
 
           {/* Main grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 260px", gap: 16, alignItems: "start" }}>
+          <div className="te-prog-grid" style={{ display: "grid", gridTemplateColumns: "1fr 260px", gap: 16, alignItems: "start" }}>
             {/* LEFT: programme card with scroll-entrance animation */}
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               {/* Animated card wrapper — staggered entrance mimicking scroll card reveal */}
@@ -452,7 +468,7 @@ export function ProgrammeSpotlight() {
                 }}
               >
                 <div
-                  className="prog-style-a prog-tilt card-shadow-right"
+                  className="prog-style-a prog-tilt card-shadow-right te-card-split"
                   onClick={() => navigate(p.route)}
                   style={{
                     minHeight: 340,
@@ -965,7 +981,7 @@ export function NumbersSection() {
           <div style={{ width: 48, height: 1.4, borderRadius: 2, background: B_TEAL, marginTop: 10 }} />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, alignItems: "center" }}>
+        <div className="te-num-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, alignItems: "center" }}>
           {/* Tile 1 — "Did you know?" — B_ACCENT (salmon-red) replaces old pink */}
           <div
             style={{
@@ -1429,15 +1445,18 @@ export function JourneySection() {
           <div style={{ width: 36, height: 1.2, background: B_INDIGO, marginTop: 6 }} />
         </div>
 
-        {/* Grid — 10 cols × 6 rows, each 52px tall, 4px gap */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(10, 1fr)",
-            gridTemplateRows: "repeat(6, 52px)",
-            gap: 4,
-          }}
-        >
+        {/* Grid — 10 cols × 6 rows, each 52px tall, 4px gap. Scrolls on mobile. */}
+        <div style={{ overflowX: "auto", margin: "0 -12px", padding: "0 12px" }}>
+          <div
+            className="te-journey-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(10, minmax(56px, 1fr))",
+              gridTemplateRows: "repeat(6, 52px)",
+              gap: 4,
+              minWidth: 720,
+            }}
+          >
           {/* Photos */}
           {photoSlots.map((slot, i) => (
             <div
@@ -1507,6 +1526,7 @@ export function JourneySection() {
               </div>
             </div>
           ))}
+          </div>
         </div>
 
         {/* CTA */}

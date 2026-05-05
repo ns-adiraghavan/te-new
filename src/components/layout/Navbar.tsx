@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Bell, ChevronDown, ChevronRight, User, LogOut, Share2, LayoutDashboard, Search } from "lucide-react";
+import { Bell, ChevronDown, ChevronRight, User, LogOut, Share2, LayoutDashboard, Search, Menu, X } from "lucide-react";
 import tataLogo from "@/assets/tata-logo.png";
 import tataEngageLogo from "@/assets/tata-engage-logo-nobg.png";
 import type { View } from "@/types";
 import { NOTIFICATIONS_VOLUNTEER, NOTIFICATIONS_NGO, NOTIFICATIONS_SPOC, NOTIFICATIONS_ADMIN } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
+import { useIsTablet } from "@/hooks/useMediaQuery";
 
 /* ── shimmer keyframe injected once ── */
 const SHIMMER_STYLE = `
@@ -105,6 +106,17 @@ const Navbar = ({
   const [notifications, setNotifications] = useState(getRoleNotifications());
   const [bouncingItem, setBouncingItem] = useState<string | null>(null);
   const [focusBg, setFocusBg] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSection, setMobileSection] = useState<string | null>(null);
+  const isTablet = useIsTablet();
+
+  // Close mobile menu on route change
+  useEffect(() => { setMobileOpen(false); setMobileSection(null); }, [location.pathname]);
+  // Lock body scroll when drawer open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
   useEffect(() => {
     setNotifications(getRoleNotifications());
@@ -270,9 +282,9 @@ const Navbar = ({
       <nav className="fixed top-0 left-0 right-0 z-50">
         {/* ── permanent dark bar — no scroll/scene variants ── */}
         <div
-          className="h-16 flex items-center justify-between px-6 md:px-12 shadow-[0_1px_24px_rgba(0,0,0,0.22)] relative"
+          className="h-16 flex items-center justify-between px-4 sm:px-6 md:px-12 shadow-[0_1px_24px_rgba(0,0,0,0.22)] relative"
           style={{
-            paddingLeft: 200,
+            paddingLeft: isTablet ? 92 : 200,
             background: focusBg ?? getNavBg(location.pathname),
             backdropFilter: "blur(18px)",
             WebkitBackdropFilter: "blur(18px)",
@@ -284,9 +296,9 @@ const Navbar = ({
             style={{
               position: "absolute",
               top: 4,
-              left: 36,
-              width: 82,
-              height: 90,
+              left: isTablet ? 12 : 36,
+              width: isTablet ? 64 : 82,
+              height: isTablet ? 70 : 90,
               zIndex: 60,
               cursor: "pointer",
               filter:
@@ -294,7 +306,7 @@ const Navbar = ({
             }}
             onClick={() => (isLoggedIn ? onNavigate(hubView()) : onNavigate("home"))}
           >
-            <svg width="82" height="90" viewBox="-41 -38 82 90" xmlns="http://www.w3.org/2000/svg">
+            <svg width="100%" height="100%" viewBox="-41 -38 82 90" xmlns="http://www.w3.org/2000/svg">
               <circle cx="0" cy="4" r="39" fill="rgba(0,0,0,0.18)" />
               <circle cx="0" cy="2" r="38" fill="none" stroke="rgba(200,200,210,0.6)" strokeWidth="1.5" />
               <defs>
@@ -308,8 +320,8 @@ const Navbar = ({
             </svg>
           </div>
 
-          {/* ── CENTRE: nav links ── */}
-          <div className="hidden md:flex items-center gap-10 lg:gap-[60px]">
+          {/* ── CENTRE: nav links (desktop only) ── */}
+          <div className="hidden lg:flex items-center gap-10 lg:gap-[60px]">
             {/* HOME */}
             <span
               onClick={() => triggerBounce("home", () => (isLoggedIn ? onNavigate(hubView()) : onNavigate("home")))}
@@ -495,7 +507,16 @@ const Navbar = ({
           </div>
 
           {/* ── RIGHT ── */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
+            {/* Hamburger trigger (tablet & mobile) */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              className="lg:hidden p-2 rounded-full text-white hover:bg-white/10 transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu size={22} />
+            </button>
             {isLoggedIn ? (
               <>
                 {/* Bell */}
@@ -663,6 +684,140 @@ const Navbar = ({
             )}
           </div>
         </div>
+
+        {/* ── MOBILE / TABLET DRAWER ── */}
+        {mobileOpen && (
+          <div className="lg:hidden fixed inset-0 z-[100]">
+            <div
+              className="absolute inset-0 bg-black/60"
+              onClick={() => setMobileOpen(false)}
+            />
+            <div
+              className="absolute top-0 right-0 h-full w-[88vw] max-w-sm bg-zinc-900 text-white shadow-2xl flex flex-col overflow-y-auto"
+              style={{ paddingTop: 8 }}
+            >
+              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+                <span className="text-base font-semibold">Menu</span>
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="p-2 rounded-full hover:bg-white/10"
+                  aria-label="Close menu"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <nav className="flex-1 px-2 py-3">
+                <button
+                  className="w-full text-left px-4 py-3 rounded-lg hover:bg-white/5 text-[15px] font-medium"
+                  onClick={() => { setMobileOpen(false); isLoggedIn ? onNavigate(hubView()) : onNavigate("home"); }}
+                >
+                  Home
+                </button>
+                {/* About section */}
+                <div>
+                  <button
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 text-[15px] font-medium"
+                    onClick={() => setMobileSection(s => s === "about" ? null : "about")}
+                  >
+                    About <ChevronDown size={14} className={`transition-transform ${mobileSection === "about" ? "rotate-180" : ""}`} />
+                  </button>
+                  {mobileSection === "about" && (
+                    <div className="pl-4 pb-2 flex flex-col">
+                      {[
+                        { l: "About Tata Engage", a: () => onNavigate("about") },
+                        { l: "Letter from GCSO", a: () => onNavigate("about-gcso") },
+                        { l: "Our Journey", a: () => onNavigate("journey") },
+                        { l: "Events", a: () => onNavigate("about-events") },
+                        { l: "Contact Us", a: () => onNavigate("about-contact") },
+                        { l: "Team", a: () => onNavigate("about-team") },
+                      ].map(it => (
+                        <button key={it.l} onClick={() => { setMobileOpen(false); it.a(); }} className="text-left px-4 py-2 text-[14px] text-white/80 hover:text-white">
+                          {it.l}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                {/* Programmes */}
+                <div>
+                  <button
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 text-[15px] font-medium"
+                    onClick={() => setMobileSection(s => s === "prog" ? null : "prog")}
+                  >
+                    Programmes <ChevronDown size={14} className={`transition-transform ${mobileSection === "prog" ? "rotate-180" : ""}`} />
+                  </button>
+                  {mobileSection === "prog" && (
+                    <div className="pl-2 pb-2 flex flex-col">
+                      {programmesGroups.flatMap(g => [
+                        <div key={`h-${g.label}`} className="px-4 pt-3 pb-1 text-[10px] uppercase tracking-wider text-white/40 font-semibold">{g.label}</div>,
+                        ...g.items.filter(it => !it.label.startsWith("__SECTION__")).map(it => (
+                          <button key={`${g.label}-${it.label}`} onClick={() => { setMobileOpen(false); it.action(); }} className="text-left px-4 py-2 text-[14px] text-white/80 hover:text-white">
+                            {it.label}
+                          </button>
+                        ))
+                      ])}
+                    </div>
+                  )}
+                </div>
+                {/* Media */}
+                <div>
+                  <button
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 text-[15px] font-medium"
+                    onClick={() => setMobileSection(s => s === "media" ? null : "media")}
+                  >
+                    Media &amp; Resources <ChevronDown size={14} className={`transition-transform ${mobileSection === "media" ? "rotate-180" : ""}`} />
+                  </button>
+                  {mobileSection === "media" && (
+                    <div className="pl-4 pb-2 flex flex-col">
+                      {[
+                        { l: "Impact Stories", h: "tab=stories" },
+                        { l: "Photo Gallery", h: "tab=photos" },
+                        { l: "Video Gallery", h: "tab=videos" },
+                        { l: "Social Media Snippets", h: "tab=social" },
+                      ].map(it => (
+                        <button key={it.l} onClick={() => { setMobileOpen(false); onNavigate("media", it.h); }} className="text-left px-4 py-2 text-[14px] text-white/80 hover:text-white">
+                          {it.l}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <button
+                  className="w-full text-left px-4 py-3 rounded-lg hover:bg-white/5 text-[15px] font-medium"
+                  onClick={() => { setMobileOpen(false); onNavigate("partner"); }}
+                >
+                  Partner With Us
+                </button>
+
+                {!isLoggedIn && (
+                  <div className="border-t border-white/10 mt-3 pt-3 px-2 flex flex-col gap-2">
+                    <button
+                      onClick={() => { setMobileOpen(false); onNavigate("login"); }}
+                      className="w-full text-left px-4 py-3 rounded-lg hover:bg-white/5 text-[15px] font-medium"
+                    >
+                      Log In
+                    </button>
+                    <button
+                      onClick={() => { setMobileOpen(false); onNavigate("register-role"); }}
+                      className="w-full px-4 py-3 rounded-lg text-[15px] font-semibold"
+                      style={{ background: "#FCB514", color: "#0D1B3E" }}
+                    >
+                      Register
+                    </button>
+                  </div>
+                )}
+
+                {isLoggedIn && (
+                  <div className="border-t border-white/10 mt-3 pt-3 flex flex-col">
+                    <button onClick={() => { setMobileOpen(false); onNavigate("profile"); }} className="text-left px-4 py-3 hover:bg-white/5 text-[15px]">Profile</button>
+                    <button onClick={() => { setMobileOpen(false); onNavigate(dashView()); }} className="text-left px-4 py-3 hover:bg-white/5 text-[15px]">My Space</button>
+                    <button onClick={() => { setMobileOpen(false); onLogout(); }} className="text-left px-4 py-3 text-red-400 hover:bg-white/5 text-[15px]">Log Out</button>
+                  </div>
+                )}
+              </nav>
+            </div>
+          </div>
+        )}
       </nav>
     </>
   );

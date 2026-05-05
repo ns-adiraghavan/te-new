@@ -10,6 +10,7 @@ import {
 } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
+import { useIsTablet } from "@/hooks/useMediaQuery";
 import badgeVeteran    from "@/assets/badges/veteran.svg";
 import badgeAmbassador from "@/assets/badges/ambassador.svg";
 import badgeLead       from "@/assets/badges/lead.svg";
@@ -614,6 +615,7 @@ export default function SPOCDashboardView() {
   const navigate = useNavigate();
   const onNavigate = useAppNavigate();
   const { setShowOrientationModal, triggerToast } = useAppContext();
+  const isTablet = useIsTablet();
 
   const isRegionalSPOC = false;
   const spocData = isRegionalSPOC ? ANJALI_GUPTA_REGIONAL : ROHAN_DESAI;
@@ -1370,7 +1372,7 @@ export default function SPOCDashboardView() {
       <div style={{ background: "#f8f9ff", minHeight: "100vh", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif", paddingBottom: 80 }}>
 
         {/* Greeting bar */}
-        <div style={{ background: spocMode ? "linear-gradient(135deg, #1a2a5e 0%, #333399 60%, #4376BB 100%)" : "linear-gradient(135deg, #065666 0%, #135EA9 60%, #0891b2 100%)", minHeight: 340, padding: "92px 40px 40px", display: "flex", justifyContent: "center", alignItems: "center", gap: 40, flexWrap: "wrap", position: "relative", overflow: "hidden" }}>
+        <div style={{ background: spocMode ? "linear-gradient(135deg, #1a2a5e 0%, #333399 60%, #4376BB 100%)" : "linear-gradient(135deg, #065666 0%, #135EA9 60%, #0891b2 100%)", minHeight: 340, padding: isTablet ? "92px 20px 32px" : "92px 40px 40px", display: "flex", justifyContent: "center", alignItems: "center", gap: 40, flexWrap: "wrap", position: "relative", overflow: "hidden" }}>
           {/* Hand-drawn doodle overlay */}
           <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", opacity: 0.12, overflow: "hidden" }} viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <style>{`@keyframes sdA{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(6px,-10px) rotate(5deg)}} @keyframes sdB{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-8px,7px) rotate(-7deg)}} @keyframes sdC{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(5px,9px) rotate(3deg)}} @keyframes sdD{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-6px,-5px) rotate(-4deg)}} .sda{animation:sdA 22s ease-in-out infinite;transform-origin:center} .sdb{animation:sdB 28s ease-in-out infinite;transform-origin:center} .sdc{animation:sdC 18s ease-in-out infinite;transform-origin:center} .sdd{animation:sdD 32s ease-in-out infinite;transform-origin:center}`}</style>
@@ -1423,14 +1425,14 @@ export default function SPOCDashboardView() {
         {/* No tab bar here — toggle lives above the right-rail nav */}
 
         {/* Body */}
-        <div style={{ display: "flex", maxWidth: 1200, margin: "0 auto", padding: "40px 40px 100px", gap: 44 }}>
+        <div style={{ display: "flex", flexDirection: isTablet ? "column" : "row", maxWidth: 1200, margin: "0 auto", padding: isTablet ? "24px 16px 80px" : "40px 40px 100px", gap: isTablet ? 24 : 44 }}>
 
           <div style={{ flex: 1, minWidth: 0 }}>
             {spocMode ? spocSectionsJSX : volSectionsJSX}
           </div>
 
           {/* Right rail */}
-          <div style={{ width: 148, flexShrink: 0, position: "sticky", top: 108, alignSelf: "flex-start" }}>
+          {!isTablet && (<div style={{ width: 148, flexShrink: 0, position: "sticky", top: 108, alignSelf: "flex-start" }}>
 
             {/* Mode toggle */}
             <div style={{
@@ -1496,7 +1498,7 @@ export default function SPOCDashboardView() {
                 </button>
               ))}
             </div>
-          </div>
+          </div>)}
         </div>
       </div>
 
