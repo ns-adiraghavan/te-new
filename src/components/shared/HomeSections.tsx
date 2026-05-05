@@ -91,6 +91,22 @@ const GLOBAL_STYLES = `
   .section-block { padding: 72px 48px; position: relative; overflow: hidden; }
   .section-header { margin-bottom: 40px; }
 
+  /* ── Responsive overrides for shared HomeSections (Hubs + Home) ── */
+  @media (max-width: 1023px) {
+    .section-block { padding: 56px 28px !important; }
+    .section-block #programmes-grid,
+    .section-block .te-prog-grid { grid-template-columns: 1fr !important; }
+    .section-block .te-num-grid { grid-template-columns: 1fr 1fr !important; }
+    .section-block .te-card-split { grid-template-columns: 1fr !important; }
+    .section-block .te-card-split > * { clip-path: none !important; }
+  }
+  @media (max-width: 639px) {
+    .section-block { padding: 40px 18px !important; }
+    .section-block .te-num-grid { grid-template-columns: 1fr !important; }
+    .section-block h1, .section-block h2 { font-size: clamp(1.4rem, 6vw, 2rem) !important; line-height: 1.2 !important; }
+  }
+
+
   /* Lift on hover */
   .hover-lift { transition: transform 0.18s ease, box-shadow 0.18s ease; }
   .hover-lift:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.10); }
