@@ -11,6 +11,7 @@ import {
 import { MOCK_APPLICANTS, ANJALI_MEHTA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
+import { useIsTablet } from "@/hooks/useMediaQuery";
 import badgeVeteran    from "@/assets/badges/veteran.svg";
 import badgeAmbassador from "@/assets/badges/ambassador.svg";
 import badgeNorthStar  from "@/assets/badges/northstar.svg";
@@ -432,6 +433,7 @@ function FeedbackForm({ onClose, onSubmit }: { onClose: () => void; onSubmit: ()
 const NGODashboardView = () => {
   const { setActiveProject, setClonedProject, ngoData, triggerToast, setShowOrientationModal, setShowSupportModal } = useAppContext();
   const navigate = useAppNavigate();
+  const isTablet = useIsTablet();
 
   // Section refs for scroll tracking
   const snapshotRef     = useRef<HTMLDivElement>(null);
@@ -542,7 +544,7 @@ const NGODashboardView = () => {
     <div style={{ background: "#f8f9ff", minHeight: "100vh", paddingBottom: 80 }}>
 
       {/* Full-bleed greeting banner */}
-      <div style={{ background: `linear-gradient(135deg, #3d1a5e 0%, ${B_NGO} 55%, ${B_NGO_SOFT} 100%)`, minHeight: 340, padding: "92px 40px 40px", display: "flex", justifyContent: "center", alignItems: "center", gap: 40, flexWrap: "wrap", position: "relative", overflow: "hidden" }}>
+      <div style={{ background: `linear-gradient(135deg, #3d1a5e 0%, ${B_NGO} 55%, ${B_NGO_SOFT} 100%)`, minHeight: 340, padding: isTablet ? "92px 20px 32px" : "92px 40px 40px", display: "flex", justifyContent: "center", alignItems: "center", gap: 40, flexWrap: "wrap", position: "relative", overflow: "hidden" }}>
         {/* Hand-drawn doodle overlay */}
         <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", opacity: 0.12, overflow: "hidden" }} viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
         <style>{`@keyframes ndA{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(6px,-10px) rotate(5deg)}} @keyframes ndB{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-8px,7px) rotate(-7deg)}} @keyframes ndC{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(5px,9px) rotate(3deg)}} @keyframes ndD{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-6px,-5px) rotate(-4deg)}} .nda{animation:ndA 22s ease-in-out infinite;transform-origin:center} .ndb{animation:ndB 28s ease-in-out infinite;transform-origin:center} .ndc{animation:ndC 18s ease-in-out infinite;transform-origin:center} .ndd{animation:ndD 32s ease-in-out infinite;transform-origin:center}`}</style>
@@ -571,7 +573,7 @@ const NGODashboardView = () => {
 
 
       {/* Main layout */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 40px 100px", display: "flex", gap: 44, alignItems: "start" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: isTablet ? "24px 16px 80px" : "40px 40px 100px", display: "flex", flexDirection: isTablet ? "column" : "row", gap: isTablet ? 24 : 44, alignItems: isTablet ? "stretch" : "start" }}>
 
         {/* ── MAIN SCROLL ── */}
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -581,7 +583,7 @@ const NGODashboardView = () => {
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#aaaabc", marginBottom: 16 }}>I · My Engagement Snapshot</div>
 
             {/* KPI tiles — bold coloured, matches Volunteer/SPOC */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 20 }}>
+            <div style={{ display: "grid", gridTemplateColumns: isTablet ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: 16, marginBottom: 20 }}>
               <StatTile value={activeProjects}  label="Active projects"    accentColor={KPI_GREEN}  delay={0}   started={kpiStarted} />
               <StatTile value={totalVols}       label="Volunteers engaged" accentColor={KPI_TEAL}   delay={80}  started={kpiStarted} />
               <StatTile value={completedVols}   label="Completed"          accentColor={KPI_LIME}   delay={160} started={kpiStarted} />
@@ -589,7 +591,7 @@ const NGODashboardView = () => {
             </div>
 
             {/* Secondary info tiles — Skills, Badges, Social (expandable) */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: snapPopout ? 12 : 0 }}>
+            <div style={{ display: "grid", gridTemplateColumns: isTablet ? "1fr" : "repeat(3, 1fr)", gap: 10, marginBottom: snapPopout ? 12 : 0 }}>
               {/* Skills */}
               <div onClick={() => setSnapPopout(snapPopout === "skills" ? null : "skills")}
                 style={{ background: P_BLUE, borderRadius: 10, padding: "12px 14px", cursor: "pointer", border: `1.5px solid ${snapPopout === "skills" ? B_BLUE : "transparent"}`, transition: "border-color 0.15s" }}>
