@@ -94,10 +94,10 @@ const notifDot: React.CSSProperties = {
 };
 
 const card: React.CSSProperties = {
-  background: "#fff", border: "1px solid #e8e8f0", borderRadius: 14, padding: "20px 22px",
+  background: "#fff", border: "1px solid #e8e8f0", borderRadius: 16, padding: 24, boxShadow: "0 2px 12px rgba(13,27,62,0.06)",
 };
 const spocCard: React.CSSProperties = {
-  background: "#fff", border: "1.5px solid #c8c6f0", borderRadius: 14, padding: "20px 22px",
+  background: "#fff", border: "1.5px solid #c8c6f0", borderRadius: 16, padding: 24, boxShadow: "0 2px 12px rgba(13,27,62,0.06)",
 };
 
 const VOL_SECTIONS  = [
