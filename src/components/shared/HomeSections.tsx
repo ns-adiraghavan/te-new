@@ -1445,15 +1445,18 @@ export function JourneySection() {
           <div style={{ width: 36, height: 1.2, background: B_INDIGO, marginTop: 6 }} />
         </div>
 
-        {/* Grid — 10 cols × 6 rows, each 52px tall, 4px gap */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(10, 1fr)",
-            gridTemplateRows: "repeat(6, 52px)",
-            gap: 4,
-          }}
-        >
+        {/* Grid — 10 cols × 6 rows, each 52px tall, 4px gap. Scrolls on mobile. */}
+        <div style={{ overflowX: "auto", margin: "0 -12px", padding: "0 12px" }}>
+          <div
+            className="te-journey-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(10, minmax(56px, 1fr))",
+              gridTemplateRows: "repeat(6, 52px)",
+              gap: 4,
+              minWidth: 720,
+            }}
+          >
           {/* Photos */}
           {photoSlots.map((slot, i) => (
             <div
