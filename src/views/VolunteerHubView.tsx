@@ -137,7 +137,7 @@ const VolunteerHubView = () => {
           background: `linear-gradient(110deg, #135EA9e8 0%, #135EA9cc 38%, #135EA9aa 58%, #135EA977 78%, #135EA944 100%)`
         }} />
 
-        <div className="relative z-10 flex flex-col" style={{ minHeight: "92vh", paddingTop: 64, padding: "80px 64px 64px", maxWidth: 1100, margin: "0 auto", width: "100%" }}>
+        <div className="relative z-10 flex flex-col" style={{ minHeight: "92vh", paddingTop: 64, padding: "clamp(72px, 10vw, 80px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 64px)", maxWidth: 1100, margin: "0 auto", width: "100%" }}>
 
             {/* Top — greeting + quote stacked */}
             <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: 48 }}>
