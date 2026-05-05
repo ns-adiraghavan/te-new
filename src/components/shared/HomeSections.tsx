@@ -455,7 +455,7 @@ export function ProgrammeSpotlight() {
           </div>
 
           {/* Main grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 260px", gap: 16, alignItems: "start" }}>
+          <div className="te-prog-grid" style={{ display: "grid", gridTemplateColumns: "1fr 260px", gap: 16, alignItems: "start" }}>
             {/* LEFT: programme card with scroll-entrance animation */}
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               {/* Animated card wrapper — staggered entrance mimicking scroll card reveal */}
