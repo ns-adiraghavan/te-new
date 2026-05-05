@@ -1,12 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Bell, ChevronDown, ChevronRight, User, LogOut, Share2, LayoutDashboard, Search, Menu, X } from "lucide-react";
+import { Bell, ChevronDown, ChevronRight, User, LogOut, Share2, LayoutDashboard, Search, Menu, X, Mail, Lock, Eye, EyeOff, Building2, ShieldCheck, Landmark, ArrowRight } from "lucide-react";
 import tataLogo from "@/assets/tata-logo.png";
 import tataEngageLogo from "@/assets/tata-engage-logo-nobg.png";
 import type { View } from "@/types";
-import { NOTIFICATIONS_VOLUNTEER, NOTIFICATIONS_NGO, NOTIFICATIONS_SPOC, NOTIFICATIONS_ADMIN } from "@/data/mockData";
+import { NOTIFICATIONS_VOLUNTEER, NOTIFICATIONS_NGO, NOTIFICATIONS_SPOC, NOTIFICATIONS_ADMIN, VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA, ANJALI_MEHTA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useIsTablet } from "@/hooks/useMediaQuery";
+import { useAuth } from "@/context/AuthContext";
+import { ACCENT_NAVY, B_TICKER } from "@/data/homeSharedData";
 
 /* ── shimmer keyframe injected once ── */
 const SHIMMER_STYLE = `
@@ -79,6 +81,295 @@ function getNavBg(pathname: string): string {
   return "rgba(28,40,80,0.80)";
 }
 
+// ── LOGIN POPOUT ─────────────────────────────────────────────────────────────
+const DEMO_PROFILES = [
+  {
+    label: "Shrirang Dhavale",
+    sub: "Tata Employee",
+    icon: ShieldCheck,
+    color: "#135EA9",
+    user: PRIYA_SHARMA,
+    dest: "volunteer-hub" as View,
+    toast: "Welcome back, Shrirang!",
+  },
+  {
+    label: "Rohan Desai",
+    sub: "Corporate SPOC",
+    icon: Building2,
+    color: "#333399",
+    user: ROHAN_DESAI,
+    dest: "spoc-hub" as View,
+    toast: "Welcome back, Rohan!",
+  },
+  {
+    label: "Anjali Mehta",
+    sub: "NGO Partner",
+    icon: Landmark,
+    color: "#803998",
+    user: ANJALI_MEHTA,
+    dest: "ngo-hub" as View,
+    toast: "Welcome back, Anjali!",
+  },
+];
+
+type LoginStep = "profiles" | "email" | "otp";
+
+function LoginPopout({
+  onClose,
+  onNavigate,
+}: {
+  onClose: () => void;
+  onNavigate: (view: View) => void;
+}) {
+  const { setIsLoggedIn, setUser } = useAuth();
+  const { triggerToast } = useAppContext();
+  const [step, setStep] = useState<LoginStep>("profiles");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [showPw, setShowPw] = useState(false);
+  const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const popRef = useRef<HTMLDivElement>(null);
+
+  // close on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (popRef.current && !popRef.current.contains(e.target as Node)) onClose();
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [onClose]);
+
+  const handleDemoLogin = (profile: typeof DEMO_PROFILES[0]) => {
+    setIsLoggedIn(true);
+    setUser(profile.user);
+    triggerToast(profile.toast);
+    onNavigate(profile.dest);
+    onClose();
+  };
+
+  const handleEmailNext = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStep("otp");
+  };
+
+  const handleOtpChange = (i: number, val: string) => {
+    if (!/^\d*$/.test(val)) return;
+    const next = [...otp];
+    next[i] = val.slice(-1);
+    setOtp(next);
+    if (val && i < 5) otpRefs.current[i + 1]?.focus();
+  };
+
+  const handleOtpKeyDown = (i: number, e: React.KeyboardEvent) => {
+    if (e.key === "Backspace" && !otp[i] && i > 0) otpRefs.current[i - 1]?.focus();
+  };
+
+  const handleOtpSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // dummy: any 6-digit code goes to volunteer hub
+    setIsLoggedIn(true);
+    setUser(PRIYA_SHARMA);
+    triggerToast("Login successful! Welcome to Tata Engage.");
+    onNavigate("volunteer-hub");
+    onClose();
+  };
+
+  const FONT = "'Noto Sans', 'DM Sans', ui-sans-serif, system-ui, sans-serif";
+
+  return (
+    <div
+      ref={popRef}
+      style={{
+        position: "absolute",
+        top: "calc(100% + 8px)",
+        right: 0,
+        width: 360,
+        background: "white",
+        borderRadius: 16,
+        boxShadow: "0 24px 64px rgba(13,27,62,0.22), 0 4px 16px rgba(0,0,0,0.08)",
+        border: "1px solid rgba(13,27,62,0.08)",
+        overflow: "hidden",
+        zIndex: 200,
+        fontFamily: FONT,
+      }}
+    >
+      {/* Header strip */}
+      <div style={{ background: ACCENT_NAVY, padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div>
+          <p style={{ margin: 0, fontSize: 13, fontWeight: 800, color: "white", letterSpacing: "0.3px" }}>
+            {step === "otp" ? "Enter OTP" : "Log in to Tata Engage"}
+          </p>
+          <p style={{ margin: "2px 0 0", fontSize: 11, color: "rgba(255,255,255,0.55)" }}>
+            {step === "profiles" ? "Choose a demo profile or log in" : step === "email" ? "Enter your credentials" : `Sent to ${email}`}
+          </p>
+        </div>
+        <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.6)", padding: 4, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 6 }}>
+          <X size={16} />
+        </button>
+      </div>
+
+      <div style={{ padding: "20px" }}>
+        {/* ── STEP: PROFILES ── */}
+        {step === "profiles" && (
+          <>
+            <p style={{ margin: "0 0 12px", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "1.4px", color: "#94a3b8" }}>Demo Profiles</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {DEMO_PROFILES.map((p) => (
+                <button
+                  key={p.label}
+                  onClick={() => handleDemoLogin(p)}
+                  style={{
+                    display: "flex", alignItems: "center", gap: 12,
+                    padding: "10px 14px", borderRadius: 10,
+                    border: `1px solid ${p.color}22`,
+                    background: `${p.color}0a`,
+                    cursor: "pointer", width: "100%", textAlign: "left",
+                    transition: "background 0.15s",
+                  }}
+                >
+                  <div style={{ width: 34, height: 34, borderRadius: 9, background: p.color, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <p.icon size={16} color="white" />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: ACCENT_NAVY }}>{p.label}</p>
+                    <p style={{ margin: 0, fontSize: 11, color: "#64748b" }}>{p.sub}</p>
+                  </div>
+                  <ArrowRight size={14} color="#94a3b8" />
+                </button>
+              ))}
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", gap: 10, margin: "16px 0" }}>
+              <div style={{ flex: 1, height: 1, background: "#e8e8f0" }} />
+              <span style={{ fontSize: 11, color: "#94a3b8", fontWeight: 600 }}>or log in manually</span>
+              <div style={{ flex: 1, height: 1, background: "#e8e8f0" }} />
+            </div>
+
+            <button
+              onClick={() => setStep("email")}
+              style={{
+                width: "100%", padding: "11px", borderRadius: 10,
+                background: ACCENT_NAVY, color: "white",
+                border: "none", cursor: "pointer",
+                fontSize: 13, fontWeight: 700,
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+              }}
+            >
+              <Mail size={14} /> Log in with Email
+            </button>
+
+            <div style={{ marginTop: 12, textAlign: "center" }}>
+              <button
+                onClick={() => { onNavigate("admin-login"); onClose(); }}
+                style={{ background: "none", border: "none", cursor: "pointer", fontSize: 11, color: "#94a3b8", fontFamily: FONT }}
+              >
+                Admin login →
+              </button>
+            </div>
+          </>
+        )}
+
+        {/* ── STEP: EMAIL / PASSWORD ── */}
+        {step === "email" && (
+          <form onSubmit={handleEmailNext}>
+            <div style={{ marginBottom: 12 }}>
+              <label style={{ fontSize: 11, fontWeight: 700, color: "#64748b", display: "block", marginBottom: 5, textTransform: "uppercase", letterSpacing: "1px" }}>Email</label>
+              <div style={{ position: "relative" }}>
+                <Mail size={14} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#94a3b8" }} />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  required
+                  style={{
+                    width: "100%", padding: "10px 12px 10px 34px",
+                    border: "1.5px solid #e2e8f0", borderRadius: 9,
+                    fontSize: 13, outline: "none",
+                    boxSizing: "border-box", fontFamily: FONT,
+                  }}
+                />
+              </div>
+            </div>
+            <div style={{ marginBottom: 16 }}>
+              <label style={{ fontSize: 11, fontWeight: 700, color: "#64748b", display: "block", marginBottom: 5, textTransform: "uppercase", letterSpacing: "1px" }}>Password</label>
+              <div style={{ position: "relative" }}>
+                <Lock size={14} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#94a3b8" }} />
+                <input
+                  type={showPw ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  style={{
+                    width: "100%", padding: "10px 36px 10px 34px",
+                    border: "1.5px solid #e2e8f0", borderRadius: 9,
+                    fontSize: 13, outline: "none",
+                    boxSizing: "border-box", fontFamily: FONT,
+                  }}
+                />
+                <button type="button" onClick={() => setShowPw((v) => !v)}
+                  style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#94a3b8", padding: 2 }}>
+                  {showPw ? <EyeOff size={14} /> : <Eye size={14} />}
+                </button>
+              </div>
+            </div>
+            <button type="submit"
+              style={{ width: "100%", padding: "11px", borderRadius: 10, background: B_TICKER, color: "white", border: "none", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+              Send OTP
+            </button>
+            <button type="button" onClick={() => setStep("profiles")}
+              style={{ width: "100%", marginTop: 8, padding: "9px", borderRadius: 10, background: "none", border: "1px solid #e2e8f0", color: "#64748b", cursor: "pointer", fontSize: 12, fontWeight: 600, fontFamily: FONT }}>
+              ← Back
+            </button>
+          </form>
+        )}
+
+        {/* ── STEP: OTP ── */}
+        {step === "otp" && (
+          <form onSubmit={handleOtpSubmit}>
+            <p style={{ fontSize: 13, color: "#475569", margin: "0 0 16px", lineHeight: 1.5 }}>
+              Enter the 6-digit code sent to <strong style={{ color: ACCENT_NAVY }}>{email}</strong>
+            </p>
+            <div style={{ display: "flex", gap: 8, justifyContent: "center", marginBottom: 20 }}>
+              {otp.map((digit, i) => (
+                <input
+                  key={i}
+                  ref={(el) => { otpRefs.current[i] = el; }}
+                  type="text"
+                  inputMode="numeric"
+                  value={digit}
+                  onChange={(e) => handleOtpChange(i, e.target.value)}
+                  onKeyDown={(e) => handleOtpKeyDown(i, e)}
+                  maxLength={1}
+                  style={{
+                    width: 44, height: 48, textAlign: "center",
+                    border: `2px solid ${digit ? ACCENT_NAVY : "#e2e8f0"}`,
+                    borderRadius: 9, fontSize: 20, fontWeight: 800,
+                    color: ACCENT_NAVY, outline: "none",
+                    fontFamily: FONT, transition: "border-color 0.15s",
+                  }}
+                />
+              ))}
+            </div>
+            <button type="submit"
+              style={{ width: "100%", padding: "11px", borderRadius: 10, background: ACCENT_NAVY, color: "white", border: "none", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+              Verify &amp; Log In
+            </button>
+            <button type="button" onClick={() => setStep("email")}
+              style={{ width: "100%", marginTop: 8, padding: "9px", borderRadius: 10, background: "none", border: "1px solid #e2e8f0", color: "#64748b", cursor: "pointer", fontSize: 12, fontWeight: 600, fontFamily: FONT }}>
+              ← Back
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 const Navbar = ({
   onNavigate,
   isLoggedIn,
@@ -91,6 +382,7 @@ const Navbar = ({
   user: any;
 }) => {
   const location = useLocation();
+  const [loginPopoutOpen, setLoginPopoutOpen] = useState(false);
   const { triggerToast } = useAppContext();
 
   const getRoleNotifications = () => {
@@ -659,12 +951,20 @@ const Navbar = ({
             ) : (
               /* ── Public right: Log In + Register + Tata logo ── */
               <div className="flex items-center gap-4">
-                <span
-                  onClick={() => triggerBounce("login", () => onNavigate("login"))}
-                  className={`text-sm font-medium cursor-pointer text-white/90 hover:text-white transition-colors duration-150 ${bouncingItem === "login" ? "[animation:teNavBounce_0.4s_ease]" : ""}`}
-                >
-                  Log In
-                </span>
+                <div style={{ position: "relative" }}>
+                  <span
+                    onClick={() => setLoginPopoutOpen((v) => !v)}
+                    className={`text-sm font-medium cursor-pointer text-white/90 hover:text-white transition-colors duration-150 ${bouncingItem === "login" ? "[animation:teNavBounce_0.4s_ease]" : ""}`}
+                  >
+                    Log In
+                  </span>
+                  {loginPopoutOpen && (
+                    <LoginPopout
+                      onClose={() => setLoginPopoutOpen(false)}
+                      onNavigate={onNavigate}
+                    />
+                  )}
+                </div>
                 <button
                   type="button"
                   onClick={() => triggerBounce("register", () => onNavigate("register-role"))}
