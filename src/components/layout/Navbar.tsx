@@ -507,7 +507,16 @@ const Navbar = ({
           </div>
 
           {/* ── RIGHT ── */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
+            {/* Hamburger trigger (tablet & mobile) */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              className="lg:hidden p-2 rounded-full text-white hover:bg-white/10 transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu size={22} />
+            </button>
             {isLoggedIn ? (
               <>
                 {/* Bell */}
