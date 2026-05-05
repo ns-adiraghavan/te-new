@@ -306,7 +306,7 @@ const Navbar = ({
             }}
             onClick={() => (isLoggedIn ? onNavigate(hubView()) : onNavigate("home"))}
           >
-            <svg width="82" height="90" viewBox="-41 -38 82 90" xmlns="http://www.w3.org/2000/svg">
+            <svg width="100%" height="100%" viewBox="-41 -38 82 90" xmlns="http://www.w3.org/2000/svg">
               <circle cx="0" cy="4" r="39" fill="rgba(0,0,0,0.18)" />
               <circle cx="0" cy="2" r="38" fill="none" stroke="rgba(200,200,210,0.6)" strokeWidth="1.5" />
               <defs>
