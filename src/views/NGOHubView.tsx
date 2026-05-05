@@ -60,7 +60,7 @@ const NGOHubView = () => {
     <div className="min-h-screen bg-white pb-12">
 
       {/* Dot rail */}
-      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col items-end" style={{ gap: 0 }}>
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-end" style={{ gap: 0 }}>
         {DOT_SECTIONS.map((s, i) => {
           const active = activeSection === i;
           const isLast = i === DOT_SECTIONS.length - 1;

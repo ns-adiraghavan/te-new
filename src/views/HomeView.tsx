@@ -180,7 +180,7 @@ const HomeView = () => {
     <div className="relative font-sans">
 
       {/* ── Section dot rail — fixed navy, same as all static pages */}
-      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col items-end" style={{ gap: 0 }}>
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-end" style={{ gap: 0 }}>
         {SECTION_IDS.map((id, i) => {
           const active = activeSection === i;
           const isLast = i === SECTION_IDS.length - 1;
