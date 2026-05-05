@@ -684,6 +684,140 @@ const Navbar = ({
             )}
           </div>
         </div>
+
+        {/* ── MOBILE / TABLET DRAWER ── */}
+        {mobileOpen && (
+          <div className="lg:hidden fixed inset-0 z-[100]">
+            <div
+              className="absolute inset-0 bg-black/60"
+              onClick={() => setMobileOpen(false)}
+            />
+            <div
+              className="absolute top-0 right-0 h-full w-[88vw] max-w-sm bg-zinc-900 text-white shadow-2xl flex flex-col overflow-y-auto"
+              style={{ paddingTop: 8 }}
+            >
+              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+                <span className="text-base font-semibold">Menu</span>
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="p-2 rounded-full hover:bg-white/10"
+                  aria-label="Close menu"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <nav className="flex-1 px-2 py-3">
+                <button
+                  className="w-full text-left px-4 py-3 rounded-lg hover:bg-white/5 text-[15px] font-medium"
+                  onClick={() => { setMobileOpen(false); isLoggedIn ? onNavigate(hubView()) : onNavigate("home"); }}
+                >
+                  Home
+                </button>
+                {/* About section */}
+                <div>
+                  <button
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 text-[15px] font-medium"
+                    onClick={() => setMobileSection(s => s === "about" ? null : "about")}
+                  >
+                    About <ChevronDown size={14} className={`transition-transform ${mobileSection === "about" ? "rotate-180" : ""}`} />
+                  </button>
+                  {mobileSection === "about" && (
+                    <div className="pl-4 pb-2 flex flex-col">
+                      {[
+                        { l: "About Tata Engage", a: () => onNavigate("about") },
+                        { l: "Letter from GCSO", a: () => onNavigate("about-gcso") },
+                        { l: "Our Journey", a: () => onNavigate("journey") },
+                        { l: "Events", a: () => onNavigate("about-events") },
+                        { l: "Contact Us", a: () => onNavigate("about-contact") },
+                        { l: "Team", a: () => onNavigate("about-team") },
+                      ].map(it => (
+                        <button key={it.l} onClick={() => { setMobileOpen(false); it.a(); }} className="text-left px-4 py-2 text-[14px] text-white/80 hover:text-white">
+                          {it.l}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                {/* Programmes */}
+                <div>
+                  <button
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 text-[15px] font-medium"
+                    onClick={() => setMobileSection(s => s === "prog" ? null : "prog")}
+                  >
+                    Programmes <ChevronDown size={14} className={`transition-transform ${mobileSection === "prog" ? "rotate-180" : ""}`} />
+                  </button>
+                  {mobileSection === "prog" && (
+                    <div className="pl-2 pb-2 flex flex-col">
+                      {programmesGroups.flatMap(g => [
+                        <div key={`h-${g.label}`} className="px-4 pt-3 pb-1 text-[10px] uppercase tracking-wider text-white/40 font-semibold">{g.label}</div>,
+                        ...g.items.filter(it => !it.label.startsWith("__SECTION__")).map(it => (
+                          <button key={`${g.label}-${it.label}`} onClick={() => { setMobileOpen(false); it.action(); }} className="text-left px-4 py-2 text-[14px] text-white/80 hover:text-white">
+                            {it.label}
+                          </button>
+                        ))
+                      ])}
+                    </div>
+                  )}
+                </div>
+                {/* Media */}
+                <div>
+                  <button
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 text-[15px] font-medium"
+                    onClick={() => setMobileSection(s => s === "media" ? null : "media")}
+                  >
+                    Media &amp; Resources <ChevronDown size={14} className={`transition-transform ${mobileSection === "media" ? "rotate-180" : ""}`} />
+                  </button>
+                  {mobileSection === "media" && (
+                    <div className="pl-4 pb-2 flex flex-col">
+                      {[
+                        { l: "Impact Stories", h: "tab=stories" },
+                        { l: "Photo Gallery", h: "tab=photos" },
+                        { l: "Video Gallery", h: "tab=videos" },
+                        { l: "Social Media Snippets", h: "tab=social" },
+                      ].map(it => (
+                        <button key={it.l} onClick={() => { setMobileOpen(false); onNavigate("media", it.h); }} className="text-left px-4 py-2 text-[14px] text-white/80 hover:text-white">
+                          {it.l}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <button
+                  className="w-full text-left px-4 py-3 rounded-lg hover:bg-white/5 text-[15px] font-medium"
+                  onClick={() => { setMobileOpen(false); onNavigate("partner"); }}
+                >
+                  Partner With Us
+                </button>
+
+                {!isLoggedIn && (
+                  <div className="border-t border-white/10 mt-3 pt-3 px-2 flex flex-col gap-2">
+                    <button
+                      onClick={() => { setMobileOpen(false); onNavigate("login"); }}
+                      className="w-full text-left px-4 py-3 rounded-lg hover:bg-white/5 text-[15px] font-medium"
+                    >
+                      Log In
+                    </button>
+                    <button
+                      onClick={() => { setMobileOpen(false); onNavigate("register-role"); }}
+                      className="w-full px-4 py-3 rounded-lg text-[15px] font-semibold"
+                      style={{ background: "#FCB514", color: "#0D1B3E" }}
+                    >
+                      Register
+                    </button>
+                  </div>
+                )}
+
+                {isLoggedIn && (
+                  <div className="border-t border-white/10 mt-3 pt-3 flex flex-col">
+                    <button onClick={() => { setMobileOpen(false); onNavigate("profile"); }} className="text-left px-4 py-3 hover:bg-white/5 text-[15px]">Profile</button>
+                    <button onClick={() => { setMobileOpen(false); onNavigate(dashView()); }} className="text-left px-4 py-3 hover:bg-white/5 text-[15px]">My Space</button>
+                    <button onClick={() => { setMobileOpen(false); onLogout(); }} className="text-left px-4 py-3 text-red-400 hover:bg-white/5 text-[15px]">Log Out</button>
+                  </div>
+                )}
+              </nav>
+            </div>
+          </div>
+        )}
       </nav>
     </>
   );
