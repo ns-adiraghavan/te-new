@@ -769,7 +769,7 @@ export default function ProfileView() {
           </div>
 
           {/* Content panel */}
-          <div style={{ flex: 1, background: "#fff", border: "1px solid #e8e8f0", borderRadius: 16, padding: "28px 32px", minHeight: 400 }}>
+          <div style={{ flex: 1, background: "#fff", border: "1px solid #e8e8f0", borderRadius: 16, padding: 24, minHeight: 400, boxShadow: "0 2px 12px rgba(13,27,62,0.06)" }}>
             {IS_NGO ? (
               <>
                 {ngoTab === "contact"      && <NGOContactTab />}
