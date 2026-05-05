@@ -5,6 +5,7 @@ import { useAuth } from "@/context/AuthContext";
 
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import partnerHero from "@/assets/tata-comm-2.jpeg";
+import partnerNGOBg from "@/assets/banner_photos/About Tata Engage below the banner.png";
 
 // ── Colour tokens ─────────────────────────────────────────────────────────────
 const ACCENT_NAVY  = "#0D1B3E";
@@ -306,9 +307,18 @@ function NGOSection() {
   ];
 
   return (
-    <section id="pwu-ngo" style={{ padding: "88px 56px", background: COLOUR_DARK, position: "relative", overflow: "hidden" }}>
+    <section id="pwu-ngo" style={{ position: "relative", overflow: "hidden" }}>
+      {/* Photo background */}
+      <img
+        src={partnerNGOBg}
+        alt=""
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }}
+      />
+      {/* Gradient overlay — solid teal left fading to transparent right, DR-style */}
+      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${COLOUR_DARK}f8 0%, ${COLOUR_DARK}e0 38%, ${COLOUR_DARK}c0 58%, ${COLOUR_DARK}88 78%, ${COLOUR_DARK}44 100%)` }} />
       <div style={DIAG} />
-      <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
+      <div style={{ position: "relative", zIndex: 1, padding: "88px 56px" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ marginBottom: 56 }}>
           <p
             style={{
@@ -461,6 +471,7 @@ function NGOSection() {
             Register Your Organisation
           </button>
         </div>
+      </div>
       </div>
     </section>
   );
