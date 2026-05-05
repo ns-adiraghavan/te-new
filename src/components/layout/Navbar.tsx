@@ -82,10 +82,14 @@ function getNavBg(pathname: string): string {
 }
 
 // ── LOGIN POPOUT ─────────────────────────────────────────────────────────────
+const TVW_BLUE = "#135EA9";
+const FONT_DM = "'DM Sans', 'Noto Sans', ui-sans-serif, system-ui, sans-serif";
+
 const DEMO_PROFILES = [
   {
     label: "Shrirang Dhavale",
     sub: "Tata Employee",
+    email: "sdhavale@tata.com",
     icon: ShieldCheck,
     color: "#135EA9",
     user: PRIYA_SHARMA,
@@ -95,6 +99,7 @@ const DEMO_PROFILES = [
   {
     label: "Rohan Desai",
     sub: "Corporate SPOC",
+    email: "rohan.desai@tcs.com",
     icon: Building2,
     color: "#333399",
     user: ROHAN_DESAI,
@@ -104,6 +109,7 @@ const DEMO_PROFILES = [
   {
     label: "Anjali Mehta",
     sub: "NGO Partner",
+    email: "anjali.mehta@pratham.org",
     icon: Landmark,
     color: "#803998",
     user: ANJALI_MEHTA,
@@ -112,7 +118,230 @@ const DEMO_PROFILES = [
   },
 ];
 
-type LoginStep = "profiles" | "email" | "otp";
+type LoginStep = "email" | "otp";
+
+function LoginPopout({
+  onClose,
+  onNavigate,
+}: {
+  onClose: () => void;
+  onNavigate: (view: View) => void;
+}) {
+  const { setIsLoggedIn, setUser } = useAuth();
+  const { triggerToast } = useAppContext();
+  const [step, setStep] = useState<LoginStep>("email");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [showPw, setShowPw] = useState(false);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [otpError, setOtpError] = useState("");
+  const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const popRef = useRef<HTMLDivElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setTimeout(() => emailRef.current?.focus(), 80);
+  }, []);
+
+  // close on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (popRef.current && !popRef.current.contains(e.target as Node)) onClose();
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [onClose]);
+
+  const matchedProfile = DEMO_PROFILES.find(
+    (p) => p.email.toLowerCase() === email.trim().toLowerCase()
+  );
+
+  const handleEmailNext = (e: React.FormEvent) => {
+    e.preventDefault();
+    setEmailError("");
+    setPasswordError("");
+
+    const profile = DEMO_PROFILES.find(
+      (p) => p.email.toLowerCase() === email.trim().toLowerCase()
+    );
+
+    if (!profile) {
+      setEmailError("No account found with this email.");
+      return;
+    }
+    if (password !== "Passw0rd") {
+      setPasswordError("Incorrect password.");
+      return;
+    }
+    setStep("otp");
+  };
+
+  const handleOtpChange = (i: number, val: string) => {
+    if (!/^\d*$/.test(val)) return;
+    const next = [...otp];
+    next[i] = val.slice(-1);
+    setOtp(next);
+    setOtpError("");
+    if (val && i < 5) otpRefs.current[i + 1]?.focus();
+  };
+
+  const handleOtpKeyDown = (i: number, e: React.KeyboardEvent) => {
+    if (e.key === "Backspace" && !otp[i] && i > 0) otpRefs.current[i - 1]?.focus();
+  };
+
+  const handleOtpSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const code = otp.join("");
+    if (code !== "123456") {
+      setOtpError("Incorrect code. Try 123456.");
+      return;
+    }
+    const profile = matchedProfile || DEMO_PROFILES[0];
+    setIsLoggedIn(true);
+    setUser(profile.user);
+    triggerToast(profile.toast);
+    onNavigate(profile.dest);
+    onClose();
+  };
+
+  return (
+    <div
+      ref={popRef}
+      style={{
+        position: "absolute",
+        top: "calc(100% + 8px)",
+        right: 0,
+        width: 368,
+        background: "white",
+        borderRadius: 16,
+        boxShadow: "0 24px 64px rgba(13,27,62,0.22), 0 4px 16px rgba(0,0,0,0.08)",
+        border: "1px solid rgba(13,27,62,0.08)",
+        overflow: "hidden",
+        zIndex: 200,
+        fontFamily: FONT_DM,
+      }}
+    >
+      {/* Header strip — TVW blue */}
+      <div style={{ background: TVW_BLUE, padding: "18px 20px 16px", display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
+        <div>
+          <p style={{ margin: 0, fontSize: 16, fontWeight: 800, color: "white", letterSpacing: "-0.2px", fontFamily: FONT_DM }}>
+            Log in to Tata Engage
+          </p>
+          <p style={{ margin: "3px 0 0", fontSize: 12, color: "rgba(255,255,255,0.60)", fontFamily: FONT_DM }}>
+            {step === "otp" ? `Code sent to ${email}` : "Enter your credentials to continue"}
+          </p>
+        </div>
+        <button onClick={onClose} style={{ background: "rgba(255,255,255,0.15)", border: "none", cursor: "pointer", color: "white", padding: "4px 5px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 8, marginTop: 2 }}>
+          <X size={15} />
+        </button>
+      </div>
+
+      <div style={{ padding: "18px 20px 20px" }}>
+        {/* ── STEP: EMAIL / PASSWORD ── */}
+        {step === "email" && (
+          <form onSubmit={handleEmailNext}>
+            <div style={{ marginBottom: 12 }}>
+              <label style={{ fontSize: 11, fontWeight: 700, color: "#64748b", display: "block", marginBottom: 5, textTransform: "uppercase", letterSpacing: "1px", fontFamily: FONT_DM }}>Email</label>
+              <div style={{ position: "relative" }}>
+                <Mail size={14} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#94a3b8" }} />
+                <input
+                  ref={emailRef}
+                  type="email"
+                  value={email}
+                  onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
+                  placeholder="your@email.com"
+                  required
+                  style={{
+                    width: "100%", padding: "10px 12px 10px 34px",
+                    border: `1.5px solid ${emailError ? "#E8401C" : "#e2e8f0"}`, borderRadius: 9,
+                    fontSize: 13, outline: "none",
+                    boxSizing: "border-box", fontFamily: FONT_DM,
+                    color: ACCENT_NAVY,
+                  }}
+                />
+              </div>
+              {emailError && <p style={{ margin: "4px 0 0", fontSize: 11, color: "#E8401C", fontFamily: FONT_DM }}>{emailError}</p>}
+            </div>
+            <div style={{ marginBottom: 16 }}>
+              <label style={{ fontSize: 11, fontWeight: 700, color: "#64748b", display: "block", marginBottom: 5, textTransform: "uppercase", letterSpacing: "1px", fontFamily: FONT_DM }}>Password</label>
+              <div style={{ position: "relative" }}>
+                <Lock size={14} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#94a3b8" }} />
+                <input
+                  type={showPw ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => { setPassword(e.target.value); setPasswordError(""); }}
+                  placeholder="••••••••"
+                  required
+                  style={{
+                    width: "100%", padding: "10px 36px 10px 34px",
+                    border: `1.5px solid ${passwordError ? "#E8401C" : "#e2e8f0"}`, borderRadius: 9,
+                    fontSize: 13, outline: "none",
+                    boxSizing: "border-box", fontFamily: FONT_DM,
+                    color: ACCENT_NAVY,
+                  }}
+                />
+                <button type="button" onClick={() => setShowPw((v) => !v)}
+                  style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#94a3b8", padding: 2, display: "flex" }}>
+                  {showPw ? <EyeOff size={14} /> : <Eye size={14} />}
+                </button>
+              </div>
+              {passwordError && <p style={{ margin: "4px 0 0", fontSize: 11, color: "#E8401C", fontFamily: FONT_DM }}>{passwordError}</p>}
+            </div>
+            <button type="submit"
+              style={{ width: "100%", padding: "11px", borderRadius: 10, background: TVW_BLUE, color: "white", border: "none", cursor: "pointer", fontSize: 13, fontWeight: 700, fontFamily: FONT_DM }}>
+              Continue
+            </button>
+          </form>
+        )}
+
+        {/* ── STEP: OTP ── */}
+        {step === "otp" && (
+          <form onSubmit={handleOtpSubmit}>
+            <p style={{ fontSize: 13, color: "#475569", margin: "0 0 16px", lineHeight: 1.5, fontFamily: FONT_DM }}>
+              Enter the 6-digit code sent to <strong style={{ color: ACCENT_NAVY, fontFamily: FONT_DM }}>{email}</strong>
+            </p>
+            <div style={{ display: "flex", gap: 8, justifyContent: "center", marginBottom: 6 }}>
+              {otp.map((digit, i) => (
+                <input
+                  key={i}
+                  ref={(el) => { otpRefs.current[i] = el; }}
+                  type="text"
+                  inputMode="numeric"
+                  value={digit}
+                  onChange={(e) => handleOtpChange(i, e.target.value)}
+                  onKeyDown={(e) => handleOtpKeyDown(i, e)}
+                  maxLength={1}
+                  autoFocus={i === 0}
+                  style={{
+                    width: 44, height: 48, textAlign: "center",
+                    border: `2px solid ${otpError ? "#E8401C" : digit ? TVW_BLUE : "#e2e8f0"}`,
+                    borderRadius: 9, fontSize: 20, fontWeight: 800,
+                    color: ACCENT_NAVY, outline: "none",
+                    fontFamily: FONT_DM, transition: "border-color 0.15s",
+                  }}
+                />
+              ))}
+            </div>
+            {otpError && <p style={{ margin: "0 0 12px", fontSize: 11, color: "#E8401C", textAlign: "center", fontFamily: FONT_DM }}>{otpError}</p>}
+            {!otpError && <div style={{ marginBottom: 12 }} />}
+            <button type="submit"
+              style={{ width: "100%", padding: "11px", borderRadius: 10, background: TVW_BLUE, color: "white", border: "none", cursor: "pointer", fontSize: 13, fontWeight: 700, fontFamily: FONT_DM }}>
+              Verify &amp; Log In
+            </button>
+            <button type="button" onClick={() => { setStep("email"); setOtp(["","","","","",""]); setOtpError(""); }}
+              style={{ width: "100%", marginTop: 8, padding: "9px", borderRadius: 10, background: "none", border: "1px solid #e2e8f0", color: "#64748b", cursor: "pointer", fontSize: 12, fontWeight: 600, fontFamily: FONT_DM }}>
+              ← Back
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
+
 
 function LoginPopout({
   onClose,
