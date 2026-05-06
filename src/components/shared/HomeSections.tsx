@@ -1047,7 +1047,7 @@ export function NumbersSection() {
         fontWeight: 800,
         letterSpacing: "1.6px",
         textTransform: "uppercase",
-        color: dark ? "#ffffff" : "#64748b",
+        color: dark ? "#ffffff" : ACCENT_NAVY,
         display: "block",
         marginBottom: 10,
       }}
