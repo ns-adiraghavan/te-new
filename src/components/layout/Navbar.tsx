@@ -922,27 +922,19 @@ const Navbar = ({
                 />
               </>
             ) : (
-              /* ── Public right: Register + Log In + Tata logo ── */
+              /* ── Public right: Log In + Register + Tata logo ── */
               <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => triggerBounce("register", () => onNavigate("register-role"))}
-                  className={`py-2 px-5 text-sm font-semibold rounded-lg cursor-pointer transition-all hover:brightness-95 whitespace-nowrap ${bouncingItem === "register" ? "[animation:teNavBounce_0.4s_ease]" : ""}`}
-                  style={{ background: "#FCB514", color: "#0D1B3E" }}
-                >
-                  Register
-                </button>
                 <div style={{ position: "relative" }}>
                   <span
                     onClick={() => setLoginPopoutOpen((v) => !v)}
-                    className={`text-sm font-semibold cursor-pointer whitespace-nowrap transition-all hover:brightness-95 ${bouncingItem === "login" ? "[animation:teNavBounce_0.4s_ease]" : ""}`}
+                    className={`text-sm font-semibold cursor-pointer whitespace-nowrap ${bouncingItem === "login" ? "[animation:teNavBounce_0.4s_ease]" : ""}`}
                     style={{
                       display: "inline-block",
                       padding: "8px 20px",
                       borderRadius: 8,
-                      background: "radial-gradient(circle at 42% 38%, #ffffff, #dde2ee)",
-                      color: "#0D1B3E",
-                      boxShadow: "0 2px 8px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.8)",
+                      background: "rgba(255,255,255,0.15)",
+                      color: "#ffffff",
+                      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.25)",
                     }}
                   >
                     Log In
@@ -954,6 +946,14 @@ const Navbar = ({
                     />
                   )}
                 </div>
+                <button
+                  type="button"
+                  onClick={() => triggerBounce("register", () => onNavigate("register-role"))}
+                  className={`py-2 px-5 text-sm font-semibold rounded-lg cursor-pointer transition-all hover:brightness-95 whitespace-nowrap ${bouncingItem === "register" ? "[animation:teNavBounce_0.4s_ease]" : ""}`}
+                  style={{ background: "#FCB514", color: "#0D1B3E" }}
+                >
+                  Register
+                </button>
                 {/* Tata logo — always white on dark nav */}
                 <img
                   src={tataLogo}
