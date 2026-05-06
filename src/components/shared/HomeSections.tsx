@@ -931,105 +931,89 @@ export function QuoteBanner() {
 function StoryRotator({ navigate }: { navigate: (view: any, slug?: string) => void }) {
   const stories = IMPACT_STORIES.slice(0, 3);
   const [idx, setIdx] = useState(0);
-  const [fading, setFading] = useState(false);
+  const [prevIdx, setPrevIdx] = useState(0);
+  const [showCurrent, setShowCurrent] = useState(true);
 
   useEffect(() => {
-    const t = setInterval(() => {
-      setFading(true);
-      setTimeout(() => {
-        setIdx((p) => (p + 1) % stories.length);
-        setFading(false);
-      }, 320);
-    }, 4000);
+    const t = setInterval(() => setIdx((p) => (p + 1) % stories.length), 4000);
     return () => clearInterval(t);
   }, []);
 
-  const story = stories[idx];
+  useEffect(() => {
+    setShowCurrent(false);
+    const r = requestAnimationFrame(() => setShowCurrent(true));
+    const t = setTimeout(() => setPrevIdx(idx), 380);
+    return () => { cancelAnimationFrame(r); clearTimeout(t); };
+  }, [idx]);
 
-  return (
+  const renderLayer = (story: typeof stories[number], opacity: number, interactive: boolean) => (
     <div
       style={{
-        borderRadius: 14,
-        overflow: "hidden",
-        cursor: "pointer",
-        position: "relative",
-        minHeight: 280,
-        alignSelf: "center",
-        backgroundImage: `url(${story.heroImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(0,0,0,0.08)",
-        transition: "opacity 0.32s ease",
-        opacity: fading ? 0 : 1,
-      }}
-      onClick={() => navigate("stories", story.slug)}
-    >
-      {/* Accent tinted overlay */}
-      <div style={{
         position: "absolute", inset: 0,
+        borderRadius: 14, overflow: "hidden",
+        backgroundImage: `url(${story.heroImage})`,
+        backgroundSize: "cover", backgroundPosition: "center",
+        opacity, transition: "opacity 0.36s ease",
+        pointerEvents: interactive ? "auto" : "none",
+        cursor: interactive ? "pointer" : "default",
+      }}
+      onClick={interactive ? () => navigate("stories", story.slug) : undefined}
+    >
+      <div style={{ position: "absolute", inset: 0,
         background: `linear-gradient(160deg, ${story.accentColor}dd 0%, ${story.accentColor}99 45%, rgba(0,0,0,0.55) 100%)`,
       }} />
-
-      {/* Content */}
-      <div style={{
-        position: "relative", zIndex: 1,
-        padding: "20px 22px",
-        height: "100%",
-        minHeight: 280,
-        display: "flex", flexDirection: "column", justifyContent: "space-between",
-      }}>
-        {/* Top: eyebrow text (no pill) + dots */}
+      <div style={{ position: "relative", zIndex: 1, padding: "20px 22px",
+        height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{
-            fontFamily: FONT_SANS,
-            fontSize: 14, fontWeight: 800,
+            fontFamily: FONT_SANS, fontSize: 14, fontWeight: 800,
             textTransform: "uppercase", letterSpacing: "1.6px",
-            color: "rgba(255,255,255,0.80)",
+            color: "#ffffff", background: "transparent", border: "none", padding: 0,
           }}>{story.tag}</span>
-          <div style={{ display: "flex", gap: 5 }}>
-            {stories.map((_, i) => (
-              <button
-                key={i}
-                onClick={(e) => { e.stopPropagation(); setFading(true); setTimeout(() => { setIdx(i); setFading(false); }, 320); }}
-                style={{
-                  width: i === idx ? 18 : 6, height: 6,
-                  borderRadius: 100, border: "none", padding: 0, cursor: "pointer",
-                  background: i === idx ? "rgba(255,255,255,0.90)" : "rgba(255,255,255,0.35)",
-                  transition: "all 0.3s ease",
-                }}
-              />
-            ))}
-          </div>
+          {interactive && (
+            <div style={{ display: "flex", gap: 5 }}>
+              {stories.map((_, i) => (
+                <button key={i}
+                  onClick={(e) => { e.stopPropagation(); setIdx(i); }}
+                  style={{
+                    width: i === idx ? 18 : 6, height: 6,
+                    borderRadius: 100, border: "none", padding: 0, cursor: "pointer",
+                    background: i === idx ? "rgba(255,255,255,0.90)" : "rgba(255,255,255,0.35)",
+                    transition: "all 0.3s ease",
+                  }}
+                />
+              ))}
+            </div>
+          )}
         </div>
-
-        {/* Bottom: title */}
         <div>
           <p style={{
-            fontFamily: FONT_SANS,
-            fontSize: 19, fontWeight: 600,
-            color: "#ffffff",
-            margin: "0 0 6px",
-            lineHeight: 1.35,
-            letterSpacing: "-0.2px",
-            textAlign: "center",
+            fontFamily: FONT_SANS, fontSize: 22, fontWeight: 900,
+            color: "#ffffff", margin: "0 0 8px", lineHeight: 1.2, letterSpacing: "-0.4px",
           }}>{story.title}</p>
           {story.subtitle && (
             <p style={{
-              fontFamily: FONT_SANS,
-              fontSize: 12, fontWeight: 400,
-              color: "rgba(255,255,255,0.72)",
-              margin: "0 0 12px",
-              lineHeight: 1.5,
+              fontFamily: FONT_SANS, fontSize: 14, fontWeight: 400,
+              color: "rgba(255,255,255,0.85)", margin: "0 0 12px", lineHeight: 1.55,
             }}>{story.subtitle}</p>
           )}
           <span style={{
-            fontFamily: FONT_SANS,
-            fontSize: 11, fontWeight: 700,
-            color: "rgba(255,255,255,0.80)",
-            display: "flex", alignItems: "center", gap: 4,
-          }}>Read story <ArrowRight size={10} /></span>
+            fontFamily: FONT_SANS, fontSize: 13, fontWeight: 700,
+            color: "#ffffff", display: "flex", alignItems: "center", gap: 4,
+          }}>Read story <ArrowRight size={12} /></span>
         </div>
       </div>
+    </div>
+  );
+
+  return (
+    <div style={{
+      position: "relative", borderRadius: 14, overflow: "hidden",
+      minHeight: 340, alignSelf: "center",
+      boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(0,0,0,0.08)",
+    }}>
+      {prevIdx !== idx && renderLayer(stories[prevIdx], 1, false)}
+      {renderLayer(stories[idx], showCurrent ? 1 : 0, true)}
     </div>
   );
 }
@@ -1063,7 +1047,7 @@ export function NumbersSection() {
         fontWeight: 800,
         letterSpacing: "1.6px",
         textTransform: "uppercase",
-        color: dark ? "#ffffff" : "#64748b",
+        color: dark ? "#ffffff" : ACCENT_NAVY,
         display: "block",
         marginBottom: 10,
       }}
@@ -1099,7 +1083,7 @@ export function NumbersSection() {
               borderRadius: 14,
               position: "relative",
               overflow: "hidden",
-              minHeight: 280,
+              minHeight: 340,
               background: "#F4838A",
               boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(0,0,0,0.08)",
               alignSelf: "center",
@@ -1114,7 +1098,7 @@ export function NumbersSection() {
                 flexDirection: "column",
                 justifyContent: "space-between",
                 height: "100%",
-                minHeight: 280,
+                minHeight: 340,
                 gap: 14,
               }}
             >
@@ -1194,14 +1178,14 @@ export function NumbersSection() {
             style={{
               borderRadius: 14,
               background: "white",
-              minHeight: 280,
+              minHeight: 340,
               overflow: "hidden",
               position: "relative",
               boxShadow: "6px 0 24px rgba(13,27,62,0.08), 0 4px 16px rgba(0,0,0,0.04)",
               border: "1px solid #f0f0f5",
               display: "flex",
               flexDirection: "column",
-              alignSelf: "start",
+              alignSelf: "center",
             }}
             onMouseEnter={() => setShimmer(true)}
             onMouseLeave={() => setShimmer(false)}
