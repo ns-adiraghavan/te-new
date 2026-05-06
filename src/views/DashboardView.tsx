@@ -1335,7 +1335,7 @@ export default function DashboardView() {
               {/* Stat tiles */}
               <div ref={statsRef} style={{ display: "grid", gridTemplateColumns: isTablet ? "repeat(2, 1fr)" : "repeat(3, 1fr)", gap: 16, marginBottom: 20 }}>
                 <StatTile value={VOLUNTEER.stats.hoursVolunteered} label="Hours Volunteered"  pastel={KPI_PROENGAGE} accentColor={KPI_PROENGAGE} delay={0}   started={statsStarted} />
-                <StatTile value={VOLUNTEER.stats.projectsApplied}                label="Projects Applied"   pastel={KPI_TVW}      accentColor={KPI_TVW}      delay={100} started={statsStarted} />
+                <StatTile value={VOLUNTEER.stats.projectsApplied}                label="Projects Applied"   pastel={B_TEAL}       accentColor={B_TEAL}       delay={100} started={statsStarted} />
                 <StatTile value={VOLUNTEER.stats.projectsCompleted}              label="Projects Completed" pastel={KPI_CVP}      accentColor={KPI_CVP}      delay={200} started={statsStarted} />
                 <StatTile value={VOLUNTEER.stats.projectsDropped}                label="DROPPED OUT"        pastel={KPI_PINK}     accentColor={KPI_PINK}     delay={300} started={statsStarted} />
                 <StatTile value={VOLUNTEER.stats.referrals}                      label="No of Referrals"    pastel={KPI_NUMBERS}  accentColor={KPI_NUMBERS}  delay={400} started={statsStarted} />
