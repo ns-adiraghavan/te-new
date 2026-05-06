@@ -93,7 +93,7 @@ const LoginView = () => {
             {/* Heading */}
             <div style={{ textAlign: "center", marginBottom: 32 }}>
               <h2 style={{ fontSize: 28, fontWeight: 900, color: "#fff", marginBottom: 8, letterSpacing: "-0.4px" }}>
-                {isAdminLogin ? "Admin Login" : "Welcome Back"}
+                {isAdminLogin ? "Admin Login" : "Welcome back!"}
               </h2>
               <div style={{ width: 48, height: 3, borderRadius: 2, background: B_TICKER, margin: "0 auto 14px" }} />
               <p style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", margin: 0 }}>
