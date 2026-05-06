@@ -213,11 +213,10 @@ function LoginPopout({
         position: "absolute",
         top: "calc(100% + 8px)",
         right: 0,
-        width: 368,
+        width: 320,
         background: "white",
         borderRadius: 16,
-        boxShadow: "0 24px 64px rgba(13,27,62,0.22), 0 4px 16px rgba(0,0,0,0.08)",
-        border: "1px solid rgba(13,27,62,0.08)",
+        boxShadow: "0 24px 64px rgba(13,27,62,0.22), 0 4px 16px rgba(0,0,0,0.10)",
         overflow: "hidden",
         zIndex: 200,
         fontFamily: FONT_DM,
@@ -227,10 +226,10 @@ function LoginPopout({
       <div style={{ background: TVW_BLUE, padding: "18px 20px 16px", display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
         <div>
           <p style={{ margin: 0, fontSize: 16, fontWeight: 800, color: "white", letterSpacing: "-0.2px", fontFamily: FONT_DM }}>
-            Log in to Tata Engage
+            Welcome back.
           </p>
-          <p style={{ margin: "3px 0 0", fontSize: 12, color: "rgba(255,255,255,0.60)", fontFamily: FONT_DM }}>
-            {step === "otp" ? `Code sent to ${email}` : "Enter your credentials to continue"}
+          <p style={{ margin: "3px 0 0", fontSize: 12, color: "rgba(255,255,255,0.70)", fontFamily: FONT_DM }}>
+            {step === "otp" ? `Code sent to ${email}` : "What's on the mind today?"}
           </p>
         </div>
         <button onClick={onClose} style={{ background: "rgba(255,255,255,0.15)", border: "none", cursor: "pointer", color: "white", padding: "4px 5px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 8, marginTop: 2 }}>
@@ -238,12 +237,14 @@ function LoginPopout({
         </button>
       </div>
 
+
+
       <div style={{ padding: "18px 20px 20px" }}>
         {/* ── STEP: EMAIL / PASSWORD ── */}
         {step === "email" && (
           <form onSubmit={handleEmailNext}>
             <div style={{ marginBottom: 12 }}>
-              <label style={{ fontSize: 11, fontWeight: 700, color: "#64748b", display: "block", marginBottom: 5, textTransform: "uppercase", letterSpacing: "1px", fontFamily: FONT_DM }}>Email</label>
+              <label style={{ fontSize: 11, fontWeight: 700, color: "#1e2d5a", display: "block", marginBottom: 5, textTransform: "uppercase", letterSpacing: "1px", fontFamily: FONT_DM }}>Email</label>
               <div style={{ position: "relative" }}>
                 <Mail size={14} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#94a3b8" }} />
                 <input
@@ -265,7 +266,7 @@ function LoginPopout({
               {emailError && <p style={{ margin: "4px 0 0", fontSize: 11, color: "#E8401C", fontFamily: FONT_DM }}>{emailError}</p>}
             </div>
             <div style={{ marginBottom: 16 }}>
-              <label style={{ fontSize: 11, fontWeight: 700, color: "#64748b", display: "block", marginBottom: 5, textTransform: "uppercase", letterSpacing: "1px", fontFamily: FONT_DM }}>Password</label>
+              <label style={{ fontSize: 11, fontWeight: 700, color: "#1e2d5a", display: "block", marginBottom: 5, textTransform: "uppercase", letterSpacing: "1px", fontFamily: FONT_DM }}>Password</label>
               <div style={{ position: "relative" }}>
                 <Lock size={14} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#94a3b8" }} />
                 <input
