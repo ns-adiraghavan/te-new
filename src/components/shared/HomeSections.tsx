@@ -978,16 +978,13 @@ function StoryRotator({ navigate }: { navigate: (view: any, slug?: string) => vo
         minHeight: 280,
         display: "flex", flexDirection: "column", justifyContent: "space-between",
       }}>
-        {/* Top: tag + dots */}
+        {/* Top: eyebrow text (no pill) + dots */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{
             fontFamily: FONT_SANS,
-            fontSize: 10, fontWeight: 800,
-            textTransform: "uppercase", letterSpacing: "1.4px",
+            fontSize: 14, fontWeight: 800,
+            textTransform: "uppercase", letterSpacing: "1.6px",
             color: "rgba(255,255,255,0.80)",
-            background: "rgba(255,255,255,0.14)",
-            border: "1px solid rgba(255,255,255,0.22)",
-            borderRadius: 100, padding: "3px 9px",
           }}>{story.tag}</span>
           <div style={{ display: "flex", gap: 5 }}>
             {stories.map((_, i) => (
@@ -1009,11 +1006,12 @@ function StoryRotator({ navigate }: { navigate: (view: any, slug?: string) => vo
         <div>
           <p style={{
             fontFamily: FONT_SANS,
-            fontSize: 18, fontWeight: 900,
+            fontSize: 19, fontWeight: 600,
             color: "#ffffff",
             margin: "0 0 6px",
-            lineHeight: 1.25,
-            letterSpacing: "-0.3px",
+            lineHeight: 1.35,
+            letterSpacing: "-0.2px",
+            textAlign: "center",
           }}>{story.title}</p>
           {story.subtitle && (
             <p style={{
