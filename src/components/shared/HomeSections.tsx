@@ -1178,14 +1178,14 @@ export function NumbersSection() {
             style={{
               borderRadius: 14,
               background: "white",
-              minHeight: 280,
+              minHeight: 340,
               overflow: "hidden",
               position: "relative",
               boxShadow: "6px 0 24px rgba(13,27,62,0.08), 0 4px 16px rgba(0,0,0,0.04)",
               border: "1px solid #f0f0f5",
               display: "flex",
               flexDirection: "column",
-              alignSelf: "start",
+              alignSelf: "center",
             }}
             onMouseEnter={() => setShimmer(true)}
             onMouseLeave={() => setShimmer(false)}
