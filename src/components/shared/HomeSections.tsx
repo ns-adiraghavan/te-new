@@ -1098,7 +1098,7 @@ export function NumbersSection() {
                 flexDirection: "column",
                 justifyContent: "space-between",
                 height: "100%",
-                minHeight: 280,
+                minHeight: 340,
                 gap: 14,
               }}
             >
