@@ -931,61 +931,82 @@ export function QuoteBanner() {
 function StoryRotator({ navigate }: { navigate: (view: any, slug?: string) => void }) {
   const stories = IMPACT_STORIES.slice(0, 3);
   const [idx, setIdx] = useState(0);
-  const [prevIdx, setPrevIdx] = useState(0);
-  const [showCurrent, setShowCurrent] = useState(true);
+  const [visible, setVisible] = useState(true);
+
+  const goTo = (nextIdx: number) => {
+    if (nextIdx === idx) return;
+    setVisible(false);
+    setTimeout(() => {
+      setIdx(nextIdx);
+      setVisible(true);
+    }, 280);
+  };
 
   useEffect(() => {
-    const t = setInterval(() => setIdx((p) => (p + 1) % stories.length), 4000);
+    const t = setInterval(() => {
+      setIdx((prev) => {
+        const next = (prev + 1) % stories.length;
+        setVisible(false);
+        setTimeout(() => setVisible(true), 280);
+        return next;
+      });
+    }, 4000);
     return () => clearInterval(t);
   }, []);
 
-  useEffect(() => {
-    setShowCurrent(false);
-    const r = requestAnimationFrame(() => setShowCurrent(true));
-    const t = setTimeout(() => setPrevIdx(idx), 380);
-    return () => { cancelAnimationFrame(r); clearTimeout(t); };
-  }, [idx]);
+  const story = stories[idx];
 
-  const renderLayer = (story: typeof stories[number], opacity: number, interactive: boolean) => (
-    <div
-      style={{
-        position: "absolute", inset: 0,
-        borderRadius: 14, overflow: "hidden",
-        backgroundImage: `url(${story.heroImage})`,
-        backgroundSize: "cover", backgroundPosition: "center",
-        opacity, transition: "opacity 0.36s ease",
-        pointerEvents: interactive ? "auto" : "none",
-        cursor: interactive ? "pointer" : "default",
-      }}
-      onClick={interactive ? () => navigate("stories", story.slug) : undefined}
+  return (
+    <div style={{
+      borderRadius: 14, overflow: "hidden",
+      minHeight: 340, alignSelf: "center",
+      cursor: "pointer",
+      boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(0,0,0,0.08)",
+      backgroundImage: `url(${story.heroImage})`,
+      backgroundSize: "cover", backgroundPosition: "center",
+      position: "relative",
+    }}
+      onClick={() => navigate("stories", story.slug)}
     >
-      <div style={{ position: "absolute", inset: 0,
+      {/* Accent overlay */}
+      <div style={{
+        position: "absolute", inset: 0,
         background: `linear-gradient(160deg, ${story.accentColor}dd 0%, ${story.accentColor}99 45%, rgba(0,0,0,0.55) 100%)`,
+        transition: "background 0.28s ease",
       }} />
-      <div style={{ position: "relative", zIndex: 1, padding: "20px 22px",
-        height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+
+      {/* Content — single layer, animates in/out */}
+      <div style={{
+        position: "relative", zIndex: 1,
+        padding: "20px 22px", height: "100%", minHeight: 340,
+        display: "flex", flexDirection: "column", justifyContent: "space-between",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(10px)",
+        transition: "opacity 0.28s ease, transform 0.28s ease",
+      }}>
+        {/* Top: eyebrow + dots */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{
             fontFamily: FONT_SANS, fontSize: 14, fontWeight: 800,
             textTransform: "uppercase", letterSpacing: "1.6px",
-            color: "#ffffff", background: "transparent", border: "none", padding: 0,
+            color: "rgba(255,255,255,0.80)",
           }}>{story.tag}</span>
-          {interactive && (
-            <div style={{ display: "flex", gap: 5 }}>
-              {stories.map((_, i) => (
-                <button key={i}
-                  onClick={(e) => { e.stopPropagation(); setIdx(i); }}
-                  style={{
-                    width: i === idx ? 18 : 6, height: 6,
-                    borderRadius: 100, border: "none", padding: 0, cursor: "pointer",
-                    background: i === idx ? "rgba(255,255,255,0.90)" : "rgba(255,255,255,0.35)",
-                    transition: "all 0.3s ease",
-                  }}
-                />
-              ))}
-            </div>
-          )}
+          <div style={{ display: "flex", gap: 5 }}>
+            {stories.map((_, i) => (
+              <button key={i}
+                onClick={(e) => { e.stopPropagation(); goTo(i); }}
+                style={{
+                  width: i === idx ? 18 : 6, height: 6,
+                  borderRadius: 100, border: "none", padding: 0, cursor: "pointer",
+                  background: i === idx ? "rgba(255,255,255,0.90)" : "rgba(255,255,255,0.35)",
+                  transition: "all 0.3s ease",
+                }}
+              />
+            ))}
+          </div>
         </div>
+
+        {/* Bottom: title + subtitle + CTA */}
         <div>
           <p style={{
             fontFamily: FONT_SANS, fontSize: 22, fontWeight: 900,
@@ -1005,18 +1026,8 @@ function StoryRotator({ navigate }: { navigate: (view: any, slug?: string) => vo
       </div>
     </div>
   );
-
-  return (
-    <div style={{
-      position: "relative", borderRadius: 14, overflow: "hidden",
-      minHeight: 340, alignSelf: "center",
-      boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(0,0,0,0.08)",
-    }}>
-      {prevIdx !== idx && renderLayer(stories[prevIdx], 1, false)}
-      {renderLayer(stories[idx], showCurrent ? 1 : 0, true)}
-    </div>
-  );
 }
+
 
 export function NumbersSection() {
   const navigate = useAppNavigate();
@@ -1073,7 +1084,9 @@ export function NumbersSection() {
           <SectionH2>
             In the <em style={{ fontStyle: "italic", color: B_INDIGO }}>Spotlight</em>
           </SectionH2>
-          <div style={{ width: 48, height: 1.4, borderRadius: 2, background: B_TEAL, marginTop: 10 }} />
+          <div style={{ width: 48, height: 1.4, borderRadius: 2, background: B_TEAL, marginTop: 10, overflow: "hidden" }}>
+            <div className="te-draw" style={{ height: "100%", background: B_TEAL, borderRadius: 2 }} />
+          </div>
         </div>
 
         <div className="te-num-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, alignItems: "center" }}>
