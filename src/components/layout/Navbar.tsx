@@ -922,8 +922,16 @@ const Navbar = ({
                 />
               </>
             ) : (
-              /* ── Public right: Log In + Register + Tata logo ── */
+              /* ── Public right: Register + Log In + Tata logo ── */
               <div className="flex items-center gap-4">
+                <button
+                  type="button"
+                  onClick={() => triggerBounce("register", () => onNavigate("register-role"))}
+                  className={`py-2 px-5 text-sm font-semibold rounded-lg cursor-pointer transition-all hover:brightness-95 whitespace-nowrap ${bouncingItem === "register" ? "[animation:teNavBounce_0.4s_ease]" : ""}`}
+                  style={{ background: "#FCB514", color: "#0D1B3E" }}
+                >
+                  Register
+                </button>
                 <div style={{ position: "relative" }}>
                   <span
                     onClick={() => setLoginPopoutOpen((v) => !v)}
@@ -938,14 +946,6 @@ const Navbar = ({
                     />
                   )}
                 </div>
-                <button
-                  type="button"
-                  onClick={() => triggerBounce("register", () => onNavigate("register-role"))}
-                  className={`py-2 px-5 text-sm font-semibold rounded-lg cursor-pointer transition-all hover:brightness-95 whitespace-nowrap ${bouncingItem === "register" ? "[animation:teNavBounce_0.4s_ease]" : ""}`}
-                  style={{ background: "#FCB514", color: "#0D1B3E" }}
-                >
-                  Register
-                </button>
                 {/* Tata logo — always white on dark nav */}
                 <img
                   src={tataLogo}
