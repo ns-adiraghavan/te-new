@@ -1083,7 +1083,7 @@ export function NumbersSection() {
               borderRadius: 14,
               position: "relative",
               overflow: "hidden",
-              minHeight: 280,
+              minHeight: 340,
               background: "#F4838A",
               boxShadow: "6px 0 24px rgba(13,27,62,0.10), 0 4px 16px rgba(0,0,0,0.08)",
               alignSelf: "center",
