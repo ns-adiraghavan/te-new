@@ -337,7 +337,7 @@ const TVWHubView = () => {
       {/* ══ HERO ══ */}
       <div id="tvw-hero" style={{ position: "relative", minHeight: "92vh", display: "flex", alignItems: "center", overflow: "hidden", paddingTop: 64 }}>
         <img src={tvwHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(105deg,rgba(8,12,22,0.88) 0%,rgba(8,12,22,0.70) 40%,rgba(8,12,22,0.28) 75%,rgba(8,12,22,0.08) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg,${TVW_BLUE}e8 0%,${TVW_BLUE}cc 38%,${TVW_BLUE}aa 58%,${TVW_BLUE}77 78%,${TVW_BLUE}44 100%)` }} />
         <div style={DIAG_TEXTURE} />
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
           <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 12, fontFamily: FONT }}>
