@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
-import peHeroImg from "@/assets/banner_photos/Inner Page ProEngage banner.jpg";
+import peHeroImg   from "@/assets/banner_photos/Inner Page ProEngage banner.jpg";
+import imgPreview1 from "@/assets/banner_photos/Inner Page PE below banner.jpg";
+import imgPreview2 from "@/assets/tata-communications-1.jpg";
+import imgPreview3 from "@/assets/tatabball.jpg";
+import imgPreview4 from "@/assets/tata_power.JPG";
+import imgPreview5 from "@/assets/trent.jpg";
+import imgPreview6 from "@/assets/IHCL.jpg";
 
 const FONT        = "'DM Sans',ui-sans-serif,system-ui,sans-serif";
 const ACCENT_NAVY = "#0D1B3E";
@@ -110,13 +116,13 @@ function DownloadDropdown({ options, accent, onColour = false }: { options: File
     <div ref={ref} style={{ display: "inline-flex", position: "relative" }}>
       {/* Main button — always says Download */}
       <a href={cur.href} target="_blank" rel="noopener noreferrer"
-        style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 12px", borderRadius: options.length > 1 ? "7px 0 0 7px" : "7px", background: onColour ? "#fff" : accent, color: onColour ? accent : "#fff", fontFamily: FONT, fontSize: 11, fontWeight: 800, textDecoration: "none", letterSpacing: "0.2px", whiteSpace: "nowrap" }}>
+        style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 12px", borderRadius: options.length > 1 ? "7px 0 0 7px" : "7px", background: accent, color: "#fff", border: onColour ? "1.5px solid rgba(255,255,255,0.5)" : "none", fontFamily: FONT, fontSize: 11, fontWeight: 800, textDecoration: "none", letterSpacing: "0.2px", whiteSpace: "nowrap" }}>
 Download
       </a>
       {/* Chevron toggle */}
       {options.length > 1 && (
         <button onClick={() => setOpen(o => !o)}
-          style={{ display: "inline-flex", alignItems: "center", padding: "7px 8px", borderRadius: "0 7px 7px 0", background: onColour ? "rgba(255,255,255,0.85)" : `${accent}dd`, border: "none", borderLeft: onColour ? `1px solid ${accent}33` : "1px solid rgba(255,255,255,0.25)", color: onColour ? accent : "#fff", cursor: "pointer", fontSize: 10 }}>
+          style={{ display: "inline-flex", alignItems: "center", padding: "7px 8px", borderRadius: "0 7px 7px 0", background: `${accent}dd`, border: onColour ? "1.5px solid rgba(255,255,255,0.5)" : "none", borderLeft: onColour ? "1px solid rgba(255,255,255,0.3)" : `1px solid ${accent}44`, color: "#fff", cursor: "pointer", fontSize: 10 }}>
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"><path d={open ? "M2 7l3-4 3 4" : "M2 3l3 4 3-4"}/></svg>
         </button>
       )}
@@ -356,7 +362,7 @@ function EditionSection({ ed, assets }: { ed: typeof EDITIONS[0]; assets: Asset[
 // ── Asset data ────────────────────────────────────────────────────────────────
 const PE21_ASSETS: Asset[] = [
   {
-    featured: true, typeTag: "Poster", sectionTag: "ProEngage 21 · Campaign Poster", dims: "A4 · Portrait",
+    featured: true, typeTag: "Poster", sectionTag: "ProEngage 21 · Campaign Poster", dims: "A4 · Portrait", previewSrc: imgPreview5,
     desc: "Primary PE22 reminder mailer. Use on office displays, intranet, internal screens and team communications to drive volunteer registrations.",
     files: [{ label: "Download HTML", href: PE_DRIVE }, { label: "Download PDF", href: PE_DRIVE }, { label: "Download JPG", href: PE_DRIVE }],
   },
@@ -372,7 +378,7 @@ const PE21_ASSETS: Asset[] = [
     ],
   },
   {
-    typeTag: "Launch Kit", dims: "Multi-format",
+    typeTag: "Launch Kit", dims: "Multi-format", previewSrc: imgPreview6,
     files: [{ label: "Download HTML", href: PE_DRIVE }],
     subItems: [
       { label: "Video", files: [{ label: "Download MP4", href: PE_DRIVE }] },
@@ -383,7 +389,7 @@ const PE21_ASSETS: Asset[] = [
     ],
   },
   {
-    typeTag: "Social", dims: "1080 × 1080",
+    typeTag: "Social", dims: "1080 × 1080", previewSrc: imgPreview4,
     files: [{ label: "Download PNG", href: PE_DRIVE }, { label: "Download JPG", href: PE_DRIVE }],
     subItems: [
       { label: "FB Cover", files: [{ label: "Download JPG", href: PE_DRIVE }] },
@@ -407,7 +413,7 @@ const PE21_ASSETS: Asset[] = [
 
 const PE22_ASSETS: Asset[] = [
   {
-    featured: true, typeTag: "Poster", sectionTag: "ProEngage 22 · Campaign Poster", dims: "A4 · Portrait",
+    featured: true, typeTag: "Poster", sectionTag: "ProEngage 22 · Campaign Poster", dims: "A4 · Portrait", previewSrc: imgPreview3,
     desc: "Primary PE23 campaign poster. Use on office notice boards, internal screens, intranet pages and team communications to drive volunteer registrations.",
     files: [{ label: "Download PNG", href: PE_DRIVE }, { label: "Download PDF", href: PE_DRIVE }],
   },
@@ -424,7 +430,7 @@ const PE22_ASSETS: Asset[] = [
     ],
   },
   {
-    typeTag: "Launch Kit", dims: "Multi-format",
+    typeTag: "Launch Kit", dims: "Multi-format", previewSrc: imgPreview6,
     files: [{ label: "Download HTML", href: PE_DRIVE }],
     subItems: [
       { label: "Video", files: [{ label: "Download MP4", href: PE_DRIVE }] },
@@ -435,7 +441,7 @@ const PE22_ASSETS: Asset[] = [
     ],
   },
   {
-    typeTag: "Social", dims: "1080 × 1080",
+    typeTag: "Social", dims: "1080 × 1080", previewSrc: imgPreview4,
     files: [{ label: "Download PNG", href: PE_DRIVE }, { label: "Download JPG", href: PE_DRIVE }],
     subItems: [
       { label: "FB Cover", files: [{ label: "Download JPG", href: PE_DRIVE }] },
@@ -470,12 +476,12 @@ const PE22_ASSETS: Asset[] = [
 
 const PE23_ASSETS: Asset[] = [
   {
-    featured: true, typeTag: "Poster", sectionTag: "ProEngage 23 · Primary Recruitment Poster", dims: "A4 · Portrait", previewSrc: PE_DRIVE,
+    featured: true, typeTag: "Poster", sectionTag: "ProEngage 23 · Primary Recruitment Poster", dims: "A4 · Portrait", previewSrc: imgPreview1,
     desc: "Primary recruitment poster for ProEngage 23. Use on office notice boards, internal screens, intranet pages and team communications to drive volunteer registrations.",
     files: [{ label: "Download PNG", href: PE_DRIVE }, { label: "Download PDF", href: PE_DRIVE }],
   },
   {
-    typeTag: "Emailer", dims: "600px wide", previewSrc: PE_DRIVE,
+    typeTag: "Emailer", dims: "600px wide", previewSrc: imgPreview2,
     files: [{ label: "Download HTML", href: PE_DRIVE }, { label: "Download PNG", href: PE_DRIVE }],
     subItems: [
       { label: "Promotional Mailer B", files: [{ label: "Download PNG", href: PE_DRIVE }, { label: "Download PDF", href: PE_DRIVE }] },

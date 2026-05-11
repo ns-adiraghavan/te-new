@@ -1,14 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
-import tsmHeroImg from "@/assets/homepagebanner/4. Mithapur_Eco-Tourism_LEEPEN_Harivan Farm_2022-23_Lipan Work (5).jpeg";
+import tsmHeroImg  from "@/assets/homepagebanner/4. Mithapur_Eco-Tourism_LEEPEN_Harivan Farm_2022-23_Lipan Work (5).jpeg";
+import imgPreview1 from "@/assets/tata-elxsi.jpg";
+import imgPreview2 from "@/assets/air-india.jpg";
+import imgPreview3 from "@/assets/trent_2.jpg";
+import imgPreview4 from "@/assets/Voltas.JPG";
+import imgPreview5 from "@/assets/infiniti-1.jpg";
 
-const FONT         = "'DM Sans',ui-sans-serif,system-ui,sans-serif";
-const ACCENT_NAVY  = "#0D1B3E";
-const B_YELLOW     = "#F79425";
-const COLOUR       = "#C3DB6F";   // TSM olive-lime
-const COLOUR_DARK  = "#7a9a18";
-const COLOUR_LIGHT = "#f2f8dc";
-const BORDER       = "#e8e8f0";
+const FONT        = "'DM Sans',ui-sans-serif,system-ui,sans-serif";
+const ACCENT_NAVY = "#0D1B3E";
+const B_YELLOW    = "#F79425";
+const COLOUR      = "#5a8a1a";   // TSM green — darkened from lime for white-text legibility
+const COLOUR_DARK = "#3d6010";
+const COLOUR_LIGHT= "#f2f8dc";
+const BORDER      = "#e8e8f0";
 
 const TSM_DRIVE = "https://drive.google.com/drive/folders/1yH2VG6bEHYN6I0f8-eAMdnI6pCmVqbBb";
 
@@ -20,149 +25,311 @@ const DIAG: React.CSSProperties = {
 };
 
 const SECTIONS = [
-  { id: "ckit-hero",   label: "Overview" },
-  { id: "ckit-tsm25",  label: "TSM 25"   },
+  { id: "ckit-hero",  label: "Overview" },
+  { id: "ckit-tsm25", label: "TSM 25"  },
+  { id: "ckit-tsm24", label: "TSM 24"  },
+  { id: "ckit-tsm23", label: "TSM 23"  },
 ];
 
 const EDITIONS = [
-  { id: "tsm23", label: "TSM 23", year: "2023", theme: "Demystifying Sustainability", volunteers: "12,000+", activities: "180+", active: false },
-  { id: "tsm24", label: "TSM 24", year: "2024", theme: "Decarbonize. Restore. Sustain.", volunteers: "16,000+", activities: "240+", active: false },
-  { id: "tsm25", label: "TSM 25", year: "2025", theme: "Resource Efficiency & Biodiversity", volunteers: "Active edition", activities: "Open", active: true },
+  { id: "tsm23", label: "TSM 23", year: "2023", active: false },
+  { id: "tsm24", label: "TSM 24", year: "2024", active: false },
+  { id: "tsm25", label: "TSM 25", year: "2025", active: true  },
 ];
 
-// ── Sub-components ────────────────────────────────────────────────────────────
-function DlBtn({ label, href, solid, accent }: { label: string; href: string; solid?: boolean; accent: string }) {
-  const [hov, setHov] = useState(false);
+function DrawerShell({ open, onClose, title, subtitle, accentTag, accentColor, children }: {
+  open: boolean; onClose: () => void; title: string; subtitle?: string; accentTag?: string; accentColor?: string; children: React.ReactNode;
+}) {
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", h);
+    return () => document.removeEventListener("keydown", h);
+  }, [onClose]);
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer"
-      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{
-        display: "inline-flex", alignItems: "center", gap: 4,
-        padding: "5px 10px", borderRadius: 6,
-        fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "0.2px",
-        textDecoration: "none",
-        background: solid ? (hov ? COLOUR_DARK : accent) : (hov ? COLOUR_LIGHT : "transparent"),
-        color: solid ? ACCENT_NAVY : COLOUR_DARK,
-        border: `1.5px solid ${solid ? accent : accent + "55"}`,
-        transition: "all 0.15s",
-      }}
-    >
-      {solid && (
-        <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke={ACCENT_NAVY} strokeWidth="1.7" strokeLinecap="round">
-          <path d="M6 2v7M3 7l3 3 3-3"/><path d="M2 10h8"/>
-        </svg>
-      )}
-      {label}
-    </a>
+    <>
+      <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(13,27,62,0.45)", zIndex: 200, opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none", transition: "opacity 0.22s", backdropFilter: "blur(2px)" }} />
+      <div style={{ position: "fixed", top: "50%", left: "50%", transform: open ? "translate(-50%, -50%) scale(1)" : "translate(-50%, -48%) scale(0.97)", transition: "transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s", opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none", width: 560, maxWidth: "calc(100vw - 40px)", maxHeight: "calc(100vh - 80px)", background: "#fff", borderRadius: 16, zIndex: 201, boxShadow: "0 24px 64px rgba(13,27,62,0.22)", display: "flex", flexDirection: "column", fontFamily: FONT, overflowY: "auto" }}>
+        <div style={{ background: accentColor || ACCENT_NAVY, padding: "24px 28px", borderRadius: "16px 16px 0 0", flexShrink: 0, position: "relative", overflow: "hidden" }}>
+          <button onClick={onClose} style={{ background: "rgba(255,255,255,0.18)", border: "none", borderRadius: 7, color: "rgba(255,255,255,0.95)", fontSize: 13, fontWeight: 500, padding: "5px 12px", cursor: "pointer", marginBottom: 16, position: "relative", zIndex: 1 }}>← Close</button>
+          {accentTag && <div style={{ display: "inline-block", background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 100, padding: "3px 10px", fontSize: 10.5, fontWeight: 700, color: "#fff", letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 10, position: "relative", zIndex: 1 }}>{accentTag}</div>}
+          <div style={{ fontSize: 17, fontWeight: 700, color: "#fff", lineHeight: 1.3, position: "relative", zIndex: 1 }}>{title}</div>
+          {subtitle && <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.7)", marginTop: 5, position: "relative", zIndex: 1 }}>{subtitle}</div>}
+        </div>
+        <div style={{ flex: 1, overflowY: "auto" }}>{children}</div>
+      </div>
+    </>
   );
 }
 
-function InfoTile({ accent, typeTag, thumbLabel, dims, minHeight = 140, inverted = false }: {
-  accent: string; typeTag: string; thumbLabel: string; dims: string; minHeight?: number; inverted?: boolean;
-}) {
-  // TSM: solid lime bg with white text, inverted = white bg with lime text
-  const bg      = inverted ? "#fff" : COLOUR;
-  const eyebrow = inverted ? COLOUR_DARK + "bb" : "rgba(255,255,255,0.72)";
-  const heading = inverted ? ACCENT_NAVY : "#fff";
-  const sub     = inverted ? "#94a3b8" : "rgba(255,255,255,0.65)";
-  const topBar  = inverted ? COLOUR + "55" : "rgba(255,255,255,0.35)";
+// ── Lightbox (image-only) ─────────────────────────────────────────────────────
+function Lightbox({ src, onClose }: { src: string; onClose: () => void }) {
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", h);
+    return () => document.removeEventListener("keydown", h);
+  }, [onClose]);
   return (
-    <div style={{
-      position: "relative", width: "100%", minHeight, background: bg,
-      borderRadius: 0, overflow: "hidden",
-      display: "flex", flexDirection: "column", justifyContent: "space-between",
-      padding: "18px 20px",
-      backgroundImage: inverted
-        ? `radial-gradient(circle, ${COLOUR}18 1.5px, transparent 1.5px)`
-        : "repeating-linear-gradient(45deg,rgba(255,255,255,0.04) 0px,rgba(255,255,255,0.04) 1px,transparent 1px,transparent 22px)",
-      backgroundSize: inverted ? "16px 16px" : "22px 22px",
-    }}>
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: topBar }} />
-      <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 800, letterSpacing: "1.6px", textTransform: "uppercase", color: eyebrow }}>{typeTag}</div>
-      <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 900, color: heading, letterSpacing: "-0.3px", lineHeight: 1.1 }}>{thumbLabel}</div>
-      <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 600, color: sub, letterSpacing: "0.4px" }}>{dims}</div>
+    <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(13,27,62,0.85)", zIndex: 300, display: "flex", alignItems: "center", justifyContent: "center", backdropFilter: "blur(4px)", cursor: "zoom-out" }}>
+      <img src={src} alt="" onClick={e => e.stopPropagation()} style={{ maxWidth: "90vw", maxHeight: "88vh", borderRadius: 12, boxShadow: "0 32px 80px rgba(0,0,0,0.5)", objectFit: "contain" }} />
+      <button onClick={onClose} style={{ position: "absolute", top: 24, right: 28, background: "rgba(255,255,255,0.15)", border: "none", borderRadius: 8, color: "#fff", fontSize: 13, fontWeight: 600, padding: "6px 14px", cursor: "pointer" }}>✕ Close</button>
     </div>
   );
 }
 
-function AssetCard({ typeTag, accent, title, meta, thumbLabel, dims, links, inverted = false }: {
-  typeTag: string; accent: string; title: string; meta: string; thumbLabel: string; dims: string;
-  links: { label: string; href: string; solid?: boolean }[]; inverted?: boolean;
+// ── DefinerBar ────────────────────────────────────────────────────────────────
+function DefinerBar({ colour }: { colour: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setOn(true); }, { threshold: 0.4 });
+    obs.observe(el); return () => obs.disconnect();
+  }, []);
+  return (
+    <div ref={ref} style={{ height: 3, background: "#e8e8f0", borderRadius: 2, overflow: "hidden", width: 48, marginTop: 10 }}>
+      <div style={{ height: "100%", background: colour, borderRadius: 2, transition: "width 0.65s cubic-bezier(0.22,1,0.36,1)", width: on ? "100%" : "0%" }} />
+    </div>
+  );
+}
+
+// ── Download button with dropdown ─────────────────────────────────────────────
+type FileOption = { label: string; href: string };
+
+function DownloadDropdown({ options, accent, onColour = false }: { options: FileOption[]; accent: string; onColour?: boolean }) {
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const h = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    document.addEventListener("mousedown", h);
+    return () => document.removeEventListener("mousedown", h);
+  }, []);
+
+  const cur = options[selected];
+  // Strip "Download " prefix for the dropdown label — show just the format
+  const formatLabel = (l: string) => l.replace(/^Download /i, "");
+
+  return (
+    <div ref={ref} style={{ display: "inline-flex", position: "relative" }}>
+      {/* Main button — always says Download */}
+      <a href={cur.href} target="_blank" rel="noopener noreferrer"
+        style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 12px", borderRadius: options.length > 1 ? "7px 0 0 7px" : "7px", background: accent, color: "#fff", border: onColour ? "1.5px solid rgba(255,255,255,0.5)" : "none", fontFamily: FONT, fontSize: 11, fontWeight: 800, textDecoration: "none", letterSpacing: "0.2px", whiteSpace: "nowrap" }}>
+Download
+      </a>
+      {/* Chevron toggle */}
+      {options.length > 1 && (
+        <button onClick={() => setOpen(o => !o)}
+          style={{ display: "inline-flex", alignItems: "center", padding: "7px 8px", borderRadius: "0 7px 7px 0", background: `${accent}dd`, border: onColour ? "1.5px solid rgba(255,255,255,0.5)" : "none", borderLeft: onColour ? "1px solid rgba(255,255,255,0.3)" : `1px solid ${accent}44`, color: "#fff", cursor: "pointer", fontSize: 10 }}>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"><path d={open ? "M2 7l3-4 3 4" : "M2 3l3 4 3-4"}/></svg>
+        </button>
+      )}
+      {/* Dropdown */}
+      {open && (
+        <div style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 8, boxShadow: "0 8px 24px rgba(13,27,62,0.12)", zIndex: 50, minWidth: 130, overflow: "hidden" }}>
+          {options.map((o, i) => (
+            <button key={i} onClick={() => { setSelected(i); setOpen(false); }}
+              style={{ display: "block", width: "100%", textAlign: "left", padding: "9px 14px", background: i === selected ? COLOUR_LIGHT : "#fff", border: "none", borderBottom: i < options.length - 1 ? `1px solid ${BORDER}` : "none", fontFamily: FONT, fontSize: 12, fontWeight: 700, color: i === selected ? accent : ACCENT_NAVY, cursor: "pointer", letterSpacing: "0.2px" }}>
+              {formatLabel(o.label)}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Asymmetric clip shapes ─────────────────────────────────────────────────────
+const CLIP_A = "polygon(0 0, 100% 0, 100% 88%, 90% 100%, 0 100%)"; // bottom-right notch
+const CLIP_B = "polygon(0 0, 100% 0, 100% 100%, 10% 100%, 0 88%)"; // bottom-left notch
+
+// ── Asset types ───────────────────────────────────────────────────────────────
+type FileLink = { label: string; href: string };
+type SubItem  = { label: string; files: FileLink[] };
+type Asset = {
+  typeTag: string;
+  title?: string;
+  dims: string;
+  files: FileLink[];           // primary download options (the dropdown)
+  previewSrc?: string;         // image URL for lightbox
+  subItems?: SubItem[];        // secondary subitems (emailer, fb cover, etc.)
+  featured?: boolean;
+  sectionTag?: string;
+  desc?: string;
+};
+
+// ── AssetCard — full-colour alternating boxes ────────────────────────────────
+function AssetCard({ asset, accent, cardIndex, onPreview, onSeeMore }: {
+  asset: Asset; accent: string; cardIndex: number; onPreview: (src: string) => void; onSeeMore: (asset: Asset) => void;
 }) {
   const [hov, setHov] = useState(false);
+  const inverted      = cardIndex % 2 === 1;           // true = white card
+  const bg            = inverted ? "#fff" : accent;
+  const fg            = inverted ? ACCENT_NAVY : "#fff";
+  const fgMuted       = inverted ? "#64748b" : "rgba(255,255,255,0.65)";
+  const dividerCol    = inverted ? BORDER : "rgba(255,255,255,0.18)";
+  const clip          = inverted ? CLIP_B : CLIP_A;
+  const hasSubItems   = asset.subItems && asset.subItems.length > 0;
+  const visibleSubs   = hasSubItems ? asset.subItems!.slice(0, 2) : [];
+  const hasMore       = hasSubItems && asset.subItems!.length > 2;
+
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
-        background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14,
-        overflow: "hidden", display: "flex", flexDirection: "column",
-        boxShadow: hov ? "0 8px 24px rgba(13,27,62,0.10)" : "none",
+        background: bg, clipPath: clip, overflow: "visible",
+        display: "flex", flexDirection: "column",
+        boxShadow: hov ? "0 8px 28px rgba(13,27,62,0.14)" : "0 2px 8px rgba(13,27,62,0.06)",
         transform: hov ? "translateY(-3px)" : "translateY(0)",
         transition: "transform 0.18s, box-shadow 0.18s",
-      }}
-    >
-      <InfoTile accent={accent} typeTag={typeTag} thumbLabel={thumbLabel} dims={dims} minHeight={140} inverted={inverted} />
-      <div style={{ padding: "14px 16px 16px", flex: 1, display: "flex", flexDirection: "column" }}>
-        <div style={{ fontFamily: FONT, fontSize: 13, fontWeight: 800, color: ACCENT_NAVY, lineHeight: 1.35, marginBottom: 5 }}>{title}</div>
-        <div style={{ fontFamily: FONT, fontSize: 12, color: "#64748b", lineHeight: 1.55, flex: 1, marginBottom: 12 }}>{meta}</div>
-        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-          {links.map((l, i) => <DlBtn key={i} label={l.label} href={l.href} solid={l.solid} accent={accent} />)}
+        backgroundImage: inverted
+          ? `radial-gradient(circle, ${accent}12 1.5px, transparent 1.5px)`
+          : "repeating-linear-gradient(45deg,rgba(255,255,255,0.025) 0px,rgba(255,255,255,0.025) 1px,transparent 1px,transparent 22px)",
+        backgroundSize: "18px 18px",
+        position: "relative",
+      }}>
+      {/* Top accent bar */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: inverted ? accent : "rgba(255,255,255,0.3)", borderRadius: "14px 14px 0 0" }} />
+
+      <div style={{ padding: "20px 18px 24px", display: "flex", flexDirection: "column", gap: 12 }}>
+        {/* Type tag + Preview */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ fontFamily: FONT, fontSize: 16, fontWeight: 900, color: fg, letterSpacing: "-0.2px" }}>{asset.typeTag}</div>
+          <button onClick={() => onPreview(asset.previewSrc || TSM_DRIVE)}
+              style={{ background: inverted ? "transparent" : "rgba(255,255,255,0.15)", border: inverted ? `1px solid ${accent}55` : "1px solid rgba(255,255,255,0.3)", borderRadius: 5, padding: "3px 9px", fontFamily: FONT, fontSize: 10, fontWeight: 700, color: inverted ? accent : "#fff", cursor: "pointer", letterSpacing: "0.3px" }}>
+              Preview
+            </button>
         </div>
+
+        {/* Dims */}
+        <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 600, color: fgMuted }}>{asset.dims}</div>
+
+        {/* Download */}
+        <DownloadDropdown options={asset.files} accent={accent} onColour={!inverted} />
+
+        {/* Sub-items */}
+        {hasSubItems && (
+          <div style={{ borderTop: `1px solid ${dividerCol}`, paddingTop: 10, display: "flex", flexDirection: "column", gap: 8 }}>
+            {visibleSubs.map((sub, si) => (
+              <div key={si} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+                <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, color: fg, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{sub.label}</div>
+                <DownloadDropdown options={sub.files} accent={accent} onColour={!inverted} />
+              </div>
+            ))}
+            {hasMore && (
+              <button onClick={() => onSeeMore(asset)}
+                style={{ alignSelf: "flex-start", background: "none", border: "none", fontFamily: FONT, fontSize: 11, fontWeight: 700, color: inverted ? accent : "#fff", cursor: "pointer", padding: 0, textDecoration: "underline" }}>
+                See all ({asset.subItems!.length}) →
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-function FeaturedCard({ typeTag, accent, sectionTag, title, desc, thumbLabel, dims, links }: {
-  typeTag: string; accent: string; sectionTag: string; title: string; desc: string;
-  thumbLabel: string; dims: string; links: { label: string; href: string; solid?: boolean }[];
+// ── Featured wide card — full accent colour, asymmetric right edge ────────────
+function FeaturedCard({ asset, accent, onPreview, onSeeMore }: {
+  asset: Asset; accent: string; onPreview: (src: string) => void; onSeeMore: (asset: Asset) => void;
 }) {
   const [hov, setHov] = useState(false);
+  const hasSubItems = asset.subItems && asset.subItems.length > 0;
+  const visibleSubs = hasSubItems ? asset.subItems!.slice(0, 2) : [];
+  const hasMore     = hasSubItems && asset.subItems!.length > 2;
+
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
         gridColumn: "span 2",
-        display: "grid", gridTemplateColumns: "1fr 1fr",
-        background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14,
-        overflow: "hidden",
-        boxShadow: hov ? "0 8px 24px rgba(13,27,62,0.10)" : "none",
+        background: accent,
+        clipPath: "polygon(0 0, 100% 0, 100% 82%, 96% 100%, 0 100%)",
+        display: "flex", flexDirection: "column",
+        boxShadow: hov ? "0 8px 28px rgba(13,27,62,0.18)" : "0 2px 8px rgba(13,27,62,0.08)",
         transform: hov ? "translateY(-3px)" : "translateY(0)",
         transition: "transform 0.18s, box-shadow 0.18s",
-      }}
-    >
-      <InfoTile accent={accent} typeTag={typeTag} thumbLabel={thumbLabel} dims={dims} minHeight={180} />
-      <div style={{ padding: "22px 24px", borderLeft: `1px solid ${BORDER}`, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-        <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "1.2px", textTransform: "uppercase", color: COLOUR_DARK, marginBottom: 8 }}>{sectionTag}</div>
-        <div style={{ fontFamily: FONT, fontSize: 15, fontWeight: 900, color: ACCENT_NAVY, lineHeight: 1.3, marginBottom: 8 }}>{title}</div>
-        <p style={{ fontFamily: FONT, fontSize: 12, color: "#475569", lineHeight: 1.65, marginBottom: 16 }}>{desc}</p>
-        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-          {links.map((l, i) => <DlBtn key={i} label={l.label} href={l.href} solid={l.solid} accent={accent} />)}
+        backgroundImage: "repeating-linear-gradient(45deg,rgba(255,255,255,0.025) 0px,rgba(255,255,255,0.025) 1px,transparent 1px,transparent 22px)",
+        backgroundSize: "22px 22px",
+        position: "relative",
+      }}>
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "rgba(255,255,255,0.3)" }} />
+
+      <div style={{ padding: "24px 28px 32px", display: "flex", flexDirection: "column", gap: 12 }}>
+        {/* Top row */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ fontFamily: FONT, fontSize: 16, fontWeight: 900, color: "#fff" }}>{asset.sectionTag || asset.typeTag}</div>
+          <button onClick={() => onPreview(asset.previewSrc || TSM_DRIVE)}
+              style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 5, padding: "3px 9px", fontFamily: FONT, fontSize: 10, fontWeight: 700, color: "#fff", cursor: "pointer", letterSpacing: "0.3px" }}>
+              Preview
+            </button>
         </div>
+        {asset.desc && <p style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, margin: 0, maxWidth: 560 }}>{asset.desc}</p>}
+        <DownloadDropdown options={asset.files} accent={accent} onColour={true} />
+
+        {hasSubItems && (
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.18)", paddingTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+            {visibleSubs.map((sub, si) => (
+              <div key={si} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+                <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, color: "#fff" }}>{sub.label}</div>
+                <DownloadDropdown options={sub.files} accent={accent} onColour={true} />
+              </div>
+            ))}
+            {hasMore && (
+              <button onClick={() => onSeeMore(asset)}
+                style={{ alignSelf: "flex-start", background: "none", border: "none", fontFamily: FONT, fontSize: 11, fontWeight: 700, color: "#fff", cursor: "pointer", padding: 0, textDecoration: "underline" }}>
+                See all ({asset.subItems!.length}) →
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-function LeafIcon() {
+// ── See More Drawer ───────────────────────────────────────────────────────────
+function SeeMoreDrawer({ asset, accent, open, onClose }: { asset: Asset | null; accent: string; open: boolean; onClose: () => void }) {
+  if (!asset) return null;
   return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke={ACCENT_NAVY} strokeWidth="1.5" strokeLinecap="round">
-      <path d="M2 12c2-4 4-8 10-10C12 8 8 10 2 12z"/>
-      <path d="M2 12l4-4"/>
-    </svg>
+    <DrawerShell open={open} onClose={onClose} title={asset.typeTag} subtitle={asset.dims} accentTag="All Files" accentColor={accent}>
+      <div style={{ padding: "20px 28px", display: "flex", flexDirection: "column", gap: 0 }}>
+        {/* Primary */}
+        <div style={{ paddingBottom: 16, borderBottom: `1px solid ${BORDER}` }}>
+          <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "1.3px", textTransform: "uppercase", color: "#94a3b8", marginBottom: 10 }}>Primary</div>
+          <DownloadDropdown options={asset.files} accent={accent} onColour={true} />
+        </div>
+        {/* Sub items */}
+        {asset.subItems?.map((sub, i) => (
+          <div key={i} style={{ paddingTop: 16, paddingBottom: 16, borderBottom: i < (asset.subItems!.length - 1) ? `1px solid ${BORDER}` : "none", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+            <div style={{ fontFamily: FONT, fontSize: 13, fontWeight: 700, color: ACCENT_NAVY }}>{sub.label}</div>
+            <DownloadDropdown options={sub.files} accent={accent} onColour={false} />
+          </div>
+        ))}
+      </div>
+    </DrawerShell>
   );
 }
 
-function EditionSection({ ed, assets }: {
-  ed: typeof EDITIONS[0];
-  assets: { typeTag: string; thumbLabel: string; dims: string; title: string; meta: string; links: { label: string; href: string; solid?: boolean }[]; featured?: boolean; sectionTag?: string; desc?: string; }[];
-}) {
+
+
+function EditionSection({ ed, assets }: { ed: typeof EDITIONS[0]; assets: Asset[] }) {
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const [drawerAsset, setDrawerAsset] = useState<Asset | null>(null);
+
+  const HexIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="white" strokeWidth="1.4" strokeLinecap="round">
+      <polygon points="7,1 13,4 13,10 7,13 1,10 1,4"/>
+    </svg>
+  );
+
   const featured = assets.find(a => a.featured);
   const regular  = assets.filter(a => !a.featured);
+
   return (
     <div id={`ckit-${ed.id}`}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "48px 56px 0" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: COLOUR, borderRadius: 10, padding: "7px 16px 7px 12px", fontFamily: FONT, fontSize: 12, fontWeight: 800, color: ACCENT_NAVY, whiteSpace: "nowrap" }}>
-            <LeafIcon />{ed.label}
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: COLOUR, borderRadius: 10, padding: "7px 16px 7px 12px", fontFamily: FONT, fontSize: 12, fontWeight: 800, color: "#fff", whiteSpace: "nowrap" }}>
+            <HexIcon />{ed.label}
           </div>
           {ed.active && (
             <span style={{ fontFamily: FONT, fontSize: 9, fontWeight: 800, letterSpacing: "1.2px", textTransform: "uppercase", background: "#dcfce7", color: "#166534", padding: "4px 10px", borderRadius: 100 }}>
@@ -177,128 +344,160 @@ function EditionSection({ ed, assets }: {
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "20px 56px 0" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
           {featured && (
-            <FeaturedCard typeTag={featured.typeTag} accent={COLOUR}
-              sectionTag={`${ed.label} · Campaign Poster`}
-              title={featured.title} desc={featured.desc!}
-              thumbLabel={featured.thumbLabel} dims={featured.dims}
-              links={featured.links}
-            />
+            <FeaturedCard asset={featured} accent={COLOUR} onPreview={setLightboxSrc} onSeeMore={a => setDrawerAsset(a)} />
           )}
-          {regular.map((c, i) => (
-            <AssetCard key={i} typeTag={c.typeTag} accent={COLOUR}
-              title={c.title} meta={c.meta}
-              thumbLabel={c.thumbLabel} dims={c.dims}
-              links={c.links} inverted={i % 2 === 1}
-            />
+          {regular.map((asset, i) => (
+            <AssetCard key={i} asset={asset} accent={COLOUR} cardIndex={i} onPreview={setLightboxSrc} onSeeMore={a => setDrawerAsset(a)} />
           ))}
         </div>
       </div>
+
+      {lightboxSrc && <Lightbox src={lightboxSrc} onClose={() => setLightboxSrc(null)} />}
+      <SeeMoreDrawer asset={drawerAsset} accent={COLOUR} open={!!drawerAsset} onClose={() => setDrawerAsset(null)} />
     </div>
   );
 }
 
 // ── Asset data ────────────────────────────────────────────────────────────────
-const TSM23_ASSETS = [
-  { featured: true, typeTag: "Poster", thumbLabel: "TSM23 Main Poster", dims: "A4 · Portrait",
-    title: "Tata Sustainability Month 23 — Main Poster",
-    desc: "Primary TSM23 campaign poster. Use for office displays, intranet, and internal communications to drive participation.",
-    links: [{ label: "Download PNG", href: TSM_DRIVE, solid: true }, { label: "Download PDF", href: TSM_DRIVE }] },
-  { typeTag: "Poster",  thumbLabel: "Portrait B",       dims: "A4 · Portrait",  title: "TSM23 Poster — Portrait B",       meta: "Secondary portrait variant. A4 print and digital-screen ready.",              links: [{ label: "PNG", href: TSM_DRIVE, solid: true }, { label: "PDF", href: TSM_DRIVE }] },
-  { typeTag: "Social",  thumbLabel: "Social Square",     dims: "1080 × 1080",   title: "TSM23 Social Media Square",        meta: "1080×1080 for LinkedIn, Instagram and Yammer posts.",                        links: [{ label: "PNG", href: TSM_DRIVE, solid: true }] },
-  { typeTag: "Banner",  thumbLabel: "Landscape Banner",  dims: "1200 × 628",    title: "TSM23 Landscape Banner",           meta: "Email headers, intranet banners, digital displays.",                         links: [{ label: "PNG", href: TSM_DRIVE, solid: true }, { label: "PDF", href: TSM_DRIVE }] },
-  { typeTag: "Story",   thumbLabel: "Story Format",      dims: "1080 × 1920",   title: "TSM23 Instagram / WhatsApp Story", meta: "1080×1920 vertical for Instagram Stories and WhatsApp status.",              links: [{ label: "PNG", href: TSM_DRIVE, solid: true }] },
-  { typeTag: "Guide",   thumbLabel: "DIY Kit",           dims: "PDF · A4",      title: "TSM23 DIY Activity Kit",           meta: "Ideas and guides for running independent sustainability activities.",         links: [{ label: "PDF", href: TSM_DRIVE, solid: true }] },
+const TSM23_ASSETS: Asset[] = [
+  {
+    featured: true, typeTag: "Poster", sectionTag: "TSM 23 · Campaign Poster", dims: "A4 · Portrait", previewSrc: imgPreview1,
+    desc: "Primary TSM 23 campaign poster. Use for office displays, intranet, and internal communications to drive participation.",
+    files: [{ label: "Download PNG", href: TSM_DRIVE }, { label: "Download PDF", href: TSM_DRIVE }],
+  },
+  {
+    typeTag: "Social", dims: "1080 × 1080", previewSrc: imgPreview2,
+    files: [{ label: "Download PNG", href: TSM_DRIVE }, { label: "Download JPG", href: TSM_DRIVE }],
+    subItems: [
+      { label: "Square A", files: [{ label: "Download PNG", href: TSM_DRIVE }] },
+      { label: "Square B", files: [{ label: "Download PNG", href: TSM_DRIVE }] },
+    ],
+  },
+  {
+    typeTag: "Banner", dims: "1200 × 628",
+    files: [{ label: "Download PNG", href: TSM_DRIVE }, { label: "Download PDF", href: TSM_DRIVE }],
+  },
+  {
+    typeTag: "Story", dims: "1080 × 1920",
+    files: [{ label: "Download PNG", href: TSM_DRIVE }],
+  },
+  {
+    typeTag: "Guide", dims: "PDF · A4",
+    files: [{ label: "Download PDF", href: TSM_DRIVE }],
+  },
 ];
 
-const TSM24_ASSETS = [
-  { featured: true, typeTag: "Poster", thumbLabel: "TSM24 Main Poster", dims: "A4 · Portrait",
-    title: "Tata Sustainability Month 24 — Main Poster",
-    desc: "Primary TSM24 campaign poster for the Decarbonize. Restore. Sustain. theme. For office displays, intranet, and internal communications.",
-    links: [{ label: "Download PNG", href: TSM_DRIVE, solid: true }, { label: "Download PDF", href: TSM_DRIVE }] },
-  { typeTag: "Poster",  thumbLabel: "Portrait B",       dims: "A4 · Portrait",  title: "TSM24 Poster — Portrait B",        meta: "Secondary portrait variant. A4 print and digital-screen ready.",              links: [{ label: "PNG", href: TSM_DRIVE, solid: true }, { label: "PDF", href: TSM_DRIVE }] },
-  { typeTag: "Social",  thumbLabel: "Social Square A",   dims: "1080 × 1080",   title: "TSM24 Social Media Square A",       meta: "1080×1080 for LinkedIn and Instagram posts.",                                links: [{ label: "PNG", href: TSM_DRIVE, solid: true }] },
-  { typeTag: "Social",  thumbLabel: "Social Square B",   dims: "1080 × 1080",   title: "TSM24 Social Media Square B",       meta: "Alternate square layout. Different visual treatment to Option A.",           links: [{ label: "PNG", href: TSM_DRIVE, solid: true }] },
-  { typeTag: "Banner",  thumbLabel: "Landscape Banner",  dims: "1200 × 628",    title: "TSM24 Landscape Banner",            meta: "Email headers, intranet banners, digital displays.",                         links: [{ label: "PNG", href: TSM_DRIVE, solid: true }, { label: "PDF", href: TSM_DRIVE }] },
-  { typeTag: "Story",   thumbLabel: "Story Format",      dims: "1080 × 1920",   title: "TSM24 Instagram / WhatsApp Story",  meta: "1080×1920 vertical for Instagram Stories and WhatsApp status.",              links: [{ label: "PNG", href: TSM_DRIVE, solid: true }] },
+const TSM24_ASSETS: Asset[] = [
+  {
+    featured: true, typeTag: "Poster", sectionTag: "TSM 24 · Campaign Poster", dims: "A4 · Portrait", previewSrc: imgPreview3,
+    desc: "Primary TSM 24 campaign poster for Decarbonize. Restore. Sustain. Use for office displays, intranet, and internal communications.",
+    files: [{ label: "Download PNG", href: TSM_DRIVE }, { label: "Download PDF", href: TSM_DRIVE }],
+  },
+  {
+    typeTag: "Social", dims: "1080 × 1080", previewSrc: imgPreview4,
+    files: [{ label: "Download PNG", href: TSM_DRIVE }, { label: "Download JPG", href: TSM_DRIVE }],
+    subItems: [
+      { label: "Square A", files: [{ label: "Download PNG", href: TSM_DRIVE }] },
+      { label: "Square B", files: [{ label: "Download PNG", href: TSM_DRIVE }] },
+    ],
+  },
+  {
+    typeTag: "Banner", dims: "1200 × 628",
+    files: [{ label: "Download PNG", href: TSM_DRIVE }, { label: "Download PDF", href: TSM_DRIVE }],
+  },
+  {
+    typeTag: "Story", dims: "1080 × 1920",
+    files: [{ label: "Download PNG", href: TSM_DRIVE }],
+  },
 ];
 
-const TSM25_ASSETS = [
-  { featured: true, typeTag: "Poster", thumbLabel: "TSM25 Main Poster", dims: "A4 · Portrait",
-    title: "Tata Sustainability Month 25 — Main Poster",
+const TSM25_ASSETS: Asset[] = [
+  {
+    featured: true, typeTag: "Poster", sectionTag: "TSM 25 · Campaign Poster", dims: "A4 · Portrait", previewSrc: imgPreview5,
     desc: "Primary campaign poster for the Resource Efficiency & Biodiversity theme. Use for office displays, intranet, and internal communications.",
-    links: [{ label: "Download PNG", href: TSM_DRIVE, solid: true }, { label: "Download PDF", href: TSM_DRIVE }] },
-  { typeTag: "Poster",  thumbLabel: "Portrait B",       dims: "A4 · Portrait",  title: "TSM25 Poster — Portrait B",        meta: "Secondary portrait variant. A4 print and digital-screen ready.",              links: [{ label: "PNG", href: TSM_DRIVE, solid: true }, { label: "PDF", href: TSM_DRIVE }] },
-  { typeTag: "Social",  thumbLabel: "Social Square A",   dims: "1080 × 1080",   title: "TSM25 Social Media Square A",       meta: "1080×1080 for LinkedIn, Instagram and Yammer posts.",                        links: [{ label: "PNG", href: TSM_DRIVE, solid: true }] },
-  { typeTag: "Social",  thumbLabel: "Social Square B",   dims: "1080 × 1080",   title: "TSM25 Social Media Square B",       meta: "Alternate square layout. Different visual treatment to Option A.",           links: [{ label: "PNG", href: TSM_DRIVE, solid: true }] },
-  { typeTag: "Banner",  thumbLabel: "Landscape Banner",  dims: "1920 × 1080",   title: "TSM25 Landscape Banner",            meta: "Wide format for email headers, intranet and digital boards.",                links: [{ label: "PNG", href: TSM_DRIVE, solid: true }, { label: "PDF", href: TSM_DRIVE }] },
-  { typeTag: "Story",   thumbLabel: "Story Format",      dims: "1080 × 1920",   title: "TSM25 Instagram / WhatsApp Story",  meta: "1080×1920 vertical for Instagram Stories and WhatsApp status.",              links: [{ label: "PNG", href: TSM_DRIVE, solid: true }] },
-  { typeTag: "Display", thumbLabel: "Screensaver",       dims: "1920 × 1080",   title: "TSM25 Laptop / Screen Wallpaper",   meta: "Desktop wallpaper for employee devices. 1920×1080 resolution.",             links: [{ label: "PNG", href: TSM_DRIVE, solid: true }] },
-  { typeTag: "Guide",   thumbLabel: "DIY Kit",           dims: "PDF · A4",      title: "TSM25 DIY Activity Kit",            meta: "Ideas and guides for running independent sustainability activities.",         links: [{ label: "PDF", href: TSM_DRIVE, solid: true }] },
-  { typeTag: "Email",   thumbLabel: "Email Header",      dims: "1200 × 400",    title: "TSM25 Email Campaign Header",       meta: "For internal email announcements and TSM25 newsletters.",                    links: [{ label: "PNG", href: TSM_DRIVE, solid: true }] },
+    files: [{ label: "Download PNG", href: TSM_DRIVE }, { label: "Download PDF", href: TSM_DRIVE }],
+  },
+  {
+    typeTag: "Emailer", dims: "600px wide",
+    files: [{ label: "Download HTML", href: TSM_DRIVE }, { label: "Download PNG", href: TSM_DRIVE }],
+    subItems: [
+      { label: "Launch Mailer", files: [{ label: "Download HTML", href: TSM_DRIVE }, { label: "Download PNG", href: TSM_DRIVE }] },
+      { label: "Reminder Mailer", files: [{ label: "Download HTML", href: TSM_DRIVE }, { label: "Download PNG", href: TSM_DRIVE }] },
+    ],
+  },
+  {
+    typeTag: "Social", dims: "1080 × 1080",
+    files: [{ label: "Download PNG", href: TSM_DRIVE }, { label: "Download JPG", href: TSM_DRIVE }],
+    subItems: [
+      { label: "Square A", files: [{ label: "Download PNG", href: TSM_DRIVE }] },
+      { label: "Square B", files: [{ label: "Download PNG", href: TSM_DRIVE }] },
+    ],
+  },
+  {
+    typeTag: "Banner", dims: "1920 × 1080",
+    files: [{ label: "Download PNG", href: TSM_DRIVE }, { label: "Download PDF", href: TSM_DRIVE }],
+  },
+  {
+    typeTag: "Story", dims: "1080 × 1920",
+    files: [{ label: "Download PNG", href: TSM_DRIVE }],
+  },
+  {
+    typeTag: "Display", dims: "1920 × 1080",
+    files: [{ label: "Download PNG", href: TSM_DRIVE }],
+  },
+  {
+    typeTag: "Guide", dims: "PDF · A4",
+    files: [{ label: "Download PDF", href: TSM_DRIVE }],
+  },
+  {
+    typeTag: "Email Header", dims: "1200 × 400",
+    files: [{ label: "Download PNG", href: TSM_DRIVE }],
+  },
 ];
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function TSMCampaignKitView() {
   return (
     <div style={{ fontFamily: FONT, background: "#f5f5fa", minHeight: "100vh" }}>
-
-      {/* Top accent line */}
       <div style={{ height: 3, background: COLOUR, width: "100%" }} />
-
       <SubPageDotRail sections={SECTIONS} accentColour={COLOUR} />
 
-      {/* ── HERO ── */}
       <div id="ckit-hero" style={{ position: "relative", minHeight: "92vh", overflow: "hidden", display: "flex", alignItems: "center", paddingTop: 64 }}>
         <img src={tsmHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-        {/* Pure lime tint — matches Contact page */}
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${COLOUR}e8 0%, ${COLOUR}cc 38%, ${COLOUR}aa 58%, ${COLOUR}77 78%, ${COLOUR}44 100%)` }} />
+        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg,${COLOUR}e8 0%,${COLOUR}cc 38%,${COLOUR}aa 58%,${COLOUR}77 78%,${COLOUR}44 100%)` }} />
         <div style={DIAG} />
-
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
-
-          {/* Left */}
           <div style={{ maxWidth: 560 }}>
             <p style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "1.6px", textTransform: "uppercase", color: "rgba(255,255,255,0.65)", margin: "0 0 12px" }}>
               Tata Sustainability Group · Tata Sustainability Month
             </p>
-            <div style={{ height: 2, width: 48, borderRadius: 2, background: COLOUR, margin: "0 0 22px" }} />
+            <div style={{ height: 2, width: 48, borderRadius: 2, background: "rgba(255,255,255,0.6)", margin: "0 0 22px" }} />
             <h1 style={{ fontFamily: FONT, fontSize: "clamp(2.4rem,5vw,3.8rem)", fontWeight: 400, color: "#fff", lineHeight: 1.12, letterSpacing: "-0.5px", margin: "0 0 18px" }}>
               Sustainability Month Campaign Kit
             </h1>
             <p style={{ fontFamily: FONT, fontSize: 15, fontWeight: 300, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", margin: "0 0 32px", maxWidth: 480 }}>
               Download official Tata Sustainability Month creative assets — posters, social media graphics, banners, DIY kits — to drive participation and awareness across your company.
             </p>
-            <a href="mailto:tataengage@tata.com" style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              background: B_YELLOW, color: ACCENT_NAVY, borderRadius: 10, padding: "14px 28px",
-              fontFamily: FONT, fontSize: 14, fontWeight: 800, textDecoration: "none",
-              boxShadow: "0 4px 20px rgba(13,27,62,0.25)",
-            }}>
+            <a href="mailto:tataengage@tata.com" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: B_YELLOW, color: ACCENT_NAVY, borderRadius: 10, padding: "14px 28px", fontFamily: FONT, fontSize: 14, fontWeight: 800, textDecoration: "none", boxShadow: "0 4px 20px rgba(13,27,62,0.25)" }}>
               Request custom assets
             </a>
           </div>
-
         </div>
       </div>
 
-      {/* ── EDITIONS — TSM25 only for now ── */}
       <EditionSection ed={EDITIONS[2]} assets={TSM25_ASSETS} />
+      <EditionSection ed={EDITIONS[1]} assets={TSM24_ASSETS} />
+      <EditionSection ed={EDITIONS[0]} assets={TSM23_ASSETS} />
 
-      {/* ── INFO STRIP ── */}
       <div style={{ maxWidth: 1100, margin: "40px auto 0", padding: "0 56px" }}>
-        <div style={{ background: ACCENT_NAVY, borderRadius: 14, padding: "22px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
+        <div style={{ background: COLOUR, borderRadius: 14, padding: "22px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
           <div>
-            <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: COLOUR + "99", marginBottom: 4 }}>Need help or custom assets?</div>
+            <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: 4 }}>Need help or custom assets?</div>
             <div style={{ fontFamily: FONT, fontSize: 17, fontWeight: 900, color: "#fff" }}>Reach out to the Tata Engage team</div>
           </div>
-          <a href="mailto:tataengage@tata.com" style={{
-            background: B_YELLOW, color: ACCENT_NAVY, borderRadius: 10, padding: "11px 22px",
-            fontFamily: FONT, fontSize: 13, fontWeight: 800, textDecoration: "none",
-            whiteSpace: "nowrap", flexShrink: 0,
-          }}>tataengage@tata.com</a>
+          <a href="mailto:tataengage@tata.com" style={{ background: B_YELLOW, color: ACCENT_NAVY, borderRadius: 10, padding: "11px 22px", fontFamily: FONT, fontSize: 13, fontWeight: 800, textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0 }}>tataengage@tata.com</a>
         </div>
       </div>
-
       <div style={{ height: 80 }} />
     </div>
   );
