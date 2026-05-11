@@ -391,6 +391,38 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/tvw/update-1"
+              element={
+                <ProtectedRoute>
+                  <TVW25Update1View />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tvw/campaign-kit"
+              element={
+                <ProtectedRoute>
+                  <TVWCampaignKitView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/proengage/campaign-kit"
+              element={
+                <ProtectedRoute>
+                  <ProEngageCampaignKitView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tata-sustainability-month/campaign-kit"
+              element={
+                <ProtectedRoute>
+                  <TSMCampaignKitView />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/journey" element={<JourneyView />} />
             <Route path="/about" element={<AboutView />} />
             <Route path="/about/tvw" element={<AboutTVWView />} />
@@ -408,10 +440,6 @@ export default function App() {
             <Route path="/yes-to-access" element={<YesToAccessView />} />
             <Route path="/tata-sustainability-month" element={<TataSmView />} />
             <Route path="/cvp" element={<CVPView />} />
-            <Route path="/tvw/update-1" element={<ProtectedRoute><TVW25Update1View /></ProtectedRoute>} />
-            <Route path="/tvw/campaign-kit" element={<ProtectedRoute><TVWCampaignKitView /></ProtectedRoute>} />
-            <Route path="/proengage/campaign-kit" element={<ProtectedRoute><ProEngageCampaignKitView /></ProtectedRoute>} />
-            <Route path="/tata-sustainability-month/campaign-kit" element={<ProtectedRoute><TSMCampaignKitView /></ProtectedRoute>} />
             <Route path="/stories" element={<ImpactStoryView />} />
             <Route path="/privacy" element={<PrivacyView />} />
             <Route path="/legal" element={<LegalView />} />
