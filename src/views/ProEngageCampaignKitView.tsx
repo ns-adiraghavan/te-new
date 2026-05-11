@@ -21,9 +21,9 @@ const DIAG: React.CSSProperties = {
 
 const SECTIONS = [
   { id: "ckit-hero",  label: "Overview" },
-  { id: "ckit-pe22",  label: "PE 22"    },
-  { id: "ckit-pe23",  label: "PE 23"    },
   { id: "ckit-pe24",  label: "PE 24"    },
+  { id: "ckit-pe23",  label: "PE 23"    },
+  { id: "ckit-pe22",  label: "PE 22"    },
 ];
 
 // ── Edition history data ─────────────────────────────────────────────────────
@@ -103,7 +103,7 @@ function InfoTile({ accent, typeTag, thumbLabel, dims, minHeight = 140, inverted
 }
 
 function AssetCard({ typeTag, accent, title, meta, thumbLabel, dims, links, inverted = false }: {
-  typeTag: string; accent: string; title: string; meta?: string; thumbLabel: string; dims: string;
+  typeTag: string; accent: string; title: string; meta: string; thumbLabel: string; dims: string;
   links: { label: string; href: string; solid?: boolean }[]; inverted?: boolean;
 }) {
   const [hov, setHov] = useState(false);
@@ -162,7 +162,7 @@ function FeaturedCard({ typeTag, accent, sectionTag, title, desc, thumbLabel, di
 // ── Edition section ───────────────────────────────────────────────────────────
 function EditionSection({ ed, assets }: {
   ed: typeof EDITIONS[0];
-  assets: { typeTag: string; thumbLabel: string; dims: string; title: string; meta?: string; links: { label: string; href: string; solid?: boolean }[]; featured?: boolean; sectionTag?: string; desc?: string; }[];
+  assets: { typeTag: string; thumbLabel: string; dims: string; title: string; meta: string; links: { label: string; href: string; solid?: boolean }[]; featured?: boolean; sectionTag?: string; desc?: string; }[];
 }) {
   const HexIcon = () => (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="white" strokeWidth="1.4" strokeLinecap="round">
@@ -175,7 +175,7 @@ function EditionSection({ ed, assets }: {
 
   return (
     <div id={`ckit-${ed.id}`}>
-      {/* Edition header */}
+      {/* Edition header — label + year only */}
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "48px 56px 0" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: COLOUR, borderRadius: 10, padding: "7px 16px 7px 12px", fontFamily: FONT, fontSize: 12, fontWeight: 800, color: "#fff", whiteSpace: "nowrap" }}>
@@ -188,24 +188,6 @@ function EditionSection({ ed, assets }: {
           )}
           <div style={{ flex: 1, height: 1.5, background: BORDER }} />
           <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#94a3b8" }}>{ed.year}</div>
-        </div>
-
-        {/* Theme + stats bar */}
-        <div style={{ background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14, padding: "20px 24px", display: "flex", alignItems: "center", gap: 32, marginBottom: 0 }}>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 700, letterSpacing: "1.4px", textTransform: "uppercase", color: "#94a3b8", marginBottom: 4 }}>Edition theme</div>
-            <div style={{ fontFamily: FONT, fontSize: 15, fontWeight: 800, color: ACCENT_NAVY }}>{ed.theme}</div>
-          </div>
-          <div style={{ width: 1, height: 40, background: BORDER }} />
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 900, color: COLOUR, letterSpacing: "-0.5px" }}>{ed.volunteers}</div>
-            <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 700, color: "#64748b", letterSpacing: "0.5px", textTransform: "uppercase" }}>Volunteers</div>
-          </div>
-          <div style={{ width: 1, height: 40, background: BORDER }} />
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 900, color: COLOUR, letterSpacing: "-0.5px" }}>{ed.projects}</div>
-            <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 700, color: "#64748b", letterSpacing: "0.5px", textTransform: "uppercase" }}>Projects</div>
-          </div>
         </div>
       </div>
 
@@ -295,10 +277,10 @@ export default function ProEngageCampaignKitView() {
         <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg,${COLOUR}e8 0%,${COLOUR}cc 38%,${COLOUR}aa 58%,${COLOUR}77 78%,${COLOUR}44 100%)` }} />
         <div style={DIAG} />
 
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%", display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 56, alignItems: "center" }}>
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
 
           {/* Left */}
-          <div>
+          <div style={{ maxWidth: 560 }}>
             <p style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "1.6px", textTransform: "uppercase", color: "rgba(255,255,255,0.65)", margin: "0 0 12px" }}>
               Tata Engage · Skill-Based Volunteering
             </p>
@@ -319,29 +301,13 @@ export default function ProEngageCampaignKitView() {
             </a>
           </div>
 
-          {/* Right — edition summary panel */}
-          <div style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 16, padding: 28, position: "relative", overflow: "hidden" }}>
-            <div style={DIAG} />
-            <div style={{ fontFamily: FONT, display: "inline-block", background: B_YELLOW, color: ACCENT_NAVY, fontSize: 9, fontWeight: 900, letterSpacing: "1.5px", textTransform: "uppercase", padding: "4px 10px", borderRadius: 100, marginBottom: 16, position: "relative", zIndex: 1 }}>
-              3 editions available
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10, position: "relative", zIndex: 1 }}>
-              {EDITIONS.map((ed, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 10, padding: "10px 14px" }}>
-                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: ed.active ? "#4ade80" : "rgba(255,255,255,0.4)", flexShrink: 0 }} />
-                  <span style={{ fontFamily: FONT, fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.85)" }}>{ed.label} · {ed.year}</span>
-                  {ed.active && <span style={{ marginLeft: "auto", fontFamily: FONT, fontSize: 9, fontWeight: 800, letterSpacing: "1px", textTransform: "uppercase", color: "#4ade80" }}>Active</span>}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* ── EDITIONS ── */}
-      <EditionSection ed={EDITIONS[0]} assets={PE22_ASSETS} />
-      <EditionSection ed={EDITIONS[1]} assets={PE23_ASSETS} />
+      {/* ── EDITIONS — latest first ── */}
       <EditionSection ed={EDITIONS[2]} assets={PE24_ASSETS} />
+      <EditionSection ed={EDITIONS[1]} assets={PE23_ASSETS} />
+      <EditionSection ed={EDITIONS[0]} assets={PE22_ASSETS} />
 
       {/* ── INFO STRIP ── */}
       <div style={{ maxWidth: 1100, margin: "40px auto 0", padding: "0 56px" }}>
