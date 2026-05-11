@@ -102,7 +102,7 @@ const LoginView = () => {
             </div>
 
             {/* White card */}
-            <div style={{ background: "rgba(255,255,255,0.96)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 16, padding: "36px 32px", boxShadow: "0 24px 64px rgba(13,27,62,0.22)" }}>
+            <div style={{ background: "rgba(255,255,255,0.96)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 16, padding: "36px 32px" }}>
 
               {/* Demo login buttons */}
               {!isAdminLogin && (
