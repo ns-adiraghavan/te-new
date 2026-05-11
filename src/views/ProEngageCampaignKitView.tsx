@@ -162,7 +162,7 @@ function FeaturedCard({ typeTag, accent, sectionTag, title, desc, thumbLabel, di
 // ── Edition section ───────────────────────────────────────────────────────────
 function EditionSection({ ed, assets }: {
   ed: typeof EDITIONS[0];
-  assets: { typeTag: string; thumbLabel: string; dims: string; title: string; meta: string; links: { label: string; href: string; solid?: boolean }[]; featured?: boolean; sectionTag?: string; desc?: string; }[];
+  assets: { typeTag: string; thumbLabel: string; dims: string; title: string; meta?: string; links: { label: string; href: string; solid?: boolean }[]; featured?: boolean; sectionTag?: string; desc?: string; }[];
 }) {
   const HexIcon = () => (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="white" strokeWidth="1.4" strokeLinecap="round">
