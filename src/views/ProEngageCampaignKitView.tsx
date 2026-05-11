@@ -103,29 +103,31 @@ function DownloadDropdown({ options, accent }: { options: FileOption[]; accent: 
   }, []);
 
   const cur = options[selected];
+  // Strip "Download " prefix for the dropdown label — show just the format
+  const formatLabel = (l: string) => l.replace(/^Download /i, "");
 
   return (
     <div ref={ref} style={{ display: "inline-flex", position: "relative" }}>
-      {/* Main download button */}
+      {/* Main button — always says Download */}
       <a href={cur.href} target="_blank" rel="noopener noreferrer"
-        style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 12px", borderRadius: "7px 0 0 7px", background: accent, color: "#fff", fontFamily: FONT, fontSize: 11, fontWeight: 800, textDecoration: "none", letterSpacing: "0.2px", whiteSpace: "nowrap" }}>
+        style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 12px", borderRadius: options.length > 1 ? "7px 0 0 7px" : "7px", background: accent, color: "#fff", fontFamily: FONT, fontSize: 11, fontWeight: 800, textDecoration: "none", letterSpacing: "0.2px", whiteSpace: "nowrap" }}>
         <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"><path d="M6 2v7M3 7l3 3 3-3"/><path d="M2 10h8"/></svg>
-        {cur.label}
+        Download
       </a>
       {/* Chevron toggle */}
       {options.length > 1 && (
         <button onClick={() => setOpen(o => !o)}
-          style={{ display: "inline-flex", alignItems: "center", padding: "7px 8px", borderRadius: "0 7px 7px 0", background: `${accent}cc`, border: `1px solid ${accent}`, borderLeft: "1px solid rgba(255,255,255,0.25)", color: "#fff", cursor: "pointer", fontSize: 10 }}>
-          {open ? "▲" : "▼"}
+          style={{ display: "inline-flex", alignItems: "center", padding: "7px 8px", borderRadius: "0 7px 7px 0", background: `${accent}cc`, border: "none", borderLeft: "1px solid rgba(255,255,255,0.25)", color: "#fff", cursor: "pointer", fontSize: 10 }}>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"><path d={open ? "M2 7l3-4 3 4" : "M2 3l3 4 3-4"}/></svg>
         </button>
       )}
       {/* Dropdown */}
-      {open && options.length > 1 && (
-        <div style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 8, boxShadow: "0 8px 24px rgba(13,27,62,0.12)", zIndex: 50, minWidth: 140, overflow: "hidden" }}>
+      {open && (
+        <div style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 8, boxShadow: "0 8px 24px rgba(13,27,62,0.12)", zIndex: 50, minWidth: 130, overflow: "hidden" }}>
           {options.map((o, i) => (
             <button key={i} onClick={() => { setSelected(i); setOpen(false); }}
               style={{ display: "block", width: "100%", textAlign: "left", padding: "9px 14px", background: i === selected ? COLOUR_LIGHT : "#fff", border: "none", borderBottom: i < options.length - 1 ? `1px solid ${BORDER}` : "none", fontFamily: FONT, fontSize: 12, fontWeight: 700, color: i === selected ? accent : ACCENT_NAVY, cursor: "pointer", letterSpacing: "0.2px" }}>
-              {o.label}
+              {formatLabel(o.label)}
             </button>
           ))}
         </div>
@@ -134,38 +136,9 @@ function DownloadDropdown({ options, accent }: { options: FileOption[]; accent: 
   );
 }
 
-// ── Asymmetric ColourBox (replaces thumbnail) ─────────────────────────────────
-// alternates between COLOUR-filled and white
-function AsymBox({ inverted, accent, typeTag, dims }: { inverted: boolean; accent: string; typeTag: string; dims: string }) {
-  const bg     = inverted ? "#fff" : accent;
-  const fg     = inverted ? accent : "#fff";
-  const fgSub  = inverted ? accent + "88" : "rgba(255,255,255,0.55)";
-  const topBar = inverted ? accent + "55" : "rgba(255,255,255,0.35)";
-
-  // Asymmetric clip — alternates direction
-  const clip = inverted
-    ? "polygon(0 0, 100% 0, 100% 78%, 86% 100%, 0 100%)"
-    : "polygon(0 0, 100% 0, 100% 100%, 14% 100%, 0 78%)";
-
-  return (
-    <div style={{
-      position: "relative", minHeight: 100,
-      background: bg,
-      clipPath: clip,
-      overflow: "hidden",
-      display: "flex", flexDirection: "column", justifyContent: "space-between",
-      padding: "14px 18px 22px",
-      backgroundImage: inverted
-        ? `radial-gradient(circle, ${accent}18 1.5px, transparent 1.5px)`
-        : "repeating-linear-gradient(45deg,rgba(255,255,255,0.03) 0px,rgba(255,255,255,0.03) 1px,transparent 1px,transparent 22px)",
-      backgroundSize: inverted ? "16px 16px" : "22px 22px",
-    }}>
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: topBar }} />
-      <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "1.6px", textTransform: "uppercase", color: fgSub }}>{typeTag}</div>
-      <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 600, color: fgSub, letterSpacing: "0.3px", marginTop: 6 }}>{dims}</div>
-    </div>
-  );
-}
+// ── Asymmetric clip shapes ─────────────────────────────────────────────────────
+const CLIP_A = "polygon(0 0, 100% 0, 100% 88%, 90% 100%, 0 100%)"; // bottom-right notch
+const CLIP_B = "polygon(0 0, 100% 0, 100% 100%, 10% 100%, 0 88%)"; // bottom-left notch
 
 // ── Asset types ───────────────────────────────────────────────────────────────
 type FileLink = { label: string; href: string };
@@ -182,64 +155,79 @@ type Asset = {
   desc?: string;
 };
 
-// ── AssetCard ─────────────────────────────────────────────────────────────────
+// ── AssetCard — full-colour alternating boxes ────────────────────────────────
 function AssetCard({ asset, accent, cardIndex, onPreview, onSeeMore }: {
   asset: Asset; accent: string; cardIndex: number; onPreview: (src: string) => void; onSeeMore: (asset: Asset) => void;
 }) {
   const [hov, setHov] = useState(false);
-  const inverted = cardIndex % 2 === 1;
-  const hasSubItems = asset.subItems && asset.subItems.length > 0;
-  const visibleSubs = hasSubItems ? asset.subItems!.slice(0, 2) : [];
-  const hasMore     = hasSubItems && asset.subItems!.length > 2;
+  const inverted      = cardIndex % 2 === 1;           // true = white card
+  const bg            = inverted ? "#fff" : accent;
+  const fg            = inverted ? ACCENT_NAVY : "#fff";
+  const fgMuted       = inverted ? "#64748b" : "rgba(255,255,255,0.65)";
+  const dividerCol    = inverted ? BORDER : "rgba(255,255,255,0.18)";
+  const clip          = inverted ? CLIP_B : CLIP_A;
+  const hasSubItems   = asset.subItems && asset.subItems.length > 0;
+  const visibleSubs   = hasSubItems ? asset.subItems!.slice(0, 2) : [];
+  const hasMore       = hasSubItems && asset.subItems!.length > 2;
 
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: hov ? "0 8px 24px rgba(13,27,62,0.10)" : "none", transform: hov ? "translateY(-3px)" : "translateY(0)", transition: "transform 0.18s, box-shadow 0.18s" }}>
+      style={{
+        background: bg, clipPath: clip, overflow: "visible",
+        display: "flex", flexDirection: "column",
+        boxShadow: hov ? "0 8px 28px rgba(13,27,62,0.14)" : "0 2px 8px rgba(13,27,62,0.06)",
+        transform: hov ? "translateY(-3px)" : "translateY(0)",
+        transition: "transform 0.18s, box-shadow 0.18s",
+        backgroundImage: inverted
+          ? `radial-gradient(circle, ${accent}12 1.5px, transparent 1.5px)`
+          : "repeating-linear-gradient(45deg,rgba(255,255,255,0.025) 0px,rgba(255,255,255,0.025) 1px,transparent 1px,transparent 22px)",
+        backgroundSize: "18px 18px",
+        position: "relative",
+      }}>
+      {/* Top accent bar */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: inverted ? accent : "rgba(255,255,255,0.3)", borderRadius: "14px 14px 0 0" }} />
 
-      {/* Asymmetric box */}
-      <AsymBox inverted={inverted} accent={accent} typeTag={asset.typeTag} dims={asset.dims} />
-
-      {/* Body */}
-      <div style={{ padding: "12px 16px 16px", flex: 1, display: "flex", flexDirection: "column", gap: 10 }}>
-
-        {/* Header row: type tag + preview */}
+      <div style={{ padding: "20px 18px 24px", display: "flex", flexDirection: "column", gap: 12 }}>
+        {/* Type tag + Preview */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 800, letterSpacing: "1.3px", textTransform: "uppercase", color: accent }}>{asset.typeTag}</div>
+          <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "1.6px", textTransform: "uppercase", color: fgMuted }}>{asset.typeTag}</div>
           {asset.previewSrc && (
             <button onClick={() => onPreview(asset.previewSrc!)}
-              style={{ background: "none", border: `1px solid ${accent}55`, borderRadius: 5, padding: "3px 9px", fontFamily: FONT, fontSize: 10, fontWeight: 700, color: accent, cursor: "pointer", letterSpacing: "0.3px", textTransform: "uppercase" }}>
+              style={{ background: inverted ? "transparent" : "rgba(255,255,255,0.15)", border: inverted ? `1px solid ${accent}55` : "1px solid rgba(255,255,255,0.3)", borderRadius: 5, padding: "3px 9px", fontFamily: FONT, fontSize: 10, fontWeight: 700, color: inverted ? accent : "#fff", cursor: "pointer", letterSpacing: "0.3px" }}>
               Preview
             </button>
           )}
         </div>
 
-        {/* Download */}
-        <DownloadDropdown options={asset.files} accent={accent} />
+        {/* Dims */}
+        <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 600, color: fgMuted }}>{asset.dims}</div>
 
-        {/* Sub-items (up to 2, then see more) */}
+        {/* Download */}
+        <DownloadDropdown options={asset.files} accent={inverted ? accent : ACCENT_NAVY} />
+
+        {/* Sub-items */}
         {hasSubItems && (
-          <div style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 10, display: "flex", flexDirection: "column", gap: 7 }}>
+          <div style={{ borderTop: `1px solid ${dividerCol}`, paddingTop: 10, display: "flex", flexDirection: "column", gap: 8 }}>
             {visibleSubs.map((sub, si) => (
               <div key={si} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-                <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, color: ACCENT_NAVY, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{sub.label}</div>
-                <DownloadDropdown options={sub.files} accent={accent} />
+                <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, color: fg, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{sub.label}</div>
+                <DownloadDropdown options={sub.files} accent={inverted ? accent : ACCENT_NAVY} />
               </div>
             ))}
             {hasMore && (
               <button onClick={() => onSeeMore(asset)}
-                style={{ alignSelf: "flex-start", background: "none", border: "none", fontFamily: FONT, fontSize: 11, fontWeight: 700, color: accent, cursor: "pointer", padding: 0, textDecoration: "underline", letterSpacing: "0.2px" }}>
+                style={{ alignSelf: "flex-start", background: "none", border: "none", fontFamily: FONT, fontSize: 11, fontWeight: 700, color: inverted ? accent : "#fff", cursor: "pointer", padding: 0, textDecoration: "underline" }}>
                 See all ({asset.subItems!.length}) →
               </button>
             )}
           </div>
         )}
-
       </div>
     </div>
   );
 }
 
-// ── Featured wide card ────────────────────────────────────────────────────────
+// ── Featured wide card — full accent colour, asymmetric right edge ────────────
 function FeaturedCard({ asset, accent, onPreview, onSeeMore }: {
   asset: Asset; accent: string; onPreview: (src: string) => void; onSeeMore: (asset: Asset) => void;
 }) {
@@ -250,42 +238,45 @@ function FeaturedCard({ asset, accent, onPreview, onSeeMore }: {
 
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ gridColumn: "span 2", display: "grid", gridTemplateColumns: "1fr 1fr", background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14, overflow: "hidden", boxShadow: hov ? "0 8px 24px rgba(13,27,62,0.10)" : "none", transform: hov ? "translateY(-3px)" : "translateY(0)", transition: "transform 0.18s, box-shadow 0.18s" }}>
+      style={{
+        gridColumn: "span 2",
+        background: accent,
+        clipPath: "polygon(0 0, 100% 0, 100% 82%, 96% 100%, 0 100%)",
+        display: "flex", flexDirection: "column",
+        boxShadow: hov ? "0 8px 28px rgba(13,27,62,0.18)" : "0 2px 8px rgba(13,27,62,0.08)",
+        transform: hov ? "translateY(-3px)" : "translateY(0)",
+        transition: "transform 0.18s, box-shadow 0.18s",
+        backgroundImage: "repeating-linear-gradient(45deg,rgba(255,255,255,0.025) 0px,rgba(255,255,255,0.025) 1px,transparent 1px,transparent 22px)",
+        backgroundSize: "22px 22px",
+        position: "relative",
+      }}>
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "rgba(255,255,255,0.3)" }} />
 
-      {/* Left asymmetric panel */}
-      <div style={{ position: "relative", minHeight: 180, background: accent, overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "22px 24px 26px",
-        clipPath: "polygon(0 0, 100% 0, 88% 100%, 0 100%)",
-        backgroundImage: "repeating-linear-gradient(45deg,rgba(255,255,255,0.025) 0px,rgba(255,255,255,0.025) 1px,transparent 1px,transparent 22px)", backgroundSize: "22px 22px" }}>
-        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "rgba(255,255,255,0.35)" }} />
-        <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "1.6px", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 6 }}>{asset.typeTag}</div>
-        <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)" }}>{asset.dims}</div>
-      </div>
-
-      {/* Right body */}
-      <div style={{ padding: "22px 24px", borderLeft: `1px solid ${BORDER}`, display: "flex", flexDirection: "column", gap: 10, justifyContent: "center" }}>
+      <div style={{ padding: "24px 28px 32px", display: "flex", flexDirection: "column", gap: 12 }}>
+        {/* Top row */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "1.2px", textTransform: "uppercase", color: accent }}>{asset.sectionTag || asset.typeTag}</div>
+          <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "1.6px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>{asset.sectionTag || asset.typeTag}</div>
           {asset.previewSrc && (
             <button onClick={() => onPreview(asset.previewSrc!)}
-              style={{ background: "none", border: `1px solid ${accent}55`, borderRadius: 5, padding: "3px 9px", fontFamily: FONT, fontSize: 10, fontWeight: 700, color: accent, cursor: "pointer", letterSpacing: "0.3px", textTransform: "uppercase" }}>
+              style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 5, padding: "3px 9px", fontFamily: FONT, fontSize: 10, fontWeight: 700, color: "#fff", cursor: "pointer", letterSpacing: "0.3px" }}>
               Preview
             </button>
           )}
         </div>
-        {asset.desc && <p style={{ fontFamily: FONT, fontSize: 12, color: "#475569", lineHeight: 1.65, margin: 0 }}>{asset.desc}</p>}
-        <DownloadDropdown options={asset.files} accent={accent} />
+        {asset.desc && <p style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, margin: 0, maxWidth: 560 }}>{asset.desc}</p>}
+        <DownloadDropdown options={asset.files} accent={ACCENT_NAVY} />
 
         {hasSubItems && (
-          <div style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 10, display: "flex", flexDirection: "column", gap: 7 }}>
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.18)", paddingTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
             {visibleSubs.map((sub, si) => (
               <div key={si} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-                <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, color: ACCENT_NAVY }}>{sub.label}</div>
-                <DownloadDropdown options={sub.files} accent={accent} />
+                <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, color: "#fff" }}>{sub.label}</div>
+                <DownloadDropdown options={sub.files} accent={ACCENT_NAVY} />
               </div>
             ))}
             {hasMore && (
               <button onClick={() => onSeeMore(asset)}
-                style={{ alignSelf: "flex-start", background: "none", border: "none", fontFamily: FONT, fontSize: 11, fontWeight: 700, color: accent, cursor: "pointer", padding: 0, textDecoration: "underline" }}>
+                style={{ alignSelf: "flex-start", background: "none", border: "none", fontFamily: FONT, fontSize: 11, fontWeight: 700, color: "#fff", cursor: "pointer", padding: 0, textDecoration: "underline" }}>
                 See all ({asset.subItems!.length}) →
               </button>
             )}
@@ -419,7 +410,7 @@ const PE21_ASSETS: Asset[] = [
   },
 ];
 
-const PE22_ASSETS_NEW: Asset[] = [
+const PE22_ASSETS: Asset[] = [
   {
     featured: true, typeTag: "Poster", sectionTag: "ProEngage 22 · Campaign Poster", dims: "A4 · Portrait",
     desc: "Primary PE23 campaign poster. Use on office notice boards, internal screens, intranet pages and team communications to drive volunteer registrations.",
@@ -484,12 +475,12 @@ const PE22_ASSETS_NEW: Asset[] = [
 
 const PE23_ASSETS: Asset[] = [
   {
-    featured: true, typeTag: "Poster", sectionTag: "ProEngage 23 · Primary Recruitment Poster", dims: "A4 · Portrait",
-    desc: "Primary recruitment poster for ProEngage 24. Use on office notice boards, internal screens, intranet pages and team communications to drive volunteer registrations.",
+    featured: true, typeTag: "Poster", sectionTag: "ProEngage 23 · Primary Recruitment Poster", dims: "A4 · Portrait", previewSrc: PE_DRIVE,
+    desc: "Primary recruitment poster for ProEngage 23. Use on office notice boards, internal screens, intranet pages and team communications to drive volunteer registrations.",
     files: [{ label: "Download PNG", href: PE_DRIVE }, { label: "Download PDF", href: PE_DRIVE }],
   },
   {
-    typeTag: "Emailer", dims: "600px wide",
+    typeTag: "Emailer", dims: "600px wide", previewSrc: PE_DRIVE,
     files: [{ label: "Download HTML", href: PE_DRIVE }, { label: "Download PNG", href: PE_DRIVE }],
     subItems: [
       { label: "Promotional Mailer B", files: [{ label: "Download PNG", href: PE_DRIVE }, { label: "Download PDF", href: PE_DRIVE }] },
@@ -565,7 +556,7 @@ export default function ProEngageCampaignKitView() {
       </div>
 
       <EditionSection ed={EDITIONS[2]} assets={PE23_ASSETS} />
-      <EditionSection ed={EDITIONS[1]} assets={PE21_ASSETS} />
+      <EditionSection ed={EDITIONS[1]} assets={PE22_ASSETS} />
       <EditionSection ed={EDITIONS[0]} assets={PE21_ASSETS} />
 
       {/* Info strip */}
