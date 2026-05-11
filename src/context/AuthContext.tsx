@@ -17,14 +17,58 @@ export const useAuth = () => {
   return ctx;
 };
 
+// ── helpers ───────────────────────────────────────────────────────────────────
+function loadAuth() {
+  try {
+    const raw = localStorage.getItem("te_auth");
+    if (!raw) return { isLoggedIn: false, user: null };
+    return JSON.parse(raw) as { isLoggedIn: boolean; user: any };
+  } catch {
+    return { isLoggedIn: false, user: null };
+  }
+}
+
+function saveAuth(isLoggedIn: boolean, user: any) {
+  try {
+    localStorage.setItem("te_auth", JSON.stringify({ isLoggedIn, user }));
+  } catch {}
+}
+
+function clearAuth() {
+  try {
+    localStorage.removeItem("te_auth");
+  } catch {}
+}
+
+// ── provider ──────────────────────────────────────────────────────────────────
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<any>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const saved = loadAuth();
+  const [user, setUserState] = useState<any>(saved.user);
+  const [isLoggedIn, setIsLoggedInState] = useState<boolean>(saved.isLoggedIn);
+
   const userRole = user?.role ?? "";
 
+  const setUser: React.Dispatch<React.SetStateAction<any>> = (value) => {
+    setUserState((prev: any) => {
+      const next = typeof value === "function" ? value(prev) : value;
+      // persist whenever user changes (isLoggedIn state is source of truth for that)
+      saveAuth(isLoggedIn, next);
+      return next;
+    });
+  };
+
+  const setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>> = (value) => {
+    setIsLoggedInState((prev) => {
+      const next = typeof value === "function" ? value(prev) : value;
+      saveAuth(next, user);
+      return next;
+    });
+  };
+
   const handleLogout = useCallback(() => {
-    setIsLoggedIn(false);
-    setUser(null);
+    setIsLoggedInState(false);
+    setUserState(null);
+    clearAuth();
   }, []);
 
   return (
