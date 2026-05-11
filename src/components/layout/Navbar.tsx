@@ -210,9 +210,9 @@ function LoginPopout({
     <div
       ref={popRef}
       style={{
-        position: "absolute",
-        top: "calc(100% + 8px)",
-        right: 0,
+        position: "fixed",
+        top: 72,
+        right: 16,
         width: 320,
         background: "white",
         borderRadius: 16,
@@ -222,9 +222,25 @@ function LoginPopout({
         fontFamily: FONT_DM,
       }}
     >
-      {/* Header strip — TVW blue */}
-      <div style={{ background: TVW_BLUE, padding: "18px 20px 16px", display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
-        <div>
+      {/* Header strip — TVW blue with doodles */}
+      <div style={{ background: TVW_BLUE, padding: "18px 20px 16px", display: "flex", alignItems: "flex-start", justifyContent: "space-between", position: "relative", overflow: "hidden" }}>
+        <style>{`
+          @keyframes npd1{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(4px,-6px) rotate(8deg)}}
+          @keyframes npd2{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-6px,4px) rotate(-7deg)}}
+          @keyframes npd3{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,5px)}}
+          .npd-a{animation:npd1 20s ease-in-out infinite;transform-origin:center}
+          .npd-b{animation:npd2 26s ease-in-out infinite;transform-origin:center}
+          .npd-c{animation:npd3 16s ease-in-out infinite;transform-origin:center}
+        `}</style>
+        <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.13, pointerEvents: "none" }} viewBox="0 0 320 80" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <g className="npd-a"><path d="M270 10 C282 2,298 6,300 20 C302 34,290 44,278 40 C266 36,260 22,268 12 Z" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/></g>
+          <g className="npd-b" transform="translate(248,52)"><line x1="0" y1="-10" x2="0" y2="10" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-10" y1="0" x2="10" y2="0" stroke="white" strokeWidth="2" strokeLinecap="round"/><line x1="-7" y1="-7" x2="7" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/><line x1="7" y1="-7" x2="-7" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/></g>
+          <g className="npd-c"><path d="M200 60 C212 50,224 68,236 58 C248 48,260 66,272 56" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round"/></g>
+          <g className="npd-a" style={{animationDelay:"-8s"}}><rect x="295" y="48" width="18" height="18" rx="3" fill="none" stroke="white" strokeWidth="1.8" transform="rotate(14,304,57)"/></g>
+          <g className="npd-b" style={{animationDelay:"-4s"}}><circle cx="16" cy="20" r="14" fill="none" stroke="white" strokeWidth="1.8"/><circle cx="16" cy="20" r="7" fill="none" stroke="white" strokeWidth="1.2"/></g>
+          <g className="npd-c" style={{animationDelay:"-10s"}}><path d="M44 55 L54 65 L44 75 L34 65 Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></g>
+        </svg>
+        <div style={{ position: "relative", zIndex: 1 }}>
           <p style={{ margin: 0, fontSize: 16, fontWeight: 800, color: "white", letterSpacing: "-0.2px", fontFamily: FONT_DM }}>
             Welcome back!
           </p>
@@ -232,7 +248,7 @@ function LoginPopout({
             {step === "otp" ? `Code sent to ${email}` : "What's on the agenda today?"}
           </p>
         </div>
-        <button onClick={onClose} style={{ background: "rgba(255,255,255,0.15)", border: "none", cursor: "pointer", color: "white", padding: "4px 5px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 8, marginTop: 2 }}>
+        <button onClick={onClose} style={{ background: "rgba(255,255,255,0.15)", border: "none", cursor: "pointer", color: "white", padding: "4px 5px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 8, marginTop: 2, position: "relative", zIndex: 1 }}>
           <X size={15} />
         </button>
       </div>
