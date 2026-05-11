@@ -116,7 +116,7 @@ function ActivityCard({ card, colour, onClick }: {
         position: "relative",
       }}
     >
-      {/* Full-bleed photo — no fixed height, natural aspect ratio */}
+      {/* Full-bleed photo — natural aspect ratio, no black bars */}
       <div style={{ position: "relative", paddingTop: "66%", overflow: "hidden" }}>
         <img
           src={card.img}
@@ -130,12 +130,14 @@ function ActivityCard({ card, colour, onClick }: {
             transition: "transform 0.4s ease",
           }}
         />
-        {/* Tint overlay — always on, stronger at top for header legibility */}
+
+        {/* Top gradient — tag + company legible */}
         <div style={{
           position: "absolute", inset: 0,
-          background: `linear-gradient(180deg, ${colour}dd 0%, ${colour}99 30%, ${colour}22 70%, transparent 100%)`,
+          background: `linear-gradient(180deg, ${colour}cc 0%, ${colour}44 28%, transparent 55%, rgba(0,0,0,0.55) 100%)`,
         }} />
-        {/* Header band — tag + company — sits on top of tint */}
+
+        {/* Top: tag + company */}
         <div style={{
           position: "absolute", top: 0, left: 0, right: 0,
           padding: "12px 14px",
@@ -156,10 +158,39 @@ function ActivityCard({ card, colour, onClick }: {
             maxWidth: 130, textAlign: "right", lineHeight: 1.3,
           }}>{card.company}</span>
         </div>
-        {/* Hover "View story" hint */}
+
+        {/* Bottom: title + location — banner style */}
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0,
+          padding: "12px 14px",
+          zIndex: 2,
+        }}>
+          <div style={{
+            fontFamily: FONT, fontSize: 12, fontWeight: 800,
+            color: "#fff", lineHeight: 1.35,
+            marginBottom: 4,
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical" as const,
+            overflow: "hidden",
+          }}>{card.title}</div>
+          <div style={{
+            display: "flex", alignItems: "center", gap: 4,
+            fontFamily: FONT, fontSize: 10, fontWeight: 600,
+            color: "rgba(255,255,255,0.75)",
+          }}>
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1C4.07 1 2.5 2.57 2.5 4.5c0 3.15 3.5 6.5 3.5 6.5s3.5-3.35 3.5-6.5C9.5 2.57 7.93 1 6 1z"
+                stroke="currentColor" strokeWidth="1.2" fill="none"/>
+            </svg>
+            {card.loc}
+          </div>
+        </div>
+
+        {/* Hover hint */}
         {hov && (
           <div style={{
-            position: "absolute", inset: 0, zIndex: 2,
+            position: "absolute", inset: 0, zIndex: 3,
             display: "flex", alignItems: "center", justifyContent: "center",
           }}>
             <div style={{

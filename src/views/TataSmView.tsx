@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { useAuth } from "@/context/AuthContext";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
-import tsmHeroImg  from "@/assets/homepagebanner/Tata Daewoo.jpg";
+import tsmHeroImg  from "@/assets/homepagebanner/4. Mithapur_Eco-Tourism_LEEPEN_Harivan Farm_2022-23_Lipan Work (5).jpeg";
 import tsmBelowImg from "@/assets/homepagebanner/General_Titan Company Ltd_01.jpg";
 import tsm2024Img  from "@/assets/homepagebanner/Volunteering in Action 5.jpg";
 

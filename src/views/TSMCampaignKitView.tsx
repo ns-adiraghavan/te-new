@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
-import tsmHeroImg from "@/assets/homepagebanner/Tata Daewoo.jpg";
+import tsmHeroImg from "@/assets/homepagebanner/4. Mithapur_Eco-Tourism_LEEPEN_Harivan Farm_2022-23_Lipan Work (5).jpeg";
 
 const FONT         = "'DM Sans',ui-sans-serif,system-ui,sans-serif";
 const ACCENT_NAVY  = "#0D1B3E";
