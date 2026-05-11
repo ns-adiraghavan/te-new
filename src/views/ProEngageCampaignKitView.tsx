@@ -111,8 +111,7 @@ function DownloadDropdown({ options, accent }: { options: FileOption[]; accent: 
       {/* Main button — always says Download */}
       <a href={cur.href} target="_blank" rel="noopener noreferrer"
         style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 12px", borderRadius: options.length > 1 ? "7px 0 0 7px" : "7px", background: accent, color: "#fff", fontFamily: FONT, fontSize: 11, fontWeight: 800, textDecoration: "none", letterSpacing: "0.2px", whiteSpace: "nowrap" }}>
-        <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"><path d="M6 2v7M3 7l3 3 3-3"/><path d="M2 10h8"/></svg>
-        Download
+Download
       </a>
       {/* Chevron toggle */}
       {options.length > 1 && (
@@ -190,7 +189,7 @@ function AssetCard({ asset, accent, cardIndex, onPreview, onSeeMore }: {
       <div style={{ padding: "20px 18px 24px", display: "flex", flexDirection: "column", gap: 12 }}>
         {/* Type tag + Preview */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "1.6px", textTransform: "uppercase", color: fgMuted }}>{asset.typeTag}</div>
+          <div style={{ fontFamily: FONT, fontSize: 16, fontWeight: 900, color: fg, letterSpacing: "-0.2px" }}>{asset.typeTag}</div>
           {asset.previewSrc && (
             <button onClick={() => onPreview(asset.previewSrc!)}
               style={{ background: inverted ? "transparent" : "rgba(255,255,255,0.15)", border: inverted ? `1px solid ${accent}55` : "1px solid rgba(255,255,255,0.3)", borderRadius: 5, padding: "3px 9px", fontFamily: FONT, fontSize: 10, fontWeight: 700, color: inverted ? accent : "#fff", cursor: "pointer", letterSpacing: "0.3px" }}>
@@ -255,7 +254,7 @@ function FeaturedCard({ asset, accent, onPreview, onSeeMore }: {
       <div style={{ padding: "24px 28px 32px", display: "flex", flexDirection: "column", gap: 12 }}>
         {/* Top row */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "1.6px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>{asset.sectionTag || asset.typeTag}</div>
+          <div style={{ fontFamily: FONT, fontSize: 16, fontWeight: 900, color: "#fff" }}>{asset.sectionTag || asset.typeTag}</div>
           {asset.previewSrc && (
             <button onClick={() => onPreview(asset.previewSrc!)}
               style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 5, padding: "3px 9px", fontFamily: FONT, fontSize: 10, fontWeight: 700, color: "#fff", cursor: "pointer", letterSpacing: "0.3px" }}>
@@ -264,14 +263,14 @@ function FeaturedCard({ asset, accent, onPreview, onSeeMore }: {
           )}
         </div>
         {asset.desc && <p style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, margin: 0, maxWidth: 560 }}>{asset.desc}</p>}
-        <DownloadDropdown options={asset.files} accent={ACCENT_NAVY} />
+        <DownloadDropdown options={asset.files} accent={accent} />
 
         {hasSubItems && (
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.18)", paddingTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
             {visibleSubs.map((sub, si) => (
               <div key={si} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
                 <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, color: "#fff" }}>{sub.label}</div>
-                <DownloadDropdown options={sub.files} accent={ACCENT_NAVY} />
+                <DownloadDropdown options={sub.files} accent={accent} />
               </div>
             ))}
             {hasMore && (
