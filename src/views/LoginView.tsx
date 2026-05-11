@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Building2, ShieldCheck, Landmark, Mail, Lock, Eye, MapPin } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA, ANJALI_MEHTA, ANJALI_GUPTA_REGIONAL, IS_PE_SEASON, togglePESeason } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
@@ -45,6 +45,7 @@ const SPOC_DEMO_BUTTONS = [
 const LoginView = () => {
   const { setIsLoggedIn, setUser } = useAuth();
   const navigate = useAppNavigate();
+  const rawNavigate = useNavigate();
   const { triggerToast } = useAppContext();
   const location = useLocation();
   const isAdminLogin = location.pathname === "/admin-login";
@@ -60,8 +61,14 @@ const LoginView = () => {
   const handleLogin = (user: Record<string, any>, dest: string, toast: string) => {
     setIsLoggedIn(true);
     setUser(user);
-    navigate(dest as any);
     triggerToast(toast);
+    // If redirected here from a protected route, return there
+    const from = (location.state as any)?.from;
+    if (from && from !== "/login" && from !== "/") {
+      rawNavigate(from, { replace: true });
+    } else {
+      navigate(dest as any);
+    }
   };
 
   return (
@@ -102,7 +109,7 @@ const LoginView = () => {
             </div>
 
             {/* White card */}
-            <div style={{ background: "rgba(255,255,255,0.96)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 16, padding: "36px 32px" }}>
+            <div style={{ background: "rgba(255,255,255,0.96)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 16, padding: "36px 32px", boxShadow: "0 24px 64px rgba(13,27,62,0.22)" }}>
 
               {/* Demo login buttons */}
               {!isAdminLogin && (
