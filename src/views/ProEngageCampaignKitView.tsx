@@ -172,7 +172,7 @@ type FileLink = { label: string; href: string };
 type SubItem  = { label: string; files: FileLink[] };
 type Asset = {
   typeTag: string;
-  title: string;
+  title?: string;
   dims: string;
   files: FileLink[];           // primary download options (the dropdown)
   previewSrc?: string;         // image URL for lightbox
@@ -565,7 +565,7 @@ export default function ProEngageCampaignKitView() {
       </div>
 
       <EditionSection ed={EDITIONS[2]} assets={PE23_ASSETS} />
-      <EditionSection ed={EDITIONS[1]} assets={PE22_ASSETS} />
+      <EditionSection ed={EDITIONS[1]} assets={PE21_ASSETS} />
       <EditionSection ed={EDITIONS[0]} assets={PE21_ASSETS} />
 
       {/* Info strip */}
