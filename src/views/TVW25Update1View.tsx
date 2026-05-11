@@ -107,50 +107,22 @@ function ActivityCard({ card, colour, onClick }: {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        background: colour,
         borderRadius: 14,
         overflow: "hidden",
         cursor: "pointer",
         boxShadow: hov ? "0 12px 32px rgba(13,27,62,0.18)" : "0 2px 8px rgba(13,27,62,0.07)",
         transform: hov ? "translateY(-3px)" : "translateY(0)",
         transition: "transform 0.2s ease, box-shadow 0.2s ease",
-        display: "flex", flexDirection: "column",
+        position: "relative",
       }}
     >
-      {/* Header band — full accent colour */}
-      <div style={{
-        background: colour,
-        padding: "10px 14px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        position: "relative", overflow: "hidden",
-        flexShrink: 0,
-      }}>
-        <div style={DIAG} />
-        {/* Tag pill */}
-        <span style={{
-          fontFamily: FONT, fontSize: 9, fontWeight: 800,
-          letterSpacing: "1.2px", textTransform: "uppercase",
-          color: "#fff",
-          background: "rgba(255,255,255,0.18)",
-          border: "1px solid rgba(255,255,255,0.28)",
-          padding: "3px 8px", borderRadius: 4,
-          position: "relative", zIndex: 1,
-        }}>{card.tag}</span>
-        {/* Company */}
-        <span style={{
-          fontFamily: FONT, fontSize: 9, fontWeight: 700,
-          color: "rgba(255,255,255,0.72)",
-          position: "relative", zIndex: 1,
-          maxWidth: 130, textAlign: "right", lineHeight: 1.3,
-        }}>{card.company}</span>
-      </div>
-
-      {/* Photo — fills the card, no text below */}
-      <div style={{ position: "relative", height: 200, overflow: "hidden" }}>
+      {/* Full-bleed photo — no fixed height, natural aspect ratio */}
+      <div style={{ position: "relative", paddingTop: "66%", overflow: "hidden" }}>
         <img
           src={card.img}
           alt={card.title}
           style={{
+            position: "absolute", inset: 0,
             width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center",
             display: "block",
@@ -158,18 +130,42 @@ function ActivityCard({ card, colour, onClick }: {
             transition: "transform 0.4s ease",
           }}
         />
-        {/* Hover overlay hint */}
+        {/* Tint overlay — always on, stronger at top for header legibility */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: `linear-gradient(180deg, ${colour}dd 0%, ${colour}99 30%, ${colour}22 70%, transparent 100%)`,
+        }} />
+        {/* Header band — tag + company — sits on top of tint */}
+        <div style={{
+          position: "absolute", top: 0, left: 0, right: 0,
+          padding: "12px 14px",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          zIndex: 2,
+        }}>
+          <span style={{
+            fontFamily: FONT, fontSize: 9, fontWeight: 800,
+            letterSpacing: "1.2px", textTransform: "uppercase",
+            color: "#fff",
+            background: "rgba(255,255,255,0.18)",
+            border: "1px solid rgba(255,255,255,0.32)",
+            padding: "3px 8px", borderRadius: 4,
+          }}>{card.tag}</span>
+          <span style={{
+            fontFamily: FONT, fontSize: 9, fontWeight: 700,
+            color: "rgba(255,255,255,0.88)",
+            maxWidth: 130, textAlign: "right", lineHeight: 1.3,
+          }}>{card.company}</span>
+        </div>
+        {/* Hover "View story" hint */}
         {hov && (
           <div style={{
-            position: "absolute", inset: 0,
-            background: "rgba(13,27,62,0.28)",
+            position: "absolute", inset: 0, zIndex: 2,
             display: "flex", alignItems: "center", justifyContent: "center",
-            transition: "background 0.2s",
           }}>
             <div style={{
               fontFamily: FONT, fontSize: 11, fontWeight: 700,
               color: "#fff", letterSpacing: "0.8px",
-              background: "rgba(255,255,255,0.15)",
+              background: "rgba(0,0,0,0.30)",
               border: "1px solid rgba(255,255,255,0.3)",
               padding: "6px 14px", borderRadius: 20,
             }}>View story →</div>

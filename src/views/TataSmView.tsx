@@ -3,7 +3,7 @@ import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { useAuth } from "@/context/AuthContext";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import tsmHeroImg  from "@/assets/homepagebanner/Tata Daewoo.jpg";
-import tsmBelowImg from "@/assets/homepagebanner/Popscicle Airplane making.jpg";
+import tsmBelowImg from "@/assets/homepagebanner/General_Titan Company Ltd_01.jpg";
 import tsm2024Img  from "@/assets/homepagebanner/Volunteering in Action 5.jpg";
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
@@ -78,8 +78,8 @@ export default function TataSmView() {
           alt=""
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
         />
-        {/* Dark base + lime tint — same treatment as TSM kit hero */}
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, rgba(13,27,62,0.88) 0%, rgba(13,27,62,0.68) 38%, ${COLOUR}88 65%, ${COLOUR}44 100%)` }} />
+        {/* Pure lime tint — matches Contact page treatment */}
+        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${COLOUR}e8 0%, ${COLOUR}cc 38%, ${COLOUR}aa 58%, ${COLOUR}77 78%, ${COLOUR}44 100%)` }} />
         <div style={DIAG} />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
@@ -166,7 +166,7 @@ export default function TataSmView() {
       <section id="tsm-2024" style={{ position: "relative", overflow: "hidden", minHeight: 480 }}>
         <img src={tsm2024Img} alt=""
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, rgba(13,27,62,0.88) 0%, rgba(13,27,62,0.68) 38%, ${COLOUR}88 65%, ${COLOUR}44 100%)` }} />
+        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${COLOUR}e8 0%, ${COLOUR}cc 38%, ${COLOUR}aa 58%, ${COLOUR}77 78%, ${COLOUR}44 100%)` }} />
         <div style={DIAG} />
         <div style={{ position: "relative", zIndex: 1, padding: "88px 56px" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>

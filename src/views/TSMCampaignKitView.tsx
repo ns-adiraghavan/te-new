@@ -21,8 +21,6 @@ const DIAG: React.CSSProperties = {
 
 const SECTIONS = [
   { id: "ckit-hero",   label: "Overview" },
-  { id: "ckit-tsm23",  label: "TSM 23"   },
-  { id: "ckit-tsm24",  label: "TSM 24"   },
   { id: "ckit-tsm25",  label: "TSM 25"   },
 ];
 
@@ -62,12 +60,12 @@ function DlBtn({ label, href, solid, accent }: { label: string; href: string; so
 function InfoTile({ accent, typeTag, thumbLabel, dims, minHeight = 140, inverted = false }: {
   accent: string; typeTag: string; thumbLabel: string; dims: string; minHeight?: number; inverted?: boolean;
 }) {
-  // TSM: solid accent = olive on dark overlay, inverted = white bg with olive text
-  const bg      = inverted ? "#fff" : ACCENT_NAVY;
-  const eyebrow = inverted ? COLOUR_DARK + "bb" : "rgba(195,219,111,0.65)";
-  const heading = inverted ? ACCENT_NAVY : COLOUR;
-  const sub     = inverted ? "#94a3b8" : "rgba(195,219,111,0.5)";
-  const topBar  = inverted ? accent + "55" : accent;
+  // TSM: solid lime bg with white text, inverted = white bg with lime text
+  const bg      = inverted ? "#fff" : COLOUR;
+  const eyebrow = inverted ? COLOUR_DARK + "bb" : "rgba(255,255,255,0.72)";
+  const heading = inverted ? ACCENT_NAVY : "#fff";
+  const sub     = inverted ? "#94a3b8" : "rgba(255,255,255,0.65)";
+  const topBar  = inverted ? COLOUR + "55" : "rgba(255,255,255,0.35)";
   return (
     <div style={{
       position: "relative", width: "100%", minHeight, background: bg,
@@ -75,8 +73,8 @@ function InfoTile({ accent, typeTag, thumbLabel, dims, minHeight = 140, inverted
       display: "flex", flexDirection: "column", justifyContent: "space-between",
       padding: "18px 20px",
       backgroundImage: inverted
-        ? `radial-gradient(circle, ${accent}18 1.5px, transparent 1.5px)`
-        : "repeating-linear-gradient(45deg,rgba(195,219,111,0.04) 0px,rgba(195,219,111,0.04) 1px,transparent 1px,transparent 22px)",
+        ? `radial-gradient(circle, ${COLOUR}18 1.5px, transparent 1.5px)`
+        : "repeating-linear-gradient(45deg,rgba(255,255,255,0.04) 0px,rgba(255,255,255,0.04) 1px,transparent 1px,transparent 22px)",
       backgroundSize: inverted ? "16px 16px" : "22px 22px",
     }}>
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: topBar }} />
@@ -88,7 +86,7 @@ function InfoTile({ accent, typeTag, thumbLabel, dims, minHeight = 140, inverted
 }
 
 function AssetCard({ typeTag, accent, title, meta, thumbLabel, dims, links, inverted = false }: {
-  typeTag: string; accent: string; title: string; meta?: string; thumbLabel: string; dims: string;
+  typeTag: string; accent: string; title: string; meta: string; thumbLabel: string; dims: string;
   links: { label: string; href: string; solid?: boolean }[]; inverted?: boolean;
 }) {
   const [hov, setHov] = useState(false);
@@ -155,7 +153,7 @@ function LeafIcon() {
 
 function EditionSection({ ed, assets }: {
   ed: typeof EDITIONS[0];
-  assets: { typeTag: string; thumbLabel: string; dims: string; title: string; meta?: string; links: { label: string; href: string; solid?: boolean }[]; featured?: boolean; sectionTag?: string; desc?: string; }[];
+  assets: { typeTag: string; thumbLabel: string; dims: string; title: string; meta: string; links: { label: string; href: string; solid?: boolean }[]; featured?: boolean; sectionTag?: string; desc?: string; }[];
 }) {
   const featured = assets.find(a => a.featured);
   const regular  = assets.filter(a => !a.featured);
@@ -173,24 +171,6 @@ function EditionSection({ ed, assets }: {
           )}
           <div style={{ flex: 1, height: 1.5, background: BORDER }} />
           <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#94a3b8" }}>{ed.year}</div>
-        </div>
-
-        {/* Theme + stats bar */}
-        <div style={{ background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14, padding: "20px 24px", display: "flex", alignItems: "center", gap: 32, marginBottom: 0 }}>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 700, letterSpacing: "1.4px", textTransform: "uppercase", color: "#94a3b8", marginBottom: 4 }}>Edition theme</div>
-            <div style={{ fontFamily: FONT, fontSize: 15, fontWeight: 800, color: ACCENT_NAVY }}>{ed.theme}</div>
-          </div>
-          <div style={{ width: 1, height: 40, background: BORDER }} />
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 900, color: COLOUR_DARK, letterSpacing: "-0.5px" }}>{ed.volunteers}</div>
-            <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 700, color: "#64748b", letterSpacing: "0.5px", textTransform: "uppercase" }}>Volunteers</div>
-          </div>
-          <div style={{ width: 1, height: 40, background: BORDER }} />
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 900, color: COLOUR_DARK, letterSpacing: "-0.5px" }}>{ed.activities}</div>
-            <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 700, color: "#64748b", letterSpacing: "0.5px", textTransform: "uppercase" }}>Activities</div>
-          </div>
         </div>
       </div>
 
@@ -270,14 +250,14 @@ export default function TSMCampaignKitView() {
       {/* ── HERO ── */}
       <div id="ckit-hero" style={{ position: "relative", minHeight: "92vh", overflow: "hidden", display: "flex", alignItems: "center", paddingTop: 64 }}>
         <img src={tsmHeroImg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-        {/* Dark base overlay so lime accent doesn't wash out — TSM unique treatment */}
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, rgba(13,27,62,0.88) 0%, rgba(13,27,62,0.70) 38%, ${COLOUR}88 65%, ${COLOUR}44 100%)` }} />
+        {/* Pure lime tint — matches Contact page */}
+        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(110deg, ${COLOUR}e8 0%, ${COLOUR}cc 38%, ${COLOUR}aa 58%, ${COLOUR}77 78%, ${COLOUR}44 100%)` }} />
         <div style={DIAG} />
 
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%", display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 56, alignItems: "center" }}>
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "0 64px", width: "100%" }}>
 
           {/* Left */}
-          <div>
+          <div style={{ maxWidth: 560 }}>
             <p style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: "1.6px", textTransform: "uppercase", color: "rgba(255,255,255,0.65)", margin: "0 0 12px" }}>
               Tata Sustainability Group · Tata Sustainability Month
             </p>
@@ -298,28 +278,10 @@ export default function TSMCampaignKitView() {
             </a>
           </div>
 
-          {/* Right — edition summary */}
-          <div style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 16, padding: 28, position: "relative", overflow: "hidden" }}>
-            <div style={DIAG} />
-            <div style={{ fontFamily: FONT, display: "inline-block", background: B_YELLOW, color: ACCENT_NAVY, fontSize: 9, fontWeight: 900, letterSpacing: "1.5px", textTransform: "uppercase", padding: "4px 10px", borderRadius: 100, marginBottom: 16, position: "relative", zIndex: 1 }}>
-              3 editions available
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10, position: "relative", zIndex: 1 }}>
-              {EDITIONS.map((ed, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 10, padding: "10px 14px" }}>
-                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: ed.active ? "#4ade80" : COLOUR + "99", flexShrink: 0 }} />
-                  <span style={{ fontFamily: FONT, fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.85)" }}>{ed.label} · {ed.year}</span>
-                  {ed.active && <span style={{ marginLeft: "auto", fontFamily: FONT, fontSize: 9, fontWeight: 800, letterSpacing: "1px", textTransform: "uppercase", color: "#4ade80" }}>Active</span>}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* ── EDITIONS ── */}
-      <EditionSection ed={EDITIONS[0]} assets={TSM23_ASSETS} />
-      <EditionSection ed={EDITIONS[1]} assets={TSM24_ASSETS} />
+      {/* ── EDITIONS — TSM25 only for now ── */}
       <EditionSection ed={EDITIONS[2]} assets={TSM25_ASSETS} />
 
       {/* ── INFO STRIP ── */}
