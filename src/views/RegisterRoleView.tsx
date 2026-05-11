@@ -116,7 +116,7 @@ const RegisterRoleView = () => {
                 const isHovered = hovered === role.id;
                 return (
                   <motion.div key={role.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }}
-                    onClick={() => handleRoleSelect(role.id as Role)}
+                    onClick={() => { handleRoleSelect(role.id as Role); navigate("register-form"); }}
                     onMouseEnter={() => setHovered(role.id)}
                     onMouseLeave={() => setHovered(null)}
                     style={{ background: active ? "rgba(255,255,255,0.22)" : isHovered ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.10)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: `1.5px solid ${active ? "rgba(255,255,255,0.65)" : isHovered ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.18)"}`, borderRadius: 18, padding: "26px 18px 22px", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 10, transition: "all 0.22s cubic-bezier(0.4,0,0.2,1)", boxShadow: active ? `0 12px 40px rgba(0,0,0,0.28), 0 0 0 1px ${accent}55` : isHovered ? "0 6px 20px rgba(0,0,0,0.18)" : "0 2px 8px rgba(0,0,0,0.10)", transform: active ? "translateY(-5px) scale(1.025)" : isHovered ? "translateY(-2px)" : "translateY(0)" }}>
@@ -129,13 +129,6 @@ const RegisterRoleView = () => {
                 );
               })}
             </div>
-            {selectedRole && (
-              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} style={{ textAlign: "center", marginTop: 32 }}>
-                <button onClick={() => navigate("register-form")} style={{ padding: "13px 40px", borderRadius: 10, border: "none", background: "rgba(255,255,255,0.95)", color: ACCENT_NAVY, fontWeight: 700, fontSize: 15, fontFamily: FONT, cursor: "pointer", boxShadow: "0 4px 20px rgba(13,27,62,0.18)" }}>
-                  Continue →
-                </button>
-              </motion.div>
-            )}
             <p style={{ textAlign: "center", fontSize: 13, color: "rgba(255,255,255,0.45)", marginTop: 20, fontFamily: FONT }}>
               Already have an account?{" "}
               <button onClick={() => navigate("login")} style={{ fontWeight: 700, color: "rgba(255,255,255,0.8)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline", fontFamily: FONT }}>Login here</button>
