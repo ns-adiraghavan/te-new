@@ -930,11 +930,8 @@ const Navbar = ({
                     className={`text-sm font-semibold cursor-pointer whitespace-nowrap ${bouncingItem === "login" ? "[animation:teNavBounce_0.4s_ease]" : ""}`}
                     style={{
                       display: "inline-block",
-                      padding: "8px 20px",
-                      borderRadius: 8,
-                      background: "rgba(255,255,255,0.15)",
+                      padding: "8px 12px",
                       color: "#ffffff",
-                      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.25)",
                     }}
                   >
                     Log In
