@@ -103,7 +103,7 @@ function InfoTile({ accent, typeTag, thumbLabel, dims, minHeight = 140, inverted
 }
 
 function AssetCard({ typeTag, accent, title, meta, thumbLabel, dims, links, inverted = false }: {
-  typeTag: string; accent: string; title: string; meta: string; thumbLabel: string; dims: string;
+  typeTag: string; accent: string; title: string; meta?: string; thumbLabel: string; dims: string;
   links: { label: string; href: string; solid?: boolean }[]; inverted?: boolean;
 }) {
   const [hov, setHov] = useState(false);
