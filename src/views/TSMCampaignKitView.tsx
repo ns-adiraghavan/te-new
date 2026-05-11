@@ -155,7 +155,7 @@ function LeafIcon() {
 
 function EditionSection({ ed, assets }: {
   ed: typeof EDITIONS[0];
-  assets: { typeTag: string; thumbLabel: string; dims: string; title: string; meta: string; links: { label: string; href: string; solid?: boolean }[]; featured?: boolean; sectionTag?: string; desc?: string; }[];
+  assets: { typeTag: string; thumbLabel: string; dims: string; title: string; meta?: string; links: { label: string; href: string; solid?: boolean }[]; featured?: boolean; sectionTag?: string; desc?: string; }[];
 }) {
   const featured = assets.find(a => a.featured);
   const regular  = assets.filter(a => !a.featured);

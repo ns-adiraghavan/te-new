@@ -36,6 +36,8 @@ import TVWHubView from "@/views/TVWHubView";
 import TVW25Update1View from "@/views/TVW25Update1View";
 import ProEngageView from "@/views/ProEngageView";
 import ProEngageCampaignKitView from "@/views/ProEngageCampaignKitView";
+import TVWCampaignKitView from "@/views/TVWCampaignKitView";
+import TSMCampaignKitView from "@/views/TSMCampaignKitView";
 import DisasterResponseView from "@/views/DisasterResponseView";
 
 import DRAvailabilityForm from "@/views/DRAvailabilityForm";
@@ -406,8 +408,10 @@ export default function App() {
             <Route path="/yes-to-access" element={<YesToAccessView />} />
             <Route path="/tata-sustainability-month" element={<TataSmView />} />
             <Route path="/cvp" element={<CVPView />} />
-            <Route path="/tvw/update-1" element={<TVW25Update1View />} />
-            <Route path="/proengage/campaign-kit" element={<ProEngageCampaignKitView />} />
+            <Route path="/programs/tvw/update-1" element={<TVW25Update1View />} />
+            <Route path="/programs/tvw/campaign-kit" element={<TVWCampaignKitView />} />
+            <Route path="/programs/proengage/campaign-kit" element={<ProEngageCampaignKitView />} />
+            <Route path="/programs/tata-sustainability-month/campaign-kit" element={<TSMCampaignKitView />} />
             <Route path="/stories" element={<ImpactStoryView />} />
             <Route path="/privacy" element={<PrivacyView />} />
             <Route path="/legal" element={<LegalView />} />
