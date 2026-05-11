@@ -36,6 +36,8 @@ import TVWHubView from "@/views/TVWHubView";
 import TVW25Update1View from "@/views/TVW25Update1View";
 import ProEngageView from "@/views/ProEngageView";
 import ProEngageCampaignKitView from "@/views/ProEngageCampaignKitView";
+import TVWCampaignKitView from "@/views/TVWCampaignKitView";
+import TSMCampaignKitView from "@/views/TSMCampaignKitView";
 import DisasterResponseView from "@/views/DisasterResponseView";
 
 import DRAvailabilityForm from "@/views/DRAvailabilityForm";
