@@ -348,7 +348,7 @@ function EditionSection({ ed, assets }: { ed: typeof EDITIONS[0]; assets: Asset[
             <FeaturedCard asset={featured} accent={COLOUR} onPreview={setLightboxSrc} onSeeMore={a => setDrawerAsset(a)} />
           )}
           {regular.map((asset, i) => (
-            <AssetCard key={i} asset={asset} accent={COLOUR} cardIndex={i} onPreview={setLightboxSrc} onSeeMore={a => setDrawerAsset(a)} />
+            <AssetCard key={i} asset={asset} accent={COLOUR} cardIndex={i + 1} onPreview={setLightboxSrc} onSeeMore={a => setDrawerAsset(a)} />
           ))}
         </div>
       </div>

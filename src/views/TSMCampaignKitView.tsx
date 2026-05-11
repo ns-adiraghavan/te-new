@@ -27,8 +27,6 @@ const DIAG: React.CSSProperties = {
 const SECTIONS = [
   { id: "ckit-hero",  label: "Overview" },
   { id: "ckit-tsm25", label: "TSM 25"  },
-  { id: "ckit-tsm24", label: "TSM 24"  },
-  { id: "ckit-tsm23", label: "TSM 23"  },
 ];
 
 const EDITIONS = [
@@ -347,7 +345,7 @@ function EditionSection({ ed, assets }: { ed: typeof EDITIONS[0]; assets: Asset[
             <FeaturedCard asset={featured} accent={COLOUR} onPreview={setLightboxSrc} onSeeMore={a => setDrawerAsset(a)} />
           )}
           {regular.map((asset, i) => (
-            <AssetCard key={i} asset={asset} accent={COLOUR} cardIndex={i} onPreview={setLightboxSrc} onSeeMore={a => setDrawerAsset(a)} />
+            <AssetCard key={i} asset={asset} accent={COLOUR} cardIndex={i + 1} onPreview={setLightboxSrc} onSeeMore={a => setDrawerAsset(a)} />
           ))}
         </div>
       </div>
@@ -486,8 +484,6 @@ export default function TSMCampaignKitView() {
       </div>
 
       <EditionSection ed={EDITIONS[2]} assets={TSM25_ASSETS} />
-      <EditionSection ed={EDITIONS[1]} assets={TSM24_ASSETS} />
-      <EditionSection ed={EDITIONS[0]} assets={TSM23_ASSETS} />
 
       <div style={{ maxWidth: 1100, margin: "40px auto 0", padding: "0 56px" }}>
         <div style={{ background: COLOUR, borderRadius: 14, padding: "22px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
