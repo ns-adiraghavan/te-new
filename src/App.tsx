@@ -408,10 +408,10 @@ export default function App() {
             <Route path="/yes-to-access" element={<YesToAccessView />} />
             <Route path="/tata-sustainability-month" element={<TataSmView />} />
             <Route path="/cvp" element={<CVPView />} />
-            <Route path="/programs/tvw/update-1" element={<TVW25Update1View />} />
-            <Route path="/programs/tvw/campaign-kit" element={<TVWCampaignKitView />} />
-            <Route path="/programs/proengage/campaign-kit" element={<ProEngageCampaignKitView />} />
-            <Route path="/programs/tata-sustainability-month/campaign-kit" element={<TSMCampaignKitView />} />
+            <Route path="/tvw/update-1" element={<ProtectedRoute><TVW25Update1View /></ProtectedRoute>} />
+            <Route path="/tvw/campaign-kit" element={<ProtectedRoute><TVWCampaignKitView /></ProtectedRoute>} />
+            <Route path="/proengage/campaign-kit" element={<ProtectedRoute><ProEngageCampaignKitView /></ProtectedRoute>} />
+            <Route path="/tata-sustainability-month/campaign-kit" element={<ProtectedRoute><TSMCampaignKitView /></ProtectedRoute>} />
             <Route path="/stories" element={<ImpactStoryView />} />
             <Route path="/privacy" element={<PrivacyView />} />
             <Route path="/legal" element={<LegalView />} />
