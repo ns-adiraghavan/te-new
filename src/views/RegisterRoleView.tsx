@@ -129,13 +129,6 @@ const RegisterRoleView = () => {
                 );
               })}
             </div>
-            {selectedRole && (
-              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} style={{ textAlign: "center", marginTop: 32 }}>
-                <button onClick={() => navigate("register-form")} style={{ padding: "13px 40px", borderRadius: 10, border: "none", background: "rgba(255,255,255,0.95)", color: ACCENT_NAVY, fontWeight: 700, fontSize: 15, fontFamily: FONT, cursor: "pointer", boxShadow: "0 4px 20px rgba(13,27,62,0.18)" }}>
-                  Continue →
-                </button>
-              </motion.div>
-            )}
             <p style={{ textAlign: "center", fontSize: 13, color: "rgba(255,255,255,0.45)", marginTop: 20, fontFamily: FONT }}>
               Already have an account?{" "}
               <button onClick={() => navigate("login")} style={{ fontWeight: 700, color: "rgba(255,255,255,0.8)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline", fontFamily: FONT }}>Login here</button>
