@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Bell, ChevronDown, ChevronRight, User, LogOut, Share2, LayoutDashboard, Search, Menu, X, Mail, Lock, Eye, EyeOff, Building2, ShieldCheck, Landmark, ArrowRight } from "lucide-react";
 import tataLogo from "@/assets/tata-logo.png";
 import tataEngageLogo from "@/assets/tata-engage-logo-nobg.png";
@@ -210,10 +210,10 @@ function LoginPopout({
     <div
       ref={popRef}
       style={{
-        position: "fixed",
-        top: 72,
-        right: 16,
-        width: 340,
+        position: "absolute",
+        top: "calc(100% + 8px)",
+        right: 0,
+        width: 320,
         background: "white",
         borderRadius: 16,
         boxShadow: "0 24px 64px rgba(13,27,62,0.22), 0 4px 16px rgba(0,0,0,0.10)",
@@ -222,29 +222,9 @@ function LoginPopout({
         fontFamily: FONT_DM,
       }}
     >
-      {/* Header strip — TVW blue with register-style doodles */}
-      <div style={{ position: "relative", background: TVW_BLUE, padding: "18px 20px 16px", display: "flex", alignItems: "flex-start", justifyContent: "space-between", overflow: "hidden" }}>
-        <svg
-          aria-hidden
-          viewBox="0 0 340 110"
-          preserveAspectRatio="xMidYMid slice"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.18, pointerEvents: "none" }}
-        >
-          <g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M275 18 C293 6,318 12,322 32 C326 52,308 68,288 64 C268 60,258 40,268 24 Z" strokeWidth="2.2"/>
-            <g transform="translate(238,30)">
-              <line x1="-10" y1="0" x2="10" y2="0" strokeWidth="1.8"/>
-              <line x1="0" y1="-10" x2="0" y2="10" strokeWidth="1.8"/>
-              <line x1="-7" y1="-7" x2="7" y2="7" strokeWidth="1.4"/>
-              <line x1="7" y1="-7" x2="-7" y2="7" strokeWidth="1.4"/>
-            </g>
-            <path d="M10 92 C32 78,54 100,76 86 C98 72,120 94,142 80" strokeWidth="2"/>
-            <rect x="200" y="78" width="22" height="22" rx="4" strokeWidth="1.8" transform="rotate(14,211,89)"/>
-            <circle cx="40" cy="22" r="14" strokeWidth="1.6"/>
-            <circle cx="40" cy="22" r="6" strokeWidth="1.2"/>
-          </g>
-        </svg>
-        <div style={{ position: "relative", zIndex: 1 }}>
+      {/* Header strip — TVW blue */}
+      <div style={{ background: TVW_BLUE, padding: "18px 20px 16px", display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
+        <div>
           <p style={{ margin: 0, fontSize: 16, fontWeight: 800, color: "white", letterSpacing: "-0.2px", fontFamily: FONT_DM }}>
             Welcome back!
           </p>
@@ -252,7 +232,7 @@ function LoginPopout({
             {step === "otp" ? `Code sent to ${email}` : "What's on the agenda today?"}
           </p>
         </div>
-        <button onClick={onClose} style={{ position: "relative", zIndex: 1, background: "rgba(255,255,255,0.15)", border: "none", cursor: "pointer", color: "white", padding: "4px 5px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 8, marginTop: 2 }}>
+        <button onClick={onClose} style={{ background: "rgba(255,255,255,0.15)", border: "none", cursor: "pointer", color: "white", padding: "4px 5px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 8, marginTop: 2 }}>
           <X size={15} />
         </button>
       </div>
@@ -375,6 +355,7 @@ const Navbar = ({
   user: any;
 }) => {
   const location = useLocation();
+  const rawNavigate = useNavigate();
   const [loginPopoutOpen, setLoginPopoutOpen] = useState(false);
   const { triggerToast } = useAppContext();
 
@@ -682,19 +663,19 @@ const Navbar = ({
                       </span>
                       <div className={`${nestPanelCls} w-56`}>
                         <span
-                          onClick={() => triggerToast("ProEngage Campaign Kit available in Resource Library")}
+                          onClick={() => rawNavigate("/proengage/campaign-kit")}
                           className={itemCls}
                         >
                           PE Kit
                         </span>
                         <span
-                          onClick={() => triggerToast("TVW Campaign Kit available in Resource Library")}
+                          onClick={() => rawNavigate("/tvw/campaign-kit")}
                           className={itemCls}
                         >
                           TVW Kit
                         </span>
                         <span
-                          onClick={() => triggerToast("TSM Campaign Kit available in Resource Library")}
+                          onClick={() => rawNavigate("/tata-sustainability-month/campaign-kit")}
                           className={itemCls}
                         >
                           TSM Kit
@@ -950,8 +931,11 @@ const Navbar = ({
                     className={`text-sm font-semibold cursor-pointer whitespace-nowrap ${bouncingItem === "login" ? "[animation:teNavBounce_0.4s_ease]" : ""}`}
                     style={{
                       display: "inline-block",
-                      padding: "8px 12px",
+                      padding: "8px 20px",
+                      borderRadius: 8,
+                      background: "rgba(255,255,255,0.15)",
                       color: "#ffffff",
+                      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.25)",
                     }}
                   >
                     Log In
