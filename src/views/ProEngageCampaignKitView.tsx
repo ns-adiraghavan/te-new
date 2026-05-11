@@ -91,7 +91,7 @@ function DefinerBar({ colour }: { colour: string }) {
 // ── Download button with dropdown ─────────────────────────────────────────────
 type FileOption = { label: string; href: string };
 
-function DownloadDropdown({ options, accent }: { options: FileOption[]; accent: string }) {
+function DownloadDropdown({ options, accent, onColour = false }: { options: FileOption[]; accent: string; onColour?: boolean }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -110,13 +110,13 @@ function DownloadDropdown({ options, accent }: { options: FileOption[]; accent: 
     <div ref={ref} style={{ display: "inline-flex", position: "relative" }}>
       {/* Main button — always says Download */}
       <a href={cur.href} target="_blank" rel="noopener noreferrer"
-        style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 12px", borderRadius: options.length > 1 ? "7px 0 0 7px" : "7px", background: accent, color: "#fff", fontFamily: FONT, fontSize: 11, fontWeight: 800, textDecoration: "none", letterSpacing: "0.2px", whiteSpace: "nowrap" }}>
+        style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 12px", borderRadius: options.length > 1 ? "7px 0 0 7px" : "7px", background: onColour ? "#fff" : accent, color: onColour ? accent : "#fff", fontFamily: FONT, fontSize: 11, fontWeight: 800, textDecoration: "none", letterSpacing: "0.2px", whiteSpace: "nowrap" }}>
 Download
       </a>
       {/* Chevron toggle */}
       {options.length > 1 && (
         <button onClick={() => setOpen(o => !o)}
-          style={{ display: "inline-flex", alignItems: "center", padding: "7px 8px", borderRadius: "0 7px 7px 0", background: `${accent}cc`, border: "none", borderLeft: "1px solid rgba(255,255,255,0.25)", color: "#fff", cursor: "pointer", fontSize: 10 }}>
+          style={{ display: "inline-flex", alignItems: "center", padding: "7px 8px", borderRadius: "0 7px 7px 0", background: onColour ? "rgba(255,255,255,0.85)" : `${accent}dd`, border: "none", borderLeft: onColour ? `1px solid ${accent}33` : "1px solid rgba(255,255,255,0.25)", color: onColour ? accent : "#fff", cursor: "pointer", fontSize: 10 }}>
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"><path d={open ? "M2 7l3-4 3 4" : "M2 3l3 4 3-4"}/></svg>
         </button>
       )}
@@ -190,19 +190,17 @@ function AssetCard({ asset, accent, cardIndex, onPreview, onSeeMore }: {
         {/* Type tag + Preview */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ fontFamily: FONT, fontSize: 16, fontWeight: 900, color: fg, letterSpacing: "-0.2px" }}>{asset.typeTag}</div>
-          {asset.previewSrc && (
-            <button onClick={() => onPreview(asset.previewSrc!)}
+          <button onClick={() => onPreview(asset.previewSrc || PE_DRIVE)}
               style={{ background: inverted ? "transparent" : "rgba(255,255,255,0.15)", border: inverted ? `1px solid ${accent}55` : "1px solid rgba(255,255,255,0.3)", borderRadius: 5, padding: "3px 9px", fontFamily: FONT, fontSize: 10, fontWeight: 700, color: inverted ? accent : "#fff", cursor: "pointer", letterSpacing: "0.3px" }}>
               Preview
             </button>
-          )}
         </div>
 
         {/* Dims */}
         <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 600, color: fgMuted }}>{asset.dims}</div>
 
         {/* Download */}
-        <DownloadDropdown options={asset.files} accent={inverted ? accent : ACCENT_NAVY} />
+        <DownloadDropdown options={asset.files} accent={accent} onColour={!inverted} />
 
         {/* Sub-items */}
         {hasSubItems && (
@@ -210,7 +208,7 @@ function AssetCard({ asset, accent, cardIndex, onPreview, onSeeMore }: {
             {visibleSubs.map((sub, si) => (
               <div key={si} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
                 <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, color: fg, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{sub.label}</div>
-                <DownloadDropdown options={sub.files} accent={inverted ? accent : ACCENT_NAVY} />
+                <DownloadDropdown options={sub.files} accent={accent} onColour={!inverted} />
               </div>
             ))}
             {hasMore && (
@@ -255,22 +253,20 @@ function FeaturedCard({ asset, accent, onPreview, onSeeMore }: {
         {/* Top row */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ fontFamily: FONT, fontSize: 16, fontWeight: 900, color: "#fff" }}>{asset.sectionTag || asset.typeTag}</div>
-          {asset.previewSrc && (
-            <button onClick={() => onPreview(asset.previewSrc!)}
+          <button onClick={() => onPreview(asset.previewSrc || PE_DRIVE)}
               style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 5, padding: "3px 9px", fontFamily: FONT, fontSize: 10, fontWeight: 700, color: "#fff", cursor: "pointer", letterSpacing: "0.3px" }}>
               Preview
             </button>
-          )}
         </div>
         {asset.desc && <p style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, margin: 0, maxWidth: 560 }}>{asset.desc}</p>}
-        <DownloadDropdown options={asset.files} accent={accent} />
+        <DownloadDropdown options={asset.files} accent={accent} onColour={true} />
 
         {hasSubItems && (
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.18)", paddingTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
             {visibleSubs.map((sub, si) => (
               <div key={si} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
                 <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, color: "#fff" }}>{sub.label}</div>
-                <DownloadDropdown options={sub.files} accent={accent} />
+                <DownloadDropdown options={sub.files} accent={accent} onColour={true} />
               </div>
             ))}
             {hasMore && (
@@ -295,13 +291,13 @@ function SeeMoreDrawer({ asset, accent, open, onClose }: { asset: Asset | null; 
         {/* Primary */}
         <div style={{ paddingBottom: 16, borderBottom: `1px solid ${BORDER}` }}>
           <div style={{ fontFamily: FONT, fontSize: 10, fontWeight: 800, letterSpacing: "1.3px", textTransform: "uppercase", color: "#94a3b8", marginBottom: 10 }}>Primary</div>
-          <DownloadDropdown options={asset.files} accent={accent} />
+          <DownloadDropdown options={asset.files} accent={accent} onColour={true} />
         </div>
         {/* Sub items */}
         {asset.subItems?.map((sub, i) => (
           <div key={i} style={{ paddingTop: 16, paddingBottom: 16, borderBottom: i < (asset.subItems!.length - 1) ? `1px solid ${BORDER}` : "none", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
             <div style={{ fontFamily: FONT, fontSize: 13, fontWeight: 700, color: ACCENT_NAVY }}>{sub.label}</div>
-            <DownloadDropdown options={sub.files} accent={accent} />
+            <DownloadDropdown options={sub.files} accent={accent} onColour={false} />
           </div>
         ))}
       </div>
