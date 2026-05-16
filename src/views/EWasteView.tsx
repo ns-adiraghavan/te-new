@@ -3,7 +3,8 @@ import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { useAuth } from "@/context/AuthContext";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import ewasteHeroImg     from "@/assets/homepagebanner/20240729_114952.jpg";
-import ewasteBelowImg    from "@/assets/homepagebanner/Tata Bluescope Steel (2).jpg";
+import ewasteBannerImg   from "@/assets/homepagebanner/4. Mithapur_Eco-Tourism_LEEPEN_Harivan Farm_2022-23_Lipan Work (5).jpeg";
+import ewasteBelowImg    from "@/assets/homepagebanner/TCL Mithap 5925.1.jpg";
 import ewasteWhyImg      from "@/assets/homepagebanner/SMPP - Beach clean-up.jpg";
 import ewasteWhoImg      from "@/assets/homepagebanner/Road Safety Awareness by HRM (2).JPG";
 
@@ -100,6 +101,13 @@ export default function EWasteView() {
           </div>
         </div>
 
+      </div>
+
+      {/* ════════════════════ BANNER IMAGE ════════════════════ */}
+      <div style={{ width: "100%", height: 420, overflow: "hidden", position: "relative" }}>
+        <img src={ewasteBannerImg} alt=""
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 60%" }} />
+        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to bottom, transparent 60%, rgba(255,255,255,0.18) 100%)` }} />
       </div>
 
       {/* ════════════════════ OVERVIEW ════════════════════ */}
