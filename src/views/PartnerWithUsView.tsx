@@ -389,13 +389,12 @@ function ContactSection() {
     <section
       id="pwu-contact"
       style={{
-        background: ACCENT_NAVY,
+        background: "#fff",
         padding: "88px 56px",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      <div style={DIAG} />
       <div
         style={{
           maxWidth: 1100,
@@ -416,36 +415,35 @@ function ContactSection() {
               fontWeight: 700,
               letterSpacing: "1.8px",
               textTransform: "uppercase",
-              color: "#ffffff",
+              color: COLOUR + "cc",
               marginBottom: 10,
             }}
           >
             Contact &amp; connect
           </p>
-          <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>
+          <h2 style={{ fontSize: 30, fontWeight: 900, color: ACCENT_NAVY, letterSpacing: "-0.5px" }}>
             We'd love to hear from you
           </h2>
           <div
             style={{
               height: 3,
-              background: "rgba(255,255,255,0.25)",
+              background: "#e8e8f0",
               borderRadius: 2,
               width: 48,
               marginTop: 10,
               marginBottom: 32,
             }}
           />
-          <p style={{ fontSize: 15, color: "rgba(255,255,255,0.72)", lineHeight: 1.82, maxWidth: 480 }}>
+          <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.82, maxWidth: 480 }}>
             Whether you're a civil society organisation looking for volunteers, or a partner exploring collaboration opportunities, the Tata Engage team is here to help. Write to us with your organisation profile, details of your association with Tata companies, and your volunteering requirements. Our team will be happy to guide you through the next steps of the enrolment process or respond to your queries.
           </p>
         </div>
 
         <div
           style={{
-            background: "rgba(0,0,0,0.22)",
+            background: COLOUR,
             borderRadius: 20,
             padding: "40px 36px",
-            border: "1px solid rgba(255,255,255,0.14)",
           }}
         >
           <div
@@ -455,7 +453,7 @@ function ContactSection() {
               fontWeight: 700,
               letterSpacing: "1.5px",
               textTransform: "uppercase",
-              color: "#ffffff",
+              color: "rgba(255,255,255,0.7)",
               marginBottom: 10,
             }}
           >
@@ -497,7 +495,7 @@ function StayConnectedSection() {
   ];
 
   return (
-    <section id="pwu-social" style={{ padding: "88px 56px", background: "transparent" }}>
+    <section id="pwu-social" style={{ padding: "88px 56px", background: "#f5f5fa" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ marginBottom: 48 }}>
           <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>
@@ -552,9 +550,9 @@ export default function PartnerWithUsView() {
       <Hero />
       <IntroSection />
       <NGOSection />
-      <NGORegisterSection />
       <ContactSection />
       <StayConnectedSection />
+      <NGORegisterSection />
     </div>
   );
 }

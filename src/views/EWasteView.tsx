@@ -4,7 +4,6 @@ import { useAuth } from "@/context/AuthContext";
 import SubPageDotRail from "@/components/shared/SubPageDotRail";
 import ewasteHeroImg     from "@/assets/homepagebanner/20240729_114952.jpg";
 import ewasteBannerImg   from "@/assets/homepagebanner/4. Mithapur_Eco-Tourism_LEEPEN_Harivan Farm_2022-23_Lipan Work (5).jpeg";
-import ewasteBelowImg    from "@/assets/homepagebanner/TCL Mithap 5925.1.jpg";
 import ewasteWhyImg      from "@/assets/homepagebanner/SMPP - Beach clean-up.jpg";
 import ewasteWhoImg      from "@/assets/homepagebanner/Road Safety Awareness by HRM (2).JPG";
 
@@ -103,12 +102,6 @@ export default function EWasteView() {
 
       </div>
 
-      {/* ════════════════════ BANNER IMAGE ════════════════════ */}
-      <div style={{ width: "100%", height: 420, overflow: "hidden", position: "relative", background: ACCENT_NAVY }}>
-        <img src={ewasteBannerImg} alt=""
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 60%", display: "block" }} />
-      </div>
-
       {/* ════════════════════ OVERVIEW ════════════════════ */}
       <section id="ewaste-overview" style={{ padding: "88px 56px", background: "#fff" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
@@ -128,8 +121,8 @@ export default function EWasteView() {
           <div style={{ position: "relative" }}>
             <div style={{ position: "absolute", top: -16, right: -16, zIndex: 0, width: 64, height: 64, borderRadius: 16, background: COLOUR, opacity: 0.12 }} />
             <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 32px rgba(13,27,62,0.10)", position: "relative", zIndex: 1 }}>
-              <img src={ewasteBelowImg} alt=""
-                style={{ width: "100%", height: 380, objectFit: "cover", objectPosition: "center", display: "block" }} />
+              <img src={ewasteBannerImg} alt=""
+                style={{ width: "100%", height: 380, objectFit: "cover", objectPosition: "center 60%", display: "block" }} />
             </div>
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 4, background: COLOUR, borderRadius: "0 0 18px 18px", zIndex: 2 }} />
           </div>
