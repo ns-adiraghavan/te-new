@@ -337,35 +337,39 @@ function NGOSection() {
   );
 }
 
-// ── 3b. Register CTA (white) ──────────────────────────────────────────────────
+// ── 3b. TSG Role & Register CTA (dark) ───────────────────────────────────────
 function NGORegisterSection() {
   const navigate = useAppNavigate();
   return (
-    <section style={{ padding: "72px 56px", background: "#fff" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 40, flexWrap: "wrap" }}>
+    <section style={{ background: COLOUR_DARK, padding: "88px 56px", position: "relative", overflow: "hidden" }}>
+      <div style={DIAG} />
+      <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 72, alignItems: "start" }}>
         <div>
-          <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.75, maxWidth: 560 }}>
-            Ready to partner with Tata Engage? Register your organisation to get started.
+          <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "#ffffff", marginBottom: 10 }}>
+            Tata Sustainability Group
+          </p>
+          <h2 style={{ fontSize: 30, fontWeight: 900, color: "#fff", letterSpacing: "-0.5px" }}>
+            TSG's role in Civil Society Partnerships
+          </h2>
+          <div style={{ height: 3, background: "rgba(255,255,255,0.25)", borderRadius: 2, width: 48, marginTop: 10, marginBottom: 28 }} />
+          <p style={{ fontSize: 15, color: "rgba(255,255,255,0.8)", lineHeight: 1.82, marginBottom: 0, maxWidth: 480 }}>
+            The Tata Sustainability Group anchors all civil society partnerships on Tata Engage — working closely with Tata companies to identify, vet, and onboard credible Not-for-Profit organisations, and ensuring that volunteer engagements are meaningful, well-supported, and impactful for communities on the ground.
           </p>
         </div>
-        <button
-          onClick={() => navigate("register-role")}
-          style={{
-            display: "inline-flex", alignItems: "center", gap: 10,
-            padding: "13px 28px", borderRadius: 10, border: "none", cursor: "pointer",
-            background: COLOUR, color: "#fff",
-            fontSize: 14, fontWeight: 700,
-            fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif",
-            boxShadow: "0 4px 20px rgba(13,107,122,0.25)",
-            transition: "filter 0.15s",
-            flexShrink: 0,
-          }}
-          onMouseEnter={e => (e.currentTarget.style.filter = "brightness(1.1)")}
-          onMouseLeave={e => (e.currentTarget.style.filter = "brightness(1)")}
-        >
-          <IconRegister />
-          Register Your Organisation
-        </button>
+        <div style={{ background: "rgba(0,0,0,0.22)", borderRadius: 20, padding: "40px 36px", border: "1px solid rgba(255,255,255,0.14)" }}>
+          <div style={{ fontSize: 22, fontWeight: 900, color: "#fff", marginBottom: 14, lineHeight: 1.25 }}>
+            Register your organisation
+          </div>
+          <p style={{ fontSize: 15, color: "rgba(255,255,255,0.68)", lineHeight: 1.78, marginBottom: 36 }}>
+            Credible Not-for-Profit organisations associated with Tata companies can partner with Tata Engage to access skilled and committed Tata volunteers.
+          </p>
+          <button
+            onClick={() => navigate("register-role")}
+            style={{ background: B_YELLOW, color: ACCENT_NAVY, border: "none", borderRadius: 10, padding: "14px 28px", fontWeight: 800, fontSize: 15, cursor: "pointer", width: "100%", boxShadow: "0 4px 20px rgba(13,27,62,0.22)" }}
+          >
+            Register Your Organisation →
+          </button>
+        </div>
       </div>
     </section>
   );
@@ -385,7 +389,7 @@ function ContactSection() {
     <section
       id="pwu-contact"
       style={{
-        background: COLOUR_DARK,
+        background: ACCENT_NAVY,
         padding: "88px 56px",
         position: "relative",
         overflow: "hidden",

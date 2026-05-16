@@ -66,7 +66,7 @@ export default function EWasteView() {
   const { isLoggedIn } = useAuth();
 
   return (
-    <div style={{ background: "transparent", minHeight: "100vh", position: "relative", backgroundImage: "radial-gradient(circle, rgba(13,27,62,0.06) 1px, transparent 1px)", backgroundSize: "20px 20px" }}>
+    <div style={{ background: "#fff", minHeight: "100vh", position: "relative" }}>
 
       <SubPageDotRail sections={SECTIONS} />
 
@@ -104,14 +104,13 @@ export default function EWasteView() {
       </div>
 
       {/* ════════════════════ BANNER IMAGE ════════════════════ */}
-      <div style={{ width: "100%", height: 420, overflow: "hidden", position: "relative" }}>
+      <div style={{ width: "100%", height: 420, overflow: "hidden", position: "relative", background: ACCENT_NAVY }}>
         <img src={ewasteBannerImg} alt=""
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 60%" }} />
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to bottom, transparent 60%, rgba(255,255,255,0.18) 100%)` }} />
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 60%", display: "block" }} />
       </div>
 
       {/* ════════════════════ OVERVIEW ════════════════════ */}
-      <section id="ewaste-overview" style={{ padding: "88px 56px", background: "transparent" }}>
+      <section id="ewaste-overview" style={{ padding: "88px 56px", background: "#fff" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
           <div>
             <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>About the programme</p>
@@ -159,7 +158,7 @@ export default function EWasteView() {
       </section>
 
       {/* ════════════════════ WHO CAN JOIN ════════════════════ */}
-      <section id="ewaste-who" style={{ padding: "88px 56px", background: "transparent" }}>
+      <section id="ewaste-who" style={{ padding: "88px 56px", background: "#f5f5fa" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
           <div>
             <p style={{ fontFamily: "'DM Sans','Noto Sans',ui-sans-serif,system-ui,sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: COLOUR + "cc", marginBottom: 10 }}>Eligibility</p>
